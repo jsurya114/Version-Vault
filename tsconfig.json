@@ -6,9 +6,7 @@
     {
       "path": "./backend"
     },
-    {
-      "path": "./frontend-e2e"
-    },
+
     {
       "path": "./frontend"
     }
