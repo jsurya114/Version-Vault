@@ -2,20 +2,68 @@
   "name": "@org/source",
   "version": "0.0.0",
   "license": "MIT",
-  "scripts": {},
+  "scripts": {
+    "prepare": "husky"
+  },
+  
   "private": true,
-  "dependencies": {},
+  "lint-staged": {
+  "*.{ts,tsx}": [
+    "eslint --fix",
+    "prettier --write"
+  ],
+  "*.{js,json,md}": [
+    "prettier --write"
+  ]
+},
   "devDependencies": {
-    "@nx/js": "22.5.1",
+    "@commitlint/cli": "^20.4.3",
+    "@commitlint/config-conventional": "^20.4.3",
+    "@nx/devkit": "22.5.3",
+    "@nx/esbuild": "22.5.3",
+    "@nx/express": "^22.5.3",
+    "@nx/js": "22.5.3",
+    "@nx/node": "^22.5.3",
+    "@nx/playwright": "22.5.3",
+    "@nx/react": "^22.5.3",
+    "@nx/vite": "^22.5.3",
+    "@nx/web": "22.5.3",
+    "@playwright/test": "^1.36.0",
     "@swc-node/register": "1.11.1",
     "@swc/core": "1.15.8",
     "@swc/helpers": "0.5.18",
+    "@types/express": "^4.17.21",
+    "@types/node": "20.19.9",
+    "@types/react": "^19.0.0",
+    "@types/react-dom": "^19.0.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "@vitejs/plugin-react": "^4.2.0",
+    "@vitest/ui": "^4.0.0",
+    "commitlint": "^20.4.3",
+    "esbuild": "^0.19.2",
+    "eslint": "^10.0.2",
+    "eslint-config-prettier": "^10.1.8",
+    "eslint-plugin-prettier": "^5.5.5",
+    "husky": "^9.1.7",
+    "jiti": "2.4.2",
+    "jsdom": "~22.1.0",
+    "lint-staged": "^16.3.2",
     "nx": "22.5.1",
-    "prettier": "^2.6.2",
+    "prettier": "^3.8.1",
     "tslib": "^2.3.0",
-    "typescript": "~5.9.2"
+    "typescript": "~5.9.2",
+    "vite": "^7.0.0",
+    "vitest": "^4.0.0"
   },
   "workspaces": [
-    "packages/*"
-  ]
+    "packages/*",
+    "backend",
+    "frontend"
+  ],
+  "dependencies": {
+    "express": "^4.21.2",
+    "react": "^19.0.0",
+    "react-dom": "^19.0.0"
+  }
 }

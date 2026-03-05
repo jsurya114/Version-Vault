@@ -1,0 +1,124 @@
+Version Vault
+A GitHub/GitLab-like platform built with React.js, Node.js, Express, MongoDB, TypeScript, and Tailwind CSS using a monorepo architecture with Nx.
+
+Tech Stack
+
+Frontend: React.js, Redux Toolkit, Vite, Tailwind CSS, TypeScript
+Backend: Node.js, Express, TypeScript, TSyringe (DI), Zod
+Database: MongoDB (Mongoose)
+Cache: Redis (ioredis)
+Monorepo: Nx
+Containerization: Docker
+
+
+Prerequisites
+Make sure you have these installed:
+
+Node.js >= 18
+npm >= 9
+Docker Desktop
+Git
+
+
+Project Structure
+version-vault/
+├── backend/        ← Node.js + Express API (Clean Architecture)
+├── frontend/       ← React.js + Redux
+├── packages/
+│   └── shared-types/  ← Shared TypeScript types
+├── docker-compose.dev.yml
+└── package.json
+
+Getting Started
+1. Clone the repository
+bashgit clone https://github.com/your-username/version-vault.git
+cd version-vault
+2. Install dependencies
+bash# Install root dependencies
+npm install
+
+# Install backend dependencies
+npm install --prefix backend
+
+# Install frontend dependencies
+npm install --prefix frontend
+3. Setup environment variables
+bash# Copy example env file and fill in your values
+cp backend/.env.example backend/.env
+
+Running with Docker (Recommended)
+Start MongoDB + Redis containers
+bashdocker-compose -f docker-compose.dev.yml up -d
+Verify containers are running
+bashdocker ps
+# Should show:
+# version-vault-mongo   → port 27017
+# version-vault-redis   → port 6379
+Stop containers
+bashdocker-compose -f docker-compose.dev.yml down
+
+Running the Backend
+bash# Navigate to backend folder
+cd backend
+
+# Development mode (with auto-reload via nodemon)
+npm run dev
+
+# Build for production
+npm run build
+
+# Run production build
+npm start
+Backend runs on: http://localhost:5000
+Backend Health Check
+GET http://localhost:5000/health
+
+Running the Frontend
+bash# Navigate to frontend folder
+cd frontend
+
+# Development mode
+npm run dev
+
+# Build for production
+npm run build
+
+# Preview production build
+npm run preview
+Frontend runs on: http://localhost:5173
+
+Running Both Together (from root)
+bash# Run backend
+nx serve backend
+
+# Run frontend (in a separate terminal)
+nx serve frontend
+
+API Endpoints
+Auth
+MethodEndpointDescriptionAuth RequiredPOST/api/auth/registerRegister new userNoPOST/api/auth/verify-otpVerify OTPNoPOST/api/auth/loginLogin userNoPOST/api/auth/googleGoogle OAuthNoPOST/api/auth/logoutLogout userYesPOST/api/auth/refreshRefresh tokenYes
+
+Conventional Commits
+This project uses conventional commits. Always commit using this format:
+bashgit commit -m "type: description"
+Commit Types
+TypeDescriptionfeatNew featurefixBug fixchoreMaintenance taskdocsDocumentationstyleFormatting, no code changerefactorCode refactortestAdding testsperfPerformance improvementciCI/CD changesbuildBuild system changesrevertRevert a commit
+Examples
+bashgit commit -m "feat: add user registration endpoint"
+git commit -m "fix: resolve OTP expiry issue"
+git commit -m "chore: update dependencies"
+git commit -m "docs: update README with setup instructions"
+
+Environment Variables
+Backend (backend/.env)
+VariableDescriptionDefaultNODE_ENVEnvironmentdevelopmentPORTServer port5000MONGODB_URIMongoDB connection stringmongodb://localhost:27017/version-vaultREDIS_URLRedis connection stringredis://localhost:6379JWT_ACCESS_SECRETJWT access token secret-JWT_REFRESH_SECRETJWT refresh token secret-JWT_ACCESS_EXPIRESAccess token expiry15mJWT_REFRESH_EXPIRESRefresh token expiry7dCOOKIE_SECRETCookie signing secret-GOOGLE_CLIENT_IDGoogle OAuth client ID-GOOGLE_CLIENT_SECRETGoogle OAuth client secret-SMTP_HOSTEmail SMTP hostsmtp.gmail.comSMTP_PORTEmail SMTP port587SMTP_USEREmail address-SMTP_PASSEmail app password-CLIENT_URLFrontend URLhttp://localhost:5173OTP_EXPIRES_MINUTESOTP expiry in minutes10
+
+Clean Architecture Layers
+domain/          ← Entities, Interfaces, Errors, Enums (no dependencies)
+application/     ← Use Cases, DTOs, Validators, Mappers
+infrastructure/  ← MongoDB, Redis, Email, Services (implements domain interfaces)
+interfaces/      ← Controllers, Routes, Middleware, HTTP Validators (Zod)
+shared/          ← Logger, Config, Constants, Utils
+
+License
+MIT

@@ -1,0 +1,3 @@
+2026-03-05 21:48:59 [[31merror[39m]: POST /vv/auth/register — Invalid login: 535-5.7.8 Username and Password not accepted. For more information, go to
+535 5.7.8  https://support.google.com/mail/?p=BadCredentials d2e1a72fcca58-8273a088517sm21833017b3a.65 - gsmtp
+2026-03-05 21:57:53 [[31merror[39m]: POST /vv/auth/register — Email already in use
