@@ -5,20 +5,20 @@
   "scripts": {
     "prepare": "husky"
   },
-  
   "private": true,
   "lint-staged": {
-  "*.{ts,tsx}": [
-    "eslint --fix",
-    "prettier --write"
-  ],
-  "*.{js,json,md}": [
-    "prettier --write"
-  ]
-},
+    "*.{ts,tsx}": [
+      "eslint --fix",
+      "prettier --write"
+    ],
+    "*.{js,json,md}": [
+      "prettier --write"
+    ]
+  },
   "devDependencies": {
     "@commitlint/cli": "^20.4.3",
     "@commitlint/config-conventional": "^20.4.3",
+    "@eslint/js": "^10.0.1",
     "@nx/devkit": "22.5.3",
     "@nx/esbuild": "22.5.3",
     "@nx/express": "^22.5.3",
@@ -53,6 +53,7 @@
     "prettier": "^3.8.1",
     "tslib": "^2.3.0",
     "typescript": "~5.9.2",
+    "typescript-eslint": "^8.56.1",
     "vite": "^7.0.0",
     "vitest": "^4.0.0"
   },

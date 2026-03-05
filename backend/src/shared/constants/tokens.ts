@@ -9,5 +9,6 @@ export const TOKENS = {
   IEmailService: Symbol.for('IEmailService'),
 
   //usecases
-  IRegisterUseCase:Symbol.for('IRegisterUseCase')
+  IRegisterUseCase: Symbol.for('IRegisterUseCase'),
+  ILoginUseCase: Symbol.for('ILoginUseCase'),
 } as const;
