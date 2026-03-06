@@ -1,7 +1,7 @@
 export const ROUTES = {
   // Auth
   LOGIN: '/login',
-  REGISTER: '/register',
+  REGISTER: 'auth/register',
   VERIFY_OTP: '/verify-otp',
   GOOGLE_CALLBACK: '/auth/google/callback',
 

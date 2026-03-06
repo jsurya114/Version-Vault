@@ -1,4 +1,4 @@
-export const API_BASE_URL = 'http://localhost:3125/api';
+export const API_BASE_URL = 'http://localhost:3125/vv';
 
 export const AUTH_ENDPOINTS = {
   REGISTER: '/auth/register',
