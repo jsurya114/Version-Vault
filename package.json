@@ -3,7 +3,8 @@
   "version": "0.0.0",
   "license": "MIT",
   "scripts": {
-    "prepare": "husky"
+    "prepare": "husky",
+    "test": "echo \"No tests yet\" && exit 0"
   },
   "private": true,
   "lint-staged": {
