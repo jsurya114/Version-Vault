@@ -1,25 +1,45 @@
- import nodemailer from "nodemailer"
- import { injectable } from "tsyringe"
- import type { IEmailService } from "src/domain/interfaces/services/IEmailService"
- import { envConfig } from "src/shared/config/env.config"
- import { logger } from "src/shared/logger/Logger"
+import nodemailer from 'nodemailer';
+import { injectable } from 'tsyringe';
+import type { IEmailService } from 'src/domain/interfaces/services/IEmailService';
+import { envConfig } from 'src/shared/config/env.config';
+import { logger } from 'src/shared/logger/Logger';
+import { resolve4 } from 'node:dns/promises';
 
- @injectable()
+@injectable()
+export class NodemailerService implements IEmailService {
+  private transporter: nodemailer.Transporter | null = null;
 
-export class NodemailerService implements IEmailService{
-    private readonly transporter = nodemailer.createTransport({
-        host:envConfig.SMTP_HOST,
-        port:envConfig.SMTP_PORT,
-        secure:false,
-        auth:{
-            user:envConfig.SMTP_USER,
-            pass:envConfig.SMTP_PASS
+  private async getTransporter(): Promise<nodemailer.Transporter> {
+    if (!this.transporter) {
+      let hostParams: any = { host: envConfig.SMTP_HOST };
+      try {
+        // Force IPv4 lookup to bypass ENETUNREACH failing rapidly on networks lacking IPv6
+        const ips = await resolve4(envConfig.SMTP_HOST);
+        if (ips && ips.length > 0) {
+          hostParams = { host: ips[0], tls: { servername: envConfig.SMTP_HOST } };
         }
-    })
+      } catch (error) {
+        logger.warn(
+          `Could not resolve IPv4 for ${envConfig.SMTP_HOST}, falling back to default lookup: ${error}`,
+        );
+      }
 
+      this.transporter = nodemailer.createTransport({
+        ...hostParams,
+        port: envConfig.SMTP_PORT,
+        secure: envConfig.SMTP_PORT === 465,
+        auth: {
+          user: envConfig.SMTP_USER,
+          pass: envConfig.SMTP_PASS,
+        },
+      });
+    }
+    return this.transporter;
+  }
 
-async sendOtpEmail(to: string, otp: string): Promise<void> {
-    await this.transporter.sendMail({
+  async sendOtpEmail(to: string, otp: string): Promise<void> {
+    const transporter = await this.getTransporter();
+    await transporter.sendMail({
       from: envConfig.EMAIL_FROM,
       to,
       subject: 'Version Vault — Email Verification OTP',

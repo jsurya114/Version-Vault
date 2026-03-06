@@ -488,3 +488,7 @@
 2026-03-06 16:45:21 [[31merror[39m]: AggregateError
     at internalConnectMultiple (node:net:1139:18)
     at afterConnectMultiple (node:net:1712:7)
+2026-03-06 23:39:43 [[31merror[39m]: POST /vv/auth/register — connect ENETUNREACH 2404:6800:4000:1025::6d:465
+2026-03-06 23:47:30 [[31merror[39m]: POST /vv/auth/register — connect ENETUNREACH 2404:6800:4000:1025::6c:465
+2026-03-07 00:00:34 [[31merror[39m]: POST /vv/auth/register — connect ETIMEDOUT 192.178.211.108:465
+2026-03-07 00:02:55 [[31merror[39m]: POST /vv/auth/register — Unexpected socket close
