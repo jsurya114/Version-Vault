@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { container } from 'tsyringe';
 import { AuthController } from '../../controllers/user/AuthController';
 import { validate } from '../../middleware/ValidationMiddleware';
-import { registerSchema, verifyOtpSchema } from '../../../validators/auth.validators';
+import { registerSchema, verifyOtpSchema,loginSchema } from '../../../validators/auth.validators';
 
 const router = Router();
 
@@ -20,5 +20,7 @@ router.post('/register', validate(registerSchema), (req, res, next) =>
 router.post('/verify-otp', validate(verifyOtpSchema), (req, res, next) =>
   authController.verifyOtp(req, res, next),
 );
+
+router.post('/login',validate(loginSchema),(req,res,next)=>authController.login(req,res,next))
 
 export default router;

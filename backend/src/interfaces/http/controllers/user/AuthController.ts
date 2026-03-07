@@ -3,7 +3,9 @@ import { injectable, inject } from 'tsyringe';
 import { TOKENS } from 'src/shared/constants/tokens';
 import type { IRegisterUseCase } from 'src/application/use-cases/interfaces/IRegisterUsecase';
 import type { IVerifyOtpUseCase } from 'src/application/use-cases/interfaces/IVerifyOtpUseCase';
+import type { ILoginUseCase } from 'src/application/use-cases/interfaces/ILoginUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { envConfig } from 'src/shared/config/env.config';
 
 @injectable()
 export class AuthController {
@@ -11,6 +13,7 @@ export class AuthController {
   constructor(
     @inject(TOKENS.IRegisterUseCase) private readonly registerUser: IRegisterUseCase,
     @inject(TOKENS.IVerifyUseCase) private readonly otpService: IVerifyOtpUseCase,
+    @inject(TOKENS.ILoginUseCase) private readonly loginService:ILoginUseCase
   ) {}
   /**
    * POST /api/auth/register
@@ -44,4 +47,31 @@ export class AuthController {
       next(error); //passing the error handling middleware
     }
   }
+/**
+   * POST /vv/auth/login
+   * login the user
+   * 
+   */
+
+async login(req:Request,res:Response,next:NextFunction):Promise<void>{
+  try {
+    const result = await this.loginService.execute(req.body)
+          res.cookie('accessToken', result.accessToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 15 * 60 * 1000, // 15 minutes
+      });
+
+      res.cookie('refreshToken', result.refreshToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      });
+      res.status(HttpStatusCodes.OK).json({ success: true, message: "Login successfull",data:result.user });
+  } catch (error) {
+     next(error); 
+  }
+}
 }

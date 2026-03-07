@@ -16,10 +16,11 @@ import { NodemailerService } from './infrastructure/external/email/NodemailerSer
 //validator
 import { RegisterValidator } from './application/use-cases/validators/RegisterValidator';
 import { VerifyOtpValidator } from './application/use-cases/validators/VerifyOtpValidator';
+import { LoginValidator } from './application/use-cases/validators/LoginValidator';
 //usecases
 import { RegisterUseCase } from './application/use-cases/auth/RegisterUseCase';
 import { VerifyOtpUseCase } from './application/use-cases/auth/VerifyOtpUseCase';
-
+import { LoginUseCase } from './application/use-cases/auth/LoginUseCase';
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -32,11 +33,13 @@ container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
 //validator
 container.register(RegisterValidator, { useClass: RegisterValidator });
 container.register(VerifyOtpValidator, { useClass: VerifyOtpValidator });
+container.register(LoginValidator,{useClass:LoginValidator})
 
 //useCase
 
 container.register(TOKENS.IRegisterUseCase, { useClass: RegisterUseCase });
 
 container.register(TOKENS.IVerifyUseCase, { useClass: VerifyOtpUseCase });
+container.register(TOKENS.ILoginUseCase,{useClass:LoginUseCase})
 
 export { container };
