@@ -63,6 +63,9 @@ const RegisterPage = () => {
     if (!validate()) return;
     dispatch(registerThunk(formData));
   };
+  const handleGoogleAuth = () => {
+    window.location.href = 'http://localhost:3125/vv/auth/google';
+  };
 
   return (
     <div className="min-h-screen bg-gray-950 flex flex-col items-center justify-center px-4 py-10">
@@ -117,6 +120,7 @@ const RegisterPage = () => {
             {/* Google button */}
             <button
               type="button"
+              onClick={handleGoogleAuth}
               className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-800 font-medium py-2.5 rounded-lg transition mb-5 text-sm"
             >
               {/* Google "G" SVG */}

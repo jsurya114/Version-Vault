@@ -769,3 +769,182 @@
 2026-03-07 15:10:04 [[32minfo[39m]: MongoDB connected successfully
 2026-03-07 15:10:04 [[32minfo[39m]: Server running on port 3125 in development mode
 2026-03-07 15:11:33 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 157.748 ms - 183[0m
+2026-03-07 21:33:10 [[32minfo[39m]: [0mPOST /vv/auth/login [0m-[0m - ms - -[0m
+2026-03-07 21:33:24 [[31merror[39m]: POST /vv/auth/login — connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+2026-03-07 21:33:45 [[31merror[39m]: POST /vv/auth/login — connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+2026-03-07 21:33:45 [[32minfo[39m]: [0mPOST /vv/auth/login [31m500[0m 30027.411 ms - 51[0m
+2026-03-07 21:34:38 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 162.129 ms - 183[0m
+2026-03-07 21:50:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:03 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 21:50:04 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 21:50:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:10 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:11 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:12 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:12 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:13 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:14 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:15 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:17 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:18 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:19 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:20 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:22 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:23 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:24 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:27 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:29 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:30 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:32 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:34 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:36 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:37 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:39 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:41 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:43 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 21:50:45 [[32minfo[39m]: Redis connected successfully
+2026-03-07 21:51:10 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 152.225 ms - 183[0m
+2026-03-07 22:26:43 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:26:43 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:26:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:27:22 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:27:22 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:27:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:28:36 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:28:36 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:28:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:30:48 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:30:48 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:30:49 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:31:12 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:31:12 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:31:13 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:31:19 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:31:19 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:31:20 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:31:40 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:31:40 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:31:46 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:31:46 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:31:46 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:32:10 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:32:10 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:32:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 22:35:38 [[32minfo[39m]: Redis connected successfully
+2026-03-07 22:35:39 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 22:35:39 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 23:37:57 [[32minfo[39m]: Redis connected successfully
+2026-03-07 23:37:57 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 23:37:57 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 23:38:24 [[32minfo[39m]: Redis connected successfully
+2026-03-07 23:38:24 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 23:38:25 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 23:38:25 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 2.605 ms - 327[0m
+2026-03-07 23:38:36 [[32minfo[39m]: [0mGET /vv/auth/google/callback?error=access_denied [33m400[0m 1.348 ms - 46[0m
+2026-03-07 23:38:36 [[32minfo[39m]: [0mGET /favicon.ico [33m404[0m 2.327 ms - 150[0m
+2026-03-07 23:38:42 [[32minfo[39m]: [0mGET /vv/auth/google/callback?error=access_denied [33m400[0m 0.371 ms - 46[0m
+2026-03-07 23:38:53 [[31merror[39m]: GET /vv/auth/google/callback — this.googleUseCase.execute is not a function
+2026-03-07 23:38:53 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepDPi8-b7PofmH8p-sGpBHhpuTpFrC4cQr4keIX2tZO1c38Nx6dScF4B0pt7Dqu8hQ&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [31m500[0m 2.595 ms - 51[0m
+2026-03-07 23:41:24 [[32minfo[39m]: Redis connected successfully
+2026-03-07 23:41:24 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 23:41:24 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 23:42:36 [[32minfo[39m]: Redis connected successfully
+2026-03-07 23:42:36 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 23:42:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 23:42:42 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepDcvhZ9aXtiOnhSXbDhdNYxSfhM_J0c2_KQo2ws_oabMo56SPuDLkCpp8BiUgAsrg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 655.369 ms - 55[0m
+2026-03-07 23:43:00 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 2.455 ms - 327[0m
+2026-03-07 23:43:07 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepD2jSdVm6hbGlEDkLuZBnAms3b03HgzkuYZSCRBdqNl6jZ9IcJcyYJ2BOVrj6_ztw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 302.213 ms - 55[0m
