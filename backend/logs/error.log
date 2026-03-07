@@ -541,3 +541,8 @@
     at NativeConnection.openUri (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1100:11)
     at async connectDatabase (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\infrastructure\database\mongoose\connection.ts:7:5)
     at async startSever (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\main.ts:10:5)
+2026-03-07 15:09:27 [[31merror[39m]: MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1169:11)
+    at NativeConnection.openUri (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1100:11)
+    at async connectDatabase (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\infrastructure\database\mongoose\connection.ts:7:5)
+    at async startSever (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\main.ts:10:5)

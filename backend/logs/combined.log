@@ -759,3 +759,13 @@
     at NativeConnection.openUri (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1100:11)
     at async connectDatabase (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\infrastructure\database\mongoose\connection.ts:7:5)
     at async startSever (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\main.ts:10:5)
+2026-03-07 15:08:57 [[32minfo[39m]: Redis connected successfully
+2026-03-07 15:09:27 [[31merror[39m]: MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1169:11)
+    at NativeConnection.openUri (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1100:11)
+    at async connectDatabase (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\infrastructure\database\mongoose\connection.ts:7:5)
+    at async startSever (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\main.ts:10:5)
+2026-03-07 15:10:04 [[32minfo[39m]: Redis connected successfully
+2026-03-07 15:10:04 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 15:10:04 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 15:11:33 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 157.748 ms - 183[0m

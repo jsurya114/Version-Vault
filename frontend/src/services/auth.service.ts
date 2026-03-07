@@ -1,6 +1,6 @@
 import axiosInstance from './axiosInstance';
 import { AUTH_ENDPOINTS } from 'src/constants/api';
-import type { RegisterInput, VerifyOtpInput } from 'src/types/auth.types';
+import type { RegisterInput, VerifyOtpInput,LoginInput } from 'src/types/auth.types';
 
 export const authService = {
   register: async (data: RegisterInput) => {
@@ -11,4 +11,8 @@ export const authService = {
     const res = await axiosInstance.post(AUTH_ENDPOINTS.VERIFY_OTP, data);
     return res.data;
   },
+  login:async(data:LoginInput)=>{
+    const res = await axiosInstance.post(AUTH_ENDPOINTS.LOGIN,data)
+    return res.data
+  }
 };

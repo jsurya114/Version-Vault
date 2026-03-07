@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authService } from 'src/services/auth.service';
-import { RegisterInput, VerifyOtpInput } from 'src/types/auth.types';
+import { RegisterInput, VerifyOtpInput,LoginInput } from 'src/types/auth.types';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
@@ -35,4 +35,22 @@ export const verifyOtpThunk = createAsyncThunk(
       return rejectWithValue(message);
     }
   },
+
 );
+
+ export const loginThunk=createAsyncThunk(
+    'auth/login',
+    async (data:LoginInput,{rejectWithValue})=>{
+      try {
+        const res = await authService.login(data)
+        return res
+      } catch (error: unknown) {
+      const err = error as {
+        response?: { data?: { message?: string; errors?: { message: string }[] } };
+      };
+      const message =err.response?.data?.message ||err.response?.data?.errors?.[0].message ||'Login Failed, please try again.';
+      return rejectWithValue(message);
+    }
+  },
+    
+  )
