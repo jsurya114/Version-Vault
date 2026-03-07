@@ -492,3 +492,42 @@
 2026-03-06 23:47:30 [[31merror[39m]: POST /vv/auth/register — connect ENETUNREACH 2404:6800:4000:1025::6c:465
 2026-03-07 00:00:34 [[31merror[39m]: POST /vv/auth/register — connect ETIMEDOUT 192.178.211.108:465
 2026-03-07 00:02:55 [[31merror[39m]: POST /vv/auth/register — Unexpected socket close
+2026-03-07 00:09:58 [[31merror[39m]: MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1169:11)
+    at NativeConnection.openUri (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1100:11)
+    at async connectDatabase (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\infrastructure\database\mongoose\connection.ts:7:5)
+    at async startSever (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\main.ts:10:5)
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:27 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:27 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:28 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:09:43 [[31merror[39m]: POST /vv/auth/register — connect ETIMEDOUT 192.178.211.109:465

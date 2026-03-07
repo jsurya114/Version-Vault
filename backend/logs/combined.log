@@ -587,3 +587,77 @@
 2026-03-07 00:02:00 [[32minfo[39m]: Server running on port 3125 in development mode
 2026-03-07 00:02:55 [[31merror[39m]: POST /vv/auth/register — Unexpected socket close
 2026-03-07 00:02:55 [[32minfo[39m]: [0mPOST /vv/auth/register [31m500[0m 11396.023 ms - 51[0m
+2026-03-07 00:03:13 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:03:13 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 00:03:14 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 00:03:26 [[32minfo[39m]: OTP email sent to jayasooryaegurukulam@gmail.com
+2026-03-07 00:03:26 [[32minfo[39m]: [0mPOST /vv/auth/register [32m201[0m 3122.820 ms - 97[0m
+2026-03-07 00:04:36 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:04:36 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 00:04:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 00:06:02 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:06:02 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 00:06:02 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 00:06:34 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:06:34 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 00:06:35 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 00:06:45 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:06:45 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 00:06:46 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 00:09:21 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:09:28 [[32minfo[39m]: Redis connected successfully
+2026-03-07 00:09:58 [[31merror[39m]: MongooseServerSelectionError: connect ECONNREFUSED ::1:27017, connect ECONNREFUSED 127.0.0.1:27017
+    at _handleConnectionErrors (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1169:11)
+    at NativeConnection.openUri (C:\Users\JAYASURYA\Desktop\version-vault\node_modules\mongoose\lib\connection.js:1100:11)
+    at async connectDatabase (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\infrastructure\database\mongoose\connection.ts:7:5)
+    at async startSever (C:\Users\JAYASURYA\Desktop\version-vault\backend\src\main.ts:10:5)
+2026-03-07 00:10:06 [[32minfo[39m]: Redis connected successfully
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:25 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 12:07:25 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:25 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:26 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:27 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:27 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:07:28 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-07 12:08:05 [[32minfo[39m]: Redis connected successfully
+2026-03-07 12:08:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 12:08:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-07 12:09:43 [[31merror[39m]: POST /vv/auth/register — connect ETIMEDOUT 192.178.211.109:465
+2026-03-07 12:09:43 [[32minfo[39m]: [0mPOST /vv/auth/register [31m500[0m 21313.317 ms - 51[0m
+2026-03-07 12:10:22 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-07 12:10:22 [[32minfo[39m]: [0mPOST /vv/auth/register [32m201[0m 3503.141 ms - 97[0m
+2026-03-07 12:13:54 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-07 12:13:54 [[32minfo[39m]: [0mPOST /vv/auth/register [32m201[0m 3033.222 ms - 97[0m
+2026-03-07 12:18:05 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-07 12:18:05 [[32minfo[39m]: [0mPOST /vv/auth/register [32m201[0m 3157.201 ms - 97[0m
+2026-03-07 13:00:33 [[32minfo[39m]: Redis connected successfully
+2026-03-07 13:00:33 [[32minfo[39m]: MongoDB connected successfully
+2026-03-07 13:00:33 [[32minfo[39m]: Server running on port 3125 in development mode

@@ -11,4 +11,5 @@ export const TOKENS = {
   //usecases
   IRegisterUseCase: Symbol.for('IRegisterUseCase'),
   ILoginUseCase: Symbol.for('ILoginUseCase'),
+  IVerifyUseCase: Symbol.for('IVerifyUseCase'),
 } as const;

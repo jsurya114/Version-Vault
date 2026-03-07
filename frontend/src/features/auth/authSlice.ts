@@ -1,6 +1,6 @@
 import { AuthState } from 'src/types/auth.types';
 import { createSlice } from '@reduxjs/toolkit';
-import { registerThunk } from './authThunks';
+import { registerThunk, verifyOtpThunk } from './authThunks';
 
 const initialState: AuthState = {
   isLoading: false,
@@ -25,6 +25,7 @@ const authSlice = createSlice({
   },
   extraReducers(builder) {
     builder
+      //registration
       .addCase(registerThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -34,6 +35,22 @@ const authSlice = createSlice({
         state.successMessage = action.payload.message;
       })
       .addCase(registerThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
+
+    //verifyOtp
+
+    builder
+      .addCase(verifyOtpThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(verifyOtpThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(verifyOtpThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });

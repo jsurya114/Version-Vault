@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { registerThunk } from 'src/features/auth/authThunks';
-import { setRegisteredEmail, clearError } from 'src/features/auth/authSlice';
+import { setRegisteredEmail, clearError, clearSuccessMessage } from 'src/features/auth/authSlice';
 import {
   selectAuthLoading,
   selectAuthError,
@@ -32,6 +32,7 @@ const RegisterPage = () => {
   useEffect(() => {
     if (successMessage) {
       dispatch(setRegisteredEmail(formData.email));
+      dispatch(clearSuccessMessage());
       navigate(ROUTES.VERIFY_OTP);
     }
   }, [successMessage]);

@@ -1,12 +1,12 @@
 export const ROUTES = {
   // Auth
-  LOGIN: '/login',
-  REGISTER: 'auth/register',
-  VERIFY_OTP: '/verify-otp',
+  LOGIN: '/auth/login',
+  REGISTER: '/auth/register',
+  VERIFY_OTP: '/auth/verify-otp',
   GOOGLE_CALLBACK: '/auth/google/callback',
 
   // User
-  HOME: '/',
+  HOME: '/home',
   EXPLORE: '/explore',
   PROFILE: '/profile/:username',
   SETTINGS: '/settings',
