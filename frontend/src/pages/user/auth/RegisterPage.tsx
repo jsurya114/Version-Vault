@@ -160,7 +160,7 @@ const RegisterPage = () => {
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {/* User ID */}
               <div>
                 <label className="block text-sm text-gray-300 mb-1">User ID</label>

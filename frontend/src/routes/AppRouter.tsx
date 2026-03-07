@@ -8,8 +8,8 @@ import PageLoader from 'src/components/PageLoader';
 
 const LandingPage = lazy(() => import('../pages/LandingPage'));
 const LoginPage = lazy(() => import('../pages/user/auth/LoginPage'));
-const RegisterPage = lazy(() => import('../pages/user/auth/OtpVerificationPage'));
-const OtpVerificationPage = lazy(() => import('../pages/user/auth/RegisterPage'));
+const RegisterPage = lazy(() => import('../pages/user/auth/RegisterPage'));
+const OtpVerificationPage = lazy(() => import('../pages/user/auth/OtpVerificationPage'));
 const GoogleCallBackpage = lazy(() => import('../pages/user/auth/GoogleCallbackPage'));
 const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage'));
 const HomePage = lazy(() => import('../pages/user/home/HomePage'));

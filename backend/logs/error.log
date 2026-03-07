@@ -669,3 +669,13 @@
     at internalConnectMultiple (node:net:1139:18)
     at afterConnectMultiple (node:net:1712:7)
 2026-03-07 23:38:53 [[31merror[39m]: GET /vv/auth/google/callback — this.googleUseCase.execute is not a function
+2026-03-08 00:59:35 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-08 00:59:44 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:00:00 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:00:14 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:02:29 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:16:09 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:16:24 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:21:00 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:43:21 [[31merror[39m]: POST /vv/auth/register — Email already in use
+2026-03-08 01:44:32 [[31merror[39m]: POST /vv/auth/register — connect ETIMEDOUT 192.178.211.109:465

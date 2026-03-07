@@ -1,5 +1,6 @@
 import { useState } from 'react';
-import { Link } from 'react-router-dom';
+
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Search,
   Bell,
@@ -22,6 +23,7 @@ import {
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { selectAuthUser } from 'src/features/auth/authSelectors';
 import { logout } from 'src/features/auth/authSlice';
+import { logoutThunk } from 'src/features/auth/authThunks';
 import { ROUTES } from 'src/constants/routes';
 
 // ─── Mock Data ────────────────────────────────────────────────────────────────
@@ -106,6 +108,7 @@ const navItems = [
 // ─── Home Page ────────────────────────────────────────────────────────────────
 const HomePage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const user = useAppSelector(selectAuthUser);
   const [repoSearch, setRepoSearch] = useState('');
   const [activityFilter, setActivityFilter] = useState('All Activities');
@@ -114,8 +117,9 @@ const HomePage = () => {
     r.name.toLowerCase().includes(repoSearch.toLowerCase()),
   );
 
-  const handleLogout = () => {
-    dispatch(logout());
+  const handleLogout = async () => {
+    await dispatch(logoutThunk());
+    navigate(ROUTES.LOGIN);
   };
 
   return (

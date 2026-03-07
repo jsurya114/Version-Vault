@@ -6,6 +6,8 @@ import type { IVerifyOtpUseCase } from 'src/application/use-cases/interfaces/IVe
 import type { ILoginUseCase } from 'src/application/use-cases/interfaces/ILoginUseCase';
 import type { IGoogleAuthUseCase } from 'src/application/use-cases/interfaces/IGoogleUseCase';
 import type { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
+import type { IlogoutUseCase } from 'src/application/use-cases/interfaces/ILogoutUseCase';
+import type { IRefreshTokenUseCase } from 'src/application/use-cases/interfaces/IRefreshTokenUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
 import { envConfig } from 'src/shared/config/env.config';
 
@@ -18,6 +20,8 @@ export class AuthController {
     @inject(TOKENS.ILoginUseCase) private readonly loginService: ILoginUseCase,
     @inject(TOKENS.IGoogleAuthUseCase) private readonly googleUseCase: IGoogleAuthUseCase,
     @inject(TOKENS.IGoogleAuthService) private readonly googleAuthService: IGoogleAuthService,
+    @inject(TOKENS.ILogoutUseCase) private readonly logoutUseCase: IlogoutUseCase,
+    @inject(TOKENS.IRefreshTokenUseCase) private readonly refreshUseCase: IRefreshTokenUseCase,
   ) {}
   /**
    * POST /api/auth/register
@@ -126,6 +130,50 @@ export class AuthController {
       res.redirect(`${envConfig.CLIENT_URL}/home`);
     } catch (error) {
       next(error);
+    }
+  }
+
+  /**
+   * POST /vv/auth/logout
+   */
+
+  async logout(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const refreshToken = req.cookies?.refreshToken || '';
+      await this.logoutUseCase.execute(refreshToken);
+
+      res.clearCookie('accessToken');
+      res.clearCookie('refreshToken');
+
+      res.status(HttpStatusCodes.OK).json({ success: true, message: 'Logged out successfully' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * POST /vv/auth/refresh-token
+   */
+
+  async refresToken(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const refreshToken = req.cookies?.refreshToken;
+      if (!refreshToken) {
+        res
+          .status(HttpStatusCodes.UNAUTHORIZED)
+          .json({ success: false, message: 'No refresh token' });
+        return;
+      }
+      const result = await this.refreshUseCase.execute(refreshToken);
+      res.cookie('accessToken', result.accessToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 15 * 60 * 1000,
+      });
+      res.status(HttpStatusCodes.OK).json({ success: true, message: 'Token refreshed' });
+    } catch (error) {
+      next;
     }
   }
 }

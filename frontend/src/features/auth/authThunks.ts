@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { authService } from 'src/services/auth.service';
-import { RegisterInput, VerifyOtpInput,LoginInput } from 'src/types/auth.types';
+import { RegisterInput, VerifyOtpInput, LoginInput } from 'src/types/auth.types';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
@@ -10,8 +10,8 @@ export const registerThunk = createAsyncThunk(
       return res;
     } catch (error: any) {
       const message =
-        error.res?.data?.message ||
-        error.resonse?.data?.errors?.[0].message ||
+        error.response?.data?.errors?.[0].message ||
+        error.response?.data?.message ||
         'Registration failed please try again.';
       return rejectWithValue(message);
     }
@@ -29,28 +29,37 @@ export const verifyOtpThunk = createAsyncThunk(
         response?: { data?: { message?: string; errors?: { message: string }[] } };
       };
       const message =
-        err.response?.data?.message ||
         err.response?.data?.errors?.[0].message ||
+        err.response?.data?.message ||
         'Otp Verification Failed, please try again.';
       return rejectWithValue(message);
     }
   },
-
 );
 
- export const loginThunk=createAsyncThunk(
-    'auth/login',
-    async (data:LoginInput,{rejectWithValue})=>{
-      try {
-        const res = await authService.login(data)
-        return res
-      } catch (error: unknown) {
+export const loginThunk = createAsyncThunk(
+  'auth/login',
+  async (data: LoginInput, { rejectWithValue }) => {
+    try {
+      const res = await authService.login(data);
+      return res;
+    } catch (error: unknown) {
       const err = error as {
         response?: { data?: { message?: string; errors?: { message: string }[] } };
       };
-      const message =err.response?.data?.message ||err.response?.data?.errors?.[0].message ||'Login Failed, please try again.';
+      const message =
+        err.response?.data?.errors?.[0].message ||
+        err.response?.data?.message ||
+        'Login Failed, please try again.';
       return rejectWithValue(message);
     }
   },
-    
-  )
+);
+
+export const logoutThunk = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
+  try {
+    await authService.logout();
+  } catch (error: any) {
+    return rejectWithValue(error.response?.data?.message || 'Logout failed');
+  }
+});

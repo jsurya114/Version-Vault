@@ -6,12 +6,15 @@ export const registerSchema = z
       .string()
       .min(3, 'User ID must be at least 3 characters')
       .max(20, 'User ID must not exceed 20 characters')
-      .regex(/^[a-zA-Z0-9_]+$/, 'User ID can only contain letters, numbers and underscores'),
+      .regex(/^[a-zA-Z0-9_]+$/, 'User ID can only contain letters, numbers and underscores')
+      .regex(/[a-zA-Z]/, 'User ID must contain at least one letter')
+      .regex(/[0-9]/, 'User ID must contain at least one number'),
 
     username: z
       .string()
       .min(3, 'Username must be at least 3 characters')
-      .max(30, 'Username must not exceed 30 characters'),
+      .max(30, 'Username must not exceed 30 characters')
+      .regex(/^[a-zA-Z]+$/, 'Username can only contain letters'),
 
     email: z.string().email('Invalid email address'),
 
@@ -40,13 +43,9 @@ export const verifyOtpSchema = z.object({
 });
 
 export const loginSchema = z.object({
-  userId: z
-    .string()
-    .min(1, 'User ID is required'),
+  userId: z.string().min(1, 'User ID is required'),
 
-  password: z
-    .string()
-    .min(1, 'Password is required'),
+  password: z.string().min(1, 'Password is required'),
 });
 
 export type RegisterInput = z.infer<typeof registerSchema>;

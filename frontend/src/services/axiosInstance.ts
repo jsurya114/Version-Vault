@@ -28,9 +28,10 @@ axiosInstance.interceptors.response.use(
     return response;
   },
   (error) => {
+    const isLoginRequest = error.config?.url?.includes('/auth/login');
     // Handle 401 globally (token expired)
-    if (error.response?.status === 401) {
-      window.location.href = '/login';
+    if (error.response?.status === 401 && !isLoginRequest) {
+      window.location.href = '/auth/login';
     }
     return Promise.reject(error);
   },

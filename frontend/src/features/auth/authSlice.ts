@@ -1,15 +1,14 @@
 import { AuthState } from 'src/types/auth.types';
 import { createSlice } from '@reduxjs/toolkit';
-import { registerThunk, verifyOtpThunk,loginThunk } from './authThunks';
+import { registerThunk, verifyOtpThunk, loginThunk, logoutThunk } from './authThunks';
 
 const initialState: AuthState = {
   isLoading: false,
   error: null,
   successMessage: null,
   registeredEmail: null,
-  user:null,
-  isAuthenticated:false
-
+  user: null,
+  isAuthenticated: false,
 };
 
 const authSlice = createSlice({
@@ -25,10 +24,10 @@ const authSlice = createSlice({
     setRegisteredEmail: (state, action) => {
       state.registeredEmail = action.payload;
     },
-    logout:(state)=>{
-      state.user=null
-      state.isAuthenticated=false
-    }
+    logout: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+    },
   },
   extraReducers(builder) {
     builder
@@ -62,22 +61,33 @@ const authSlice = createSlice({
         state.error = action.payload as string;
       });
 
-      builder
+    builder
       .addCase(loginThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user=action.payload.data
-        state.isAuthenticated=true
+        state.user = action.payload.data;
+        state.isAuthenticated = true;
       })
       .addCase(loginThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });
+    //logout
+    builder
+      .addCase(logoutThunk.fulfilled, (state) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.error = null;
+        state.successMessage = null;
+      })
+      .addCase(logoutThunk.rejected, (state, action) => {
+        state.error = action.payload as string;
+      });
   },
 });
 
-export const { clearError, clearSuccessMessage, setRegisteredEmail,logout } = authSlice.actions;
+export const { clearError, clearSuccessMessage, setRegisteredEmail, logout } = authSlice.actions;
 export default authSlice.reducer;

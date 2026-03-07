@@ -14,4 +14,6 @@ export const TOKENS = {
   ILoginUseCase: Symbol.for('ILoginUseCase'),
   IVerifyUseCase: Symbol.for('IVerifyUseCase'),
   IGoogleAuthUseCase: Symbol.for('IGoogleAuthUseCase'),
+  ILogoutUseCase: Symbol.for('ILogoutUseCase'),
+  IRefreshTokenUseCase: Symbol.for('IRefreshTokenUseCase'),
 } as const;

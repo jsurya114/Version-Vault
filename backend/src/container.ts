@@ -23,6 +23,8 @@ import { RegisterUseCase } from './application/use-cases/auth/RegisterUseCase';
 import { VerifyOtpUseCase } from './application/use-cases/auth/VerifyOtpUseCase';
 import { LoginUseCase } from './application/use-cases/auth/LoginUseCase';
 import { GoogleAuthUseCase } from './application/use-cases/auth/GoogleAuthUseCase';
+import { LogoutUseCase } from './application/use-cases/auth/LogoutUseCase';
+import { RefreshTokenUseCase } from './application/use-cases/auth/RefreshTokenUseCase';
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -45,5 +47,7 @@ container.register(TOKENS.IRegisterUseCase, { useClass: RegisterUseCase });
 container.register(TOKENS.IVerifyUseCase, { useClass: VerifyOtpUseCase });
 container.register(TOKENS.ILoginUseCase, { useClass: LoginUseCase });
 container.register(TOKENS.IGoogleAuthUseCase, { useClass: GoogleAuthUseCase });
+container.register(TOKENS.IRefreshTokenUseCase, { useClass: RefreshTokenUseCase });
+container.register(TOKENS.ILogoutUseCase, { useClass: LogoutUseCase });
 
 export { container };

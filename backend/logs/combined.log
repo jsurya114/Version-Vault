@@ -948,3 +948,66 @@
 2026-03-07 23:42:42 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepDcvhZ9aXtiOnhSXbDhdNYxSfhM_J0c2_KQo2ws_oabMo56SPuDLkCpp8BiUgAsrg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 655.369 ms - 55[0m
 2026-03-07 23:43:00 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 2.455 ms - 327[0m
 2026-03-07 23:43:07 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0AfrIepD2jSdVm6hbGlEDkLuZBnAms3b03HgzkuYZSCRBdqNl6jZ9IcJcyYJ2BOVrj6_ztw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 302.213 ms - 55[0m
+2026-03-08 00:34:01 [[32minfo[39m]: Redis connected successfully
+2026-03-08 00:34:01 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 00:34:02 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 00:40:11 [[32minfo[39m]: Redis connected successfully
+2026-03-08 00:40:11 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 00:40:12 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 00:40:29 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 135.481 ms - 183[0m
+2026-03-08 00:40:33 [[32minfo[39m]: [0mPOST /vv/auth/logout [33m404[0m 1.644 ms - 154[0m
+2026-03-08 00:41:02 [[32minfo[39m]: Redis connected successfully
+2026-03-08 00:41:02 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 00:41:02 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 00:41:29 [[32minfo[39m]: Redis connected successfully
+2026-03-08 00:41:29 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 00:41:29 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 00:41:48 [[32minfo[39m]: Redis connected successfully
+2026-03-08 00:41:48 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 00:41:49 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 00:53:11 [[32minfo[39m]: Redis connected successfully
+2026-03-08 00:53:11 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 00:53:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 00:53:11 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 3.401 ms - 52[0m
+2026-03-08 00:59:35 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-08 00:59:35 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 113.357 ms - 46[0m
+2026-03-08 00:59:44 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 00:59:44 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 94.220 ms - 49[0m
+2026-03-08 01:00:00 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:00:00 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 67.825 ms - 49[0m
+2026-03-08 01:00:14 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:00:14 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 67.755 ms - 49[0m
+2026-03-08 01:00:39 [[32minfo[39m]: Redis connected successfully
+2026-03-08 01:00:39 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 01:00:39 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 01:01:26 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 141.326 ms - 183[0m
+2026-03-08 01:01:29 [[32minfo[39m]: [0mPOST /vv/auth/logout [33m404[0m 1.423 ms - 154[0m
+2026-03-08 01:01:54 [[32minfo[39m]: Redis connected successfully
+2026-03-08 01:01:54 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 01:01:54 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-08 01:01:58 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 2.944 ms - 52[0m
+2026-03-08 01:02:29 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:02:29 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 88.885 ms - 49[0m
+2026-03-08 01:16:09 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:16:09 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 200.800 ms - 49[0m
+2026-03-08 01:16:24 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:16:24 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 71.167 ms - 49[0m
+2026-03-08 01:21:00 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-08 01:21:00 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 76.391 ms - 49[0m
+2026-03-08 01:26:12 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 48.082 ms - 110[0m
+2026-03-08 01:26:39 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 2.271 ms - 196[0m
+2026-03-08 01:26:46 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 1.801 ms - 144[0m
+2026-03-08 01:32:26 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 3.474 ms - 196[0m
+2026-03-08 01:36:29 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 2.481 ms - 196[0m
+2026-03-08 01:36:43 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 0.611 ms - 110[0m
+2026-03-08 01:43:14 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 2.251 ms - 110[0m
+2026-03-08 01:43:21 [[31merror[39m]: POST /vv/auth/register — Email already in use
+2026-03-08 01:43:21 [[32minfo[39m]: [0mPOST /vv/auth/register [33m409[0m 87.748 ms - 50[0m
+2026-03-08 01:43:41 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 2.221 ms - 144[0m
+2026-03-08 01:43:46 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 0.542 ms - 144[0m
+2026-03-08 01:43:59 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 1.183 ms - 143[0m
+2026-03-08 01:44:32 [[31merror[39m]: POST /vv/auth/register — connect ETIMEDOUT 192.178.211.109:465
+2026-03-08 01:44:32 [[32minfo[39m]: [0mPOST /vv/auth/register [31m500[0m 21611.829 ms - 51[0m
+2026-03-08 01:47:15 [[32minfo[39m]: Redis connected successfully
+2026-03-08 01:47:15 [[32minfo[39m]: MongoDB connected successfully
+2026-03-08 01:47:15 [[32minfo[39m]: Server running on port 3125 in development mode
