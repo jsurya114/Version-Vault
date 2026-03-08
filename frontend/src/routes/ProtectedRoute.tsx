@@ -13,7 +13,7 @@ const ProtectRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   const user = useAppSelector(selectAuthUser);
 
   //not logged in redirect to login
-  if (!isAuthenticated && user) {
+  if (!isAuthenticated) {
     return <Navigate to={ROUTES.LOGIN} replace />;
   }
 
