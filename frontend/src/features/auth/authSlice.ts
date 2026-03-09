@@ -1,12 +1,14 @@
 import { AuthState } from 'src/types/auth.types';
 import { createSlice } from '@reduxjs/toolkit';
-import { registerThunk } from './authThunks';
+import { registerThunk, verifyOtpThunk, loginThunk, logoutThunk, getMeThunk } from './authThunks';
 
 const initialState: AuthState = {
   isLoading: false,
   error: null,
   successMessage: null,
   registeredEmail: null,
+  user: null,
+  isAuthenticated: false,
 };
 
 const authSlice = createSlice({
@@ -22,9 +24,14 @@ const authSlice = createSlice({
     setRegisteredEmail: (state, action) => {
       state.registeredEmail = action.payload;
     },
+    logout: (state) => {
+      state.user = null;
+      state.isAuthenticated = false;
+    },
   },
   extraReducers(builder) {
     builder
+      //registration
       .addCase(registerThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
@@ -37,8 +44,66 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.error = action.payload as string;
       });
+
+    //verifyOtp
+
+    builder
+      .addCase(verifyOtpThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(verifyOtpThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload.message;
+      })
+      .addCase(verifyOtpThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
+
+    builder
+      .addCase(loginThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(loginThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload.data;
+        state.isAuthenticated = true;
+      })
+      .addCase(loginThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
+    //logout
+    builder
+      .addCase(logoutThunk.fulfilled, (state) => {
+        state.user = null;
+        state.isAuthenticated = false;
+        state.error = null;
+        state.successMessage = null;
+      })
+      .addCase(logoutThunk.rejected, (state, action) => {
+        state.error = action.payload as string;
+      });
+
+    builder
+      .addCase(getMeThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(getMeThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+        state.isAuthenticated = true;
+      })
+      .addCase(getMeThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.user = null;
+        state.isAuthenticated = false;
+      });
   },
 });
 
-export const { clearError, clearSuccessMessage, setRegisteredEmail } = authSlice.actions;
+export const { clearError, clearSuccessMessage, setRegisteredEmail, logout } = authSlice.actions;
 export default authSlice.reducer;

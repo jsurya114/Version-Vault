@@ -6,6 +6,7 @@ import { TOKENS } from 'src/shared/constants/tokens';
 import { IHashService } from 'src/domain/interfaces/services/IHashService';
 import { UnauthorizedError } from 'src/domain/errors/UnauthorizedError';
 import { User } from 'src/domain/entities/User';
+import { ValidationError } from 'src/domain/errors/ValidationError';
 
 @injectable()
 export class LoginValidator {
@@ -21,6 +22,9 @@ export class LoginValidator {
     }
     if (!checkUser.password) throw new NotFoundError('password not found');
 
+    if (!checkUser.isVerified)
+      throw new ValidationError('Please verify your email before logging in');
+    if (checkUser.isBlocked) throw new UnauthorizedError('Your account has been blocked.');
     const isPassMatch = await this.passwordService.compare(
       validateDto.password,
       checkUser.password,

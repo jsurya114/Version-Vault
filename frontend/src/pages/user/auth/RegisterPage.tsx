@@ -2,7 +2,7 @@ import { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { registerThunk } from 'src/features/auth/authThunks';
-import { setRegisteredEmail, clearError } from 'src/features/auth/authSlice';
+import { setRegisteredEmail, clearError, clearSuccessMessage } from 'src/features/auth/authSlice';
 import {
   selectAuthLoading,
   selectAuthError,
@@ -32,6 +32,7 @@ const RegisterPage = () => {
   useEffect(() => {
     if (successMessage) {
       dispatch(setRegisteredEmail(formData.email));
+      dispatch(clearSuccessMessage());
       navigate(ROUTES.VERIFY_OTP);
     }
   }, [successMessage]);
@@ -61,6 +62,9 @@ const RegisterPage = () => {
     e.preventDefault();
     if (!validate()) return;
     dispatch(registerThunk(formData));
+  };
+  const handleGoogleAuth = () => {
+    window.location.href = 'http://localhost:3125/vv/auth/google';
   };
 
   return (
@@ -116,6 +120,7 @@ const RegisterPage = () => {
             {/* Google button */}
             <button
               type="button"
+              onClick={handleGoogleAuth}
               className="w-full flex items-center justify-center gap-3 bg-white hover:bg-gray-100 text-gray-800 font-medium py-2.5 rounded-lg transition mb-5 text-sm"
             >
               {/* Google "G" SVG */}
@@ -155,7 +160,7 @@ const RegisterPage = () => {
             )}
 
             {/* Form */}
-            <form onSubmit={handleSubmit} className="space-y-4">
+            <form onSubmit={handleSubmit} className="space-y-4" noValidate>
               {/* User ID */}
               <div>
                 <label className="block text-sm text-gray-300 mb-1">User ID</label>

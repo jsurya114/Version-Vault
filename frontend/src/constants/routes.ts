@@ -1,12 +1,16 @@
 export const ROUTES = {
+  //landing
+  LANDING: '/',
+
   // Auth
-  LOGIN: '/login',
-  REGISTER: 'auth/register',
-  VERIFY_OTP: '/verify-otp',
+
+  LOGIN: '/auth/login',
+  REGISTER: '/auth/register',
+  VERIFY_OTP: '/auth/verify-otp',
   GOOGLE_CALLBACK: '/auth/google/callback',
 
   // User
-  HOME: '/',
+  HOME: '/home',
   EXPLORE: '/explore',
   PROFILE: '/profile/:username',
   SETTINGS: '/settings',
@@ -19,6 +23,7 @@ export const ROUTES = {
   REPO_CREATE: '/new',
 
   // Admin
+  ADMIN_LOGIN: '/admin/login',
   ADMIN_DASHBOARD: '/admin/dashboard',
   ADMIN_USERS: '/admin/users',
   ADMIN_REPOS: '/admin/repos',

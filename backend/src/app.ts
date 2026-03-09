@@ -12,6 +12,7 @@ import { logger } from './shared/logger/Logger';
 
 //routes
 import authRoutes from './interfaces/http/routes/user/auth.routes';
+import adminRoutes from './interfaces/http/routes/admin/admin.routes';
 
 const app = express();
 
@@ -42,6 +43,7 @@ app.get('/running', (req, res) => {
 
 //api routes
 app.use('/vv/auth', authRoutes);
+app.use('/vv/admin', adminRoutes);
 
 //error hanlding middleware
 app.use(errorMiddleware);

@@ -2,12 +2,29 @@ import type { Request, Response, NextFunction } from 'express';
 import { injectable, inject } from 'tsyringe';
 import { TOKENS } from 'src/shared/constants/tokens';
 import type { IRegisterUseCase } from 'src/application/use-cases/interfaces/IRegisterUsecase';
+import type { IVerifyOtpUseCase } from 'src/application/use-cases/interfaces/IVerifyOtpUseCase';
+import type { ILoginUseCase } from 'src/application/use-cases/interfaces/ILoginUseCase';
+import type { IGoogleAuthUseCase } from 'src/application/use-cases/interfaces/IGoogleUseCase';
+import type { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
+import type { IlogoutUseCase } from 'src/application/use-cases/interfaces/ILogoutUseCase';
+import type { IRefreshTokenUseCase } from 'src/application/use-cases/interfaces/IRefreshTokenUseCase';
+import type { IGetMeUseCase } from 'src/application/use-cases/interfaces/IGetMeUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { envConfig } from 'src/shared/config/env.config';
 
 @injectable()
 export class AuthController {
   //injecting the Registerusecase from interface (Dependency injection)
-  constructor(@inject(TOKENS.IRegisterUseCase) private readonly registerUser: IRegisterUseCase) {}
+  constructor(
+    @inject(TOKENS.IRegisterUseCase) private readonly registerUser: IRegisterUseCase,
+    @inject(TOKENS.IVerifyUseCase) private readonly otpService: IVerifyOtpUseCase,
+    @inject(TOKENS.ILoginUseCase) private readonly loginService: ILoginUseCase,
+    @inject(TOKENS.IGoogleAuthUseCase) private readonly googleUseCase: IGoogleAuthUseCase,
+    @inject(TOKENS.IGoogleAuthService) private readonly googleAuthService: IGoogleAuthService,
+    @inject(TOKENS.ILogoutUseCase) private readonly logoutUseCase: IlogoutUseCase,
+    @inject(TOKENS.IRefreshTokenUseCase) private readonly refreshUseCase: IRefreshTokenUseCase,
+    @inject(TOKENS.IGetMeUseCase) private readonly getmeUseCase: IGetMeUseCase,
+  ) {}
   /**
    * POST /api/auth/register
    * Handles new user registration
@@ -23,6 +40,158 @@ export class AuthController {
       });
     } catch (error) {
       next(error); //passing the error handling middleware
+    }
+  }
+
+  /**
+   * POST /vv/auth/verify-otp
+   * Verifies OTP sent to email
+   * Marks user as verified on success
+   */
+
+  async verifyOtp(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const result = await this.otpService.execute(req.body);
+      res.status(HttpStatusCodes.OK).json({ success: true, message: result.message });
+    } catch (error) {
+      next(error); //passing the error handling middleware
+    }
+  }
+  /**
+   * POST /vv/auth/login
+   * login the user
+   *
+   */
+
+  async login(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const result = await this.loginService.execute(req.body);
+      res.cookie('accessToken', result.accessToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 15 * 60 * 1000, // 15 minutes
+      });
+
+      res.cookie('refreshToken', result.refreshToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
+      });
+      res
+        .status(HttpStatusCodes.OK)
+        .json({ success: true, message: 'Login successfull', data: result.user });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * GET /vv/auth/google
+   * Redirects user to Google OAuth consent screen
+   */
+  async googleAuth(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const authUrl = this.googleAuthService.getAuthUrl();
+      res.redirect(authUrl);
+    } catch (error) {
+      next(error);
+    }
+  }
+  /**
+   * GET /vv/auth/google/callback
+   * Handles Google OAuth callback
+   * Sets cookies and redirects to frontend
+   */
+
+  async googleCallback(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { code } = req.query;
+      if (!code || typeof code !== 'string') {
+        res
+          .status(HttpStatusCodes.BAD_REQUEST)
+          .json({ success: false, message: 'No code provided' });
+        return;
+      }
+
+      const result = await this.googleUseCase.execute(code);
+
+      res.cookie('accessToken', result.accessToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 15 * 60 * 1000,
+      });
+      res.cookie('refreshToken', result.refreshToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 7 * 24 * 60 * 60 * 1000,
+      });
+      res.redirect(`${envConfig.CLIENT_URL}/home`);
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * POST /vv/auth/logout
+   */
+
+  async logout(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const refreshToken = req.cookies?.refreshToken || '';
+      await this.logoutUseCase.execute(refreshToken);
+
+      res.clearCookie('accessToken');
+      res.clearCookie('refreshToken');
+
+      res.status(HttpStatusCodes.OK).json({ success: true, message: 'Logged out successfully' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * POST /vv/auth/refresh-token
+   */
+
+  async refresToken(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const refreshToken = req.cookies?.refreshToken;
+      if (!refreshToken) {
+        res
+          .status(HttpStatusCodes.UNAUTHORIZED)
+          .json({ success: false, message: 'No refresh token' });
+        return;
+      }
+      const result = await this.refreshUseCase.execute(refreshToken);
+      res.cookie('accessToken', result.accessToken, {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: 'strict',
+        maxAge: 15 * 60 * 1000,
+      });
+      res.status(HttpStatusCodes.OK).json({ success: true, message: 'Token refreshed' });
+    } catch (error) {
+      next;
+    }
+  }
+
+  async getMe(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const userId = (req as any).user?.userId;
+
+      if (!userId) {
+        res.status(HttpStatusCodes.UNAUTHORIZED).json({ success: false, message: 'Unauthorized' });
+        return;
+      }
+
+      const user = await this.getmeUseCase.execute(userId);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: user });
+    } catch (error) {
+      next(error);
     }
   }
 }
