@@ -5,11 +5,13 @@ export const AUTH_ENDPOINTS = {
   VERIFY_OTP: '/auth/verify-otp',
   LOGIN: '/auth/login',
   LOGOUT: '/auth/logout',
-  REFRESH_TOKEN: '/auth/refresh',
+  REFRESH_TOKEN: '/auth/refresh-token',
   GOOGLE_AUTH: '/auth/google',
-  ME:'/auth/me'
+  ME: '/auth/me',
+  FORGOT_PASSWORD: '/auth/forgot-password',
+  RESET_PASSWORD: '/auth/reset-password',
+  RESEND_OTP: '/auth/resend-otp',
 } as const;
-
 
 export const ADMIN_ENDPOINTS = {
   GET_ALL_USERS: '/admin/users',

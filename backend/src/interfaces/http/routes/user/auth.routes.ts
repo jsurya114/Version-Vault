@@ -31,6 +31,10 @@ router.get('/google/callback', (req, res, next) => authController.googleCallback
 
 router.post('/logout', (req, res, next) => authController.logout(req, res, next));
 router.post('/refresh-token', (req, res, next) => authController.refresToken(req, res, next));
-router.get('/me',authMiddleware,(req,res,next)=>authController.getMe(req,res,next))
+router.get('/me', authMiddleware, (req, res, next) => authController.getMe(req, res, next));
+
+router.post('/forgot-password', (req, res, next) => authController.forgotPassword(req, res, next));
+router.post('/reset-password', (req, res, next) => authController.resetPassword(req, res, next));
+router.post('resend-otp', (req, res, next) => authController.resendOtp(req, res, next));
 
 export default router;

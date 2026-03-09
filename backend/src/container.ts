@@ -26,6 +26,9 @@ import { GoogleAuthUseCase } from './application/use-cases/auth/GoogleAuthUseCas
 import { LogoutUseCase } from './application/use-cases/auth/LogoutUseCase';
 import { RefreshTokenUseCase } from './application/use-cases/auth/RefreshTokenUseCase';
 import { GetMeUseCase } from './application/use-cases/auth/GetMeUseCase';
+import { ForgotPasswordUseCase } from './application/use-cases/auth/ForgotPasswordUseCase';
+import { ResendOtpUseCase } from './application/use-cases/auth/ResendOtpUseCase';
+import { ResetPasswordUseCase } from './application/use-cases/auth/ResetPasswordUseCase';
 
 // admin use cases
 import { GetAllUsersUseCase } from './application/use-cases/admin/GetAllUsersUseCase';
@@ -38,7 +41,7 @@ container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
-container.register(TOKENS.IAdminRepository,{useClass:MongoAdminRepository})
+container.register(TOKENS.IAdminRepository, { useClass: MongoAdminRepository });
 
 //validator
 container.register(RegisterValidator, { useClass: RegisterValidator });
@@ -54,9 +57,10 @@ container.register(TOKENS.ILoginUseCase, { useClass: LoginUseCase });
 container.register(TOKENS.IGoogleAuthUseCase, { useClass: GoogleAuthUseCase });
 container.register(TOKENS.IRefreshTokenUseCase, { useClass: RefreshTokenUseCase });
 container.register(TOKENS.ILogoutUseCase, { useClass: LogoutUseCase });
-container.register(TOKENS.IGetMeUseCase,{useClass:GetMeUseCase})
-container.register(TOKENS.IGetAllUsersUseCase,{useClass:GetAllUsersUseCase})
-
-
+container.register(TOKENS.IGetMeUseCase, { useClass: GetMeUseCase });
+container.register(TOKENS.IGetAllUsersUseCase, { useClass: GetAllUsersUseCase });
+container.register(TOKENS.IForgotPasswordUseCase, { useClass: ForgotPasswordUseCase });
+container.register(TOKENS.IResetPasswordUseCase, { useClass: ResetPasswordUseCase });
+container.register(TOKENS.IResendOtpUseCase, { useClass: ResendOtpUseCase });
 
 export { container };

@@ -30,7 +30,7 @@ const LoginPage = () => {
   //redirect to after successful login
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(ROUTES.HOME);
+      navigate(ROUTES.HOME, { replace: true });
     }
   }, [isAuthenticated]);
 
@@ -235,9 +235,14 @@ const LoginPage = () => {
                 Create an account,
               </Link>
             </p>
-            {/* <span className="text-blue-400 text-xs cursor-pointer hover:underline">
-                    Forgot password?
-                  </span> */}
+            <div className="flex justify-between items-center mb-1">
+              <Link
+                to={ROUTES.FORGOT_PASSWORD}
+                className="text-blue-400 hover:text-blue-300 text-xs transition"
+              >
+                Forgot password?
+              </Link>
+            </div>
           </div>
         </div>
       </div>

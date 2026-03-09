@@ -1,5 +1,4 @@
 export const ROUTES = {
-
   //landing
   LANDING: '/',
 
@@ -9,7 +8,9 @@ export const ROUTES = {
   REGISTER: '/auth/register',
   VERIFY_OTP: '/auth/verify-otp',
   GOOGLE_CALLBACK: '/auth/google/callback',
-
+  FORGOT_PASSWORD: '/auth/forgot-password',
+  FORGOT_PASSWORD_OTP: '/auth/forgot-password/verify',
+  RESET_PASSWORD: '/auth/reset-password',
 
   // User
   HOME: '/home',

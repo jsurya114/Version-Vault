@@ -9,7 +9,12 @@ import type { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleA
 import type { IlogoutUseCase } from 'src/application/use-cases/interfaces/ILogoutUseCase';
 import type { IRefreshTokenUseCase } from 'src/application/use-cases/interfaces/IRefreshTokenUseCase';
 import type { IGetMeUseCase } from 'src/application/use-cases/interfaces/IGetMeUseCase';
+import type { IForgotPasswordUseCase } from 'src/application/use-cases/interfaces/IForgotPasswordUseCase';
+import type { IResetPasswordUseCase } from 'src/application/use-cases/interfaces/IResetPasswordUseCase';
+import type { IResendOtpUseCase } from 'src/application/use-cases/interfaces/IResendOtpUseCase';
+
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+
 import { envConfig } from 'src/shared/config/env.config';
 
 @injectable()
@@ -23,7 +28,12 @@ export class AuthController {
     @inject(TOKENS.IGoogleAuthService) private readonly googleAuthService: IGoogleAuthService,
     @inject(TOKENS.ILogoutUseCase) private readonly logoutUseCase: IlogoutUseCase,
     @inject(TOKENS.IRefreshTokenUseCase) private readonly refreshUseCase: IRefreshTokenUseCase,
-    @inject(TOKENS.IGetMeUseCase) private readonly getmeUseCase:IGetMeUseCase
+    @inject(TOKENS.IGetMeUseCase) private readonly getmeUseCase: IGetMeUseCase,
+    @inject(TOKENS.IForgotPasswordUseCase)
+    private readonly forgotpasswordUseCase: IForgotPasswordUseCase,
+    @inject(TOKENS.IResetPasswordUseCase)
+    private readonly resetPasswordUseCase: IResetPasswordUseCase,
+    @inject(TOKENS.IResendOtpUseCase) private readonly resendOtpUseCase: IResendOtpUseCase,
   ) {}
   /**
    * POST /api/auth/register
@@ -179,23 +189,60 @@ export class AuthController {
     }
   }
 
-
-
-
-  async getMe(req: Request, res: Response, next: NextFunction): Promise<void>{
+  async getMe(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const userId = (req as any).user?.userId
+      const userId = (req as any).user?.userId;
 
       if (!userId) {
-      res.status(HttpStatusCodes.UNAUTHORIZED).json({ success: false, message: 'Unauthorized' });
-      return;
-    }
+        res.status(HttpStatusCodes.UNAUTHORIZED).json({ success: false, message: 'Unauthorized' });
+        return;
+      }
 
-    const user = await this.getmeUseCase.execute(userId)
-     res.status(HttpStatusCodes.OK).json({ success: true, data: user })
+      const user = await this.getmeUseCase.execute(userId);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: user });
     } catch (error) {
-      next(error)
+      next(error);
     }
   }
 
+  /**
+   * POST /vv/auth/forgot-password
+   */
+
+  async forgotPassword(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { email } = req.body;
+      const result = await this.forgotpasswordUseCase.execute(email);
+      res.status(HttpStatusCodes.OK).json({ success: true, message: result.message });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * POST /vv/auth/reset-password
+   */
+
+  async resetPassword(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { email, otp, newPassword } = req.body;
+      const result = await this.resetPasswordUseCase.execute(email, otp, newPassword);
+      res.status(HttpStatusCodes.OK).json({ success: true, message: result.message });
+    } catch (error) {
+      next(error);
+    }
+  }
+  /**
+   * POST /vv/auth/resend-otp
+   */
+
+  async resendOtp(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { email } = req.body;
+      const result = await this.resendOtpUseCase.execute(email);
+      res.status(HttpStatusCodes.OK).json({ success: true, message: result.message });
+    } catch (error) {
+      next(error);
+    }
+  }
 }
