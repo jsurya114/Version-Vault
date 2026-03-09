@@ -1,6 +1,6 @@
 import { AuthState } from 'src/types/auth.types';
 import { createSlice } from '@reduxjs/toolkit';
-import { registerThunk, verifyOtpThunk, loginThunk, logoutThunk } from './authThunks';
+import { registerThunk, verifyOtpThunk, loginThunk, logoutThunk,getMeThunk } from './authThunks';
 
 const initialState: AuthState = {
   isLoading: false,
@@ -85,7 +85,24 @@ const authSlice = createSlice({
       })
       .addCase(logoutThunk.rejected, (state, action) => {
         state.error = action.payload as string;
-      });
+      })
+
+
+      builder
+      .addCase(getMeThunk.pending,(state)=>{
+        state.isLoading=true
+        state.error=null
+      })
+      .addCase(getMeThunk.fulfilled,(state,action)=>{
+        state.isLoading=false
+        state.user=action.payload
+        state.isAuthenticated=true
+      })
+      .addCase(getMeThunk.rejected,(state,action)=>{
+        state.isLoading=false
+        state.user=null
+        state.isAuthenticated=false
+      })
   },
 });
 

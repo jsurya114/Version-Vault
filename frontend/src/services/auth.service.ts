@@ -19,4 +19,8 @@ export const authService = {
     const response = await axiosInstance.post(AUTH_ENDPOINTS.LOGOUT);
     return response.data;
   },
+  getMe:async()=>{
+    const res = await axiosInstance.get(AUTH_ENDPOINTS.ME)
+    return res.data
+  }
 };

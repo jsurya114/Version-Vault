@@ -6,7 +6,7 @@ import { TOKENS } from './shared/constants/tokens';
 
 //repositories
 import { MongoUserRepository } from './infrastructure/database/mongoose/repositories/MongoUserRepository';
-
+import { MongoAdminRepository } from './infrastructure/database/mongoose/repositories/MongoAdminRepository';
 //services
 import { HashService } from './infrastructure/services/HashService';
 import { TokenService } from './infrastructure/services/TokenService';
@@ -25,6 +25,10 @@ import { LoginUseCase } from './application/use-cases/auth/LoginUseCase';
 import { GoogleAuthUseCase } from './application/use-cases/auth/GoogleAuthUseCase';
 import { LogoutUseCase } from './application/use-cases/auth/LogoutUseCase';
 import { RefreshTokenUseCase } from './application/use-cases/auth/RefreshTokenUseCase';
+import { GetMeUseCase } from './application/use-cases/auth/GetMeUseCase';
+
+// admin use cases
+import { GetAllUsersUseCase } from './application/use-cases/admin/GetAllUsersUseCase';
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -34,6 +38,7 @@ container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
+container.register(TOKENS.IAdminRepository,{useClass:MongoAdminRepository})
 
 //validator
 container.register(RegisterValidator, { useClass: RegisterValidator });
@@ -49,5 +54,9 @@ container.register(TOKENS.ILoginUseCase, { useClass: LoginUseCase });
 container.register(TOKENS.IGoogleAuthUseCase, { useClass: GoogleAuthUseCase });
 container.register(TOKENS.IRefreshTokenUseCase, { useClass: RefreshTokenUseCase });
 container.register(TOKENS.ILogoutUseCase, { useClass: LogoutUseCase });
+container.register(TOKENS.IGetMeUseCase,{useClass:GetMeUseCase})
+container.register(TOKENS.IGetAllUsersUseCase,{useClass:GetAllUsersUseCase})
+
+
 
 export { container };

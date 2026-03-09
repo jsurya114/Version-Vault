@@ -1,6 +1,7 @@
 export const TOKENS = {
   // Repositories
   IUserRepository: Symbol.for('IUserRepository'),
+    IAdminRepository:Symbol.for('IAdminRepository'),
 
   // Services
   IHashService: Symbol.for('IHashService'),
@@ -16,4 +17,9 @@ export const TOKENS = {
   IGoogleAuthUseCase: Symbol.for('IGoogleAuthUseCase'),
   ILogoutUseCase: Symbol.for('ILogoutUseCase'),
   IRefreshTokenUseCase: Symbol.for('IRefreshTokenUseCase'),
+  IGetMeUseCase:Symbol.for('IGetMeUseCase'),
+
+  //admin
+  IGetAllUsersUseCase:Symbol.for('IGetAllUsersUseCase'),
+
 } as const;

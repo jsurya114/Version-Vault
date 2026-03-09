@@ -63,3 +63,15 @@ export const logoutThunk = createAsyncThunk('auth/logout', async (_, { rejectWit
     return rejectWithValue(error.response?.data?.message || 'Logout failed');
   }
 });
+
+export const getMeThunk=createAsyncThunk(
+  'auth/getMe',
+  async(_,{rejectWithValue})=>{
+    try {
+      const response = await authService.getMe()
+      return response.data
+    } catch (error:any) {
+      return rejectWithValue(error.response?.data?.message || 'Session expired');
+    }
+  }
+)

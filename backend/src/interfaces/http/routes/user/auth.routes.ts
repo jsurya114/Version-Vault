@@ -2,6 +2,7 @@ import { Router } from 'express';
 import { container } from 'tsyringe';
 import { AuthController } from '../../controllers/user/AuthController';
 import { validate } from '../../middleware/ValidationMiddleware';
+import { authMiddleware } from '../../middleware/AuthMiddleware';
 import { registerSchema, verifyOtpSchema, loginSchema } from '../../../validators/auth.validators';
 
 const router = Router();
@@ -30,5 +31,6 @@ router.get('/google/callback', (req, res, next) => authController.googleCallback
 
 router.post('/logout', (req, res, next) => authController.logout(req, res, next));
 router.post('/refresh-token', (req, res, next) => authController.refresToken(req, res, next));
+router.get('/me',authMiddleware,(req,res,next)=>authController.getMe(req,res,next))
 
 export default router;

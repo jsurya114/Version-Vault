@@ -7,4 +7,12 @@ export const AUTH_ENDPOINTS = {
   LOGOUT: '/auth/logout',
   REFRESH_TOKEN: '/auth/refresh',
   GOOGLE_AUTH: '/auth/google',
+  ME:'/auth/me'
+} as const;
+
+
+export const ADMIN_ENDPOINTS = {
+  GET_ALL_USERS: '/admin/users',
+  BLOCK_USER: '/admin/users/block',
+  UNBLOCK_USER: '/admin/users/unblock',
 } as const;

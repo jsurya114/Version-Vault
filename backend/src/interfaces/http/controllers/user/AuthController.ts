@@ -8,6 +8,7 @@ import type { IGoogleAuthUseCase } from 'src/application/use-cases/interfaces/IG
 import type { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
 import type { IlogoutUseCase } from 'src/application/use-cases/interfaces/ILogoutUseCase';
 import type { IRefreshTokenUseCase } from 'src/application/use-cases/interfaces/IRefreshTokenUseCase';
+import type { IGetMeUseCase } from 'src/application/use-cases/interfaces/IGetMeUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
 import { envConfig } from 'src/shared/config/env.config';
 
@@ -22,6 +23,7 @@ export class AuthController {
     @inject(TOKENS.IGoogleAuthService) private readonly googleAuthService: IGoogleAuthService,
     @inject(TOKENS.ILogoutUseCase) private readonly logoutUseCase: IlogoutUseCase,
     @inject(TOKENS.IRefreshTokenUseCase) private readonly refreshUseCase: IRefreshTokenUseCase,
+    @inject(TOKENS.IGetMeUseCase) private readonly getmeUseCase:IGetMeUseCase
   ) {}
   /**
    * POST /api/auth/register
@@ -176,4 +178,24 @@ export class AuthController {
       next;
     }
   }
+
+
+
+
+  async getMe(req: Request, res: Response, next: NextFunction): Promise<void>{
+    try {
+      const userId = (req as any).user?.userId
+
+      if (!userId) {
+      res.status(HttpStatusCodes.UNAUTHORIZED).json({ success: false, message: 'Unauthorized' });
+      return;
+    }
+
+    const user = await this.getmeUseCase.execute(userId)
+     res.status(HttpStatusCodes.OK).json({ success: true, data: user })
+    } catch (error) {
+      next(error)
+    }
+  }
+
 }
