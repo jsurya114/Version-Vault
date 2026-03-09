@@ -10,10 +10,10 @@
   "private": true,
   "lint-staged": {
     "*.{ts,tsx}": [
-      "prettier --write"
+      "prettier --write --cache"
     ],
     "*.{js,json,md}": [
-      "prettier --write"
+      "prettier --write --cache"
     ]
   },
   "devDependencies": {
