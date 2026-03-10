@@ -32,6 +32,9 @@ import { ResetPasswordUseCase } from './application/use-cases/auth/ResetPassword
 
 // admin use cases
 import { GetAllUsersUseCase } from './application/use-cases/admin/GetAllUsersUseCase';
+import { GetUserByIdUseCase } from './application/use-cases/admin/GetUserByIdUseCase';
+import { BlockUserUseCase } from './application/use-cases/admin/BlockUserUseCase';
+import { UnblockUserUseCase } from './application/use-cases/admin/UnblockUserUseCase';
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -62,5 +65,8 @@ container.register(TOKENS.IGetAllUsersUseCase, { useClass: GetAllUsersUseCase })
 container.register(TOKENS.IForgotPasswordUseCase, { useClass: ForgotPasswordUseCase });
 container.register(TOKENS.IResetPasswordUseCase, { useClass: ResetPasswordUseCase });
 container.register(TOKENS.IResendOtpUseCase, { useClass: ResendOtpUseCase });
+container.register(TOKENS.IGetUserByIdUseCase, { useClass: GetUserByIdUseCase });
+container.register(TOKENS.IBlockUserUseCase, { useClass: BlockUserUseCase });
+container.register(TOKENS.IUnblockUserUseCase, { useClass: UnblockUserUseCase });
 
 export { container };

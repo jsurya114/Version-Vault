@@ -1,17 +1,18 @@
-import { inject, injectable } from 'tsyringe';
+import { injectable, inject } from 'tsyringe';
+import { IUnblockUserUseCase } from '../interfaces/admin/IUnblockUserUseCase';
 import { IAdminRepository } from 'src/domain/interfaces/repositories/IAdminRepository';
-import { IGetAllUsersUseCase } from '../interfaces/admin/IGetAllUsersUseCase';
-import { TOKENS } from 'src/shared/constants/tokens';
 import { UserResponseDTO } from 'src/application/dtos/admin/UserResponseDTO';
+import { TOKENS } from 'src/shared/constants/tokens';
+import { NotFoundError } from 'src/domain/errors/NotFoundError';
 
 @injectable()
-export class GetAllUsersUseCase implements IGetAllUsersUseCase {
+export class UnblockUserUseCase implements IUnblockUserUseCase {
   constructor(@inject(TOKENS.IAdminRepository) private adminRepo: IAdminRepository) {}
 
-  async execute(): Promise<UserResponseDTO[]> {
-    const users = await this.adminRepo.getAllUsers();
-
-    return users.map((user) => ({
+  async execute(id: string): Promise<UserResponseDTO> {
+    const user = await this.adminRepo.unblockUser(id);
+    if (!user) throw new NotFoundError('User not found');
+    return {
       id: user.id as string,
       userId: user.userId,
       username: user.username,
@@ -27,6 +28,6 @@ export class GetAllUsersUseCase implements IGetAllUsersUseCase {
       followingCount: user.followingCount,
       createdAt: user.createdAt,
       updatedAt: user.updatedAt,
-    }));
+    };
   }
 }

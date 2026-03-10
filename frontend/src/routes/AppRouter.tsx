@@ -27,6 +27,7 @@ const HomePage = lazy(() => import('../pages/user/home/HomePage'));
 const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage'));
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
+const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPage'));
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
@@ -137,6 +138,14 @@ const AppRouter = () => {
               element={
                 <ProtectRoute requiredRole="admin">
                   <AdminUsersPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.ADMIN_USER_DETAIL}
+              element={
+                <ProtectRoute requiredRole="admin">
+                  <AdminUserDetailPage />
                 </ProtectRoute>
               }
             />

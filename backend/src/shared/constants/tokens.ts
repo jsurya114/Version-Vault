@@ -24,4 +24,7 @@ export const TOKENS = {
 
   //admin
   IGetAllUsersUseCase: Symbol.for('IGetAllUsersUseCase'),
+  IGetUserByIdUseCase: Symbol.for('IGetUserByIdUseCase'),
+  IBlockUserUseCase: Symbol.for('IBlockUserUseCase'),
+  IUnblockUserUseCase: Symbol.for('IUnblockUserUseCase'),
 } as const;
