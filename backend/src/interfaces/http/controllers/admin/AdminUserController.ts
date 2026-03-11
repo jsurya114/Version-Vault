@@ -6,6 +6,7 @@ import { IGetUserByIdUseCase } from 'src/application/use-cases/interfaces/admin/
 import { IBlockUserUseCase } from 'src/application/use-cases/interfaces/admin/IBlockUserUseCase';
 import { IUnblockUserUseCase } from 'src/application/use-cases/interfaces/admin/IUnblockUserUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { PaginationQueryDTO } from 'src/application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class AdminUserController {
@@ -23,10 +24,23 @@ export class AdminUserController {
 
   async getAllUsers(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const users = await this.iGetAllUsers.execute();
+      const query: PaginationQueryDTO = {
+        page: req.query.page ? Number(req.query.page) : 1,
+        limit: req.query.limit ? Number(req.query.page) : 10,
+        sort: req.query.sort as string | undefined,
+        order: req.query.order as 'asc' | 'desc' | undefined,
+        search: req.query.search as string | undefined,
+      };
+      const result = await this.iGetAllUsers.execute(query);
       res.status(HttpStatusCodes.CREATED).json({
         success: true,
-        data: users,
+        data: result.data,
+        meta: {
+          total: result.total,
+          page: result.page,
+          limit: result.page,
+          totalPages: result.totalPages,
+        },
       });
     } catch (error) {
       next(error);

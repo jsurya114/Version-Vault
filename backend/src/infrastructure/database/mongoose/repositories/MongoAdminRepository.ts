@@ -3,27 +3,49 @@ import { UserModel } from '../models/UserModel';
 import { UserMapper } from 'src/application/mappers/UserMapper';
 import { injectable } from 'tsyringe';
 import { IAdminRepository } from 'src/domain/interfaces/repositories/IAdminRepository';
+import { MongoBaseRepository } from './MongoBaseRepository';
+import {
+  PaginatedResponseDTO,
+  PaginationQueryDTO,
+} from 'src/application/dtos/reusable/PaginationDTO';
+import { UserRole } from 'src/domain/enums';
 
 @injectable()
-export class MongoAdminRepository implements IAdminRepository {
-  async getAllUsers(): Promise<IUser[]> {
-    const users = await UserModel.find().lean();
-    return users.map((p) => UserMapper.toIUser(p));
+export class MongoAdminRepository extends MongoBaseRepository<IUser> implements IAdminRepository {
+  constructor() {
+    super(UserModel);
+  }
+  protected toEntity(doc: any): IUser {
+    return UserMapper.toIUser(doc);
+  }
+
+  async getAllUsers(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IUser>> {
+    const filter: Record<string, any> = {
+      role: { $ne: UserRole.ADMIN },
+    };
+    if (query.search) {
+      filter.$or = [
+        { username: { $regex: query.search, $options: 'i' } },
+        { email: { $regex: query.search, $options: 'i' } },
+        { userId: { $regex: query.search, $options: 'i' } },
+      ];
+    }
+    if (query.status === 'blocked') filter.isBlocked = true;
+    if (query.status === 'active') {
+      filter.isBlocked = false;
+      filter.isVerified = true;
+    }
+    if (query.status === 'pending') filter.isVerified = false;
+    return this.findWithpagination(filter, query);
   }
   async getUserById(id: string): Promise<IUser | null> {
-    const user = await UserModel.findById(id).lean();
-    if (!user) return null;
-    return UserMapper.toIUser(user);
+    return this.findById(id);
   }
   async blockUser(id: string): Promise<IUser | null> {
-    const user = await UserModel.findByIdAndUpdate(id, { isBlocked: true }, { new: true }).lean();
-    if (!user) return null;
-    return UserMapper.toIUser(user);
+    return this.update(id, { isBlocked: true });
   }
 
   async unblockUser(id: string): Promise<IUser | null> {
-    const user = await UserModel.findByIdAndUpdate(id, { isBlocked: false }, { new: true }).lean();
-    if (!user) return null;
-    return UserMapper.toIUser(user);
+    return this.update(id, { isBlocked: false });
   }
 }

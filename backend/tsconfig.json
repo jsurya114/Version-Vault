@@ -15,7 +15,8 @@
     "baseUrl": ".",
     "paths": {
       "@version-vault/shared-types": ["../packages/shared-types/src/index.ts"],
-      "@version-vault/shared-types/*": ["../packages/shared-types/src/*"]
+      "@version-vault/shared-types/*": ["../packages/shared-types/src/*"],
+      "src/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts"],

@@ -1,3 +1,4 @@
+import { PaginationMeta } from '../common/Pagination/paginationTypes';
 import { UserResponseDTO } from './adminTypes';
 
 export interface AdminState {
@@ -5,6 +6,7 @@ export interface AdminState {
   selectedUser: UserResponseDTO | null;
   isLoading: boolean;
   error: string | null;
+  meta: PaginationMeta;
 }
 
 export const initialState: AdminState = {
@@ -12,4 +14,10 @@ export const initialState: AdminState = {
   selectedUser: null,
   isLoading: false,
   error: null,
+  meta: {
+    total: 0,
+    page: 1,
+    limit: 10,
+    totalPages: 0,
+  },
 };

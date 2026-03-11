@@ -4,3 +4,4 @@ export const selectAdminUsers = (state: RootState) => state.adminusers.users;
 export const selectSelectedUser = (state: RootState) => state.adminusers.selectedUser;
 export const selectAdminLoading = (state: RootState) => state.adminusers.isLoading;
 export const selectAdminError = (state: RootState) => state.adminusers.error;
+export const selectAdminMeta = (state: RootState) => state.adminusers.meta;

@@ -1780,3 +1780,61 @@
 2026-03-09 22:30:43 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
 2026-03-09 22:31:28 [[31merror[39m]: POST /vv/auth/forgot-password — connect ETIMEDOUT 192.178.211.109:465
 2026-03-09 22:32:32 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-11 11:13:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 11:13:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1139:18)
+    at afterConnectMultiple (node:net:1712:7)
+2026-03-11 15:15:54 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:15:54 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:15:54 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:15:57 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:15:57 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:15:57 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:16:09 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:16:09 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 15:16:09 [[31merror[39m]: GET /vv/admin/users — $regex has to be a string
+2026-03-11 18:37:15 [[31merror[39m]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-03-11 18:37:16 [[31merror[39m]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)

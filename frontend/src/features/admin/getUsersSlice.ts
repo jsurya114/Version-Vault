@@ -7,6 +7,7 @@ import {
 } from './getUsersThunk';
 
 import { AdminState, initialState } from 'src/types/admin/getusers.types';
+import { PaginationMeta } from '../../types/common/Pagination/paginationTypes';
 
 const adminUsersSlice = createSlice({
   name: 'adminusers',
@@ -24,7 +25,8 @@ const adminUsersSlice = createSlice({
       })
       .addCase(getAllUsersThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.users = action.payload;
+        state.users = action.payload.data;
+        state.meta = action.payload.meta;
       })
       .addCase(getAllUsersThunk.rejected, (state, action) => {
         state.isLoading = false;
