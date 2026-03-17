@@ -27,6 +27,7 @@ export const envConfig = {
   EMAIL_FROM: process.env.EMAIL_FROM || 'noreply@versionvault.com',
 
   CLIENT_URL: process.env.CLIENT_URL || 'http://localhost:5173',
+  GIT_REPO_PATH: process.env.GIT_REPO_PATH || './repos',
 
   OTP_EXPIRES_MINUTES: parseInt(process.env.OTP_EXPIRES_MINUTES || '10', 10),
 } as const;

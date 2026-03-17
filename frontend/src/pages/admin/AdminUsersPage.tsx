@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { ROUTES } from 'src/constants/routes';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { getAllUsersThunk } from 'src/features/admin/getUsersThunk';
@@ -7,7 +7,13 @@ import {
   selectAdminUsers,
   selectAdminLoading,
   selectAdminError,
+  selectAdminMeta,
 } from 'src/features/admin/adminSelectors';
+import { UserResponseDTO } from 'src/types/admin/adminTypes';
+import DataTable from '../../types/common/Table/DataTable';
+import Pagination from '../../types/common/Pagination/Pagination';
+import TableFilters from '../../types/common/Filters/TableFilters';
+import { ColumnDef } from '../../types/common/Table/TableTypes';
 
 const statusColors: Record<string, string> = {
   active: 'bg-green-500/10 text-green-400 border border-green-500/30',
@@ -20,38 +26,131 @@ const roleColors: Record<string, string> = {
   user: 'bg-purple-500/10 text-purple-400',
 };
 
+const getStatus = (user: UserResponseDTO) => {
+  if (user.isBlocked) return 'blocked';
+  if (!user.isVerified) return 'pending';
+  return 'active';
+};
+
 const AdminUsersPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const users = useAppSelector(selectAdminUsers);
   const isLoading = useAppSelector(selectAdminLoading);
   const error = useAppSelector(selectAdminError);
+  const meta = useAppSelector(selectAdminMeta);
 
   const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All Status');
+  const [statusFilter, setStatusFilter] = useState('all');
+  const [sortField, setSortField] = useState('createdAt');
+  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
+  const [page, setPage] = useState(1);
+  const limit = 10;
 
-  useEffect(() => {
-    dispatch(getAllUsersThunk());
-  }, []);
-
-  const getStatus = (user: any) => {
-    if (user.isBlocked) return 'blocked';
-    if (!user.isVerified) return 'pending';
-    return 'active';
+  const fetchUsers = (overrides = {}) => {
+    dispatch(
+      getAllUsersThunk({
+        page,
+        limit,
+        search: search || undefined,
+        sort: sortField,
+        order: sortOrder,
+        status: statusFilter === 'all' ? undefined : (statusFilter as any),
+        ...overrides,
+      }),
+    );
   };
 
-  const filtered = users.filter((u) => {
-    const matchSearch =
-      u.username.toLowerCase().includes(search.toLowerCase()) ||
-      u.email.toLowerCase().includes(search.toLowerCase()) ||
-      u.userId.toLowerCase().includes(search.toLowerCase());
-    const status = getStatus(u).toUpperCase();
-    const matchStatus = statusFilter === 'All Status' || status === statusFilter;
-    return matchSearch && matchStatus;
-  });
+  useEffect(() => {
+    fetchUsers();
+  }, [page, sortField, sortOrder, statusFilter]);
 
-  const totalActive = users.filter((u) => !u.isBlocked && u.isVerified).length;
-  const totalPending = users.filter((u) => !u.isVerified).length;
-  const totalBlocked = users.filter((u) => u.isBlocked).length;
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setPage(1);
+      fetchUsers({ page: 1 });
+    }, 500);
+    return () => clearTimeout(timer);
+  }, [search]);
+
+  // column definitions
+  const columns: ColumnDef<UserResponseDTO>[] = [
+    {
+      key: 'username',
+      label: 'USER',
+      render: (u) => (
+        <div className="flex items-center gap-2">
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+            {u.username?.[0]?.toUpperCase()}
+          </div>
+          <div>
+            <p className="text-white text-sm font-medium">{u.username}</p>
+            <p className="text-gray-500 text-xs">@{u.userId}</p>
+          </div>
+        </div>
+      ),
+    },
+    {
+      key: 'email',
+      label: 'EMAIL ADDRESS',
+      render: (u) => <span className="text-gray-400 text-sm">{u.email}</span>,
+    },
+    {
+      key: 'status',
+      label: 'STATUS',
+      render: (u) => {
+        const status = getStatus(u);
+        return (
+          <span className={`text-xs px-2 py-0.5 rounded font-medium ${statusColors[status]}`}>
+            {status.toUpperCase()}
+          </span>
+        );
+      },
+    },
+    {
+      key: 'role',
+      label: 'ROLE',
+      render: (u) => (
+        <span
+          className={`text-xs px-2 py-0.5 rounded font-medium ${roleColors[u.role] || 'bg-gray-700 text-gray-400'}`}
+        >
+          {u.role}
+        </span>
+      ),
+    },
+    {
+      key: 'provider',
+      label: 'PROVIDER',
+      render: (u) => <span className="text-gray-400 text-sm capitalize">{u.provider}</span>,
+    },
+    {
+      key: 'createdAt',
+      label: 'DATE JOINED',
+      render: (u) => (
+        <span className="text-gray-400 text-sm">
+          {u.createdAt
+            ? new Date(u.createdAt).toLocaleDateString('en-US', {
+                month: 'short',
+                day: 'numeric',
+                year: 'numeric',
+              })
+            : '—'}
+        </span>
+      ),
+    },
+    {
+      key: 'actions',
+      label: 'ACTIONS',
+      render: (u) => (
+        <button
+          onClick={() => navigate(`/admin/users/${u.id}`)}
+          className="text-blue-400 hover:text-blue-300 text-xs transition"
+        >
+          View
+        </button>
+      ),
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex">
@@ -65,7 +164,6 @@ const AdminUsersPage = () => {
           </div>
           <span className="text-white font-bold text-sm">VersionVault</span>
         </div>
-
         <nav className="flex flex-col gap-1 px-2">
           <Link
             to={ROUTES.ADMIN_DASHBOARD}
@@ -111,17 +209,17 @@ const AdminUsersPage = () => {
           <div className="mb-6">
             <h1 className="text-white text-xl font-bold">User Management</h1>
             <p className="text-gray-500 text-sm mt-1">
-              Manage platform access, roles, and repository permissions for all users.
+              Manage platform access, roles, and repository permissions.
             </p>
           </div>
 
           {/* Stats */}
           <div className="grid grid-cols-4 gap-4 mb-6">
             {[
-              { label: 'Total Users', value: users.length },
-              { label: 'Active', value: totalActive },
-              { label: 'Pending', value: totalPending },
-              { label: 'Blocked', value: totalBlocked },
+              { label: 'Total Users', value: meta.total },
+              { label: 'Active', value: users.filter((u) => !u.isBlocked && u.isVerified).length },
+              { label: 'Pending', value: users.filter((u) => !u.isVerified).length },
+              { label: 'Blocked', value: users.filter((u) => u.isBlocked).length },
             ].map((s) => (
               <div
                 key={s.label}
@@ -133,130 +231,63 @@ const AdminUsersPage = () => {
             ))}
           </div>
 
-          {/* Filters */}
-          <div className="flex items-center gap-3 mb-4">
-            <input
-              type="text"
-              placeholder="Search users by name, email, or ID..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-300 placeholder-gray-600 focus:outline-none focus:border-gray-600 transition"
-            />
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-2 text-sm text-gray-300 focus:outline-none"
-            >
-              {['All Status', 'ACTIVE', 'BLOCKED', 'PENDING'].map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-            <button className="bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
-              Filter
-            </button>
-            <button className="bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-300 hover:bg-gray-800 transition">
-              Sort
-            </button>
-          </div>
+          {/* Reusable Filters */}
+          <TableFilters
+            search={search}
+            onSearchChange={(val) => setSearch(val)}
+            searchPlaceholder="Search users by name, email, or ID..."
+            filterValue={statusFilter}
+            filterOptions={[
+              { label: 'All Status', value: 'all' },
+              { label: 'ACTIVE', value: 'active' },
+              { label: 'BLOCKED', value: 'blocked' },
+              { label: 'PENDING', value: 'pending' },
+            ]}
+            onFilterChange={(val) => {
+              setStatusFilter(val);
+              setPage(1);
+            }}
+            sortField={sortField}
+            sortOptions={[
+              { label: 'Date Joined', value: 'createdAt' },
+              { label: 'Username', value: 'username' },
+              { label: 'Email', value: 'email' },
+            ]}
+            onSortFieldChange={(val) => {
+              setSortField(val);
+              setPage(1);
+            }}
+            sortOrder={sortOrder}
+            onSortOrderChange={(val) => {
+              setSortOrder(val);
+              setPage(1);
+            }}
+          />
 
-          {/* Loading / Error */}
-          {isLoading && (
-            <div className="flex items-center justify-center py-20">
-              <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-            </div>
-          )}
-
+          {/* Error */}
           {error && (
-            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm">
+            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm mb-4">
               {error}
             </div>
           )}
 
-          {/* Table */}
-          {!isLoading && !error && (
-            <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-800 text-gray-500 text-xs">
-                    <th className="text-left px-4 py-3">USER</th>
-                    <th className="text-left px-4 py-3">EMAIL ADDRESS</th>
-                    <th className="text-left px-4 py-3">STATUS</th>
-                    <th className="text-left px-4 py-3">ROLE</th>
-                    <th className="text-left px-4 py-3">PROVIDER</th>
-                    <th className="text-left px-4 py-3">DATE JOINED</th>
-                    <th className="text-left px-4 py-3">ACTIONS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((u) => {
-                    const status = getStatus(u);
-                    return (
-                      <tr
-                        key={u.id}
-                        className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 transition"
-                      >
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-                              {u.username?.[0]?.toUpperCase()}
-                            </div>
-                            <div>
-                              <p className="text-white text-sm font-medium">{u.username}</p>
-                              <p className="text-gray-500 text-xs">@{u.userId}</p>
-                            </div>
-                          </div>
-                        </td>
-                        <td className="px-4 py-3 text-gray-400 text-sm">{u.email}</td>
-                        <td className="px-4 py-3">
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded font-medium ${statusColors[status]}`}
-                          >
-                            {status.toUpperCase()}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded font-medium ${roleColors[u.role] || 'bg-gray-700 text-gray-400'}`}
-                          >
-                            {u.role}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-gray-400 text-sm capitalize">{u.provider}</td>
-                        <td className="px-4 py-3 text-gray-400 text-sm">
-                          {u.createdAt
-                            ? new Date(u.createdAt).toLocaleDateString('en-US', {
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric',
-                              })
-                            : '—'}
-                        </td>
-                        <td className="px-4 py-3">
-                          <button className="text-gray-500 hover:text-white text-sm transition">
-                            •••
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+          {/* Reusable Table */}
+          <DataTable
+            columns={columns}
+            data={users}
+            isLoading={isLoading}
+            emptyMessage="No users found"
+          />
 
-              {/* Pagination */}
-              <div className="border-t border-gray-800 px-4 py-3 flex items-center justify-between">
-                <p className="text-gray-500 text-xs">
-                  Showing {filtered.length} of {users.length} users
-                </p>
-                <div className="flex items-center gap-2">
-                  <button className="text-gray-400 hover:text-white text-sm px-3 py-1 rounded border border-gray-700 hover:bg-gray-800 transition">
-                    Previous
-                  </button>
-                  <button className="text-gray-400 hover:text-white text-sm px-3 py-1 rounded border border-gray-700 hover:bg-gray-800 transition">
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
+          {/* Reusable Pagination */}
+          {!isLoading && (
+            <Pagination
+              page={page}
+              totalPages={meta.totalPages}
+              total={meta.total}
+              limit={limit}
+              onPageChange={(p) => setPage(p)}
+            />
           )}
         </main>
 

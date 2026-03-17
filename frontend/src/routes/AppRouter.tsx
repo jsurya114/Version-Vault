@@ -7,6 +7,9 @@ import ErrorBoundary from 'src/components/ErrorBoundary';
 import PageLoader from 'src/components/PageLoader';
 import { useAppDispatch } from 'src/app/hooks';
 import { getMeThunk } from 'src/features/auth/authThunks';
+import { AUTH_ENDPOINTS } from 'src/constants/api';
+import axiosInstance from 'src/services/axiosInstance';
+import { authService } from 'src/services/auth.service';
 
 const LandingPage = lazy(() => import('../pages/LandingPage'));
 const LoginPage = lazy(() => import('../pages/user/auth/LoginPage'));
@@ -14,21 +17,34 @@ const RegisterPage = lazy(() => import('../pages/user/auth/RegisterPage'));
 const OtpVerificationPage = lazy(() => import('../pages/user/auth/OtpVerificationPage'));
 const GoogleCallBackpage = lazy(() => import('../pages/user/auth/GoogleCallbackPage'));
 
+const ForgotPasswordPage = lazy(() => import('../pages/user/auth/ForgotPasswordPage'));
+const ForgotPasswordOtpPage = lazy(() => import('../pages/user/auth/FogotPasswordOtpPage'));
+const ResetPasswordPage = lazy(() => import('../pages/user/auth/ResetPasswordPage'));
+
 const HomePage = lazy(() => import('../pages/user/home/HomePage'));
 
 // admin
 const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage'));
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
+const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPage'));
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
   const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
-    dispatch(getMeThunk()).finally(() => {
-      setAuthChecked(true);
-    });
+    const initAuth = async () => {
+      try {
+        //fist refresh the token,then get user
+        await authService.refreshTokenApi();
+        await dispatch(getMeThunk());
+      } catch (error) {
+      } finally {
+        setAuthChecked(true);
+      }
+    };
+    initAuth();
   }, []);
 
   // shows loader until auth check completes
@@ -72,6 +88,30 @@ const AppRouter = () => {
               }
             />
             <Route path={ROUTES.GOOGLE_CALLBACK} element={<GoogleCallBackpage />} />
+            <Route
+              path={ROUTES.FORGOT_PASSWORD}
+              element={
+                <PublicRoute>
+                  <ForgotPasswordPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path={ROUTES.FORGOT_PASSWORD_OTP}
+              element={
+                <PublicRoute>
+                  <ForgotPasswordOtpPage />
+                </PublicRoute>
+              }
+            />
+            <Route
+              path={ROUTES.RESET_PASSWORD}
+              element={
+                <PublicRoute>
+                  <ResetPasswordPage />
+                </PublicRoute>
+              }
+            />
 
             <Route
               path={ROUTES.HOME}
@@ -98,6 +138,14 @@ const AppRouter = () => {
               element={
                 <ProtectRoute requiredRole="admin">
                   <AdminUsersPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.ADMIN_USER_DETAIL}
+              element={
+                <ProtectRoute requiredRole="admin">
+                  <AdminUserDetailPage />
                 </ProtectRoute>
               }
             />

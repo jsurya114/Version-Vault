@@ -1,6 +1,15 @@
 import { AuthState } from 'src/types/auth.types';
 import { createSlice } from '@reduxjs/toolkit';
-import { registerThunk, verifyOtpThunk, loginThunk, logoutThunk, getMeThunk } from './authThunks';
+import {
+  registerThunk,
+  verifyOtpThunk,
+  loginThunk,
+  logoutThunk,
+  getMeThunk,
+  forgotPasswordThunk,
+  resetPasswordThunk,
+  resendOtpThunk,
+} from './authThunks';
 
 const initialState: AuthState = {
   isLoading: false,
@@ -101,6 +110,50 @@ const authSlice = createSlice({
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;
+      })
+
+      .addCase(forgotPasswordThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+        state.successMessage = null;
+      })
+      .addCase(forgotPasswordThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload;
+      })
+      .addCase(forgotPasswordThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+      // reset password
+      .addCase(resetPasswordThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+        state.successMessage = null;
+      })
+      .addCase(resetPasswordThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload;
+      })
+      .addCase(resetPasswordThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+      // resend otp
+      .addCase(resendOtpThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+        state.successMessage = null;
+      })
+      .addCase(resendOtpThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.successMessage = action.payload;
+      })
+      .addCase(resendOtpThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
       });
   },
 });

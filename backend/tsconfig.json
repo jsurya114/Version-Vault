@@ -13,9 +13,11 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
+    "typeRoots": ["./src/types", "./node_modules/@types"],
     "paths": {
       "@version-vault/shared-types": ["../packages/shared-types/src/index.ts"],
-      "@version-vault/shared-types/*": ["../packages/shared-types/src/*"]
+      "@version-vault/shared-types/*": ["../packages/shared-types/src/*"],
+      "src/*": ["./src/*"]
     }
   },
   "include": ["src/**/*.ts"],

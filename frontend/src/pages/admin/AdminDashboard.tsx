@@ -1,38 +1,11 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch } from 'src/app/hooks';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { logoutThunk } from 'src/features/auth/authThunks';
+import { getAllUsersThunk } from 'src/features/admin/getUsersThunk';
+import { selectAdminUsers } from 'src/features/admin/adminSelectors';
+import { selectAuthUser } from 'src/features/auth/authSelectors';
 import { ROUTES } from 'src/constants/routes';
-
-const stats = [
-  { label: 'Total Users', value: '12,842', icon: 'group', color: 'text-blue-400' },
-  { label: 'Total Repositories', value: '84,209', icon: 'folder_managed', color: 'text-blue-400' },
-  { label: 'Total Commits', value: '2.4M', icon: 'history', color: 'text-blue-400' },
-  { label: 'Total Storage Used', value: '1.2 TB', icon: 'database', color: 'text-blue-400' },
-];
-
-const newestUsers = [
-  {
-    initials: 'SM',
-    color: 'bg-green-600',
-    name: 'Sarah Miller',
-    email: 'sarah@enterprise.com',
-    joined: '2 mins ago',
-  },
-  {
-    initials: 'JD',
-    color: 'bg-blue-600',
-    name: 'John Doe',
-    email: 'j.doe@startup.io',
-    joined: '14 mins ago',
-  },
-  {
-    initials: 'RC',
-    color: 'bg-purple-600',
-    name: 'Robert Chen',
-    email: 'rchen@corp.net',
-    joined: '28 mins ago',
-  },
-];
+import { useEffect } from 'react';
 
 const latestRepos = [
   { name: 'nexus-core-api', version: 'v4.1-stable', size: '142.5 MB', visibility: 'PRIVATE' },
@@ -43,11 +16,50 @@ const latestRepos = [
 const AdminDashboard = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const users = useAppSelector(selectAdminUsers);
+  const adminUser = useAppSelector(selectAuthUser);
+
+  useEffect(() => {
+    dispatch(getAllUsersThunk());
+  }, []);
 
   const handleLogout = async () => {
     await dispatch(logoutThunk());
     navigate(ROUTES.ADMIN_LOGIN);
   };
+
+  const totalActive = users.filter((u) => !u.isBlocked && u.isVerified).length;
+  const totalBlocked = users.filter((u) => u.isBlocked).length;
+  const newestUsers = [...users]
+    .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
+    .slice(0, 3);
+
+  const stats = [
+    {
+      label: 'Total Users',
+      value: users.length.toLocaleString(),
+      icon: 'group',
+      color: 'text-blue-400',
+    },
+    {
+      label: 'Total Repositories',
+      value: '84,209',
+      icon: 'folder_managed',
+      color: 'text-blue-400',
+    },
+    {
+      label: 'Active Users',
+      value: totalActive.toLocaleString(),
+      icon: 'history',
+      color: 'text-blue-400',
+    },
+    {
+      label: 'Blocked Users',
+      value: totalBlocked.toLocaleString(),
+      icon: 'database',
+      color: 'text-blue-400',
+    },
+  ];
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex">
@@ -108,7 +120,7 @@ const AdminDashboard = () => {
             </span>
           </div>
           <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-            A
+            {adminUser?.username?.[0]?.toUpperCase() ?? 'A'}
           </div>
         </header>
 
@@ -179,25 +191,33 @@ const AdminDashboard = () => {
                 </thead>
                 <tbody>
                   {newestUsers.map((u) => (
-                    <tr key={u.name} className="border-b border-gray-800/50 last:border-0">
+                    <tr key={u.id} className="border-b border-gray-800/50 last:border-0">
                       <td className="py-2.5">
                         <div className="flex items-center gap-2">
-                          <div
-                            className={`w-7 h-7 rounded-full ${u.color} flex items-center justify-center text-white text-xs font-bold`}
-                          >
-                            {u.initials}
+                          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+                            {u.username?.[0]?.toUpperCase()}
                           </div>
                           <div>
-                            <p className="text-white text-xs font-medium">{u.name}</p>
+                            <p className="text-white text-xs font-medium">{u.username}</p>
                             <p className="text-gray-500 text-xs">{u.email}</p>
                           </div>
                         </div>
                       </td>
-                      <td className="py-2.5 text-gray-400 text-xs">{u.joined}</td>
+                      <td className="py-2.5 text-gray-400 text-xs">
+                        {u.createdAt
+                          ? new Date(u.createdAt).toLocaleDateString('en-US', {
+                              month: 'short',
+                              day: 'numeric',
+                            })
+                          : '—'}
+                      </td>
                       <td className="py-2.5">
-                        <button className="text-gray-500 hover:text-white text-xs transition">
-                          •••
-                        </button>
+                        <Link
+                          to={`/admin/users/${u.id}`}
+                          className="text-blue-400 hover:text-blue-300 text-xs transition"
+                        >
+                          View
+                        </Link>
                       </td>
                     </tr>
                   ))}

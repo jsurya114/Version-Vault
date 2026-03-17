@@ -72,3 +72,42 @@ export const getMeThunk = createAsyncThunk('auth/getMe', async (_, { rejectWithV
     return rejectWithValue(error.response?.data?.message || 'Session expired');
   }
 });
+
+export const forgotPasswordThunk = createAsyncThunk(
+  'auth/forgotpassword',
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const response = await authService.forgotPassword(email);
+      return response.message;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to send reset OTP');
+    }
+  },
+);
+
+export const resetPasswordThunk = createAsyncThunk(
+  'auth/resetPassword',
+  async (
+    { email, otp, newPassword }: { email: string; otp: string; newPassword: string },
+    { rejectWithValue },
+  ) => {
+    try {
+      const response = await authService.resetPassword(email, otp, newPassword);
+      return response.message;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to reset password');
+    }
+  },
+);
+
+export const resendOtpThunk = createAsyncThunk(
+  'auth/resendOtp',
+  async (email: string, { rejectWithValue }) => {
+    try {
+      const response = await authService.resendOtp(email);
+      return response.message;
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to resend OTP');
+    }
+  },
+);

@@ -2,6 +2,7 @@ export const TOKENS = {
   // Repositories
   IUserRepository: Symbol.for('IUserRepository'),
   IAdminRepository: Symbol.for('IAdminRepository'),
+  IRepoRepository: Symbol.for('IRepoRepository'),
 
   // Services
   IHashService: Symbol.for('IHashService'),
@@ -18,7 +19,19 @@ export const TOKENS = {
   ILogoutUseCase: Symbol.for('ILogoutUseCase'),
   IRefreshTokenUseCase: Symbol.for('IRefreshTokenUseCase'),
   IGetMeUseCase: Symbol.for('IGetMeUseCase'),
+  IForgotPasswordUseCase: Symbol.for('IForgotPasswordUseCase'),
+  IResetPasswordUseCase: Symbol.for('IResetPasswordUseCase'),
+  IResendOtpUseCase: Symbol.for('IResendOtpUseCase'),
 
   //admin
   IGetAllUsersUseCase: Symbol.for('IGetAllUsersUseCase'),
+  IGetUserByIdUseCase: Symbol.for('IGetUserByIdUseCase'),
+  IBlockUserUseCase: Symbol.for('IBlockUserUseCase'),
+  IUnblockUserUseCase: Symbol.for('IUnblockUserUseCase'),
+
+  //repository
+  ICreateRepoUseCase: Symbol.for('ICreateRepoUseCase'),
+  IGetRepoUseCase: Symbol.for('IGetRepoUseCase'),
+  IListRepoUseCase: Symbol.for('IListRepoUseCase'),
+  IDeleteRepoUseCase: Symbol.for('IDeleteRepoUseCase'),
 } as const;

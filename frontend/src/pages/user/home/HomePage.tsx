@@ -119,7 +119,7 @@ const HomePage = () => {
 
   const handleLogout = async () => {
     await dispatch(logoutThunk());
-    navigate(ROUTES.LOGIN);
+    navigate(ROUTES.LOGIN, { replace: true });
   };
 
   return (
