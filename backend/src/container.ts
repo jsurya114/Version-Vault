@@ -7,6 +7,7 @@ import { TOKENS } from './shared/constants/tokens';
 //repositories
 import { MongoUserRepository } from './infrastructure/database/mongoose/repositories/MongoUserRepository';
 import { MongoAdminRepository } from './infrastructure/database/mongoose/repositories/MongoAdminRepository';
+import { MongoRepoRepository } from './infrastructure/database/mongoose/repositories/MongoRepoRepository';
 //services
 import { HashService } from './infrastructure/services/HashService';
 import { TokenService } from './infrastructure/services/TokenService';
@@ -35,6 +36,13 @@ import { GetAllUsersUseCase } from './application/use-cases/admin/GetAllUsersUse
 import { GetUserByIdUseCase } from './application/use-cases/admin/GetUserByIdUseCase';
 import { BlockUserUseCase } from './application/use-cases/admin/BlockUserUseCase';
 import { UnblockUserUseCase } from './application/use-cases/admin/UnblockUserUseCase';
+
+//repositories
+import { CreateRepoUseCase } from './application/use-cases/repository/CreateRepoUseCase';
+import { GetRepoUseCase } from './application/use-cases/repository/GetRepoUseCase';
+import { ListRepoUseCase } from './application/use-cases/repository/ListRepositoryUseCase';
+import { DeleteRepoUseCase } from './application/use-cases/repository/DeleteRepoUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -68,5 +76,13 @@ container.register(TOKENS.IResendOtpUseCase, { useClass: ResendOtpUseCase });
 container.register(TOKENS.IGetUserByIdUseCase, { useClass: GetUserByIdUseCase });
 container.register(TOKENS.IBlockUserUseCase, { useClass: BlockUserUseCase });
 container.register(TOKENS.IUnblockUserUseCase, { useClass: UnblockUserUseCase });
+
+//repository
+container.register(TOKENS.IGetRepoUseCase, { useClass: GetRepoUseCase });
+container.register(TOKENS.ICreateRepoUseCase, { useClass: CreateRepoUseCase });
+container.register(TOKENS.IListRepoUseCase, { useClass: ListRepoUseCase });
+container.register(TOKENS.IDeleteRepoUseCase, { useClass: DeleteRepoUseCase });
+
+container.register(TOKENS.IRepoRepository, { useClass: MongoRepoRepository });
 
 export { container };

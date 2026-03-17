@@ -7,6 +7,7 @@ import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
 } from 'src/application/dtos/reusable/PaginationDTO';
+import { UserRole } from 'src/domain/enums';
 
 @injectable()
 export class GetAllUsersUseCase implements IGetAllUsersUseCase {
@@ -16,23 +17,25 @@ export class GetAllUsersUseCase implements IGetAllUsersUseCase {
     const result = await this.adminRepo.getAllUsers(query);
 
     return {
-      data: result.data.map((user) => ({
-        id: user.id as string,
-        userId: user.userId,
-        username: user.username,
-        email: user.email,
-        avatar: user.avatar,
-        bio: user.bio,
-        role: user.role,
-        isVerified: user.isVerified,
-        isBlocked: user.isBlocked,
-        provider: user.provider,
-        subscriptionPlan: user.subscriptionPlan,
-        followersCount: user.followersCount,
-        followingCount: user.followingCount,
-        createdAt: user.createdAt,
-        updatedAt: user.updatedAt,
-      })),
+      data: result.data
+        .filter((p) => p.role !== UserRole.ADMIN)
+        .map((user) => ({
+          id: user.id as string,
+          userId: user.userId,
+          username: user.username,
+          email: user.email,
+          avatar: user.avatar,
+          bio: user.bio,
+          role: user.role,
+          isVerified: user.isVerified,
+          isBlocked: user.isBlocked,
+          provider: user.provider,
+          subscriptionPlan: user.subscriptionPlan,
+          followersCount: user.followersCount,
+          followingCount: user.followingCount,
+          createdAt: user.createdAt,
+          updatedAt: user.updatedAt,
+        })),
       total: result.total,
       page: result.page,
       limit: result.limit,

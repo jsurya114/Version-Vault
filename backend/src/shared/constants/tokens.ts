@@ -2,6 +2,7 @@ export const TOKENS = {
   // Repositories
   IUserRepository: Symbol.for('IUserRepository'),
   IAdminRepository: Symbol.for('IAdminRepository'),
+  IRepoRepository: Symbol.for('IRepoRepository'),
 
   // Services
   IHashService: Symbol.for('IHashService'),
@@ -27,4 +28,10 @@ export const TOKENS = {
   IGetUserByIdUseCase: Symbol.for('IGetUserByIdUseCase'),
   IBlockUserUseCase: Symbol.for('IBlockUserUseCase'),
   IUnblockUserUseCase: Symbol.for('IUnblockUserUseCase'),
+
+  //repository
+  ICreateRepoUseCase: Symbol.for('ICreateRepoUseCase'),
+  IGetRepoUseCase: Symbol.for('IGetRepoUseCase'),
+  IListRepoUseCase: Symbol.for('IListRepoUseCase'),
+  IDeleteRepoUseCase: Symbol.for('IDeleteRepoUseCase'),
 } as const;

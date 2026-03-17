@@ -8,17 +8,21 @@ import morgan from 'morgan';
 import { corsOptions } from './shared/config/cors.config';
 import { envConfig } from './shared/config/env.config';
 import { errorMiddleware } from './interfaces/http/middleware/ErrorMiddleware';
+import { globalLimiter } from './shared/config/rateLimiter';
 import { logger } from './shared/logger/Logger';
 
 //routes
 import authRoutes from './interfaces/http/routes/user/auth.routes';
-import adminRoutes from "./interfaces/http/routes/admin/admin.routes"
+import adminRoutes from './interfaces/http/routes/admin/admin.routes';
+import repoRoutes from './interfaces/http/routes/repository/repository.routes';
+import gitRoutes from './interfaces/http/routes/git/git.routes';
 
 const app = express();
 
 //security middlewares
 app.use(helmet());
 app.use(cors(corsOptions));
+app.use(globalLimiter);
 
 //request parsing
 app.use(express.json());
@@ -43,7 +47,9 @@ app.get('/running', (req, res) => {
 
 //api routes
 app.use('/vv/auth', authRoutes);
-app.use('/vv/admin',adminRoutes)
+app.use('/vv/admin', adminRoutes);
+app.use('/vv/repo', repoRoutes);
+app.use('/vv/git', gitRoutes);
 
 //error hanlding middleware
 app.use(errorMiddleware);

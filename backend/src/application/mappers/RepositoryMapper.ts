@@ -1,0 +1,41 @@
+import { IRepository } from 'src/domain/interfaces/IRepository';
+import { RepoResponseDTO } from '../dtos/repository/RepoResponseDTO';
+
+export class RepositoryMapper {
+  //mongo to domain
+  static toIRepository(doc: any): IRepository {
+    return {
+      id: doc._id?.toString(),
+      name: doc.name,
+      description: doc.description,
+      visibility: doc.visibility,
+      ownerId: doc.ownerId,
+      ownerUsername: doc.ownerUsername,
+      defaultBranch: doc.defaultBranch,
+      stars: doc.stars,
+      forks: doc.forks,
+      size: doc.size,
+      isDeleted: doc.isDeleted,
+      createdAt: doc.createdAt,
+      updatedAt: doc.updatedAt,
+    };
+  }
+
+  //domain to dto
+  static toDTO(repo: IRepository): RepoResponseDTO {
+    return {
+      id: repo.id as string,
+      name: repo.name,
+      description: repo.description,
+      visibility: repo.visibility,
+      ownerId: repo.ownerId,
+      ownerUsername: repo.ownerUsername,
+      defaultBranch: repo.defaultBranch,
+      stars: repo.stars,
+      forks: repo.forks,
+      size: repo.size,
+      createdAt: repo.createdAt,
+      updatedAt: repo.updatedAt,
+    };
+  }
+}

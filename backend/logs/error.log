@@ -1838,3 +1838,137 @@
     at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
 2026-03-11 18:37:16 [[31merror[39m]: Error: read ECONNRESET
     at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:00 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:00 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:00 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:26:44 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-03-16 09:29:14 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:18 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:22 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:26 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:31:54 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:33:31 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:33:50 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:36:27 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:38:45 [[31merror[39m]: POST /vv/auth/forgot-password — 00711FF001000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:918:SSL alert number 80
+
+2026-03-16 09:40:46 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:46:14 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:48:16 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-03-16 09:48:17 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-03-16 09:51:45 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:51:45 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:14 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:14 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:27 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:28 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:39 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:58 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:59 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:55:34 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:55:36 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 10:23:53 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 10:23:54 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 10:26:14 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'userId' of 'req.user' as it is undefined.
+2026-03-16 10:26:15 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'userId' of 'req.user' as it is undefined.
+2026-03-16 10:26:30 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'userId' of 'req.user' as it is undefined.
+2026-03-16 10:34:32 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Invalid or expired access token
+2026-03-16 10:35:02 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Invalid or expired access token
+2026-03-16 10:35:12 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Invalid or expired access token
+2026-03-16 10:37:54 [[31merror[39m]: GET /vv/repo/jsurya114/my-first-repo — Repository not found
+2026-03-16 23:37:50 [[31merror[39m]: POST /vv/repo — Cannot use simple-git on a directory that does not exist
+2026-03-16 23:37:56 [[31merror[39m]: POST /vv/repo — Repository validation failed: name: Path `name` is required.
+2026-03-16 23:37:57 [[31merror[39m]: POST /vv/repo — Repository validation failed: name: Path `name` is required.
+2026-03-16 23:40:25 [[31merror[39m]: POST /vv/repo — E11000 duplicate key error collection: version-vault.repositories index: ownerId_1_name_1 dup key: { ownerId: "69ad32fc909cdbdf4449721d", name: "test-repo" }
+2026-03-16 23:40:26 [[31merror[39m]: POST /vv/repo — E11000 duplicate key error collection: version-vault.repositories index: ownerId_1_name_1 dup key: { ownerId: "69ad32fc909cdbdf4449721d", name: "test-repo" }
+2026-03-16 23:42:54 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Repository not found
+2026-03-16 23:42:56 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Repository not found
+2026-03-16 23:52:33 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:52:49 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:53:00 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:53:15 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-17 10:09:48 [[31merror[39m]: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+    at _handleConnectionErrors (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1169:11)
+    at NativeConnection.openUri (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1100:11)
+    at async connectDatabase (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/database/mongoose/connection.ts:7:5)
+    at async startSever (/Users/jayasuryas/Desktop/version-vault/backend/src/main.ts:10:5)
+2026-03-17 10:10:55 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:55 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:57 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:11:14 [[31merror[39m]: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+    at _handleConnectionErrors (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1169:11)
+    at NativeConnection.openUri (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1100:11)
+    at async connectDatabase (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/database/mongoose/connection.ts:7:5)
+    at async startSever (/Users/jayasuryas/Desktop/version-vault/backend/src/main.ts:10:5)

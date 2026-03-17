@@ -21,6 +21,8 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
     if (user.isVerified) throw new ValidationError('Account is already verified');
 
     const otp = await this.otpService.generateOtp();
+    console.log(otp);
+    await this.otpService.saveOtp(email, otp);
     await this.emailService.sendOtpEmail(email, otp);
     return { message: 'OTP resent successfully' };
   }

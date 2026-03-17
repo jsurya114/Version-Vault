@@ -3,7 +3,8 @@ import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
 } from 'src/application/dtos/reusable/PaginationDTO';
-export abstract class MongoBaseRepository<T> {
+import { IBaseRepository } from 'src/domain/interfaces/repositories/IBaseRepository';
+export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
   constructor(protected readonly model: Model<any>) {}
 
   async findById(id: string): Promise<T | null> {
@@ -27,6 +28,10 @@ export abstract class MongoBaseRepository<T> {
     const doc = await this.model.findByIdAndUpdate(id, data, { new: true }).lean();
     if (!doc) return null;
     return this.toEntity(doc);
+  }
+  async delete(id: string): Promise<boolean> {
+    const result = await this.model.findByIdAndDelete(id);
+    return result !== null;
   }
 
   async findWithpagination(

@@ -20,6 +20,8 @@ export class ForgotPasswordUseCase implements IForgotPasswordUseCase {
 
     const otp = await this.otpService.generateOtp();
 
+    await this.otpService.saveOtp(email, otp);
+
     await this.emailService.sendOtpEmail(email, otp);
 
     return { message: 'Password reset OTP sent to your email' };

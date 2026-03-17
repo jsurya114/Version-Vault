@@ -1,10 +1,8 @@
 import type { IUser } from '../IUser';
+import { IBaseRepository } from './IBaseRepository';
 
-export interface IUserRepository {
-  findById(id: string): Promise<IUser | null>;
+export interface IUserRepository extends IBaseRepository<IUser> {
   findByEmail(email: string): Promise<IUser | null>;
   findByUserId(userId: string): Promise<IUser | null>;
   findByUserName(username: string): Promise<IUser | null>;
-  save(user: IUser): Promise<IUser>;
-  update(id: string, data: Partial<IUser>): Promise<IUser | null>;
 }

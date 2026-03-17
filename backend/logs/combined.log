@@ -3974,3 +3974,471 @@
 2026-03-11 19:01:09 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10&sort=createdAt&order=desc [32m201[0m 46.857 ms - 404[0m
 2026-03-11 19:01:09 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10&sort=createdAt&order=desc [32m201[0m 43.094 ms - 404[0m
 2026-03-11 19:01:09 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10&sort=createdAt&order=desc [32m201[0m 43.916 ms - 404[0m
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:24:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:00 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:00 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:25:00 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:25:00 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:00 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-16 09:25:33 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:25:34 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:25:34 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:26:44 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-03-16 09:26:44 [[32minfo[39m]: [0mPOST /vv/repo [33m401[0m 0.885 ms - 61[0m
+2026-03-16 09:27:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 77.432 ms - 44[0m
+2026-03-16 09:27:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 71.058 ms - 44[0m
+2026-03-16 09:27:39 [[32minfo[39m]: [0mGET /vv/auth/me [32m200[0m 50.950 ms - 341[0m
+2026-03-16 09:27:39 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 76.674 ms - 404[0m
+2026-03-16 09:27:48 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.500 ms - 52[0m
+2026-03-16 09:27:53 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 184.614 ms - 174[0m
+2026-03-16 09:27:53 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 45.124 ms - -[0m
+2026-03-16 09:27:53 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 421.206 ms - 404[0m
+2026-03-16 09:28:12 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.712 ms - 52[0m
+2026-03-16 09:28:17 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.103 ms - 46[0m
+2026-03-16 09:28:17 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.050 ms - 46[0m
+2026-03-16 09:28:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.164 ms - 46[0m
+2026-03-16 09:28:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.100 ms - 46[0m
+2026-03-16 09:28:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.199 ms - 46[0m
+2026-03-16 09:28:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.077 ms - 46[0m
+2026-03-16 09:28:24 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.095 ms - 46[0m
+2026-03-16 09:28:24 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.135 ms - 46[0m
+2026-03-16 09:28:25 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.236 ms - 46[0m
+2026-03-16 09:28:25 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.155 ms - 46[0m
+2026-03-16 09:28:33 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 483.251 ms - 174[0m
+2026-03-16 09:28:33 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 49.526 ms - 404[0m
+2026-03-16 09:28:33 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 52.066 ms - -[0m
+2026-03-16 09:28:38 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.289 ms - 52[0m
+2026-03-16 09:28:44 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.238 ms - 46[0m
+2026-03-16 09:28:44 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.057 ms - 46[0m
+2026-03-16 09:28:46 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.224 ms - 46[0m
+2026-03-16 09:28:46 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.106 ms - 46[0m
+2026-03-16 09:29:14 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:14 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 136.635 ms - 49[0m
+2026-03-16 09:29:18 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:18 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 129.129 ms - 49[0m
+2026-03-16 09:29:22 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:22 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 133.014 ms - 49[0m
+2026-03-16 09:29:26 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-03-16 09:29:26 [[32minfo[39m]: [0mPOST /vv/auth/login [33m401[0m 124.369 ms - 49[0m
+2026-03-16 09:30:11 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.408 ms - 46[0m
+2026-03-16 09:30:11 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.070 ms - 46[0m
+2026-03-16 09:30:23 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.401 ms - 46[0m
+2026-03-16 09:30:23 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.079 ms - 46[0m
+2026-03-16 09:30:28 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.172 ms - 46[0m
+2026-03-16 09:30:28 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.077 ms - 46[0m
+2026-03-16 09:30:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.141 ms - 46[0m
+2026-03-16 09:30:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.106 ms - 46[0m
+2026-03-16 09:30:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.091 ms - 46[0m
+2026-03-16 09:30:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.097 ms - 46[0m
+2026-03-16 09:30:36 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 172.011 ms - 174[0m
+2026-03-16 09:30:36 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 43.114 ms - -[0m
+2026-03-16 09:30:36 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 43.649 ms - 404[0m
+2026-03-16 09:30:47 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.303 ms - 52[0m
+2026-03-16 09:31:01 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-16 09:31:01 [[32minfo[39m]: [0mPOST /vv/auth/forgot-password [32m200[0m 5714.814 ms - 66[0m
+2026-03-16 09:31:54 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:31:54 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [33m400[0m 57.508 ms - 52[0m
+2026-03-16 09:33:05 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:33:06 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:33:06 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:33:07 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:33:07 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:33:07 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:33:13 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:33:14 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:33:14 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:33:19 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:33:19 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:33:19 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:33:31 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:33:31 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [33m400[0m 75.055 ms - 52[0m
+2026-03-16 09:33:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.331 ms - 46[0m
+2026-03-16 09:33:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.083 ms - 46[0m
+2026-03-16 09:33:50 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:33:50 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [33m400[0m 59.936 ms - 52[0m
+2026-03-16 09:34:08 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:34:09 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:34:09 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:35:12 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:35:13 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:35:13 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:35:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.962 ms - 46[0m
+2026-03-16 09:35:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.177 ms - 46[0m
+2026-03-16 09:35:24 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.474 ms - 46[0m
+2026-03-16 09:35:24 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.183 ms - 46[0m
+2026-03-16 09:35:27 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.363 ms - 46[0m
+2026-03-16 09:35:27 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.114 ms - 46[0m
+2026-03-16 09:35:57 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-16 09:35:57 [[32minfo[39m]: [0mPOST /vv/auth/forgot-password [32m200[0m 3513.392 ms - 66[0m
+2026-03-16 09:36:27 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:36:27 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [33m400[0m 56.475 ms - 52[0m
+2026-03-16 09:37:01 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:37:02 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:37:03 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:37:03 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:37:05 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:37:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:37:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:37:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 1.108 ms - 46[0m
+2026-03-16 09:37:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.233 ms - 46[0m
+2026-03-16 09:38:36 [[32minfo[39m]: [0mPOST /vv/auth/forgot-password [0m-[0m - ms - -[0m
+2026-03-16 09:38:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.475 ms - 46[0m
+2026-03-16 09:38:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.109 ms - 46[0m
+2026-03-16 09:38:45 [[31merror[39m]: POST /vv/auth/forgot-password — 00711FF001000000:error:0A000438:SSL routines:ssl3_read_bytes:tlsv1 alert internal error:../deps/openssl/openssl/ssl/record/rec_layer_s3.c:918:SSL alert number 80
+
+2026-03-16 09:39:21 [[32minfo[39m]: [0mPOST /vv/auth/forgot-password [0m-[0m - ms - -[0m
+2026-03-16 09:39:21 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.146 ms - 46[0m
+2026-03-16 09:39:21 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.080 ms - 46[0m
+2026-03-16 09:39:22 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.121 ms - 46[0m
+2026-03-16 09:39:22 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.206 ms - 46[0m
+2026-03-16 09:39:35 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-16 09:39:48 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-16 09:39:48 [[32minfo[39m]: [0mPOST /vv/auth/forgot-password [32m200[0m 3169.886 ms - 66[0m
+2026-03-16 09:40:23 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:40:24 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:40:24 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:40:46 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:40:46 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [33m400[0m 64.005 ms - 52[0m
+2026-03-16 09:45:54 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:45:55 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:45:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:45:57 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:45:58 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:45:58 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:46:03 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:46:03 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:46:03 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:46:08 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:46:08 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:46:08 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:46:14 [[31merror[39m]: POST /vv/auth/reset-password — Invalid or expired OTP
+2026-03-16 09:46:14 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [33m400[0m 63.450 ms - 52[0m
+2026-03-16 09:46:23 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.788 ms - 46[0m
+2026-03-16 09:46:23 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.126 ms - 46[0m
+2026-03-16 09:46:42 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-16 09:46:42 [[32minfo[39m]: [0mPOST /vv/auth/forgot-password [32m200[0m 3466.478 ms - 66[0m
+2026-03-16 09:47:31 [[32minfo[39m]: [0mPOST /vv/auth/reset-password [32m200[0m 220.501 ms - 56[0m
+2026-03-16 09:47:50 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 182.994 ms - 174[0m
+2026-03-16 09:47:50 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 46.191 ms - 404[0m
+2026-03-16 09:47:51 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 954.199 ms - 404[0m
+2026-03-16 09:47:54 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 45.210 ms - 404[0m
+2026-03-16 09:47:55 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 336.068 ms - -[0m
+2026-03-16 09:47:56 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 59.146 ms - 404[0m
+2026-03-16 09:47:56 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 61.431 ms - -[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 80.883 ms - 404[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 102.837 ms - -[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 43.916 ms - -[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 43.298 ms - 404[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 43.787 ms - -[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 44.043 ms - 404[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 46.455 ms - -[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 46.180 ms - 404[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [36m304[0m 45.058 ms - -[0m
+2026-03-16 09:47:58 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=10 [32m201[0m 43.649 ms - 404[0m
+2026-03-16 09:47:59 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.804 ms - 52[0m
+2026-03-16 09:48:08 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 435.298 ms - 182[0m
+2026-03-16 09:48:16 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-03-16 09:48:16 [[32minfo[39m]: [0mPOST /vv/repo [33m401[0m 0.410 ms - 61[0m
+2026-03-16 09:48:17 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-03-16 09:48:17 [[32minfo[39m]: [0mPOST /vv/repo [33m401[0m 0.307 ms - 61[0m
+2026-03-16 09:49:54 [[32minfo[39m]: [0mPOST /vv/auth/login [33m400[0m 1.630 ms - 224[0m
+2026-03-16 09:50:29 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 272.210 ms - 182[0m
+2026-03-16 09:50:54 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 385.271 ms - 329[0m
+2026-03-16 09:51:40 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/my-first-repo [33m404[0m 0.661 ms - 171[0m
+2026-03-16 09:51:45 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:51:45 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.469 ms - 51[0m
+2026-03-16 09:51:45 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:51:45 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.386 ms - 51[0m
+2026-03-16 09:52:14 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:14 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.430 ms - 51[0m
+2026-03-16 09:52:14 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:14 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.448 ms - 51[0m
+2026-03-16 09:52:27 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:27 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.467 ms - 51[0m
+2026-03-16 09:52:28 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:28 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.282 ms - 51[0m
+2026-03-16 09:52:39 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:39 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.439 ms - 51[0m
+2026-03-16 09:52:58 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:58 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.461 ms - 51[0m
+2026-03-16 09:52:59 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:52:59 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.405 ms - 51[0m
+2026-03-16 09:54:13 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:54:13 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:54:13 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:54:16 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:54:17 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:54:18 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:54:18 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:54:30 [[32minfo[39m]: Redis connected successfully
+2026-03-16 09:54:30 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 09:54:30 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 09:55:34 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:55:34 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 1.513 ms - 51[0m
+2026-03-16 09:55:36 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 09:55:36 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.376 ms - 51[0m
+2026-03-16 10:23:38 [[32minfo[39m]: Redis connected successfully
+2026-03-16 10:23:38 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 10:23:38 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 10:23:53 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 10:23:53 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 1.066 ms - 51[0m
+2026-03-16 10:23:54 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'id' of 'req.user' as it is undefined.
+2026-03-16 10:23:54 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.438 ms - 51[0m
+2026-03-16 10:25:25 [[32minfo[39m]: Redis connected successfully
+2026-03-16 10:25:26 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 10:25:26 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 10:25:53 [[32minfo[39m]: Redis connected successfully
+2026-03-16 10:25:54 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 10:25:54 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 10:26:14 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'userId' of 'req.user' as it is undefined.
+2026-03-16 10:26:14 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 1.128 ms - 51[0m
+2026-03-16 10:26:15 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'userId' of 'req.user' as it is undefined.
+2026-03-16 10:26:15 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.413 ms - 51[0m
+2026-03-16 10:26:30 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Cannot destructure property 'userId' of 'req.user' as it is undefined.
+2026-03-16 10:26:30 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [31m500[0m 0.457 ms - 51[0m
+2026-03-16 10:34:22 [[32minfo[39m]: Redis connected successfully
+2026-03-16 10:34:23 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 10:34:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 10:34:32 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Invalid or expired access token
+2026-03-16 10:34:32 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [33m401[0m 1.177 ms - 61[0m
+2026-03-16 10:35:02 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Invalid or expired access token
+2026-03-16 10:35:02 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo?Content-Type=application/json [33m401[0m 0.583 ms - 61[0m
+2026-03-16 10:35:12 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Invalid or expired access token
+2026-03-16 10:35:12 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [33m401[0m 0.338 ms - 61[0m
+2026-03-16 10:36:43 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 157.840 ms - 182[0m
+2026-03-16 10:37:05 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [32m200[0m 117.701 ms - 60[0m
+2026-03-16 10:37:54 [[31merror[39m]: GET /vv/repo/jsurya114/my-first-repo — Repository not found
+2026-03-16 10:37:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/my-first-repo [33m404[0m 42.644 ms - 50[0m
+2026-03-16 23:37:10 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:37:11 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:37:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:37:14 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 218.512 ms - 182[0m
+2026-03-16 23:37:50 [[31merror[39m]: POST /vv/repo — Cannot use simple-git on a directory that does not exist
+2026-03-16 23:37:50 [[32minfo[39m]: [0mPOST /vv/repo [31m500[0m 97.502 ms - 51[0m
+2026-03-16 23:37:56 [[31merror[39m]: POST /vv/repo — Repository validation failed: name: Path `name` is required.
+2026-03-16 23:37:56 [[32minfo[39m]: [0mPOST /vv/repo [31m500[0m 43.723 ms - 51[0m
+2026-03-16 23:37:57 [[31merror[39m]: POST /vv/repo — Repository validation failed: name: Path `name` is required.
+2026-03-16 23:37:57 [[32minfo[39m]: [0mPOST /vv/repo [31m500[0m 54.708 ms - 51[0m
+2026-03-16 23:40:25 [[31merror[39m]: POST /vv/repo — E11000 duplicate key error collection: version-vault.repositories index: ownerId_1_name_1 dup key: { ownerId: "69ad32fc909cdbdf4449721d", name: "test-repo" }
+2026-03-16 23:40:25 [[32minfo[39m]: [0mPOST /vv/repo [31m500[0m 104.684 ms - 51[0m
+2026-03-16 23:40:26 [[31merror[39m]: POST /vv/repo — E11000 duplicate key error collection: version-vault.repositories index: ownerId_1_name_1 dup key: { ownerId: "69ad32fc909cdbdf4449721d", name: "test-repo" }
+2026-03-16 23:40:26 [[32minfo[39m]: [0mPOST /vv/repo [31m500[0m 87.442 ms - 51[0m
+2026-03-16 23:42:54 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Repository not found
+2026-03-16 23:42:54 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [33m404[0m 40.799 ms - 50[0m
+2026-03-16 23:42:56 [[31merror[39m]: DELETE /vv/repo/jsurya114/my-first-repo — Repository not found
+2026-03-16 23:42:56 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/my-first-repo [33m404[0m 247.237 ms - 50[0m
+2026-03-16 23:43:14 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/test-repo [32m200[0m 103.450 ms - 60[0m
+2026-03-16 23:44:05 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:44:06 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:44:06 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:44:09 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:44:10 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:44:10 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:44:22 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:44:23 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:44:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:44:34 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:44:35 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:44:35 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:44:40 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:44:41 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:44:41 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:44:57 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:44:58 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:44:58 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:45:56 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 135.107 ms - 328[0m
+2026-03-16 23:52:05 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:52:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:52:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:52:33 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:52:33 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.963 ms - 61[0m
+2026-03-16 23:52:49 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:52:49 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.696 ms - 61[0m
+2026-03-16 23:53:00 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:53:00 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.238 ms - 61[0m
+2026-03-16 23:53:15 [[31merror[39m]: GET /vv/git/jsurya114/test-repo.git/info/refs — Invalid or expired access token
+2026-03-16 23:53:15 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.457 ms - 61[0m
+2026-03-16 23:55:13 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:55:13 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:55:13 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:55:19 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:55:20 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:55:20 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:55:52 [[32minfo[39m]: Redis connected successfully
+2026-03-16 23:55:53 [[32minfo[39m]: MongoDB connected successfully
+2026-03-16 23:55:53 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-16 23:56:15 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.723 ms - 53[0m
+2026-03-16 23:56:15 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.235 ms - 54[0m
+2026-03-16 23:56:25 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.094 ms - 53[0m
+2026-03-16 23:56:41 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.247 ms - 54[0m
+2026-03-16 23:57:06 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.087 ms - 53[0m
+2026-03-16 23:57:30 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.245 ms - 54[0m
+2026-03-16 23:59:49 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.073 ms - 53[0m
+2026-03-16 23:59:49 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 1.075 ms - 54[0m
+2026-03-17 00:01:45 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:01:45 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:01:45 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:01:49 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.646 ms - 53[0m
+2026-03-17 00:01:49 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.727 ms - 54[0m
+2026-03-17 00:03:13 [[32minfo[39m]: [0mPOST /vv/auth/login?Content-Type=application/json [33m400[0m 1.139 ms - 224[0m
+2026-03-17 00:03:51 [[32minfo[39m]: [0mPOST /vv/auth/login?Content-Type=application/json [33m400[0m 0.338 ms - 224[0m
+2026-03-17 00:03:52 [[32minfo[39m]: [0mPOST /vv/auth/login?Content-Type=application/json [33m400[0m 0.207 ms - 224[0m
+2026-03-17 00:04:41 [[32minfo[39m]: [0mPOST /vv/auth/login?Content-Type=application/json [32m200[0m 182.427 ms - 182[0m
+2026-03-17 00:05:12 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git [33m404[0m 1.232 ms - 169[0m
+2026-03-17 00:05:50 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.084 ms - 53[0m
+2026-03-17 00:05:50 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.272 ms - 54[0m
+2026-03-17 00:07:20 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:07:21 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:07:21 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:07:23 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.738 ms - 53[0m
+2026-03-17 00:07:23 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 1.355 ms - 54[0m
+2026-03-17 00:12:47 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:12:47 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:12:47 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:12:48 [[32minfo[39m]: [0mPOST /vv/auth/login?Content-Type=application/json [33m400[0m 1.739 ms - 224[0m
+2026-03-17 00:13:29 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 158.385 ms - 182[0m
+2026-03-17 00:16:01 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [33m401[0m 0.344 ms - 53[0m
+2026-03-17 00:16:02 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-upload-pack [32m200[0m 767.647 ms - -[0m
+2026-03-17 00:18:58 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:18:59 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:18:59 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:19:01 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:19:02 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:19:02 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:19:16 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:19:16 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:19:16 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:19:21 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:19:21 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:19:21 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 00:19:24 [[32minfo[39m]: Redis connected successfully
+2026-03-17 00:19:25 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 00:19:25 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:08:49 [[32minfo[39m]: [0mPOST /vv/auth/login [33m400[0m 4.026 ms - 140[0m
+2026-03-17 10:09:18 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:09:48 [[31merror[39m]: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+    at _handleConnectionErrors (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1169:11)
+    at NativeConnection.openUri (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1100:11)
+    at async connectDatabase (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/database/mongoose/connection.ts:7:5)
+    at async startSever (/Users/jayasuryas/Desktop/version-vault/backend/src/main.ts:10:5)
+2026-03-17 10:10:44 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:10:55 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:10:55 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:10:55 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:55 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:57 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1142:49)
+    at afterConnectMultiple (node:net:1723:7)
+2026-03-17 10:10:57 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:11:14 [[31merror[39m]: MongooseServerSelectionError: Could not connect to any servers in your MongoDB Atlas cluster. One common reason is that you're trying to access the database from an IP that isn't whitelisted. Make sure your current IP address is on your Atlas cluster's IP whitelist: https://www.mongodb.com/docs/atlas/security-whitelist/
+    at _handleConnectionErrors (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1169:11)
+    at NativeConnection.openUri (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1100:11)
+    at async connectDatabase (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/database/mongoose/connection.ts:7:5)
+    at async startSever (/Users/jayasuryas/Desktop/version-vault/backend/src/main.ts:10:5)
+2026-03-17 10:13:52 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:13:53 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:13:53 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:14:05 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 228.808 ms - 182[0m
+2026-03-17 10:21:29 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [33m401[0m 1.185 ms - 53[0m
+2026-03-17 10:21:29 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [32m200[0m 24.093 ms - -[0m
+2026-03-17 10:21:29 [[32minfo[39m]: [0mPOST /vv/git/jsurya114/test-repo.git/git-receive-pack [33m404[0m 0.555 ms - 187[0m
+2026-03-17 10:24:23 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:25 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:26 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:24:26 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:24:28 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:29 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:24:29 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:24:42 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:43 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:24:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:24:46 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:48 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:24:48 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:24:49 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:50 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:24:50 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:24:55 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:24:56 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:24:56 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:25:13 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [33m401[0m 0.890 ms - 53[0m
+2026-03-17 10:25:13 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [32m200[0m 16.236 ms - -[0m
+2026-03-17 10:25:13 [[32minfo[39m]: [0mPOST /vv/git/jsurya114/test-repo.git/git-receive-pack [33m404[0m 0.430 ms - 187[0m
+2026-03-17 10:26:43 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:26:44 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:26:44 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:26:46 [[32minfo[39m]: Redis connected successfully
+2026-03-17 10:26:47 [[32minfo[39m]: MongoDB connected successfully
+2026-03-17 10:26:47 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-17 10:26:52 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [33m401[0m 0.978 ms - 53[0m
+2026-03-17 10:26:52 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [32m200[0m 18.676 ms - -[0m
+2026-03-17 10:26:52 [[32minfo[39m]: [0mPOST /vv/git/jsurya114/test-repo.git/git-receive-pack [32m200[0m 31.350 ms - -[0m
