@@ -14,6 +14,7 @@ import { TokenService } from './infrastructure/services/TokenService';
 import { OtpService } from './infrastructure/services/OtpService';
 import { NodemailerService } from './infrastructure/external/email/NodemailerService';
 import { GoogleAuthService } from './infrastructure/services/GoogleAuthService';
+import { GitService } from './infrastructure/services/GitService';
 
 //validator
 import { RegisterValidator } from './application/use-cases/validators/RegisterValidator';
@@ -43,12 +44,18 @@ import { GetRepoUseCase } from './application/use-cases/repository/GetRepoUseCas
 import { ListRepoUseCase } from './application/use-cases/repository/ListRepositoryUseCase';
 import { DeleteRepoUseCase } from './application/use-cases/repository/DeleteRepoUseCase';
 
+//git file browser use case
+import { GetFilesUseCase } from './application/use-cases/repository/GetFilesUseCase';
+import { GetFileContentUseCase } from './application/use-cases/repository/GetFileContentUseCase';
+import { GetCommitUseCase } from './application/use-cases/repository/GetCommitUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
 container.register(TOKENS.IOtpService, { useClass: OtpService });
 container.register(TOKENS.IEmailService, { useClass: NodemailerService });
 container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
+container.registerSingleton(GitService, GitService);
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
@@ -84,5 +91,8 @@ container.register(TOKENS.IListRepoUseCase, { useClass: ListRepoUseCase });
 container.register(TOKENS.IDeleteRepoUseCase, { useClass: DeleteRepoUseCase });
 
 container.register(TOKENS.IRepoRepository, { useClass: MongoRepoRepository });
+container.register(TOKENS.IGetFilesUseCase, { useClass: GetFilesUseCase });
+container.register(TOKENS.IGetFileContentUseCase, { useClass: GetFileContentUseCase });
+container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
 
 export { container };

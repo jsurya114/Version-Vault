@@ -4,6 +4,9 @@ import { IGetRepoUseCase } from 'src/application/use-cases/interfaces/repository
 import { ICreateRepoUseCase } from 'src/application/use-cases/interfaces/repository/ICreateRepoUseCase';
 import { IListRepoUseCase } from 'src/application/use-cases/interfaces/repository/IListRepoUseCase';
 import { IDeleteRepoUsecase } from 'src/application/use-cases/interfaces/repository/IDeleteRepoUseCase';
+import { IGetCommitsUseCase } from 'src/application/use-cases/interfaces/repository/IGetCommitsUseCase';
+import { IGetFileContentUseCase } from 'src/application/use-cases/interfaces/repository/IGetFileContentUseCase';
+import { IGetFilesUseCase } from 'src/application/use-cases/interfaces/repository/IGetFilesUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
 import {
   PaginatedResponseDTO,
@@ -18,6 +21,9 @@ export class RepositoryController {
     @inject(TOKENS.ICreateRepoUseCase) private createRepo: ICreateRepoUseCase,
     @inject(TOKENS.IListRepoUseCase) private listRepo: IListRepoUseCase,
     @inject(TOKENS.IDeleteRepoUseCase) private deleteRepo: IDeleteRepoUsecase,
+    @inject(TOKENS.IGetCommitsUseCase) private commitUseCase: IGetCommitsUseCase,
+    @inject(TOKENS.IGetFileContentUseCase) private fileContentUseCase: IGetFileContentUseCase,
+    @inject(TOKENS.IGetFilesUseCase) private filesUseCase: IGetFilesUseCase,
   ) {}
 
   /**
@@ -27,7 +33,7 @@ export class RepositoryController {
   async createRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { name, description, visibility } = req.body;
-      const { id: ownerId, userId: ownerUsername } = req.user!;
+      const { id: ownerId, userId: ownerUsername } = (req as any).user;
 
       const repo = await this.createRepo.execute({
         name,
@@ -62,7 +68,7 @@ export class RepositoryController {
 
   async listRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { id: ownerId } = req.user!;
+      const { id: ownerId } = (req as any).user;
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
         limit: req.query.limit ? Number(req.query.limit) : 10,
@@ -93,12 +99,62 @@ export class RepositoryController {
 
   async deleteRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId: ownerUsername } = req.user!;
+      const { userId: ownerUsername } = (req as any).user;
       const { reponame } = req.params;
       await this.deleteRepo.execute(ownerUsername, reponame);
       res
         .status(HttpStatusCodes.OK)
         .json({ success: true, message: 'Repository deleted successfully' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * GET /vv/repo/:username/:reponame/files
+   * Get files in a directory
+   */
+  async getFiles(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const branch = (req.query.branch as string) || 'main';
+      const path = (req.query.path as string) || '';
+      const files = await this.filesUseCase.execute(username, reponame, branch, path);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: files });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * GET /vv/repo/:username/:reponame/content
+   * Get file content
+   */
+
+  async getFileContent(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const branch = (req.query.branch as string) || 'main';
+      const filePath = (req.query.path as string) || '';
+      const content = await this.fileContentUseCase.execute(username, reponame, branch, filePath);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: content });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * GET /vv/repo/:username/:reponame/commits
+   * Get commit history
+   */
+
+  async getCommit(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const branch = (req.query.branch as string) || 'main';
+      const limit = req.query.limit ? Number(req.query.limit) : 20;
+      const commits = await this.commitUseCase.execute(username, reponame, branch, limit);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: commits });
     } catch (error) {
       next(error);
     }

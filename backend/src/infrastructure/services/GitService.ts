@@ -3,6 +3,7 @@ import * as path from 'path';
 import simpleGit from 'simple-git';
 import { injectable } from 'tsyringe';
 import { envConfig } from 'src/shared/config/env.config';
+import { GitFileEntry, GitCommit } from 'src/domain/interfaces/IGitTypes';
 
 @injectable()
 export class GitService {
@@ -51,5 +52,85 @@ export class GitService {
 
   getFullRepoPath(ownerUsername: string, repoName: string): string {
     return this.getRepoPath(ownerUsername, repoName);
+  }
+
+  async getFiles(
+    ownerUsername: string,
+    repoName: string,
+    branch: string = 'main',
+    filePath: string = '',
+  ): Promise<GitFileEntry[]> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+
+    try {
+      const treePath = filePath ? `${branch}:${filePath}` : `${branch}:`;
+      const result = await git.raw(['ls-tree', treePath]);
+      if (!result) return [];
+
+      return result
+        .trim()
+        .split('\t')
+        .filter(Boolean)
+        .map((line) => {
+          const [meta, name] = line.split(' ');
+          const [, type] = meta.split(' ');
+          return {
+            name,
+            path: filePath ? `${filePath}/${name}` : name,
+            type: type as 'blob' | 'tree',
+          };
+        });
+    } catch (error: any) {
+      return [];
+    }
+  }
+
+  async getFileContent(
+    ownerUsername: string,
+    repoName: string,
+    filePath: string,
+    branch: string = 'main',
+  ): Promise<string> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      const content = await git.raw(['show', `${branch}:${filePath}`]);
+      return content;
+    } catch (error: any) {
+      return '';
+    }
+  }
+
+  async getCommits(
+    ownerUsername: string,
+    repoName: string,
+    branch: string = 'main',
+    limit: number = 20,
+  ): Promise<GitCommit[]> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+
+    try {
+      const log = await git.log([branch, `--max-count=${limit}`]);
+      return log.all.map((commit) => ({
+        hash: commit.hash.substring(0, 7),
+        message: commit.message,
+        author: commit.author_name,
+        date: commit.date,
+      }));
+    } catch (error: any) {
+      return [];
+    }
+  }
+  async getBranches(ownerUsername: string, repoName: string): Promise<string[]> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      const branches = await git.branch();
+      return branches.all;
+    } catch (error) {
+      return [];
+    }
   }
 }
