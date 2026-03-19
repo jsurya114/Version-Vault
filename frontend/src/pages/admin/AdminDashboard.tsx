@@ -20,7 +20,7 @@ const AdminDashboard = () => {
   const adminUser = useAppSelector(selectAuthUser);
 
   useEffect(() => {
-    dispatch(getAllUsersThunk());
+    dispatch(getAllUsersThunk({}));
   }, []);
 
   const handleLogout = async () => {

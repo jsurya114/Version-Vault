@@ -29,6 +29,11 @@ const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
 const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPage'));
 
+//repository
+const RepositoryListPage = lazy(() => import('../pages/user/repository/RepositoryListPage'));
+const CreateRepositoryPage = lazy(() => import('../pages/user/repository/CreateRepositoryPage'));
+const RepositoryDetailPage = lazy(() => import('../pages/user/repository/RepositoryDetailPage'));
+
 const AppRouter = () => {
   const dispatch = useAppDispatch();
   const [authChecked, setAuthChecked] = useState(false);
@@ -146,6 +151,32 @@ const AppRouter = () => {
               element={
                 <ProtectRoute requiredRole="admin">
                   <AdminUserDetailPage />
+                </ProtectRoute>
+              }
+            />
+
+            {/* repositories */}
+            <Route
+              path={ROUTES.REPO_LIST}
+              element={
+                <ProtectRoute>
+                  <RepositoryListPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.REPO_CREATE}
+              element={
+                <ProtectRoute>
+                  <CreateRepositoryPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.REPO_DETAIL}
+              element={
+                <ProtectRoute>
+                  <RepositoryDetailPage />
                 </ProtectRoute>
               }
             />

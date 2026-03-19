@@ -4442,3 +4442,321 @@
 2026-03-17 10:26:52 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [33m401[0m 0.978 ms - 53[0m
 2026-03-17 10:26:52 [[32minfo[39m]: [0mGET /vv/git/jsurya114/test-repo.git/info/refs?service=git-receive-pack [32m200[0m 18.676 ms - -[0m
 2026-03-17 10:26:52 [[32minfo[39m]: [0mPOST /vv/git/jsurya114/test-repo.git/git-receive-pack [32m200[0m 31.350 ms - -[0m
+2026-03-19 15:01:57 [[32minfo[39m]: Redis connected successfully
+2026-03-19 15:01:57 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 15:01:57 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 15:03:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 1.491 ms - 46[0m
+2026-03-19 15:03:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.328 ms - 46[0m
+2026-03-19 15:03:37 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:03:37 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 10.092 ms - 46[0m
+2026-03-19 15:04:02 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:04:02 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 6.097 ms - 46[0m
+2026-03-19 15:04:10 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:04:10 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 4.127 ms - 46[0m
+2026-03-19 15:05:23 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:05:23 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 4.403 ms - 46[0m
+2026-03-19 15:05:23 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:05:23 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 3.410 ms - 46[0m
+2026-03-19 15:11:03 [[32minfo[39m]: [0mPOST /vv/auth/register [33m400[0m 3.453 ms - 125[0m
+2026-03-19 15:11:14 [[32minfo[39m]: OTP email sent to jayasuryabrocamp@gmail.com
+2026-03-19 15:11:14 [[32minfo[39m]: [0mPOST /vv/auth/register [32m201[0m 5099.103 ms - 97[0m
+2026-03-19 15:11:34 [[32minfo[39m]: [0mPOST /vv/auth/verify-otp [32m200[0m 18.391 ms - 56[0m
+2026-03-19 15:11:38 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 93.295 ms - 182[0m
+2026-03-19 15:12:20 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 59.909 ms - 311[0m
+2026-03-19 15:12:20 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 7.169 ms - 367[0m
+2026-03-19 15:12:20 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 1.794 ms - -[0m
+2026-03-19 15:12:21 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 4.770 ms - -[0m
+2026-03-19 15:12:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 4.118 ms - -[0m
+2026-03-19 15:12:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 5.385 ms - -[0m
+2026-03-19 15:12:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 3.163 ms - -[0m
+2026-03-19 15:16:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [32m200[0m 11.246 ms - 367[0m
+2026-03-19 15:16:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 6.323 ms - -[0m
+2026-03-19 15:16:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 4.303 ms - -[0m
+2026-03-19 15:16:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 3.773 ms - -[0m
+2026-03-19 15:25:49 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 5.020 ms - 44[0m
+2026-03-19 15:25:49 [[32minfo[39m]: [0mGET /vv/auth/me [32m200[0m 3.026 ms - 349[0m
+2026-03-19 15:26:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.448 ms - 44[0m
+2026-03-19 15:26:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.985 ms - -[0m
+2026-03-19 15:26:46 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 49.862 ms - 313[0m
+2026-03-19 15:26:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 11.029 ms - 657[0m
+2026-03-19 15:26:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 2.814 ms - -[0m
+2026-03-19 15:26:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 4.311 ms - -[0m
+2026-03-19 18:38:03 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 9.390 ms - 44[0m
+2026-03-19 18:38:03 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 5.151 ms - 44[0m
+2026-03-19 18:38:03 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.749 ms - -[0m
+2026-03-19 18:38:03 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.062 ms - -[0m
+2026-03-19 18:39:10 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.186 ms - 44[0m
+2026-03-19 18:39:10 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.454 ms - 44[0m
+2026-03-19 18:39:10 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.883 ms - -[0m
+2026-03-19 18:39:10 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.045 ms - -[0m
+2026-03-19 18:39:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 7.592 ms - 44[0m
+2026-03-19 18:39:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 6.580 ms - 44[0m
+2026-03-19 18:39:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 3.572 ms - -[0m
+2026-03-19 18:39:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.638 ms - -[0m
+2026-03-19 18:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [32m200[0m 2.877 ms - 313[0m
+2026-03-19 18:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.258 ms - -[0m
+2026-03-19 18:43:14 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 1.132 ms - 53[0m
+2026-03-19 18:43:14 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 3.208 ms - 54[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 4.268 ms - 44[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.275 ms - 44[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.269 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.540 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 2.916 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 0.866 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.139 ms - 44[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.828 ms - 44[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.462 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.430 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.110 ms - -[0m
+2026-03-19 18:43:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 0.848 ms - -[0m
+2026-03-19 18:43:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.799 ms - 44[0m
+2026-03-19 18:43:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.514 ms - 44[0m
+2026-03-19 18:43:20 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.256 ms - 87[0m
+2026-03-19 18:43:20 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.080 ms - 87[0m
+2026-03-19 18:43:22 [[32minfo[39m]: [0mPOST /vv/auth/login [33m429[0m 0.210 ms - 87[0m
+2026-03-19 18:44:23 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:44:23 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:44:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:44:27 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:44:27 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:44:27 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:44:28 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 88.325 ms - 182[0m
+2026-03-19 18:44:28 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [32m200[0m 6.808 ms - 657[0m
+2026-03-19 18:44:28 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 2.502 ms - -[0m
+2026-03-19 18:44:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 3.168 ms - -[0m
+2026-03-19 18:44:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.846 ms - -[0m
+2026-03-19 18:44:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 4.558 ms - 44[0m
+2026-03-19 18:44:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.276 ms - 44[0m
+2026-03-19 18:44:36 [[32minfo[39m]: [0mGET /vv/auth/me [32m200[0m 3.200 ms - 349[0m
+2026-03-19 18:44:36 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.784 ms - -[0m
+2026-03-19 18:44:36 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 2.501 ms - -[0m
+2026-03-19 18:44:36 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.643 ms - -[0m
+2026-03-19 18:44:37 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.337 ms - 44[0m
+2026-03-19 18:44:37 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.279 ms - 44[0m
+2026-03-19 18:44:37 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.664 ms - -[0m
+2026-03-19 18:44:37 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.517 ms - -[0m
+2026-03-19 18:44:37 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.724 ms - -[0m
+2026-03-19 18:44:37 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.138 ms - -[0m
+2026-03-19 18:44:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 5.750 ms - -[0m
+2026-03-19 18:44:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 4.267 ms - -[0m
+2026-03-19 18:44:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newproject [32m200[0m 4.102 ms - 311[0m
+2026-03-19 18:44:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newproject [36m304[0m 2.350 ms - -[0m
+2026-03-19 18:44:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.243 ms - 44[0m
+2026-03-19 18:44:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.574 ms - 44[0m
+2026-03-19 18:44:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.609 ms - -[0m
+2026-03-19 18:44:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.382 ms - -[0m
+2026-03-19 18:44:41 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newproject [36m304[0m 1.690 ms - -[0m
+2026-03-19 18:44:41 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newproject [36m304[0m 1.273 ms - -[0m
+2026-03-19 18:44:42 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 4.669 ms - -[0m
+2026-03-19 18:44:42 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 2.895 ms - -[0m
+2026-03-19 18:45:14 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 0.420 ms - 53[0m
+2026-03-19 18:45:32 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 3.238 ms - 54[0m
+2026-03-19 18:45:44 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 0.265 ms - 53[0m
+2026-03-19 18:45:57 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 0.739 ms - 54[0m
+2026-03-19 18:46:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 3.863 ms - -[0m
+2026-03-19 18:46:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.590 ms - -[0m
+2026-03-19 18:46:14 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/versionvault [32m200[0m 15.712 ms - 60[0m
+2026-03-19 18:46:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 4.347 ms - 367[0m
+2026-03-19 18:46:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 3.058 ms - -[0m
+2026-03-19 18:46:15 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 5.649 ms - -[0m
+2026-03-19 18:46:17 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/newproject [32m200[0m 10.611 ms - 60[0m
+2026-03-19 18:46:17 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 3.434 ms - 80[0m
+2026-03-19 18:46:34 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 56.303 ms - 313[0m
+2026-03-19 18:46:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 3.120 ms - 369[0m
+2026-03-19 18:46:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 1.269 ms - -[0m
+2026-03-19 18:46:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 3.546 ms - -[0m
+2026-03-19 18:47:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [32m200[0m 5.094 ms - 313[0m
+2026-03-19 18:47:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 2.887 ms - -[0m
+2026-03-19 18:48:29 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 0.285 ms - 53[0m
+2026-03-19 18:48:40 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m401[0m 1.646 ms - 54[0m
+2026-03-19 18:49:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 12.566 ms - 44[0m
+2026-03-19 18:49:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.757 ms - 44[0m
+2026-03-19 18:49:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 9.647 ms - -[0m
+2026-03-19 18:49:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 3.442 ms - -[0m
+2026-03-19 18:49:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 3.469 ms - -[0m
+2026-03-19 18:49:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.987 ms - -[0m
+2026-03-19 18:50:42 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-upload-pack [33m401[0m 0.194 ms - 53[0m
+2026-03-19 18:50:58 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-upload-pack [33m401[0m 1.398 ms - 54[0m
+2026-03-19 18:56:24 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:56:24 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:56:24 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:56:47 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:56:47 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:56:47 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:56:49 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:56:49 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:56:49 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:57:46 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:57:46 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:57:46 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:57:51 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:57:51 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:57:51 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:57:55 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:57:55 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:57:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:00 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:00 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:00 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:02 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:02 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:02 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:15 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:15 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:21 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:21 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:21 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:30 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:30 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:30 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:38 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:38 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:38 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:43 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:43 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:45 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:45 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:45 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:49 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:49 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:49 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:58:54 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:58:54 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:58:54 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:59:05 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:59:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:59:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:59:10 [[32minfo[39m]: Redis connected successfully
+2026-03-19 18:59:10 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 18:59:10 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 18:59:27 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-upload-pack [33m404[0m 41.740 ms - -[0m
+2026-03-19 19:00:27 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 15.782 ms - 44[0m
+2026-03-19 19:00:27 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 8.096 ms - 44[0m
+2026-03-19 19:00:27 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 8.933 ms - -[0m
+2026-03-19 19:00:27 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.976 ms - -[0m
+2026-03-19 19:00:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 2.986 ms - -[0m
+2026-03-19 19:00:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/versionvault [36m304[0m 1.367 ms - -[0m
+2026-03-19 19:00:30 [[32minfo[39m]: [0mDELETE /vv/repo/jsurya114/versionvault [32m200[0m 10.419 ms - 60[0m
+2026-03-19 19:00:30 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 7.031 ms - 80[0m
+2026-03-19 19:00:30 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 2.527 ms - -[0m
+2026-03-19 19:00:31 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 4.248 ms - -[0m
+2026-03-19 19:03:51 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 44.619 ms - 309[0m
+2026-03-19 19:03:51 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [32m200[0m 6.688 ms - 365[0m
+2026-03-19 19:03:51 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 2.081 ms - -[0m
+2026-03-19 19:03:52 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10&sort=createdAt&order=desc [36m304[0m 5.603 ms - -[0m
+2026-03-19 19:03:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [32m200[0m 3.264 ms - 309[0m
+2026-03-19 19:03:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.827 ms - -[0m
+2026-03-19 19:12:12 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:12:12 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:12:12 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:12:59 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:12:59 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:12:59 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:13:04 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:13:04 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:13:04 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:13:07 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:13:07 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:13:07 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:13:11 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:13:11 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:13:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:13:13 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:13:13 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:13:13 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:13:16 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:13:16 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:13:16 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:13:19 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:13:19 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:13:19 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:14:12 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m404[0m 28.015 ms - -[0m
+2026-03-19 19:14:33 [[32minfo[39m]: [0mGET /vv/git/jsurya114/projects.git/info/refs?service=git-upload-pack [32m200[0m 26.663 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 16.182 ms - 44[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 9.420 ms - 44[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 4.333 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.448 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 4.360 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.838 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.191 ms - 44[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.539 ms - 44[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.598 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.600 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.368 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.467 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.520 ms - 44[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.783 ms - 44[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.900 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.714 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.546 ms - -[0m
+2026-03-19 19:14:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.258 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.635 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.316 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.439 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.462 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.404 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 0.987 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.370 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.230 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.261 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 0.974 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 0.968 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 0.876 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.212 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.709 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.440 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.986 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.487 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.693 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.732 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.079 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.965 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.373 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.619 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.208 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.763 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.767 ms - 44[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.964 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.194 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.567 ms - -[0m
+2026-03-19 19:14:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.039 ms - -[0m
+2026-03-19 19:15:22 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m404[0m 25.775 ms - -[0m
+2026-03-19 19:16:09 [[32minfo[39m]: [0mGET /vv/git/jsurya114/versionvault.git/info/refs?service=git-receive-pack [33m404[0m 29.000 ms - -[0m
+2026-03-19 19:17:51 [[32minfo[39m]: [0mGET /vv/git/jsurya114/projects.git/info/refs?service=git-receive-pack [32m200[0m 28.617 ms - -[0m
+2026-03-19 19:17:52 [[32minfo[39m]: [0mPOST /vv/git/jsurya114/projects.git/git-receive-pack [32m200[0m 35.723 ms - -[0m
+2026-03-19 19:17:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 4.452 ms - 44[0m
+2026-03-19 19:17:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 8.009 ms - 44[0m
+2026-03-19 19:17:56 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.441 ms - -[0m
+2026-03-19 19:17:56 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.501 ms - -[0m
+2026-03-19 19:17:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.728 ms - -[0m
+2026-03-19 19:17:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.062 ms - -[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 3.135 ms - 44[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.063 ms - 44[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.338 ms - -[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1.116 ms - -[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 2.412 ms - -[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.879 ms - -[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.636 ms - 44[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.441 ms - 44[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.218 ms - 87[0m
+2026-03-19 19:17:57 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.099 ms - 87[0m
+2026-03-19 19:17:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.997 ms - 44[0m
+2026-03-19 19:17:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 2.417 ms - 44[0m
+2026-03-19 19:17:58 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.072 ms - 87[0m
+2026-03-19 19:17:58 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.110 ms - 87[0m
+2026-03-19 19:18:00 [[32minfo[39m]: [0mPOST /vv/auth/login [33m429[0m 0.475 ms - 87[0m
+2026-03-19 19:18:03 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.938 ms - 44[0m
+2026-03-19 19:18:03 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1.540 ms - 44[0m
+2026-03-19 19:18:03 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.096 ms - 87[0m
+2026-03-19 19:18:03 [[32minfo[39m]: [0mGET /vv/auth/me [33m429[0m 0.158 ms - 87[0m
+2026-03-19 19:18:04 [[32minfo[39m]: [0mPOST /vv/auth/login [33m429[0m 0.270 ms - 87[0m
+2026-03-19 19:18:24 [[32minfo[39m]: Redis connected successfully
+2026-03-19 19:18:24 [[32minfo[39m]: MongoDB connected successfully
+2026-03-19 19:18:24 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-19 19:18:25 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 97.527 ms - 182[0m
+2026-03-19 19:18:25 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [32m200[0m 5.040 ms - 365[0m
+2026-03-19 19:18:25 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 5.320 ms - -[0m
+2026-03-19 19:18:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 3.737 ms - -[0m
+2026-03-19 19:18:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/projects [36m304[0m 1.939 ms - -[0m
