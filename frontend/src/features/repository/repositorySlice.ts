@@ -8,6 +8,7 @@ import {
   getCommitsThunk,
   getFileContentThunk,
   getFilesThunk,
+  getBranchesThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -119,6 +120,11 @@ const repositorySlice = createSlice({
       })
       .addCase(getCommitsThunk.rejected, (state) => {
         state.isCommitsLoading = false;
+      })
+
+      //branches
+      .addCase(getBranchesThunk.fulfilled, (state, action) => {
+        state.branches = action.payload;
       });
   },
 });

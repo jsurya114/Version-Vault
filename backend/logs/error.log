@@ -1977,3 +1977,6 @@
 2026-03-19 15:04:10 [[31merror[39m]: POST /vv/auth/login — UserId not found
 2026-03-19 15:05:23 [[31merror[39m]: POST /vv/auth/login — UserId not found
 2026-03-19 15:05:23 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-20 20:11:19 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-20 20:11:19 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-20 20:11:19 [[31merror[39m]: GET /vv/repo — Invalid or expired access token

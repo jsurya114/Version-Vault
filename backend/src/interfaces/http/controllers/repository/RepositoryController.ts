@@ -7,7 +7,9 @@ import { IDeleteRepoUsecase } from 'src/application/use-cases/interfaces/reposit
 import { IGetCommitsUseCase } from 'src/application/use-cases/interfaces/repository/IGetCommitsUseCase';
 import { IGetFileContentUseCase } from 'src/application/use-cases/interfaces/repository/IGetFileContentUseCase';
 import { IGetFilesUseCase } from 'src/application/use-cases/interfaces/repository/IGetFilesUseCase';
+import { IGetBranchesUseCase } from 'src/application/use-cases/interfaces/repository/IGetBranchesUseCase';
 import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
@@ -24,6 +26,7 @@ export class RepositoryController {
     @inject(TOKENS.IGetCommitsUseCase) private commitUseCase: IGetCommitsUseCase,
     @inject(TOKENS.IGetFileContentUseCase) private fileContentUseCase: IGetFileContentUseCase,
     @inject(TOKENS.IGetFilesUseCase) private filesUseCase: IGetFilesUseCase,
+    @inject(TOKENS.IGetBranchesUseCase) private branchUseCase: IGetBranchesUseCase,
   ) {}
 
   /**
@@ -136,7 +139,7 @@ export class RepositoryController {
       const { username, reponame } = req.params;
       const branch = (req.query.branch as string) || 'main';
       const filePath = (req.query.path as string) || '';
-      const content = await this.fileContentUseCase.execute(username, reponame, branch, filePath);
+      const content = await this.fileContentUseCase.execute(username, reponame, filePath, branch);
       res.status(HttpStatusCodes.OK).json({ success: true, data: content });
     } catch (error) {
       next(error);
@@ -155,6 +158,16 @@ export class RepositoryController {
       const limit = req.query.limit ? Number(req.query.limit) : 20;
       const commits = await this.commitUseCase.execute(username, reponame, branch, limit);
       res.status(HttpStatusCodes.OK).json({ success: true, data: commits });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getBranches(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const branches = await this.branchUseCase.execute(username, reponame);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: branches });
     } catch (error) {
       next(error);
     }

@@ -18,6 +18,9 @@ import { ROUTES } from 'src/constants/routes';
 import Pagination from 'src/types/common/Pagination/Pagination';
 import { ColumnDef } from 'src/types/common/Table/TableTypes';
 import { RepositoryResponseDTO } from 'src/types/repository/repositoryTypes';
+import AppHeader from 'src/types/common/Layout/AppHeader';
+import AppFooter from 'src/types/common/Layout/AppFooter';
+import DeleteConfirmModal from 'src/types/common/Layout/DeleteConfirmationModal';
 
 const visibilityColors: Record<string, string> = {
   public: 'bg-green-500/10 text-green-400 border border-green-500/30',
@@ -38,6 +41,10 @@ const RepositoryListPage = () => {
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [page, setPage] = useState(1);
+  const [deleteModal, setDeleteModal] = useState<{
+    open: boolean;
+    repo: RepositoryResponseDTO | null;
+  }>({ open: false, repo: null });
   const limit = 10;
 
   const fetchRepos = (overrides = {}) => {
@@ -66,14 +73,15 @@ const RepositoryListPage = () => {
     return () => clearTimeout(timer);
   }, [search]);
 
-  const handleDelete = async (repo: RepositoryResponseDTO) => {
-    if (!confirm(`Delete "${repo.name}"? This cannot be undone.`)) return;
+  const handleDelete = async () => {
+    if (!deleteModal.repo) return;
     await dispatch(
       deleteRepositoryThunk({
         username: authUser?.userId || '',
-        reponame: repo.name,
+        reponame: deleteModal.repo.name,
       }),
     );
+    setDeleteModal({ open: false, repo: null });
     fetchRepos();
   };
 
@@ -139,7 +147,7 @@ const RepositoryListPage = () => {
       label: 'ACTIONS',
       render: (r) => (
         <button
-          onClick={() => handleDelete(r)}
+          onClick={() => setDeleteModal({ open: true, repo: r })}
           className="text-red-400 hover:text-red-300 text-xs transition"
         >
           Delete
@@ -149,34 +157,10 @@ const RepositoryListPage = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
-      {/* Topbar */}
-      <header className="border-b border-gray-800 px-6 py-3 flex items-center justify-between">
-        <div className="flex items-center gap-2">
-          <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
-            <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-white">
-              <path d="M12 2C6.477 2 2 6.477 2 12c0 4.418 2.865 8.166 6.839 9.489.5.092.682-.217.682-.482 0-.237-.009-.868-.014-1.703-2.782.604-3.369-1.34-3.369-1.34-.454-1.154-1.11-1.462-1.11-1.462-.908-.62.069-.608.069-.608 1.003.07 1.531 1.03 1.531 1.03.892 1.529 2.341 1.087 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.11-4.555-4.943 0-1.091.39-1.984 1.029-2.683-.103-.253-.446-1.27.098-2.647 0 0 .84-.269 2.75 1.025A9.564 9.564 0 0112 6.844a9.59 9.59 0 012.504.337c1.909-1.294 2.747-1.025 2.747-1.025.546 1.377.203 2.394.1 2.647.64.699 1.028 1.592 1.028 2.683 0 3.842-2.339 4.687-4.566 4.935.359.309.678.919.678 1.852 0 1.336-.012 2.415-.012 2.743 0 .267.18.578.688.48C19.138 20.163 22 16.418 22 12c0-5.523-4.477-10-10-10z" />
-            </svg>
-          </div>
-          <span className="text-white font-bold text-sm">VersionVault</span>
-        </div>
-        <div className="flex items-center gap-3">
-          <Link to={ROUTES.HOME} className="text-gray-400 hover:text-white text-sm transition">
-            Home
-          </Link>
-          <Link
-            to={ROUTES.REPO_CREATE}
-            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-1.5 rounded-lg transition"
-          >
-            + New
-          </Link>
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-            {authUser?.userId?.[0]?.toUpperCase()}
-          </div>
-        </div>
-      </header>
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+      <AppHeader />
 
-      <main className="p-6 max-w-6xl mx-auto">
+      <main className="p-6 max-w-6xl mx-auto w-full flex-1">
         {/* Page Header */}
         <div className="flex items-center justify-between mb-6">
           <div>
@@ -249,6 +233,13 @@ const RepositoryListPage = () => {
           />
         )}
       </main>
+      <AppFooter />
+      <DeleteConfirmModal
+        isOpen={deleteModal.open}
+        onClose={() => setDeleteModal({ open: false, repo: null })}
+        onConfirm={handleDelete}
+        repoPath={`${authUser?.userId}/${deleteModal.repo?.name}`}
+      />
     </div>
   );
 };

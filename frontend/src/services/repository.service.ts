@@ -64,4 +64,9 @@ export const repositoryService = {
     });
     return res.data.data;
   },
+
+  getBranches: async (username: string, reponame: string) => {
+    const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches`);
+    return res.data.data;
+  },
 };

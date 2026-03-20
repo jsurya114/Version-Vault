@@ -9,3 +9,4 @@ export const selectFileContent = (state: RootState) => state.repository.fileCont
 export const selectCommits = (state: RootState) => state.repository.commits;
 export const selectFilesLoading = (state: RootState) => state.repository.isFilesLoading;
 export const selectCommitsLoading = (state: RootState) => state.repository.isCommitsLoading;
+export const selectBranches = (state: RootState) => state.repository.branches;

@@ -65,22 +65,24 @@ export class GitService {
 
     try {
       const treePath = filePath ? `${branch}:${filePath}` : `${branch}:`;
-      const result = await git.raw(['ls-tree', treePath]);
-      if (!result) return [];
+      //to get name only (to avoid the blob)
+      const namesResult = await git.raw(['ls-tree', '--name-only', treePath]);
 
-      return result
-        .trim()
-        .split('\t')
-        .filter(Boolean)
-        .map((line) => {
-          const [meta, name] = line.split(' ');
-          const [, type] = meta.split(' ');
-          return {
-            name,
-            path: filePath ? `${filePath}/${name}` : name,
-            type: type as 'blob' | 'tree',
-          };
-        });
+      const typesResult = await git.raw(['ls-tree', treePath]);
+
+      if (!namesResult) return [];
+      const names = namesResult.trim().split('\n').filter(Boolean);
+      const typeLines = typesResult.trim().split('\n').filter(Boolean);
+
+      return names.map((name, i) => {
+        const typeLine = typeLines.find((l) => l.includes(name)) || '';
+        const type = typeLine.includes('tree') ? 'tree' : 'blob';
+        return {
+          name: name.trim(),
+          path: filePath ? `${filePath}/${name.trim()}` : name.trim(),
+          type,
+        };
+      });
     } catch (error: any) {
       return [];
     }
@@ -96,8 +98,10 @@ export class GitService {
     const git = simpleGit(repoPath);
     try {
       const content = await git.raw(['show', `${branch}:${filePath}`]);
+      console.log('file content:', JSON.stringify(content));
       return content;
     } catch (error: any) {
+      console.log('error', error);
       return '';
     }
   }

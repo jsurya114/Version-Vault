@@ -91,3 +91,14 @@ export const getCommitsThunk = createAsyncThunk<GitCommit, GetCommitsParams>(
     }
   },
 );
+
+export const getBranchesThunk = createAsyncThunk<string[], RepoParams>(
+  'repository/getbranches',
+  async ({ username, reponame }, { rejectWithValue }) => {
+    try {
+      return await repositoryService.getBranches(username, reponame);
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Failed to fetch branches');
+    }
+  },
+);

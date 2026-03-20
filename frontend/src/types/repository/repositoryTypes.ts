@@ -65,6 +65,7 @@ export interface RepositoryState {
   files: GitFileEntry[];
   fileContent: string;
   commits: GitCommit[];
+  branches: string[];
   isLoading: boolean;
   isFilesLoading: boolean;
   isCommitsLoading: boolean;
@@ -83,6 +84,7 @@ export const repositoryInitialState: RepositoryState = {
   files: [],
   fileContent: '',
   commits: [],
+  branches: [],
   isLoading: false,
   isFilesLoading: false,
   isCommitsLoading: false,

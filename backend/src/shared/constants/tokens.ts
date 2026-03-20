@@ -39,4 +39,5 @@ export const TOKENS = {
   IGetFilesUseCase: Symbol.for('IGetFilesUseCase'),
   IGetFileContentUseCase: Symbol.for('IGetFileContentUseCase'),
   IGetCommitsUseCase: Symbol.for('IGetCommitsUseCase'),
+  IGetBranchesUseCase: Symbol.for('IGetBranchesUseCase'),
 } as const;

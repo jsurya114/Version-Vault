@@ -48,6 +48,7 @@ import { DeleteRepoUseCase } from './application/use-cases/repository/DeleteRepo
 import { GetFilesUseCase } from './application/use-cases/repository/GetFilesUseCase';
 import { GetFileContentUseCase } from './application/use-cases/repository/GetFileContentUseCase';
 import { GetCommitUseCase } from './application/use-cases/repository/GetCommitUseCase';
+import { GetBranchesUseCase } from './application/use-cases/repository/GetBranchUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -94,5 +95,6 @@ container.register(TOKENS.IRepoRepository, { useClass: MongoRepoRepository });
 container.register(TOKENS.IGetFilesUseCase, { useClass: GetFilesUseCase });
 container.register(TOKENS.IGetFileContentUseCase, { useClass: GetFileContentUseCase });
 container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
+container.register(TOKENS.IGetBranchesUseCase, { useClass: GetBranchesUseCase });
 
 export { container };
