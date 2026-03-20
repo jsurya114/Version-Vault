@@ -1,5 +1,4 @@
-import { useState } from 'react';
-
+import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
   Search,
@@ -22,41 +21,13 @@ import {
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { logout } from 'src/features/auth/authSlice';
 import { logoutThunk } from 'src/features/auth/authThunks';
+import { listRepositoryThunk } from 'src/features/repository/repositoryThunks';
+import {
+  selectRepositories,
+  selectRepositoryLoading,
+} from 'src/features/repository/repositorySelectors';
 import { ROUTES } from 'src/constants/routes';
-
-// ─── Mock Data ────────────────────────────────────────────────────────────────
-const mockRepos = [
-  {
-    name: 'nextjs-enterprise-saas',
-    visibility: 'Public',
-    lang: 'TypeScript',
-    langColor: 'bg-blue-400',
-    updatedAt: '2h ago',
-  },
-  {
-    name: 'versionvault-docs',
-    visibility: 'Private',
-    lang: 'MDX',
-    langColor: 'bg-yellow-400',
-    updatedAt: '5h ago',
-  },
-  {
-    name: 'ui-library-v3',
-    visibility: 'Public',
-    lang: 'React',
-    langColor: 'bg-cyan-400',
-    updatedAt: '1d ago',
-  },
-  {
-    name: 'analytics-engine',
-    visibility: 'Public',
-    lang: 'Rust',
-    langColor: 'bg-orange-400',
-    updatedAt: '2d ago',
-  },
-];
 
 const mockActivity = [
   {
@@ -98,22 +69,21 @@ const mockActivity = [
   },
 ];
 
-const navItems = [
-  { icon: Home, label: 'Home', route: ROUTES.HOME },
-  { icon: BookOpen, label: 'Repositories', route: ROUTES.REPO_LIST },
-  { icon: Users, label: 'Teams', route: ROUTES.HOME },
-  { icon: Zap, label: 'Activity', route: ROUTES.HOME },
-];
-
-// ─── Home Page ────────────────────────────────────────────────────────────────
 const HomePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectAuthUser);
+  const repositories = useAppSelector(selectRepositories);
+  const repoLoading = useAppSelector(selectRepositoryLoading);
+
   const [repoSearch, setRepoSearch] = useState('');
   const [activityFilter, setActivityFilter] = useState('All Activities');
 
-  const filteredRepos = mockRepos.filter((r) =>
+  useEffect(() => {
+    dispatch(listRepositoryThunk({}));
+  }, []);
+
+  const filteredRepos = repositories.filter((r) =>
     r.name.toLowerCase().includes(repoSearch.toLowerCase()),
   );
 
@@ -124,10 +94,9 @@ const HomePage = () => {
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
-      {/* ── NAVBAR ── */}
+      {/* NAVBAR */}
       <nav className="border-b border-gray-800 px-6 py-3 flex items-center justify-between sticky top-0 bg-gray-950/95 backdrop-blur z-50">
         <div className="flex items-center gap-4">
-          {/* Logo */}
           <Link to={ROUTES.LANDING} className="flex items-center gap-2">
             <div className="w-7 h-7 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
               <svg viewBox="0 0 24 24" fill="currentColor" className="w-4 h-4 text-white">
@@ -136,8 +105,6 @@ const HomePage = () => {
             </div>
             <span className="font-bold text-white text-sm">VersionVault</span>
           </Link>
-
-          {/* Search */}
           <div className="relative hidden md:block">
             <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
             <input
@@ -152,7 +119,6 @@ const HomePage = () => {
         </div>
 
         <div className="flex items-center gap-2">
-          {/* Nav Links */}
           <div className="hidden md:flex items-center gap-1">
             {['Pull Requests', 'Issues', 'ChatRoom'].map((item) => (
               <span
@@ -163,31 +129,20 @@ const HomePage = () => {
               </span>
             ))}
           </div>
-
-          {/* Notifications */}
           <button className="relative p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition">
             <Bell className="w-4 h-4" />
             <span className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full" />
           </button>
-
-          {/* Avatar */}
           <div className="relative group">
             <button className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
               {user?.username?.[0]?.toUpperCase() ?? 'U'}
             </button>
-            {/* Dropdown */}
             <div className="absolute right-0 top-10 w-48 bg-gray-900 border border-gray-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
               <div className="px-4 py-3 border-b border-gray-800">
                 <p className="text-white text-sm font-medium">{user?.username}</p>
                 <p className="text-gray-500 text-xs">{user?.userId}</p>
               </div>
               <div className="py-1">
-                <Link
-                  to={ROUTES.SETTINGS}
-                  className="flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition"
-                >
-                  <Settings className="w-3.5 h-3.5" /> Settings
-                </Link>
                 <button
                   onClick={handleLogout}
                   className="w-full flex items-center gap-2 px-4 py-2 text-red-400 hover:text-red-300 hover:bg-gray-800 text-sm transition"
@@ -200,7 +155,7 @@ const HomePage = () => {
         </div>
       </nav>
 
-      {/* ── TABS ── */}
+      {/* TABS */}
       <div className="border-b border-gray-800 px-6">
         <div className="max-w-6xl mx-auto flex items-center justify-between">
           <div className="flex items-center gap-1">
@@ -231,18 +186,17 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* ── MAIN CONTENT ── */}
+      {/* MAIN CONTENT */}
       <div className="max-w-6xl mx-auto px-6 py-6 flex gap-6">
-        {/* ── LEFT SIDEBAR ── */}
+        {/* LEFT SIDEBAR */}
         <div className="w-72 shrink-0 space-y-4">
-          {/* Top Repositories */}
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
             <div className="flex items-center justify-between mb-3">
               <h3 className="text-white text-sm font-semibold">Top Repositories</h3>
-              <span className="text-blue-400 text-xs hover:underline cursor-pointer">View all</span>
+              <Link to={ROUTES.REPO_LIST} className="text-blue-400 text-xs hover:underline">
+                View all
+              </Link>
             </div>
-
-            {/* Search repos */}
             <div className="relative mb-3">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3 h-3 text-gray-500" />
               <input
@@ -254,35 +208,49 @@ const HomePage = () => {
               />
             </div>
 
-            {/* Repo List */}
-            <div className="space-y-1">
-              {filteredRepos.map((repo) => (
-                <div
-                  key={repo.name}
-                  className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-800 cursor-pointer transition group"
+            {repoLoading ? (
+              <div className="flex items-center justify-center py-4">
+                <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : filteredRepos.length === 0 ? (
+              <div className="text-center py-4">
+                <p className="text-gray-600 text-xs">No repositories yet</p>
+                <Link
+                  to={ROUTES.REPO_CREATE}
+                  className="text-blue-400 text-xs hover:underline mt-1 block"
                 >
-                  <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0">
-                    <BookOpen className="w-3.5 h-3.5 text-white" />
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-gray-300 text-xs font-medium truncate group-hover:text-white transition">
-                      {repo.name}
-                    </p>
-                    <div className="flex items-center gap-1.5 mt-0.5">
-                      {repo.visibility === 'Private' ? (
-                        <Lock className="w-2.5 h-2.5 text-gray-600" />
-                      ) : (
-                        <Globe className="w-2.5 h-2.5 text-gray-600" />
-                      )}
-                      <span className="text-gray-600 text-xs">{repo.visibility}</span>
-                      <span className="text-gray-700">·</span>
-                      <span className="text-gray-600 text-xs">{repo.lang}</span>
+                  Create your first repo
+                </Link>
+              </div>
+            ) : (
+              <div className="space-y-1">
+                {filteredRepos.slice(0, 5).map((repo) => (
+                  <div
+                    key={repo.id}
+                    className="flex items-center gap-3 px-2 py-2 rounded-lg hover:bg-gray-800 cursor-pointer transition group"
+                    onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
+                  >
+                    <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center shrink-0">
+                      <BookOpen className="w-3.5 h-3.5 text-white" />
                     </div>
+                    <div className="flex-1 min-w-0">
+                      <p className="text-gray-300 text-xs font-medium truncate group-hover:text-white transition">
+                        {repo.name}
+                      </p>
+                      <div className="flex items-center gap-1.5 mt-0.5">
+                        {repo.visibility === 'private' ? (
+                          <Lock className="w-2.5 h-2.5 text-gray-600" />
+                        ) : (
+                          <Globe className="w-2.5 h-2.5 text-gray-600" />
+                        )}
+                        <span className="text-gray-600 text-xs capitalize">{repo.visibility}</span>
+                      </div>
+                    </div>
+                    <Star className="w-3.5 h-3.5 text-gray-700 group-hover:text-gray-500 transition shrink-0" />
                   </div>
-                  <Star className="w-3.5 h-3.5 text-gray-700 group-hover:text-gray-500 transition shrink-0" />
-                </div>
-              ))}
-            </div>
+                ))}
+              </div>
+            )}
           </div>
 
           {/* Build Together Card */}
@@ -297,7 +265,7 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* ── ACTIVITY FEED ── */}
+        {/* ACTIVITY FEED */}
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-4">
             <h2 className="text-white font-semibold">Recent Activity</h2>
@@ -318,15 +286,12 @@ const HomePage = () => {
                 className="bg-gray-900 border border-gray-800 hover:border-gray-700 rounded-xl p-4 transition"
               >
                 <div className="flex items-start gap-3">
-                  {/* Avatar */}
                   <div
                     className={`w-8 h-8 rounded-full ${item.avatarColor} flex items-center justify-center text-white text-xs font-bold shrink-0`}
                   >
                     {item.avatar}
                   </div>
-
                   <div className="flex-1 min-w-0">
-                    {/* Header */}
                     <div className="flex items-center justify-between mb-2">
                       <p className="text-sm">
                         <span className="text-white font-medium">{item.user}</span>
@@ -345,7 +310,6 @@ const HomePage = () => {
                       </div>
                     </div>
 
-                    {/* PR Title */}
                     {'title' in item && (
                       <div className="bg-gray-800 rounded-lg p-3 mb-2">
                         <p className="text-white text-sm font-medium mb-1">{item.title}</p>
@@ -365,7 +329,6 @@ const HomePage = () => {
                       </div>
                     )}
 
-                    {/* Commits */}
                     {'commits' in item && (
                       <div className="bg-gray-800 rounded-lg p-3 space-y-1.5">
                         {item.commits?.map((c) => (
@@ -379,7 +342,6 @@ const HomePage = () => {
                       </div>
                     )}
 
-                    {/* Comment */}
                     {'comment' in item && (
                       <div className="bg-gray-800 border-l-2 border-blue-500 rounded-r-lg px-3 py-2">
                         <p className="text-gray-300 text-xs leading-relaxed italic">
@@ -391,8 +353,6 @@ const HomePage = () => {
                 </div>
               </div>
             ))}
-
-            {/* Load More */}
             <button className="w-full py-3 text-gray-500 hover:text-gray-300 text-sm border border-gray-800 hover:border-gray-700 rounded-xl transition">
               Load more activity...
             </button>
@@ -400,7 +360,6 @@ const HomePage = () => {
         </div>
       </div>
 
-      {/* ── FOOTER ── */}
       <footer className="border-t border-gray-800 mt-10 py-5 px-6">
         <p className="text-center text-gray-700 text-xs">© 2026 VersionVault, Inc.</p>
       </footer>

@@ -1972,3 +1972,8 @@
     at NativeConnection.openUri (/Users/jayasuryas/Desktop/version-vault/node_modules/mongoose/lib/connection.js:1100:11)
     at async connectDatabase (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/database/mongoose/connection.ts:7:5)
     at async startSever (/Users/jayasuryas/Desktop/version-vault/backend/src/main.ts:10:5)
+2026-03-19 15:03:37 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:04:02 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:04:10 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:05:23 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-19 15:05:23 [[31merror[39m]: POST /vv/auth/login — UserId not found
