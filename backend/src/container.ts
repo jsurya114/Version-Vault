@@ -50,6 +50,21 @@ import { GetFileContentUseCase } from './application/use-cases/repository/GetFil
 import { GetCommitUseCase } from './application/use-cases/repository/GetCommitUseCase';
 import { GetBranchesUseCase } from './application/use-cases/repository/GetBranchUseCase';
 
+//pr usecase
+import { GetPRUseCase } from './application/use-cases/pullrequest/GetPRUseCase';
+import { ListPRUseCase } from './application/use-cases/pullrequest/ListPRUseCase';
+import { CreatePRUseCase } from './application/use-cases/pullrequest/CreatePRUseCase';
+import { MergePRUseCase } from './application/use-cases/pullrequest/MergePRUseCase';
+import { ClosePRUseCase } from './application/use-cases/pullrequest/ClosePRUseCase';
+
+//issues pr usecase
+import { GetIssueUseCase } from './application/issues/GetIssuesUseCase';
+import { ListIssueUseCase } from './application/issues/ListIssueUseCase';
+import { CreateIssueUseCase } from './application/issues/CreateIssueUseCase';
+import { CloseIssueUseCase } from './application/issues/CloseIssueUseCase';
+import { MongoPullRequestRepository } from './infrastructure/database/mongoose/repositories/MongoPullRequestRepository';
+import { MongoIssuesRepository } from './infrastructure/database/mongoose/repositories/MongoIssuesRepository';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -61,6 +76,8 @@ container.registerSingleton(GitService, GitService);
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
 container.register(TOKENS.IAdminRepository, { useClass: MongoAdminRepository });
+container.register(TOKENS.IPullRequestRepository, { useClass: MongoPullRequestRepository });
+container.register(TOKENS.IIssuesRepository, { useClass: MongoIssuesRepository });
 
 //validator
 container.register(RegisterValidator, { useClass: RegisterValidator });
@@ -96,5 +113,18 @@ container.register(TOKENS.IGetFilesUseCase, { useClass: GetFilesUseCase });
 container.register(TOKENS.IGetFileContentUseCase, { useClass: GetFileContentUseCase });
 container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
 container.register(TOKENS.IGetBranchesUseCase, { useClass: GetBranchesUseCase });
+
+// PR use cases
+container.register(TOKENS.ICreatePRUseCase, { useClass: CreatePRUseCase });
+container.register(TOKENS.IGetPRUseCase, { useClass: GetPRUseCase });
+container.register(TOKENS.IListPRsUseCase, { useClass: ListPRUseCase });
+container.register(TOKENS.IMergePRUseCase, { useClass: MergePRUseCase });
+container.register(TOKENS.IClosePRUseCase, { useClass: ClosePRUseCase });
+
+// Issue use cases
+container.register(TOKENS.ICreateIssueUseCase, { useClass: CreateIssueUseCase });
+container.register(TOKENS.IGetIssueUseCase, { useClass: GetIssueUseCase });
+container.register(TOKENS.IListIssuesUseCase, { useClass: ListIssueUseCase });
+container.register(TOKENS.ICloseIssueUseCase, { useClass: CloseIssueUseCase });
 
 export { container };

@@ -6501,3 +6501,66 @@
 2026-03-20 20:34:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/my_project/files?branch=main&path=folder [32m200[0m 44.290 ms - 84[0m
 2026-03-20 20:34:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/my_project/content?path=folder%2Ffiles.js&branch=main [32m200[0m 26.417 ms - 119[0m
 2026-03-20 20:34:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/my_project/files?branch=main&path=folder [36m304[0m 42.873 ms - -[0m
+2026-03-20 20:47:22 [[32minfo[39m]: Redis connected successfully
+2026-03-20 20:47:22 [[32minfo[39m]: MongoDB connected successfully
+2026-03-20 20:47:22 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-20 20:58:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 8.952 ms - 44[0m
+2026-03-20 20:58:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 19.656 ms - 44[0m
+2026-03-20 20:58:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2.893 ms - -[0m
+2026-03-20 20:58:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 3.416 ms - -[0m
+2026-03-20 20:58:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [32m200[0m 3.347 ms - 367[0m
+2026-03-20 20:58:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=10 [36m304[0m 2.746 ms - -[0m
+2026-03-22 13:04:05 [[32minfo[39m]: Redis connected successfully
+2026-03-22 13:04:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-22 13:04:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-22 13:04:19 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 67.256 ms - 182[0m
+2026-03-22 13:06:13 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/projects [33m404[0m 0.968 ms - 163[0m
+2026-03-22 13:06:51 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/projects [33m404[0m 0.257 ms - 164[0m
+2026-03-22 13:07:59 [[31merror[39m]: POST /vv/pullrequest/jsurya114/projects — Repository not found
+2026-03-22 13:07:59 [[32minfo[39m]: [0mPOST /vv/pullrequest/jsurya114/projects [33m404[0m 13.686 ms - 50[0m
+2026-03-22 13:07:59 [[31merror[39m]: POST /vv/pullrequest/jsurya114/projects — Repository not found
+2026-03-22 13:07:59 [[32minfo[39m]: [0mPOST /vv/pullrequest/jsurya114/projects [33m404[0m 1.711 ms - 50[0m
+2026-03-22 13:08:10 [[32minfo[39m]: [0mPOST /vv/pullrequests/jsurya114/projects [33m404[0m 0.152 ms - 174[0m
+2026-03-22 13:08:11 [[32minfo[39m]: [0mPOST /vv/pullrequests/jsurya114/projects [33m404[0m 0.086 ms - 174[0m
+2026-03-22 13:08:43 [[31merror[39m]: POST /vv/pullrequest/jsurya114/projects — Repository not found
+2026-03-22 13:08:43 [[32minfo[39m]: [0mPOST /vv/pullrequest/jsurya114/projects [33m404[0m 2.746 ms - 50[0m
+2026-03-22 13:08:43 [[31merror[39m]: POST /vv/pullrequest/jsurya114/projects — Repository not found
+2026-03-22 13:08:43 [[32minfo[39m]: [0mPOST /vv/pullrequest/jsurya114/projects [33m404[0m 3.098 ms - 50[0m
+2026-03-22 13:11:15 [[32minfo[39m]: Redis connected successfully
+2026-03-22 13:11:15 [[32minfo[39m]: MongoDB connected successfully
+2026-03-22 13:11:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-22 13:11:16 [[32minfo[39m]: Redis connected successfully
+2026-03-22 13:11:16 [[32minfo[39m]: MongoDB connected successfully
+2026-03-22 13:11:16 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-22 13:12:14 [[31merror[39m]: POST /vv/pr/jsurya114/projects — Repository not found
+2026-03-22 13:12:14 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/projects [33m404[0m 5.768 ms - 50[0m
+2026-03-22 13:23:27 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/projects [33m404[0m 0.776 ms - 166[0m
+2026-03-22 13:47:35 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/test-repo [33m404[0m 0.415 ms - 167[0m
+2026-03-22 13:47:36 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/test-repo [33m404[0m 0.171 ms - 167[0m
+2026-03-22 13:48:00 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/test-repo [33m404[0m 0.180 ms - 167[0m
+2026-03-22 13:48:01 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/test-repo [33m404[0m 0.132 ms - 167[0m
+2026-03-22 13:51:49 [[31merror[39m]: POST /vv/pr/jsurya114/test-repo — Invalid or expired access token
+2026-03-22 13:51:49 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/test-repo [33m401[0m 1.475 ms - 61[0m
+2026-03-22 13:53:37 [[32minfo[39m]: [0mGET /vv/auth/login [33m404[0m 0.220 ms - 152[0m
+2026-03-22 13:53:52 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 72.231 ms - 182[0m
+2026-03-22 13:53:57 [[31merror[39m]: POST /vv/pr/jsurya114/test-repo — Repository not found
+2026-03-22 13:53:57 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/test-repo [33m404[0m 3.910 ms - 50[0m
+2026-03-22 13:53:58 [[31merror[39m]: POST /vv/pr/jsurya114/test-repo — Repository not found
+2026-03-22 13:53:58 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/test-repo [33m404[0m 2.698 ms - 50[0m
+2026-03-22 13:55:26 [[31merror[39m]: POST /vv/pr/jsurya114/test-repo — Repository not found
+2026-03-22 13:55:26 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/test-repo [33m404[0m 3.263 ms - 50[0m
+2026-03-22 13:56:52 [[32minfo[39m]: [0mGET /vv/auth/me [32m200[0m 8.013 ms - 349[0m
+2026-03-22 13:58:20 [[32minfo[39m]: [0mGET /vv/repo [32m200[0m 8.557 ms - 367[0m
+2026-03-22 13:59:28 [[32minfo[39m]: [0mPOST /vv/pr/jsurya114/my_project [32m201[0m 14.538 ms - 427[0m
+2026-03-22 13:59:59 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 4.284 ms - 409[0m
+2026-03-22 14:00:01 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 4.254 ms - 409[0m
+2026-03-22 14:00:02 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 3.096 ms - 409[0m
+2026-03-22 14:01:01 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 5.953 ms - 412[0m
+2026-03-22 14:01:01 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 4.211 ms - 412[0m
+2026-03-22 14:01:55 [[32minfo[39m]: [0mGET /vv/issues/jsurya114/my_project [32m200[0m 6.742 ms - 2015[0m
+2026-03-22 14:02:43 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 6.323 ms - 412[0m
+2026-03-22 14:02:44 [[32minfo[39m]: [0mPOST /vv/issues/jsurya114/my_project [32m201[0m 3.693 ms - 412[0m
+2026-03-22 14:02:56 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/my_project [32m200[0m 4.909 ms - 483[0m
+2026-03-22 14:02:56 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/my_project [32m200[0m 3.567 ms - 483[0m
+2026-03-22 14:02:57 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/my_project [32m200[0m 3.301 ms - 483[0m
+2026-03-22 14:02:57 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/my_project [32m200[0m 2.811 ms - 483[0m
