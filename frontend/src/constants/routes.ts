@@ -22,8 +22,8 @@ export const ROUTES = {
 
   // Repository
   REPO_LIST: '/repos',
+  REPO_CREATE: '/repos/new',
   REPO_DETAIL: '/:username/:reponame',
-  REPO_CREATE: '/new',
 
   // Admin
   ADMIN_LOGIN: '/admin/login',

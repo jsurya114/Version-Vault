@@ -30,5 +30,8 @@ router.get('/:username/:reponame/content', (req, res, next) =>
 router.get('/:username/:reponame/commits', (req, res, next) =>
   repoController.getCommit(req, res, next),
 );
+router.get('/:username/:reponame/branches', (req, res, next) =>
+  repoController.getBranches(req, res, next),
+);
 
 export default router;

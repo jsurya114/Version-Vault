@@ -1,0 +1,781 @@
+import { useEffect, useState } from 'react';
+import { Link, useParams, useNavigate } from 'react-router-dom';
+import {
+  Star,
+  GitFork,
+  Trash2,
+  Copy,
+  Check,
+  Folder,
+  FolderOpen,
+  File,
+  ChevronRight,
+  ChevronDown,
+  Clock,
+  GitBranch,
+  GitCommit,
+  Globe,
+  Lock,
+  Search,
+  History,
+} from 'lucide-react';
+import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import {
+  getRepositoryThunk,
+  deleteRepositoryThunk,
+  getFilesThunk,
+  getCommitsThunk,
+  getFileContentThunk,
+  getBranchesThunk,
+} from 'src/features/repository/repositoryThunks';
+import {
+  selectSelectedRepository,
+  selectRepositoryLoading,
+  selectFiles,
+  selectCommits,
+  selectCommitsLoading,
+  selectFileContent,
+  selectFilesLoading,
+  selectBranches,
+} from 'src/features/repository/repositorySelectors';
+import { selectAuthUser } from 'src/features/auth/authSelectors';
+import { ROUTES } from 'src/constants/routes';
+import AppHeader from 'src/types/common/Layout/AppHeader';
+import AppFooter from 'src/types/common/Layout/AppFooter';
+import DeleteConfirmModal from 'src/types/common/Layout/DeleteConfirmationModal';
+
+type Tab = 'code' | 'commits';
+
+interface TreeNode {
+  name: string;
+  path: string;
+  type: 'blob' | 'tree';
+}
+
+const RepositoryDetailPage = () => {
+  const dispatch = useAppDispatch();
+  const navigate = useNavigate();
+  const { username, reponame } = useParams();
+  const repo = useAppSelector(selectSelectedRepository);
+  const isLoading = useAppSelector(selectRepositoryLoading);
+  const branches = useAppSelector(selectBranches);
+  const user = useAppSelector(selectAuthUser);
+  const files = useAppSelector(selectFiles);
+  const fileContent = useAppSelector(selectFileContent);
+  const commits = useAppSelector(selectCommits);
+  const isFilesLoading = useAppSelector(selectFilesLoading);
+  const isCommitsLoading = useAppSelector(selectCommitsLoading);
+
+  const [copied, setCopied] = useState(false);
+  const [activeTab, setActiveTab] = useState<Tab>('code');
+  const [branch, setBranch] = useState('main');
+  const [currentPath, setCurrentPath] = useState('');
+  const [selectedFile, setSelectFile] = useState('');
+  const [starred, setStarred] = useState(false);
+  const [expandedPaths, setExpandedPaths] = useState<Set<string>>(new Set());
+  const [treeSearch, setTreeSearch] = useState('');
+  const [readmeContent, setReadmeContent] = useState('');
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
+  const isOwner = user?.userId === username;
+  const latestCommit = commits[0];
+  const isEmpty = !isFilesLoading && files.length === 0;
+
+  useEffect(() => {
+    if (username && reponame) {
+      dispatch(getRepositoryThunk({ username, reponame }));
+      dispatch(getFilesThunk({ username, reponame, branch, path: '' }));
+      dispatch(getCommitsThunk({ username, reponame, branch }));
+      dispatch(getBranchesThunk({ username, reponame }));
+    }
+  }, [username, reponame, branch]);
+
+  useEffect(() => {
+    const readme = files.find((f) => f.name.toLowerCase() === 'readme.md');
+    if (readme) {
+      dispatch(
+        getFileContentThunk({
+          username: username!,
+          reponame: reponame!,
+          filePath: readme.path,
+          branch,
+        }),
+      ).then((r: any) => {
+        if (r.payload) setReadmeContent(r.payload);
+      });
+    } else {
+      setReadmeContent('');
+    }
+  }, [files]);
+
+  const handleTreeNodeClick = (node: TreeNode) => {
+    if (node.type === 'tree') {
+      const newExpanded = new Set(expandedPaths);
+      if (newExpanded.has(node.path)) {
+        newExpanded.delete(node.path);
+      } else {
+        newExpanded.add(node.path);
+        setCurrentPath(node.path);
+        setSelectFile('');
+        dispatch(
+          getFilesThunk({ username: username!, reponame: reponame!, branch, path: node.path }),
+        );
+      }
+      setExpandedPaths(newExpanded);
+    } else {
+      setSelectFile(node.path);
+      dispatch(
+        getFileContentThunk({
+          username: username!,
+          reponame: reponame!,
+          filePath: node.path,
+          branch,
+        }),
+      );
+    }
+  };
+
+  const handleBack = () => {
+    const parts = currentPath.split('/');
+    parts.pop();
+    const newPath = parts.join('/');
+    setCurrentPath(newPath);
+    setSelectFile('');
+    dispatch(getFilesThunk({ username: username!, reponame: reponame!, branch, path: newPath }));
+  };
+
+  const handleCopy = () => {
+    navigator.clipboard.writeText(cloneUrl);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
+  };
+
+  const handleDelete = async () => {
+    await dispatch(deleteRepositoryThunk({ username: username!, reponame: reponame! }));
+    setShowDeleteModal(false);
+    navigate(ROUTES.REPO_LIST);
+  };
+
+  const formatDate = (dateStr: string) =>
+    new Date(dateStr).toLocaleDateString('en-US', {
+      month: 'short',
+      day: 'numeric',
+      year: 'numeric',
+    });
+
+  const timeAgo = (dateStr: string) => {
+    const diff = Date.now() - new Date(dateStr).getTime();
+    const mins = Math.floor(diff / 60000);
+    const hours = Math.floor(mins / 60);
+    const days = Math.floor(hours / 24);
+    const weeks = Math.floor(days / 7);
+    if (weeks > 0) return `${weeks} week${weeks > 1 ? 's' : ''} ago`;
+    if (days > 0) return `${days} day${days > 1 ? 's' : ''} ago`;
+    if (hours > 0) return `${hours} hour${hours > 1 ? 's' : ''} ago`;
+    return `${mins} min${mins > 1 ? 's' : ''} ago`;
+  };
+
+  const sortedFiles = [...files].sort((a, b) => {
+    if (a.type === 'tree' && b.type !== 'tree') return -1;
+    if (a.type !== 'tree' && b.type === 'tree') return 1;
+    return (a.name || '').localeCompare(b.name || '');
+  });
+
+  if (isLoading) {
+    return (
+      <div className="min-h-screen bg-gray-950 flex items-center justify-center">
+        <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+      </div>
+    );
+  }
+
+  if (!repo) return null;
+
+  return (
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+      <AppHeader />
+
+      {/* Repo breadcrumb bar */}
+      <div className="border-b border-gray-800 px-6 py-2 flex items-center justify-between">
+        <div className="flex items-center gap-1 text-sm">
+          <Link to={ROUTES.REPO_LIST} className="text-blue-400 hover:underline font-medium">
+            {username}
+          </Link>
+          <span className="text-gray-600 mx-1">/</span>
+          <span className="text-white font-semibold">{reponame}</span>
+          <span
+            className={`ml-2 text-xs px-2 py-0.5 rounded-full border ${
+              repo.visibility === 'public'
+                ? 'border-green-500/30 text-green-400 bg-green-500/10'
+                : 'border-gray-600 text-gray-400 bg-gray-700'
+            }`}
+          >
+            {repo.visibility}
+          </span>
+        </div>
+        {isOwner && (
+          <button
+            onClick={() => setShowDeleteModal(true)}
+            className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition"
+          >
+            <Trash2 className="w-3.5 h-3.5" /> Delete
+          </button>
+        )}
+      </div>
+
+      {/* Tabs */}
+      <div className="border-b border-gray-800 px-6">
+        <div className="flex items-center gap-1">
+          <button
+            onClick={() => setActiveTab('code')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+              activeTab === 'code'
+                ? 'text-white border-blue-500'
+                : 'text-gray-500 border-transparent hover:text-gray-300'
+            }`}
+          >
+            <Folder className="w-4 h-4" /> Code
+          </button>
+          <button
+            onClick={() => setActiveTab('commits')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+              activeTab === 'commits'
+                ? 'text-white border-blue-500'
+                : 'text-gray-500 border-transparent hover:text-gray-300'
+            }`}
+          >
+            <GitCommit className="w-4 h-4" />
+            Commits {commits.length > 0 && `(${commits.length})`}
+          </button>
+        </div>
+      </div>
+
+      {/* CODE TAB */}
+      {activeTab === 'code' && (
+        <div className="flex flex-1">
+          {/* Left Sidebar — File Tree */}
+          <div className="w-72 shrink-0 border-r border-gray-800 flex flex-col min-h-full">
+            <div className="px-3 py-2.5 border-b border-gray-800 flex items-center gap-2">
+              <Folder className="w-4 h-4 text-gray-400" />
+              <span className="text-white text-xs font-semibold">Files</span>
+            </div>
+
+            {/* Branch selector */}
+            <div className="px-3 py-2 border-b border-gray-800">
+              <div className="flex items-center gap-1.5 bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5">
+                <GitBranch className="w-3 h-3 text-gray-400 shrink-0" />
+                <select
+                  value={branch}
+                  onChange={(e) => {
+                    setBranch(e.target.value);
+                    setCurrentPath('');
+                    setSelectFile('');
+                    setExpandedPaths(new Set());
+                  }}
+                  className="flex-1 bg-transparent text-gray-300 text-xs focus:outline-none"
+                >
+                  {branches.length > 0 ? (
+                    branches.map((b) => (
+                      <option key={b} value={b}>
+                        {b}
+                      </option>
+                    ))
+                  ) : (
+                    <option value="main">main</option>
+                  )}
+                </select>
+              </div>
+            </div>
+
+            {/* Search */}
+            <div className="px-3 py-2 border-b border-gray-800">
+              <div className="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5">
+                <Search className="w-3 h-3 text-gray-500 shrink-0" />
+                <input
+                  type="text"
+                  placeholder="Go to file"
+                  value={treeSearch}
+                  onChange={(e) => setTreeSearch(e.target.value)}
+                  className="flex-1 bg-transparent text-gray-300 text-xs focus:outline-none placeholder-gray-600"
+                />
+                <span className="text-gray-600 text-xs border border-gray-700 rounded px-1">t</span>
+              </div>
+            </div>
+
+            {/* File tree */}
+            <div className="flex-1 overflow-y-auto py-1">
+              {isFilesLoading ? (
+                <div className="flex items-center justify-center py-6">
+                  <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : isEmpty ? (
+                <p className="text-gray-600 text-xs px-3 py-4 text-center">No files yet</p>
+              ) : (
+                sortedFiles
+                  .filter(
+                    (f) => !treeSearch || f.name.toLowerCase().includes(treeSearch.toLowerCase()),
+                  )
+                  .map((file) => (
+                    <div
+                      key={file.path}
+                      className={`flex items-center gap-1.5 px-3 py-1.5 cursor-pointer transition text-xs ${
+                        selectedFile === file.path
+                          ? 'bg-blue-600/20 text-blue-400 border-l-2 border-l-blue-500'
+                          : currentPath === file.path && !selectedFile
+                            ? 'bg-gray-800/50 text-white'
+                            : 'text-gray-400 hover:bg-gray-800/50 hover:text-white'
+                      }`}
+                      onClick={() => handleTreeNodeClick(file)}
+                    >
+                      {file.type === 'tree' ? (
+                        expandedPaths.has(file.path) ? (
+                          <ChevronDown className="w-3 h-3 text-gray-500 shrink-0" />
+                        ) : (
+                          <ChevronRight className="w-3 h-3 text-gray-500 shrink-0" />
+                        )
+                      ) : (
+                        <span className="w-3 shrink-0" />
+                      )}
+                      {file.type === 'tree' ? (
+                        expandedPaths.has(file.path) ? (
+                          <FolderOpen className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                        ) : (
+                          <Folder className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+                        )
+                      ) : (
+                        <File className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+                      )}
+                      <span className="truncate">{file.name}</span>
+                    </div>
+                  ))
+              )}
+            </div>
+          </div>
+
+          {/* Main Content */}
+          <div className="flex-1 flex flex-col min-w-0">
+            {/* Breadcrumb + Star/Fork */}
+            <div className="px-4 py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-950 shrink-0">
+              <div className="flex items-center gap-1 text-sm">
+                <span
+                  className="text-blue-400 hover:underline cursor-pointer text-xs font-medium"
+                  onClick={() => {
+                    setCurrentPath('');
+                    setSelectFile('');
+                    dispatch(
+                      getFilesThunk({ username: username!, reponame: reponame!, branch, path: '' }),
+                    );
+                  }}
+                >
+                  {reponame}
+                </span>
+                {currentPath &&
+                  currentPath.split('/').map((part, i, arr) => (
+                    <span key={i} className="flex items-center gap-1">
+                      <span className="text-gray-600">/</span>
+                      <span
+                        className="text-blue-400 hover:underline cursor-pointer text-xs font-medium"
+                        onClick={() => {
+                          const newPath = arr.slice(0, i + 1).join('/');
+                          setCurrentPath(newPath);
+                          setSelectFile('');
+                          dispatch(
+                            getFilesThunk({
+                              username: username!,
+                              reponame: reponame!,
+                              branch,
+                              path: newPath,
+                            }),
+                          );
+                        }}
+                      >
+                        {part}
+                      </span>
+                    </span>
+                  ))}
+                {selectedFile && (
+                  <>
+                    <span className="text-gray-600">/</span>
+                    <span className="text-white text-xs font-semibold">
+                      {selectedFile.split('/').pop()}
+                    </span>
+                  </>
+                )}
+                <button
+                  onClick={handleCopy}
+                  className="ml-2 text-gray-500 hover:text-gray-300 transition"
+                >
+                  {copied ? (
+                    <Check className="w-3.5 h-3.5 text-green-400" />
+                  ) : (
+                    <Copy className="w-3.5 h-3.5" />
+                  )}
+                </button>
+              </div>
+
+              {/* Star + Fork */}
+              <div className="flex items-center gap-2">
+                <div className="flex items-center">
+                  <button
+                    onClick={() => setStarred(!starred)}
+                    className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-l-lg border transition ${
+                      starred
+                        ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
+                        : 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700'
+                    }`}
+                  >
+                    <Star className={`w-3 h-3 ${starred ? 'fill-yellow-400' : ''}`} />
+                    Star
+                  </button>
+                  <span className="px-2 py-1 text-xs bg-gray-800 border border-l-0 border-gray-700 text-gray-300 rounded-r-lg">
+                    {repo.stars + (starred ? 1 : 0)}
+                  </span>
+                </div>
+                <div className="flex items-center">
+                  <button className="flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-l-lg border bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 transition">
+                    <GitFork className="w-3 h-3" /> Fork
+                  </button>
+                  <span className="px-2 py-1 text-xs bg-gray-800 border border-l-0 border-gray-700 text-gray-300 rounded-r-lg">
+                    {repo.forks}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* EMPTY STATE */}
+            {isEmpty && (
+              <div className="flex-1 p-6">
+                <p className="text-gray-500 text-sm mb-4">
+                  This repository is empty. Push your first commit:
+                </p>
+                <div className="bg-gray-950 border border-gray-800 rounded-lg p-4 font-mono text-xs space-y-1 max-w-xl">
+                  {[
+                    `echo "# ${reponame}" >> README.md`,
+                    'git init',
+                    'git add README.md',
+                    'git commit -m "first commit"',
+                    `git branch -M ${repo.defaultBranch}`,
+                    `git remote add origin ${cloneUrl}`,
+                    `git push -u origin ${repo.defaultBranch}`,
+                  ].map((line, i) => (
+                    <div key={i} className="flex gap-3">
+                      <span className="text-gray-600 select-none w-4 text-right">{i + 1}</span>
+                      <span
+                        className={
+                          line.includes('remote') || line.includes('push')
+                            ? 'text-blue-400'
+                            : 'text-gray-300'
+                        }
+                      >
+                        {line}
+                      </span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            )}
+
+            {/* NON-EMPTY STATE */}
+            {!isEmpty && (
+              <>
+                {/* Latest commit bar */}
+                {latestCommit && !selectedFile && (
+                  <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-3 bg-gray-900/30 shrink-0">
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                      {latestCommit.author?.[0]?.toUpperCase()}
+                    </div>
+                    <span className="text-gray-300 text-xs font-medium">{latestCommit.author}</span>
+                    <span className="text-gray-400 text-xs truncate flex-1">
+                      {latestCommit.message}
+                    </span>
+                    <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-1.5 py-0.5 rounded shrink-0">
+                      {latestCommit.hash}
+                    </span>
+                    <span className="text-gray-500 text-xs shrink-0 flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {timeAgo(latestCommit.date)}
+                    </span>
+                    <button className="text-gray-500 hover:text-white text-xs flex items-center gap-1 transition">
+                      <History className="w-3.5 h-3.5" /> History
+                    </button>
+                  </div>
+                )}
+
+                {/* File content viewer */}
+                {selectedFile && (
+                  <div className="flex-1 overflow-auto">
+                    <div className="px-4 py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-900/30">
+                      <div className="flex items-center gap-3">
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                          {latestCommit?.author?.[0]?.toUpperCase()}
+                        </div>
+                        <span className="text-gray-300 text-xs font-medium">
+                          {latestCommit?.author}
+                        </span>
+                        <span className="text-gray-400 text-xs truncate max-w-md">
+                          {latestCommit?.message}
+                        </span>
+                        <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-1.5 py-0.5 rounded">
+                          {latestCommit?.hash}
+                        </span>
+                        <span className="text-gray-500 text-xs">
+                          {latestCommit ? timeAgo(latestCommit.date) : ''}
+                        </span>
+                      </div>
+                      <button className="text-gray-500 hover:text-white text-xs flex items-center gap-1 transition">
+                        <History className="w-3.5 h-3.5" /> History
+                      </button>
+                    </div>
+                    <div className="px-4 py-2 border-b border-gray-800 flex items-center justify-between bg-gray-900">
+                      <div className="flex items-center gap-3">
+                        <button className="text-xs px-3 py-1 bg-gray-800 border border-gray-700 rounded text-white font-medium">
+                          Code
+                        </button>
+                        <button className="text-xs px-3 py-1 text-gray-400 hover:text-white transition">
+                          Blame
+                        </button>
+                      </div>
+                      <div className="flex items-center gap-3 text-gray-500 text-xs">
+                        <span>{fileContent.split('\n').length} lines</span>
+                        <span>{new Blob([fileContent]).size} Bytes</span>
+                        <button
+                          onClick={handleBack}
+                          className="text-blue-400 hover:text-blue-300 transition"
+                        >
+                          ← Back
+                        </button>
+                      </div>
+                    </div>
+                    <div className="overflow-auto">
+                      <table className="w-full font-mono text-xs">
+                        <tbody>
+                          {fileContent.split('\n').map((line, i) => (
+                            <tr key={i} className="hover:bg-gray-800/30">
+                              <td className="px-4 py-0.5 text-gray-600 text-right select-none w-12 border-r border-gray-800">
+                                {i + 1}
+                              </td>
+                              <td className="px-4 py-0.5 text-gray-300 whitespace-pre">
+                                {line || ' '}
+                              </td>
+                            </tr>
+                          ))}
+                        </tbody>
+                      </table>
+                    </div>
+                  </div>
+                )}
+
+                {/* File list */}
+                {!selectedFile && (
+                  <div className="flex-1 overflow-auto">
+                    {isFilesLoading ? (
+                      <div className="flex items-center justify-center py-10">
+                        <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                      </div>
+                    ) : (
+                      <>
+                        {currentPath && (
+                          <div
+                            className="flex items-center gap-3 px-4 py-2.5 border-b border-gray-800/50 hover:bg-gray-800/30 cursor-pointer transition"
+                            onClick={handleBack}
+                          >
+                            <Folder className="w-4 h-4 text-blue-400 shrink-0" />
+                            <span className="text-gray-400 text-sm">..</span>
+                          </div>
+                        )}
+                        <table className="w-full">
+                          <thead>
+                            <tr className="border-b border-gray-800 text-gray-500 text-xs">
+                              <th className="text-left px-4 py-2 font-medium">Name</th>
+                              <th className="text-left px-4 py-2 font-medium">
+                                Last commit message
+                              </th>
+                              <th className="text-right px-4 py-2 font-medium">Last commit date</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            {sortedFiles.map((file) => (
+                              <tr
+                                key={file.path}
+                                className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 cursor-pointer transition"
+                                onClick={() => handleTreeNodeClick(file)}
+                              >
+                                <td className="px-4 py-2.5">
+                                  <div className="flex items-center gap-2">
+                                    {file.type === 'tree' ? (
+                                      <Folder className="w-4 h-4 text-blue-400 shrink-0" />
+                                    ) : (
+                                      <File className="w-4 h-4 text-gray-400 shrink-0" />
+                                    )}
+                                    <span className="text-blue-400 hover:text-blue-300 text-sm">
+                                      {file.name}
+                                    </span>
+                                  </div>
+                                </td>
+                                <td className="px-4 py-2.5">
+                                  <span className="text-gray-400 text-xs truncate max-w-md block">
+                                    {latestCommit?.message || '—'}
+                                  </span>
+                                </td>
+                                <td className="px-4 py-2.5 text-right">
+                                  <span className="text-gray-500 text-xs">
+                                    {latestCommit ? timeAgo(latestCommit.date) : '—'}
+                                  </span>
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+
+                        {/* README */}
+                        {readmeContent && (
+                          <div className="m-4">
+                            <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+                              <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-2">
+                                <File className="w-3.5 h-3.5 text-gray-400" />
+                                <span className="text-white text-xs font-semibold">README.md</span>
+                              </div>
+                              <div className="p-6">
+                                <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">
+                                  {readmeContent}
+                                </pre>
+                              </div>
+                            </div>
+                          </div>
+                        )}
+                      </>
+                    )}
+                  </div>
+                )}
+              </>
+            )}
+          </div>
+
+          {/* Right Sidebar — only when repo has files */}
+          {!isEmpty && (
+            <div className="w-64 shrink-0 border-l border-gray-800 p-4 space-y-4 overflow-y-auto min-h-full">
+              <div>
+                <h3 className="text-white text-sm font-semibold mb-3">About</h3>
+                <p className="text-gray-400 text-xs leading-relaxed mb-3">
+                  {repo.description || 'No description provided.'}
+                </p>
+                <div className="space-y-2 text-xs text-gray-400">
+                  <div className="flex items-center gap-2">
+                    {repo.visibility === 'public' ? (
+                      <Globe className="w-3.5 h-3.5 text-green-400" />
+                    ) : (
+                      <Lock className="w-3.5 h-3.5 text-gray-500" />
+                    )}
+                    <span className="capitalize">{repo.visibility} repository</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <GitBranch className="w-3.5 h-3.5 text-gray-500" />
+                    <span>{repo.defaultBranch} (default)</span>
+                  </div>
+                  <div className="flex items-center gap-2">
+                    <Clock className="w-3.5 h-3.5 text-gray-500" />
+                    <span>Created {repo.createdAt ? formatDate(repo.createdAt) : '—'}</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="border-t border-gray-800 pt-4">
+                <h3 className="text-white text-sm font-semibold mb-3">Stats</h3>
+                <div className="space-y-2">
+                  {[
+                    { icon: Star, label: 'Stars', value: repo.stars + (starred ? 1 : 0) },
+                    { icon: GitFork, label: 'Forks', value: repo.forks },
+                    { icon: GitCommit, label: 'Commits', value: commits.length },
+                    { icon: GitBranch, label: 'Branches', value: branches.length },
+                  ].map(({ icon: Icon, label, value }) => (
+                    <div key={label} className="flex items-center justify-between text-xs">
+                      <div className="flex items-center gap-2 text-gray-400">
+                        <Icon className="w-3.5 h-3.5" />
+                        <span>{label}</span>
+                      </div>
+                      <span className="text-white font-medium">{value}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
+              <div className="border-t border-gray-800 pt-4">
+                <h3 className="text-white text-sm font-semibold mb-3">Languages</h3>
+                <div className="w-full h-2 rounded-full overflow-hidden flex mb-3">
+                  <div className="bg-blue-400 h-full" style={{ width: '72.4%' }} />
+                  <div className="bg-yellow-400 h-full" style={{ width: '18.1%' }} />
+                  <div className="bg-purple-400 h-full" style={{ width: '9.5%' }} />
+                </div>
+                <div className="flex flex-wrap gap-x-3 gap-y-1.5">
+                  {[
+                    { name: 'TypeScript', percent: '72.4%', color: 'bg-blue-400' },
+                    { name: 'JavaScript', percent: '18.1%', color: 'bg-yellow-400' },
+                    { name: 'CSS', percent: '9.5%', color: 'bg-purple-400' },
+                  ].map((lang) => (
+                    <div
+                      key={lang.name}
+                      className="flex items-center gap-1.5 text-xs text-gray-400"
+                    >
+                      <span className={`w-2.5 h-2.5 rounded-full ${lang.color}`} />
+                      <span className="text-white">{lang.name}</span>
+                      <span>{lang.percent}</span>
+                    </div>
+                  ))}
+                </div>
+              </div>
+            </div>
+          )}
+        </div>
+      )}
+
+      {/* COMMITS TAB */}
+      {activeTab === 'commits' && (
+        <div className="max-w-4xl mx-auto px-6 py-6 w-full">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
+            {isCommitsLoading ? (
+              <div className="flex items-center justify-center py-10">
+                <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+              </div>
+            ) : commits.length === 0 ? (
+              <div className="px-4 py-10 text-center text-gray-500 text-sm">No commits yet</div>
+            ) : (
+              commits.map((commit) => (
+                <div
+                  key={commit.hash}
+                  className="flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition"
+                >
+                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                    {commit.author?.[0]?.toUpperCase()}
+                  </div>
+                  <div className="flex-1 min-w-0">
+                    <p className="text-white text-sm font-medium truncate">{commit.message}</p>
+                    <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+                      <Clock className="w-3 h-3" />
+                      {commit.author} · {formatDate(commit.date)}
+                    </p>
+                  </div>
+                  <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
+                    <GitCommit className="w-3 h-3" />
+                    {commit.hash}
+                  </span>
+                </div>
+              ))
+            )}
+          </div>
+        </div>
+      )}
+
+      <AppFooter />
+
+      <DeleteConfirmModal
+        isOpen={showDeleteModal}
+        onClose={() => setShowDeleteModal(false)}
+        onConfirm={handleDelete}
+        repoPath={`${username}/${reponame}`}
+      />
+    </div>
+  );
+};
+
+export default RepositoryDetailPage;

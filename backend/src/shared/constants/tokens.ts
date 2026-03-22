@@ -3,6 +3,8 @@ export const TOKENS = {
   IUserRepository: Symbol.for('IUserRepository'),
   IAdminRepository: Symbol.for('IAdminRepository'),
   IRepoRepository: Symbol.for('IRepoRepository'),
+  IPullRequestRepository: Symbol.for('IPullRequestRepository'),
+  IIssuesRepository: Symbol.for('IIssuesRepository'),
 
   // Services
   IHashService: Symbol.for('IHashService'),
@@ -39,4 +41,18 @@ export const TOKENS = {
   IGetFilesUseCase: Symbol.for('IGetFilesUseCase'),
   IGetFileContentUseCase: Symbol.for('IGetFileContentUseCase'),
   IGetCommitsUseCase: Symbol.for('IGetCommitsUseCase'),
+  IGetBranchesUseCase: Symbol.for('IGetBranchesUseCase'),
+
+  // PR Use Cases
+  ICreatePRUseCase: Symbol.for('ICreatePRUseCase'),
+  IGetPRUseCase: Symbol.for('IGetPRUseCase'),
+  IListPRsUseCase: Symbol.for('IListPRsUseCase'),
+  IMergePRUseCase: Symbol.for('IMergePRUseCase'),
+  IClosePRUseCase: Symbol.for('IClosePRUseCase'),
+
+  // Issue Use Cases
+  ICreateIssueUseCase: Symbol.for('ICreateIssueUseCase'),
+  IGetIssueUseCase: Symbol.for('IGetIssueUseCase'),
+  IListIssuesUseCase: Symbol.for('IListIssuesUseCase'),
+  ICloseIssueUseCase: Symbol.for('ICloseIssueUseCase'),
 } as const;

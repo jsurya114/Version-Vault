@@ -16,6 +16,8 @@ import authRoutes from './interfaces/http/routes/user/auth.routes';
 import adminRoutes from './interfaces/http/routes/admin/admin.routes';
 import repoRoutes from './interfaces/http/routes/repository/repository.routes';
 import gitRoutes from './interfaces/http/routes/git/git.routes';
+import pullrequesRoutes from './interfaces/http/routes/pullrequests/pr.routes';
+import issuesRoutese from './interfaces/http/routes/issues/issue.route';
 
 const app = express();
 
@@ -50,6 +52,8 @@ app.use('/vv/auth', authRoutes);
 app.use('/vv/admin', adminRoutes);
 app.use('/vv/repo', repoRoutes);
 app.use('/vv/git', gitRoutes);
+app.use('/vv/pr', pullrequesRoutes);
+app.use('/vv/issues', issuesRoutese);
 
 //error hanlding middleware
 app.use(errorMiddleware);

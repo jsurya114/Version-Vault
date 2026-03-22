@@ -18,3 +18,10 @@ export const ADMIN_ENDPOINTS = {
   BLOCK_USER: '/admin/users/block',
   UNBLOCK_USER: '/admin/users/unblock',
 } as const;
+
+export const REPO_ENDPOINTS = {
+  CREATE: '/repo',
+  LIST: '/repo',
+  GET: '/repo',
+  DELETE: '/repo',
+} as const;
