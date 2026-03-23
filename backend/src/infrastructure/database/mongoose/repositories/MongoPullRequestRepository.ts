@@ -27,7 +27,7 @@ export class MongoPullRequestRepository
   ): Promise<PaginatedResponseDTO<IPullRequest>> {
     const filter: Record<string, any> = { repositoryId };
     if (query.status) filter.status = query.status;
-    if (query.search) filter.title = { $regex: query.search, $option: 'i' };
+    if (query.search) filter.title = { $regex: query.search, $options: 'i' };
     return this.findWithpagination(filter, query);
   }
 }

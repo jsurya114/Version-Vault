@@ -34,6 +34,16 @@ const RepositoryListPage = lazy(() => import('../pages/repository/RepositoryList
 const CreateRepositoryPage = lazy(() => import('../pages/repository/CreateRepositoryPage'));
 const RepositoryDetailPage = lazy(() => import('../pages/repository/RepositoryDetailPage'));
 
+//pullrequests
+const PRListPage = lazy(() => import('../pages/pullrequest/PRListPage'));
+const PRDetailPage = lazy(() => import('../pages/pullrequest/PRDetailPage'));
+const CreatePRPage = lazy(() => import('../pages/pullrequest/CreatePRPage'));
+
+//Issues Page
+const IssueListPage = lazy(() => import('../pages/issues/IssueListPage'));
+const CreateIssuePage = lazy(() => import('../pages/issues/CreateIssuePage'));
+const IssueDetailPage = lazy(() => import('../pages/issues/IssueDetailPage'));
+
 const AppRouter = () => {
   const dispatch = useAppDispatch();
   const [authChecked, setAuthChecked] = useState(false);
@@ -172,6 +182,59 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+
+            {/* PR Routes — before REPO_DETAIL to avoid conflict */}
+            <Route
+              path={ROUTES.PR_LIST}
+              element={
+                <ProtectRoute>
+                  <PRListPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.PR_CREATE}
+              element={
+                <ProtectRoute>
+                  <CreatePRPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.PR_DETAIL}
+              element={
+                <ProtectRoute>
+                  <PRDetailPage />
+                </ProtectRoute>
+              }
+            />
+
+            {/* Issue Routes — before REPO_DETAIL */}
+            <Route
+              path={ROUTES.ISSUE_LIST}
+              element={
+                <ProtectRoute>
+                  <IssueListPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.ISSUE_CREATE}
+              element={
+                <ProtectRoute>
+                  <CreateIssuePage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.ISSUE_DETAIL}
+              element={
+                <ProtectRoute>
+                  <IssueDetailPage />
+                </ProtectRoute>
+              }
+            />
+
             <Route
               path={ROUTES.REPO_DETAIL}
               element={

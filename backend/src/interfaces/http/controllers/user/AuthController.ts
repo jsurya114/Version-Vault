@@ -167,7 +167,7 @@ export class AuthController {
    * POST /vv/auth/refresh-token
    */
 
-  async refresToken(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async refreshToken(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const refreshToken = req.cookies?.refreshToken;
       if (!refreshToken) {
@@ -185,7 +185,7 @@ export class AuthController {
       });
       res.status(HttpStatusCodes.OK).json({ success: true, message: 'Token refreshed' });
     } catch (error) {
-      next;
+      next(error);
     }
   }
 

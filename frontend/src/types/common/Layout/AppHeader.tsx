@@ -1,20 +1,52 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Bell, Search, LogOut, Settings } from 'lucide-react';
+import { Bell, Search, LogOut } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { selectAuthUser } from 'src/features/auth/authSelectors';
 import { logoutThunk } from 'src/features/auth/authThunks';
+import { selectRepositories } from 'src/features/repository/repositorySelectors';
 import { ROUTES } from 'src/constants/routes';
 
 const AppHeader = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectAuthUser);
+  const repositories = useAppSelector(selectRepositories);
+
+  // get first repo for PR/Issues links
+  const firstRepo = repositories[0];
 
   const handleLogout = async () => {
     await dispatch(logoutThunk());
     navigate(ROUTES.LOGIN, { replace: true });
   };
+
+  const navLinks = [
+    {
+      label: 'Pull Requests',
+      onClick: () => {
+        if (firstRepo) {
+          navigate(`/${firstRepo.ownerUsername}/${firstRepo.name}/pulls`);
+        } else {
+          navigate(ROUTES.REPO_LIST);
+        }
+      },
+    },
+    {
+      label: 'Issues',
+      onClick: () => {
+        if (firstRepo) {
+          navigate(`/${firstRepo.ownerUsername}/${firstRepo.name}/issues`);
+        } else {
+          navigate(ROUTES.REPO_LIST);
+        }
+      },
+    },
+    {
+      label: 'ChatRoom',
+      onClick: () => {},
+    },
+  ];
 
   return (
     <nav className="border-b border-gray-800 px-6 py-3 flex items-center justify-between sticky top-0 bg-gray-950/95 backdrop-blur z-50">
@@ -45,12 +77,13 @@ const AppHeader = () => {
       <div className="flex items-center gap-2">
         {/* Nav links */}
         <div className="hidden md:flex items-center gap-1">
-          {['Pull Requests', 'Issues', 'ChatRoom'].map((item) => (
+          {navLinks.map((item) => (
             <span
-              key={item}
+              key={item.label}
+              onClick={item.onClick}
               className="text-gray-400 hover:text-white text-sm px-3 py-1.5 rounded-lg hover:bg-gray-800 cursor-pointer transition"
             >
-              {item}
+              {item.label}
             </span>
           ))}
         </div>
@@ -72,6 +105,18 @@ const AppHeader = () => {
               <p className="text-gray-500 text-xs">{user?.userId}</p>
             </div>
             <div className="py-1">
+              <Link
+                to={`/users/${user?.userId}`}
+                className="w-full flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition"
+              >
+                Your Profile
+              </Link>
+              <Link
+                to={ROUTES.REPO_LIST}
+                className="w-full flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition"
+              >
+                Your Repositories
+              </Link>
               <button
                 onClick={handleLogout}
                 className="w-full flex items-center gap-2 px-4 py-2 text-red-400 hover:text-red-300 hover:bg-gray-800 text-sm transition"
