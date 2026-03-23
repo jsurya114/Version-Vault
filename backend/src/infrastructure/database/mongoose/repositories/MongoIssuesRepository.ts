@@ -24,7 +24,7 @@ export class MongoIssuesRepository extends MongoBaseRepository<IIssue> implement
   ): Promise<PaginatedResponseDTO<IIssue>> {
     const filter: Record<string, any> = { repositoryId };
     if (query.status) filter.status = query.status;
-    if (query.search) filter.search = query.search;
+    if (query.search) filter.title = { $regex: query.search, $options: 'i' };
     return this.findWithpagination(filter, query);
   }
 }

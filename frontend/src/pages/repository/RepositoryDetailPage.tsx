@@ -18,6 +18,8 @@ import {
   Lock,
   Search,
   History,
+  GitPullRequest,
+  CircleDot,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import {
@@ -44,7 +46,9 @@ import AppHeader from 'src/types/common/Layout/AppHeader';
 import AppFooter from 'src/types/common/Layout/AppFooter';
 import DeleteConfirmModal from 'src/types/common/Layout/DeleteConfirmationModal';
 
-type Tab = 'code' | 'commits';
+import IssueListContent from '../../types/common/Issues/IssuelistContent';
+import PRListContent from 'src/types/common/pullrequest/PRListContent';
+type Tab = 'code' | 'commits' | 'pulls' | 'issues';
 
 interface TreeNode {
   name: string;
@@ -248,9 +252,22 @@ const RepositoryDetailPage = () => {
             <GitCommit className="w-4 h-4" />
             Commits {commits.length > 0 && `(${commits.length})`}
           </button>
+          <button
+            onClick={() => setActiveTab('pulls')}
+            className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
+          >
+            <GitPullRequest className="w-4 h-4" />
+            Pull Requests
+          </button>
+          <button
+            onClick={() => setActiveTab('issues')}
+            className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
+          >
+            <CircleDot className="w-4 h-4" />
+            Issues
+          </button>
         </div>
       </div>
-
       {/* CODE TAB */}
       {activeTab === 'code' && (
         <div className="flex flex-1">
@@ -765,6 +782,10 @@ const RepositoryDetailPage = () => {
           </div>
         </div>
       )}
+
+      {activeTab === 'pulls' && <PRListContent username={username!} reponame={reponame!} />}
+
+      {activeTab === 'issues' && <IssueListContent username={username!} reponame={reponame!} />}
 
       <AppFooter />
 

@@ -11,7 +11,7 @@ export const repositoryService = {
   listRepositories: async (query: PaginationQuery = {}) => {
     const params = {
       page: query.page || 1,
-      limit: query.limit || 10,
+      limit: query.limit || 2,
       ...(query.sort && { sort: query.sort }),
       ...(query.order && { order: query.order }),
       ...(query.search && { search: query.search }),

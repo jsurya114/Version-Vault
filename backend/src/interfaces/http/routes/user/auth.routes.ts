@@ -31,7 +31,7 @@ router.get('/google', (req, res, next) => authController.googleAuth(req, res, ne
 router.get('/google/callback', (req, res, next) => authController.googleCallback(req, res, next));
 
 router.post('/logout', (req, res, next) => authController.logout(req, res, next));
-router.post('/refresh-token', (req, res, next) => authController.refresToken(req, res, next));
+router.post('/refresh-token', (req, res, next) => authController.refreshToken(req, res, next));
 router.get('/me', authLimiter, authMiddleware, (req, res, next) =>
   authController.getMe(req, res, next),
 );

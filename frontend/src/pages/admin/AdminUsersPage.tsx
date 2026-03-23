@@ -45,7 +45,7 @@ const AdminUsersPage = () => {
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [page, setPage] = useState(1);
-  const limit = 10;
+  const limit = 2;
 
   const fetchUsers = (overrides = {}) => {
     dispatch(

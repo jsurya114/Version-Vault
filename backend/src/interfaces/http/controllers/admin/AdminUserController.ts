@@ -26,7 +26,7 @@ export class AdminUserController {
     try {
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
-        limit: req.query.limit ? Number(req.query.page) : 10,
+        limit: req.query.limit ? Number(req.query.page) : 2,
         sort: req.query.sort as string | undefined,
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,

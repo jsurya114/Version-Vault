@@ -25,3 +25,11 @@ export const REPO_ENDPOINTS = {
   GET: '/repo',
   DELETE: '/repo',
 } as const;
+
+export const PR_ENDPOINTS = {
+  BASE: 'pr',
+};
+
+export const ISSUE_ENDPOINTS = {
+  BASE: 'issues',
+};

@@ -32,6 +32,16 @@ export const ROUTES = {
   ADMIN_USER_DETAIL: '/admin/users/:id',
   ADMIN_REPOS: '/admin/repos',
 
+  // pull requests
+  PR_LIST: '/:username/:reponame/pulls',
+  PR_CREATE: '/:username/:reponame/pulls/new',
+  PR_DETAIL: '/:username/:reponame/pulls/:id',
+
+  // issues
+  ISSUE_LIST: '/:username/:reponame/issues',
+  ISSUE_CREATE: '/:username/:reponame/issues/new',
+  ISSUE_DETAIL: '/:username/:reponame/issues/:id',
+
   // Error
   NOT_FOUND: '*',
 } as const;

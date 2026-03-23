@@ -49,7 +49,7 @@ export class IssueController {
       const { username, reponame } = req.params;
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
-        limit: req.query.limit ? Number(req.params.limit) : 10,
+        limit: req.query.limit ? Number(req.query.limit) : 2,
         sort: req.query.sort as string | undefined,
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,
