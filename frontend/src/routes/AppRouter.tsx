@@ -7,8 +7,6 @@ import ErrorBoundary from '../components/ErrorBoundary';
 import PageLoader from '../components/PageLoader';
 import { useAppDispatch } from '../app/hooks';
 import { getMeThunk } from '../features/auth/authThunks';
-import { AUTH_ENDPOINTS } from '../constants/api';
-import axiosInstance from '../services/axiosInstance';
 import { authService } from '../services/auth.service';
 
 const LandingPage = lazy(() => import('../pages/LandingPage'));
@@ -34,6 +32,7 @@ const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPag
 const RepositoryListPage = lazy(() => import('../pages/repository/RepositoryListPage'));
 const CreateRepositoryPage = lazy(() => import('../pages/repository/CreateRepositoryPage'));
 const RepositoryDetailPage = lazy(() => import('../pages/repository/RepositoryDetailPage'));
+const BranchListPage =lazy(()=>import('../pages/repository/BranchListPage'))
 
 //pullrequests
 const PRListPage = lazy(() => import('../pages/pullrequest/PRListPage'));
@@ -216,6 +215,14 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+            <Route
+  path={ROUTES.BRANCH_LIST}
+  element={
+    <ProtectRoute>
+      <BranchListPage />
+    </ProtectRoute>
+  }
+/>
 
             {/* Issue Routes — before REPO_DETAIL */}
             <Route

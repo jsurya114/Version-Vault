@@ -1,5 +1,5 @@
-import { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { GitPullRequest, GitMerge, X, Clock, GitBranch, MessageSquare } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getPRThunk, mergePRThunk, closePRThunk } from '../../features/pullrequest/prThunk';
@@ -18,11 +18,12 @@ const statusColors: Record<PRStatus, string> = {
 
 const PRDetailPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { username, reponame, id } = useParams();
   const pr = useAppSelector(selectSelectedPR);
   const isLoading = useAppSelector(selectPRLoading);
   const user = useAppSelector(selectAuthUser);
+  const [isMerging, setIsMerging] = useState(false);
+  const [showSuccess, setShowSuccess] = useState(false);
 
   const isOwner = user?.userId === username;
 
@@ -32,7 +33,16 @@ const PRDetailPage = () => {
 
   const handleMerge = async () => {
     if (!confirm('Merge this pull request?')) return;
-    await dispatch(mergePRThunk({ username: username!, reponame: reponame!, id: id! }));
+    setIsMerging(true);
+    try {
+      const result = await dispatch(mergePRThunk({ username: username!, reponame: reponame!, id: id! }));
+      if (mergePRThunk.fulfilled.match(result)) {
+        setShowSuccess(true);
+        setTimeout(() => setShowSuccess(false), 5000);
+      }
+    } finally {
+      setIsMerging(false);
+    }
   };
 
   const handleClose = async () => {
@@ -83,6 +93,25 @@ const PRDetailPage = () => {
       </div>
 
       <main className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
+        {/* Success / Sonar Overlay */}
+        {showSuccess && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
+            <div className="relative">
+              <div className="absolute inset-0 bg-purple-500/20 rounded-full animate-sonar" />
+              <div className="absolute inset-0 bg-purple-500/10 rounded-full animate-sonar delay-1000" />
+              <div className="relative bg-gray-900 border border-purple-500/30 rounded-2xl px-8 py-6 shadow-2xl flex flex-col items-center gap-4 animate-in zoom-in duration-300">
+                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
+                  <GitMerge className="w-6 h-6 text-purple-400" />
+                </div>
+                <div className="text-center">
+                  <h2 className="text-white font-bold text-lg">Merged Successfully!</h2>
+                  <p className="text-gray-400 text-sm">Changes are now in {pr.targetBranch}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
+
         {/* PR Header */}
         <div className="mb-6">
           <div className="flex items-start justify-between gap-4">
@@ -126,13 +155,20 @@ const PRDetailPage = () => {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={handleMerge}
-                  className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-400 text-xs px-3 py-1.5 rounded-lg transition"
+                  disabled={isMerging}
+                  className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-400 text-xs px-3 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <GitMerge className="w-3.5 h-3.5" /> Merge
+                  {isMerging ? (
+                    <div className="w-3.5 h-3.5 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <GitMerge className="w-3.5 h-3.5" />
+                  )}
+                  {isMerging ? 'Merging...' : 'Merge'}
                 </button>
                 <button
                   onClick={handleClose}
-                  className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition"
+                  disabled={isMerging}
+                  className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <X className="w-3.5 h-3.5" /> Close
                 </button>

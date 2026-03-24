@@ -1,5 +1,5 @@
 import { injectable, inject } from 'tsyringe';
-import { IGetBranchesUseCase } from '../interfaces/repository/IGetBranchesUseCase';
+import { IGetBranchesUseCase } from '../interfaces/branch/IGetBranchesUseCase';
 import { GitService } from '../../../infrastructure/services/GitService';
 
 @injectable()

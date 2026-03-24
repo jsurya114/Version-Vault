@@ -69,4 +69,15 @@ export const repositoryService = {
     const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches`);
     return res.data.data;
   },
+
+  createBranch:async(username:string,reponame:string,newBranch:string,fromBranch:string)=>{
+    const res = await axiosInstance.post(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches`,{
+      newBranch,fromBranch
+    })
+    return res.data
+  },
+  deleteBranch:async(username:string,reponame:string,branchName:string)=>{
+    const res = await axiosInstance.delete(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches/${branchName}`)
+    return res.data
+  }
 };

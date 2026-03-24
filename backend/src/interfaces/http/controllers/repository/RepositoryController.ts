@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
+
 import { IGetRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IGetRepoUseCase';
 import { ICreateRepoUseCase } from '../../../../application/use-cases/interfaces/repository/ICreateRepoUseCase';
 import { IListRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IListRepoUseCase';
@@ -7,11 +8,11 @@ import { IDeleteRepoUsecase } from '../../../../application/use-cases/interfaces
 import { IGetCommitsUseCase } from '../../../../application/use-cases/interfaces/repository/IGetCommitsUseCase';
 import { IGetFileContentUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFileContentUseCase';
 import { IGetFilesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFilesUseCase';
-import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetBranchesUseCase';
+import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/branch/IGetBranchesUseCase';
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
 
 import {
-  PaginatedResponseDTO,
   PaginationQueryDTO,
 } from '../../../../application/dtos/reusable/PaginationDTO';
 import { TOKENS } from '../../../../shared/constants/tokens';
@@ -36,7 +37,7 @@ export class RepositoryController {
   async createRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { name, description, visibility } = req.body;
-      const { id: ownerId, userId: ownerUsername } = (req as any).user;
+      const { id: ownerId, userId: ownerUsername } = req.user as ITokenPayload;
 
       const repo = await this.createRepo.execute({
         name,
@@ -71,7 +72,7 @@ export class RepositoryController {
 
   async listRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { id: ownerId } = (req as any).user;
+      const { id: ownerId } = req.user as ITokenPayload;
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
         limit: req.query.limit ? Number(req.query.limit) : 2,
@@ -102,7 +103,7 @@ export class RepositoryController {
 
   async deleteRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { userId: ownerUsername } = (req as any).user;
+      const { userId: ownerUsername } = req.user as ITokenPayload;
       const { reponame } = req.params;
       await this.deleteRepo.execute(ownerUsername, reponame);
       res
@@ -163,13 +164,7 @@ export class RepositoryController {
     }
   }
 
-  async getBranches(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-      const { username, reponame } = req.params;
-      const branches = await this.branchUseCase.execute(username, reponame);
-      res.status(HttpStatusCodes.OK).json({ success: true, data: branches });
-    } catch (error) {
-      next(error);
-    }
-  }
+
+
+
 }

@@ -48,7 +48,7 @@ import { DeleteRepoUseCase } from './application/use-cases/repository/DeleteRepo
 import { GetFilesUseCase } from './application/use-cases/repository/GetFilesUseCase';
 import { GetFileContentUseCase } from './application/use-cases/repository/GetFileContentUseCase';
 import { GetCommitUseCase } from './application/use-cases/repository/GetCommitUseCase';
-import { GetBranchesUseCase } from './application/use-cases/repository/GetBranchUseCase';
+import { GetBranchesUseCase } from './application/use-cases/branch/GetBranchUseCase';
 
 //pr usecase
 import { GetPRUseCase } from './application/use-cases/pullrequest/GetPRUseCase';
@@ -71,6 +71,10 @@ import { FollowUseCase } from './application/use-cases/follow/FollowUseCase';
 import { UnfollowUseCase } from './application/use-cases/follow/UnFollowUseCase';
 import { GetFollowersUseCase } from './application/use-cases/follow/GetFollowerUseCase';
 import { GetFollowingUseCase } from './application/use-cases/follow/GetFollowingUseCase';
+
+//branch
+import { CreateBranchUseCase } from './application/use-cases/branch/CreateBranchUseCase';
+import { DeleteBranchUseCase } from './application/use-cases/branch/DeleteBranchUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -140,5 +144,9 @@ container.register(TOKENS.IFollowUseCase, { useClass: FollowUseCase });
 container.register(TOKENS.IUnfollowUseCase, { useClass: UnfollowUseCase });
 container.register(TOKENS.IGetFollowersUseCase, { useClass: GetFollowersUseCase });
 container.register(TOKENS.IGetFollowingUseCase, { useClass: GetFollowingUseCase });
+
+//branch usecase
+container.register(TOKENS.ICreateBranchUseCase,{useClass:CreateBranchUseCase})
+container.register(TOKENS.IDeleteBranchUseCase,{useClass:DeleteBranchUseCase})
 
 export { container };

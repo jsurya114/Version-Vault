@@ -3,7 +3,7 @@ import * as path from 'path';
 import simpleGit from 'simple-git';
 import { injectable } from 'tsyringe';
 import { envConfig } from '../../shared/config/env.config';
-import { GitFileEntry, GitCommit } from '../../domain/interfaces/IGitTypes';
+import { GitFileEntry, GitCommit, GitBranch } from '../../domain/interfaces/IGitTypes';
 
 @injectable()
 export class GitService {
@@ -21,6 +21,15 @@ export class GitService {
     return path.join(this.repoBasePath, ownerUsername, `${repoName}.git`);
   }
 
+  async createBranch(ownerUsername: string, repoName: string, newBranch: string, fromBranch: string): Promise<void> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      await git.raw(['branch', newBranch, fromBranch]);
+    } catch (error: unknown) {
+      throw new Error(`Failed to create branch: ${error instanceof Error ? error.message : 'Unknown error'}`, { cause: error });
+    }
+  }
   async initBareRepo(ownerUsername: string, repoName: string): Promise<void> {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
 
@@ -66,7 +75,7 @@ export class GitService {
     try {
       const treePath = filePath ? `${branch}:${filePath}` : `${branch}:`;
       //to get name only (to avoid the blob)
-      const namesResult = await git.raw(['ls-tree', '--name-only', treePath]);
+      const namesResult = await git.raw(['ls-tree', '--name-only', treePath]);//listing the files
 
       const typesResult = await git.raw(['ls-tree', treePath]);
 
@@ -74,7 +83,7 @@ export class GitService {
       const names = namesResult.trim().split('\n').filter(Boolean);
       const typeLines = typesResult.trim().split('\n').filter(Boolean);
 
-      return names.map((name, i) => {
+      return names.map((name) => {
         const typeLine = typeLines.find((l) => l.includes(name)) || '';
         const type = typeLine.includes('tree') ? 'tree' : 'blob';
         return {
@@ -83,7 +92,7 @@ export class GitService {
           type,
         };
       });
-    } catch (error: any) {
+    } catch {
       return [];
     }
   }
@@ -97,13 +106,13 @@ export class GitService {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
-      const content = await git.raw(['show', `${branch}:${filePath}`]);
-      console.log('file content:', JSON.stringify(content));
+      const content = await git.raw(['show', `${branch}:${filePath}`]);//show the file content
       return content;
-    } catch (error: any) {
-      console.log('error', error);
+    } catch (error: unknown) {
+      console.error('error', error instanceof Error ? error.message : error);
       return '';
     }
+
   }
 
   async getCommits(
@@ -123,18 +132,80 @@ export class GitService {
         author: commit.author_name,
         date: commit.date,
       }));
-    } catch (error: any) {
+    } catch {
       return [];
     }
   }
-  async getBranches(ownerUsername: string, repoName: string): Promise<string[]> {
+  async getBranches(ownerUsername: string, repoName: string): Promise<GitBranch[]> {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
-      const branches = await git.branch();
-      return branches.all;
+const format = '%(refname:short)|%(committerdate:iso8601)|%(authorname)';
+const result = await git.raw(['branch',`--format=${format}`])
+return result.trim().split('\n').filter(Boolean).map(l=>{
+  const [name,date,author]=l.split('|')
+  return {
+    name,
+    lastCommitDate:date,
+    lastCommitAuthor:author,
+    current:false
+  }
+})
     } catch (error) {
+      console.error('Error fetching branches:', error);
       return [];
     }
+  }
+
+  async mergeBranch(ownerUsername:string,repoName:string,sourceBranch:string,targetBranch:string):Promise<void>{
+    const repoPath= this.getRepoPath(ownerUsername,repoName)
+    const git = simpleGit(repoPath)
+    try {
+
+      //actually combines both the files and returns the tree hash
+      const mergeTreeResult = await git.raw(['merge-tree',targetBranch,sourceBranch])
+      const treeHash = mergeTreeResult.trim()
+      // If the output contains newlines, it likely contains conflict markers instead of a single hash
+      if(!treeHash||treeHash.includes('\n')){
+        throw new Error('Merge conflict detected. Please resolve conflicts manually.');
+      }
+      //convert the names to hashes to understand by the git
+      const targetHash =(await git.raw(['rev-parse',targetBranch])).trim()
+      const sourceHash=(await git.raw(['rev-parse',sourceBranch])).trim()
+      const commitMessage =`Merge branch '${sourceBranch}' into '${targetBranch}'`
+       const commitHash = (await git.raw([
+        'commit-tree',
+        treeHash,
+        '-p',targetHash,
+        '-p',sourceHash,
+        '-m',commitMessage
+
+       ])).trim()
+
+      //Update the target branch reference to point to the new merge commit
+      await git.raw(['update-ref',`refs/heads/${targetBranch}`, commitHash])
+
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`Merge failed for ${ownerUsername}/${repoName}:`, message);
+      throw new Error(`Merge failed: ${message}`, { cause: error });
+    }
+  }
+
+  async deleteBranch(ownerUsername:string,repoName:string,branchName:string):Promise<void>{
+    const repoPath = this.getRepoPath(ownerUsername,repoName)
+    const git = simpleGit(repoPath)
+
+    try {
+      //bare repo  the safest way to delete a branch is to delete its ref
+    await git.raw(['update-ref','-d',`refs/heads/${branchName}`])
+    } catch (error: unknown) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`Failed to delete branch ${branchName}:`, message);
+      throw new Error(`Failed to delete branch: ${message}`, { cause: error });
+    }
+
+
+
   }
 }

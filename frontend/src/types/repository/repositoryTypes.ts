@@ -44,6 +44,15 @@ export interface GetCommitsParams {
   branch?: string;
   limit?: number;
 }
+export interface GitBranch {
+  name: string;
+  lastCommitDate?: string;
+  lastCommitAuthor?: string;
+  current?: boolean;
+  status?: 'success' | 'failure' | 'pending' | 'none';
+  check?: string;
+  checks?: string;
+}
 
 export interface GitFileEntry {
   name: string;
@@ -65,7 +74,7 @@ export interface RepositoryState {
   files: GitFileEntry[];
   fileContent: string;
   commits: GitCommit[];
-  branches: string[];
+  branches: GitBranch[];
   isLoading: boolean;
   isFilesLoading: boolean;
   isCommitsLoading: boolean;

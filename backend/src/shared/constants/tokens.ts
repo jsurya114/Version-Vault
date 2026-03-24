@@ -62,4 +62,8 @@ export const TOKENS = {
   IUnfollowUseCase: Symbol.for('IUnfollowUseCase'),
   IGetFollowersUseCase: Symbol.for('IGetFollowersUseCase'),
   IGetFollowingUseCase: Symbol.for('IGetFollowingUseCase'),
+
+  //branch
+  ICreateBranchUseCase: Symbol.for('ICreateBranchUseCase'),
+  IDeleteBranchUseCase:Symbol.for('IDeleteBranchUseCase')
 } as const;

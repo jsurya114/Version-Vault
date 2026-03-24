@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { repositoryInitialState } from '../../types/repository/repositoryTypes';
+import { GitBranch, repositoryInitialState } from '../../types/repository/repositoryTypes';
 import {
   createRepositoryThunk,
   listRepositoryThunk,
@@ -9,6 +9,8 @@ import {
   getFileContentThunk,
   getFilesThunk,
   getBranchesThunk,
+  createBranchThunk,
+  deleteBranchThunk
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -77,7 +79,7 @@ const repositorySlice = createSlice({
       .addCase(deleteRepositoryThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.repositories = state.repositories.filter(
-          (r) => r.id !== (action.meta.arg as any).reponame,
+          (r) => r.id !== (action.meta.arg as { reponame: string }).reponame,
         );
       })
       .addCase(deleteRepositoryThunk.rejected, (state, action) => {
@@ -116,7 +118,7 @@ const repositorySlice = createSlice({
       })
       .addCase(getCommitsThunk.fulfilled, (state, action) => {
         state.isCommitsLoading = false;
-        state.commits = action.payload as any;
+        state.commits = action.payload;
       })
       .addCase(getCommitsThunk.rejected, (state) => {
         state.isCommitsLoading = false;
@@ -125,7 +127,53 @@ const repositorySlice = createSlice({
       //branches
       .addCase(getBranchesThunk.fulfilled, (state, action) => {
         state.branches = action.payload;
-      });
+      })
+
+      //create branch
+      .addCase(createBranchThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(createBranchThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        //get new Branchname
+        const newBranchName = action.meta.arg.newBranch
+        const author = action.payload.author
+     const newBranchObj:GitBranch={
+      name:newBranchName,
+      lastCommitDate:new Date().toISOString(),
+      lastCommitAuthor:author,
+      current:false
+     }
+        if(state.branches){
+          state.branches.push(newBranchObj)
+        }else{
+          state.branches = [newBranchObj]
+        }
+      })
+      .addCase(createBranchThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+        .addCase(deleteBranchThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteBranchThunk.fulfilled,(state,action)=>{
+        state.isLoading=false
+        const deletedBranchName = action.meta.arg.branchName
+
+         // Filter out the deleted branch from the state
+        if (state.branches) {
+          state.branches = state.branches.filter((b) => b.name !== deletedBranchName);
+        }
+
+      })
+      .addCase(deleteBranchThunk.rejected,(state,action)=>{
+        state.isLoading=false
+        state.error=action.payload as string
+      })
   },
 });
 

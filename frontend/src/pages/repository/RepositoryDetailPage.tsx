@@ -29,6 +29,7 @@ import {
   getCommitsThunk,
   getFileContentThunk,
   getBranchesThunk,
+  deleteBranchThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
@@ -46,9 +47,11 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import DeleteConfirmModal from '../../types/common/Layout/DeleteConfirmationModal';
 
+
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
 import PRListContent from '../../types/common/pullrequest/PRListContent';
-type Tab = 'code' | 'commits' | 'pulls' | 'issues';
+type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues';
+
 
 interface TreeNode {
   name: string;
@@ -81,6 +84,9 @@ const RepositoryDetailPage = () => {
   const [readmeContent, setReadmeContent] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const [showBranchDeleteModal, setShowBranchDeleteModal] = useState(false);
+  const [isDeletingBranch, setIsDeletingBranch] = useState(false);
+
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
@@ -105,8 +111,8 @@ const RepositoryDetailPage = () => {
           filePath: readme.path,
           branch,
         }),
-      ).then((r: any) => {
-        if (r.payload) setReadmeContent(r.payload);
+      ).then((r: { payload?: unknown }) => {
+        if (typeof r.payload === 'string') setReadmeContent(r.payload);
       });
     } else {
       setReadmeContent('');
@@ -140,6 +146,8 @@ const RepositoryDetailPage = () => {
     }
   };
 
+
+
   const handleBack = () => {
     const parts = currentPath.split('/');
     parts.pop();
@@ -159,6 +167,27 @@ const RepositoryDetailPage = () => {
     await dispatch(deleteRepositoryThunk({ username: username!, reponame: reponame! }));
     setShowDeleteModal(false);
     navigate(ROUTES.REPO_LIST);
+  };
+
+  const onConfirmDeleteBranch = async () => {
+    setIsDeletingBranch(true);
+    try {
+      const result = await dispatch(
+        deleteBranchThunk({
+          username: username!,
+          reponame: reponame!,
+          branchName: branch,
+        }),
+      );
+
+      if (deleteBranchThunk.fulfilled.match(result)) {
+        setShowBranchDeleteModal(false);
+        setBranch('main');
+        dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
+      }
+    } finally {
+      setIsDeletingBranch(false);
+    }
   };
 
   const formatDate = (dateStr: string) =>
@@ -252,6 +281,19 @@ const RepositoryDetailPage = () => {
             <GitCommit className="w-4 h-4" />
             Commits {commits.length > 0 && `(${commits.length})`}
           </button>
+          {/* Branches Tab */}
+<button
+  onClick={() => setActiveTab('branches')}
+  className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+    activeTab === 'branches'
+      ? 'text-white border-blue-500'
+      : 'text-gray-500 border-transparent hover:text-gray-300'
+  }`}
+>
+  <GitBranch className="w-4 h-4" />
+  Branches {branches.length > 0 && `(${branches.length})`}
+</button>
+
           <button
             onClick={() => setActiveTab('pulls')}
             className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
@@ -272,10 +314,12 @@ const RepositoryDetailPage = () => {
       {activeTab === 'code' && (
         <div className="flex flex-1">
           {/* Left Sidebar — File Tree */}
-          <div className="w-72 shrink-0 border-r border-gray-800 flex flex-col min-h-full">
-            <div className="px-3 py-2.5 border-b border-gray-800 flex items-center gap-2">
-              <Folder className="w-4 h-4 text-gray-400" />
-              <span className="text-white text-xs font-semibold">Files</span>
+          <div className="w-64 border-r border-gray-800 flex flex-col shrink-0">
+            <div className="px-3 py-2.5 border-b border-gray-800 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Folder className="w-4 h-4 text-gray-400" />
+                <span className="text-white text-xs font-semibold">Files</span>
+              </div>
             </div>
 
             {/* Branch selector */}
@@ -294,14 +338,23 @@ const RepositoryDetailPage = () => {
                 >
                   {branches.length > 0 ? (
                     branches.map((b) => (
-                      <option key={b} value={b}>
-                        {b}
+                      <option key={b.name} value={b.name}>
+                        {b.name}
                       </option>
                     ))
                   ) : (
                     <option value="main">main</option>
                   )}
                 </select>
+                {branch !== 'main' && isOwner && (
+                  <button
+                    onClick={() => setShowBranchDeleteModal(true)}
+                    className="p-1 text-gray-500 hover:text-red-400 transition"
+                    title="Delete branch"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                )}
               </div>
             </div>
 
@@ -748,7 +801,7 @@ const RepositoryDetailPage = () => {
 
       {/* COMMITS TAB */}
       {activeTab === 'commits' && (
-        <div className="max-w-4xl mx-auto px-6 py-6 w-full">
+        <div className="max-w-4xl mx-auto px-6 py-6 w-full flex-1">
           <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
             {isCommitsLoading ? (
               <div className="flex items-center justify-center py-10">
@@ -782,6 +835,22 @@ const RepositoryDetailPage = () => {
           </div>
         </div>
       )}
+      {activeTab === 'branches' && (
+  <div className="max-w-4xl mx-auto px-6 py-6 w-full text-center flex-1">
+     <div className="bg-gray-900 border border-gray-800 rounded-xl p-10">
+        <GitBranch className="w-12 h-12 text-gray-700 mx-auto mb-4" />
+        <h3 className="text-xl font-bold mb-2">Branches</h3>
+        <p className="text-gray-500 mb-6">Manage your repository branches here.</p>
+        <Link 
+          to={`/${username}/${reponame}/branches`}
+          className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition inline-block"
+        >
+          View all branches
+        </Link>
+     </div>
+  </div>
+)}
+
 
       {activeTab === 'pulls' && <PRListContent username={username!} reponame={reponame!} />}
 
@@ -793,8 +862,21 @@ const RepositoryDetailPage = () => {
         isOpen={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
         onConfirm={handleDelete}
-        repoPath={`${username}/${reponame}`}
+        itemPath={`${username}/${reponame}`}
+        itemName="repository"
+        isLoading={isLoading}
       />
+
+      <DeleteConfirmModal
+        isOpen={showBranchDeleteModal}
+        onClose={() => setShowBranchDeleteModal(false)}
+        onConfirm={onConfirmDeleteBranch}
+        itemPath={branch}
+        itemName="branch"
+        isLoading={isDeletingBranch}
+      />
+
+   
     </div>
   );
 };

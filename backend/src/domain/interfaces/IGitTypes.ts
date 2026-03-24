@@ -14,5 +14,7 @@ export interface GitCommit {
 
 export interface GitBranch {
   name: string;
+  lastCommitDate?: string;
+  lastCommitAuthor?: string;
   current: boolean;
 }

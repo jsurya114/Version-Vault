@@ -42,6 +42,9 @@ export const ROUTES = {
   ISSUE_CREATE: '/:username/:reponame/issues/new',
   ISSUE_DETAIL: '/:username/:reponame/issues/:id',
 
+  //branch
+  BRANCH_LIST:'/:username/:reponame/branches',
+
   // Error
   NOT_FOUND: '*',
 } as const;
