@@ -65,6 +65,13 @@ import { CloseIssueUseCase } from './application/issues/CloseIssueUseCase';
 import { MongoPullRequestRepository } from './infrastructure/database/mongoose/repositories/MongoPullRequestRepository';
 import { MongoIssuesRepository } from './infrastructure/database/mongoose/repositories/MongoIssuesRepository';
 
+//follow usecase
+import { MongoFollowRepository } from './infrastructure/database/mongoose/repositories/MongoFollowRepository';
+import { FollowUseCase } from './application/use-cases/follow/FollowUseCase';
+import { UnfollowUseCase } from './application/use-cases/follow/UnFollowUseCase';
+import { GetFollowersUseCase } from './application/use-cases/follow/GetFollowerUseCase';
+import { GetFollowingUseCase } from './application/use-cases/follow/GetFollowingUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -126,5 +133,12 @@ container.register(TOKENS.ICreateIssueUseCase, { useClass: CreateIssueUseCase })
 container.register(TOKENS.IGetIssueUseCase, { useClass: GetIssueUseCase });
 container.register(TOKENS.IListIssuesUseCase, { useClass: ListIssueUseCase });
 container.register(TOKENS.ICloseIssueUseCase, { useClass: CloseIssueUseCase });
+
+//follow useCase
+container.register(TOKENS.IFollowRepository, { useClass: MongoFollowRepository });
+container.register(TOKENS.IFollowUseCase, { useClass: FollowUseCase });
+container.register(TOKENS.IUnfollowUseCase, { useClass: UnfollowUseCase });
+container.register(TOKENS.IGetFollowersUseCase, { useClass: GetFollowersUseCase });
+container.register(TOKENS.IGetFollowingUseCase, { useClass: GetFollowingUseCase });
 
 export { container };

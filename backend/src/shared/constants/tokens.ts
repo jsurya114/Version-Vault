@@ -55,4 +55,11 @@ export const TOKENS = {
   IGetIssueUseCase: Symbol.for('IGetIssueUseCase'),
   IListIssuesUseCase: Symbol.for('IListIssuesUseCase'),
   ICloseIssueUseCase: Symbol.for('ICloseIssueUseCase'),
+
+  // Follow
+  IFollowRepository: Symbol.for('IFollowRepository'),
+  IFollowUseCase: Symbol.for('IFollowUseCase'),
+  IUnfollowUseCase: Symbol.for('IUnfollowUseCase'),
+  IGetFollowersUseCase: Symbol.for('IGetFollowersUseCase'),
+  IGetFollowingUseCase: Symbol.for('IGetFollowingUseCase'),
 } as const;
