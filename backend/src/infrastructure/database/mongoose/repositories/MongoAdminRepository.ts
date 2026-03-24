@@ -1,14 +1,14 @@
-import { IUser } from 'src/domain/interfaces/IUser';
+import { IUser } from '../../../../domain/interfaces/IUser';
 import { UserModel } from '../models/UserModel';
-import { UserMapper } from 'src/application/mappers/UserMapper';
+import { UserMapper } from '../../../../application/mappers/UserMapper';
 import { injectable } from 'tsyringe';
-import { IAdminRepository } from 'src/domain/interfaces/repositories/IAdminRepository';
+import { IAdminRepository } from '../../../../domain/interfaces/repositories/IAdminRepository';
 import { MongoBaseRepository } from './MongoBaseRepository';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { UserRole } from 'src/domain/enums';
+} from '../../../../application/dtos/reusable/PaginationDTO';
+import { UserRole } from '../../../../domain/enums';
 
 @injectable()
 export class MongoAdminRepository extends MongoBaseRepository<IUser> implements IAdminRepository {

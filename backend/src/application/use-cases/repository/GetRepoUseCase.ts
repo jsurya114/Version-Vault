@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 import { IGetRepoUseCase } from '../interfaces/repository/IGetRepoUseCase';
-import { IRepoRepository } from 'src/domain/interfaces/repositories/IRepoRepository';
-import { RepoResponseDTO } from 'src/application/dtos/repository/RepoResponseDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { RepositoryMapper } from 'src/application/mappers/RepositoryMapper';
+import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
+import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 
 @injectable()
 export class GetRepoUseCase implements IGetRepoUseCase {

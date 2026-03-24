@@ -1,14 +1,14 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
-import { ICreatePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/ICreatePRUseCase';
-import { IGetPRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IGetPRUseCase';
-import { IListPRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IListPRUseCase';
-import { IClosePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IClosePRUseCase';
-import { IMergePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IMergePRUseCase';
-import { IGetRepoUseCase } from 'src/application/use-cases/interfaces/repository/IGetRepoUseCase';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
-import { PaginationQueryDTO } from 'src/application/dtos/reusable/PaginationDTO';
+import { ICreatePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/ICreatePRUseCase';
+import { IGetPRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IGetPRUseCase';
+import { IListPRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IListPRUseCase';
+import { IClosePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IClosePRUseCase';
+import { IMergePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IMergePRUseCase';
+import { IGetRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IGetRepoUseCase';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class PRController {

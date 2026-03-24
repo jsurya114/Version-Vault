@@ -1,4 +1,4 @@
-import { IPullRequest } from 'src/domain/interfaces/IPullRequest';
+import { IPullRequest } from '../../domain/interfaces/IPullRequest';
 import { PullRequestResponseDTO } from '../dtos/repository/PullRequestDTO';
 
 export class PullRequestMapper {

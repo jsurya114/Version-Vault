@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 import { IBlockUserUseCase } from '../interfaces/admin/IBlockUserUseCase';
-import { IAdminRepository } from 'src/domain/interfaces/repositories/IAdminRepository';
-import { UserResponseDTO } from 'src/application/dtos/admin/UserResponseDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
+import { IAdminRepository } from '../../../domain/interfaces/repositories/IAdminRepository';
+import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
 
 @injectable()
 export class BlockUserUseCase implements IBlockUserUseCase {

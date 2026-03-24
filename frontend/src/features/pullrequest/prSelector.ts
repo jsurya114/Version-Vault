@@ -1,4 +1,4 @@
-import { RootState } from 'src/app/store';
+import { RootState } from '../../app/store';
 
 export const selectPRs = (state: RootState) => state.pullrequest.prs;
 export const selectSelectedPR = (state: RootState) => state.pullrequest.selectedPR;

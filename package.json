@@ -5,11 +5,14 @@
   "license": "MIT",
   "scripts": {
     "prepare": "husky",
+    "lint": "eslint .",
+    "lint:fix": "eslint . --fix",
     "test": "echo \"No tests yet\" && exit 0"
   },
   "private": true,
   "lint-staged": {
     "*.{ts,tsx}": [
+      "eslint --fix",
       "prettier --write --cache"
     ],
     "*.{js,json,md}": [
@@ -45,6 +48,7 @@
     "eslint": "^10.0.2",
     "eslint-config-prettier": "^10.1.8",
     "eslint-plugin-prettier": "^5.5.5",
+    "globals": "^17.4.0",
     "husky": "^9.1.7",
     "jiti": "2.4.2",
     "jsdom": "~22.1.0",

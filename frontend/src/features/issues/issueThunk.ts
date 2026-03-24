@@ -1,8 +1,8 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { issueService } from 'src/services/issues.service';
-import { IssueResponseDTO, CreateIssueDTO } from 'src/types/issues/issues.types';
-import { PaginatedResponse, PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
-import { IssueIdParams, IssueParams, ListIssuesParams } from 'src/types/issues/issues.types';
+import { issueService } from '../../services/issues.service';
+import { IssueResponseDTO, CreateIssueDTO } from '../../types/issues/issues.types';
+import { PaginatedResponse, PaginationQuery } from '../../types/common/Pagination/paginationTypes';
+import { IssueIdParams, IssueParams, ListIssuesParams } from '../../types/issues/issues.types';
 
 export const createIssueThunk = createAsyncThunk<
   IssueResponseDTO,

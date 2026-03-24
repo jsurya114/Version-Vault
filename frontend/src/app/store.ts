@@ -4,6 +4,7 @@ import adminUserReducer from '../features/admin/getUsersSlice';
 import repositoryReducer from '../features/repository/repositorySlice';
 import pullRequestReducer from '../features/pullrequest/prSlice';
 import issueReducer from '../features/issues/issueSlice';
+import followReducer from '../features/follow/followSlice'
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     repository: repositoryReducer,
     pullrequest: pullRequestReducer,
     issue: issueReducer,
+    follow:followReducer
   },
 });
 

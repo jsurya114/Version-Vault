@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { forgotPasswordThunk } from 'src/features/auth/authThunks';
-import { clearError } from 'src/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { forgotPasswordThunk } from '../../../features/auth/authThunks';
+import { clearError } from '../../../features/auth/authSlice';
 import {
   selectAuthError,
   selectAuthLoading,
   selectAuthSuccessMessage,
-} from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
+} from '../../../features/auth/authSelectors';
+import { ROUTES } from '../../../constants/routes';
 
 const ForgotPasswordPage = () => {
   const dispatch = useAppDispatch();

@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ROUTES } from 'src/constants/routes';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { getAllUsersThunk } from 'src/features/admin/getUsersThunk';
+import { ROUTES } from '../../constants/routes';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getAllUsersThunk } from '../../features/admin/getUsersThunk';
 import {
   selectAdminUsers,
   selectAdminLoading,
   selectAdminError,
   selectAdminMeta,
-} from 'src/features/admin/adminSelectors';
-import { UserResponseDTO } from 'src/types/admin/adminTypes';
+} from '../../features/admin/adminSelectors';
+import { UserResponseDTO } from '../../types/admin/adminTypes';
 import DataTable from '../../types/common/Table/DataTable';
 import Pagination from '../../types/common/Pagination/Pagination';
 import TableFilters from '../../types/common/Filters/TableFilters';

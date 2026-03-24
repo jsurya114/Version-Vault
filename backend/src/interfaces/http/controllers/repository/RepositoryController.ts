@@ -1,20 +1,20 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
-import { IGetRepoUseCase } from 'src/application/use-cases/interfaces/repository/IGetRepoUseCase';
-import { ICreateRepoUseCase } from 'src/application/use-cases/interfaces/repository/ICreateRepoUseCase';
-import { IListRepoUseCase } from 'src/application/use-cases/interfaces/repository/IListRepoUseCase';
-import { IDeleteRepoUsecase } from 'src/application/use-cases/interfaces/repository/IDeleteRepoUseCase';
-import { IGetCommitsUseCase } from 'src/application/use-cases/interfaces/repository/IGetCommitsUseCase';
-import { IGetFileContentUseCase } from 'src/application/use-cases/interfaces/repository/IGetFileContentUseCase';
-import { IGetFilesUseCase } from 'src/application/use-cases/interfaces/repository/IGetFilesUseCase';
-import { IGetBranchesUseCase } from 'src/application/use-cases/interfaces/repository/IGetBranchesUseCase';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { IGetRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IGetRepoUseCase';
+import { ICreateRepoUseCase } from '../../../../application/use-cases/interfaces/repository/ICreateRepoUseCase';
+import { IListRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IListRepoUseCase';
+import { IDeleteRepoUsecase } from '../../../../application/use-cases/interfaces/repository/IDeleteRepoUseCase';
+import { IGetCommitsUseCase } from '../../../../application/use-cases/interfaces/repository/IGetCommitsUseCase';
+import { IGetFileContentUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFileContentUseCase';
+import { IGetFilesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFilesUseCase';
+import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetBranchesUseCase';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
+} from '../../../../application/dtos/reusable/PaginationDTO';
+import { TOKENS } from '../../../../shared/constants/tokens';
 
 @injectable()
 export class RepositoryController {

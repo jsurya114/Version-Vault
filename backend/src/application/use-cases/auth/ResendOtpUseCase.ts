@@ -1,11 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 import { IResendOtpUseCase } from '../interfaces/IResendOtpUseCase';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { IOtpService } from 'src/domain/interfaces/services/IOtpService';
-import { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { ValidationError } from 'src/domain/errors/ValidationError';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { IOtpService } from '../../../domain/interfaces/services/IOtpService';
+import { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { ValidationError } from '../../../domain/errors/ValidationError';
 @injectable()
 export class ResendOtpUseCase implements IResendOtpUseCase {
   constructor(

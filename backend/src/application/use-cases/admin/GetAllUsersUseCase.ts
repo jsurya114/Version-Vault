@@ -1,13 +1,13 @@
 import { inject, injectable } from 'tsyringe';
-import { IAdminRepository } from 'src/domain/interfaces/repositories/IAdminRepository';
+import { IAdminRepository } from '../../../domain/interfaces/repositories/IAdminRepository';
 import { IGetAllUsersUseCase } from '../interfaces/admin/IGetAllUsersUseCase';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { UserResponseDTO } from 'src/application/dtos/admin/UserResponseDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { UserRole } from 'src/domain/enums';
+} from '../../../application/dtos/reusable/PaginationDTO';
+import { UserRole } from '../../../domain/enums';
 
 @injectable()
 export class GetAllUsersUseCase implements IGetAllUsersUseCase {

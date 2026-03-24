@@ -1,7 +1,7 @@
 import axiosInstance from './axiosInstance';
-import { REPO_ENDPOINTS } from 'src/constants/api';
-import { CreateRepositoryDTO } from 'src/types/repository/repositoryTypes';
-import { PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
+import { REPO_ENDPOINTS } from '../constants/api';
+import { CreateRepositoryDTO } from '../types/repository/repositoryTypes';
+import { PaginationQuery } from '../types/common/Pagination/paginationTypes';
 
 export const repositoryService = {
   createRepository: async (dto: CreateRepositoryDTO) => {

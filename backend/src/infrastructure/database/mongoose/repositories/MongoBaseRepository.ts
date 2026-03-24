@@ -2,8 +2,8 @@ import { Model, Document } from 'mongoose';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { IBaseRepository } from 'src/domain/interfaces/repositories/IBaseRepository';
+} from '../../../../application/dtos/reusable/PaginationDTO';
+import { IBaseRepository } from '../../../../domain/interfaces/repositories/IBaseRepository';
 export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
   constructor(protected readonly model: Model<any>) {}
 

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { GitPullRequest, GitMerge, X, Plus, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { listPRThunk } from 'src/features/pullrequest/prThunk';
-import { selectPRs, selectPRLoading, selectPRMeta } from 'src/features/pullrequest/prSelector';
-import { PRStatus } from 'src/types/pullrequest/pullrequest.types';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { listPRThunk } from '../../../features/pullrequest/prThunk';
+import { selectPRs, selectPRLoading, selectPRMeta } from '../../../features/pullrequest/prSelector';
+import { PRStatus } from '../../../types/pullrequest/pullrequest.types';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',

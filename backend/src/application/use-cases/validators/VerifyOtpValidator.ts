@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
-import type { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import type { IOtpService } from 'src/domain/interfaces/services/IOtpService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { ValidationError } from 'src/domain/errors/ValidationError';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { VerifyOtpDTO } from 'src/application/dtos/auth/VerifyOtpDTO';
+import type { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import type { IOtpService } from '../../../domain/interfaces/services/IOtpService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { ValidationError } from '../../../domain/errors/ValidationError';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { VerifyOtpDTO } from '../../../application/dtos/auth/VerifyOtpDTO';
 
 @injectable()
 export class VerifyOtpValidator {

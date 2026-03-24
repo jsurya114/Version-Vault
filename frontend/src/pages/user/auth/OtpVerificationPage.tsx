@@ -1,16 +1,16 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { verifyOtpThunk } from 'src/features/auth/authThunks';
-import { clearError, clearSuccessMessage } from 'src/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { verifyOtpThunk } from '../../../features/auth/authThunks';
+import { clearError, clearSuccessMessage } from '../../../features/auth/authSlice';
 
 import {
   selectAuthLoading,
   selectAuthSuccessMessage,
   selectAuthError,
   selectRegisteredEmail,
-} from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
+} from '../../../features/auth/authSelectors';
+import { ROUTES } from '../../../constants/routes';
 
 const OtpVerificationPage = () => {
   const dispatch = useAppDispatch();

@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { GitPullRequest, GitMerge, X, Clock, GitBranch, MessageSquare } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { getPRThunk, mergePRThunk, closePRThunk } from 'src/features/pullrequest/prThunk';
-import { selectSelectedPR, selectPRLoading } from 'src/features/pullrequest/prSelector';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
-import { PRStatus } from 'src/types/pullrequest/pullrequest.types';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getPRThunk, mergePRThunk, closePRThunk } from '../../features/pullrequest/prThunk';
+import { selectSelectedPR, selectPRLoading } from '../../features/pullrequest/prSelector';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { PRStatus } from '../../types/pullrequest/pullrequest.types';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',

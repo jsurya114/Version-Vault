@@ -12,17 +12,17 @@ import {
   BookOpen,
   Search,
 } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { listRepositoryThunk } from 'src/features/repository/repositoryThunks';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { selectAuthUser } from '../../../features/auth/authSelectors';
+import { listRepositoryThunk } from '../../../features/repository/repositoryThunks';
 import {
   selectRepositories,
   selectRepositoryLoading,
   selectRepositoryMeta,
-} from 'src/features/repository/repositorySelectors';
-import { ROUTES } from 'src/constants/routes';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
+} from '../../../features/repository/repositorySelectors';
+import { ROUTES } from '../../../constants/routes';
+import AppHeader from '../../../types/common/Layout/AppHeader';
+import AppFooter from '../../../types/common/Layout/AppFooter';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();

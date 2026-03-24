@@ -1,6 +1,6 @@
-import { IPullRequest } from 'src/domain/interfaces/IPullRequest';
-import { IPullRequestRepository } from 'src/domain/interfaces/repositories/IPullRequestRepository';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
+import { IPullRequest } from '../../../domain/interfaces/IPullRequest';
+import { IPullRequestRepository } from '../../../domain/interfaces/repositories/IPullRequestRepository';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
 export class PRValidator {
   static async findOrFail(prRepository: IPullRequestRepository, id: string): Promise<IPullRequest> {
     const pr = await prRepository.findById(id);

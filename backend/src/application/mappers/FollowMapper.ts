@@ -1,5 +1,5 @@
 import { FollowResponseDTO } from '../dtos/repository/FollowDTO';
-import { IFollow } from 'src/domain/interfaces/IFollow';
+import { IFollow } from '../../domain/interfaces/IFollow';
 
 export class FollowMapper {
   static toIFollow(doc: any): IFollow {

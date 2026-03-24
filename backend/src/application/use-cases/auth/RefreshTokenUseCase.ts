@@ -1,9 +1,9 @@
 import { inject, injectable } from 'tsyringe';
-import { ITokenService } from 'src/domain/interfaces/services/ITokenService';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { TOKENS } from '../../../shared/constants/tokens';
 import { IRefreshTokenUseCase } from '../interfaces/IRefreshTokenUseCase';
-import { UnauthorizedError } from 'src/domain/errors/UnauthorizedError';
+import { UnauthorizedError } from '../../../domain/errors/UnauthorizedError';
 
 @injectable()
 export class RefreshTokenUseCase implements IRefreshTokenUseCase {

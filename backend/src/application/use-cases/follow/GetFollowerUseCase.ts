@@ -1,8 +1,8 @@
 import { injectable, inject } from 'tsyringe';
 import { IGetFollowersUseCase } from '../interfaces/follow/IGetFollowersUseCase';
-import { IFollowRepository } from 'src/domain/interfaces/repositories/IFollowRepository';
-import { IFollow } from 'src/domain/interfaces/IFollow';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { IFollowRepository } from '../../../domain/interfaces/repositories/IFollowRepository';
+import { IFollow } from '../../../domain/interfaces/IFollow';
+import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()
 export class GetFollowersUseCase implements IGetFollowersUseCase {

@@ -1,5 +1,5 @@
 import { IssuesResponseDTO } from '../dtos/repository/IssuesDTO';
-import { IIssue } from 'src/domain/interfaces/IIssues';
+import { IIssue } from '../../domain/interfaces/IIssues';
 
 export class IssueMapper {
   static toIIssues(doc: any): IIssue {

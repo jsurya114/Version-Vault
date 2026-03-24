@@ -1,7 +1,7 @@
 import { Request, Response } from 'express';
 import { spawn } from 'child_process';
 import * as path from 'path';
-import { envConfig } from 'src/shared/config/env.config';
+import { envConfig } from '../../../shared/config/env.config';
 
 export const handleGitRequest = (req: Request, res: Response): void => {
   const { username, reponame } = req.params;

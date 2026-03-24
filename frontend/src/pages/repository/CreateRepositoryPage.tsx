@@ -1,15 +1,15 @@
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { createRepositoryThunk } from 'src/features/repository/repositoryThunks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { createRepositoryThunk } from '../../features/repository/repositoryThunks';
 import {
   selectRepositoryLoading,
   selectRepositoryError,
-} from 'src/features/repository/repositorySelectors';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
+} from '../../features/repository/repositorySelectors';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import { ROUTES } from '../../constants/routes';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
 
 const CreateRepositoryPage = () => {
   const dispatch = useAppDispatch();

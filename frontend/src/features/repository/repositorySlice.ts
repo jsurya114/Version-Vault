@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { repositoryInitialState } from 'src/types/repository/repositoryTypes';
+import { repositoryInitialState } from '../../types/repository/repositoryTypes';
 import {
   createRepositoryThunk,
   listRepositoryThunk,

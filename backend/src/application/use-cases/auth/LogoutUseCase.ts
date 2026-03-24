@@ -1,7 +1,7 @@
 import { inject, injectable } from 'tsyringe';
 import { IlogoutUseCase } from '../interfaces/ILogoutUseCase';
-import { ITokenService } from 'src/domain/interfaces/services/ITokenService';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
+import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()
 export class LogoutUseCase implements IlogoutUseCase {

@@ -1,14 +1,14 @@
 import { injectable } from 'tsyringe';
-import { IFollow } from 'src/domain/interfaces/IFollow';
-import { IFollowRepository } from 'src/domain/interfaces/repositories/IFollowRepository';
-import { FollowMapper } from 'src/application/mappers/FollowMapper';
+import { IFollow } from '../../../../domain/interfaces/IFollow';
+import { IFollowRepository } from '../../../../domain/interfaces/repositories/IFollowRepository';
+import { FollowMapper } from '../../../../application/mappers/FollowMapper';
 import { FollowModel } from '../models/FollowModel';
 import { MongoBaseRepository } from './MongoBaseRepository';
 
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class MongoFollowRepository

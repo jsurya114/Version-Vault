@@ -2,7 +2,7 @@ import { IRepository } from '../IRepository';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../application/dtos/reusable/PaginationDTO';
 import { IBaseRepository } from './IBaseRepository';
 
 export interface IRepoRepository extends IBaseRepository<IRepository> {

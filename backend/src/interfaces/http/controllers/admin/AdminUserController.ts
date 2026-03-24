@@ -1,12 +1,12 @@
 import { Request, Response, NextFunction } from 'express';
 import { injectable, inject } from 'tsyringe';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { IGetAllUsersUseCase } from 'src/application/use-cases/interfaces/admin/IGetAllUsersUseCase';
-import { IGetUserByIdUseCase } from 'src/application/use-cases/interfaces/admin/IGetUserByIdUseCase';
-import { IBlockUserUseCase } from 'src/application/use-cases/interfaces/admin/IBlockUserUseCase';
-import { IUnblockUserUseCase } from 'src/application/use-cases/interfaces/admin/IUnblockUserUseCase';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
-import { PaginationQueryDTO } from 'src/application/dtos/reusable/PaginationDTO';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import { IGetAllUsersUseCase } from '../../../../application/use-cases/interfaces/admin/IGetAllUsersUseCase';
+import { IGetUserByIdUseCase } from '../../../../application/use-cases/interfaces/admin/IGetUserByIdUseCase';
+import { IBlockUserUseCase } from '../../../../application/use-cases/interfaces/admin/IBlockUserUseCase';
+import { IUnblockUserUseCase } from '../../../../application/use-cases/interfaces/admin/IUnblockUserUseCase';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class AdminUserController {

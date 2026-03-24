@@ -7,7 +7,7 @@ import { MongoBaseRepository } from './MongoBaseRepository';
 import {
   PaginationQueryDTO,
   PaginatedResponseDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class MongoRepoRepository

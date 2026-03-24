@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { adminService } from 'src/services/admin.service';
-import { UserResponseDTO } from 'src/types/admin/adminTypes';
+import { adminService } from '../../services/admin.service';
+import { UserResponseDTO } from '../../types/admin/adminTypes';
 import { PaginationQuery, PaginatedResponse } from '../../types/common/Pagination/paginationTypes';
 
 export const getAllUsersThunk = createAsyncThunk<

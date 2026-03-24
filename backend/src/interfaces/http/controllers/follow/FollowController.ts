@@ -1,12 +1,12 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
-import { IFollowUseCase } from 'src/application/use-cases/interfaces/follow/IFollowUseCase';
-import { IUnfollowUseCase } from 'src/application/use-cases/interfaces/follow/IUnfollowUseCase';
-import { IGetFollowersUseCase } from 'src/application/use-cases/interfaces/follow/IGetFollowersUseCase';
-import { IGetFollowingUseCase } from 'src/application/use-cases/interfaces/follow/IGetFollowingUseCase';
-import { IGetUserByIdUseCase } from 'src/application/use-cases/interfaces/admin/IGetUserByIdUseCase';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { IFollowUseCase } from '../../../../application/use-cases/interfaces/follow/IFollowUseCase';
+import { IUnfollowUseCase } from '../../../../application/use-cases/interfaces/follow/IUnfollowUseCase';
+import { IGetFollowersUseCase } from '../../../../application/use-cases/interfaces/follow/IGetFollowersUseCase';
+import { IGetFollowingUseCase } from '../../../../application/use-cases/interfaces/follow/IGetFollowingUseCase';
+import { IGetUserByIdUseCase } from '../../../../application/use-cases/interfaces/admin/IGetUserByIdUseCase';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+import { TOKENS } from '../../../../shared/constants/tokens';
 
 @injectable()
 export class FollowController {

@@ -1,4 +1,4 @@
-import { GitCommit } from 'src/domain/interfaces/IGitTypes';
+import { GitCommit } from '../../../../domain/interfaces/IGitTypes';
 
 export interface IGetCommitsUseCase {
   execute(

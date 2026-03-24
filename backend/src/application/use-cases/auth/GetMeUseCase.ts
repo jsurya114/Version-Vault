@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 import { IGetMeUseCase } from '../interfaces/IGetMeUseCase';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { UserResponseDTO } from 'src/application/dtos/admin/UserResponseDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
 
 @injectable()
 export class GetMeUseCase implements IGetMeUseCase {

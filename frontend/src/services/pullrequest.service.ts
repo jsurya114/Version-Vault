@@ -1,7 +1,7 @@
 import axiosInstance from './axiosInstance';
-import { PR_ENDPOINTS } from 'src/constants/api';
-import { CreatePRDTO } from 'src/types/pullrequest/pullrequest.types';
-import { PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
+import { PR_ENDPOINTS } from '../constants/api';
+import { CreatePRDTO } from '../types/pullrequest/pullrequest.types';
+import { PaginationQuery } from '../types/common/Pagination/paginationTypes';
 
 export const prService = {
   createPR: async (username: string, reponame: string, dto: CreatePRDTO) => {

@@ -1,11 +1,11 @@
 import { injectable, inject } from 'tsyringe';
-import type { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { LoginDTO } from 'src/application/dtos/auth/LoginDTO';
+import type { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { LoginDTO } from '../../../application/dtos/auth/LoginDTO';
 
 import { LoginValidator } from '../validators/LoginValidator';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { IHashService } from 'src/domain/interfaces/services/IHashService';
-import { ITokenService, ITokenPayload } from 'src/domain/interfaces/services/ITokenService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { IHashService } from '../../../domain/interfaces/services/IHashService';
+import { ITokenService, ITokenPayload } from '../../../domain/interfaces/services/ITokenService';
 
 @injectable()
 export class LoginUseCase {

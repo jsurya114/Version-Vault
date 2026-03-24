@@ -15,7 +15,7 @@ export const ROUTES = {
   // User
   HOME: '/home',
   EXPLORE: '/explore',
-  PROFILE: '/profile/:username',
+  PROFILE: '/profile/:userId',
   SETTINGS: '/settings',
   NOTIFICATIONS: '/notifications',
   SUBSCRIPTION: '/subscription',

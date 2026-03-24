@@ -1,12 +1,12 @@
 import { injectable, inject } from 'tsyringe';
-import type { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { LoginDTO } from 'src/application/dtos/auth/LoginDTO';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { IHashService } from 'src/domain/interfaces/services/IHashService';
-import { UnauthorizedError } from 'src/domain/errors/UnauthorizedError';
-import { User } from 'src/domain/entities/User';
-import { ValidationError } from 'src/domain/errors/ValidationError';
+import type { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { LoginDTO } from '../../../application/dtos/auth/LoginDTO';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { IHashService } from '../../../domain/interfaces/services/IHashService';
+import { UnauthorizedError } from '../../../domain/errors/UnauthorizedError';
+import { User } from '../../../domain/entities/User';
+import { ValidationError } from '../../../domain/errors/ValidationError';
 
 @injectable()
 export class LoginValidator {

@@ -1,4 +1,4 @@
-import { IRepository } from 'src/domain/interfaces/IRepository';
+import { IRepository } from '../../domain/interfaces/IRepository';
 import { RepoResponseDTO } from '../dtos/repository/RepoResponseDTO';
 
 export class RepositoryMapper {

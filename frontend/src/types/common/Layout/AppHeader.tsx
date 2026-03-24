@@ -1,11 +1,11 @@
 import { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Bell, Search, LogOut } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { logoutThunk } from 'src/features/auth/authThunks';
-import { selectRepositories } from 'src/features/repository/repositorySelectors';
-import { ROUTES } from 'src/constants/routes';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { selectAuthUser } from '../../../features/auth/authSelectors';
+import { logoutThunk } from '../../../features/auth/authThunks';
+import { selectRepositories } from '../../../features/repository/repositorySelectors';
+import { ROUTES } from '../../../constants/routes';
 
 const AppHeader = () => {
   const dispatch = useAppDispatch();
@@ -106,7 +106,7 @@ const AppHeader = () => {
             </div>
             <div className="py-1">
               <Link
-                to={`/users/${user?.userId}`}
+                to={ROUTES.PROFILE.replace(':userId', user?.userId || '')}
                 className="w-full flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition"
               >
                 Your Profile

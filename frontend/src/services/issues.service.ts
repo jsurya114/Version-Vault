@@ -1,7 +1,7 @@
 import axiosInstance from './axiosInstance';
-import { ISSUE_ENDPOINTS, REPO_ENDPOINTS } from 'src/constants/api';
-import { CreateIssueDTO } from 'src/types/issues/issues.types';
-import { PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
+import { ISSUE_ENDPOINTS, REPO_ENDPOINTS } from '../constants/api';
+import { CreateIssueDTO } from '../types/issues/issues.types';
+import { PaginationQuery } from '../types/common/Pagination/paginationTypes';
 
 export const issueService = {
   createIssue: async (username: string, reponame: string, dto: CreateIssueDTO) => {

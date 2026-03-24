@@ -21,7 +21,7 @@ import {
   GitPullRequest,
   CircleDot,
 } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getRepositoryThunk,
   deleteRepositoryThunk,
@@ -29,7 +29,7 @@ import {
   getCommitsThunk,
   getFileContentThunk,
   getBranchesThunk,
-} from 'src/features/repository/repositoryThunks';
+} from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
   selectRepositoryLoading,
@@ -39,15 +39,15 @@ import {
   selectFileContent,
   selectFilesLoading,
   selectBranches,
-} from 'src/features/repository/repositorySelectors';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import DeleteConfirmModal from 'src/types/common/Layout/DeleteConfirmationModal';
+} from '../../features/repository/repositorySelectors';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import { ROUTES } from '../../constants/routes';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import DeleteConfirmModal from '../../types/common/Layout/DeleteConfirmationModal';
 
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
-import PRListContent from 'src/types/common/pullrequest/PRListContent';
+import PRListContent from '../../types/common/pullrequest/PRListContent';
 type Tab = 'code' | 'commits' | 'pulls' | 'issues';
 
 interface TreeNode {

@@ -1,8 +1,8 @@
 import { injectable, inject } from 'tsyringe';
-import type { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
+import type { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import type { RegisterDTO } from '../../dtos/auth/RegisterDTO';
-import { ConflictError } from 'src/domain/errors/ConflictError';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { ConflictError } from '../../../domain/errors/ConflictError';
+import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()
 export class RegisterValidator {

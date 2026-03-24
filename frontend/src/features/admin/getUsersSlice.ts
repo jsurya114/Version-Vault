@@ -6,7 +6,7 @@ import {
   unBlockUserThunk,
 } from './getUsersThunk';
 
-import { AdminState, initialState } from 'src/types/admin/getusers.types';
+import { AdminState, initialState } from '../../types/admin/getusers.types';
 import { PaginationMeta } from '../../types/common/Pagination/paginationTypes';
 
 const adminUsersSlice = createSlice({

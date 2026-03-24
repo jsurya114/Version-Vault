@@ -1,8 +1,8 @@
 import nodemailer from 'nodemailer';
 import { injectable } from 'tsyringe';
-import type { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { envConfig } from 'src/shared/config/env.config';
-import { logger } from 'src/shared/logger/Logger';
+import type { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { envConfig } from '../../../shared/config/env.config';
+import { logger } from '../../../shared/logger/Logger';
 import { resolve4 } from 'node:dns/promises';
 
 @injectable()

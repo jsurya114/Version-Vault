@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { IGetCommitsUseCase } from '../interfaces/repository/IGetCommitsUseCase';
-import { GitService } from 'src/infrastructure/services/GitService';
-import { GitCommit } from 'src/domain/interfaces/IGitTypes';
+import { GitService } from '../../../infrastructure/services/GitService';
+import { GitCommit } from '../../../domain/interfaces/IGitTypes';
 
 @injectable()
 export class GetCommitUseCase implements IGetCommitsUseCase {

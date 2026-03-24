@@ -1,13 +1,13 @@
 import { injectable, inject } from 'tsyringe';
 import { ICreateRepoUseCase } from '../interfaces/repository/ICreateRepoUseCase';
-import { IRepoRepository } from 'src/domain/interfaces/repositories/IRepoRepository';
-import { RepoResponseDTO } from 'src/application/dtos/repository/RepoResponseDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { ConflictError } from 'src/domain/errors/ConflictError';
-import { RepositoryVisibility } from 'src/domain/enums';
-import { CreateRepoDTO } from 'src/application/dtos/repository/CreateRepoDTO';
-import { RepositoryMapper } from 'src/application/mappers/RepositoryMapper';
-import { GitService } from 'src/infrastructure/services/GitService';
+import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
+import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { ConflictError } from '../../../domain/errors/ConflictError';
+import { RepositoryVisibility } from '../../../domain/enums';
+import { CreateRepoDTO } from '../../../application/dtos/repository/CreateRepoDTO';
+import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
+import { GitService } from '../../../infrastructure/services/GitService';
 
 @injectable()
 export class CreateRepoUseCase implements ICreateRepoUseCase {

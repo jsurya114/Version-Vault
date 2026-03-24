@@ -1,6 +1,6 @@
-import { PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
+import { PaginationQuery } from '../types/common/Pagination/paginationTypes';
 import axiosInstance from './axiosInstance';
-import { ADMIN_ENDPOINTS } from 'src/constants/api';
+import { ADMIN_ENDPOINTS } from '../constants/api';
 
 export const adminService = {
   getAllUsers: async (query: PaginationQuery = {}) => {

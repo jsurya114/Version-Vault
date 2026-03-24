@@ -1,14 +1,14 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { loginThunk } from 'src/features/auth/authThunks';
-import { clearError } from 'src/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { loginThunk } from '../../features/auth/authThunks';
+import { clearError } from '../../features/auth/authSlice';
 import {
   selectAuthLoading,
   selectAuthUser,
   selectAuthError,
-} from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
+} from '../../features/auth/authSelectors';
+import { ROUTES } from '../../constants/routes';
 
 const AdminLoginPage = () => {
   const dispatch = useAppDispatch();

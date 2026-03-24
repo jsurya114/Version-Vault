@@ -1,26 +1,26 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   listRepositoryThunk,
   deleteRepositoryThunk,
-} from 'src/features/repository/repositoryThunks';
+} from '../../features/repository/repositoryThunks';
 import {
   selectRepositories,
   selectRepositoryLoading,
   selectRepositoryError,
   selectRepositoryMeta,
-} from 'src/features/repository/repositorySelectors';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import TableFilters from 'src/types/common/Filters/TableFilters';
-import DataTable from 'src/types/common/Table/DataTable';
-import { ROUTES } from 'src/constants/routes';
-import Pagination from 'src/types/common/Pagination/Pagination';
-import { ColumnDef } from 'src/types/common/Table/TableTypes';
-import { RepositoryResponseDTO } from 'src/types/repository/repositoryTypes';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import DeleteConfirmModal from 'src/types/common/Layout/DeleteConfirmationModal';
+} from '../../features/repository/repositorySelectors';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import TableFilters from '../../types/common/Filters/TableFilters';
+import DataTable from '../../types/common/Table/DataTable';
+import { ROUTES } from '../../constants/routes';
+import Pagination from '../../types/common/Pagination/Pagination';
+import { ColumnDef } from '../../types/common/Table/TableTypes';
+import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import DeleteConfirmModal from '../../types/common/Layout/DeleteConfirmationModal';
 
 const visibilityColors: Record<string, string> = {
   public: 'bg-green-500/10 text-green-400 border border-green-500/30',

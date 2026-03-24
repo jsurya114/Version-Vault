@@ -2,8 +2,8 @@ import * as fs from 'fs';
 import * as path from 'path';
 import simpleGit from 'simple-git';
 import { injectable } from 'tsyringe';
-import { envConfig } from 'src/shared/config/env.config';
-import { GitFileEntry, GitCommit } from 'src/domain/interfaces/IGitTypes';
+import { envConfig } from '../../shared/config/env.config';
+import { GitFileEntry, GitCommit } from '../../domain/interfaces/IGitTypes';
 
 @injectable()
 export class GitService {

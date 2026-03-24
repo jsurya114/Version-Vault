@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CircleDot } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { createIssueThunk } from 'src/features/issues/issueThunk';
-import { selectIssueLoading, selectIssueError } from 'src/features/issues/issueSelector';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
-import { IssuePriority } from 'src/types/issues/issues.types';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { createIssueThunk } from '../../features/issues/issueThunk';
+import { selectIssueLoading, selectIssueError } from '../../features/issues/issueSelector';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { IssuePriority } from '../../types/issues/issues.types';
 
 const CreateIssuePage = () => {
   const dispatch = useAppDispatch();

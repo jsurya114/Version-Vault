@@ -1,8 +1,8 @@
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { IssuesResponseDTO } from 'src/application/dtos/repository/IssuesDTO';
+} from '../../../../application/dtos/reusable/PaginationDTO';
+import { IssuesResponseDTO } from '../../../../application/dtos/repository/IssuesDTO';
 
 export interface IListIssueUseCase {
   execute(

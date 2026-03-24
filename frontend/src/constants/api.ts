@@ -33,3 +33,7 @@ export const PR_ENDPOINTS = {
 export const ISSUE_ENDPOINTS = {
   BASE: 'issues',
 };
+
+export const FOLLOW_ENDPOINTS = {
+  BASE: '/follow',
+} as const;

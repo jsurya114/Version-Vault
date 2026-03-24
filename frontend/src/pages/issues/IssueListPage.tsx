@@ -1,17 +1,17 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CircleDot, CheckCircle, Plus, Search } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { listIssuesThunk } from 'src/features/issues/issueThunk';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { listIssuesThunk } from '../../features/issues/issueThunk';
 import {
   selectIssueLoading,
   selectIssues,
   selectIssueMeta,
-} from 'src/features/issues/issueSelector';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
-import { IssuePriority } from 'src/types/issues/issues.types';
+} from '../../features/issues/issueSelector';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { IssuePriority } from '../../types/issues/issues.types';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',

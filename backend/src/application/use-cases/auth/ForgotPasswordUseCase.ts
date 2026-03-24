@@ -1,10 +1,10 @@
 import { inject, injectable } from 'tsyringe';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { IForgotPasswordUseCase } from '../interfaces/IForgotPasswordUseCase';
-import { IOtpService } from 'src/domain/interfaces/services/IOtpService';
-import { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
+import { IOtpService } from '../../../domain/interfaces/services/IOtpService';
+import { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
 
 @injectable()
 export class ForgotPasswordUseCase implements IForgotPasswordUseCase {

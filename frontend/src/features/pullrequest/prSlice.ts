@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { prInitialState } from 'src/types/pullrequest/pullrequest.types';
+import { prInitialState } from '../../types/pullrequest/pullrequest.types';
 import { createPRThunk, listPRThunk, getPRThunk, mergePRThunk, closePRThunk } from './prThunk';
 
 const prSlice = createSlice({

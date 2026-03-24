@@ -1,21 +1,21 @@
 import type { Request, Response, NextFunction } from 'express';
 import { injectable, inject } from 'tsyringe';
-import { TOKENS } from 'src/shared/constants/tokens';
-import type { IRegisterUseCase } from 'src/application/use-cases/interfaces/IRegisterUsecase';
-import type { IVerifyOtpUseCase } from 'src/application/use-cases/interfaces/IVerifyOtpUseCase';
-import type { ILoginUseCase } from 'src/application/use-cases/interfaces/ILoginUseCase';
-import type { IGoogleAuthUseCase } from 'src/application/use-cases/interfaces/IGoogleUseCase';
-import type { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
-import type { IlogoutUseCase } from 'src/application/use-cases/interfaces/ILogoutUseCase';
-import type { IRefreshTokenUseCase } from 'src/application/use-cases/interfaces/IRefreshTokenUseCase';
-import type { IGetMeUseCase } from 'src/application/use-cases/interfaces/IGetMeUseCase';
-import type { IForgotPasswordUseCase } from 'src/application/use-cases/interfaces/IForgotPasswordUseCase';
-import type { IResetPasswordUseCase } from 'src/application/use-cases/interfaces/IResetPasswordUseCase';
-import type { IResendOtpUseCase } from 'src/application/use-cases/interfaces/IResendOtpUseCase';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import type { IRegisterUseCase } from '../../../../application/use-cases/interfaces/IRegisterUsecase';
+import type { IVerifyOtpUseCase } from '../../../../application/use-cases/interfaces/IVerifyOtpUseCase';
+import type { ILoginUseCase } from '../../../../application/use-cases/interfaces/ILoginUseCase';
+import type { IGoogleAuthUseCase } from '../../../../application/use-cases/interfaces/IGoogleUseCase';
+import type { IGoogleAuthService } from '../../../../domain/interfaces/services/IGoogleAuthService';
+import type { IlogoutUseCase } from '../../../../application/use-cases/interfaces/ILogoutUseCase';
+import type { IRefreshTokenUseCase } from '../../../../application/use-cases/interfaces/IRefreshTokenUseCase';
+import type { IGetMeUseCase } from '../../../../application/use-cases/interfaces/IGetMeUseCase';
+import type { IForgotPasswordUseCase } from '../../../../application/use-cases/interfaces/IForgotPasswordUseCase';
+import type { IResetPasswordUseCase } from '../../../../application/use-cases/interfaces/IResetPasswordUseCase';
+import type { IResendOtpUseCase } from '../../../../application/use-cases/interfaces/IResendOtpUseCase';
 
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 
-import { envConfig } from 'src/shared/config/env.config';
+import { envConfig } from '../../../../shared/config/env.config';
 
 @injectable()
 export class AuthController {

@@ -1,13 +1,13 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { GitPullRequest } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { createPRThunk } from 'src/features/pullrequest/prThunk';
-import { selectPRLoading, selectPRError } from 'src/features/pullrequest/prSelector';
-import { selectBranches } from 'src/features/repository/repositorySelectors';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { createPRThunk } from '../../features/pullrequest/prThunk';
+import { selectPRLoading, selectPRError } from '../../features/pullrequest/prSelector';
+import { selectBranches } from '../../features/repository/repositorySelectors';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
 
 const CreatePRPage = () => {
   const dispatch = useAppDispatch();

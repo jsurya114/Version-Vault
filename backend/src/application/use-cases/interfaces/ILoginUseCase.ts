@@ -1,4 +1,4 @@
-import { LoginDTO } from 'src/application/dtos/auth/LoginDTO';
+import { LoginDTO } from '../../../application/dtos/auth/LoginDTO';
 
 export interface ILoginUseCase {
   execute(dto: LoginDTO): Promise<{

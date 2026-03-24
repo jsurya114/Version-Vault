@@ -1,13 +1,13 @@
 import { injectable, inject } from 'tsyringe';
 import { IListPRUseCase } from '../interfaces/pullrequest/IListPRUseCase';
-import { IPullRequestRepository } from 'src/domain/interfaces/repositories/IPullRequestRepository';
-import { PullRequestMapper } from 'src/application/mappers/PullRequestMapper';
-import { PullRequestResponseDTO } from 'src/application/dtos/repository/PullRequestDTO';
+import { IPullRequestRepository } from '../../../domain/interfaces/repositories/IPullRequestRepository';
+import { PullRequestMapper } from '../../../application/mappers/PullRequestMapper';
+import { PullRequestResponseDTO } from '../../../application/dtos/repository/PullRequestDTO';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
+} from '../../../application/dtos/reusable/PaginationDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()
 export class ListPRUseCase implements IListPRUseCase {

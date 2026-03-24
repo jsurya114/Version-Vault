@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
-import { IPullRequestRepository } from 'src/domain/interfaces/repositories/IPullRequestRepository';
+import { IPullRequestRepository } from '../../../domain/interfaces/repositories/IPullRequestRepository';
 import { IMergePRUseCase } from '../interfaces/pullrequest/IMergePRUseCase';
-import { PullRequestMapper } from 'src/application/mappers/PullRequestMapper';
-import { PullRequestResponseDTO } from 'src/application/dtos/repository/PullRequestDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
+import { PullRequestMapper } from '../../../application/mappers/PullRequestMapper';
+import { PullRequestResponseDTO } from '../../../application/dtos/repository/PullRequestDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { PRValidator } from '../validators/PRValidator';
 
 @injectable()

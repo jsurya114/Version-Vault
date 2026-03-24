@@ -1,13 +1,13 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { prService } from 'src/services/pullrequest.service';
+import { prService } from '../../services/pullrequest.service';
 import {
   PRResponseDTO,
   CreatePRDTO,
   PRParams,
   PRIdParams,
-} from 'src/types/pullrequest/pullrequest.types';
-import { PaginationQuery, PaginatedResponse } from 'src/types/common/Pagination/paginationTypes';
-import { ListPRsParams } from 'src/types/pullrequest/pullrequest.types';
+} from '../../types/pullrequest/pullrequest.types';
+import { PaginationQuery, PaginatedResponse } from '../../types/common/Pagination/paginationTypes';
+import { ListPRsParams } from '../../types/pullrequest/pullrequest.types';
 
 export const createPRThunk = createAsyncThunk<PRResponseDTO, PRParams & { dto: CreatePRDTO }>(
   'pr/create',

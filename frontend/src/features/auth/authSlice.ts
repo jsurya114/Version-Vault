@@ -1,4 +1,4 @@
-import { AuthState } from 'src/types/auth.types';
+import { AuthState } from '../../types/auth.types';
 import { createSlice } from '@reduxjs/toolkit';
 import {
   registerThunk,

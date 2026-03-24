@@ -1,13 +1,13 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
-import { IGetIssueUseCase } from 'src/application/use-cases/interfaces/issues/IGetIssueUseCase';
-import { IListIssueUseCase } from 'src/application/use-cases/interfaces/issues/IListIssueUseCase';
-import { IClosePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IClosePRUseCase';
-import { IGetRepoUseCase } from 'src/application/use-cases/interfaces/repository/IGetRepoUseCase';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
-import { PaginationQueryDTO } from 'src/application/dtos/reusable/PaginationDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { ICreateIssueUseCase } from 'src/application/use-cases/interfaces/issues/ICreateIssueUseCase';
+import { IGetIssueUseCase } from '../../../../application/use-cases/interfaces/issues/IGetIssueUseCase';
+import { IListIssueUseCase } from '../../../../application/use-cases/interfaces/issues/IListIssueUseCase';
+import { IClosePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IClosePRUseCase';
+import { IGetRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IGetRepoUseCase';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import { ICreateIssueUseCase } from '../../../../application/use-cases/interfaces/issues/ICreateIssueUseCase';
 
 @injectable()
 export class IssueController {

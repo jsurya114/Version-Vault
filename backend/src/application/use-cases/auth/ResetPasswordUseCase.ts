@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe';
 import { IResetPasswordUseCase } from '../interfaces/IResetPasswordUseCase';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { IOtpService } from 'src/domain/interfaces/services/IOtpService';
-import { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { IHashService } from 'src/domain/interfaces/services/IHashService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { ValidationError } from 'src/domain/errors/ValidationError';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { IOtpService } from '../../../domain/interfaces/services/IOtpService';
+import { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { IHashService } from '../../../domain/interfaces/services/IHashService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { ValidationError } from '../../../domain/errors/ValidationError';
 
 @injectable()
 export class ResetPasswordUseCase implements IResetPasswordUseCase {

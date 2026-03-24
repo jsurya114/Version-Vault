@@ -1,14 +1,14 @@
 import { injectable, inject } from 'tsyringe';
 import { IListRepoUseCase } from '../interfaces/repository/IListRepoUseCase';
-import { IRepoRepository } from 'src/domain/interfaces/repositories/IRepoRepository';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { RepositoryMapper } from 'src/application/mappers/RepositoryMapper';
-import { RepoResponseDTO } from 'src/application/dtos/repository/RepoResponseDTO';
+import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
+import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
 import {
   PaginationQueryDTO,
   PaginatedResponseDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../application/dtos/reusable/PaginationDTO';
 
 //for listing users own repositories
 

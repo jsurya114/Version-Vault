@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { repositoryService } from 'src/services/repository.service';
+import { repositoryService } from '../../services/repository.service';
 import {
   RepositoryResponseDTO,
   CreateRepositoryDTO,
@@ -9,8 +9,8 @@ import {
   GetFileContentParams,
   GetCommitsParams,
   GitCommit,
-} from 'src/types/repository/repositoryTypes';
-import { PaginatedResponse, PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
+} from '../../types/repository/repositoryTypes';
+import { PaginatedResponse, PaginationQuery } from '../../types/common/Pagination/paginationTypes';
 
 export const createRepositoryThunk = createAsyncThunk<RepositoryResponseDTO, CreateRepositoryDTO>(
   'repository/create',

@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 import { IFollowUseCase } from '../interfaces/follow/IFollowUseCase';
-import { IFollowRepository } from 'src/domain/interfaces/repositories/IFollowRepository';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { ConflictError } from 'src/domain/errors/ConflictError';
+import { IFollowRepository } from '../../../domain/interfaces/repositories/IFollowRepository';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { ConflictError } from '../../../domain/errors/ConflictError';
 
 @injectable()
 export class FollowUseCase implements IFollowUseCase {

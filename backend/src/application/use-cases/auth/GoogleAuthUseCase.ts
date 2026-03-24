@@ -1,12 +1,12 @@
 import { inject, injectable } from 'tsyringe';
-import { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
+import { IGoogleAuthService } from '../../../domain/interfaces/services/IGoogleAuthService';
 import { IGoogleAuthUseCase } from '../interfaces/IGoogleUseCase';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { ITokenService } from 'src/domain/interfaces/services/ITokenService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { User } from 'src/domain/entities/User';
-import { UserMapper } from 'src/application/mappers/UserMapper';
-import { AuthProvider, UserRole, SubscriptionPlan } from 'src/domain/enums';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { User } from '../../../domain/entities/User';
+import { UserMapper } from '../../../application/mappers/UserMapper';
+import { AuthProvider, UserRole, SubscriptionPlan } from '../../../domain/enums';
 
 @injectable()
 export class GoogleAuthUseCase implements IGoogleAuthUseCase {

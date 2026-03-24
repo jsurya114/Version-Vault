@@ -1,8 +1,8 @@
 import { Request, Response, NextFunction } from 'express';
 import { container } from 'tsyringe';
-import { ITokenService } from 'src/domain/interfaces/services/ITokenService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { UnauthorizedError } from 'src/domain/errors/UnauthorizedError';
+import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { UnauthorizedError } from '../../../domain/errors/UnauthorizedError';
 
 export const authMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   try {

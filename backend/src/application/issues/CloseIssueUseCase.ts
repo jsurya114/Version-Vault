@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 import { ICloseIssueUseCase } from '../use-cases/interfaces/issues/ICloseIssueUseCase';
-import { IIssueRepository } from 'src/domain/interfaces/repositories/IIssuesRepository';
+import { IIssueRepository } from '../../domain/interfaces/repositories/IIssuesRepository';
 import { IssueMapper } from '../mappers/IssuesMapper';
 import { IssuesResponseDTO } from '../dtos/repository/IssuesDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { TOKENS } from '../../shared/constants/tokens';
 import { IssueValidator } from '../use-cases/validators/IssueValidator';
 
 @injectable()
