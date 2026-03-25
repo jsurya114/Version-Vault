@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   listRepositoryThunk,
@@ -45,7 +46,7 @@ const RepositoryListPage = () => {
     open: boolean;
     repo: RepositoryResponseDTO | null;
   }>({ open: false, repo: null });
-  const limit = 10;
+  const limit = 5;
 
   const fetchRepos = (overrides = {}) => {
     dispatch(
@@ -238,7 +239,9 @@ const RepositoryListPage = () => {
         isOpen={deleteModal.open}
         onClose={() => setDeleteModal({ open: false, repo: null })}
         onConfirm={handleDelete}
-        repoPath={`${authUser?.userId}/${deleteModal.repo?.name}`}
+        itemPath={`${authUser?.userId}/${deleteModal.repo?.name}`}
+        itemName="repository"
+        isLoading={isLoading}
       />
     </div>
   );

@@ -42,4 +42,6 @@ router.post('/reset-password', authLimiter, (req, res, next) =>
 );
 router.post('resend-otp', otpLimiter, (req, res, next) => authController.resendOtp(req, res, next));
 
+router.get('/search', (req, res) => authController.globalSearch(req, res));
+
 export default router;

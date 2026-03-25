@@ -45,7 +45,7 @@ const AdminUsersPage = () => {
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [page, setPage] = useState(1);
-  const limit = 2;
+  const limit = 5;
 
   const fetchUsers = (overrides = {}) => {
     dispatch(
@@ -56,7 +56,6 @@ const AdminUsersPage = () => {
         sort: sortField,
         order: sortOrder,
         status: statusFilter === 'all' ? undefined : (statusFilter as any),
-        ...overrides,
       }),
     );
   };

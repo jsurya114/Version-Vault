@@ -16,6 +16,7 @@ import type { IResendOtpUseCase } from '../../../../application/use-cases/interf
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 
 import { envConfig } from '../../../../shared/config/env.config';
+import { IGetAllUsersUseCase } from 'src/application/use-cases/interfaces/admin/IGetAllUsersUseCase';
 
 @injectable()
 export class AuthController {
@@ -34,6 +35,7 @@ export class AuthController {
     @inject(TOKENS.IResetPasswordUseCase)
     private readonly resetPasswordUseCase: IResetPasswordUseCase,
     @inject(TOKENS.IResendOtpUseCase) private readonly resendOtpUseCase: IResendOtpUseCase,
+    @inject(TOKENS.IGetAllUsersUseCase) private readonly _getAllUsersUseCase: IGetAllUsersUseCase,
   ) {}
   /**
    * POST /api/auth/register
@@ -244,5 +246,19 @@ export class AuthController {
     } catch (error) {
       next(error);
     }
+  }
+
+  async globalSearch(req: Request, res: Response) {
+    const query = {
+      search: req.query.q as string,
+      limit: 5,
+      page: 1,
+    };
+
+    const result = await this._getAllUsersUseCase.execute(query);
+    return res.status(HttpStatusCodes.OK).json({
+      success: true,
+      data: result.data,
+    });
   }
 }

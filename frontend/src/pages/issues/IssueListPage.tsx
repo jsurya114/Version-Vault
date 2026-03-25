@@ -30,7 +30,7 @@ const IssueListPage = () => {
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
   const [statusFilter, setStatusFilter] = useState<string>('all');
-  const limit = 2;
+  const limit = 5;
 
   useEffect(() => {
     if (username && reponame) {

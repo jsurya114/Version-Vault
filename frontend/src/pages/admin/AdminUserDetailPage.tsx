@@ -1,94 +1,50 @@
-import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { useState, useEffect } from 'react';
+import { Link, useParams } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getAllUsersThunk } from '../../features/admin/getUsersThunk';
 import {
-  selectAdminUsers,
+  getUserByIdThunk,
+  blockUserThunk,
+  unBlockUserThunk,
+} from '../../features/admin/getUsersThunk';
+import {
   selectAdminLoading,
   selectAdminError,
-  selectAdminMeta,
+  selectSelectedUser,
 } from '../../features/admin/adminSelectors';
 import { UserResponseDTO } from '../../types/admin/adminTypes';
 
 const statusColors: Record<string, string> = {
-  active: 'bg-green-500/10 text-green-400 border border-green-500/30',
-  blocked: 'bg-red-500/10 text-red-400 border border-red-500/30',
-  pending: 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/30',
+  active: 'bg-green-500/20 text-green-400 border border-green-500/30',
+  blocked: 'bg-red-500/20 text-red-400 border border-red-500/30',
+  pending: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30',
 };
 
-const roleColors: Record<string, string> = {
-  admin: 'bg-blue-500/10 text-blue-400',
-  user: 'bg-purple-500/10 text-purple-400',
-};
-
-const AdminUsersPage = () => {
+const AdminUserDetailPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
-  const users = useAppSelector(selectAdminUsers);
+
+  const { id } = useParams();
   const isLoading = useAppSelector(selectAdminLoading);
   const error = useAppSelector(selectAdminError);
-  const meta = useAppSelector(selectAdminMeta);
+  const selectedUser = useAppSelector(selectSelectedUser);
 
-  const [search, setSearch] = useState('');
-  const [statusFilter, setStatusFilter] = useState('All Status');
-  const [sortField, setSortField] = useState('createdAt');
-  const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
-  const [page, setPage] = useState(1);
-  const limit = 2;
+  const [pendingBlocked, setPendingBlocked] = useState<boolean | null>(null);
 
   useEffect(() => {
-    dispatch(
-      getAllUsersThunk({
-        page,
-        limit,
-        search: search || undefined,
-        sort: sortField,
-        order: sortOrder,
-      }),
-    );
-  }, [page, sortField, sortOrder]);
-
-  // search with debounce
+    if (id) {
+      dispatch(getUserByIdThunk(id));
+    }
+  }, [id, dispatch]);
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPage(1);
-      dispatch(
-        getAllUsersThunk({
-          page: 1,
-          limit,
-          search: search || undefined,
-          sort: sortField,
-          order: sortOrder,
-        }),
-      );
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [search]);
+    if (selectedUser) {
+      setPendingBlocked(selectedUser.isBlocked);
+    }
+  }, [selectedUser]);
 
   const getStatus = (user: UserResponseDTO) => {
     if (user.isBlocked) return 'blocked';
     if (!user.isVerified) return 'pending';
     return 'active';
-  };
-
-  const filtered =
-    statusFilter === 'All Status'
-      ? users
-      : users.filter((u) => getStatus(u).toUpperCase() === statusFilter);
-
-  const handleViewUser = (id: string) => {
-    navigate(`/admin/users/${id}`);
-  };
-
-  const handleSort = (field: string) => {
-    if (sortField === field) {
-      setSortOrder(sortOrder === 'asc' ? 'desc' : 'asc');
-    } else {
-      setSortField(field);
-      setSortOrder('desc');
-    }
-    setPage(1);
   };
 
   return (
@@ -145,171 +101,270 @@ const AdminUsersPage = () => {
         </header>
 
         <main className="flex-1 p-6 overflow-auto">
-          <div className="mb-6">
-            <h1 className="text-white text-xl font-bold">User Management</h1>
-            <p className="text-gray-500 text-sm mt-1">
-              Manage platform access, roles, and repository permissions.
-            </p>
-          </div>
-
-          {/* Stats */}
-          <div className="grid grid-cols-4 gap-4 mb-6">
-            {[
-              { label: 'Total Users', value: meta.total },
-              { label: 'Active', value: users.filter((u) => !u.isBlocked && u.isVerified).length },
-              { label: 'Pending', value: users.filter((u) => !u.isVerified).length },
-              { label: 'Blocked', value: users.filter((u) => u.isBlocked).length },
-            ].map((s) => (
-              <div
-                key={s.label}
-                className="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center"
-              >
-                <p className="text-gray-400 text-xs mb-1">{s.label}</p>
-                <p className="text-white text-2xl font-bold">{s.value}</p>
-              </div>
-            ))}
-          </div>
-
-          {/* Filters */}
-          <div className="flex items-center gap-3 mb-4">
-            <input
-              type="text"
-              placeholder="Search users by name, email, or ID..."
-              value={search}
-              onChange={(e) => setSearch(e.target.value)}
-              className="flex-1 bg-gray-900 border border-gray-800 rounded-lg px-4 py-2 text-sm text-gray-300 placeholder-gray-600 focus:outline-none focus:border-gray-600 transition"
-            />
-            <select
-              value={statusFilter}
-              onChange={(e) => setStatusFilter(e.target.value)}
-              className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-2 text-sm text-gray-300 focus:outline-none"
-            >
-              {['All Status', 'ACTIVE', 'BLOCKED', 'PENDING'].map((s) => (
-                <option key={s}>{s}</option>
-              ))}
-            </select>
-          </div>
-
-          {/* Loading / Error */}
+          {/* Loading */}
           {isLoading && (
             <div className="flex items-center justify-center py-20">
               <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
             </div>
           )}
 
+          {/* Error */}
           {error && (
-            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm">
+            <div className="bg-red-500/10 border border-red-500/30 rounded-xl p-4 text-red-400 text-sm mb-4">
               {error}
             </div>
           )}
 
-          {/* Table */}
-          {!isLoading && !error && (
-            <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-              <table className="w-full">
-                <thead>
-                  <tr className="border-b border-gray-800 text-gray-500 text-xs">
-                    <th className="text-left px-4 py-3">USER</th>
-                    <th className="text-left px-4 py-3">EMAIL ADDRESS</th>
-                    <th className="text-left px-4 py-3">STATUS</th>
-                    <th className="text-left px-4 py-3">ROLE</th>
-                    <th className="text-left px-4 py-3">PROVIDER</th>
-                    <th
-                      className="text-left px-4 py-3 cursor-pointer hover:text-white transition"
-                      onClick={() => handleSort('createdAt')}
+          {!isLoading &&
+            selectedUser &&
+            (() => {
+              const status = getStatus(selectedUser);
+              return (
+                <>
+                  {/* Page Header */}
+                  <div className="mb-6">
+                    <Link
+                      to={ROUTES.ADMIN_USERS}
+                      className="text-blue-400 hover:underline text-xs mb-3 inline-block"
                     >
-                      DATE JOINED{' '}
-                      {sortField === 'createdAt' ? (sortOrder === 'asc' ? '↑' : '↓') : ''}
-                    </th>
-                    <th className="text-left px-4 py-3">ACTIONS</th>
-                  </tr>
-                </thead>
-                <tbody>
-                  {filtered.map((u) => {
-                    const status = getStatus(u);
-                    return (
-                      <tr
-                        key={u.id}
-                        className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 transition"
-                      >
-                        <td className="px-4 py-3">
-                          <div className="flex items-center gap-2">
-                            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-                              {u.username?.[0]?.toUpperCase()}
-                            </div>
-                            <div>
-                              <p className="text-white text-sm font-medium">{u.username}</p>
-                              <p className="text-gray-500 text-xs">@{u.userId}</p>
+                      ← Back to Users
+                    </Link>
+                    <h1 className="text-white text-xl font-bold">User Management</h1>
+                    <p className="text-gray-500 text-sm mt-1">
+                      Manage platform access, roles, and repository permissions for all users.
+                    </p>
+                  </div>
+
+                  {/* User Identity Bar */}
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
+                      {selectedUser.username?.[0]?.toUpperCase()}
+                    </div>
+                    <div>
+                      <div className="flex items-center gap-2">
+                        <h2 className="text-white text-lg font-bold">{selectedUser.username}</h2>
+                        <span
+                          className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase ${statusColors[status]}`}
+                        >
+                          {status}
+                        </span>
+                      </div>
+                      <p className="text-gray-500 text-xs">
+                        System User ID:{' '}
+                        <span className="bg-gray-800 text-gray-400 px-1.5 py-0.5 rounded text-[10px] font-mono">
+                          {selectedUser.userId}
+                        </span>
+                      </p>
+                    </div>
+                  </div>
+
+                  {/* Two Column Layout */}
+                  <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
+                    {/* Left Column - 3/5 */}
+                    <div className="lg:col-span-3 space-y-6">
+                      {/* User Details Card */}
+                      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                        <h3 className="text-white font-semibold text-sm mb-5">User Details</h3>
+                        <div className="grid grid-cols-2 gap-4 mb-5">
+                          <div>
+                            <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
+                              Display Name
+                            </label>
+                            <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm">
+                              {selectedUser.username}
                             </div>
                           </div>
-                        </td>
-                        <td className="px-4 py-3 text-gray-400 text-sm">{u.email}</td>
-                        <td className="px-4 py-3">
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded font-medium ${statusColors[status]}`}
-                          >
-                            {status.toUpperCase()}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3">
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded font-medium ${roleColors[u.role] || 'bg-gray-700 text-gray-400'}`}
-                          >
-                            {u.role}
-                          </span>
-                        </td>
-                        <td className="px-4 py-3 text-gray-400 text-sm capitalize">{u.provider}</td>
-                        <td className="px-4 py-3 text-gray-400 text-sm">
-                          {u.createdAt
-                            ? new Date(u.createdAt).toLocaleDateString('en-US', {
-                                month: 'short',
-                                day: 'numeric',
-                                year: 'numeric',
-                              })
-                            : '—'}
-                        </td>
-                        <td className="px-4 py-3">
-                          <button
-                            onClick={() => handleViewUser(u.id)}
-                            className="text-blue-400 hover:text-blue-300 text-xs transition"
-                          >
-                            View
-                          </button>
-                        </td>
-                      </tr>
-                    );
-                  })}
-                </tbody>
-              </table>
+                          <div>
+                            <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
+                              Email Address
+                            </label>
+                            <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm">
+                              {selectedUser.email}
+                            </div>
+                          </div>
+                        </div>
+                        <div>
+                          <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
+                            Bio
+                          </label>
+                          <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-3 text-gray-400 text-sm min-h-[80px]">
+                            {selectedUser.bio || 'No bio provided.'}
+                          </div>
+                        </div>
+                      </div>
 
-              {/* Pagination */}
-              <div className="border-t border-gray-800 px-4 py-3 flex items-center justify-between">
-                <p className="text-gray-500 text-xs">
-                  Showing {(page - 1) * limit + 1}–{Math.min(page * limit, meta.total)} of{' '}
-                  {meta.total} users
-                </p>
-                <div className="flex items-center gap-2">
-                  <button
-                    onClick={() => setPage((p) => Math.max(1, p - 1))}
-                    disabled={page === 1}
-                    className="text-gray-400 hover:text-white text-sm px-3 py-1 rounded border border-gray-700 hover:bg-gray-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    Previous
-                  </button>
-                  <span className="text-gray-500 text-xs">
-                    Page {meta.page} of {meta.totalPages}
-                  </span>
-                  <button
-                    onClick={() => setPage((p) => Math.min(meta.totalPages, p + 1))}
-                    disabled={page === meta.totalPages}
-                    className="text-gray-400 hover:text-white text-sm px-3 py-1 rounded border border-gray-700 hover:bg-gray-800 transition disabled:opacity-40 disabled:cursor-not-allowed"
-                  >
-                    Next
-                  </button>
-                </div>
-              </div>
-            </div>
-          )}
+                      {/* Recent Repositories Card */}
+                      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                        <div className="flex items-center justify-between mb-4">
+                          <h3 className="text-white font-semibold text-sm">Recent Repositories</h3>
+                          <span className="text-blue-400 text-xs hover:underline cursor-pointer">
+                            View All
+                          </span>
+                        </div>
+                        <table className="w-full">
+                          <thead>
+                            <tr className="text-gray-500 text-xs border-b border-gray-800">
+                              <th className="text-left pb-2.5 font-medium">Repository Name</th>
+                              <th className="text-center pb-2.5 font-medium">Visibility</th>
+                              <th className="text-right pb-2.5 font-medium">Last Push</th>
+                            </tr>
+                          </thead>
+                          <tbody>
+                            <tr className="border-b border-gray-800/50">
+                              <td className="py-3 text-white text-sm">No repositories found</td>
+                              <td></td>
+                              <td></td>
+                            </tr>
+                          </tbody>
+                        </table>
+                      </div>
+                    </div>
+
+                    {/* Right Column - 2/5 */}
+                    <div className="lg:col-span-2 space-y-6">
+                      {/* Account Management Card */}
+                      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                        <h3 className="text-white font-semibold text-sm mb-5">
+                          Account Management
+                        </h3>
+
+                        <div className="mb-5">
+                          <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
+                            User Role
+                          </label>
+                          <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm capitalize flex items-center justify-between">
+                            <span>
+                              {selectedUser.role === 'admin' ? 'Administrator' : 'Standard Member'}
+                            </span>
+                            <svg
+                              className="w-4 h-4 text-gray-500"
+                              fill="none"
+                              stroke="currentColor"
+                              viewBox="0 0 24 24"
+                            >
+                              <path
+                                strokeLinecap="round"
+                                strokeLinejoin="round"
+                                strokeWidth={2}
+                                d="M19 9l-7 7-7-7"
+                              />
+                            </svg>
+                          </div>
+                          <p className="text-gray-600 text-xs mt-1.5">
+                            Determines system-wide permissions and API limits.
+                          </p>
+                        </div>
+
+                        <div className="border-t border-gray-800 pt-4">
+                          <div className="flex items-center justify-between">
+                            <div>
+                              <p className="text-white text-sm font-medium">Suspend Account</p>
+                              <p className="text-gray-500 text-xs">
+                                {selectedUser.isBlocked
+                                  ? 'Restore access immediately'
+                                  : 'Revoke all access immediately'}
+                              </p>
+                            </div>
+                            {pendingBlocked ? (
+                              <button
+                                onClick={() => setPendingBlocked(false)}
+                                className="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-medium px-4 py-2 rounded-lg transition"
+                              >
+                                Unblock
+                              </button>
+                            ) : (
+                              <button
+                                onClick={() => setPendingBlocked(true)}
+                                className="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white text-xs font-medium px-4 py-2 rounded-lg transition"
+                              >
+                                Block
+                              </button>
+                            )}
+                          </div>
+                        </div>
+                      </div>
+
+                      {/* Quick Stats Card */}
+                      <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+                        <h3 className="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-4">
+                          Quick Stats
+                        </h3>
+                        <div className="grid grid-cols-2 gap-3 mb-4">
+                          <div className="bg-gray-800 rounded-lg p-3">
+                            <p className="text-gray-500 text-[10px] uppercase tracking-wider mb-1">
+                              Commits
+                            </p>
+                            <p className="text-white text-lg font-bold">—</p>
+                          </div>
+                          <div className="bg-gray-800 rounded-lg p-3">
+                            <p className="text-gray-500 text-[10px] uppercase tracking-wider mb-1">
+                              Joined
+                            </p>
+                            <p className="text-white text-sm font-bold">
+                              {selectedUser.createdAt
+                                ? new Date(selectedUser.createdAt).toLocaleDateString('en-US', {
+                                    month: 'short',
+                                    day: 'numeric',
+                                    year: 'numeric',
+                                  })
+                                : '—'}
+                            </p>
+                          </div>
+                        </div>
+
+                        <div className="mb-4">
+                          <div className="flex items-center justify-between mb-1.5">
+                            <p className="text-gray-500 text-[10px] uppercase tracking-wider">
+                              Account Health
+                            </p>
+                          </div>
+                          <div className="w-full bg-gray-800 rounded-full h-2">
+                            <div
+                              className="h-2 rounded-full bg-gradient-to-r from-cyan-500 to-green-400"
+                              style={{
+                                width: selectedUser.isVerified
+                                  ? selectedUser.isBlocked
+                                    ? '40%'
+                                    : '92%'
+                                  : '20%',
+                              }}
+                            />
+                          </div>
+                          <p className="text-cyan-400 text-xs text-right mt-1">
+                            {selectedUser.isVerified
+                              ? selectedUser.isBlocked
+                                ? '40% Compliance'
+                                : '92% Compliance'
+                              : '20% Compliance'}
+                          </p>
+                        </div>
+
+                        <button
+                          onClick={async () => {
+                            if (!selectedUser || pendingBlocked === null) return;
+                            if (pendingBlocked !== selectedUser.isBlocked) {
+                              if (pendingBlocked) {
+                                await dispatch(blockUserThunk(selectedUser.id));
+                              } else {
+                                await dispatch(unBlockUserThunk(selectedUser.id));
+                              }
+                            }
+                          }}
+                          disabled={pendingBlocked === selectedUser.isBlocked}
+                          className={`w-full text-white text-sm font-medium py-2.5 rounded-lg transition ${
+                            pendingBlocked !== selectedUser.isBlocked
+                              ? 'bg-gradient-to-r from-cyan-600 to-blue-600 hover:from-cyan-500 hover:to-blue-500'
+                              : 'bg-gray-800 cursor-not-allowed opacity-50'
+                          }`}
+                        >
+                          Save Changes
+                        </button>
+                      </div>
+                    </div>
+                  </div>
+                </>
+              );
+            })()}
         </main>
 
         <footer className="border-t border-gray-800 py-3 px-6 flex items-center gap-2">
@@ -321,4 +376,4 @@ const AdminUsersPage = () => {
   );
 };
 
-export default AdminUsersPage;
+export default AdminUserDetailPage;

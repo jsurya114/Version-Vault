@@ -136,6 +136,7 @@ const ActivityTimeline: React.FC<ActivityTimelineProps> = ({
       </div>
     );
   }
+  const totalItems = activities?.reduce((sum, group) => sum + (group.items?.length || 0), 0) || 0;
 
   return (
     <div className="mt-12">
@@ -171,7 +172,7 @@ const ActivityTimeline: React.FC<ActivityTimelineProps> = ({
             ))
           )}
 
-          {activities && activities.length > 0 && (
+          {totalItems > 5 && (
             <button className="w-full py-3 mt-6 text-sm text-blue-400 hover:text-blue-300 hover:bg-gray-900/30 border border-gray-800/50 rounded-xl transition-all duration-200">
               Show more activity
             </button>

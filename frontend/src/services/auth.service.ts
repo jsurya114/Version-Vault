@@ -43,4 +43,9 @@ export const authService = {
     const response = await axiosInstance.post(AUTH_ENDPOINTS.RESEND_OTP, { email });
     return response.data;
   },
+
+  globalSearch: async (query: string) => {
+    const res = await axiosInstance.get(`/auth/search?q=${query}`);
+    return res.data.data;
+  },
 };

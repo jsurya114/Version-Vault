@@ -18,7 +18,7 @@ const ProtectRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   }
 
   //admin route but user is not admin redirect to home
-  if (requiredRole === 'admin' && user?.role !== 'admin') {
+  if (requiredRole === 'admin' && user && user.role !== 'admin') {
     return <Navigate to={ROUTES.HOME} replace />;
   }
 

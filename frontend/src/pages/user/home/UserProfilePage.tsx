@@ -14,7 +14,10 @@ import {
   selectFollowLoading,
 } from '../../../features/follow/followSelectors';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
-import { listRepositoryThunk, getCommitsThunk } from '../../../features/repository/repositoryThunks';
+import {
+  listRepositoryThunk,
+  getCommitsThunk,
+} from '../../../features/repository/repositoryThunks';
 import { listPRThunk } from '../../../features/pullrequest/prThunk';
 import {
   selectRepositories,
@@ -24,8 +27,11 @@ import AppHeader from '../../../types/common/Layout/AppHeader';
 import AppFooter from '../../../types/common/Layout/AppFooter';
 import ProfileTabs from '../../../types/common/Profile/ProfileTabs';
 import PinnedRepoCard from '../../../types/common/Profile/PinnedRepoCard';
-import ActivityTimeline, { ActivityItemProps } from '../../../types/common/Profile/ActivityTimeline';
+import ActivityTimeline, {
+  ActivityItemProps,
+} from '../../../types/common/Profile/ActivityTimeline';
 import { useState } from 'react';
+import axiosInstance from 'src/services/axiosInstance';
 
 interface ActivityGroup {
   date: string;
@@ -46,6 +52,7 @@ const UserProfilePage = () => {
   const [activityLoading, setActivityLoading] = useState(false);
   const [userActivities, setUserActivities] = useState<ActivityGroup[]>([]);
   const [totalContributions, setTotalContributions] = useState<number>(0);
+  const [profileUser, setProfileUser] = useState(null);
 
   const isOwnProfile = user?.userId === userId;
   const isFollowing = followers.some((f) => f.followerId === user?.id);
@@ -58,11 +65,19 @@ const UserProfilePage = () => {
     }
   }, [userId]);
 
+  useEffect(() => {
+    const fetchProfile = async () => {
+      const response = await axiosInstance.get(`/users/profile/${userId}`);
+      setProfileUser(response.data);
+    };
+    fetchProfile();
+  }, [userId]);
+
   const formatRelativeTime = (date: Date) => {
     const now = new Date();
     const diffInMs = now.getTime() - date.getTime();
     const diffInHours = diffInMs / (1000 * 60 * 60);
-    
+
     if (diffInHours < 1) return 'Just now';
     if (diffInHours < 24) return `${Math.floor(diffInHours)} hours ago`;
     if (diffInHours < 48) return 'Yesterday';
@@ -76,19 +91,22 @@ const UserProfilePage = () => {
       const allActivity: (ActivityItemProps & { date: Date })[] = [];
       let total = 0;
 
-      await Promise.all(activeRepos.map(async (repo) => {
-        // Fetch commits
-        const commitsAction = await dispatch(getCommitsThunk({ 
-          username: repo.ownerUsername, 
-          reponame: repo.name, 
-          limit: 10 
-        }));
-        
-        if (getCommitsThunk.fulfilled.match(commitsAction)) {
-          const commits = commitsAction.payload;
-          total += commits.length;
-          
-          if (commits.length > 0) {
+      await Promise.all(
+        activeRepos.map(async (repo) => {
+          // Fetch commits
+          const commitsAction = await dispatch(
+            getCommitsThunk({
+              username: repo.ownerUsername,
+              reponame: repo.name,
+              limit: 10,
+            }),
+          );
+
+          if (getCommitsThunk.fulfilled.match(commitsAction)) {
+            const commits = commitsAction.payload;
+            total += commits.length;
+
+            if (commits.length > 0) {
               const date = new Date(commits[0].date);
               allActivity.push({
                 type: 'push',
@@ -97,53 +115,58 @@ const UserProfilePage = () => {
                 count: commits.length,
                 date,
                 time: formatRelativeTime(date),
-                commits: commits.slice(0, 2).map(c => ({ hash: c.hash, message: c.message }))
+                commits: commits.slice(0, 2).map((c) => ({ hash: c.hash, message: c.message })),
               });
+            }
           }
-        }
 
-        // Fetch PRs
-        const prsAction = await dispatch(listPRThunk({ 
-          username: repo.ownerUsername, 
-          reponame: repo.name 
-        }));
-        
-        if (listPRThunk.fulfilled.match(prsAction)) {
-          const prs = prsAction.payload.data;
-          total += prs.length;
-          prs.forEach(pr => {
-            const date = new Date(pr.createdAt || '');
-            allActivity.push({
-              type: 'pr',
-              repo: `${repo.ownerUsername}/${repo.name}`,
-              date,
-              time: formatRelativeTime(date),
-              id: pr.id.substring(0, 4),
-              title: pr.title,
-              status: pr.status as 'open' | 'closed' | 'merged'
+          // Fetch PRs
+          const prsAction = await dispatch(
+            listPRThunk({
+              username: repo.ownerUsername,
+              reponame: repo.name,
+            }),
+          );
+
+          if (listPRThunk.fulfilled.match(prsAction)) {
+            const prs = prsAction.payload.data;
+            total += prs.length;
+            prs.forEach((pr) => {
+              const date = new Date(pr.createdAt || '');
+              allActivity.push({
+                type: 'pr',
+                repo: `${repo.ownerUsername}/${repo.name}`,
+                date,
+                time: formatRelativeTime(date),
+                id: pr.id.substring(0, 4),
+                title: pr.title,
+                status: pr.status as 'open' | 'closed' | 'merged',
+              });
             });
-          });
-        }
-      }));
+          }
+        }),
+      );
 
       // Sort by date descending
       allActivity.sort((a, b) => b.date.getTime() - a.date.getTime());
 
       // Group by date string
       const grouped: ActivityGroup[] = [];
-      allActivity.forEach(item => {
-        const dateStr = item.date.toLocaleDateString('en-US', {
-          month: 'long',
-          day: 'numeric',
-          year: 'numeric'
-        }).toUpperCase();
-        
-        let group = grouped.find(g => g.date === dateStr);
+      allActivity.forEach((item) => {
+        const dateStr = item.date
+          .toLocaleDateString('en-US', {
+            month: 'long',
+            day: 'numeric',
+            year: 'numeric',
+          })
+          .toUpperCase();
+
+        let group = grouped.find((g) => g.date === dateStr);
         if (!group) {
           group = { date: dateStr, items: [] };
           grouped.push(group);
         }
-        
+
         group.items.push(item);
       });
 
@@ -172,7 +195,6 @@ const UserProfilePage = () => {
     dispatch(getFollowersThunk(userId));
   };
 
-
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
       <AppHeader />
@@ -180,16 +202,18 @@ const UserProfilePage = () => {
       <main className="max-w-6xl mx-auto px-6 py-8 w-full flex-1">
         <div className="flex gap-8">
           {/* Left — Profile */}
-          <div className="w-72 shrink-0">
+          <div className="w-72 shrink-0 min-w-0">
             {/* Avatar */}
             <div className="w-full aspect-square rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-6xl font-bold mb-4 max-w-[200px] mx-auto">
               {userId?.[0]?.toUpperCase()}
             </div>
 
             {/* Name + username */}
-            <div className="text-center mb-4">
-              <h1 className="text-white text-xl font-bold">{user?.username}</h1>
-              <p className="text-gray-500 text-sm">@{userId}</p>
+            <div className="text-center mb-4 px-2 overflow-hidden">
+              <h1 className="text-white text-xl font-bold break-all leading-tight">
+                {user?.username}
+              </h1>
+              <p className="text-gray-500 text-sm break-all">@{userId}</p>
             </div>
 
             {/* Follow button */}
@@ -255,16 +279,16 @@ const UserProfilePage = () => {
                   ))}
                   {repositories.length === 0 && (
                     <div className="col-span-2 bg-gray-900/30 border border-dashed border-gray-800 rounded-2xl p-8 text-center">
-                       <p className="text-gray-500 text-sm">No pinned repositories yet</p>
+                      <p className="text-gray-500 text-sm">No pinned repositories yet</p>
                     </div>
                   )}
                 </div>
 
                 {/* Activity Timeline */}
-                <ActivityTimeline 
-                   activities={userActivities}
-                   totalContributions={totalContributions}
-                   isLoading={activityLoading}
+                <ActivityTimeline
+                  activities={userActivities}
+                  totalContributions={totalContributions}
+                  isLoading={activityLoading}
                 />
               </div>
             ) : (
@@ -310,7 +334,9 @@ const UserProfilePage = () => {
                               </span>
                             </div>
                             {repo.description && (
-                              <p className="text-gray-500 text-xs truncate mb-2">{repo.description}</p>
+                              <p className="text-gray-500 text-xs truncate mb-2">
+                                {repo.description}
+                              </p>
                             )}
                             <div className="flex items-center gap-3 text-gray-600 text-xs font-medium">
                               <span className="flex items-center gap-1 group-hover:text-yellow-400 transition-colors">

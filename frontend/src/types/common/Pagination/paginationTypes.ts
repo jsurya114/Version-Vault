@@ -5,6 +5,7 @@ export interface PaginationQuery {
   order?: 'asc' | 'desc';
   search?: string;
   status?: 'active' | 'blocked' | 'pending';
+  userId?: string;
 }
 
 export interface PaginationMeta {

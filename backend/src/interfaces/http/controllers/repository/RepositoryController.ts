@@ -12,10 +12,12 @@ import { IGetBranchesUseCase } from '../../../../application/use-cases/interface
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
 
-import {
-  PaginationQueryDTO,
-} from '../../../../application/dtos/reusable/PaginationDTO';
+import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 import { TOKENS } from '../../../../shared/constants/tokens';
+
+export interface AuthRequest extends Request {
+  user: ITokenPayload;
+}
 
 @injectable()
 export class RepositoryController {
@@ -34,10 +36,10 @@ export class RepositoryController {
    * POST /vv/repo
    * Create a new repository
    */
-  async createRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async createRepository(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { name, description, visibility } = req.body;
-      const { id: ownerId, userId: ownerUsername } = req.user as ITokenPayload;
+      const { id: ownerId, userId: ownerUsername } = req.user;
 
       const repo = await this.createRepo.execute({
         name,
@@ -70,12 +72,12 @@ export class RepositoryController {
    * List all repositories for logged in user
    */
 
-  async listRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async listRepository(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { id: ownerId } = req.user as ITokenPayload;
+      const ownerId = (req.query.userId as string) || (req.user as ITokenPayload).id;
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
-        limit: req.query.limit ? Number(req.query.limit) : 2,
+        limit: req.query.limit ? Number(req.query.limit) : 5,
         sort: req.query.sort as string | undefined,
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,
@@ -101,7 +103,7 @@ export class RepositoryController {
    * Delete a repository
    */
 
-  async deleteRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
+  async deleteRepository(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
       const { userId: ownerUsername } = req.user as ITokenPayload;
       const { reponame } = req.params;
@@ -163,8 +165,4 @@ export class RepositoryController {
       next(error);
     }
   }
-
-
-
-
 }

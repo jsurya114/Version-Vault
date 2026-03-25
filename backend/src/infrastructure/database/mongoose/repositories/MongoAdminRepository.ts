@@ -30,12 +30,17 @@ export class MongoAdminRepository extends MongoBaseRepository<IUser> implements 
         { userId: { $regex: query.search, $options: 'i' } },
       ];
     }
-    if (query.status === 'blocked') filter.isBlocked = true;
-    if (query.status === 'active') {
-      filter.isBlocked = false;
-      filter.isVerified = true;
+    if (query.status) {
+      if (query.status === 'active') {
+        filter.isVerified = true;
+        filter.isBlocked = { $ne: true };
+      } else if (query.status === 'blocked') {
+        filter.isBlocked = true;
+      } else if (query.status === 'pending') {
+        filter.isVerified = false;
+        filter.isBlocked = { $ne: true };
+      }
     }
-    if (query.status === 'pending') filter.isVerified = false;
     return this.findWithpagination(filter, query);
   }
   async getUserById(id: string): Promise<IUser | null> {

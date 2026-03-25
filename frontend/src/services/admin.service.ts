@@ -6,7 +6,7 @@ export const adminService = {
   getAllUsers: async (query: PaginationQuery = {}) => {
     const params = {
       page: query.page || 1,
-      limit: query.limit || 10,
+      limit: query.limit || 5,
       ...(query.sort && { sort: query.sort }),
       ...(query.order && { order: query.order }),
       ...(query.search && { search: query.search }),

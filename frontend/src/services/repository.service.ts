@@ -11,11 +11,12 @@ export const repositoryService = {
   listRepositories: async (query: PaginationQuery = {}) => {
     const params = {
       page: query.page || 1,
-      limit: query.limit || 2,
+      limit: query.limit || 5,
       ...(query.sort && { sort: query.sort }),
       ...(query.order && { order: query.order }),
       ...(query.search && { search: query.search }),
       ...(query.status && { status: query.status }),
+      ...(query.userId && { userId: query.userId }),
     };
 
     const res = await axiosInstance.get(REPO_ENDPOINTS.LIST, { params });
@@ -70,14 +71,22 @@ export const repositoryService = {
     return res.data.data;
   },
 
-  createBranch:async(username:string,reponame:string,newBranch:string,fromBranch:string)=>{
-    const res = await axiosInstance.post(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches`,{
-      newBranch,fromBranch
-    })
-    return res.data
+  createBranch: async (
+    username: string,
+    reponame: string,
+    newBranch: string,
+    fromBranch: string,
+  ) => {
+    const res = await axiosInstance.post(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches`, {
+      newBranch,
+      fromBranch,
+    });
+    return res.data;
   },
-  deleteBranch:async(username:string,reponame:string,branchName:string)=>{
-    const res = await axiosInstance.delete(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches/${branchName}`)
-    return res.data
-  }
+  deleteBranch: async (username: string, reponame: string, branchName: string) => {
+    const res = await axiosInstance.delete(
+      `${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches/${branchName}`,
+    );
+    return res.data;
+  },
 };

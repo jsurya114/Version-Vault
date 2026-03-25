@@ -2087,3 +2087,54 @@
 2026-03-25 00:29:47 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
 2026-03-25 00:29:47 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
 2026-03-25 00:36:32 [[31merror[39m]: POST /vv/auth/verify-otp — Not a Valid Otp or Otp expired
+2026-03-25 13:07:29 [[31merror[39m]: GET /vv/auth/google/callback — invalid_client
+2026-03-25 13:40:41 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 13:40:41 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 13:56:30 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 13:56:30 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:04:33 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:33:02 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:33:02 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:39:15 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:40:25 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:53:41 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 14:53:41 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:08:18 [[31merror[39m]: POST /vv/follow/jsurya114 — User not found
+2026-03-25 15:23:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:23:13 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:23:17 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:23:40 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:23:49 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:23:53 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:23:54 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:00 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:01 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:07 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:08 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:12 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:12 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:21 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:39 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:39 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 15:24:43 [[31merror[39m]: POST /vv/follow/jay123 — Invalid or expired access token
+2026-03-25 15:25:02 [[31merror[39m]: POST /vv/follow/jay123 — User not found
+2026-03-25 15:25:11 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-25 15:27:09 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-25 17:10:02 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found

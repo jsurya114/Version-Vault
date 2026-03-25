@@ -3,20 +3,23 @@ import { container } from 'tsyringe';
 import { RepositoryController } from '../../controllers/repository/RepositoryController';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
 import { BranchController } from '../../controllers/branch/BranchController';
+import { AuthRequest } from '../../controllers/repository/RepositoryController';
 
 const router = Router();
 const repoController = container.resolve(RepositoryController);
 const branchController = container.resolve(BranchController);
 
 router.post('/', authMiddleware, (req, res, next) =>
-  repoController.createRepository(req, res, next),
+  repoController.createRepository(req as AuthRequest, res, next),
 );
-router.get('/', authMiddleware, (req, res, next) => repoController.listRepository(req, res, next));
+router.get('/', authMiddleware, (req, res, next) =>
+  repoController.listRepository(req as AuthRequest, res, next),
+);
 router.get('/:username/:reponame', (req, res, next) =>
   repoController.getRepository(req, res, next),
 );
 router.delete('/:username/:reponame', authMiddleware, (req, res, next) =>
-  repoController.deleteRepository(req, res, next),
+  repoController.deleteRepository(req as AuthRequest, res, next),
 );
 // GET /vv/repo/:username/:reponame/files — get files
 router.get('/:username/:reponame/files', (req, res, next) =>

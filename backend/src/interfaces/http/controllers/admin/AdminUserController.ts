@@ -26,10 +26,11 @@ export class AdminUserController {
     try {
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
-        limit: req.query.limit ? Number(req.query.page) : 2,
+        limit: req.query.limit ? Number(req.query.limit) : 5,
         sort: req.query.sort as string | undefined,
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,
+        status: req.query.status as 'active' | 'blocked' | 'pending' | undefined,
       };
       const result = await this.iGetAllUsers.execute(query);
       res.status(HttpStatusCodes.CREATED).json({
