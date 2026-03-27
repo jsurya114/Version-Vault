@@ -1,17 +1,22 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Bell, Search, LogOut } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { logoutThunk } from 'src/features/auth/authThunks';
-import { selectRepositories } from 'src/features/repository/repositorySelectors';
-import { ROUTES } from 'src/constants/routes';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { selectAuthUser } from '../../../features/auth/authSelectors';
+import { logoutThunk } from '../../../features/auth/authThunks';
+import { selectRepositories } from '../../../features/repository/repositorySelectors';
+import { ROUTES } from '../../../constants/routes';
+import { authService } from 'src/services/auth.service';
 
 const AppHeader = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const user = useAppSelector(selectAuthUser);
   const repositories = useAppSelector(selectRepositories);
+  const [searchTerm, setSearchTerm] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const [searchResults, setSearchResults] = useState<any[]>([]);
+  const [isSearching, setIsSearching] = useState(false);
 
   // get first repo for PR/Issues links
   const firstRepo = repositories[0];
@@ -20,6 +25,27 @@ const AppHeader = () => {
     await dispatch(logoutThunk());
     navigate(ROUTES.LOGIN, { replace: true });
   };
+
+  useEffect(() => {
+    const fetchUsers = async () => {
+      if (searchTerm.trim().length < 2) {
+        setSearchResults([]);
+        return;
+      }
+      setIsSearching(true);
+      try {
+        const users = await authService.globalSearch(searchTerm);
+        setSearchResults(users);
+      } catch (error) {
+        console.error('Search failed:', error);
+      } finally {
+        setIsSearching(false);
+      }
+    };
+
+    const timer = setTimeout(fetchUsers, 300);
+    return () => clearTimeout(timer);
+  }, [searchTerm]);
 
   const navLinks = [
     {
@@ -61,16 +87,49 @@ const AppHeader = () => {
         </Link>
 
         {/* Search */}
+        {/* Search */}
         <div className="relative hidden md:block">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-500" />
           <input
             type="text"
-            placeholder="Search or jump to..."
+            placeholder="Search users..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
             className="bg-gray-900 border border-gray-700 rounded-lg pl-9 pr-12 py-1.5 text-sm text-gray-300 placeholder-gray-600 focus:outline-none focus:border-gray-500 w-64 transition"
           />
-          <span className="absolute right-3 top-1/2 -translate-y-1/2 text-gray-600 text-xs border border-gray-700 rounded px-1">
-            ⌘K
-          </span>
+
+          {/* Search Results Dropdown */}
+          {searchTerm.length >= 2 && (
+            <div className="absolute top-full left-0 w-full bg-gray-900 border border-gray-700 rounded-xl mt-2 shadow-2xl z-50 overflow-hidden">
+              {isSearching ? (
+                <div className="p-4 text-center text-gray-500 text-xs text-xs">Searching...</div>
+              ) : searchResults.length > 0 ? (
+                <div className="py-2">
+                  {searchResults.map((u) => (
+                    <Link
+                      key={u.userId}
+                      to={ROUTES.PROFILE.replace(':userId', u.userId)}
+                      onClick={() => {
+                        setSearchTerm('');
+                        setSearchResults([]);
+                      }}
+                      className="flex items-center gap-3 px-4 py-2 hover:bg-gray-800 transition-colors"
+                    >
+                      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] font-bold">
+                        {u.username[0].toUpperCase()}
+                      </div>
+                      <div>
+                        <div className="text-white text-sm font-medium">{u.username}</div>
+                        <div className="text-gray-500 text-xs">@{u.userId}</div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              ) : (
+                <div className="p-4 text-center text-gray-500 text-xs">No users found</div>
+              )}
+            </div>
+          )}
         </div>
       </div>
 
@@ -99,14 +158,18 @@ const AppHeader = () => {
           <button className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
             {user?.username?.[0]?.toUpperCase() ?? 'U'}
           </button>
-          <div className="absolute right-0 top-10 w-48 bg-gray-900 border border-gray-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
-            <div className="px-4 py-3 border-b border-gray-800">
-              <p className="text-white text-sm font-medium">{user?.username}</p>
-              <p className="text-gray-500 text-xs">{user?.userId}</p>
+          <div className="absolute right-0 top-10 w-64 bg-gray-900 border border-gray-700 rounded-xl shadow-xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-150 z-50">
+            <div className="px-4 py-3 border-b border-gray-800 overflow-hidden">
+              <p className="text-white text-sm font-medium truncate" title={user?.username}>
+                {user?.username}
+              </p>
+              <p className="text-gray-500 text-xs truncate" title={user?.userId}>
+                {user?.userId}
+              </p>
             </div>
             <div className="py-1">
               <Link
-                to={`/users/${user?.userId}`}
+                to={ROUTES.PROFILE.replace(':userId', user?.userId || '')}
                 className="w-full flex items-center gap-2 px-4 py-2 text-gray-400 hover:text-white hover:bg-gray-800 text-sm transition"
               >
                 Your Profile

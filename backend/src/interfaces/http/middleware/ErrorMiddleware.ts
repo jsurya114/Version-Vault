@@ -6,7 +6,7 @@ export const errorMiddleware = (
   err: Error,
   req: Request,
   res: Response,
-  next: NextFunction,
+  _next: NextFunction,
 ): void => {
   logger.error(`${req.method} ${req.path} — ${err.message}`);
 

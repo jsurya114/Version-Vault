@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CircleDot } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { createIssueThunk } from 'src/features/issues/issueThunk';
-import { selectIssueLoading, selectIssueError } from 'src/features/issues/issueSelector';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
-import { IssuePriority } from 'src/types/issues/issues.types';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { createIssueThunk } from '../../features/issues/issueThunk';
+import { selectIssueLoading, selectIssueError } from '../../features/issues/issueSelector';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { IssuePriority } from '../../types/issues/issues.types';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import { CommonLoader } from '../../types/common/Layout/Loader';
 
 const CreateIssuePage = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +23,8 @@ const CreateIssuePage = () => {
   const [priority, setPriority] = useState<IssuePriority>('medium');
   const [labelInput, setLabelInput] = useState('');
   const [labels, setLabels] = useState<string[]>([]);
+  const [isCreatingLoader, setIsCreatingLoader] = useState(false);
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   const handleAddLabel = (e: React.KeyboardEvent) => {
     if (e.key === 'Enter' && labelInput.trim()) {
@@ -43,7 +47,18 @@ const CreateIssuePage = () => {
       }),
     );
     if (createIssueThunk.fulfilled.match(result)) {
-      navigate(`/${username}/${reponame}/issues`);
+      setIsCreatingLoader(true);
+      setTimeout(() => {
+        setIsCreatingLoader(false);
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Issue Created!',
+          subtitle: `Successfully created issue: ${title}`,
+        });
+        setTimeout(() => {
+          navigate(`/${username}/${reponame}/issues`);
+        }, 2500);
+      }, 2000);
     }
   };
 
@@ -186,6 +201,17 @@ const CreateIssuePage = () => {
       </main>
 
       <AppFooter />
+
+      {isCreatingLoader && <CommonLoader message="Creating Issue..." />}
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

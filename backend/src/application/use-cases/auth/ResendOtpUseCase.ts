@@ -1,11 +1,13 @@
 import { injectable, inject } from 'tsyringe';
 import { IResendOtpUseCase } from '../interfaces/IResendOtpUseCase';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { IOtpService } from 'src/domain/interfaces/services/IOtpService';
-import { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { ValidationError } from 'src/domain/errors/ValidationError';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { IOtpService } from '../../../domain/interfaces/services/IOtpService';
+import { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { ValidationError } from '../../../domain/errors/ValidationError';
+import { logger } from '../../../shared/logger/Logger';
+
 @injectable()
 export class ResendOtpUseCase implements IResendOtpUseCase {
   constructor(
@@ -21,7 +23,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
     if (user.isVerified) throw new ValidationError('Account is already verified');
 
     const otp = await this.otpService.generateOtp();
-    console.log(otp);
+    logger.info(`OTP generated for ${email}`);
     await this.otpService.saveOtp(email, otp);
     await this.emailService.sendOtpEmail(email, otp);
     return { message: 'OTP resent successfully' };

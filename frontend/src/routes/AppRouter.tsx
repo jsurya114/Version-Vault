@@ -2,14 +2,12 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { Suspense, lazy, useEffect, useState } from 'react';
 import { PublicRoute } from './PublicRoutes';
 import ProtectRoute from './ProtectedRoute';
-import { ROUTES } from 'src/constants/routes';
-import ErrorBoundary from 'src/components/ErrorBoundary';
-import PageLoader from 'src/components/PageLoader';
-import { useAppDispatch } from 'src/app/hooks';
-import { getMeThunk } from 'src/features/auth/authThunks';
-import { AUTH_ENDPOINTS } from 'src/constants/api';
-import axiosInstance from 'src/services/axiosInstance';
-import { authService } from 'src/services/auth.service';
+import { ROUTES } from '../constants/routes';
+import ErrorBoundary from '../components/ErrorBoundary';
+import PageLoader from '../components/PageLoader';
+import { useAppDispatch } from '../app/hooks';
+import { getMeThunk } from '../features/auth/authThunks';
+import { authService } from '../services/auth.service';
 
 const LandingPage = lazy(() => import('../pages/LandingPage'));
 const LoginPage = lazy(() => import('../pages/user/auth/LoginPage'));
@@ -22,6 +20,7 @@ const ForgotPasswordOtpPage = lazy(() => import('../pages/user/auth/FogotPasswor
 const ResetPasswordPage = lazy(() => import('../pages/user/auth/ResetPasswordPage'));
 
 const HomePage = lazy(() => import('../pages/user/home/HomePage'));
+const UserProfilePage=lazy(()=>import('../pages/user/home/UserProfilePage'))
 
 // admin
 const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage'));
@@ -33,6 +32,7 @@ const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPag
 const RepositoryListPage = lazy(() => import('../pages/repository/RepositoryListPage'));
 const CreateRepositoryPage = lazy(() => import('../pages/repository/CreateRepositoryPage'));
 const RepositoryDetailPage = lazy(() => import('../pages/repository/RepositoryDetailPage'));
+const BranchListPage =lazy(()=>import('../pages/repository/BranchListPage'))
 
 //pullrequests
 const PRListPage = lazy(() => import('../pages/pullrequest/PRListPage'));
@@ -55,6 +55,7 @@ const AppRouter = () => {
         await authService.refreshTokenApi();
         await dispatch(getMeThunk());
       } catch (error) {
+        console.error('Initial auth check failed:', error);
       } finally {
         setAuthChecked(true);
       }
@@ -136,6 +137,12 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+            <Route path={ROUTES.PROFILE}
+            element={
+              <ProtectRoute>
+             <UserProfilePage/>
+              </ProtectRoute>
+            }/>
 
             {/* admin */}
             <Route path={ROUTES.ADMIN_LOGIN} element={<AdminLoginPage />} />
@@ -208,6 +215,14 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+            <Route
+  path={ROUTES.BRANCH_LIST}
+  element={
+    <ProtectRoute>
+      <BranchListPage />
+    </ProtectRoute>
+  }
+/>
 
             {/* Issue Routes — before REPO_DETAIL */}
             <Route

@@ -1,14 +1,13 @@
 import { useEffect, useState } from 'react';
 import { CircleDot, CheckCircle, Plus, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { listIssuesThunk } from 'src/features/issues/issueThunk';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { listIssuesThunk } from '../../../features/issues/issueThunk';
 import {
   selectIssueLoading,
   selectIssues,
-  selectIssueMeta,
-} from 'src/features/issues/issueSelector';
-import { IssuePriority } from 'src/types/issues/issues.types';
+} from '../../../features/issues/issueSelector';
+import { IssuePriority } from '../../../types/issues/issues.types';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',
@@ -21,7 +20,6 @@ const IssueListContent = ({ username, reponame }: { username: string; reponame: 
   const navigate = useNavigate();
   const issues = useAppSelector(selectIssues);
   const isLoading = useAppSelector(selectIssueLoading);
-  const meta = useAppSelector(selectIssueMeta);
 
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
@@ -36,7 +34,7 @@ const IssueListContent = ({ username, reponame }: { username: string; reponame: 
         page,
         limit,
         search: search || undefined,
-        status: statusFilter === 'all' ? undefined : (statusFilter as any),
+        status: statusFilter === 'all' ? undefined : (statusFilter as 'open' | 'closed'),
       }),
     );
   }, [username, reponame, page, statusFilter]);
@@ -51,7 +49,7 @@ const IssueListContent = ({ username, reponame }: { username: string; reponame: 
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-6 w-full">
+    <div className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-white font-semibold flex items-center gap-2">
           <CircleDot className="w-5 h-5 text-gray-400" /> Issues

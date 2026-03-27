@@ -1,14 +1,13 @@
 import { inject, injectable } from 'tsyringe';
-import type { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import type { IHashService } from 'src/domain/interfaces/services/IHashService';
-import { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { IOtpService } from 'src/domain/interfaces/services/IOtpService';
+import type { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import type { IHashService } from '../../../domain/interfaces/services/IHashService';
+import { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { IOtpService } from '../../../domain/interfaces/services/IOtpService';
 import { RegisterDTO } from '../../dtos/auth/RegisterDTO';
-import { User } from 'src/domain/entities/User';
+import { User } from '../../../domain/entities/User';
 import { RegisterValidator } from '../validators/RegisterValidator';
-import { UserRole, SubscriptionPlan, AuthProvider } from 'src/domain/enums';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { logger } from 'src/shared/logger/Logger';
+import { UserRole, SubscriptionPlan, AuthProvider } from '../../../domain/enums';
+import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()
 export class RegisterUseCase {
@@ -38,7 +37,7 @@ export class RegisterUseCase {
       followersCount: 0,
       followingCount: 0,
     });
-    console.log(user);
+
     //saving the user in db
     await this.userRepository.save(user);
 

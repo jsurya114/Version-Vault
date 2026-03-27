@@ -1,10 +1,11 @@
-import { Model, Document } from 'mongoose';
+import { Model } from 'mongoose';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { IBaseRepository } from 'src/domain/interfaces/repositories/IBaseRepository';
+} from '../../../../application/dtos/reusable/PaginationDTO';
+import { IBaseRepository } from '../../../../domain/interfaces/repositories/IBaseRepository';
 export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   constructor(protected readonly model: Model<any>) {}
 
   async findById(id: string): Promise<T | null> {
@@ -14,6 +15,7 @@ export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
   }
 
   async find(filter?: Partial<T>): Promise<T[]> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const docs = await this.model.find((filter as any) ?? {}).lean();
     return docs.map((doc) => this.toEntity(doc));
   }
@@ -35,7 +37,7 @@ export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
   }
 
   async findWithpagination(
-    filter: Record<string, any>,
+    filter: Record<string, unknown>,
     query: PaginationQueryDTO,
   ): Promise<PaginatedResponseDTO<T>> {
     const page = Number(query.page) || 1;
@@ -62,5 +64,6 @@ export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
     };
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected abstract toEntity(doc: any): T;
 }

@@ -55,4 +55,18 @@ export const TOKENS = {
   IGetIssueUseCase: Symbol.for('IGetIssueUseCase'),
   IListIssuesUseCase: Symbol.for('IListIssuesUseCase'),
   ICloseIssueUseCase: Symbol.for('ICloseIssueUseCase'),
+
+  // Follow
+  IFollowRepository: Symbol.for('IFollowRepository'),
+  IFollowUseCase: Symbol.for('IFollowUseCase'),
+  IUnfollowUseCase: Symbol.for('IUnfollowUseCase'),
+  IGetFollowersUseCase: Symbol.for('IGetFollowersUseCase'),
+  IGetFollowingUseCase: Symbol.for('IGetFollowingUseCase'),
+
+  //branch
+  ICreateBranchUseCase: Symbol.for('ICreateBranchUseCase'),
+  IDeleteBranchUseCase: Symbol.for('IDeleteBranchUseCase'),
+  //commits
+  ICreateCommitUseCase: Symbol.for('ICreateCommitUseCase'),
+  IGetCompareCommitsUseCase: Symbol.for('IGetCompareCommitsUseCase'),
 } as const;

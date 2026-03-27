@@ -1,4 +1,4 @@
-import { RootState } from 'src/app/store';
+import { RootState } from '../../app/store';
 export const selectRepositories = (state: RootState) => state.repository.repositories;
 export const selectSelectedRepository = (state: RootState) => state.repository.selectedRepository;
 export const selectRepositoryLoading = (state: RootState) => state.repository.isLoading;
@@ -9,4 +9,6 @@ export const selectFileContent = (state: RootState) => state.repository.fileCont
 export const selectCommits = (state: RootState) => state.repository.commits;
 export const selectFilesLoading = (state: RootState) => state.repository.isFilesLoading;
 export const selectCommitsLoading = (state: RootState) => state.repository.isCommitsLoading;
-export const selectBranches = (state: RootState) => state.repository.branches;
+export const selectBranches = (state: RootState) => state.repository.branches || [];
+
+

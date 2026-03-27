@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { authService } from 'src/services/auth.service';
-import { RegisterInput, VerifyOtpInput, LoginInput } from 'src/types/auth.types';
+import { authService } from '../../services/auth.service';
+import { RegisterInput, VerifyOtpInput, LoginInput } from '../../types/auth.types';
 
 export const registerThunk = createAsyncThunk(
   'auth/register',
@@ -8,6 +8,7 @@ export const registerThunk = createAsyncThunk(
     try {
       const res = await authService.register(data);
       return res;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       const message =
         error.response?.data?.errors?.[0].message ||
@@ -59,6 +60,7 @@ export const loginThunk = createAsyncThunk(
 export const logoutThunk = createAsyncThunk('auth/logout', async (_, { rejectWithValue }) => {
   try {
     await authService.logout();
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || 'Logout failed');
   }
@@ -68,6 +70,7 @@ export const getMeThunk = createAsyncThunk('auth/getMe', async (_, { rejectWithV
   try {
     const response = await authService.getMe();
     return response.data;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || 'Session expired');
   }
@@ -79,6 +82,7 @@ export const forgotPasswordThunk = createAsyncThunk(
     try {
       const response = await authService.forgotPassword(email);
       return response.message;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to send reset OTP');
     }
@@ -94,6 +98,7 @@ export const resetPasswordThunk = createAsyncThunk(
     try {
       const response = await authService.resetPassword(email, otp, newPassword);
       return response.message;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to reset password');
     }
@@ -106,6 +111,7 @@ export const resendOtpThunk = createAsyncThunk(
     try {
       const response = await authService.resendOtp(email);
       return response.message;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to resend OTP');
     }

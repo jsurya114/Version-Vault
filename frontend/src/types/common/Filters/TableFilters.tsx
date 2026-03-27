@@ -1,4 +1,4 @@
-import { FilterOption, SortOption, TableFiltersProps } from './tableFiltersTypes';
+import { TableFiltersProps } from './tableFiltersTypes';
 
 const TableFilters = ({
   search,

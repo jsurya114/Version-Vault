@@ -1,8 +1,8 @@
 import { injectable } from 'tsyringe';
 import { UserModel } from '../models/UserModel';
-import { UserMapper } from 'src/application/mappers/UserMapper';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import { IUser } from 'src/domain/interfaces/IUser';
+import { UserMapper } from '../../../../application/mappers/UserMapper';
+import { IUserRepository } from '../../../../domain/interfaces/repositories/IUserRepository';
+import { IUser } from '../../../../domain/interfaces/IUser';
 import { MongoBaseRepository } from './MongoBaseRepository';
 
 @injectable()
@@ -11,6 +11,7 @@ export class MongoUserRepository extends MongoBaseRepository<IUser> implements I
     super(UserModel);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IUser {
     return UserMapper.toIUser(doc);
   }

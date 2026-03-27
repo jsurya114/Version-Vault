@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from 'src/app/hooks';
-import { selectIsAuthenticated, selectAuthUser } from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
+import { useAppSelector } from '../app/hooks';
+import { selectIsAuthenticated, selectAuthUser } from '../features/auth/authSelectors';
+import { ROUTES } from '../constants/routes';
 
 interface ProtectedRouteProps {
   children: React.ReactNode;
@@ -18,7 +18,7 @@ const ProtectRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   }
 
   //admin route but user is not admin redirect to home
-  if (requiredRole === 'admin' && user?.role !== 'admin') {
+  if (requiredRole === 'admin' && user && user.role !== 'admin') {
     return <Navigate to={ROUTES.HOME} replace />;
   }
 

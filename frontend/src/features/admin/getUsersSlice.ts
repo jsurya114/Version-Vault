@@ -1,4 +1,4 @@
-import { createSlice, Tuple } from '@reduxjs/toolkit';
+import { createSlice } from '@reduxjs/toolkit';
 import {
   blockUserThunk,
   getAllUsersThunk,
@@ -6,8 +6,7 @@ import {
   unBlockUserThunk,
 } from './getUsersThunk';
 
-import { AdminState, initialState } from 'src/types/admin/getusers.types';
-import { PaginationMeta } from '../../types/common/Pagination/paginationTypes';
+import { initialState } from '../../types/admin/getusers.types';
 
 const adminUsersSlice = createSlice({
   name: 'adminusers',

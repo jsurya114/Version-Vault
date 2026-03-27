@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { adminService } from 'src/services/admin.service';
-import { UserResponseDTO } from 'src/types/admin/adminTypes';
+import { adminService } from '../../services/admin.service';
+import { UserResponseDTO } from '../../types/admin/adminTypes';
 import { PaginationQuery, PaginatedResponse } from '../../types/common/Pagination/paginationTypes';
 
 export const getAllUsersThunk = createAsyncThunk<
@@ -10,6 +10,7 @@ export const getAllUsersThunk = createAsyncThunk<
   try {
     const response = await adminService.getAllUsers(query);
     return response;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || 'Failed to fetch users');
   }
@@ -21,6 +22,7 @@ export const getUserByIdThunk = createAsyncThunk<UserResponseDTO, string>(
     try {
       const response = await adminService.getUserById(id);
       return response;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to fetch user');
     }
@@ -33,6 +35,7 @@ export const blockUserThunk = createAsyncThunk<UserResponseDTO, string>(
     try {
       const response = await adminService.blockUser(id);
       return response;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to block user');
     }
@@ -45,6 +48,7 @@ export const unBlockUserThunk = createAsyncThunk<UserResponseDTO, string>(
     try {
       const response = await adminService.unBlockUser(id);
       return response;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       return rejectWithValue(error.response?.data?.message || 'Failed to unblock user');
     }

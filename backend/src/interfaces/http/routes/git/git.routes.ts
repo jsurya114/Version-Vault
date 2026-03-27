@@ -1,6 +1,5 @@
-import { Router, Response, Request, NextFunction } from 'express';
+import { Router } from 'express';
 import { handleGitRequest } from '../../handlers/GitHttpHandler';
-import { gitAuthMiddleware } from '../../middleware/GitAuthMiddleware';
 
 const router = Router();
 

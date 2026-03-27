@@ -1,8 +1,9 @@
-import { IUser } from "src/domain/interfaces/IUser";
+import { IUser } from '../../domain/interfaces/IUser';
 
-export class UserMapper{
-    static toIUser(doc:any):IUser{
-        return{
+export class UserMapper {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  static toIUser(doc: any): IUser {
+    return {
       id: doc._id.toString(),
       userId: doc.userId,
       username: doc.username,
@@ -19,6 +20,6 @@ export class UserMapper{
       followingCount: doc.followingCount,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
-        }
-    }
+    };
+  }
 }

@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { GitPullRequest, GitMerge, X, Plus, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { listPRThunk } from 'src/features/pullrequest/prThunk';
-import { selectPRs, selectPRLoading, selectPRMeta } from 'src/features/pullrequest/prSelector';
-import { PRStatus } from 'src/types/pullrequest/pullrequest.types';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { listPRThunk } from '../../../features/pullrequest/prThunk';
+import { selectPRs, selectPRLoading } from '../../../features/pullrequest/prSelector';
+import { PRStatus } from '../../../types/pullrequest/pullrequest.types';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -23,7 +23,6 @@ const PRListContent = ({ username, reponame }: { username: string; reponame: str
   const navigate = useNavigate();
   const prs = useAppSelector(selectPRs);
   const isLoading = useAppSelector(selectPRLoading);
-  const meta = useAppSelector(selectPRMeta);
 
   const [page, setPage] = useState(1);
   const [search, setSearch] = useState('');
@@ -38,7 +37,7 @@ const PRListContent = ({ username, reponame }: { username: string; reponame: str
         page,
         limit,
         search: search || undefined,
-        status: statusFilter === 'all' ? undefined : (statusFilter as any),
+        status: statusFilter === 'all' ? undefined : (statusFilter as PRStatus),
       }),
     );
   }, [username, reponame, page, statusFilter]);
@@ -53,7 +52,7 @@ const PRListContent = ({ username, reponame }: { username: string; reponame: str
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-6 w-full">
+    <div className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
       <div className="flex items-center justify-between mb-4">
         <h1 className="text-white font-semibold flex items-center gap-2">
           <GitPullRequest className="w-5 h-5 text-gray-400" /> Pull Requests

@@ -1,14 +1,15 @@
-import { useEffect } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import { useParams, Link } from 'react-router-dom';
 import { GitPullRequest, GitMerge, X, Clock, GitBranch, MessageSquare } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { getPRThunk, mergePRThunk, closePRThunk } from 'src/features/pullrequest/prThunk';
-import { selectSelectedPR, selectPRLoading } from 'src/features/pullrequest/prSelector';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
-import { PRStatus } from 'src/types/pullrequest/pullrequest.types';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getPRThunk, mergePRThunk, closePRThunk } from '../../features/pullrequest/prThunk';
+import { selectSelectedPR, selectPRLoading } from '../../features/pullrequest/prSelector';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { PRStatus } from '../../types/pullrequest/pullrequest.types';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -18,11 +19,12 @@ const statusColors: Record<PRStatus, string> = {
 
 const PRDetailPage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
   const { username, reponame, id } = useParams();
   const pr = useAppSelector(selectSelectedPR);
   const isLoading = useAppSelector(selectPRLoading);
   const user = useAppSelector(selectAuthUser);
+  const [isMerging, setIsMerging] = useState(false);
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   const isOwner = user?.userId === username;
 
@@ -32,7 +34,21 @@ const PRDetailPage = () => {
 
   const handleMerge = async () => {
     if (!confirm('Merge this pull request?')) return;
-    await dispatch(mergePRThunk({ username: username!, reponame: reponame!, id: id! }));
+    setIsMerging(true);
+    try {
+      const result = await dispatch(
+        mergePRThunk({ username: username!, reponame: reponame!, id: id! }),
+      );
+      if (mergePRThunk.fulfilled.match(result)) {
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Successfully Merged!',
+          subtitle: `Changes are now in ${pr?.targetBranch}`,
+        });
+      }
+    } finally {
+      setIsMerging(false);
+    }
   };
 
   const handleClose = async () => {
@@ -83,6 +99,16 @@ const PRDetailPage = () => {
       </div>
 
       <main className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
+        {/* Success Sonar */}
+        {successSonar.isOpen && (
+          <SuccessSonar
+            isOpen={successSonar.isOpen}
+            onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+            title={successSonar.title}
+            subtitle={successSonar.subtitle}
+          />
+        )}
+
         {/* PR Header */}
         <div className="mb-6">
           <div className="flex items-start justify-between gap-4">
@@ -126,13 +152,20 @@ const PRDetailPage = () => {
               <div className="flex items-center gap-2 shrink-0">
                 <button
                   onClick={handleMerge}
-                  className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-400 text-xs px-3 py-1.5 rounded-lg transition"
+                  disabled={isMerging}
+                  className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-400 text-xs px-3 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <GitMerge className="w-3.5 h-3.5" /> Merge
+                  {isMerging ? (
+                    <div className="w-3.5 h-3.5 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
+                  ) : (
+                    <GitMerge className="w-3.5 h-3.5" />
+                  )}
+                  {isMerging ? 'Merging...' : 'Merge'}
                 </button>
                 <button
                   onClick={handleClose}
-                  className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition"
+                  disabled={isMerging}
+                  className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
                   <X className="w-3.5 h-3.5" /> Close
                 </button>

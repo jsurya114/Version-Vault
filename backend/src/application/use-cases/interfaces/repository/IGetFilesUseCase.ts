@@ -1,4 +1,4 @@
-import { GitFileEntry } from 'src/domain/interfaces/IGitTypes';
+import { GitFileEntry } from '../../../../domain/interfaces/IGitTypes';
 
 export interface IGetFilesUseCase {
   execute(

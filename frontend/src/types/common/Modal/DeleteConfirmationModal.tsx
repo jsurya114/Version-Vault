@@ -5,7 +5,8 @@ interface DeleteConfirmModalProps {
   isOpen: boolean;
   onClose: () => void;
   onConfirm: () => void;
-  repoPath: string; // e.g. "jsurya114/projects"
+  itemPath: string; // The specific string to type (e.g. "user/repo" or "branch-name")
+  itemName: string; // The type of item (e.g. "repository" or "branch")
   isLoading?: boolean;
 }
 
@@ -13,7 +14,8 @@ const DeleteConfirmModal = ({
   isOpen,
   onClose,
   onConfirm,
-  repoPath,
+  itemPath,
+  itemName,
   isLoading,
 }: DeleteConfirmModalProps) => {
   const [input, setInput] = useState('');
@@ -21,7 +23,7 @@ const DeleteConfirmModal = ({
   if (!isOpen) return null;
 
   const handleConfirm = () => {
-    if (input === repoPath) {
+    if (input === itemPath) {
       onConfirm();
       setInput('');
     }
@@ -41,7 +43,7 @@ const DeleteConfirmModal = ({
             <div className="w-8 h-8 rounded-full bg-red-500/10 border border-red-500/30 flex items-center justify-center">
               <Trash2 className="w-4 h-4 text-red-400" />
             </div>
-            <h2 className="text-white font-semibold">Delete Repository</h2>
+            <h2 className="text-white font-semibold capitalize">Delete {itemName}</h2>
           </div>
           <button onClick={handleClose} className="text-gray-500 hover:text-white transition">
             <X className="w-5 h-5" />
@@ -53,22 +55,24 @@ const DeleteConfirmModal = ({
           <p className="text-red-400 text-sm font-medium mb-1">This action cannot be undone</p>
           <p className="text-gray-400 text-xs">
             This will permanently delete the{' '}
-            <span className="text-white font-mono">{repoPath}</span> repository, including all
-            commits, branches, and files.
+            <span className="text-white font-mono">{itemPath}</span> {itemName.toLowerCase()}
+            {itemName.toLowerCase() === 'repository' &&
+              ', including all commits, branches, and files'}
+            .
           </p>
         </div>
 
         {/* Confirmation input */}
         <div className="mb-4">
           <label className="block text-gray-400 text-xs mb-2">
-            To confirm, type <span className="text-white font-mono font-medium">{repoPath}</span>{' '}
+            To confirm, type <span className="text-white font-mono font-medium">{itemPath}</span>{' '}
             below:
           </label>
           <input
             type="text"
             value={input}
             onChange={(e) => setInput(e.target.value)}
-            placeholder={repoPath}
+            placeholder={itemPath}
             className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm font-mono placeholder-gray-600 focus:outline-none focus:border-red-500/50 transition"
             onKeyDown={(e) => {
               if (e.key === 'Enter') handleConfirm();
@@ -86,10 +90,10 @@ const DeleteConfirmModal = ({
           </button>
           <button
             onClick={handleConfirm}
-            disabled={input !== repoPath || isLoading}
+            disabled={input !== itemPath || isLoading}
             className="flex-1 bg-red-600 hover:bg-red-700 disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-medium py-2.5 rounded-lg transition"
           >
-            {isLoading ? 'Deleting...' : 'Delete Repository'}
+            {isLoading ? 'Deleting...' : `Delete ${itemName}`}
           </button>
         </div>
       </div>

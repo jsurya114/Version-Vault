@@ -1,5 +1,5 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
-import { repositoryService } from 'src/services/repository.service';
+import { repositoryService } from '../../services/repository.service';
 import {
   RepositoryResponseDTO,
   CreateRepositoryDTO,
@@ -9,8 +9,10 @@ import {
   GetFileContentParams,
   GetCommitsParams,
   GitCommit,
-} from 'src/types/repository/repositoryTypes';
-import { PaginatedResponse, PaginationQuery } from 'src/types/common/Pagination/paginationTypes';
+  GitBranch,
+} from '../../types/repository/repositoryTypes';
+import { PaginatedResponse, PaginationQuery } from '../../types/common/Pagination/paginationTypes';
+import { RootState } from '../../app/store';
 
 export const createRepositoryThunk = createAsyncThunk<RepositoryResponseDTO, CreateRepositoryDTO>(
   'repository/create',
@@ -18,8 +20,9 @@ export const createRepositoryThunk = createAsyncThunk<RepositoryResponseDTO, Cre
     try {
       const response = await repositoryService.createRepository(dto);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to create repository');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to create repository');
     }
   },
 );
@@ -31,8 +34,9 @@ export const listRepositoryThunk = createAsyncThunk<
   try {
     const response = await repositoryService.listRepositories(query);
     return response;
-  } catch (error: any) {
-    return rejectWithValue(error.response?.data?.message || 'Failed to fetch repositories');
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to fetch repositories');
   }
 });
 
@@ -42,8 +46,9 @@ export const getRepositoryThunk = createAsyncThunk<RepositoryResponseDTO, RepoPa
     try {
       const response = await repositoryService.getRepository(username, reponame);
       return response;
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch repository');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch repository');
     }
   },
 );
@@ -53,8 +58,9 @@ export const deleteRepositoryThunk = createAsyncThunk<void, RepoParams>(
   async ({ username, reponame }, { rejectWithValue }) => {
     try {
       await repositoryService.deleteRepository(username, reponame);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to delete repository');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to delete repository');
     }
   },
 );
@@ -64,8 +70,9 @@ export const getFilesThunk = createAsyncThunk<GitFileEntry[], GetFilesParams>(
   async ({ username, reponame, branch = 'main', path = '' }, { rejectWithValue }) => {
     try {
       return await repositoryService.getFiles(username, reponame, branch, path);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch files');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch files');
     }
   },
 );
@@ -75,30 +82,89 @@ export const getFileContentThunk = createAsyncThunk<string, GetFileContentParams
   async ({ username, reponame, filePath, branch = 'main' }, { rejectWithValue }) => {
     try {
       return await repositoryService.getFileContent(username, reponame, filePath, branch);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch file content');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch file content');
     }
   },
 );
 
-export const getCommitsThunk = createAsyncThunk<GitCommit, GetCommitsParams>(
+export const getCommitsThunk = createAsyncThunk<GitCommit[], GetCommitsParams>(
   'repository/getcommits',
   async ({ username, reponame, branch = 'main', limit = 20 }, { rejectWithValue }) => {
     try {
       return await repositoryService.getCommits(username, reponame, branch, limit);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch commits');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch commits');
     }
   },
 );
 
-export const getBranchesThunk = createAsyncThunk<string[], RepoParams>(
+export const getBranchesThunk = createAsyncThunk<GitBranch[], RepoParams>(
   'repository/getbranches',
   async ({ username, reponame }, { rejectWithValue }) => {
     try {
       return await repositoryService.getBranches(username, reponame);
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch branches');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch branches');
     }
   },
 );
+
+export const createBranchThunk = createAsyncThunk<
+  { author: string },
+  { username: string; reponame: string; newBranch: string; fromBranch: string },
+  { state: RootState }
+>(
+  'repository/createBranch',
+  async ({ username, reponame, newBranch, fromBranch }, { getState, rejectWithValue }) => {
+    try {
+      await repositoryService.createBranch(username, reponame, newBranch, fromBranch);
+
+      const state = getState();
+      const author = state.auth.user?.username || 'you';
+      return { author };
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to create branch');
+    }
+  },
+);
+
+export const deleteBranchThunk = createAsyncThunk<
+  void,
+  { username: string; reponame: string; branchName: string }
+>('repository/deleteBranch', async ({ username, reponame, branchName }, { rejectWithValue }) => {
+  try {
+    await repositoryService.deleteBranch(username, reponame, branchName);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to delete branch');
+  }
+});
+
+export const createCommitThunk = createAsyncThunk<
+  void,
+  {
+    username: string;
+    reponame: string;
+    branch: string;
+    message: string;
+    filePath: string;
+    content: string;
+  }
+>('repository/createCommit', async (params, { rejectWithValue }) => {
+  try {
+    await repositoryService.createCommit(params.username, params.reponame, {
+      branch: params.branch,
+      message: params.message,
+      filePath: params.filePath,
+      content: params.content,
+    });
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to create commit');
+  }
+});

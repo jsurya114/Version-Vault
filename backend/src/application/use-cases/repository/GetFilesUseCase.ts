@@ -1,7 +1,7 @@
 import { injectable, inject } from 'tsyringe';
 import { IGetFilesUseCase } from '../interfaces/repository/IGetFilesUseCase';
-import { GitService } from 'src/infrastructure/services/GitService';
-import { GitFileEntry } from 'src/domain/interfaces/IGitTypes';
+import { GitService } from '../../../infrastructure/services/GitService';
+import { GitFileEntry } from '../../../domain/interfaces/IGitTypes';
 
 @injectable()
 export class GetFilesUseCase implements IGetFilesUseCase {

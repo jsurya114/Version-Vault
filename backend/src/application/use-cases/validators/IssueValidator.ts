@@ -1,5 +1,5 @@
-import { IIssue } from 'src/domain/interfaces/IIssues';
-import { IIssueRepository } from 'src/domain/interfaces/repositories/IIssuesRepository';
+import { IIssue } from '../../../domain/interfaces/IIssues';
+import { IIssueRepository } from '../../../domain/interfaces/repositories/IIssuesRepository';
 
 export class IssueValidator {
   static async findOrFail(_issueRepo: IIssueRepository, id: string): Promise<IIssue> {

@@ -21,7 +21,7 @@ import {
   GitPullRequest,
   CircleDot,
 } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getRepositoryThunk,
   deleteRepositoryThunk,
@@ -29,7 +29,8 @@ import {
   getCommitsThunk,
   getFileContentThunk,
   getBranchesThunk,
-} from 'src/features/repository/repositoryThunks';
+  deleteBranchThunk,
+} from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
   selectRepositoryLoading,
@@ -39,16 +40,18 @@ import {
   selectFileContent,
   selectFilesLoading,
   selectBranches,
-} from 'src/features/repository/repositorySelectors';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import DeleteConfirmModal from 'src/types/common/Layout/DeleteConfirmationModal';
+} from '../../features/repository/repositorySelectors';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import { ROUTES } from '../../constants/routes';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
+import CommitModal from '../../types/common/Modal/CreateCommitModal';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
-import PRListContent from 'src/types/common/pullrequest/PRListContent';
-type Tab = 'code' | 'commits' | 'pulls' | 'issues';
+import PRListContent from '../../types/common/pullrequest/PRListContent';
+type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues';
 
 interface TreeNode {
   name: string;
@@ -81,6 +84,22 @@ const RepositoryDetailPage = () => {
   const [readmeContent, setReadmeContent] = useState('');
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
+  const [showBranchDeleteModal, setShowBranchDeleteModal] = useState(false);
+  const [isDeletingBranch, setIsDeletingBranch] = useState(false);
+
+  const [isEditing, setIsEditing] = useState(false);
+  const [editedContent, setEditedContent] = useState('');
+  const [showCommitModal, setShowCommitModal] = useState(false);
+  const [successSonar, setSuccessSonar] = useState<{
+    isOpen: boolean;
+    title: string;
+    subtitle?: string;
+  }>({
+    isOpen: false,
+    title: '',
+    subtitle: '',
+  });
+
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
@@ -105,8 +124,8 @@ const RepositoryDetailPage = () => {
           filePath: readme.path,
           branch,
         }),
-      ).then((r: any) => {
-        if (r.payload) setReadmeContent(r.payload);
+      ).then((r: { payload?: unknown }) => {
+        if (typeof r.payload === 'string') setReadmeContent(r.payload);
       });
     } else {
       setReadmeContent('');
@@ -159,6 +178,32 @@ const RepositoryDetailPage = () => {
     await dispatch(deleteRepositoryThunk({ username: username!, reponame: reponame! }));
     setShowDeleteModal(false);
     navigate(ROUTES.REPO_LIST);
+  };
+
+  const onConfirmDeleteBranch = async () => {
+    setIsDeletingBranch(true);
+    try {
+      const result = await dispatch(
+        deleteBranchThunk({
+          username: username!,
+          reponame: reponame!,
+          branchName: branch,
+        }),
+      );
+
+      if (deleteBranchThunk.fulfilled.match(result)) {
+        setShowBranchDeleteModal(false);
+        setBranch('main');
+        dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Branch Deleted',
+          subtitle: `Branch "${branch}" has been removed.`,
+        });
+      }
+    } finally {
+      setIsDeletingBranch(false);
+    }
   };
 
   const formatDate = (dateStr: string) =>
@@ -252,6 +297,19 @@ const RepositoryDetailPage = () => {
             <GitCommit className="w-4 h-4" />
             Commits {commits.length > 0 && `(${commits.length})`}
           </button>
+          {/* Branches Tab */}
+          <button
+            onClick={() => setActiveTab('branches')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+              activeTab === 'branches'
+                ? 'text-white border-blue-500'
+                : 'text-gray-500 border-transparent hover:text-gray-300'
+            }`}
+          >
+            <GitBranch className="w-4 h-4" />
+            Branches {branches.length > 0 && `(${branches.length})`}
+          </button>
+
           <button
             onClick={() => setActiveTab('pulls')}
             className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
@@ -272,10 +330,12 @@ const RepositoryDetailPage = () => {
       {activeTab === 'code' && (
         <div className="flex flex-1">
           {/* Left Sidebar — File Tree */}
-          <div className="w-72 shrink-0 border-r border-gray-800 flex flex-col min-h-full">
-            <div className="px-3 py-2.5 border-b border-gray-800 flex items-center gap-2">
-              <Folder className="w-4 h-4 text-gray-400" />
-              <span className="text-white text-xs font-semibold">Files</span>
+          <div className="w-64 border-r border-gray-800 flex flex-col shrink-0">
+            <div className="px-3 py-2.5 border-b border-gray-800 flex items-center justify-between">
+              <div className="flex items-center gap-2">
+                <Folder className="w-4 h-4 text-gray-400" />
+                <span className="text-white text-xs font-semibold">Files</span>
+              </div>
             </div>
 
             {/* Branch selector */}
@@ -294,17 +354,25 @@ const RepositoryDetailPage = () => {
                 >
                   {branches.length > 0 ? (
                     branches.map((b) => (
-                      <option key={b} value={b}>
-                        {b}
+                      <option key={b.name} value={b.name}>
+                        {b.name}
                       </option>
                     ))
                   ) : (
                     <option value="main">main</option>
                   )}
                 </select>
+                {branch !== 'main' && isOwner && (
+                  <button
+                    onClick={() => setShowBranchDeleteModal(true)}
+                    className="p-1 text-gray-500 hover:text-red-400 transition"
+                    title="Delete branch"
+                  >
+                    <Trash2 className="w-3 h-3" />
+                  </button>
+                )}
               </div>
             </div>
-
             {/* Search */}
             <div className="px-3 py-2 border-b border-gray-800">
               <div className="flex items-center gap-2 bg-gray-800 border border-gray-700 rounded-lg px-2 py-1.5">
@@ -521,7 +589,7 @@ const RepositoryDetailPage = () => {
 
                 {/* File content viewer */}
                 {selectedFile && (
-                  <div className="flex-1 overflow-auto">
+                  <div className="flex-1 overflow-auto flex flex-col">
                     <div className="px-4 py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-900/30">
                       <div className="flex items-center gap-3">
                         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
@@ -540,45 +608,88 @@ const RepositoryDetailPage = () => {
                           {latestCommit ? timeAgo(latestCommit.date) : ''}
                         </span>
                       </div>
-                      <button className="text-gray-500 hover:text-white text-xs flex items-center gap-1 transition">
-                        <History className="w-3.5 h-3.5" /> History
-                      </button>
+                      <div className="flex items-center gap-2">
+                        {!isEditing && (
+                          <button
+                            onClick={() => {
+                              setIsEditing(true);
+                              setEditedContent(fileContent);
+                            }}
+                            className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 transition"
+                          >
+                            Edit
+                          </button>
+                        )}
+                        <button className="text-gray-500 hover:text-white text-xs flex items-center gap-1 transition">
+                          <History className="w-3.5 h-3.5" /> History
+                        </button>
+                      </div>
                     </div>
                     <div className="px-4 py-2 border-b border-gray-800 flex items-center justify-between bg-gray-900">
                       <div className="flex items-center gap-3">
-                        <button className="text-xs px-3 py-1 bg-gray-800 border border-gray-700 rounded text-white font-medium">
+                        <button
+                          className={`text-xs px-3 py-1 border border-gray-700 rounded font-medium transition ${!isEditing ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white'}`}
+                          onClick={() => setIsEditing(false)}
+                        >
                           Code
                         </button>
+                        {isEditing && (
+                          <button
+                            onClick={() => setShowCommitModal(true)}
+                            className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded transition"
+                          >
+                            Commit Changes
+                          </button>
+                        )}
                         <button className="text-xs px-3 py-1 text-gray-400 hover:text-white transition">
                           Blame
                         </button>
                       </div>
                       <div className="flex items-center gap-3 text-gray-500 text-xs">
-                        <span>{fileContent.split('\n').length} lines</span>
-                        <span>{new Blob([fileContent]).size} Bytes</span>
+                        <span>
+                          {isEditing
+                            ? editedContent.split('\n').length
+                            : fileContent.split('\n').length}{' '}
+                          lines
+                        </span>
+                        <span>
+                          {new Blob([isEditing ? editedContent : fileContent]).size} Bytes
+                        </span>
                         <button
-                          onClick={handleBack}
+                          onClick={() => {
+                            setIsEditing(false);
+                            handleBack();
+                          }}
                           className="text-blue-400 hover:text-blue-300 transition"
                         >
                           ← Back
                         </button>
                       </div>
                     </div>
-                    <div className="overflow-auto">
-                      <table className="w-full font-mono text-xs">
-                        <tbody>
-                          {fileContent.split('\n').map((line, i) => (
-                            <tr key={i} className="hover:bg-gray-800/30">
-                              <td className="px-4 py-0.5 text-gray-600 text-right select-none w-12 border-r border-gray-800">
-                                {i + 1}
-                              </td>
-                              <td className="px-4 py-0.5 text-gray-300 whitespace-pre">
-                                {line || ' '}
-                              </td>
-                            </tr>
-                          ))}
-                        </tbody>
-                      </table>
+                    <div className="overflow-auto flex-1 flex flex-col bg-gray-950">
+                      {isEditing ? (
+                        <textarea
+                          value={editedContent}
+                          onChange={(e) => setEditedContent(e.target.value)}
+                          className="w-full h-full flex-1 bg-transparent text-gray-300 font-mono text-xs p-4 focus:outline-none resize-none min-h-[400px]"
+                          placeholder="Edit file content..."
+                        />
+                      ) : (
+                        <table className="w-full font-mono text-xs">
+                          <tbody>
+                            {fileContent.split('\n').map((line, i) => (
+                              <tr key={i} className="hover:bg-gray-800/30">
+                                <td className="px-4 py-0.5 text-gray-600 text-right select-none w-12 border-r border-gray-800">
+                                  {i + 1}
+                                </td>
+                                <td className="px-4 py-0.5 text-gray-300 whitespace-pre">
+                                  {line || ' '}
+                                </td>
+                              </tr>
+                            ))}
+                          </tbody>
+                        </table>
+                      )}
                     </div>
                   </div>
                 )}
@@ -748,7 +859,7 @@ const RepositoryDetailPage = () => {
 
       {/* COMMITS TAB */}
       {activeTab === 'commits' && (
-        <div className="max-w-4xl mx-auto px-6 py-6 w-full">
+        <div className="max-w-4xl mx-auto px-6 py-6 w-full flex-1">
           <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
             {isCommitsLoading ? (
               <div className="flex items-center justify-center py-10">
@@ -782,7 +893,21 @@ const RepositoryDetailPage = () => {
           </div>
         </div>
       )}
-
+      {activeTab === 'branches' && (
+        <div className="max-w-4xl mx-auto px-6 py-6 w-full text-center flex-1">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-10">
+            <GitBranch className="w-12 h-12 text-gray-700 mx-auto mb-4" />
+            <h3 className="text-xl font-bold mb-2">Branches</h3>
+            <p className="text-gray-500 mb-6">Manage your repository branches here.</p>
+            <Link
+              to={`/${username}/${reponame}/branches`}
+              className="bg-blue-600 hover:bg-blue-700 text-white px-6 py-2 rounded-lg font-medium transition inline-block"
+            >
+              View all branches
+            </Link>
+          </div>
+        </div>
+      )}
       {activeTab === 'pulls' && <PRListContent username={username!} reponame={reponame!} />}
 
       {activeTab === 'issues' && <IssueListContent username={username!} reponame={reponame!} />}
@@ -793,8 +918,48 @@ const RepositoryDetailPage = () => {
         isOpen={showDeleteModal}
         onClose={() => setShowDeleteModal(false)}
         onConfirm={handleDelete}
-        repoPath={`${username}/${reponame}`}
+        itemPath={`${username}/${reponame}`}
+        itemName="repository"
+        isLoading={isLoading}
       />
+
+      <DeleteConfirmModal
+        isOpen={showBranchDeleteModal}
+        onClose={() => setShowBranchDeleteModal(false)}
+        onConfirm={onConfirmDeleteBranch}
+        itemPath={branch}
+        itemName="branch"
+        isLoading={isDeletingBranch}
+      />
+
+      {showCommitModal && (
+        <CommitModal
+          username={username!}
+          reponame={reponame!}
+          branch={branch}
+          filePath={selectedFile}
+          content={editedContent}
+          onSuccess={() => {
+            setIsEditing(false);
+            setShowCommitModal(false);
+            setSuccessSonar({
+              isOpen: true,
+              title: 'Changes Committed!',
+              subtitle: 'Your repository is now up to date.',
+            });
+          }}
+          onCancel={() => setShowCommitModal(false)}
+        />
+      )}
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

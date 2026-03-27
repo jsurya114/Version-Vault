@@ -1,4 +1,4 @@
-import { RootState } from 'src/app/store';
+import { RootState } from '../../app/store';
 
 export const selectAdminUsers = (state: RootState) => state.adminusers.users;
 export const selectSelectedUser = (state: RootState) => state.adminusers.selectedUser;

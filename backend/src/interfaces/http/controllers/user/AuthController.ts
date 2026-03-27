@@ -1,21 +1,23 @@
 import type { Request, Response, NextFunction } from 'express';
 import { injectable, inject } from 'tsyringe';
-import { TOKENS } from 'src/shared/constants/tokens';
-import type { IRegisterUseCase } from 'src/application/use-cases/interfaces/IRegisterUsecase';
-import type { IVerifyOtpUseCase } from 'src/application/use-cases/interfaces/IVerifyOtpUseCase';
-import type { ILoginUseCase } from 'src/application/use-cases/interfaces/ILoginUseCase';
-import type { IGoogleAuthUseCase } from 'src/application/use-cases/interfaces/IGoogleUseCase';
-import type { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
-import type { IlogoutUseCase } from 'src/application/use-cases/interfaces/ILogoutUseCase';
-import type { IRefreshTokenUseCase } from 'src/application/use-cases/interfaces/IRefreshTokenUseCase';
-import type { IGetMeUseCase } from 'src/application/use-cases/interfaces/IGetMeUseCase';
-import type { IForgotPasswordUseCase } from 'src/application/use-cases/interfaces/IForgotPasswordUseCase';
-import type { IResetPasswordUseCase } from 'src/application/use-cases/interfaces/IResetPasswordUseCase';
-import type { IResendOtpUseCase } from 'src/application/use-cases/interfaces/IResendOtpUseCase';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import type { IRegisterUseCase } from '../../../../application/use-cases/interfaces/IRegisterUsecase';
+import type { IVerifyOtpUseCase } from '../../../../application/use-cases/interfaces/IVerifyOtpUseCase';
+import type { ILoginUseCase } from '../../../../application/use-cases/interfaces/ILoginUseCase';
+import type { IGoogleAuthUseCase } from '../../../../application/use-cases/interfaces/IGoogleUseCase';
+import type { IGoogleAuthService } from '../../../../domain/interfaces/services/IGoogleAuthService';
+import type { IlogoutUseCase } from '../../../../application/use-cases/interfaces/ILogoutUseCase';
+import type { IRefreshTokenUseCase } from '../../../../application/use-cases/interfaces/IRefreshTokenUseCase';
+import type { IGetMeUseCase } from '../../../../application/use-cases/interfaces/IGetMeUseCase';
+import type { IForgotPasswordUseCase } from '../../../../application/use-cases/interfaces/IForgotPasswordUseCase';
+import type { IResetPasswordUseCase } from '../../../../application/use-cases/interfaces/IResetPasswordUseCase';
+import type { IResendOtpUseCase } from '../../../../application/use-cases/interfaces/IResendOtpUseCase';
 
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 
-import { envConfig } from 'src/shared/config/env.config';
+import { envConfig } from '../../../../shared/config/env.config';
+import { IGetAllUsersUseCase } from 'src/application/use-cases/interfaces/admin/IGetAllUsersUseCase';
+import { logger } from '../../../../shared/logger/Logger';
 
 @injectable()
 export class AuthController {
@@ -34,6 +36,7 @@ export class AuthController {
     @inject(TOKENS.IResetPasswordUseCase)
     private readonly resetPasswordUseCase: IResetPasswordUseCase,
     @inject(TOKENS.IResendOtpUseCase) private readonly resendOtpUseCase: IResendOtpUseCase,
+    @inject(TOKENS.IGetAllUsersUseCase) private readonly _getAllUsersUseCase: IGetAllUsersUseCase,
   ) {}
   /**
    * POST /api/auth/register
@@ -43,7 +46,7 @@ export class AuthController {
   async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const result = await this.registerUser.execute(req.body);
-      console.log(result);
+      logger.info(`User registered: ${result.message}`);
       res.status(HttpStatusCodes.CREATED).json({
         success: true,
         message: result.message,
@@ -191,6 +194,7 @@ export class AuthController {
 
   async getMe(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const userId = (req as any).user?.userId;
 
       if (!userId) {
@@ -244,5 +248,19 @@ export class AuthController {
     } catch (error) {
       next(error);
     }
+  }
+
+  async globalSearch(req: Request, res: Response) {
+    const query = {
+      search: req.query.q as string,
+      limit: 5,
+      page: 1,
+    };
+
+    const result = await this._getAllUsersUseCase.execute(query);
+    return res.status(HttpStatusCodes.OK).json({
+      success: true,
+      data: result.data,
+    });
   }
 }

@@ -1,6 +1,6 @@
 import axiosInstance from './axiosInstance';
-import { AUTH_ENDPOINTS } from 'src/constants/api';
-import type { RegisterInput, VerifyOtpInput, LoginInput } from 'src/types/auth.types';
+import { AUTH_ENDPOINTS } from '../constants/api';
+import type { RegisterInput, VerifyOtpInput, LoginInput } from '../types/auth.types';
 
 export const authService = {
   register: async (data: RegisterInput) => {
@@ -42,5 +42,10 @@ export const authService = {
   resendOtp: async (email: string) => {
     const response = await axiosInstance.post(AUTH_ENDPOINTS.RESEND_OTP, { email });
     return response.data;
+  },
+
+  globalSearch: async (query: string) => {
+    const res = await axiosInstance.get(`/auth/search?q=${query}`);
+    return res.data.data;
   },
 };

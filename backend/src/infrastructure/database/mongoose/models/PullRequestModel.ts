@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { PRStatus } from 'src/domain/interfaces/IPullRequest';
+import { PRStatus } from '../../../../domain/interfaces/IPullRequest';
 
 export interface IPullRequestDocument extends Document {
   title: string;

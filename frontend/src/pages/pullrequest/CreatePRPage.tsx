@@ -1,13 +1,15 @@
 import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { GitPullRequest } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { createPRThunk } from 'src/features/pullrequest/prThunk';
-import { selectPRLoading, selectPRError } from 'src/features/pullrequest/prSelector';
-import { selectBranches } from 'src/features/repository/repositorySelectors';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { createPRThunk } from '../../features/pullrequest/prThunk';
+import { selectPRLoading, selectPRError } from '../../features/pullrequest/prSelector';
+import { selectBranches } from '../../features/repository/repositorySelectors';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import { CommonLoader } from '../../types/common/Layout/Loader';
 
 const CreatePRPage = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +23,8 @@ const CreatePRPage = () => {
   const [description, setDescription] = useState('');
   const [sourceBranch, setSourceBranch] = useState('');
   const [targetBranch, setTargetBranch] = useState('main');
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+  const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
   const handleSubmit = async () => {
     if (!title || !sourceBranch || !targetBranch) return;
@@ -32,7 +36,19 @@ const CreatePRPage = () => {
       }),
     );
     if (createPRThunk.fulfilled.match(result)) {
-      navigate(`/${username}/${reponame}/pulls`);
+      setIsCreatingLoader(true);
+      setTimeout(() => {
+        setIsCreatingLoader(false);
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Pull Request Opened!',
+          subtitle: `Successfully created PR from ${sourceBranch} to ${targetBranch}.`,
+        });
+        // Delay navigation to show the sonar
+        setTimeout(() => {
+          navigate(`/${username}/${reponame}/pulls`);
+        }, 2500);
+      }, 2000);
     }
   };
 
@@ -85,8 +101,8 @@ const CreatePRPage = () => {
               >
                 <option value="">Select source branch</option>
                 {branches.map((b) => (
-                  <option key={b} value={b}>
-                    {b}
+                  <option key={b.name} value={b.name}>
+                    {b.name}
                   </option>
                 ))}
               </select>
@@ -99,8 +115,8 @@ const CreatePRPage = () => {
                 className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-gray-300 text-sm focus:outline-none focus:border-blue-500"
               >
                 {branches.map((b) => (
-                  <option key={b} value={b}>
-                    {b}
+                  <option key={b.name} value={b.name}>
+                    {b.name}
                   </option>
                 ))}
               </select>
@@ -153,6 +169,17 @@ const CreatePRPage = () => {
       </main>
 
       <AppFooter />
+
+      {isCreatingLoader && <CommonLoader message="Creating Pull Request..." />}
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

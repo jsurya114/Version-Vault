@@ -1,7 +1,7 @@
-import { inject, injectable } from 'tsyringe';
-import { IGoogleAuthService } from 'src/domain/interfaces/services/IGoogleAuthService';
+import { injectable } from 'tsyringe';
+import { IGoogleAuthService } from '../../domain/interfaces/services/IGoogleAuthService';
 import { OAuth2Client } from 'google-auth-library';
-import { envConfig } from 'src/shared/config/env.config';
+import { envConfig } from '../../shared/config/env.config';
 
 @injectable()
 export class GoogleAuthService implements IGoogleAuthService {

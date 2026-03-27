@@ -1,8 +1,8 @@
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { RepoResponseDTO } from 'src/application/dtos/repository/RepoResponseDTO';
+} from '../../../../application/dtos/reusable/PaginationDTO';
+import { RepoResponseDTO } from '../../../../application/dtos/repository/RepoResponseDTO';
 
 export interface IListRepoUseCase {
   execute(

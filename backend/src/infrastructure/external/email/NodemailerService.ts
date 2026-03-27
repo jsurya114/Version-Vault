@@ -1,8 +1,8 @@
 import nodemailer from 'nodemailer';
 import { injectable } from 'tsyringe';
-import type { IEmailService } from 'src/domain/interfaces/services/IEmailService';
-import { envConfig } from 'src/shared/config/env.config';
-import { logger } from 'src/shared/logger/Logger';
+import type { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+import { envConfig } from '../../../shared/config/env.config';
+import { logger } from '../../../shared/logger/Logger';
 import { resolve4 } from 'node:dns/promises';
 
 @injectable()
@@ -11,7 +11,7 @@ export class NodemailerService implements IEmailService {
 
   private async getTransporter(): Promise<nodemailer.Transporter> {
     if (!this.transporter) {
-      let hostParams: any = { host: envConfig.SMTP_HOST };
+      let hostParams: Record<string, unknown> = { host: envConfig.SMTP_HOST };
       try {
         // Force IPv4 lookup to bypass ENETUNREACH failing rapidly on networks lacking IPv6
         const ips = await resolve4(envConfig.SMTP_HOST);

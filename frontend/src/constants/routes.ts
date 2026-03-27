@@ -15,7 +15,7 @@ export const ROUTES = {
   // User
   HOME: '/home',
   EXPLORE: '/explore',
-  PROFILE: '/profile/:username',
+  PROFILE: '/profile/:userId',
   SETTINGS: '/settings',
   NOTIFICATIONS: '/notifications',
   SUBSCRIPTION: '/subscription',
@@ -41,6 +41,9 @@ export const ROUTES = {
   ISSUE_LIST: '/:username/:reponame/issues',
   ISSUE_CREATE: '/:username/:reponame/issues/new',
   ISSUE_DETAIL: '/:username/:reponame/issues/:id',
+
+  //branch
+  BRANCH_LIST:'/:username/:reponame/branches',
 
   // Error
   NOT_FOUND: '*',

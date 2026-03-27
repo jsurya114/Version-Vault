@@ -1,8 +1,9 @@
-import { IPullRequest } from 'src/domain/interfaces/IPullRequest';
+import { IPullRequest } from '../../domain/interfaces/IPullRequest';
 import { PullRequestResponseDTO } from '../dtos/repository/PullRequestDTO';
 
 export class PullRequestMapper {
   //mongo to domain
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toIPullRequest(doc: any): IPullRequest {
     return {
       id: doc._id?.toString(),

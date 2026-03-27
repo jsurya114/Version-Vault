@@ -1,14 +1,14 @@
 import { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CircleDot, CheckCircle, Clock, MessageSquare, Tag, AlertCircle } from 'lucide-react';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { getIssueThunk, closeIssueThunk } from 'src/features/issues/issueThunk';
-import { selectSelectedIssue, selectIssueLoading } from 'src/features/issues/issueSelector';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import AppHeader from 'src/types/common/Layout/AppHeader';
-import AppFooter from 'src/types/common/Layout/AppFooter';
-import { ROUTES } from 'src/constants/routes';
-import { IssuePriority } from 'src/types/issues/issues.types';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { getIssueThunk, closeIssueThunk } from '../../features/issues/issueThunk';
+import { selectSelectedIssue, selectIssueLoading } from '../../features/issues/issueSelector';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
+import { ROUTES } from '../../constants/routes';
+import { IssuePriority } from '../../types/issues/issues.types';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',

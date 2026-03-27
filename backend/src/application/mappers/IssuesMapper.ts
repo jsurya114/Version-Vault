@@ -1,7 +1,8 @@
 import { IssuesResponseDTO } from '../dtos/repository/IssuesDTO';
-import { IIssue } from 'src/domain/interfaces/IIssues';
+import { IIssue } from '../../domain/interfaces/IIssues';
 
 export class IssueMapper {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toIIssues(doc: any): IIssue {
     return {
       id: doc._id?.toString(),

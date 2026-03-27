@@ -1,14 +1,14 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
-import { ICreatePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/ICreatePRUseCase';
-import { IGetPRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IGetPRUseCase';
-import { IListPRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IListPRUseCase';
-import { IClosePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IClosePRUseCase';
-import { IMergePRUseCase } from 'src/application/use-cases/interfaces/pullrequest/IMergePRUseCase';
-import { IGetRepoUseCase } from 'src/application/use-cases/interfaces/repository/IGetRepoUseCase';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
-import { PaginationQueryDTO } from 'src/application/dtos/reusable/PaginationDTO';
+import { ICreatePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/ICreatePRUseCase';
+import { IGetPRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IGetPRUseCase';
+import { IListPRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IListPRUseCase';
+import { IClosePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IClosePRUseCase';
+import { IMergePRUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IMergePRUseCase';
+import { IGetRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IGetRepoUseCase';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class PRController {
@@ -26,6 +26,7 @@ export class PRController {
     try {
       const { username, reponame } = req.params;
       const { title, description, sourceBranch, targetBranch } = req.body;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: authorId, userId: authorUsername } = (req as any).user;
 
       const repo = await this._getRepo.execute(username, reponame);
@@ -49,7 +50,7 @@ export class PRController {
       const { username, reponame } = req.params;
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
-        limit: req.query.limit ? Number(req.query.limit) : 2,
+        limit: req.query.limit ? Number(req.query.limit) : 5,
         sort: req.query.sort as string | undefined,
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,

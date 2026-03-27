@@ -1,12 +1,12 @@
 import { injectable, inject } from 'tsyringe';
 import { ICreatePRUseCase } from '../interfaces/pullrequest/ICreatePRUseCase';
-import { IPullRequestRepository } from 'src/domain/interfaces/repositories/IPullRequestRepository';
-import { PullRequestMapper } from 'src/application/mappers/PullRequestMapper';
+import { IPullRequestRepository } from '../../../domain/interfaces/repositories/IPullRequestRepository';
+import { PullRequestMapper } from '../../../application/mappers/PullRequestMapper';
 import {
   CreatePullRequestDTO,
   PullRequestResponseDTO,
-} from 'src/application/dtos/repository/PullRequestDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
+} from '../../../application/dtos/repository/PullRequestDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()
 export class CreatePRUseCase implements ICreatePRUseCase {

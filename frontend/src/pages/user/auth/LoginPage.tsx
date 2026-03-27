@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { loginThunk } from 'src/features/auth/authThunks';
-import { clearError } from 'src/features/auth/authSlice';
+import { useAppDispatch, useAppSelector } from '../../../app/hooks';
+import { loginThunk } from '../../../features/auth/authThunks';
+import { clearError } from '../../../features/auth/authSlice';
 import {
   selectAuthError,
   selectAuthLoading,
   selectIsAuthenticated,
-} from 'src/features/auth/authSelectors';
+} from '../../../features/auth/authSelectors';
 
-import { ROUTES } from 'src/constants/routes';
+import { ROUTES } from '../../../constants/routes';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -30,7 +30,7 @@ const LoginPage = () => {
   //redirect to after successful login
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(ROUTES.HOME, { replace: true });
+      navigate(ROUTES.HOME, { replace: true, state: { showLoginSuccess: true } });
     }
   }, [isAuthenticated]);
 

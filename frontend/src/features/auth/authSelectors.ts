@@ -1,4 +1,4 @@
-import type { RootState } from 'src/app/store';
+import type { RootState } from '../../app/store';
 
 export const selectAuthLoading = (state: RootState) => state.auth.isLoading;
 export const selectAuthError = (state: RootState) => state.auth.error;

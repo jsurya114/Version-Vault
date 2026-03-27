@@ -1,9 +1,9 @@
 import { injectable, inject } from 'tsyringe';
-import type { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
-import type { IOtpService } from 'src/domain/interfaces/services/IOtpService';
+import type { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import type { IOtpService } from '../../../domain/interfaces/services/IOtpService';
 import type { IVerifyOtpUseCase } from '../interfaces/IVerifyOtpUseCase';
-import type { VerifyOtpDTO } from 'src/application/dtos/auth/VerifyOtpDTO';
-import { TOKENS } from 'src/shared/constants/tokens';
+import type { VerifyOtpDTO } from '../../../application/dtos/auth/VerifyOtpDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
 import { VerifyOtpValidator } from '../validators/VerifyOtpValidator';
 
 @injectable()

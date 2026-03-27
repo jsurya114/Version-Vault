@@ -1,10 +1,10 @@
 import { injectable, inject } from 'tsyringe';
 import { IDeleteRepoUsecase } from '../interfaces/repository/IDeleteRepoUseCase';
-import { IRepoRepository } from 'src/domain/interfaces/repositories/IRepoRepository';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { id } from 'zod/v4/locales';
-import { GitService } from 'src/infrastructure/services/GitService';
+import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+
+import { GitService } from '../../../infrastructure/services/GitService';
 
 @injectable()
 export class DeleteRepoUseCase implements IDeleteRepoUsecase {

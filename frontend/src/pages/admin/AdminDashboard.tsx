@@ -1,10 +1,10 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from 'src/app/hooks';
-import { logoutThunk } from 'src/features/auth/authThunks';
-import { getAllUsersThunk } from 'src/features/admin/getUsersThunk';
-import { selectAdminUsers } from 'src/features/admin/adminSelectors';
-import { selectAuthUser } from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { logoutThunk } from '../../features/auth/authThunks';
+import { getAllUsersThunk } from '../../features/admin/getUsersThunk';
+import { selectAdminUsers } from '../../features/admin/adminSelectors';
+import { selectAuthUser } from '../../features/auth/authSelectors';
+import { ROUTES } from '../../constants/routes';
 import { useEffect } from 'react';
 
 const latestRepos = [

@@ -1,7 +1,7 @@
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../application/dtos/reusable/PaginationDTO';
 import { IUser } from '../IUser';
 import { IBaseRepository } from './IBaseRepository';
 

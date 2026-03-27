@@ -1,5 +1,5 @@
 import mongoose, { Schema, Document } from 'mongoose';
-import { IssueStatus, IssuePriority } from 'src/domain/interfaces/IIssues';
+import { IssueStatus, IssuePriority } from '../../../../domain/interfaces/IIssues';
 
 export interface IIssuesDocument extends Document {
   title: string;

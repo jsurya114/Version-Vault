@@ -1,4 +1,4 @@
-import { injectable, inject } from 'tsyringe';
+import { injectable } from 'tsyringe';
 import { RepositoryModel } from '../models/RepositoryModel';
 import { IRepoRepository } from '../../../../domain/interfaces/repositories/IRepoRepository';
 import { RepositoryMapper } from '../../../../application/mappers/RepositoryMapper';
@@ -7,7 +7,7 @@ import { MongoBaseRepository } from './MongoBaseRepository';
 import {
   PaginationQueryDTO,
   PaginatedResponseDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class MongoRepoRepository
@@ -18,6 +18,7 @@ export class MongoRepoRepository
     super(RepositoryModel);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IRepository {
     return RepositoryMapper.toIRepository(doc);
   }
@@ -26,7 +27,7 @@ export class MongoRepoRepository
     ownerId: string,
     query: PaginationQueryDTO,
   ): Promise<PaginatedResponseDTO<IRepository>> {
-    const filter: Record<string, any> = { ownerId, isDeleted: false };
+    const filter: Record<string, unknown> = { ownerId, isDeleted: false };
 
     if (query.search) {
       filter.name = { $regex: query.search, $options: 'i' };
@@ -45,7 +46,7 @@ export class MongoRepoRepository
   }
 
   async findAll(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IRepository>> {
-    const filter: Record<string, any> = { isDeleted: false };
+    const filter: Record<string, unknown> = { isDeleted: false };
 
     if (query.search) {
       filter.name = { $regex: query.search, $options: 'i' };

@@ -1,5 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit';
-import { issueInitialState } from 'src/types/issues/issues.types';
+import { issueInitialState } from '../../types/issues/issues.types';
 import { createIssueThunk, listIssuesThunk, getIssueThunk, closeIssueThunk } from './issueThunk';
 
 const issueSlice = createSlice({

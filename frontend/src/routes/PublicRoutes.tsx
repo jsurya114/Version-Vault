@@ -1,7 +1,7 @@
 import { Navigate } from 'react-router-dom';
-import { useAppSelector } from 'src/app/hooks';
-import { selectIsAuthenticated, selectAuthUser } from 'src/features/auth/authSelectors';
-import { ROUTES } from 'src/constants/routes';
+import { useAppSelector } from '../app/hooks';
+import { selectIsAuthenticated, selectAuthUser } from '../features/auth/authSelectors';
+import { ROUTES } from '../constants/routes';
 
 interface PublicRoutesProps {
   children: React.ReactNode;

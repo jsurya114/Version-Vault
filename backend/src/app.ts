@@ -18,6 +18,7 @@ import repoRoutes from './interfaces/http/routes/repository/repository.routes';
 import gitRoutes from './interfaces/http/routes/git/git.routes';
 import pullrequesRoutes from './interfaces/http/routes/pullrequests/pr.routes';
 import issuesRoutese from './interfaces/http/routes/issues/issue.route';
+import follwoRoutes from './interfaces/http/routes/follow/follow.routes';
 
 const app = express();
 
@@ -54,6 +55,7 @@ app.use('/vv/repo', repoRoutes);
 app.use('/vv/git', gitRoutes);
 app.use('/vv/pr', pullrequesRoutes);
 app.use('/vv/issues', issuesRoutese);
+app.use('/vv/follow', follwoRoutes);
 
 //error hanlding middleware
 app.use(errorMiddleware);

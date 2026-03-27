@@ -1,8 +1,8 @@
-import { PullRequestResponseDTO } from 'src/application/dtos/repository/PullRequestDTO';
+import { PullRequestResponseDTO } from '../../../../application/dtos/repository/PullRequestDTO';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../../application/dtos/reusable/PaginationDTO';
 
 export interface IListPRUseCase {
   execute(

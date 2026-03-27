@@ -1,6 +1,6 @@
-import mongoose from "mongoose";
-import { envConfig } from "src/shared/config/env.config";
-import { logger } from "src/shared/logger/Logger";
+import mongoose from 'mongoose';
+import { envConfig } from '../../../shared/config/env.config';
+import { logger } from '../../../shared/logger/Logger';
 
 export const connectDatabase = async (): Promise<void> => {
   try {

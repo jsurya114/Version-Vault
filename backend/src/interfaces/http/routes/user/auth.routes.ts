@@ -3,7 +3,7 @@ import { container } from 'tsyringe';
 import { AuthController } from '../../controllers/user/AuthController';
 import { validate } from '../../middleware/ValidationMiddleware';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
-import { otpLimiter, authLimiter } from 'src/shared/config/rateLimiter';
+import { otpLimiter, authLimiter } from '../../../../shared/config/rateLimiter';
 import { registerSchema, verifyOtpSchema, loginSchema } from '../../../validators/auth.validators';
 
 const router = Router();
@@ -41,5 +41,7 @@ router.post('/reset-password', authLimiter, (req, res, next) =>
   authController.resetPassword(req, res, next),
 );
 router.post('resend-otp', otpLimiter, (req, res, next) => authController.resendOtp(req, res, next));
+
+router.get('/search', (req, res) => authController.globalSearch(req, res));
 
 export default router;
