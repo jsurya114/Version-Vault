@@ -1,6 +1,7 @@
 import { IUser } from '../../domain/interfaces/IUser';
 
 export class UserMapper {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toIUser(doc: any): IUser {
     return {
       id: doc._id.toString(),

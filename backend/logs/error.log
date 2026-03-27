@@ -2138,3 +2138,64 @@
 2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
 2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
 2026-03-25 18:24:51 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-25 20:19:44 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 20:19:44 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 20:41:39 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 20:41:39 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 20:41:39 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 20:41:40 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-25 20:41:40 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-26 20:21:14 [[31merror[39m]: POST /vv/repo/jsurya114/first-repos/commit — Commit failed: error: unknown option `author=Jayasurya <jayasuryabrocamp@gmail.com>'
+usage: git commit-tree <tree> [(-p <parent>)...]
+   or: git commit-tree [(-p <parent>)...] [-S[<keyid>]] [(-m <message>)...]
+                       [(-F <file>)...] <tree>
+
+    -p <parent>           id of a parent commit object
+    -m <message>          commit message
+    -F <file>             read commit log message from file
+    -S, --[no-]gpg-sign[=<key-id>]
+                          GPG sign commit
+
+
+2026-03-26 20:21:16 [[31merror[39m]: POST /vv/repo/jsurya114/first-repos/commit — Commit failed: error: unknown option `author=Jayasurya <jayasuryabrocamp@gmail.com>'
+usage: git commit-tree <tree> [(-p <parent>)...]
+   or: git commit-tree [(-p <parent>)...] [-S[<keyid>]] [(-m <message>)...]
+                       [(-F <file>)...] <tree>
+
+    -p <parent>           id of a parent commit object
+    -m <message>          commit message
+    -F <file>             read commit log message from file
+    -S, --[no-]gpg-sign[=<key-id>]
+                          GPG sign commit
+
+
+2026-03-26 20:26:21 [[31merror[39m]: POST /vv/repo/jsurya114/first-repos/commit — Commit failed: error: unknown option `author=Jayasurya <jayasuryabrocamp@gmail.com>'
+usage: git commit-tree <tree> [(-p <parent>)...]
+   or: git commit-tree [(-p <parent>)...] [-S[<keyid>]] [(-m <message>)...]
+                       [(-F <file>)...] <tree>
+
+    -p <parent>           id of a parent commit object
+    -m <message>          commit message
+    -F <file>             read commit log message from file
+    -S, --[no-]gpg-sign[=<key-id>]
+                          GPG sign commit
+
+
+2026-03-26 21:02:59 [[31merror[39m]: POST /vv/repo/jsurya114/first-repos/commit — Invalid or expired access token
+2026-03-26 21:03:00 [[31merror[39m]: POST /vv/repo/jsurya114/first-repos/commit — Invalid or expired access token
+2026-03-26 21:03:01 [[31merror[39m]: POST /vv/repo/jsurya114/first-repos/commit — Invalid or expired access token
+2026-03-26 21:29:09 [[31merror[39m]: POST /vv/pr/jsurya114/first-repos — Invalid or expired access token
+2026-03-26 23:43:08 [[31merror[39m]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-03-26 23:43:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-26 23:43:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-26 23:43:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-26 23:43:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)

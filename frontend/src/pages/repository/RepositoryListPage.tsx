@@ -21,7 +21,7 @@ import { ColumnDef } from '../../types/common/Table/TableTypes';
 import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
-import DeleteConfirmModal from '../../types/common/Layout/DeleteConfirmationModal';
+import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
 
 const visibilityColors: Record<string, string> = {
   public: 'bg-green-500/10 text-green-400 border border-green-500/30',
@@ -56,6 +56,7 @@ const RepositoryListPage = () => {
         search: search || undefined,
         sort: sortField,
         order: sortOrder,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         status: visibilityFilter === 'all' ? undefined : (visibilityFilter as any),
         ...overrides,
       }),

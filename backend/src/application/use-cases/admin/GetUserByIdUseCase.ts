@@ -7,10 +7,10 @@ import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO
 
 @injectable()
 export class GetUserByIdUseCase implements IGetUserByIdUseCase {
-  constructor(@inject(TOKENS.IUserRepository) private userRepo: IUserRepository) {}
+  constructor(@inject(TOKENS.IUserRepository) private _userRepo: IUserRepository) {}
 
   async execute(id: string): Promise<UserResponseDTO> {
-    const user = await this.userRepo.findById(id);
+    const user = await this._userRepo.findById(id);
 
     if (!user) throw new NotFoundError('User not found');
 

@@ -5,7 +5,7 @@ import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRe
 import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { User } from '../../../domain/entities/User';
-import { UserMapper } from '../../../application/mappers/UserMapper';
+
 import { AuthProvider, UserRole, SubscriptionPlan } from '../../../domain/enums';
 
 @injectable()

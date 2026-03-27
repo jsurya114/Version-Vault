@@ -18,3 +18,9 @@ export interface GitBranch {
   lastCommitAuthor?: string;
   current: boolean;
 }
+
+export interface CompareResponse {
+  commits: GitCommit[];
+  filesChanged: number;
+  contributors: number;
+}

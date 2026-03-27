@@ -24,6 +24,7 @@ export class IssueController {
     try {
       const { username, reponame } = req.params;
       const { title, description, priority, labels } = req.body;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: authorId, userId: authorUsername } = (req as any).user;
 
       const repo = await this._getRepo.execute(username, reponame);

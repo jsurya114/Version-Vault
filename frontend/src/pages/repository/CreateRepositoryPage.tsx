@@ -8,8 +8,10 @@ import {
 } from '../../features/repository/repositorySelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
-import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import { CommonLoader } from '../../types/common/Layout/Loader';
+import AppHeader from '../../types/common/Layout/AppHeader';
 
 const CreateRepositoryPage = () => {
   const dispatch = useAppDispatch();
@@ -21,6 +23,8 @@ const CreateRepositoryPage = () => {
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState<'public' | 'private'>('public');
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+  const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
   const cloneUrl = `http://localhost:3125/vv/git/${user?.userId}/${name || 'new-repo'}.git`;
 
@@ -39,7 +43,18 @@ git push -u origin main`;
     if (!name.trim()) return;
     const result = await dispatch(createRepositoryThunk({ name, description, visibility }));
     if (createRepositoryThunk.fulfilled.match(result)) {
-      navigate(ROUTES.REPO_LIST);
+      setIsCreatingLoader(true);
+      setTimeout(() => {
+        setIsCreatingLoader(false);
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Repository Created!',
+          subtitle: `Your new repository "${name}" is ready.`,
+        });
+        setTimeout(() => {
+          navigate(ROUTES.REPO_LIST);
+        }, 2500);
+      }, 2000);
     }
   };
 
@@ -230,8 +245,18 @@ git push -u origin main`;
         </div>
       </main>
 
-      {/* Footer */}
       <AppFooter />
+
+      {isCreatingLoader && <CommonLoader message="Creating Repository..." />}
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

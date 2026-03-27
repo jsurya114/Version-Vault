@@ -5,7 +5,7 @@ import { LoginDTO } from '../../../application/dtos/auth/LoginDTO';
 import { LoginValidator } from '../validators/LoginValidator';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { IHashService } from '../../../domain/interfaces/services/IHashService';
-import { ITokenService, ITokenPayload } from '../../../domain/interfaces/services/ITokenService';
+import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
 
 @injectable()
 export class LoginUseCase {

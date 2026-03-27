@@ -15,11 +15,13 @@ export class MongoAdminRepository extends MongoBaseRepository<IUser> implements 
   constructor() {
     super(UserModel);
   }
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IUser {
     return UserMapper.toIUser(doc);
   }
 
   async getAllUsers(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IUser>> {
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const filter: Record<string, any> = {
       role: { $ne: UserRole.ADMIN },
     };

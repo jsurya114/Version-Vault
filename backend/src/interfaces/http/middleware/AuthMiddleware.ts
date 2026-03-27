@@ -8,12 +8,14 @@ export const authMiddleware = (req: Request, res: Response, next: NextFunction):
   try {
     const token = req.cookies?.accessToken;
     if (!token) throw new UnauthorizedError('No access token provided');
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const tokenService = container.resolve<ITokenService>(TOKENS.ITokenService as any);
     const payload = tokenService.verifyAccessToken(token);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (req as any).user = payload;
     next();
-  } catch (error) {
+  } catch {
     next(new UnauthorizedError('Invalid or expired access token'));
   }
 };

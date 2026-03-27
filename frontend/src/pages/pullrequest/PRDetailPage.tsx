@@ -9,6 +9,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { PRStatus } from '../../types/pullrequest/pullrequest.types';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -23,7 +24,7 @@ const PRDetailPage = () => {
   const isLoading = useAppSelector(selectPRLoading);
   const user = useAppSelector(selectAuthUser);
   const [isMerging, setIsMerging] = useState(false);
-  const [showSuccess, setShowSuccess] = useState(false);
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   const isOwner = user?.userId === username;
 
@@ -35,10 +36,15 @@ const PRDetailPage = () => {
     if (!confirm('Merge this pull request?')) return;
     setIsMerging(true);
     try {
-      const result = await dispatch(mergePRThunk({ username: username!, reponame: reponame!, id: id! }));
+      const result = await dispatch(
+        mergePRThunk({ username: username!, reponame: reponame!, id: id! }),
+      );
       if (mergePRThunk.fulfilled.match(result)) {
-        setShowSuccess(true);
-        setTimeout(() => setShowSuccess(false), 5000);
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Successfully Merged!',
+          subtitle: `Changes are now in ${pr?.targetBranch}`,
+        });
       }
     } finally {
       setIsMerging(false);
@@ -93,23 +99,14 @@ const PRDetailPage = () => {
       </div>
 
       <main className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
-        {/* Success / Sonar Overlay */}
-        {showSuccess && (
-          <div className="fixed inset-0 z-50 flex items-center justify-center pointer-events-none">
-            <div className="relative">
-              <div className="absolute inset-0 bg-purple-500/20 rounded-full animate-sonar" />
-              <div className="absolute inset-0 bg-purple-500/10 rounded-full animate-sonar delay-1000" />
-              <div className="relative bg-gray-900 border border-purple-500/30 rounded-2xl px-8 py-6 shadow-2xl flex flex-col items-center gap-4 animate-in zoom-in duration-300">
-                <div className="w-12 h-12 rounded-full bg-purple-500/20 flex items-center justify-center">
-                  <GitMerge className="w-6 h-6 text-purple-400" />
-                </div>
-                <div className="text-center">
-                  <h2 className="text-white font-bold text-lg">Merged Successfully!</h2>
-                  <p className="text-gray-400 text-sm">Changes are now in {pr.targetBranch}</p>
-                </div>
-              </div>
-            </div>
-          </div>
+        {/* Success Sonar */}
+        {successSonar.isOpen && (
+          <SuccessSonar
+            isOpen={successSonar.isOpen}
+            onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+            title={successSonar.title}
+            subtitle={successSonar.subtitle}
+          />
         )}
 
         {/* PR Header */}

@@ -11,6 +11,7 @@ export class MongoUserRepository extends MongoBaseRepository<IUser> implements I
     super(UserModel);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IUser {
     return UserMapper.toIUser(doc);
   }

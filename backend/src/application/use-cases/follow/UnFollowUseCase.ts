@@ -3,7 +3,6 @@ import { IUnfollowUseCase } from '../interfaces/follow/IUnfollowUseCase';
 import { IFollowRepository } from '../../../domain/interfaces/repositories/IFollowRepository';
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
-import { NotFoundError } from '../../../domain/errors/NotFoundError';
 
 @injectable()
 export class UnfollowUseCase implements IUnfollowUseCase {

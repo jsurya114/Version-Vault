@@ -2,7 +2,7 @@ import { inject, injectable } from 'tsyringe';
 import { IResetPasswordUseCase } from '../interfaces/IResetPasswordUseCase';
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { IOtpService } from '../../../domain/interfaces/services/IOtpService';
-import { IEmailService } from '../../../domain/interfaces/services/IEmailService';
+
 import { IHashService } from '../../../domain/interfaces/services/IHashService';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';

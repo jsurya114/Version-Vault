@@ -17,6 +17,7 @@ import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 
 import { envConfig } from '../../../../shared/config/env.config';
 import { IGetAllUsersUseCase } from 'src/application/use-cases/interfaces/admin/IGetAllUsersUseCase';
+import { logger } from '../../../../shared/logger/Logger';
 
 @injectable()
 export class AuthController {
@@ -45,7 +46,7 @@ export class AuthController {
   async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const result = await this.registerUser.execute(req.body);
-      console.log(result);
+      logger.info(`User registered: ${result.message}`);
       res.status(HttpStatusCodes.CREATED).json({
         success: true,
         message: result.message,
@@ -193,6 +194,7 @@ export class AuthController {
 
   async getMe(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const userId = (req as any).user?.userId;
 
       if (!userId) {

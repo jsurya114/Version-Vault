@@ -55,7 +55,9 @@ const AdminUsersPage = () => {
         search: search || undefined,
         sort: sortField,
         order: sortOrder,
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         status: statusFilter === 'all' ? undefined : (statusFilter as any),
+        ...overrides,
       }),
     );
   };

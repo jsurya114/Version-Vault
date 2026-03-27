@@ -8,7 +8,6 @@ import { User } from '../../../domain/entities/User';
 import { RegisterValidator } from '../validators/RegisterValidator';
 import { UserRole, SubscriptionPlan, AuthProvider } from '../../../domain/enums';
 import { TOKENS } from '../../../shared/constants/tokens';
-import { logger } from '../../../shared/logger/Logger';
 
 @injectable()
 export class RegisterUseCase {
@@ -38,7 +37,7 @@ export class RegisterUseCase {
       followersCount: 0,
       followingCount: 0,
     });
-    console.log(user);
+
     //saving the user in db
     await this.userRepository.save(user);
 

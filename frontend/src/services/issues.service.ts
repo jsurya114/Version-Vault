@@ -1,5 +1,5 @@
 import axiosInstance from './axiosInstance';
-import { ISSUE_ENDPOINTS, REPO_ENDPOINTS } from '../constants/api';
+import { ISSUE_ENDPOINTS } from '../constants/api';
 import { CreateIssueDTO } from '../types/issues/issues.types';
 import { PaginationQuery } from '../types/common/Pagination/paginationTypes';
 

@@ -7,10 +7,10 @@ import { NotFoundError } from '../../../domain/errors/NotFoundError';
 
 @injectable()
 export class UnblockUserUseCase implements IUnblockUserUseCase {
-  constructor(@inject(TOKENS.IAdminRepository) private adminRepo: IAdminRepository) {}
+  constructor(@inject(TOKENS.IAdminRepository) private _adminRepo: IAdminRepository) {}
 
   async execute(id: string): Promise<UserResponseDTO> {
-    const user = await this.adminRepo.unblockUser(id);
+    const user = await this._adminRepo.unblockUser(id);
     if (!user) throw new NotFoundError('User not found');
     return {
       id: user.id as string,

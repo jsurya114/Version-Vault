@@ -1,7 +1,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { resetPasswordThunk, resendOtpThunk } from '../../../features/auth/authThunks';
+import { resendOtpThunk } from '../../../features/auth/authThunks';
 import { clearError, clearSuccessMessage } from '../../../features/auth/authSlice';
 import {
   selectAuthError,

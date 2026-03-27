@@ -10,7 +10,8 @@ import {
   getFilesThunk,
   getBranchesThunk,
   createBranchThunk,
-  deleteBranchThunk
+  deleteBranchThunk,
+  createCommitThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -137,18 +138,18 @@ const repositorySlice = createSlice({
       .addCase(createBranchThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         //get new Branchname
-        const newBranchName = action.meta.arg.newBranch
-        const author = action.payload.author
-     const newBranchObj:GitBranch={
-      name:newBranchName,
-      lastCommitDate:new Date().toISOString(),
-      lastCommitAuthor:author,
-      current:false
-     }
-        if(state.branches){
-          state.branches.push(newBranchObj)
-        }else{
-          state.branches = [newBranchObj]
+        const newBranchName = action.meta.arg.newBranch;
+        const author = action.payload.author;
+        const newBranchObj: GitBranch = {
+          name: newBranchName,
+          lastCommitDate: new Date().toISOString(),
+          lastCommitAuthor: author,
+          current: false,
+        };
+        if (state.branches) {
+          state.branches.push(newBranchObj);
+        } else {
+          state.branches = [newBranchObj];
         }
       })
       .addCase(createBranchThunk.rejected, (state, action) => {
@@ -156,24 +157,36 @@ const repositorySlice = createSlice({
         state.error = action.payload as string;
       })
 
-        .addCase(deleteBranchThunk.pending, (state) => {
+      .addCase(deleteBranchThunk.pending, (state) => {
         state.isLoading = true;
         state.error = null;
       })
-      .addCase(deleteBranchThunk.fulfilled,(state,action)=>{
-        state.isLoading=false
-        const deletedBranchName = action.meta.arg.branchName
+      .addCase(deleteBranchThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        const deletedBranchName = action.meta.arg.branchName;
 
-         // Filter out the deleted branch from the state
+        // Filter out the deleted branch from the state
         if (state.branches) {
           state.branches = state.branches.filter((b) => b.name !== deletedBranchName);
         }
+      })
+      .addCase(deleteBranchThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
 
+      //create commit
+      .addCase(createCommitThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
       })
-      .addCase(deleteBranchThunk.rejected,(state,action)=>{
-        state.isLoading=false
-        state.error=action.payload as string
+      .addCase(createCommitThunk.fulfilled, (state) => {
+        state.isLoading = false;
       })
+      .addCase(createCommitThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      });
   },
 });
 

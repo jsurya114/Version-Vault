@@ -4,7 +4,7 @@ import { IssueMapper } from '../mappers/IssuesMapper';
 import { IssuesResponseDTO } from '../dtos/repository/IssuesDTO';
 import { IIssueRepository } from '../../domain/interfaces/repositories/IIssuesRepository';
 import { TOKENS } from '../../shared/constants/tokens';
-import { NotFoundError } from '../../domain/errors/NotFoundError';
+
 import { IssueValidator } from '../use-cases/validators/IssueValidator';
 
 @injectable()

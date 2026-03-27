@@ -1,4 +1,4 @@
-import { inject, injectable } from 'tsyringe';
+import { injectable } from 'tsyringe';
 import { IGoogleAuthService } from '../../domain/interfaces/services/IGoogleAuthService';
 import { OAuth2Client } from 'google-auth-library';
 import { envConfig } from '../../shared/config/env.config';

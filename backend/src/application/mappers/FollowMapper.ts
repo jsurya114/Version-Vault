@@ -2,6 +2,7 @@ import { FollowResponseDTO } from '../dtos/repository/FollowDTO';
 import { IFollow } from '../../domain/interfaces/IFollow';
 
 export class FollowMapper {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toIFollow(doc: any): IFollow {
     return {
       id: doc.id?.toString(),

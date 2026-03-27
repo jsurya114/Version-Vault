@@ -111,35 +111,60 @@ export const getBranchesThunk = createAsyncThunk<GitBranch[], RepoParams>(
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch branches');
     }
   },
-
-  
 );
 
-export const createBranchThunk = createAsyncThunk<{author:string},{username:string,reponame:string,newBranch:string,fromBranch:string},{state: RootState}>(
+export const createBranchThunk = createAsyncThunk<
+  { author: string },
+  { username: string; reponame: string; newBranch: string; fromBranch: string },
+  { state: RootState }
+>(
   'repository/createBranch',
-  async ({ username, reponame, newBranch, fromBranch }, {getState, rejectWithValue }) => {
+  async ({ username, reponame, newBranch, fromBranch }, { getState, rejectWithValue }) => {
     try {
       await repositoryService.createBranch(username, reponame, newBranch, fromBranch);
 
       const state = getState();
-      const author = state.auth.user?.username||'you'
-      return {author}
+      const author = state.auth.user?.username || 'you';
+      return { author };
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       return rejectWithValue(err.response?.data?.message || 'Failed to create branch');
     }
-  }
+  },
+);
 
-)
-
-export const deleteBranchThunk = createAsyncThunk<void,{username:string,reponame:string,branchName:string}>(
-  'repository/deleteBranch',
-  async({username,reponame,branchName},{rejectWithValue})=>{
-    try {
-      await repositoryService.deleteBranch(username,reponame,branchName)
-    } catch (error: unknown) {
-      const err = error as { response?: { data?: { message?: string } } };
-      return rejectWithValue(err.response?.data?.message || 'Failed to delete branch');
-    }
+export const deleteBranchThunk = createAsyncThunk<
+  void,
+  { username: string; reponame: string; branchName: string }
+>('repository/deleteBranch', async ({ username, reponame, branchName }, { rejectWithValue }) => {
+  try {
+    await repositoryService.deleteBranch(username, reponame, branchName);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to delete branch');
   }
-)
+});
+
+export const createCommitThunk = createAsyncThunk<
+  void,
+  {
+    username: string;
+    reponame: string;
+    branch: string;
+    message: string;
+    filePath: string;
+    content: string;
+  }
+>('repository/createCommit', async (params, { rejectWithValue }) => {
+  try {
+    await repositoryService.createCommit(params.username, params.reponame, {
+      branch: params.branch,
+      message: params.message,
+      filePath: params.filePath,
+      content: params.content,
+    });
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to create commit');
+  }
+});

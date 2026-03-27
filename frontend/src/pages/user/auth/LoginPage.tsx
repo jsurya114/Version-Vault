@@ -30,7 +30,7 @@ const LoginPage = () => {
   //redirect to after successful login
   useEffect(() => {
     if (isAuthenticated) {
-      navigate(ROUTES.HOME, { replace: true });
+      navigate(ROUTES.HOME, { replace: true, state: { showLoginSuccess: true } });
     }
   }, [isAuthenticated]);
 

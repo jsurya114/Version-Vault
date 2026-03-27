@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 import { IListRepoUseCase } from '../interfaces/repository/IListRepoUseCase';
 import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
-import { NotFoundError } from '../../../domain/errors/NotFoundError';
+
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
 import {

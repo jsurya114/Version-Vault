@@ -7,7 +7,6 @@ import { logoutThunk } from '../../../features/auth/authThunks';
 import { selectRepositories } from '../../../features/repository/repositorySelectors';
 import { ROUTES } from '../../../constants/routes';
 import { authService } from 'src/services/auth.service';
-import axiosInstance from 'src/services/axiosInstance';
 
 const AppHeader = () => {
   const dispatch = useAppDispatch();
@@ -15,6 +14,7 @@ const AppHeader = () => {
   const user = useAppSelector(selectAuthUser);
   const repositories = useAppSelector(selectRepositories);
   const [searchTerm, setSearchTerm] = useState('');
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
 

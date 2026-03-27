@@ -3,6 +3,7 @@ import { RepoResponseDTO } from '../dtos/repository/RepoResponseDTO';
 
 export class RepositoryMapper {
   //mongo to domain
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   static toIRepository(doc: any): IRepository {
     return {
       id: doc._id?.toString(),

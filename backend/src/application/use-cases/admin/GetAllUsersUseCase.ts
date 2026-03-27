@@ -11,10 +11,10 @@ import { UserRole } from '../../../domain/enums';
 
 @injectable()
 export class GetAllUsersUseCase implements IGetAllUsersUseCase {
-  constructor(@inject(TOKENS.IAdminRepository) private adminRepo: IAdminRepository) {}
+  constructor(@inject(TOKENS.IAdminRepository) private _adminRepo: IAdminRepository) {}
 
   async execute(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<UserResponseDTO>> {
-    const result = await this.adminRepo.getAllUsers(query);
+    const result = await this._adminRepo.getAllUsers(query);
 
     return {
       data: result.data

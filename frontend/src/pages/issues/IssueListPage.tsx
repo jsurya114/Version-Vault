@@ -41,6 +41,7 @@ const IssueListPage = () => {
           page,
           limit,
           search: search || undefined,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           status: statusFilter === 'all' ? undefined : (statusFilter as any),
         }),
       );
@@ -57,6 +58,7 @@ const IssueListPage = () => {
           page: 1,
           limit,
           search: search || undefined,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           status: statusFilter === 'all' ? undefined : (statusFilter as any),
         }),
       );

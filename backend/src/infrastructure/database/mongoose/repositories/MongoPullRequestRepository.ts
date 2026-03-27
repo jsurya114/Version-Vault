@@ -17,6 +17,7 @@ export class MongoPullRequestRepository
     super(PullRequestModel);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IPullRequest {
     return PullRequestMapper.toIPullRequest(doc);
   }
@@ -25,7 +26,7 @@ export class MongoPullRequestRepository
     repositoryId: string,
     query: PaginationQueryDTO,
   ): Promise<PaginatedResponseDTO<IPullRequest>> {
-    const filter: Record<string, any> = { repositoryId };
+    const filter: Record<string, unknown> = { repositoryId };
     if (query.status) filter.status = query.status;
     if (query.search) filter.title = { $regex: query.search, $options: 'i' };
     return this.findWithpagination(filter, query);

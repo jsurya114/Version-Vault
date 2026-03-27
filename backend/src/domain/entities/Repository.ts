@@ -1,5 +1,4 @@
 import { IRepository } from '../interfaces/IRepository';
-import { RepositoryVisibility } from '../enums';
 
 export class Repository {
   id?: string;

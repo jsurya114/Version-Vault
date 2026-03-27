@@ -5,11 +5,6 @@ import { FollowMapper } from '../../../../application/mappers/FollowMapper';
 import { FollowModel } from '../models/FollowModel';
 import { MongoBaseRepository } from './MongoBaseRepository';
 
-import {
-  PaginatedResponseDTO,
-  PaginationQueryDTO,
-} from '../../../../application/dtos/reusable/PaginationDTO';
-
 @injectable()
 export class MongoFollowRepository
   extends MongoBaseRepository<IFollow>
@@ -19,6 +14,7 @@ export class MongoFollowRepository
     super(FollowModel);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IFollow {
     return FollowMapper.toIFollow(doc);
   }

@@ -106,7 +106,7 @@ const authSlice = createSlice({
         state.user = action.payload;
         state.isAuthenticated = true;
       })
-      .addCase(getMeThunk.rejected, (state, action) => {
+      .addCase(getMeThunk.rejected, (state) => {
         state.isLoading = false;
         state.user = null;
         state.isAuthenticated = false;

@@ -31,7 +31,6 @@ import ActivityTimeline, {
   ActivityItemProps,
 } from '../../../types/common/Profile/ActivityTimeline';
 import { useState } from 'react';
-import axiosInstance from 'src/services/axiosInstance';
 
 interface ActivityGroup {
   date: string;
@@ -52,7 +51,6 @@ const UserProfilePage = () => {
   const [activityLoading, setActivityLoading] = useState(false);
   const [userActivities, setUserActivities] = useState<ActivityGroup[]>([]);
   const [totalContributions, setTotalContributions] = useState<number>(0);
-  const [profileUser, setProfileUser] = useState(null);
 
   const isOwnProfile = user?.userId === userId;
   const isFollowing = followers.some((f) => f.followerId === user?.id);
@@ -63,14 +61,6 @@ const UserProfilePage = () => {
       dispatch(getFollowingThunk(userId));
       dispatch(listRepositoryThunk({}));
     }
-  }, [userId]);
-
-  useEffect(() => {
-    const fetchProfile = async () => {
-      const response = await axiosInstance.get(`/users/profile/${userId}`);
-      setProfileUser(response.data);
-    };
-    fetchProfile();
   }, [userId]);
 
   const formatRelativeTime = (date: Date) => {

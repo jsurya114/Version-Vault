@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { GitMerge, GitPullRequest, X, Plus, Search, Clock } from 'lucide-react';
+import { GitMerge, GitPullRequest, X, Plus, Search } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { listPRThunk } from '../../features/pullrequest/prThunk';
 import { selectPRs, selectPRLoading, selectPRMeta } from '../../features/pullrequest/prSelector';
@@ -43,6 +43,7 @@ const PRListPage = () => {
           page,
           limit,
           search: search || undefined,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           status: statusFilter === 'all' ? undefined : (statusFilter as any),
         }),
       );
@@ -59,6 +60,7 @@ const PRListPage = () => {
           page: 1,
           limit,
           search: search || undefined,
+          // eslint-disable-next-line @typescript-eslint/no-explicit-any
           status: statusFilter === 'all' ? undefined : (statusFilter as any),
         }),
       );

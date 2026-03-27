@@ -6,7 +6,7 @@ import { TOKENS } from '../../../shared/constants/tokens';
 @injectable()
 export class LogoutUseCase implements IlogoutUseCase {
   constructor(@inject(TOKENS.ITokenService) private tokenService: ITokenService) {}
-  async execute(refresToken: string): Promise<{ message: string }> {
+  async execute(): Promise<{ message: string }> {
     //clear cookies on frontend is sufficient
     return { message: 'Logout out successfully' };
   }

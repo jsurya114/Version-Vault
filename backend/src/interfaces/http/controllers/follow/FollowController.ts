@@ -21,8 +21,9 @@ export class FollowController {
   // POST /vv/follow/:userId
   async follow(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: followerId, userId: followerUsername } = (req as any).user;
-      const { userId, followingId } = req.params;
+      const { followingId } = req.params;
       const targetUser = await this._getIGetUserByIdUseCase.execute(followingId);
       await this._followUseCase.execute(
         followerId,
@@ -39,6 +40,7 @@ export class FollowController {
   // DELETE /vv/follow/:userId
   async unfollow(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: followerId } = (req as any).user;
       const { userId: followingId } = req.params;
       await this._unfollowUseCase.execute(followerId, followingId);

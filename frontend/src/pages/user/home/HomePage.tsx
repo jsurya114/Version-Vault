@@ -1,26 +1,6 @@
 import { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import {
-  Plus,
-  GitFork,
-  Lock,
-  Globe,
-  Star,
-  Clock,
-  Filter,
-  ChevronDown,
-  BookOpen,
-  Search,
-  MessageSquare,
-  Send,
-  GitPullRequest,
-  MoreHorizontal,
-  GitMerge,
-  Smile,
-  Terminal,
-  FileCode,
-  CircleDot,
-} from 'lucide-react';
+import { Link, useLocation } from 'react-router-dom';
+import { Star, Filter, ChevronDown, BookOpen, MoreHorizontal, GitMerge, Smile } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
 import { listRepositoryThunk } from '../../../features/repository/repositoryThunks';
@@ -31,15 +11,29 @@ import {
 import { ROUTES } from '../../../constants/routes';
 import AppHeader from '../../../types/common/Layout/AppHeader';
 import AppFooter from '../../../types/common/Layout/AppFooter';
+import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
-  const navigate = useNavigate();
+  const location = useLocation();
   const user = useAppSelector(selectAuthUser);
   const repositories = useAppSelector(selectRepositories);
   const repoLoading = useAppSelector(selectRepositoryLoading);
 
   const [repoSearch, setRepoSearch] = useState('');
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+
+  useEffect(() => {
+    if (location.state?.showLoginSuccess && user) {
+      setSuccessSonar({
+        isOpen: true,
+        title: 'Login Successful',
+        subtitle: `Welcome back, ${user.username || 'User'}!`,
+      });
+      // Clear the state so it doesn't show again on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location, user]);
 
   useEffect(() => {
     dispatch(listRepositoryThunk({}));
@@ -356,6 +350,15 @@ const HomePage = () => {
       </div>
 
       <AppFooter />
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

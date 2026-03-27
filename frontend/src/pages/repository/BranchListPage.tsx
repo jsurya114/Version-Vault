@@ -24,8 +24,10 @@ import {
 import { GitBranch } from '../../types/repository/repositoryTypes';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
-import CreateBranchModal from '../../types/common/Layout/CreateBranchModal';
-import DeleteConfirmModal from '../../types/common/Layout/DeleteConfirmationModal';
+import CreateBranchModal from '../../types/common/Modal/CreateBranchModal';
+import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
+import { CommonLoader } from '../../types/common/Layout/Loader';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 
 // --- Time Helper ---
 const timeAgo = (dateStr: string) => {
@@ -52,6 +54,8 @@ const BranchListPage = () => {
   const [showCreateModal, setShowCreateModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [selectedBranch, setSelectedBranch] = useState('');
+  const [isCreatingLoader, setIsCreatingLoader] = useState(false);
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   useEffect(() => {
     if (username && reponame) {
@@ -76,7 +80,18 @@ const BranchListPage = () => {
     );
     if (createBranchThunk.fulfilled.match(result)) {
       setShowCreateModal(false);
-      dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
+      setIsCreatingLoader(true);
+
+      // Show loader for 2 seconds, then show sonar and refresh data
+      setTimeout(() => {
+        setIsCreatingLoader(false);
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Branch Created!',
+          subtitle: `Branch "${newBranch}" is ready.`,
+        });
+        dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
+      }, 2000);
     }
   };
 
@@ -212,6 +227,17 @@ const BranchListPage = () => {
         itemName="branch"
         isLoading={isLoading}
       />
+
+      {isCreatingLoader && <CommonLoader message="Setting up your branch..." />}
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

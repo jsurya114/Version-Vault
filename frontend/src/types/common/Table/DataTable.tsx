@@ -1,4 +1,4 @@
-import { ColumnDef, DataTableProps } from './TableTypes';
+import { DataTableProps } from './TableTypes';
 
 const DataTable = <T extends { id?: string }>({
   columns,
@@ -36,12 +36,17 @@ const DataTable = <T extends { id?: string }>({
           ) : (
             data.map((row, index) => (
               <tr
+                // eslint-disable-next-line @typescript-eslint/no-explicit-any
                 key={(row as any).id || index}
                 className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 transition"
               >
                 {columns.map((col) => (
                   <td key={col.key} className="px-4 py-3">
-                    {col.render ? col.render(row) : ((row as any)[col.key] ?? '—')}
+                    {col.render
+                      ? col.render(row)
+                      : (((row as unknown as Record<string, unknown>)[col.key] as
+                          | string
+                          | number) ?? '—')}
                   </td>
                 ))}
               </tr>

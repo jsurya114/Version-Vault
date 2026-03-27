@@ -89,4 +89,16 @@ export const repositoryService = {
     );
     return res.data;
   },
+
+  createCommit: async (
+    username: string,
+    reponame: string,
+    data: { branch: string; message: string; filePath: string; content: string },
+  ) => {
+    const res = await axiosInstance.post(
+      `${REPO_ENDPOINTS.GET}/${username}/${reponame}/commit`,
+      data,
+    );
+    return res.data;
+  },
 };

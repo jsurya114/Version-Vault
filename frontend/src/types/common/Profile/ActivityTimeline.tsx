@@ -1,5 +1,4 @@
 import React from 'react';
-import { GitCommit, GitPullRequest, CircleDot } from 'lucide-react';
 
 export interface ActivityItemProps {
   type: 'push' | 'pr' | 'issue';
