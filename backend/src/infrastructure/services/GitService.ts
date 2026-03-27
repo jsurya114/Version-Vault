@@ -298,7 +298,7 @@ export class GitService {
     repoName: string,
     targetBranch: string,
     sourceBranch: string,
-  ): Promise<{ commits: GitCommit[]; filesChanged: number; contributors: number }> {
+  ): Promise<{ commits: GitCommit[]; filesChanged: number; contributors: number,isMergeable:boolean }> {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
@@ -317,10 +317,17 @@ export class GitService {
       //get unique contributors cout
       const contributors = new Set(log.all.map((c) => c.author_email)).size;
 
-      return { commits, filesChanged, contributors };
+      let isMergeable = false
+      try {
+        const mergeTreeResult = await git.raw(['merge-tree', targetBranch, sourceBranch]);
+          isMergeable = !mergeTreeResult.trim().includes('\n')&&mergeTreeResult.trim().length>0
+      } catch {
+        isMergeable=false
+      }
+      return { commits, filesChanged, contributors,isMergeable };
     } catch (error) {
       console.error('Error comparing branches:', error);
-      return { commits: [], filesChanged: 0, contributors: 0 };
+      return { commits: [], filesChanged: 0, contributors: 0,isMergeable:false };
     }
   }
 }

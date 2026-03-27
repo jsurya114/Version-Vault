@@ -68,5 +68,5 @@ export const TOKENS = {
   IDeleteBranchUseCase: Symbol.for('IDeleteBranchUseCase'),
   //commits
   ICreateCommitUseCase: Symbol.for('ICreateCommitUseCase'),
-  IGetCompareCommitsUseCase: Symbol.for('IGetCompareCommitsUseCase'),
+  ICompareCommitUseCase: Symbol.for('ICompareCommitUseCase'),
 } as const;
