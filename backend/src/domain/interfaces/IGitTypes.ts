@@ -23,4 +23,5 @@ export interface CompareResponse {
   commits: GitCommit[];
   filesChanged: number;
   contributors: number;
+  isMergeable: boolean;
 }

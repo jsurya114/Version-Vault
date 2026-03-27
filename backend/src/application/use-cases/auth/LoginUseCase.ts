@@ -36,6 +36,7 @@ export class LoginUseCase {
       id: user!.id!,
       userId: user!.userId,
       role: user!.role,
+      email:user!.email
     };
 
     const accessToken = await this.jwtService.generateAccessToken(payload);

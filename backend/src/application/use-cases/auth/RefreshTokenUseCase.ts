@@ -24,6 +24,7 @@ export class RefreshTokenUseCase implements IRefreshTokenUseCase {
       id: user.id as string,
       userId: user.userId,
       role: user.role,
+      email:user.email
     });
     return { accessToken };
   }

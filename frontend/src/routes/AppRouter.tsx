@@ -44,6 +44,10 @@ const IssueListPage = lazy(() => import('../pages/issues/IssueListPage'));
 const CreateIssuePage = lazy(() => import('../pages/issues/CreateIssuePage'));
 const IssueDetailPage = lazy(() => import('../pages/issues/IssueDetailPage'));
 
+
+//commits
+const CompareCommitPage =lazy(()=>import('../pages/pullrequest/CompareCommitPage'))
+
 const AppRouter = () => {
   const dispatch = useAppDispatch();
   const [authChecked, setAuthChecked] = useState(false);
@@ -189,6 +193,15 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+
+<Route
+  path={ROUTES.REPO_COMPARE}
+  element={
+    <ProtectRoute>
+      <CompareCommitPage />
+    </ProtectRoute>
+  }
+/>
 
             {/* PR Routes — before REPO_DETAIL to avoid conflict */}
             <Route

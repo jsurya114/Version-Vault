@@ -47,12 +47,14 @@ export class GoogleAuthUseCase implements IGoogleAuthUseCase {
       id: user.id as string,
       userId: user.userId,
       role: user.role,
+      email:user.email
     });
 
     const refreshToken = this.tokenService.generateRefreshToken({
       id: user.id as string,
       userId: user.userId,
       role: user.role,
+      email:user.email
     });
     return {
       accessToken,

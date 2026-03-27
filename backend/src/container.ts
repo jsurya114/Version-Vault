@@ -76,8 +76,8 @@ import { GetFollowingUseCase } from './application/use-cases/follow/GetFollowing
 import { CreateBranchUseCase } from './application/use-cases/branch/CreateBranchUseCase';
 import { DeleteBranchUseCase } from './application/use-cases/branch/DeleteBranchUseCase';
 
-import { GetCompareCommitsUseCase } from './application/use-cases/commit/GetCompareCommitsUseCase';
 import { CreateCommitUseCase } from './application/use-cases/commit/CreateCommitUseCase';
+import { CompareCommitUseCase } from './application/use-cases/commit/CompareCommitUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -154,6 +154,7 @@ container.register(TOKENS.IDeleteBranchUseCase, { useClass: DeleteBranchUseCase 
 
 //commit usecase
 container.register(TOKENS.ICreateCommitUseCase, { useClass: CreateCommitUseCase });
-container.register(TOKENS.IGetCompareCommitsUseCase, { useClass: GetCompareCommitsUseCase });
+container.register(TOKENS.ICompareCommitUseCase,{useClass:CompareCommitUseCase})
+
 
 export { container };

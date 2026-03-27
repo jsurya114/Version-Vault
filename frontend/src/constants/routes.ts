@@ -43,8 +43,10 @@ export const ROUTES = {
   ISSUE_DETAIL: '/:username/:reponame/issues/:id',
 
   //branch
-  BRANCH_LIST:'/:username/:reponame/branches',
+  BRANCH_LIST: '/:username/:reponame/branches',
 
+  //compare
+  REPO_COMPARE: '/:username/:reponame/compare/:range',
   // Error
   NOT_FOUND: '*',
 } as const;
