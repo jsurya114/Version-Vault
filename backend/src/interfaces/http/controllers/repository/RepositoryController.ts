@@ -9,7 +9,7 @@ import { IGetCommitsUseCase } from '../../../../application/use-cases/interfaces
 import { IGetFileContentUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFileContentUseCase';
 import { IGetFilesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFilesUseCase';
 import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/branch/IGetBranchesUseCase';
-import { IGetCompareCommitsUseCase } from '../../../../application/use-cases/interfaces/commit/IGetCompareCommitsUseCase';
+
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
 
@@ -31,7 +31,7 @@ export class RepositoryController {
     @inject(TOKENS.IGetFileContentUseCase) private fileContentUseCase: IGetFileContentUseCase,
     @inject(TOKENS.IGetFilesUseCase) private filesUseCase: IGetFilesUseCase,
     @inject(TOKENS.IGetBranchesUseCase) private branchUseCase: IGetBranchesUseCase,
-    @inject(TOKENS.IGetCompareCommitsUseCase) private compareUseCase: IGetCompareCommitsUseCase,
+
   ) {}
 
   /**
@@ -168,29 +168,5 @@ export class RepositoryController {
     }
   }
 
-  /**
-   * GET /vv/repo/:username/:reponame/compare
-   * Compare two branches
-   */
-  async compareCommits(req: Request, res: Response, next: NextFunction): Promise<void> {
-    try {
-      const { username, reponame } = req.params;
-      const { base, head } = req.query;
-      if (!base || !head) {
-        res
-          .status(HttpStatusCodes.BAD_REQUEST)
-          .json({ success: false, message: 'Base and head branches are required' });
-        return;
-      }
-      const result = await this.compareUseCase.execute(
-        username,
-        reponame,
-        base as string,
-        head as string,
-      );
-      res.status(HttpStatusCodes.OK).json({ success: true, data: result });
-    } catch (error) {
-      next(error);
-    }
-  }
+
 }

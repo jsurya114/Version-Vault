@@ -35,6 +35,7 @@ export const ROUTES = {
   // pull requests
   PR_LIST: '/:username/:reponame/pulls',
   PR_CREATE: '/:username/:reponame/pulls/new',
+  PR_FORM: '/:username/:reponame/pulls/new/form',
   PR_DETAIL: '/:username/:reponame/pulls/:id',
 
   // issues
@@ -43,8 +44,11 @@ export const ROUTES = {
   ISSUE_DETAIL: '/:username/:reponame/issues/:id',
 
   //branch
-  BRANCH_LIST:'/:username/:reponame/branches',
+  BRANCH_LIST: '/:username/:reponame/branches',
 
+  //compare
+  REPO_COMPARE: '/:username/:reponame/compare/:range',
+  COMMIT_DETAIL: '/:username/:reponame/commit/:hash',
   // Error
   NOT_FOUND: '*',
 } as const;

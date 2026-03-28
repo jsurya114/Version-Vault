@@ -20,7 +20,7 @@ const ForgotPasswordOtpPage = lazy(() => import('../pages/user/auth/FogotPasswor
 const ResetPasswordPage = lazy(() => import('../pages/user/auth/ResetPasswordPage'));
 
 const HomePage = lazy(() => import('../pages/user/home/HomePage'));
-const UserProfilePage=lazy(()=>import('../pages/user/home/UserProfilePage'))
+const UserProfilePage = lazy(() => import('../pages/user/home/UserProfilePage'));
 
 // admin
 const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage'));
@@ -32,17 +32,22 @@ const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPag
 const RepositoryListPage = lazy(() => import('../pages/repository/RepositoryListPage'));
 const CreateRepositoryPage = lazy(() => import('../pages/repository/CreateRepositoryPage'));
 const RepositoryDetailPage = lazy(() => import('../pages/repository/RepositoryDetailPage'));
-const BranchListPage =lazy(()=>import('../pages/repository/BranchListPage'))
+const BranchListPage = lazy(() => import('../pages/repository/BranchListPage'));
 
 //pullrequests
 const PRListPage = lazy(() => import('../pages/pullrequest/PRListPage'));
 const PRDetailPage = lazy(() => import('../pages/pullrequest/PRDetailPage'));
 const CreatePRPage = lazy(() => import('../pages/pullrequest/CreatePRPage'));
+const PRFormPage = lazy(() => import('../pages/pullrequest/PRFormPage'));
 
 //Issues Page
 const IssueListPage = lazy(() => import('../pages/issues/IssueListPage'));
 const CreateIssuePage = lazy(() => import('../pages/issues/CreateIssuePage'));
 const IssueDetailPage = lazy(() => import('../pages/issues/IssueDetailPage'));
+
+//commits
+const CompareCommitPage = lazy(() => import('../pages/pullrequest/CompareCommitPage'));
+const CommitDetailPage = lazy(() => import('../pages/pullrequest/CommitDetailPage'));
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
@@ -137,12 +142,14 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
-            <Route path={ROUTES.PROFILE}
-            element={
-              <ProtectRoute>
-             <UserProfilePage/>
-              </ProtectRoute>
-            }/>
+            <Route
+              path={ROUTES.PROFILE}
+              element={
+                <ProtectRoute>
+                  <UserProfilePage />
+                </ProtectRoute>
+              }
+            />
 
             {/* admin */}
             <Route path={ROUTES.ADMIN_LOGIN} element={<AdminLoginPage />} />
@@ -190,6 +197,23 @@ const AppRouter = () => {
               }
             />
 
+            <Route
+              path={ROUTES.REPO_COMPARE}
+              element={
+                <ProtectRoute>
+                  <CompareCommitPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.COMMIT_DETAIL}
+              element={
+                <ProtectRoute>
+                  <CommitDetailPage />
+                </ProtectRoute>
+              }
+            />
+
             {/* PR Routes — before REPO_DETAIL to avoid conflict */}
             <Route
               path={ROUTES.PR_LIST}
@@ -208,6 +232,14 @@ const AppRouter = () => {
               }
             />
             <Route
+              path={ROUTES.PR_FORM}
+              element={
+                <ProtectRoute>
+                  <PRFormPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
               path={ROUTES.PR_DETAIL}
               element={
                 <ProtectRoute>
@@ -216,13 +248,13 @@ const AppRouter = () => {
               }
             />
             <Route
-  path={ROUTES.BRANCH_LIST}
-  element={
-    <ProtectRoute>
-      <BranchListPage />
-    </ProtectRoute>
-  }
-/>
+              path={ROUTES.BRANCH_LIST}
+              element={
+                <ProtectRoute>
+                  <BranchListPage />
+                </ProtectRoute>
+              }
+            />
 
             {/* Issue Routes — before REPO_DETAIL */}
             <Route

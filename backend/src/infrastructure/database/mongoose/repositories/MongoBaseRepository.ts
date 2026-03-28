@@ -27,7 +27,7 @@ export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
   }
 
   async update(id: string, data: Partial<T>): Promise<T | null> {
-    const doc = await this.model.findByIdAndUpdate(id, data, { new: true }).lean();
+    const doc = await this.model.findByIdAndUpdate(id, data, { returnDocument: 'after' }).lean();
     if (!doc) return null;
     return this.toEntity(doc);
   }
