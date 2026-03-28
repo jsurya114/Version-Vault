@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { getProfileThunk, updateProfileThunk } from './userThunk';
-import { userService } from 'src/services/user.service';
+
 import { initialUserState } from 'src/types/user/user.types';
 
 const userSlice = createSlice({

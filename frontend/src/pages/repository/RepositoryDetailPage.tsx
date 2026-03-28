@@ -610,11 +610,16 @@ const RepositoryDetailPage = () => {
                       <div className="flex items-center gap-2">
                         {!isEditing && (
                           <button
+                            disabled={!isOwner}
                             onClick={() => {
                               setIsEditing(true);
                               setEditedContent(fileContent);
                             }}
-                            className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 transition"
+                            className={`text-xs flex items-center gap-1 transition ${
+                              !isOwner
+                                ? 'text-gray-600 cursor-not-allowed opacity-50'
+                                : 'text-blue-400 hover:text-blue-300'
+                            }`}
                           >
                             Edit
                           </button>
@@ -634,8 +639,13 @@ const RepositoryDetailPage = () => {
                         </button>
                         {isEditing && (
                           <button
+                            disabled={!isOwner}
                             onClick={() => setShowCommitModal(true)}
-                            className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded transition"
+                            className={`text-xs px-3 py-1 rounded transition ${
+                              !isOwner
+                                ? 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'
+                                : 'bg-blue-600 hover:bg-blue-700 text-white'
+                            }`}
                           >
                             Commit Changes
                           </button>
@@ -891,9 +901,13 @@ const RepositoryDetailPage = () => {
           </div>
         </div>
       )}
-      {activeTab === 'pulls' && <PRListContent username={username!} reponame={reponame!} />}
+      {activeTab === 'pulls' && (
+        <PRListContent username={username!} reponame={reponame!} isOwner={isOwner} />
+      )}
 
-      {activeTab === 'issues' && <IssueListContent username={username!} reponame={reponame!} />}
+      {activeTab === 'issues' && (
+        <IssueListContent username={username!} reponame={reponame!} isOwner={isOwner} />
+      )}
 
       <AppFooter />
 

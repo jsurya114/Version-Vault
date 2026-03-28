@@ -7,7 +7,7 @@ export class FollowMapper {
     return {
       id: doc.id?.toString(),
       followerId: doc.followerId,
-      followerUsername: doc.followingUsername,
+      followerUsername: doc.followerUsername,
       followingId: doc.followingId,
       followingUsername: doc.followingUsername,
       createdAt: doc.createdAt,

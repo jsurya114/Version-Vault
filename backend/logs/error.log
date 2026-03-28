@@ -2210,3 +2210,10 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-28 20:17:26 [[31merror[39m]: PATCH /vv/user/profile — User not found
 2026-03-28 20:17:27 [[31merror[39m]: PATCH /vv/user/profile — User not found
 2026-03-28 20:18:03 [[31merror[39m]: PATCH /vv/user/profile — User not found
+2026-03-28 20:56:09 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-28 20:56:23 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-28 21:37:16 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — E11000 duplicate key error collection: version-vault.follows index: followerId_1_followingId_1 dup key: { followerId: "69c1305ef15538deb980a562", followingId: "69c3929b6edb30f6a55460da" }
+2026-03-28 21:39:38 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — Already following this user
+2026-03-28 21:39:51 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — Already following this user
+2026-03-28 21:47:59 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — Already following this user
+2026-03-28 21:58:05 [[31merror[39m]: POST /vv/follow/jsurya114 — Cast to ObjectId failed for value "jsurya114" (type string) at path "_id" for model "User"

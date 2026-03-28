@@ -3,10 +3,7 @@ import { CircleDot, CheckCircle, Plus, Search } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { listIssuesThunk } from '../../../features/issues/issueThunk';
-import {
-  selectIssueLoading,
-  selectIssues,
-} from '../../../features/issues/issueSelector';
+import { selectIssueLoading, selectIssues } from '../../../features/issues/issueSelector';
 import { IssuePriority } from '../../../types/issues/issues.types';
 
 const priorityColors: Record<IssuePriority, string> = {
@@ -15,7 +12,15 @@ const priorityColors: Record<IssuePriority, string> = {
   high: 'text-red-400 bg-red-500/10 border-red-500/30',
 };
 
-const IssueListContent = ({ username, reponame }: { username: string; reponame: string }) => {
+const IssueListContent = ({
+  username,
+  reponame,
+  isOwner,
+}: {
+  username: string;
+  reponame: string;
+  isOwner: boolean;
+}) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const issues = useAppSelector(selectIssues);
@@ -55,8 +60,12 @@ const IssueListContent = ({ username, reponame }: { username: string; reponame: 
           <CircleDot className="w-5 h-5 text-gray-400" /> Issues
         </h1>
         <Link
-          to={`/${username}/${reponame}/issues/new`}
-          className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition"
+          to={isOwner ? `/${username}/${reponame}/issues/new` : '#'}
+          className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition ${
+            !isOwner
+              ? 'bg-gray-800 text-gray-600 cursor-not-allowed pointer-events-none opacity-50 border border-gray-700'
+              : 'bg-blue-600 hover:bg-blue-700 text-white'
+          }`}
         >
           <Plus className="w-4 h-4" /> New Issue
         </Link>
@@ -101,8 +110,8 @@ const IssueListContent = ({ username, reponame }: { username: string; reponame: 
               {statusFilter === 'all' ? 'No issues found' : `No ${statusFilter} issues found`}
             </p>
             <Link
-              to={`/${username}/${reponame}/issues/new`}
-              className="text-blue-400 text-sm hover:underline mt-2 block"
+              to={isOwner ? `/${username}/${reponame}/issues/new` : '#'}
+              className={`text-sm mt-2 block ${!isOwner ? 'text-gray-600 cursor-not-allowed pointer-events-none' : 'text-blue-400 hover:underline'}`}
             >
               {statusFilter === 'all' ? 'Create your first issue' : 'Create another issue'}
             </Link>

@@ -45,6 +45,8 @@ const timeAgo = (dateStr: string) => {
 const BranchListPage = () => {
   const { username, reponame } = useParams();
   const dispatch = useAppDispatch();
+  const user = useAppSelector((state) => state.auth.user);
+  const isOwner = user?.userId === username;
 
   // Safely select branches and ensure we handle both object array and string array (though it should now be objects)
   const rawBranches = useAppSelector(selectBranches);
@@ -117,8 +119,13 @@ const BranchListPage = () => {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold">Branches</h1>
           <button
+            disabled={!isOwner}
             onClick={() => setShowCreateModal(true)}
-            className="flex items-center gap-2 bg-green-600 hover:bg-green-700 text-white px-4 py-2 rounded-lg font-medium transition"
+            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
+              !isOwner
+                ? 'bg-gray-800 text-gray-600 cursor-not-allowed opacity-50 border border-gray-700'
+                : 'bg-green-600 hover:bg-green-700 text-white'
+            }`}
           >
             <Plus className="w-4 h-4" /> New branch
           </button>
@@ -161,7 +168,7 @@ const BranchListPage = () => {
               (b) => (typeof b === 'string' ? b : b.name) === 'main',
             ) || { name: 'main' };
             const branchObj = typeof mainBranch === 'string' ? { name: mainBranch } : mainBranch;
-            return <BranchRow branch={branchObj} isDefault onDelete={() => {}} />;
+            return <BranchRow branch={branchObj} isDefault isOwner={isOwner} onDelete={() => {}} />;
           })()}
 
           <div className="p-4 bg-gray-900/30 border-t border-gray-800 flex items-start gap-3">
@@ -192,6 +199,7 @@ const BranchListPage = () => {
                   <BranchRow
                     key={branchObj.name}
                     branch={branchObj}
+                    isOwner={isOwner}
                     onDelete={() => {
                       setSelectedBranch(branchObj.name);
                       setShowDeleteModal(true);
@@ -263,10 +271,12 @@ const BranchTableContainer = ({ children }: { children: React.ReactNode }) => (
 const BranchRow = ({
   branch,
   isDefault,
+  isOwner,
   onDelete,
 }: {
   branch: GitBranch;
   isDefault?: boolean;
+  isOwner: boolean;
   onDelete: () => void;
 }) => (
   <div className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-4 items-center hover:bg-white/[0.02] transition text-sm">
@@ -322,8 +332,12 @@ const BranchRow = ({
       )}
       {!isDefault && (
         <Trash2
-          className="w-4 h-4 text-gray-600 hover:text-red-500 transition cursor-pointer"
-          onClick={onDelete}
+          className={`w-4 h-4 transition ${
+            !isOwner
+              ? 'text-gray-800 cursor-not-allowed opacity-30'
+              : 'text-gray-600 hover:text-red-500 cursor-pointer'
+          }`}
+          onClick={isOwner ? onDelete : undefined}
         />
       )}
     </div>
