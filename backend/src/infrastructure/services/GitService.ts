@@ -3,7 +3,13 @@ import * as path from 'path';
 import simpleGit from 'simple-git';
 import { injectable } from 'tsyringe';
 import { envConfig } from '../../shared/config/env.config';
-import { GitFileEntry, GitCommit, GitBranch } from '../../domain/interfaces/IGitTypes';
+import {
+  GitFileEntry,
+  GitCommit,
+  GitBranch,
+  FileDiff,
+  DiffHunk,
+} from '../../domain/interfaces/IGitTypes';
 
 @injectable()
 export class GitService {
@@ -19,6 +25,66 @@ export class GitService {
 
   private getRepoPath(ownerUsername: string, repoName: string): string {
     return path.join(this.repoBasePath, ownerUsername, `${repoName}.git`);
+  }
+
+  private parseDiff(diffString: string): FileDiff[] {
+    const files: FileDiff[] = [];
+    const lines = diffString.split('\n');
+    let currentFile: FileDiff | null = null;
+    let currentHunk: DiffHunk | null = null;
+    let oldLine = 0;
+    let newLine = 0;
+    for (let i = 0; i < lines.length; i++) {
+      const line = lines[i];
+      if (line.startsWith('diff --git')) {
+        const match = line.match(/a\/(.*) b\/(.*)$/);
+        currentFile = {
+          path: match ? match[2] : 'unknown',
+          status: 'modified',
+          additions: 0,
+          deletions: 0,
+          hunks: [],
+        };
+        files.push(currentFile);
+        currentHunk = null;
+      } else if (line.startsWith('new file mode')) {
+        if (currentFile) currentFile.status = 'added';
+      } else if (line.startsWith('deleted file mode')) {
+        if (currentFile) currentFile.status = 'deleted';
+      } else if (line.startsWith('@@')) {
+        const match = line.match(/@@ -(\d+),?\d* \+(\d+),?\d* @@/);
+        if (match) {
+          oldLine = parseInt(match[1]);
+          newLine = parseInt(match[2]);
+        }
+        currentHunk = { content: line, lines: [] };
+        currentFile?.hunks.push(currentHunk);
+      } else if (currentHunk) {
+        if (line.startsWith('+')) {
+          currentHunk.lines.push({
+            type: 'added',
+            content: line.slice(1),
+            newLineNumber: newLine++,
+          });
+          if (currentFile) currentFile.additions++;
+        } else if (line.startsWith('-')) {
+          currentHunk.lines.push({
+            type: 'deleted',
+            content: line.slice(1),
+            oldLineNumber: oldLine++,
+          });
+          if (currentFile) currentFile.deletions++;
+        } else if (!line.startsWith('\\')) {
+          currentHunk.lines.push({
+            type: 'context',
+            content: line.slice(1),
+            oldLineNumber: oldLine++,
+            newLineNumber: newLine++,
+          });
+        }
+      }
+    }
+    return files;
   }
 
   async createBranch(
@@ -298,7 +364,13 @@ export class GitService {
     repoName: string,
     targetBranch: string,
     sourceBranch: string,
-  ): Promise<{ commits: GitCommit[]; filesChanged: number; contributors: number,isMergeable:boolean }> {
+  ): Promise<{
+    commits: GitCommit[];
+    filesChanged: number;
+    contributors: number;
+    isMergeable: boolean;
+    diffs: FileDiff[];
+  }> {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
@@ -317,17 +389,21 @@ export class GitService {
       //get unique contributors cout
       const contributors = new Set(log.all.map((c) => c.author_email)).size;
 
-      let isMergeable = false
+      let isMergeable = false;
       try {
         const mergeTreeResult = await git.raw(['merge-tree', targetBranch, sourceBranch]);
-          isMergeable = !mergeTreeResult.trim().includes('\n')&&mergeTreeResult.trim().length>0
+        isMergeable = !mergeTreeResult.trim().includes('\n') && mergeTreeResult.trim().length > 0;
       } catch {
-        isMergeable=false
+        isMergeable = false;
       }
-      return { commits, filesChanged, contributors,isMergeable };
+
+      const diffString = await git.raw(['diff', range]);
+      const diffs = this.parseDiff(diffString);
+
+      return { commits, filesChanged, contributors, isMergeable, diffs };
     } catch (error) {
       console.error('Error comparing branches:', error);
-      return { commits: [], filesChanged: 0, contributors: 0,isMergeable:false };
+      return { commits: [], filesChanged: 0, contributors: 0, isMergeable: false, diffs: [] };
     }
   }
 }

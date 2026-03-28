@@ -43,6 +43,8 @@ import {
 } from '../../features/repository/repositorySelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
+
+import { RepositoryLanguages } from './components/RepositoryLanguages';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
@@ -52,12 +54,7 @@ import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
 import PRListContent from '../../types/common/pullrequest/PRListContent';
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues';
-
-interface TreeNode {
-  name: string;
-  path: string;
-  type: 'blob' | 'tree';
-}
+import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 
 const RepositoryDetailPage = () => {
   const dispatch = useAppDispatch();
@@ -230,6 +227,8 @@ const RepositoryDetailPage = () => {
     if (a.type !== 'tree' && b.type === 'tree') return 1;
     return (a.name || '').localeCompare(b.name || '');
   });
+
+  const languageData = calculateLanguagesFromFiles(files);
 
   if (isLoading) {
     return (
@@ -828,30 +827,14 @@ const RepositoryDetailPage = () => {
                 </div>
               </div>
 
-              <div className="border-t border-gray-800 pt-4">
-                <h3 className="text-white text-sm font-semibold mb-3">Languages</h3>
-                <div className="w-full h-2 rounded-full overflow-hidden flex mb-3">
-                  <div className="bg-blue-400 h-full" style={{ width: '72.4%' }} />
-                  <div className="bg-yellow-400 h-full" style={{ width: '18.1%' }} />
-                  <div className="bg-purple-400 h-full" style={{ width: '9.5%' }} />
+              {languageData.length > 0 ? (
+                <RepositoryLanguages languages={languageData} />
+              ) : (
+                <div className="border-t border-gray-800 pt-4">
+                  <h3 className="text-white text-sm font-semibold mb-3">Languages</h3>
+                  <p className="text-gray-500 text-xs">No language data available.</p>
                 </div>
-                <div className="flex flex-wrap gap-x-3 gap-y-1.5">
-                  {[
-                    { name: 'TypeScript', percent: '72.4%', color: 'bg-blue-400' },
-                    { name: 'JavaScript', percent: '18.1%', color: 'bg-yellow-400' },
-                    { name: 'CSS', percent: '9.5%', color: 'bg-purple-400' },
-                  ].map((lang) => (
-                    <div
-                      key={lang.name}
-                      className="flex items-center gap-1.5 text-xs text-gray-400"
-                    >
-                      <span className={`w-2.5 h-2.5 rounded-full ${lang.color}`} />
-                      <span className="text-white">{lang.name}</span>
-                      <span>{lang.percent}</span>
-                    </div>
-                  ))}
-                </div>
-              </div>
+              )}
             </div>
           )}
         </div>
