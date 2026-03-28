@@ -11,6 +11,8 @@ export interface RepositoryResponseDTO {
   size: number;
   createdAt?: string;
   updatedAt?: string;
+  language?: string;
+  languageColor?: string;
 }
 
 export interface CreateRepositoryDTO {
