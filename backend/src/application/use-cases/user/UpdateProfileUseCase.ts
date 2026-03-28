@@ -10,7 +10,7 @@ export class UpdateProfileUseCase implements IUpdateProfileUseCase {
   constructor(@inject(TOKENS.IUserRepository) private _userRepository: IUserRepository) {}
 
   async execute(userId: string, data: UserProfileDTO): Promise<IUser> {
-    const user = await this._userRepository.findByUserId(userId);
+    const user = await this._userRepository.findById(userId);
 
     if (!user) throw new Error('User not found');
     if (data.username) user.username = data.username;

@@ -37,3 +37,8 @@ export const ISSUE_ENDPOINTS = {
 export const FOLLOW_ENDPOINTS = {
   BASE: '/follow',
 } as const;
+
+export const USER_ENDPOINTs = {
+  BASE: '/user',
+  UPDATE_PROFILE: '/user/profile',
+} as const;

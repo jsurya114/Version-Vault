@@ -2205,3 +2205,8 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/branches — Cannot use simple-git on a directory that does not exist
 2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/commits — Cannot use simple-git on a directory that does not exist
 2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/branches — Cannot use simple-git on a directory that does not exist
+2026-03-28 20:17:00 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-28 20:17:01 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-28 20:17:26 [[31merror[39m]: PATCH /vv/user/profile — User not found
+2026-03-28 20:17:27 [[31merror[39m]: PATCH /vv/user/profile — User not found
+2026-03-28 20:18:03 [[31merror[39m]: PATCH /vv/user/profile — User not found

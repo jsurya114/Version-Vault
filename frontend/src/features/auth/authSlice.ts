@@ -1,4 +1,5 @@
-import { AuthState } from '../../types/auth.types';
+import { AuthState } from '../../types/user/auth.types';
+import { updateProfileThunk } from '../user/userThunk';
 import { createSlice } from '@reduxjs/toolkit';
 import {
   registerThunk,
@@ -152,6 +153,18 @@ const authSlice = createSlice({
         state.successMessage = action.payload;
       })
       .addCase(resendOtpThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+      .addCase(updateProfileThunk.pending, (state) => {
+        state.isLoading = true;
+      })
+      .addCase(updateProfileThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        state.user = action.payload;
+      })
+      .addCase(updateProfileThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });
