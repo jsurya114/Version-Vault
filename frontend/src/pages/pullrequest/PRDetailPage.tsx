@@ -10,6 +10,7 @@ import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { PRStatus } from '../../types/pullrequest/pullrequest.types';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import MergeConfirmModal from '../../types/common/Modal/MergeConfirmModal';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -24,16 +25,16 @@ const PRDetailPage = () => {
   const isLoading = useAppSelector(selectPRLoading);
   const user = useAppSelector(selectAuthUser);
   const [isMerging, setIsMerging] = useState(false);
+  const [isMergeModalOpen, setIsMergeModalOpen] = useState(false);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   const isOwner = user?.userId === username;
 
   useEffect(() => {
     if (id) dispatch(getPRThunk({ username: username!, reponame: reponame!, id }));
-  }, [id]);
+  }, [id, dispatch, username, reponame]);
 
-  const handleMerge = async () => {
-    if (!confirm('Merge this pull request?')) return;
+  const handleMergeConfirm = async () => {
     setIsMerging(true);
     try {
       const result = await dispatch(
@@ -52,7 +53,7 @@ const PRDetailPage = () => {
   };
 
   const handleClose = async () => {
-    if (!confirm('Close this pull request?')) return;
+    if (!window.confirm('Close this pull request?')) return;
     await dispatch(closePRThunk({ username: username!, reponame: reponame!, id: id! }));
   };
 
@@ -76,7 +77,20 @@ const PRDetailPage = () => {
   if (!pr) return null;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col relative">
+      {/* Full-Screen Loader for Merging */}
+      {isMerging && (
+        <div className="fixed inset-0 bg-black/80 backdrop-blur-md z-[100] flex flex-col items-center justify-center">
+          <div className="w-16 h-16 border-4 border-purple-500/30 border-t-purple-500 rounded-full animate-spin mb-6" />
+          <h2 className="text-white text-2xl font-bold tracking-tight mb-2">
+            Merging Pull Request
+          </h2>
+          <p className="text-purple-300 text-sm font-medium animate-pulse">
+            Applying your changes to {pr.targetBranch}...
+          </p>
+        </div>
+      )}
+
       <AppHeader />
 
       {/* Breadcrumb */}
@@ -108,6 +122,16 @@ const PRDetailPage = () => {
             subtitle={successSonar.subtitle}
           />
         )}
+
+        {/* Merge Confirmation Modal */}
+        <MergeConfirmModal
+          isOpen={isMergeModalOpen}
+          onClose={() => setIsMergeModalOpen(false)}
+          onConfirm={handleMergeConfirm}
+          prTitle={pr.title}
+          sourceBranch={pr.sourceBranch}
+          targetBranch={pr.targetBranch}
+        />
 
         {/* PR Header */}
         <div className="mb-6">
@@ -151,23 +175,19 @@ const PRDetailPage = () => {
             {isOwner && pr.status === 'open' && (
               <div className="flex items-center gap-2 shrink-0">
                 <button
-                  onClick={handleMerge}
+                  onClick={() => setIsMergeModalOpen(true)}
                   disabled={isMerging}
-                  className="flex items-center gap-1.5 bg-purple-600/20 hover:bg-purple-600/30 border border-purple-500/30 text-purple-400 text-xs px-3 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 shadow-md shadow-purple-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  {isMerging ? (
-                    <div className="w-3.5 h-3.5 border-2 border-purple-400 border-t-transparent rounded-full animate-spin" />
-                  ) : (
-                    <GitMerge className="w-3.5 h-3.5" />
-                  )}
-                  {isMerging ? 'Merging...' : 'Merge'}
+                  <GitMerge className="w-4 h-4" />
+                  Merge Pull Request
                 </button>
                 <button
                   onClick={handleClose}
                   disabled={isMerging}
-                  className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition disabled:opacity-50 disabled:cursor-not-allowed"
+                  className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-red-400 font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
                 >
-                  <X className="w-3.5 h-3.5" /> Close
+                  <X className="w-4 h-4" /> Close
                 </button>
               </div>
             )}
@@ -180,12 +200,12 @@ const PRDetailPage = () => {
             {/* Branch info */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
               <div className="flex items-center gap-3 text-sm">
-                <div className="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded-lg">
+                <div className="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded-lg shadow-inner">
                   <GitBranch className="w-3.5 h-3.5 text-blue-400" />
                   <span className="text-blue-400 font-mono text-xs">{pr.sourceBranch}</span>
                 </div>
                 <span className="text-gray-500">→</span>
-                <div className="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded-lg">
+                <div className="flex items-center gap-2 bg-gray-800 px-3 py-1.5 rounded-lg shadow-inner">
                   <GitBranch className="w-3.5 h-3.5 text-green-400" />
                   <span className="text-green-400 font-mono text-xs">{pr.targetBranch}</span>
                 </div>
@@ -196,7 +216,9 @@ const PRDetailPage = () => {
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
               <h3 className="text-white text-sm font-semibold mb-3">Description</h3>
               {pr.description ? (
-                <p className="text-gray-400 text-sm leading-relaxed">{pr.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed whitespace-pre-wrap">
+                  {pr.description}
+                </p>
               ) : (
                 <p className="text-gray-600 text-sm italic">No description provided.</p>
               )}
@@ -228,7 +250,7 @@ const PRDetailPage = () => {
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
               <h3 className="text-white text-xs font-semibold mb-2">Author</h3>
               <div className="flex items-center gap-2">
-                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+                <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shadow-sm">
                   {pr.authorUsername?.[0]?.toUpperCase()}
                 </div>
                 <span className="text-gray-400 text-xs">{pr.authorUsername}</span>

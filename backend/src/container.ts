@@ -79,6 +79,10 @@ import { DeleteBranchUseCase } from './application/use-cases/branch/DeleteBranch
 import { CreateCommitUseCase } from './application/use-cases/commit/CreateCommitUseCase';
 import { CompareCommitUseCase } from './application/use-cases/commit/CompareCommitUseCase';
 
+//profile
+import { GetProfileUseCase } from './application/use-cases/user/GetProfileUseCase';
+import { UpdateProfileUseCase } from './application/use-cases/user/UpdateProfileUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -155,6 +159,9 @@ container.register(TOKENS.IDeleteBranchUseCase, { useClass: DeleteBranchUseCase 
 //commit usecase
 container.register(TOKENS.ICreateCommitUseCase, { useClass: CreateCommitUseCase });
 container.register(TOKENS.ICompareCommitUseCase,{useClass:CompareCommitUseCase})
+
+container.register(TOKENS.IGetProfileUseCase,{useClass:GetProfileUseCase})
+container.register(TOKENS.IUpdateProfileUseCase,{useClass:UpdateProfileUseCase})
 
 
 export { container };

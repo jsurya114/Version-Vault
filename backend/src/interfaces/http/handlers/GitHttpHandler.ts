@@ -5,9 +5,11 @@ import { envConfig } from '../../../shared/config/env.config';
 
 export const handleGitRequest = (req: Request, res: Response): void => {
   const { username, reponame } = req.params;
+  const cleanReponame = reponame.endsWith('.git') ? reponame.slice(0, -4) : reponame;
+
   const repoBasePath = path.resolve(envConfig.GIT_REPO_PATH || './repos');
   //find the bare repo is on disk
-  const repoPath = path.join(repoBasePath, username, `${reponame}.git`);
+  const repoPath = path.join(repoBasePath, username, `${cleanReponame}.git`);
 
   //set environment variables git-http backend needs
   const env = {

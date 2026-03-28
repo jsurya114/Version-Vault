@@ -2199,3 +2199,9 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-26 23:43:09 [[31merror[39m]: AggregateError
     at internalConnectMultiple (node:net:1193:18)
     at afterConnectMultiple (node:net:1783:7)
+2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/files — Cannot use simple-git on a directory that does not exist
+2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/files — Cannot use simple-git on a directory that does not exist
+2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/commits — Cannot use simple-git on a directory that does not exist
+2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/branches — Cannot use simple-git on a directory that does not exist
+2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/commits — Cannot use simple-git on a directory that does not exist
+2026-03-28 12:18:55 [[31merror[39m]: GET /vv/repo/jsurya114/first-project/branches — Cannot use simple-git on a directory that does not exist
