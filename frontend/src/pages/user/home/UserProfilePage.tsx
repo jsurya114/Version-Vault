@@ -35,6 +35,7 @@ import ActivityTimeline, {
   ActivityItemProps,
 } from '../../../types/common/Profile/ActivityTimeline';
 import { EditProfileModal } from '../components/EditProfileModal';
+import { getMeThunk } from 'src/features/auth/authThunks';
 
 interface ActivityGroup {
   date: string;
@@ -205,6 +206,9 @@ const UserProfilePage = () => {
       await dispatch(followThunk(userId));
     }
     dispatch(getFollowersThunk(userId));
+    dispatch(getFollowingThunk(userId));
+
+    dispatch(getMeThunk());
   };
 
   const formatDate = (dateString?: string | Date) => {
@@ -286,12 +290,12 @@ const UserProfilePage = () => {
               <div className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition">
                 <Users className="w-4 h-4" />
                 <span className="font-bold text-white">{followers.length}</span>
-                <span>followers</span>
+                <span>following</span>
               </div>
               <span className="text-gray-700">·</span>
               <div className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition">
                 <span className="font-bold text-white">{following.length}</span>
-                <span>following</span>
+                <span>followers</span>
               </div>
             </div>
 

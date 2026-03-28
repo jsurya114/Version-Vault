@@ -28,7 +28,7 @@ export class MongoFollowRepository
   }
 
   async findFollowers(userId: string): Promise<IFollow[]> {
-    const docs = await FollowModel.find({ followerId: userId });
+    const docs = await FollowModel.find({ followingId: userId });
     return docs.map(this.toEntity.bind(this));
   }
 

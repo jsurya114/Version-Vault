@@ -19,10 +19,7 @@ export class FollowUseCase implements IFollowUseCase {
     followingUsername: string,
   ): Promise<void> {
     if (followerId === followingId) throw new Error('You cannot follow yourself');
-    const existing = await this._followRepo.findByFollowerAndFollowing(
-      followerId,
-      followingUsername,
-    );
+    const existing = await this._followRepo.findByFollowerAndFollowing(followerId, followingId);
     if (existing) throw new ConflictError('Already following this user');
 
     await this._followRepo.save({ followerId, followerUsername, followingId, followingUsername });
@@ -31,13 +28,15 @@ export class FollowUseCase implements IFollowUseCase {
     const follower = await this._userRepo.findById(followerId);
     const following = await this._userRepo.findById(followingId);
 
-    if (follower)
+    if (follower) {
       await this._userRepo.update(followerId, {
         followingCount: (follower.followingCount || 0) + 1,
       });
-    if (following)
+    }
+    if (following) {
       await this._userRepo.update(followingId, {
         followersCount: (following.followersCount || 0) + 1,
       });
+    }
   }
 }
