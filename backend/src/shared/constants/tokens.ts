@@ -69,4 +69,9 @@ export const TOKENS = {
   //commits
   ICreateCommitUseCase: Symbol.for('ICreateCommitUseCase'),
   ICompareCommitUseCase: Symbol.for('ICompareCommitUseCase'),
+
+
+  //userProfile
+  IGetProfileUseCase:Symbol.for('IGetProfileUseCase'),
+  IUpdateProfileUseCase:Symbol.for('IUpdateProfileUseCase')
 } as const;

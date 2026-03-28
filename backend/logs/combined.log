@@ -12676,3 +12676,6 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-28 13:02:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 45.979 ms - -[0m
 2026-03-28 13:02:49 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/version?page=1&limit=10 [36m304[0m 73.237 ms - -[0m
 2026-03-28 13:02:49 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/version?page=1&limit=10 [36m304[0m 72.692 ms - -[0m
+2026-03-28 13:03:29 [[32minfo[39m]: Redis connected successfully
+2026-03-28 13:03:30 [[32minfo[39m]: MongoDB connected successfully
+2026-03-28 13:03:30 [[32minfo[39m]: Server running on port 3125 in development mode
