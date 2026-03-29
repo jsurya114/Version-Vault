@@ -11,7 +11,7 @@ export class UnblockRepoUseCase implements IUnblockRepoUseCase {
   constructor(@inject(TOKENS.IAdminRepoRepository) private _adminRepo: IAdminRepoRepository) {}
 
   async execute(id: string): Promise<RepoResponseDTO> {
-    const repo = await this._adminRepo.findById(id);
+    const repo = await this._adminRepo.unblockRepo(id);
 
     if (!repo) throw new NotFoundError('Repository not found');
 

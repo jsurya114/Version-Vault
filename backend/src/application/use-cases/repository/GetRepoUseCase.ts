@@ -13,6 +13,9 @@ export class GetRepoUseCase implements IGetRepoUseCase {
   async execute(ownerUsername: string, name: string): Promise<RepoResponseDTO> {
     const repo = await this.repoRepository.findByOwnerAndName(ownerUsername, name);
     if (!repo) throw new NotFoundError('Repository not found');
+    if (!repo || repo.isBlocked) {
+      throw new NotFoundError('Repository not found or is currently suspended');
+    }
 
     return RepositoryMapper.toDTO(repo);
   }

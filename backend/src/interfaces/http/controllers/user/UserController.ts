@@ -44,7 +44,7 @@ export class UserController {
       const { id: userId } = req.user;
       const { username, bio } = req.body;
 
-      const avatar = req.file ? (req.file as any).path : undefined;
+      const avatar = req.file ? (req.file as { path: string }).path : undefined;
       const data = { username, bio, avatar };
       const updatedUser = await this._updateProfileUseCase.execute(userId, data);
 

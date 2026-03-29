@@ -12,6 +12,8 @@ import {
   selectAdminError,
   selectSelectedUser,
 } from '../../features/admin/adminSelectors';
+import { getAllRepoThunk } from 'src/features/admin/getRepoThunk';
+import { selectAdminRepos } from 'src/features/admin/adminRepoSelectors';
 import { UserResponseDTO } from '../../types/admin/adminTypes';
 
 const statusColors: Record<string, string> = {
@@ -27,6 +29,7 @@ const AdminUserDetailPage = () => {
   const isLoading = useAppSelector(selectAdminLoading);
   const error = useAppSelector(selectAdminError);
   const selectedUser = useAppSelector(selectSelectedUser);
+  const userRepos = useAppSelector(selectAdminRepos);
 
   const [pendingBlocked, setPendingBlocked] = useState<boolean | null>(null);
 
@@ -40,6 +43,16 @@ const AdminUserDetailPage = () => {
       setPendingBlocked(selectedUser.isBlocked);
     }
   }, [selectedUser]);
+  useEffect(() => {
+    if (selectedUser?.username) {
+      dispatch(
+        getAllRepoThunk({
+          search: selectedUser.userId,
+          limit: 5,
+        }),
+      );
+    }
+  }, [selectedUser?.userId, dispatch]);
 
   const getStatus = (user: UserResponseDTO) => {
     if (user.isBlocked) return 'blocked';
@@ -196,25 +209,61 @@ const AdminUserDetailPage = () => {
                       {/* Recent Repositories Card */}
                       <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
                         <div className="flex items-center justify-between mb-4">
-                          <h3 className="text-white font-semibold text-sm">Recent Repositories</h3>
-                          <span className="text-blue-400 text-xs hover:underline cursor-pointer">
+                          <h3 className="text-white font-semibold text-sm">User Repositories</h3>
+                          <Link
+                            to={`${ROUTES.ADMIN_REPOS}?search=${selectedUser.userId}`}
+                            className="text-blue-400 text-xs hover:underline"
+                          >
                             View All
-                          </span>
+                          </Link>
                         </div>
                         <table className="w-full">
                           <thead>
                             <tr className="text-gray-500 text-xs border-b border-gray-800">
                               <th className="text-left pb-2.5 font-medium">Repository Name</th>
                               <th className="text-center pb-2.5 font-medium">Visibility</th>
-                              <th className="text-right pb-2.5 font-medium">Last Push</th>
+                              <th className="text-right pb-2.5 font-medium">Status</th>
                             </tr>
                           </thead>
                           <tbody>
-                            <tr className="border-b border-gray-800/50">
-                              <td className="py-3 text-white text-sm">No repositories found</td>
-                              <td></td>
-                              <td></td>
-                            </tr>
+                            {userRepos && userRepos.length > 0 ? (
+                              userRepos.map((repo) => (
+                                <tr
+                                  key={repo.id}
+                                  className="border-b border-gray-800/50 hover:bg-gray-800/30 transition"
+                                >
+                                  <td className="py-3">
+                                    <Link
+                                      to={`/admin/repositories/${repo.id}`}
+                                      className="text-white text-sm font-medium hover:text-blue-400"
+                                    >
+                                      {repo.name}
+                                    </Link>
+                                  </td>
+                                  <td className="py-3 text-center">
+                                    <span className="text-gray-400 text-[10px] uppercase bg-gray-800 px-2 py-0.5 rounded border border-gray-700">
+                                      {repo.visibility}
+                                    </span>
+                                  </td>
+                                  <td className="py-3 text-right">
+                                    <span
+                                      className={`text-[10px] px-2 py-0.5 rounded font-bold ${repo.isBlocked ? 'text-red-400 bg-red-400/10' : 'text-green-400 bg-green-400/10'}`}
+                                    >
+                                      {repo.isBlocked ? 'BLOCKED' : 'ACTIVE'}
+                                    </span>
+                                  </td>
+                                </tr>
+                              ))
+                            ) : (
+                              <tr>
+                                <td
+                                  className="py-6 text-gray-500 text-sm italic text-center"
+                                  colSpan={3}
+                                >
+                                  No repositories found for this user.
+                                </td>
+                              </tr>
+                            )}
                           </tbody>
                         </table>
                       </div>

@@ -30,7 +30,8 @@ export const ROUTES = {
   ADMIN_DASHBOARD: '/admin/dashboard',
   ADMIN_USERS: '/admin/users',
   ADMIN_USER_DETAIL: '/admin/users/:id',
-  ADMIN_REPOS: '/admin/repos',
+  ADMIN_REPOS: '/admin/repositories',
+  ADMIN_REPO_DETAIL: '/admin/repositories/:id',
 
   // pull requests
   PR_LIST: '/:username/:reponame/pulls',

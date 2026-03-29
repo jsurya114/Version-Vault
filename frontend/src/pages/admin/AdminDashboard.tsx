@@ -3,25 +3,26 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { logoutThunk } from '../../features/auth/authThunks';
 import { getAllUsersThunk } from '../../features/admin/getUsersThunk';
 import { selectAdminUsers } from '../../features/admin/adminSelectors';
+import { getAllRepoThunk } from 'src/features/admin/getRepoThunk';
+import { selectAdminRepos, selectAdminReposMeta } from 'src/features/admin/adminRepoSelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
 import { useEffect } from 'react';
-
-const latestRepos = [
-  { name: 'nexus-core-api', version: 'v4.1-stable', size: '142.5 MB', visibility: 'PRIVATE' },
-  { name: 'frontend-dashboard-ui', version: 'v2.0-beta', size: '84.2 MB', visibility: 'PUBLIC' },
-  { name: 'auth-microservice', version: 'v3.1-stable', size: '12.8 MB', visibility: 'PRIVATE' },
-];
 
 const AdminDashboard = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const users = useAppSelector(selectAdminUsers);
   const adminUser = useAppSelector(selectAuthUser);
+  const repos = useAppSelector(selectAdminRepos);
+  const repoMeta = useAppSelector(selectAdminReposMeta);
 
   useEffect(() => {
-    dispatch(getAllUsersThunk({}));
+    dispatch(getAllUsersThunk({ limit: 5 }));
+    dispatch(getAllRepoThunk({ limit: 5 }));
   }, []);
+
+  const newestRepos = repos.slice(0, 3);
 
   const handleLogout = async () => {
     await dispatch(logoutThunk());
@@ -43,7 +44,7 @@ const AdminDashboard = () => {
     },
     {
       label: 'Total Repositories',
-      value: '84,209',
+      value: repoMeta.total.toLocaleString(),
       icon: 'folder_managed',
       color: 'text-blue-400',
     },
@@ -225,7 +226,7 @@ const AdminDashboard = () => {
               </table>
             </div>
 
-            {/* Latest Repos */}
+            {/* Latest Repositories */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
               <div className="flex items-center justify-between mb-4">
                 <h3 className="text-white font-semibold text-sm">Latest Repositories</h3>
@@ -237,38 +238,53 @@ const AdminDashboard = () => {
                 <thead>
                   <tr className="text-gray-500 text-xs border-b border-gray-800">
                     <th className="text-left pb-2">REPOSITORY</th>
-                    <th className="text-left pb-2">SIZE</th>
-                    <th className="text-left pb-2">VISIBILITY</th>
+                    <th className="text-center pb-2">OWNER</th>
+                    <th className="text-right pb-2">VISIBILITY</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {latestRepos.map((r) => (
-                    <tr key={r.name} className="border-b border-gray-800/50 last:border-0">
-                      <td className="py-2.5">
-                        <div className="flex items-center gap-2">
-                          <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-                            📁
+                  {newestRepos.length > 0 ? (
+                    newestRepos.map((r) => (
+                      <tr
+                        key={r.id}
+                        className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition"
+                      >
+                        <td className="py-2.5">
+                          <div className="flex items-center gap-2">
+                            <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
+                              📁
+                            </div>
+                            <div>
+                              <p className="text-white text-xs font-medium">{r.name}</p>
+                              <p className="text-gray-500 text-[10px] uppercase font-mono">
+                                {r.defaultBranch}
+                              </p>
+                            </div>
                           </div>
-                          <div>
-                            <p className="text-white text-xs font-medium">{r.name}</p>
-                            <p className="text-gray-500 text-xs">{r.version}</p>
-                          </div>
-                        </div>
-                      </td>
-                      <td className="py-2.5 text-gray-400 text-xs">{r.size}</td>
-                      <td className="py-2.5">
-                        <span
-                          className={`text-xs px-2 py-0.5 rounded font-medium ${
-                            r.visibility === 'PRIVATE'
-                              ? 'bg-gray-800 text-gray-400'
-                              : 'bg-blue-500/10 text-blue-400'
-                          }`}
-                        >
-                          {r.visibility}
-                        </span>
+                        </td>
+                        <td className="py-2.5 text-blue-400 text-xs text-center font-bold">
+                          @{r.ownerUsername}
+                        </td>
+                        <td className="py-2.5 text-right">
+                          <span
+                            className={`text-[9px] px-2 py-0.5 rounded font-black tracking-tighter uppercase ${
+                              r.visibility === 'private'
+                                ? 'bg-gray-800 text-gray-400 border border-gray-700'
+                                : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+                            }`}
+                          >
+                            {r.visibility}
+                          </span>
+                        </td>
+                      </tr>
+                    ))
+                  ) : (
+                    <tr>
+                      <td colSpan={3} className="py-6 text-gray-500 text-xs italic text-center">
+                        No repositories found.
                       </td>
                     </tr>
-                  ))}
+                  )}
                 </tbody>
               </table>
             </div>

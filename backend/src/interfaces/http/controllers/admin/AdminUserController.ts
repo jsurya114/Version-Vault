@@ -39,7 +39,7 @@ export class AdminUserController {
         meta: {
           total: result.total,
           page: result.page,
-          limit: result.page,
+          limit: result.limit,
           totalPages: result.totalPages,
         },
       });

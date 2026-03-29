@@ -22,12 +22,21 @@ export class AdminRepoController {
         page: Number(req.query.page) || 1,
         limit: Number(req.query.limit) || 5,
         search: req.query.search as string,
-        status: req.query.status as any,
+        status: req.query.status as 'active' | 'blocked' | undefined,
         sort: req.query.sort as string,
-        order: req.query.order as any,
+        order: req.query.order as 'asc' | 'desc',
       };
       const result = await this._getAllRepo.execute(query);
-      res.status(HttpStatusCodes.OK).json({ success: true, ...result });
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        data: result.data,
+        meta: {
+          total: result.total,
+          page: result.page,
+          limit: result.limit,
+          totalPages: result.totalPages,
+        },
+      });
     } catch (error) {
       next(error);
     }

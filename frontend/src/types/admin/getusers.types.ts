@@ -17,7 +17,7 @@ export const initialState: AdminState = {
   meta: {
     total: 0,
     page: 1,
-    limit: 2,
+    limit: 5,
     totalPages: 0,
   },
 };
