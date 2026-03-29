@@ -9,6 +9,7 @@ import { IGetCommitsUseCase } from '../../../../application/use-cases/interfaces
 import { IGetFileContentUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFileContentUseCase';
 import { IGetFilesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFilesUseCase';
 import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/branch/IGetBranchesUseCase';
+import { IVisibilityUseCase } from 'src/application/use-cases/interfaces/repository/IVisibilityUseCase';
 
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
@@ -31,7 +32,7 @@ export class RepositoryController {
     @inject(TOKENS.IGetFileContentUseCase) private fileContentUseCase: IGetFileContentUseCase,
     @inject(TOKENS.IGetFilesUseCase) private filesUseCase: IGetFilesUseCase,
     @inject(TOKENS.IGetBranchesUseCase) private branchUseCase: IGetBranchesUseCase,
-
+    @inject(TOKENS.IVisibilityUseCase) private _visbilityUseCase: IVisibilityUseCase,
   ) {}
 
   /**
@@ -62,7 +63,9 @@ export class RepositoryController {
   async getRepository(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { username, reponame } = req.params;
-      const repo = await this.getRepo.execute(username, reponame);
+      const authRequest = req as AuthRequest;
+      const authenticatedUserId = authRequest.user?.id;
+      const repo = await this.getRepo.execute(username, reponame, authenticatedUserId);
       res.status(HttpStatusCodes.OK).json({ success: true, data: repo });
     } catch (error) {
       next(error);
@@ -85,7 +88,9 @@ export class RepositoryController {
         search: req.query.search as string | undefined,
         status: req.query.status as 'active' | 'blocked' | 'pending' | undefined,
       };
-      const result = await this.listRepo.execute(ownerId, query);
+      const authenticatedUserId = req.user?.id;
+
+      const result = await this.listRepo.execute(ownerId, query, authenticatedUserId);
       res.status(HttpStatusCodes.OK).json({
         success: true,
         data: result.data,
@@ -168,5 +173,18 @@ export class RepositoryController {
     }
   }
 
+  async updateVisibility(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const { visibility } = req.body;
+      await this._visbilityUseCase.execute(username, reponame, visibility);
 
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        message: `Repository is now ${visibility}`,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
 }

@@ -90,6 +90,7 @@ import { GetAllRepoUseCase } from './application/use-cases/admin/GetAllRepoUseCa
 import { GetRepoByIdUseCase } from './application/use-cases/admin/GetRepoByIdUseCase';
 import { BlockRepoUseCase } from './application/use-cases/admin/BlockRepoUseCase';
 import { UnblockRepoUseCase } from './application/use-cases/admin/UnblockRepoUseCase';
+import { VisibilityUseCase } from './application/use-cases/repository/VisibilityUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -134,6 +135,7 @@ container.register(TOKENS.IGetRepoUseCase, { useClass: GetRepoUseCase });
 container.register(TOKENS.ICreateRepoUseCase, { useClass: CreateRepoUseCase });
 container.register(TOKENS.IListRepoUseCase, { useClass: ListRepoUseCase });
 container.register(TOKENS.IDeleteRepoUseCase, { useClass: DeleteRepoUseCase });
+container.register(TOKENS.IVisibilityUseCase, { useClass: VisibilityUseCase });
 
 container.register(TOKENS.IRepoRepository, { useClass: MongoRepoRepository });
 container.register(TOKENS.IGetFilesUseCase, { useClass: GetFilesUseCase });

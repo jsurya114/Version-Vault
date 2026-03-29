@@ -8,5 +8,6 @@ export interface IListRepoUseCase {
   execute(
     ownerId: string,
     query: PaginationQueryDTO,
+    authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<RepoResponseDTO>>;
 }

@@ -6,6 +6,7 @@ import { ownerMiddleware } from '../../middleware/ownerMiddleware';
 import { BranchController } from '../../controllers/branch/BranchController';
 import { AuthRequest } from '../../controllers/repository/RepositoryController';
 import { CommitController } from '../../controllers/commit/CommitController';
+import { visibilityMiddleware } from '../../middleware/visibilityMiddleware';
 
 const router = Router();
 const repoController = container.resolve(RepositoryController);
@@ -18,7 +19,7 @@ router.post('/', authMiddleware, ownerMiddleware, (req, res, next) =>
 router.get('/', authMiddleware, (req, res, next) =>
   repoController.listRepository(req as AuthRequest, res, next),
 );
-router.get('/:username/:reponame', (req, res, next) =>
+router.get('/:username/:reponame', visibilityMiddleware, (req, res, next) =>
   repoController.getRepository(req, res, next),
 );
 router.delete('/:username/:reponame', authMiddleware, ownerMiddleware, (req, res, next) =>
@@ -58,6 +59,10 @@ router.post('/:username/:reponame/commit', authMiddleware, ownerMiddleware, (req
 
 router.get('/:username/:reponame/compare/:base/:head', authMiddleware, (req, res, next) =>
   commitController.compareCommit(req, res, next),
+);
+
+router.patch('/:username/:reponame/visibility', authMiddleware, ownerMiddleware, (req, res, next) =>
+  repoController.updateVisibility(req as AuthRequest, res, next),
 );
 
 export default router;

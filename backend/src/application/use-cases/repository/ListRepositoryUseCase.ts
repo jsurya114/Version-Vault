@@ -19,8 +19,9 @@ export class ListRepoUseCase implements IListRepoUseCase {
   async execute(
     ownerId: string,
     query: PaginationQueryDTO,
+    authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<RepoResponseDTO>> {
-    const result = await this.repoRepository.findByOwner(ownerId, query);
+    const result = await this.repoRepository.findByOwner(ownerId, query, authenticatedUserId);
 
     return {
       data: result.data.map(RepositoryMapper.toDTO),

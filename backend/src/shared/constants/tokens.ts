@@ -36,6 +36,7 @@ export const TOKENS = {
   IGetRepoUseCase: Symbol.for('IGetRepoUseCase'),
   IListRepoUseCase: Symbol.for('IListRepoUseCase'),
   IDeleteRepoUseCase: Symbol.for('IDeleteRepoUseCase'),
+  IVisibilityUseCase: Symbol.for('IVisibilityUseCase'),
 
   // Git File Browser Use Cases
   IGetFilesUseCase: Symbol.for('IGetFilesUseCase'),
