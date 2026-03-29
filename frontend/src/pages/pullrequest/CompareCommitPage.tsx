@@ -18,8 +18,10 @@ import {
   selectCompareLoading,
 } from 'src/features/commit/compareCommitSelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
 
 import { GitPullRequest } from 'lucide-react';
+import { FileDiffViewer } from './components/DiffViewer';
 
 const CompareCommitPage = () => {
   const { username, reponame, base: urlBase, head: urlHead } = useParams();
@@ -53,6 +55,8 @@ const CompareCommitPage = () => {
       if (!head && urlHead) setHead(urlHead);
     }
   }, [branches, urlBase, urlHead]);
+
+  const [activeTab, setActiveTab] = useState<'commits' | 'files'>('commits');
 
   // Re-fetch whenever branches change
   useEffect(() => {
@@ -178,24 +182,28 @@ const CompareCommitPage = () => {
               {!isLoading && data && head && (
                 <div className="flex items-center justify-between w-full mt-2 space-x-4">
                   <div className="flex items-center gap-2 pl-2">
-                    {data.isMergeable ? (
+                    {head !== base && base === 'main' && (
                       <>
-                        <CheckCircle2 className="w-4 h-4 text-[#3fb950]" />
-                        <span className="text-[#3fb950] text-[13px] font-medium">
-                          Able to merge.
-                        </span>
-                      </>
-                    ) : (
-                      <>
-                        <XCircle className="w-4 h-4 text-[#f85149]" />
-                        <span className="text-[#f85149] text-[13px] font-medium">
-                          Can't automatically merge.
-                        </span>
+                        {data.isMergeable ? (
+                          <>
+                            <CheckCircle2 className="w-4 h-4 text-[#3fb950]" />
+                            <span className="text-[#3fb950] text-[13px] font-medium">
+                              Able to merge.
+                            </span>
+                          </>
+                        ) : (
+                          <>
+                            <XCircle className="w-4 h-4 text-[#f85149]" />
+                            <span className="text-[#f85149] text-[13px] font-medium">
+                              Can't automatically merge.
+                            </span>
+                          </>
+                        )}
                       </>
                     )}
                   </div>
 
-                  {head !== base && (
+                  {head !== base && data.commits.length > 0 && base === 'main' && (
                     <button
                       onClick={handleCreatePR}
                       className="bg-[#238636] hover:bg-[#2ea043] border border-[rgba(240,246,252,0.1)] text-white text-[13px] font-semibold px-4 py-1.5 rounded-md transition-all shadow-sm flex items-center gap-2"
@@ -221,16 +229,32 @@ const CompareCommitPage = () => {
           <div className="space-y-6">
             {/* Stats Summary Bar */}
             <div className="bg-gray-900/50 border border-gray-800 rounded-md py-3 px-6 flex items-center justify-around">
-              <div className="flex items-center gap-2 text-gray-500">
+              <div
+                onClick={() => setActiveTab('commits')}
+                className={`flex items-center gap-2 cursor-pointer transition-all ${activeTab === 'commits' ? 'text-blue-400' : 'text-gray-500'}`}
+              >
                 <CommitIcon className="w-3.5 h-3.5" />
                 <span className="text-[12px]">
-                  <span className="font-black text-white">{data.commits.length}</span> commits
+                  <span
+                    className={`font-black ${activeTab === 'commits' ? 'text-blue-400' : 'text-white'}`}
+                  >
+                    {data.commits.length}
+                  </span>{' '}
+                  commits
                 </span>
               </div>
-              <div className="flex items-center gap-2 text-gray-500 border-x border-gray-800 px-16">
+              <div
+                onClick={() => setActiveTab('files')}
+                className={`flex items-center gap-2 cursor-pointer transition-all border-x border-gray-800 px-16 ${activeTab === 'files' ? 'text-blue-400' : 'text-gray-500'}`}
+              >
                 <FileCode className="w-3.5 h-3.5" />
                 <span className="text-[12px]">
-                  <span className="font-black text-white">{data.filesChanged}</span> files changed
+                  <span
+                    className={`font-black ${activeTab === 'files' ? 'text-blue-400' : 'text-white'}`}
+                  >
+                    {data.filesChanged}
+                  </span>{' '}
+                  files changed
                 </span>
               </div>
               <div className="flex items-center gap-2 text-gray-500">
@@ -242,64 +266,87 @@ const CompareCommitPage = () => {
               </div>
             </div>
 
-            {/* Commit History */}
-            <div className="space-y-8 pt-4">
-              {Object.entries(commitGroups).map(([date, commits]) => (
-                <div key={date} className="relative">
-                  <div className="flex items-center gap-3 mb-4 text-gray-500">
-                    <div className="w-3.5 h-3.5 font-black flex items-center justify-center opacity-40">
-                      -o-
+            {/* Content Section */}
+            {activeTab === 'commits' ? (
+              <div className="space-y-8 pt-4">
+                {Object.entries(commitGroups).map(([date, commits]) => (
+                  <div key={date} className="relative">
+                    <div className="flex items-center gap-3 mb-4 text-gray-500">
+                      <div className="w-3.5 h-3.5 font-black flex items-center justify-center opacity-40">
+                        -o-
+                      </div>
+                      <span className="text-[13px] font-bold text-gray-400 tracking-tight">
+                        {date}
+                      </span>
                     </div>
-                    <span className="text-[13px] font-bold text-gray-400 tracking-tight">
-                      {date}
-                    </span>
-                  </div>
-                  <div className="bg-gray-950 border border-gray-800 rounded-md divide-y divide-gray-800">
-                    {commits.map((commit: GitCommit) => (
-                      <div
-                        key={commit.hash}
-                        onClick={() => navigate(`/${username}/${reponame}/commit/${commit.hash}`)}
-                        className="p-4 flex flex-col gap-1 hover:bg-gray-900/40 transition-all cursor-pointer group/card"
-                      >
-                        <div className="flex items-center justify-between">
-                          <div className="flex items-center gap-2">
-                            <span className="text-white text-[14px] font-bold group-hover/card:text-blue-400 transition-colors">
-                              {commit.message}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-1 opacity-80">
-                            <div className="flex items-center bg-gray-800 border border-gray-700/50 rounded px-2 py-0.5 gap-1.5 text-gray-400 hover:text-white transition-colors">
-                              <FileCode className="w-3 h-3" />
-                              <span className="text-[11px] font-mono font-bold tracking-tight">
-                                {commit.hash.substring(0, 7)}
+                    <div className="bg-gray-950 border border-gray-800 rounded-md divide-y divide-gray-800">
+                      {commits.map((commit: GitCommit) => (
+                        <div
+                          key={commit.hash}
+                          onClick={() => navigate(`/${username}/${reponame}/commit/${commit.hash}`)}
+                          className="p-4 flex flex-col gap-1 hover:bg-gray-900/40 transition-all cursor-pointer group/card"
+                        >
+                          <div className="flex items-center justify-between">
+                            <div className="flex items-center gap-2">
+                              <span className="text-white text-[14px] font-bold group-hover/card:text-blue-400 transition-colors">
+                                {commit.message}
                               </span>
                             </div>
-                            <div className="p-1 px-1.5 bg-gray-800 border border-gray-700/50 rounded text-gray-400 hover:text-white transition-colors">
-                              <Code className="w-3 h-3" />
+                            <div className="flex items-center gap-1 opacity-80">
+                              <div className="flex items-center bg-gray-800 border border-gray-700/50 rounded px-2 py-0.5 gap-1.5 text-gray-400 hover:text-white transition-colors">
+                                <FileCode className="w-3 h-3" />
+                                <span className="text-[11px] font-mono font-bold tracking-tight">
+                                  {commit.hash.substring(0, 7)}
+                                </span>
+                              </div>
+                              <div className="p-1 px-1.5 bg-gray-800 border border-gray-700/50 rounded text-gray-400 hover:text-white transition-colors">
+                                <Code className="w-3 h-3" />
+                              </div>
                             </div>
                           </div>
-                        </div>
-                        <div className="flex items-center gap-2 text-[12px] text-gray-500 mt-1">
-                          <div className="w-5 h-5 rounded-md bg-gradient-to-br from-indigo-500/20 to-purple-600/20 border border-gray-800 flex items-center justify-center text-[8px] font-bold text-blue-300">
-                            {commit.author[0]?.toUpperCase()}
+                          <div className="flex items-center gap-2 text-[12px] text-gray-500 mt-1">
+                            <div className="w-5 h-5 rounded-md bg-gradient-to-br from-indigo-500/20 to-purple-600/20 border border-gray-800 flex items-center justify-center text-[8px] font-bold text-blue-300">
+                              {commit.author[0]?.toUpperCase()}
+                            </div>
+                            <span className="text-gray-300 font-bold hover:underline cursor-pointer">
+                              {commit.author}
+                            </span>
+                            committed recently{' '}
+                            {data.isMergeable && (
+                              <CheckCircle2 className="w-3.5 h-3.5 text-green-500 inline ml-0.5" />
+                            )}
                           </div>
-                          <span className="text-gray-300 font-bold hover:underline cursor-pointer">
-                            {commit.author}
-                          </span>
-                          committed recently{' '}
-                          {data.isMergeable && (
-                            <CheckCircle2 className="w-3.5 h-3.5 text-green-500 inline ml-0.5" />
-                          )}
                         </div>
-                      </div>
+                      ))}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            ) : (
+              <div className="animate-in fade-in slide-in-from-right-4 duration-500">
+                {data.diffs && data.diffs.length > 0 ? (
+                  <div className="space-y-4">
+                    {data.diffs.map((file, idx) => (
+                      <FileDiffViewer key={file.path} file={file} id={`diff-${idx}`} />
                     ))}
                   </div>
-                </div>
-              ))}
-            </div>
+                ) : (
+                  <div className="text-center py-20 text-gray-500 flex flex-col items-center">
+                    <div className="p-4 rounded-full bg-gray-900 border border-gray-800 mb-4">
+                      <FileCode className="w-8 h-8 opacity-40" />
+                    </div>
+                    <h3 className="text-white font-bold text-lg mb-1">Files changed</h3>
+                    <p className="text-sm text-gray-500">
+                      Showing {data.filesChanged} changed files with {data.commits.length} commits
+                    </p>
+                  </div>
+                )}
+              </div>
+            )}
           </div>
         ) : null}
       </main>
+      <AppFooter />
     </div>
   );
 };

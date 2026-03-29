@@ -2383,3 +2383,32 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
 2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
 2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-29 19:14:15 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-29 19:15:02 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/test/test — Invalid or expired access token
+2026-03-29 19:15:02 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/test/test — Invalid or expired access token
+2026-03-29 19:52:44 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:52:44 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:53:26 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:54:47 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:54:47 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 20:22:15 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-29 20:22:15 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-29 20:22:16 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-29 20:22:28 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:22:28 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:22:30 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:22:30 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:39:27 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:39:27 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 21:59:16 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 21:59:21 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 21:59:22 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 21:59:22 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 21:59:30 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 22:02:34 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 22:02:35 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:02:35 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:02:37 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:02:37 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:26:13 [[31merror[39m]: PATCH /vv/repo/jsurya114/version/visibility — Invalid or expired access token
+2026-03-29 22:26:13 [[31merror[39m]: GET /vv/repo — Invalid or expired access token

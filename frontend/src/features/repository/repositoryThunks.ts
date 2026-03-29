@@ -168,3 +168,19 @@ export const createCommitThunk = createAsyncThunk<
     return rejectWithValue(err.response?.data?.message || 'Failed to create commit');
   }
 });
+
+export const updateVisibilityThunk = createAsyncThunk<
+  { visibility: 'public' | 'private' },
+  { username: string; reponame: string; visibility: 'public' | 'private' }
+>(
+  'repository/updateVisibility',
+  async ({ username, reponame, visibility }, { rejectWithValue }) => {
+    try {
+      await repositoryService.updateVisibility(username, reponame, visibility);
+      return { visibility };
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to update visibility');
+    }
+  },
+);

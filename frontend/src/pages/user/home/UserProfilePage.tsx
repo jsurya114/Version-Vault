@@ -69,6 +69,9 @@ const UserProfilePage = () => {
   const isOwnProfile = authUser?.userId === userId;
   const displayUser = isOwnProfile ? authUser : viewedUser;
   const isFollowing = followers.some((f) => f.followerId === authUser?.id);
+  const visibleRepositories = isOwnProfile
+    ? repositories
+    : repositories.filter((repo) => repo.visibility === 'public');
 
   // Initial Data Fetching
   useEffect(() => {
@@ -106,7 +109,7 @@ const UserProfilePage = () => {
     if (!displayUser) return;
     setActivityLoading(true);
     try {
-      const activeRepos = repositories.slice(0, 5);
+      const activeRepos = visibleRepositories.slice(0, 5);
       const allActivity: (ActivityItemProps & { date: Date })[] = [];
       let total = 0;
 
@@ -314,7 +317,7 @@ const UserProfilePage = () => {
             <ProfileTabs
               activeTab={activeTab}
               onTabChange={setActiveTab}
-              repoCount={repositories.length}
+              repoCount={visibleRepositories.length}
             />
 
             {activeTab === 'overview' ? (

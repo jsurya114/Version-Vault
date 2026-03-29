@@ -26,8 +26,12 @@ export class MongoRepoRepository
   async findByOwner(
     ownerId: string,
     query: PaginationQueryDTO,
+    authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<IRepository>> {
     const filter: Record<string, unknown> = { ownerId, isDeleted: false, isBlocked: false };
+    if (ownerId !== authenticatedUserId) {
+      filter.visibility = 'public';
+    }
 
     if (query.search) {
       filter.name = { $regex: query.search, $options: 'i' };

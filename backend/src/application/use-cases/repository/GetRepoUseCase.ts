@@ -5,18 +5,31 @@ import { RepoResponseDTO } from '../../../application/dtos/repository/RepoRespon
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
+import { RepositoryVisibility } from 'src/domain/enums';
 
 @injectable()
 export class GetRepoUseCase implements IGetRepoUseCase {
   constructor(@inject(TOKENS.IRepoRepository) private repoRepository: IRepoRepository) {}
 
-  async execute(ownerUsername: string, name: string): Promise<RepoResponseDTO> {
+  async execute(
+    ownerUsername: string,
+    name: string,
+    authenticatedUserId?: string,
+  ): Promise<RepoResponseDTO> {
     const repo = await this.repoRepository.findByOwnerAndName(ownerUsername, name);
     if (!repo) throw new NotFoundError('Repository not found');
     if (!repo || repo.isBlocked) {
       throw new NotFoundError('Repository not found or is currently suspended');
     }
+    if (repo.isDeleted) {
+      throw new NotFoundError('Repository not found');
+    }
 
+    if (repo.visibility === RepositoryVisibility.PRIVATE) {
+      if (!authenticatedUserId || repo.ownerId.toString() !== authenticatedUserId.toString()) {
+        throw new NotFoundError('Repository not found');
+      }
+    }
     return RepositoryMapper.toDTO(repo);
   }
 }
