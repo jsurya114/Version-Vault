@@ -430,7 +430,7 @@ const UserProfilePage = () => {
 
       {/* Edit Profile Modal */}
       {isOwnProfile && isEditModalOpen && (
-        <EditProfileModal user={authUser} onClose={() => setIsEditModalOpen(false)} />
+        <EditProfileModal user={authUser as any} onClose={() => setIsEditModalOpen(false)} />
       )}
 
       <AppFooter />
