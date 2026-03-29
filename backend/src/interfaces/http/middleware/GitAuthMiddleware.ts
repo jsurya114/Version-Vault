@@ -1,9 +1,8 @@
-// backend/src/interfaces/http/middleware/GitAuthMiddleware.ts
 import { Request, Response, NextFunction } from 'express';
-import { logger } from '../../../shared/logger/Logger';
 import { container } from 'tsyringe';
 import { ITokenService } from '../../../domain/interfaces/services/ITokenService';
 import { TOKENS } from '../../../shared/constants/tokens';
+import { logger } from '../../../shared/logger/Logger';
 
 export const gitAuthMiddleware = (req: Request, res: Response, next: NextFunction): void => {
   try {

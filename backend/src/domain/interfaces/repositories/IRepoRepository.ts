@@ -10,6 +10,7 @@ export interface IRepoRepository extends IBaseRepository<IRepository> {
   findByOwner(
     ownerId: string,
     query: PaginationQueryDTO,
+    authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<IRepository>>;
   findAll(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IRepository>>;
 }

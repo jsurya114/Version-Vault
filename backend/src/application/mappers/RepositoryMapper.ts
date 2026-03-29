@@ -17,6 +17,7 @@ export class RepositoryMapper {
       forks: doc.forks,
       size: doc.size,
       isDeleted: doc.isDeleted,
+      isBlocked: doc.isBlocked,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
     };
@@ -35,6 +36,7 @@ export class RepositoryMapper {
       stars: repo.stars,
       forks: repo.forks,
       size: repo.size,
+      isBlocked: repo.isBlocked,
       createdAt: repo.createdAt,
       updatedAt: repo.updatedAt,
     };

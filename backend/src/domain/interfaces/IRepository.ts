@@ -12,6 +12,7 @@ export interface IRepository {
   forks: number;
   size: number;
   isDeleted: boolean;
+  isBlocked: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }

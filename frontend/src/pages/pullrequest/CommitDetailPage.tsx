@@ -8,6 +8,7 @@ import {
   selectCompareLoading,
 } from 'src/features/commit/compareCommitSelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
+import AppFooter from '../../types/common/Layout/AppFooter';
 import { CommitDiffs } from './components/CommitDiffs';
 
 const CommitDetailPage = () => {
@@ -83,6 +84,7 @@ const CommitDetailPage = () => {
           </div>
         )}
       </main>
+      <AppFooter />
     </div>
   );
 };

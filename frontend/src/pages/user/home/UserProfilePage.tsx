@@ -35,6 +35,8 @@ import ActivityTimeline, {
   ActivityItemProps,
 } from '../../../types/common/Profile/ActivityTimeline';
 import { EditProfileModal } from '../components/EditProfileModal';
+import { getMeThunk } from 'src/features/auth/authThunks';
+import { UserResponseDTO } from 'src/types/admin/adminTypes';
 
 interface ActivityGroup {
   date: string;
@@ -67,6 +69,9 @@ const UserProfilePage = () => {
   const isOwnProfile = authUser?.userId === userId;
   const displayUser = isOwnProfile ? authUser : viewedUser;
   const isFollowing = followers.some((f) => f.followerId === authUser?.id);
+  const visibleRepositories = isOwnProfile
+    ? repositories
+    : repositories.filter((repo) => repo.visibility === 'public');
 
   // Initial Data Fetching
   useEffect(() => {
@@ -104,7 +109,7 @@ const UserProfilePage = () => {
     if (!displayUser) return;
     setActivityLoading(true);
     try {
-      const activeRepos = repositories.slice(0, 5);
+      const activeRepos = visibleRepositories.slice(0, 5);
       const allActivity: (ActivityItemProps & { date: Date })[] = [];
       let total = 0;
 
@@ -205,6 +210,9 @@ const UserProfilePage = () => {
       await dispatch(followThunk(userId));
     }
     dispatch(getFollowersThunk(userId));
+    dispatch(getFollowingThunk(userId));
+
+    dispatch(getMeThunk());
   };
 
   const formatDate = (dateString?: string | Date) => {
@@ -286,12 +294,12 @@ const UserProfilePage = () => {
               <div className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition">
                 <Users className="w-4 h-4" />
                 <span className="font-bold text-white">{followers.length}</span>
-                <span>followers</span>
+                <span>following</span>
               </div>
               <span className="text-gray-700">·</span>
               <div className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition">
                 <span className="font-bold text-white">{following.length}</span>
-                <span>following</span>
+                <span>followers</span>
               </div>
             </div>
 
@@ -309,7 +317,7 @@ const UserProfilePage = () => {
             <ProfileTabs
               activeTab={activeTab}
               onTabChange={setActiveTab}
-              repoCount={repositories.length}
+              repoCount={visibleRepositories.length}
             />
 
             {activeTab === 'overview' ? (
@@ -426,7 +434,10 @@ const UserProfilePage = () => {
 
       {/* Edit Profile Modal */}
       {isOwnProfile && isEditModalOpen && (
-        <EditProfileModal user={authUser} onClose={() => setIsEditModalOpen(false)} />
+        <EditProfileModal
+          user={authUser as unknown as UserResponseDTO}
+          onClose={() => setIsEditModalOpen(false)}
+        />
       )}
 
       <AppFooter />

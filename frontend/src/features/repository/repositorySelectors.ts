@@ -10,5 +10,4 @@ export const selectCommits = (state: RootState) => state.repository.commits;
 export const selectFilesLoading = (state: RootState) => state.repository.isFilesLoading;
 export const selectCommitsLoading = (state: RootState) => state.repository.isCommitsLoading;
 export const selectBranches = (state: RootState) => state.repository.branches || [];
-
-
+export const selectRepositoryVisibilityError = (state: RootState) => state.repository.error;

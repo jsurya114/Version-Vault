@@ -5,6 +5,7 @@ import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   listRepositoryThunk,
   deleteRepositoryThunk,
+  updateVisibilityThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectRepositories,
@@ -87,6 +88,20 @@ const RepositoryListPage = () => {
     fetchRepos();
   };
 
+  const handleToggleVisibility = async (repo: RepositoryResponseDTO) => {
+    const newVisibility = repo.visibility === 'public' ? 'private' : 'public';
+
+    await dispatch(
+      updateVisibilityThunk({
+        username: authUser?.userId || '',
+        reponame: repo.name,
+        visibility: newVisibility,
+      }),
+    );
+
+    fetchRepos();
+  };
+
   const columns: ColumnDef<RepositoryResponseDTO>[] = [
     {
       key: 'name',
@@ -148,12 +163,28 @@ const RepositoryListPage = () => {
       key: 'actions',
       label: 'ACTIONS',
       render: (r) => (
-        <button
-          onClick={() => setDeleteModal({ open: true, repo: r })}
-          className="text-red-400 hover:text-red-300 text-xs transition"
-        >
-          Delete
-        </button>
+        <div className="flex items-center gap-4">
+          {/* 3. The Visibility Toggle Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              handleToggleVisibility(r);
+            }}
+            className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
+          >
+            Make {r.visibility === 'public' ? 'Private' : 'Public'}
+          </button>
+          {/* Existing Delete Button */}
+          <button
+            onClick={(e) => {
+              e.stopPropagation();
+              setDeleteModal({ open: true, repo: r });
+            }}
+            className="text-red-400 hover:text-red-300 text-xs transition"
+          >
+            Delete
+          </button>
+        </div>
       ),
     },
   ];

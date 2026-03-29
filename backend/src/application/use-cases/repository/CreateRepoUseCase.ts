@@ -32,6 +32,7 @@ export class CreateRepoUseCase implements ICreateRepoUseCase {
       stars: 0,
       forks: 0,
       size: 0,
+      isBlocked: false,
       isDeleted: false,
     });
 

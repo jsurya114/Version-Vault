@@ -6,7 +6,7 @@ import { IEmailService } from '../../../domain/interfaces/services/IEmailService
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { ValidationError } from '../../../domain/errors/ValidationError';
-import { logger } from '../../../shared/logger/Logger';
+import { ILogger } from '../../../domain/interfaces/services/ILogger';
 
 @injectable()
 export class ResendOtpUseCase implements IResendOtpUseCase {
@@ -14,6 +14,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
     @inject(TOKENS.IUserRepository) private userRepo: IUserRepository,
     @inject(TOKENS.IOtpService) private otpService: IOtpService,
     @inject(TOKENS.IEmailService) private emailService: IEmailService,
+    @inject(TOKENS.ILogger) private _logger: ILogger,
   ) {}
 
   async execute(email: string): Promise<{ message: string }> {
@@ -23,7 +24,7 @@ export class ResendOtpUseCase implements IResendOtpUseCase {
     if (user.isVerified) throw new ValidationError('Account is already verified');
 
     const otp = await this.otpService.generateOtp();
-    logger.info(`OTP generated for ${email}`);
+    this._logger.info(`OTP generated for ${email}`);
     await this.otpService.saveOtp(email, otp);
     await this.emailService.sendOtpEmail(email, otp);
     return { message: 'OTP resent successfully' };

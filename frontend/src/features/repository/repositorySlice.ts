@@ -12,6 +12,7 @@ import {
   createBranchThunk,
   deleteBranchThunk,
   createCommitThunk,
+  updateVisibilityThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -91,6 +92,7 @@ const repositorySlice = createSlice({
       //getFiles
       .addCase(getFilesThunk.pending, (state) => {
         state.isFilesLoading = true;
+        state.files = [];
       })
       .addCase(getFilesThunk.fulfilled, (state, action) => {
         state.isFilesLoading = false;
@@ -116,6 +118,7 @@ const repositorySlice = createSlice({
       //getcommits
       .addCase(getCommitsThunk.pending, (state) => {
         state.isCommitsLoading = true;
+        state.commits = [];
       })
       .addCase(getCommitsThunk.fulfilled, (state, action) => {
         state.isCommitsLoading = false;
@@ -184,6 +187,22 @@ const repositorySlice = createSlice({
         state.isLoading = false;
       })
       .addCase(createCommitThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
+      })
+
+      //visibility
+      .addCase(updateVisibilityThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(updateVisibilityThunk.fulfilled, (state, action) => {
+        state.isLoading = false;
+        if (state.selectedRepository) {
+          state.selectedRepository.visibility = action.payload.visibility;
+        }
+      })
+      .addCase(updateVisibilityThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
       });

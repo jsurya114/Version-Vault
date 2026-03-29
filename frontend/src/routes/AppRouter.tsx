@@ -27,6 +27,8 @@ const AdminLoginPage = lazy(() => import('../pages/admin/AdminLoginPage'));
 const AdminDashboard = lazy(() => import('../pages/admin/AdminDashboard'));
 const AdminUsersPage = lazy(() => import('../pages/admin/AdminUsersPage'));
 const AdminUserDetailPage = lazy(() => import('../pages/admin/AdminUserDetailPage'));
+const AdminRepositoriesPage = lazy(() => import('../pages/admin/AdminRepositoriesPage'));
+const AdminRepositoryDetailPage = lazy(() => import('../pages/admin/AdminRepositoryDetailPage'));
 
 //repository
 const RepositoryListPage = lazy(() => import('../pages/repository/RepositoryListPage'));
@@ -178,6 +180,22 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+            <Route
+              path={ROUTES.ADMIN_REPOS}
+              element={
+                <ProtectRoute requiredRole="admin">
+                  <AdminRepositoriesPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.ADMIN_REPO_DETAIL}
+              element={
+                <ProtectRoute requiredRole="admin">
+                  <AdminRepositoryDetailPage />
+                </ProtectRoute>
+              }
+            />
 
             {/* repositories */}
             <Route
@@ -284,6 +302,14 @@ const AppRouter = () => {
 
             <Route
               path={ROUTES.REPO_DETAIL}
+              element={
+                <ProtectRoute>
+                  <RepositoryDetailPage />
+                </ProtectRoute>
+              }
+            />
+            <Route
+              path={ROUTES.REPO_BRANCH_DETAIL}
               element={
                 <ProtectRoute>
                   <RepositoryDetailPage />

@@ -2,7 +2,7 @@ import { IUser } from '../../../../domain/interfaces/IUser';
 import { UserModel } from '../models/UserModel';
 import { UserMapper } from '../../../../application/mappers/UserMapper';
 import { injectable } from 'tsyringe';
-import { IAdminRepository } from '../../../../domain/interfaces/repositories/IAdminRepository';
+import { IAdminUserRepository } from '../../../../domain/interfaces/repositories/IAdminUserRepository';
 import { MongoBaseRepository } from './MongoBaseRepository';
 import {
   PaginatedResponseDTO,
@@ -11,7 +11,10 @@ import {
 import { UserRole } from '../../../../domain/enums';
 
 @injectable()
-export class MongoAdminRepository extends MongoBaseRepository<IUser> implements IAdminRepository {
+export class MongoAdminRepository
+  extends MongoBaseRepository<IUser>
+  implements IAdminUserRepository
+{
   constructor() {
     super(UserModel);
   }

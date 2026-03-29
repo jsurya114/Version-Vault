@@ -69,6 +69,11 @@ const AppHeader = () => {
       },
     },
     {
+      label: 'Repositories', // Add this
+      onClick: () => navigate(ROUTES.REPO_LIST),
+    },
+
+    {
       label: 'ChatRoom',
       onClick: () => {},
     },

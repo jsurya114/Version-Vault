@@ -101,4 +101,16 @@ export const repositoryService = {
     );
     return res.data;
   },
+
+  updateVisibility: async (
+    username: string,
+    reponame: string,
+    visibility: 'public' | 'private',
+  ) => {
+    const res = await axiosInstance.patch(
+      `${REPO_ENDPOINTS.GET}/${username}/${reponame}/visibility`,
+      { visibility },
+    );
+    return res.data;
+  },
 };

@@ -152,7 +152,9 @@ const PRListPage = () => {
                 to={`/${username}/${reponame}/pulls/new`}
                 className="text-blue-400 text-sm hover:underline mt-2 block"
               >
-                Create your first pull request
+                {statusFilter === 'all' && !search
+                  ? 'Create your first pull request'
+                  : 'Create new pull request'}
               </Link>
             </div>
           ) : (

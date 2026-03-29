@@ -17,6 +17,7 @@ export const ADMIN_ENDPOINTS = {
   GET_ALL_USERS: '/admin/users',
   BLOCK_USER: '/admin/users/block',
   UNBLOCK_USER: '/admin/users/unblock',
+  GET_ALL_REPOS: '/admin/repositories',
 } as const;
 
 export const REPO_ENDPOINTS = {

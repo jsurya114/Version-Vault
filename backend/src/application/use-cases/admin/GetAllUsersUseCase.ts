@@ -1,5 +1,5 @@
 import { inject, injectable } from 'tsyringe';
-import { IAdminRepository } from '../../../domain/interfaces/repositories/IAdminRepository';
+import { IAdminUserRepository } from '../../../domain/interfaces/repositories/IAdminUserRepository';
 import { IGetAllUsersUseCase } from '../interfaces/admin/IGetAllUsersUseCase';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
@@ -11,7 +11,7 @@ import { UserRole } from '../../../domain/enums';
 
 @injectable()
 export class GetAllUsersUseCase implements IGetAllUsersUseCase {
-  constructor(@inject(TOKENS.IAdminRepository) private _adminRepo: IAdminRepository) {}
+  constructor(@inject(TOKENS.IAdminRepository) private _adminRepo: IAdminUserRepository) {}
 
   async execute(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<UserResponseDTO>> {
     const result = await this._adminRepo.getAllUsers(query);

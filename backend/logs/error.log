@@ -2210,3 +2210,205 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-28 20:17:26 [[31merror[39m]: PATCH /vv/user/profile — User not found
 2026-03-28 20:17:27 [[31merror[39m]: PATCH /vv/user/profile — User not found
 2026-03-28 20:18:03 [[31merror[39m]: PATCH /vv/user/profile — User not found
+2026-03-28 20:56:09 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-28 20:56:23 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — User not found
+2026-03-28 21:37:16 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — E11000 duplicate key error collection: version-vault.follows index: followerId_1_followingId_1 dup key: { followerId: "69c1305ef15538deb980a562", followingId: "69c3929b6edb30f6a55460da" }
+2026-03-28 21:39:38 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — Already following this user
+2026-03-28 21:39:51 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — Already following this user
+2026-03-28 21:47:59 [[31merror[39m]: POST /vv/follow/jayasooryaegurukulam_1774424731229 — Already following this user
+2026-03-28 21:58:05 [[31merror[39m]: POST /vv/follow/jsurya114 — Cast to ObjectId failed for value "jsurya114" (type string) at path "_id" for model "User"
+2026-03-28 23:27:31 [[31merror[39m]: Error: read ECONNRESET
+    at TCP.onStreamRead (node:internal/stream_base_commons:216:20)
+2026-03-28 23:27:31 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:31 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:32 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:32 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:32 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:33 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:33 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:34 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:34 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:35 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:35 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:36 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:37 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:38 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:39 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:39 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:40 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:41 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:42 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:44 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:45 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:46 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:47 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:48 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:50 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:51 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:53 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:54 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:56 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:57 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:27:59 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:28:01 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:28:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-28 23:28:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:10 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-29 19:14:15 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-29 19:15:02 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/test/test — Invalid or expired access token
+2026-03-29 19:15:02 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/test/test — Invalid or expired access token
+2026-03-29 19:52:44 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:52:44 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:53:26 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:54:47 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 19:54:47 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/6b9d6a6%5E/6b9d6a6 — Invalid or expired access token
+2026-03-29 20:22:15 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-29 20:22:15 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-29 20:22:16 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-29 20:22:28 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:22:28 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:22:30 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:22:30 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:39:27 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 20:39:27 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 21:59:16 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 21:59:21 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 21:59:22 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 21:59:22 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 21:59:30 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 22:02:34 [[31merror[39m]: GET /vv/pr/jsurya114/version — Repository not found
+2026-03-29 22:02:35 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:02:35 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:02:37 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:02:37 [[31merror[39m]: GET /vv/repo/jsurya114/version — Repository not found
+2026-03-29 22:26:13 [[31merror[39m]: PATCH /vv/repo/jsurya114/version/visibility — Invalid or expired access token
+2026-03-29 22:26:13 [[31merror[39m]: GET /vv/repo — Invalid or expired access token

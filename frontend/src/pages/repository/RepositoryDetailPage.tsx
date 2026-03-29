@@ -59,7 +59,11 @@ import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 const RepositoryDetailPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { username, reponame } = useParams();
+  const { username, reponame, branchName } = useParams<{
+    username: string;
+    reponame: string;
+    branchName?: string;
+  }>();
   const repo = useAppSelector(selectSelectedRepository);
   const isLoading = useAppSelector(selectRepositoryLoading);
   const branches = useAppSelector(selectBranches);
@@ -104,12 +108,28 @@ const RepositoryDetailPage = () => {
 
   useEffect(() => {
     if (username && reponame) {
-      dispatch(getRepositoryThunk({ username, reponame }));
       dispatch(getFilesThunk({ username, reponame, branch, path: '' }));
       dispatch(getCommitsThunk({ username, reponame, branch }));
+
+      dispatch(getRepositoryThunk({ username, reponame }));
       dispatch(getBranchesThunk({ username, reponame }));
     }
-  }, [username, reponame, branch]);
+  }, [username, reponame, branch, dispatch]);
+
+  useEffect(() => {
+    if (branchName) {
+      setBranch(branchName);
+    } else if (repo?.defaultBranch) {
+      setBranch(repo.defaultBranch);
+    }
+  }, [branchName, repo?.defaultBranch]);
+
+  useEffect(() => {
+    setCurrentPath('');
+    setSelectFile('');
+    setExpandedPaths(new Set());
+    setTreeSearch('');
+  }, [branch]);
 
   useEffect(() => {
     const readme = files.find((f) => f.name.toLowerCase() === 'readme.md');
@@ -344,7 +364,8 @@ const RepositoryDetailPage = () => {
                 <select
                   value={branch}
                   onChange={(e) => {
-                    setBranch(e.target.value);
+                    const newBranch = e.target.value;
+                    navigate(`/${username}/${reponame}/tree/${newBranch}`);
                     setCurrentPath('');
                     setSelectFile('');
                     setExpandedPaths(new Set());
@@ -610,11 +631,16 @@ const RepositoryDetailPage = () => {
                       <div className="flex items-center gap-2">
                         {!isEditing && (
                           <button
+                            disabled={!isOwner}
                             onClick={() => {
                               setIsEditing(true);
                               setEditedContent(fileContent);
                             }}
-                            className="text-blue-400 hover:text-blue-300 text-xs flex items-center gap-1 transition"
+                            className={`text-xs flex items-center gap-1 transition ${
+                              !isOwner
+                                ? 'text-gray-600 cursor-not-allowed opacity-50'
+                                : 'text-blue-400 hover:text-blue-300'
+                            }`}
                           >
                             Edit
                           </button>
@@ -634,8 +660,13 @@ const RepositoryDetailPage = () => {
                         </button>
                         {isEditing && (
                           <button
+                            disabled={!isOwner}
                             onClick={() => setShowCommitModal(true)}
-                            className="bg-blue-600 hover:bg-blue-700 text-white text-xs px-3 py-1 rounded transition"
+                            className={`text-xs px-3 py-1 rounded transition ${
+                              !isOwner
+                                ? 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'
+                                : 'bg-blue-600 hover:bg-blue-700 text-white'
+                            }`}
                           >
                             Commit Changes
                           </button>
@@ -891,9 +922,13 @@ const RepositoryDetailPage = () => {
           </div>
         </div>
       )}
-      {activeTab === 'pulls' && <PRListContent username={username!} reponame={reponame!} />}
+      {activeTab === 'pulls' && (
+        <PRListContent username={username!} reponame={reponame!} isOwner={isOwner} />
+      )}
 
-      {activeTab === 'issues' && <IssueListContent username={username!} reponame={reponame!} />}
+      {activeTab === 'issues' && (
+        <IssueListContent username={username!} reponame={reponame!} isOwner={isOwner} />
+      )}
 
       <AppFooter />
 

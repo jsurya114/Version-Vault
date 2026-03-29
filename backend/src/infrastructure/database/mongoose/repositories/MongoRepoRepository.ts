@@ -26,8 +26,12 @@ export class MongoRepoRepository
   async findByOwner(
     ownerId: string,
     query: PaginationQueryDTO,
+    authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<IRepository>> {
-    const filter: Record<string, unknown> = { ownerId, isDeleted: false };
+    const filter: Record<string, unknown> = { ownerId, isDeleted: false, isBlocked: false };
+    if (ownerId !== authenticatedUserId) {
+      filter.visibility = 'public';
+    }
 
     if (query.search) {
       filter.name = { $regex: query.search, $options: 'i' };
@@ -40,13 +44,15 @@ export class MongoRepoRepository
     return this.findWithpagination(filter, query);
   }
   async findByOwnerAndName(ownerUsername: string, name: string): Promise<IRepository | null> {
-    const doc = await this.model.findOne({ ownerUsername, name, isDeleted: false }).lean();
+    const doc = await this.model
+      .findOne({ ownerUsername, name, isDeleted: false, isBlocked: false })
+      .lean();
     if (!doc) return null;
     return this.toEntity(doc);
   }
 
   async findAll(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IRepository>> {
-    const filter: Record<string, unknown> = { isDeleted: false };
+    const filter: Record<string, unknown> = { isDeleted: false, isBlocked: false };
 
     if (query.search) {
       filter.name = { $regex: query.search, $options: 'i' };
