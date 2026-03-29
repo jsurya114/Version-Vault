@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, useNavigate } from 'react-router-dom';
 import {
   GitBranch as GitBranchIcon,
   Search,
@@ -168,7 +168,16 @@ const BranchListPage = () => {
               (b) => (typeof b === 'string' ? b : b.name) === 'main',
             ) || { name: 'main' };
             const branchObj = typeof mainBranch === 'string' ? { name: mainBranch } : mainBranch;
-            return <BranchRow branch={branchObj} isDefault isOwner={isOwner} onDelete={() => {}} />;
+            return (
+              <BranchRow
+                branch={branchObj}
+                isDefault
+                isOwner={isOwner}
+                onDelete={() => {}}
+                username={username!}
+                reponame={reponame!}
+              />
+            );
           })()}
 
           <div className="p-4 bg-gray-900/30 border-t border-gray-800 flex items-start gap-3">
@@ -204,6 +213,8 @@ const BranchListPage = () => {
                       setSelectedBranch(branchObj.name);
                       setShowDeleteModal(true);
                     }}
+                    username={username!}
+                    reponame={reponame!}
                   />
                 );
               })}
@@ -273,75 +284,85 @@ const BranchRow = ({
   isDefault,
   isOwner,
   onDelete,
+  username,
+  reponame,
 }: {
   branch: GitBranch;
   isDefault?: boolean;
   isOwner: boolean;
   onDelete: () => void;
-}) => (
-  <div className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-4 items-center hover:bg-white/[0.02] transition text-sm">
-    <div className="flex items-center gap-3">
-      <div className="bg-blue-500/10 px-2.5 py-1.5 rounded-md text-blue-400 font-mono text-xs flex items-center gap-2 border border-blue-500/20">
-        <GitBranchIcon className="w-3.5 h-3.5" /> {branch.name}
-      </div>
-      {isDefault && (
-        <span className="text-[9px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded font-bold uppercase ring-1 ring-gray-700">
-          Default
-        </span>
-      )}
-    </div>
-
-    <div className="flex items-center gap-2.5 text-gray-400 text-xs">
-      <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm">
-        {branch.lastCommitAuthor?.[0] || 'U'}
-      </div>
-      <span>{timeAgo(branch.lastCommitDate || '')}</span>
-    </div>
-
+  username: string;
+  reponame: string;
+}) => {
+  const navigate = useNavigate();
+  return (
     <div
-      className={`flex items-center gap-1.5 text-xs font-medium ${
-        branch.status === 'success'
-          ? 'text-green-500'
-          : branch.status === 'failure'
-            ? 'text-red-500'
-            : branch.status === 'pending'
-              ? 'text-yellow-500'
-              : 'text-gray-600'
-      }`}
+      onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
+      className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group"
     >
-      {branch.status === 'success' && <CheckCircle2 className="w-3.5 h-3.5" />}
-      {branch.status === 'failure' && <X className="w-3.5 h-3.5 text-red-500" />}
-      {branch.status === 'pending' && <Clock className="w-3.5 h-3.5 animate-spin" />}
-
-      <span>{branch.checks || '--'}</span>
-    </div>
-
-    <div className="flex items-center justify-center">
-      <div className="flex bg-gray-800/50 h-1.5 w-16 rounded-full overflow-hidden ring-1 ring-white/5">
-        <div className="bg-gray-600 h-full" style={{ width: '60%' }} />
-        <div className="bg-blue-500 h-full border-l border-gray-950" style={{ width: '40%' }} />
-      </div>
-      <span className="text-[10px] text-gray-500 ml-2.5 tabular-nums">3 | 2</span>
-    </div>
-
-    <div className="flex items-center justify-end gap-4">
-      {!isDefault && (
-        <div className="flex items-center gap-1.5 text-gray-500 hover:text-blue-400 transition cursor-pointer text-[10px] font-bold">
-          <GitPullRequest className="w-3.5 h-3.5" /> #4
+      <div className="flex items-center gap-3">
+        <div className="bg-blue-500/10 px-2.5 py-1.5 rounded-md text-blue-400 font-mono text-xs flex items-center gap-2 border border-blue-500/20">
+          <GitBranchIcon className="w-3.5 h-3.5" /> {branch.name}
         </div>
-      )}
-      {!isDefault && (
-        <Trash2
-          className={`w-4 h-4 transition ${
-            !isOwner
-              ? 'text-gray-800 cursor-not-allowed opacity-30'
-              : 'text-gray-600 hover:text-red-500 cursor-pointer'
-          }`}
-          onClick={isOwner ? onDelete : undefined}
-        />
-      )}
+        {isDefault && (
+          <span className="text-[9px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded font-bold uppercase ring-1 ring-gray-700">
+            Default
+          </span>
+        )}
+      </div>
+
+      <div className="flex items-center gap-2.5 text-gray-400 text-xs">
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm">
+          {branch.lastCommitAuthor?.[0] || 'U'}
+        </div>
+        <span>{timeAgo(branch.lastCommitDate || '')}</span>
+      </div>
+
+      <div
+        className={`flex items-center gap-1.5 text-xs font-medium ${
+          branch.status === 'success'
+            ? 'text-green-500'
+            : branch.status === 'failure'
+              ? 'text-red-500'
+              : branch.status === 'pending'
+                ? 'text-yellow-500'
+                : 'text-gray-600'
+        }`}
+      >
+        {branch.status === 'success' && <CheckCircle2 className="w-3.5 h-3.5" />}
+        {branch.status === 'failure' && <X className="w-3.5 h-3.5 text-red-500" />}
+        {branch.status === 'pending' && <Clock className="w-3.5 h-3.5 animate-spin" />}
+
+        <span>{branch.checks || '--'}</span>
+      </div>
+
+      <div className="flex items-center justify-center">
+        <div className="flex bg-gray-800/50 h-1.5 w-16 rounded-full overflow-hidden ring-1 ring-white/5">
+          <div className="bg-gray-600 h-full" style={{ width: '60%' }} />
+          <div className="bg-blue-500 h-full border-l border-gray-950" style={{ width: '40%' }} />
+        </div>
+        <span className="text-[10px] text-gray-500 ml-2.5 tabular-nums">3 | 2</span>
+      </div>
+
+      <div className="flex items-center justify-end gap-4">
+        {!isDefault && (
+          <div className="flex items-center gap-1.5 text-gray-500 hover:text-blue-400 transition cursor-pointer text-[10px] font-bold">
+            <GitPullRequest className="w-3.5 h-3.5" /> #4
+          </div>
+        )}
+        {!isDefault && (
+          <Trash2
+            className={`w-4 h-4 transition ${
+              !isOwner
+                ? 'text-gray-800 cursor-not-allowed opacity-30'
+                : 'text-gray-600 hover:text-red-500 cursor-pointer'
+            }`}
+            onClick={isOwner ? onDelete : undefined}
+          />
+        )}
+      </div>
     </div>
-  </div>
-);
+  );
+};
 
 export default BranchListPage;

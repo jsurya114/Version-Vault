@@ -24,6 +24,7 @@ export const ROUTES = {
   REPO_LIST: '/repos',
   REPO_CREATE: '/repos/new',
   REPO_DETAIL: '/:username/:reponame',
+  REPO_BRANCH_DETAIL: '/:username/:reponame/tree/:branchName',
 
   // Admin
   ADMIN_LOGIN: '/admin/login',

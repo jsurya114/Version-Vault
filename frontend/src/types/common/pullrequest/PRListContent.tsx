@@ -119,7 +119,9 @@ const PRListContent = ({
               to={isOwner ? `/${username}/${reponame}/pulls/new` : '#'}
               className={`text-sm mt-2 block ${!isOwner ? 'text-gray-600 cursor-not-allowed pointer-events-none' : 'text-blue-400 hover:underline'}`}
             >
-              Create your first pull request
+              {statusFilter === 'all' && !search
+                ? 'Create your first pull request'
+                : 'Create new pull request'}
             </Link>
           </div>
         ) : (

@@ -308,6 +308,14 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+            <Route
+              path={ROUTES.REPO_BRANCH_DETAIL}
+              element={
+                <ProtectRoute>
+                  <RepositoryDetailPage />
+                </ProtectRoute>
+              }
+            />
           </Routes>
         </Suspense>
       </ErrorBoundary>
