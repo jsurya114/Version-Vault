@@ -70,8 +70,14 @@ export const TOKENS = {
   ICreateCommitUseCase: Symbol.for('ICreateCommitUseCase'),
   ICompareCommitUseCase: Symbol.for('ICompareCommitUseCase'),
 
-
   //userProfile
-  IGetProfileUseCase:Symbol.for('IGetProfileUseCase'),
-  IUpdateProfileUseCase:Symbol.for('IUpdateProfileUseCase')
+  IGetProfileUseCase: Symbol.for('IGetProfileUseCase'),
+  IUpdateProfileUseCase: Symbol.for('IUpdateProfileUseCase'),
+
+  //repo management
+  IAdminRepoRepository: Symbol.for('IAdminRepoRepository'),
+  IGetAllRepoUseCase: Symbol.for('IGetAllRepoUseCase'),
+  IGetRepoByIdUseCase: Symbol.for('IGetRepoByIdUseCase'),
+  IBlockRepoUseCase: Symbol.for('IBlockRepoUseCase'),
+  IUnblockRepoUseCase: Symbol.for('IUnblockRepoUseCase'),
 } as const;

@@ -83,6 +83,13 @@ import { CompareCommitUseCase } from './application/use-cases/commit/CompareComm
 import { GetProfileUseCase } from './application/use-cases/user/GetProfileUseCase';
 import { UpdateProfileUseCase } from './application/use-cases/user/UpdateProfileUseCase';
 
+//repos
+import { MongoAdminRepoRepository } from './infrastructure/database/mongoose/repositories/MongoAdminRepoRepository';
+import { GetAllRepoUseCase } from './application/use-cases/admin/GetAllRepoUseCase';
+import { GetRepoByIdUseCase } from './application/use-cases/admin/GetRepoByIdUseCase';
+import { BlockRepoUseCase } from './application/use-cases/admin/BlockRepoUseCase';
+import { UnblockRepoUseCase } from './application/use-cases/admin/UnblockRepoUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -158,10 +165,16 @@ container.register(TOKENS.IDeleteBranchUseCase, { useClass: DeleteBranchUseCase 
 
 //commit usecase
 container.register(TOKENS.ICreateCommitUseCase, { useClass: CreateCommitUseCase });
-container.register(TOKENS.ICompareCommitUseCase,{useClass:CompareCommitUseCase})
+container.register(TOKENS.ICompareCommitUseCase, { useClass: CompareCommitUseCase });
 
-container.register(TOKENS.IGetProfileUseCase,{useClass:GetProfileUseCase})
-container.register(TOKENS.IUpdateProfileUseCase,{useClass:UpdateProfileUseCase})
+container.register(TOKENS.IGetProfileUseCase, { useClass: GetProfileUseCase });
+container.register(TOKENS.IUpdateProfileUseCase, { useClass: UpdateProfileUseCase });
 
+//repos
+container.register(TOKENS.IAdminRepoRepository, { useClass: MongoAdminRepoRepository });
+container.register(TOKENS.IGetAllRepoUseCase, { useClass: GetAllRepoUseCase });
+container.register(TOKENS.IBlockRepoUseCase, { useClass: BlockRepoUseCase });
+container.register(TOKENS.IUnblockRepoUseCase, { useClass: UnblockRepoUseCase });
+container.register(TOKENS.IGetRepoByIdUseCase, { useClass: GetRepoByIdUseCase });
 
 export { container };

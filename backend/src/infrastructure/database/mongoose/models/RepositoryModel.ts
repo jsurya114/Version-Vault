@@ -12,6 +12,7 @@ export interface IRepositoryDocument extends Document {
   forks: number;
   size: number;
   isDeleted: boolean;
+  isBlocked: boolean;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -32,6 +33,7 @@ const RepositorySchema = new Schema<IRepositoryDocument>(
     forks: { type: Number, default: 0 },
     size: { type: Number, default: 0 },
     isDeleted: { type: Boolean, default: false },
+    isBlocked: { type: Boolean, default: false },
   },
   { timestamps: true },
 );

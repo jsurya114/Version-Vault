@@ -9,6 +9,7 @@ export interface RepoResponseDTO {
   stars: number;
   forks: number;
   size: number;
+  isBlocked: boolean;
   createdAt?: Date;
   updatedAt?: Date;
 }
