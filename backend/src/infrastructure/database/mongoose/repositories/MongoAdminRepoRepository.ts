@@ -18,12 +18,13 @@ export class MongoAdminRepoRepository
     super(RepositoryModel);
   }
 
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
   protected toEntity(doc: any): IRepository {
     return RepositoryMapper.toIRepository(doc);
   }
 
   async getAllRepos(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IRepository>> {
-    const filter: Record<string, any> = { isDeleted: false };
+    const filter: Record<string, unknown> = { isDeleted: false };
 
     if (query.search) {
       filter.$or = [

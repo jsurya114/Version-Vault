@@ -5,8 +5,10 @@ import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { updateProfileThunk } from 'src/features/user/userThunk';
 import { selectUserLoading } from 'src/features/user/userSelector';
 
+import { UserResponseDTO } from 'src/types/admin/adminTypes';
+
 interface EditProfileModalProps {
-  user: any; // The logged-in user object
+  user: UserResponseDTO; // The logged-in user object
   onClose: () => void;
 }
 

@@ -10,9 +10,9 @@ export const getAllUsersThunk = createAsyncThunk<
   try {
     const response = await adminService.getAllUsers(query);
     return response;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  } catch (error: any) {
-    return rejectWithValue(error.response?.data?.message || 'Failed to fetch users');
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to fetch users');
   }
 });
 
@@ -22,9 +22,9 @@ export const getUserByIdThunk = createAsyncThunk<UserResponseDTO, string>(
     try {
       const response = await adminService.getUserById(id);
       return response;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch user');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch user');
     }
   },
 );
@@ -35,9 +35,9 @@ export const blockUserThunk = createAsyncThunk<UserResponseDTO, string>(
     try {
       const response = await adminService.blockUser(id);
       return response;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to block user');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to block user');
     }
   },
 );
@@ -48,9 +48,9 @@ export const unBlockUserThunk = createAsyncThunk<UserResponseDTO, string>(
     try {
       const response = await adminService.unBlockUser(id);
       return response;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to unblock user');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to unblock user');
     }
   },
 );

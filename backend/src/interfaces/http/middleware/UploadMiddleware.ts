@@ -8,6 +8,6 @@ const storage = new CloudinaryStorage({
     allowed_formats: ['jpg', 'png', 'jpeg'],
     // This ensures avatars are resized on upload to save storage!
     transformation: [{ width: 400, height: 400, crop: 'fill', gravity: 'face' }],
-  } as any,
+  } as Record<string, unknown>,
 });
 export const upload = multer({ storage: storage });

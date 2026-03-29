@@ -1,5 +1,7 @@
+import { UserResponseDTO } from '../admin/adminTypes';
+
 export interface UserState {
-  viewedUser: any | null; // The user profile being looked at
+  viewedUser: UserResponseDTO | null;
   isLoading: boolean;
   error: string | null;
 }

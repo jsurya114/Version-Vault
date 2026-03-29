@@ -2321,3 +2321,65 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-28 23:28:04 [[31merror[39m]: AggregateError
     at internalConnectMultiple (node:net:1193:18)
     at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:10 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found

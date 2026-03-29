@@ -13525,3 +13525,475 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-28 23:22:49 [[32minfo[39m]: Redis connected successfully
 2026-03-28 23:22:50 [[32minfo[39m]: MongoDB connected successfully
 2026-03-28 23:22:50 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:02 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:32:03 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:03 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:04 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:05 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:06 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:07 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:08 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:09 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:10 [[31merror[39m]: AggregateError
+    at internalConnectMultiple (node:net:1193:18)
+    at afterConnectMultiple (node:net:1783:7)
+2026-03-29 15:32:54 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:32:55 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:32:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:32:58 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 192.873 ms - 182[0m
+2026-03-29 15:32:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 59.017 ms - -[0m
+2026-03-29 15:32:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.747 ms - -[0m
+2026-03-29 15:33:03 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 56.925 ms - -[0m
+2026-03-29 15:33:03 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 58.064 ms - -[0m
+2026-03-29 15:33:05 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 56.252 ms - 44[0m
+2026-03-29 15:33:05 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 54.995 ms - 44[0m
+2026-03-29 15:33:05 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 68.713 ms - -[0m
+2026-03-29 15:33:05 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 68.203 ms - -[0m
+2026-03-29 15:33:05 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 77.603 ms - -[0m
+2026-03-29 15:33:05 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 104.443 ms - -[0m
+2026-03-29 15:33:07 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.852 ms - 52[0m
+2026-03-29 15:33:11 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.133 ms - 46[0m
+2026-03-29 15:33:11 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.152 ms - 46[0m
+2026-03-29 15:33:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.123 ms - 46[0m
+2026-03-29 15:33:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.109 ms - 46[0m
+2026-03-29 15:33:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.126 ms - 46[0m
+2026-03-29 15:33:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.067 ms - 46[0m
+2026-03-29 15:33:32 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 222.287 ms - 174[0m
+2026-03-29 15:33:32 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 52.219 ms - 1258[0m
+2026-03-29 15:33:32 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 66.964 ms - 1258[0m
+2026-03-29 15:33:37 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 47.367 ms - 683[0m
+2026-03-29 15:33:37 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.931 ms - -[0m
+2026-03-29 15:35:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.691 ms - 44[0m
+2026-03-29 15:35:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.541 ms - 44[0m
+2026-03-29 15:35:01 [[32minfo[39m]: [0mGET /vv/auth/me [32m200[0m 46.079 ms - 341[0m
+2026-03-29 15:35:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.646 ms - -[0m
+2026-03-29 15:35:01 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.772 ms - -[0m
+2026-03-29 15:35:01 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.986 ms - -[0m
+2026-03-29 15:36:23 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:36:23 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:36:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:36:31 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:36:31 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:36:31 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:36:59 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:37:00 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:37:00 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:37:51 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:37:52 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:37:52 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:38:14 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:38:15 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:38:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:38:18 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:38:18 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:38:18 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:38:24 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:38:24 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:38:24 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:38:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 75.767 ms - 44[0m
+2026-03-29 15:38:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 72.084 ms - 44[0m
+2026-03-29 15:38:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 71.540 ms - -[0m
+2026-03-29 15:38:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 64.945 ms - -[0m
+2026-03-29 15:38:33 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 55.163 ms - 692[0m
+2026-03-29 15:38:33 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 65.933 ms - -[0m
+2026-03-29 15:38:33 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 56.877 ms - -[0m
+2026-03-29 15:40:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.616 ms - 44[0m
+2026-03-29 15:40:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.850 ms - 44[0m
+2026-03-29 15:40:31 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.508 ms - -[0m
+2026-03-29 15:40:31 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.180 ms - -[0m
+2026-03-29 15:40:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.772 ms - 44[0m
+2026-03-29 15:40:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.916 ms - 44[0m
+2026-03-29 15:40:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.997 ms - -[0m
+2026-03-29 15:40:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.221 ms - -[0m
+2026-03-29 15:41:17 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 245.117 ms - 44[0m
+2026-03-29 15:41:17 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 245.768 ms - 44[0m
+2026-03-29 15:41:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 2145.536 ms - -[0m
+2026-03-29 15:41:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.632 ms - -[0m
+2026-03-29 15:41:59 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.134 ms - 44[0m
+2026-03-29 15:41:59 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.348 ms - 44[0m
+2026-03-29 15:41:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.524 ms - -[0m
+2026-03-29 15:41:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.680 ms - -[0m
+2026-03-29 15:42:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 241.271 ms - 44[0m
+2026-03-29 15:42:13 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.227 ms - -[0m
+2026-03-29 15:42:35 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.151 ms - 44[0m
+2026-03-29 15:42:35 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.168 ms - -[0m
+2026-03-29 15:42:42 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 55.408 ms - 44[0m
+2026-03-29 15:42:42 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [32m200[0m 46.833 ms - 692[0m
+2026-03-29 15:42:42 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.756 ms - -[0m
+2026-03-29 15:42:42 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 46.567 ms - -[0m
+2026-03-29 15:42:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 72.662 ms - 44[0m
+2026-03-29 15:42:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 76.050 ms - 44[0m
+2026-03-29 15:42:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 64.076 ms - -[0m
+2026-03-29 15:42:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 77.538 ms - -[0m
+2026-03-29 15:42:50 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 266.567 ms - -[0m
+2026-03-29 15:42:50 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 56.021 ms - -[0m
+2026-03-29 15:42:55 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/block [32m200[0m 966.042 ms - 345[0m
+2026-03-29 15:42:55 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/block [32m200[0m 266.976 ms - 345[0m
+2026-03-29 15:42:55 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 68.770 ms - 345[0m
+2026-03-29 15:42:59 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 55.143 ms - 345[0m
+2026-03-29 15:43:02 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.264 ms - 44[0m
+2026-03-29 15:43:02 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.722 ms - 44[0m
+2026-03-29 15:43:02 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 64.750 ms - -[0m
+2026-03-29 15:43:02 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 63.810 ms - -[0m
+2026-03-29 15:43:02 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [32m200[0m 51.961 ms - 709[0m
+2026-03-29 15:43:02 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 67.716 ms - -[0m
+2026-03-29 15:43:04 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 58.419 ms - 345[0m
+2026-03-29 15:43:07 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 46.398 ms - 345[0m
+2026-03-29 15:43:08 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 56.865 ms - 345[0m
+2026-03-29 15:43:08 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 51.779 ms - 345[0m
+2026-03-29 15:43:08 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 45.855 ms - 345[0m
+2026-03-29 15:43:08 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 55.419 ms - 345[0m
+2026-03-29 15:43:10 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 48.581 ms - 709[0m
+2026-03-29 15:43:10 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.802 ms - -[0m
+2026-03-29 15:43:11 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 72.696 ms - -[0m
+2026-03-29 15:43:14 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 576.181 ms - 345[0m
+2026-03-29 15:43:15 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 45.555 ms - 345[0m
+2026-03-29 15:43:15 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 45.973 ms - 345[0m
+2026-03-29 15:43:15 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 48.141 ms - 345[0m
+2026-03-29 15:43:15 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 46.786 ms - 345[0m
+2026-03-29 15:45:05 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:45:06 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:45:06 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:45:42 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:45:43 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:45:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:45:57 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:45:58 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:45:58 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:46:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 893.885 ms - 44[0m
+2026-03-29 15:46:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 934.588 ms - 44[0m
+2026-03-29 15:46:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 49.023 ms - -[0m
+2026-03-29 15:46:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.044 ms - -[0m
+2026-03-29 15:46:01 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 50.028 ms - -[0m
+2026-03-29 15:46:02 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 246.459 ms - -[0m
+2026-03-29 15:46:03 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69b8f8a4351e653f8ad74971/unblock [32m200[0m 254.514 ms - 346[0m
+2026-03-29 15:46:05 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 48.927 ms - 710[0m
+2026-03-29 15:46:05 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 48.160 ms - -[0m
+2026-03-29 15:46:07 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 1332.071 ms - -[0m
+2026-03-29 15:46:12 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=asc [32m200[0m 57.817 ms - 710[0m
+2026-03-29 15:46:16 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=asc&status=active [32m200[0m 47.639 ms - 710[0m
+2026-03-29 15:46:18 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=asc&status=blocked [32m200[0m 245.120 ms - 79[0m
+2026-03-29 15:46:22 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=stars&order=asc&status=blocked [32m200[0m 241.532 ms - 79[0m
+2026-03-29 15:46:25 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=stars&order=asc&status=active [32m200[0m 1268.304 ms - 710[0m
+2026-03-29 15:46:29 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 50.917 ms - -[0m
+2026-03-29 15:46:29 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.921 ms - -[0m
+2026-03-29 15:46:30 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 56.661 ms - -[0m
+2026-03-29 15:46:32 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 244.453 ms - 1258[0m
+2026-03-29 15:46:32 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 47.670 ms - 1258[0m
+2026-03-29 15:46:32 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 57.314 ms - 1258[0m
+2026-03-29 15:46:34 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [32m200[0m 525.477 ms - 514[0m
+2026-03-29 15:46:34 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 45.228 ms - -[0m
+2026-03-29 15:53:04 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.572 ms - 44[0m
+2026-03-29 15:53:04 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.415 ms - 44[0m
+2026-03-29 15:53:04 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.360 ms - -[0m
+2026-03-29 15:53:04 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.098 ms - -[0m
+2026-03-29 15:53:04 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 46.949 ms - -[0m
+2026-03-29 15:53:04 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 44.822 ms - -[0m
+2026-03-29 15:53:13 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.959 ms - -[0m
+2026-03-29 15:53:13 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.272 ms - -[0m
+2026-03-29 15:53:13 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 57.729 ms - -[0m
+2026-03-29 15:53:22 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69c77a7f690862aef9c8137f/block [32m200[0m 71.556 ms - 349[0m
+2026-03-29 15:55:43 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69c77a7f690862aef9c8137f/unblock [32m200[0m 58.958 ms - 350[0m
+2026-03-29 15:55:48 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69c77a7f690862aef9c8137f/block [32m200[0m 59.784 ms - 349[0m
+2026-03-29 15:55:57 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 59.461 ms - 1258[0m
+2026-03-29 15:55:57 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 66.766 ms - 1258[0m
+2026-03-29 15:56:48 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 46.300 ms - 727[0m
+2026-03-29 15:56:48 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.721 ms - -[0m
+2026-03-29 15:56:48 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 57.139 ms - -[0m
+2026-03-29 15:58:22 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 51.308 ms - -[0m
+2026-03-29 15:58:22 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.939 ms - -[0m
+2026-03-29 15:58:23 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 247.724 ms - 1258[0m
+2026-03-29 15:58:23 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.069 ms - 1258[0m
+2026-03-29 15:58:23 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.119 ms - -[0m
+2026-03-29 15:58:23 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.972 ms - -[0m
+2026-03-29 15:58:24 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 46.207 ms - -[0m
+2026-03-29 15:58:24 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 47.483 ms - -[0m
+2026-03-29 15:58:24 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 48.654 ms - 1258[0m
+2026-03-29 15:58:25 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 241.950 ms - 1258[0m
+2026-03-29 15:58:25 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.264 ms - -[0m
+2026-03-29 15:58:25 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.911 ms - -[0m
+2026-03-29 15:58:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.947 ms - -[0m
+2026-03-29 15:58:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 54.962 ms - -[0m
+2026-03-29 15:58:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 47.289 ms - -[0m
+2026-03-29 15:58:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.444 ms - -[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos/files?branch=main&path= [31m500[0m 1.798 ms - 51[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos/commits?branch=main&limit=20 [31m500[0m 0.334 ms - 51[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/files — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos/files?branch=main&path= [31m500[0m 0.187 ms - 51[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos/branches [31m500[0m 0.174 ms - 51[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/commits — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos/commits?branch=main&limit=20 [31m500[0m 0.090 ms - 51[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos/branches — Cannot use simple-git on a directory that does not exist
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos/branches [31m500[0m 0.128 ms - 51[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos [33m404[0m 47.984 ms - 50[0m
+2026-03-29 15:58:27 [[31merror[39m]: GET /vv/repo/admin/repos — Repository not found
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/repo/admin/repos [33m404[0m 44.938 ms - 50[0m
+2026-03-29 15:58:27 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 49.751 ms - 1258[0m
+2026-03-29 15:58:28 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.358 ms - 1258[0m
+2026-03-29 15:58:29 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.282 ms - 1258[0m
+2026-03-29 15:58:29 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.377 ms - 1258[0m
+2026-03-29 15:58:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.370 ms - 44[0m
+2026-03-29 15:58:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.261 ms - 44[0m
+2026-03-29 15:58:31 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 56.725 ms - -[0m
+2026-03-29 15:58:31 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.645 ms - -[0m
+2026-03-29 15:58:31 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.285 ms - 1258[0m
+2026-03-29 15:58:31 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 46.119 ms - 1258[0m
+2026-03-29 15:58:41 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 58.645 ms - 1258[0m
+2026-03-29 15:58:41 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 47.181 ms - 1258[0m
+2026-03-29 15:58:41 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 238.668 ms - 1258[0m
+2026-03-29 15:58:46 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 239.917 ms - 1258[0m
+2026-03-29 15:58:47 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.532 ms - 1258[0m
+2026-03-29 15:58:54 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 49.209 ms - 1258[0m
+2026-03-29 15:58:54 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 46.245 ms - 1258[0m
+2026-03-29 15:58:54 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 49.183 ms - 1258[0m
+2026-03-29 15:58:55 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 52.709 ms - 1258[0m
+2026-03-29 15:58:55 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.873 ms - 1258[0m
+2026-03-29 15:58:57 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.282 ms - 1258[0m
+2026-03-29 15:58:57 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.505 ms - 1258[0m
+2026-03-29 15:59:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.253 ms - 44[0m
+2026-03-29 15:59:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 52.495 ms - -[0m
+2026-03-29 15:59:01 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 67.188 ms - 1258[0m
+2026-03-29 15:59:02 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 241.380 ms - 44[0m
+2026-03-29 15:59:02 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 50.737 ms - 1258[0m
+2026-03-29 15:59:02 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.678 ms - -[0m
+2026-03-29 15:59:04 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:59:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:59:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 15:59:57 [[32minfo[39m]: Redis connected successfully
+2026-03-29 15:59:58 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 15:59:58 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:00:04 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:00:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:00:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:04:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 59.561 ms - 44[0m
+2026-03-29 16:04:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 55.424 ms - 44[0m
+2026-03-29 16:04:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.829 ms - -[0m
+2026-03-29 16:04:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.501 ms - -[0m
+2026-03-29 16:04:30 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 51.182 ms - 1258[0m
+2026-03-29 16:04:30 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.897 ms - 1258[0m
+2026-03-29 16:04:33 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 48.500 ms - -[0m
+2026-03-29 16:04:33 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 45.058 ms - -[0m
+2026-03-29 16:06:41 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 50.223 ms - -[0m
+2026-03-29 16:06:55 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 57.109 ms - -[0m
+2026-03-29 16:07:33 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 70.736 ms - -[0m
+2026-03-29 16:07:33 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 61.285 ms - -[0m
+2026-03-29 16:07:47 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 53.610 ms - -[0m
+2026-03-29 16:07:47 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=10&search=jayasooryaegurukulam_1774424731229 [32m200[0m 56.856 ms - 80[0m
+2026-03-29 16:07:47 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 46.003 ms - -[0m
+2026-03-29 16:07:47 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=10&search=jayasooryaegurukulam_1774424731229 [36m304[0m 45.873 ms - -[0m
+2026-03-29 16:07:51 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 54.324 ms - -[0m
+2026-03-29 16:07:51 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [32m200[0m 58.863 ms - 79[0m
+2026-03-29 16:09:15 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 48.432 ms - -[0m
+2026-03-29 16:09:15 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [36m304[0m 53.475 ms - -[0m
+2026-03-29 16:09:24 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 48.678 ms - 1258[0m
+2026-03-29 16:09:24 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 48.223 ms - 1258[0m
+2026-03-29 16:09:24 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 56.047 ms - 1258[0m
+2026-03-29 16:09:26 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [32m200[0m 44.915 ms - 391[0m
+2026-03-29 16:09:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [36m304[0m 49.609 ms - -[0m
+2026-03-29 16:09:26 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 43.889 ms - -[0m
+2026-03-29 16:09:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [36m304[0m 45.203 ms - -[0m
+2026-03-29 16:09:26 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=Jayasurya [32m200[0m 44.758 ms - 79[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.408 ms - 44[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.764 ms - 44[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.538 ms - -[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.277 ms - -[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 44.802 ms - -[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 45.528 ms - -[0m
+2026-03-29 16:09:30 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=Jayasurya [36m304[0m 46.138 ms - -[0m
+2026-03-29 16:09:32 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.437 ms - -[0m
+2026-03-29 16:09:32 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 49.700 ms - -[0m
+2026-03-29 16:09:32 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 58.920 ms - -[0m
+2026-03-29 16:09:38 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 49.433 ms - -[0m
+2026-03-29 16:09:38 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=Jayasurya [36m304[0m 49.376 ms - -[0m
+2026-03-29 16:09:39 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 45.942 ms - -[0m
+2026-03-29 16:09:39 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=Jayasurya [36m304[0m 47.199 ms - -[0m
+2026-03-29 16:12:39 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 57.781 ms - -[0m
+2026-03-29 16:12:39 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [32m200[0m 57.404 ms - 727[0m
+2026-03-29 16:12:40 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [32m200[0m 65.341 ms - 727[0m
+2026-03-29 16:12:40 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 66.078 ms - -[0m
+2026-03-29 16:12:45 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 54.285 ms - -[0m
+2026-03-29 16:12:45 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 55.578 ms - -[0m
+2026-03-29 16:12:46 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 55.465 ms - -[0m
+2026-03-29 16:12:46 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 57.014 ms - -[0m
+2026-03-29 16:13:14 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 56.862 ms - -[0m
+2026-03-29 16:13:14 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 61.968 ms - -[0m
+2026-03-29 16:13:20 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 49.545 ms - -[0m
+2026-03-29 16:13:20 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.005 ms - -[0m
+2026-03-29 16:13:21 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.421 ms - -[0m
+2026-03-29 16:13:23 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 58.374 ms - -[0m
+2026-03-29 16:13:23 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 58.908 ms - -[0m
+2026-03-29 16:13:23 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 51.364 ms - -[0m
+2026-03-29 16:13:23 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 51.845 ms - -[0m
+2026-03-29 16:13:34 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 55.293 ms - -[0m
+2026-03-29 16:13:34 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 55.347 ms - -[0m
+2026-03-29 16:13:35 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 46.028 ms - -[0m
+2026-03-29 16:13:35 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [36m304[0m 51.150 ms - -[0m
+2026-03-29 16:17:04 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:17:05 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:17:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:17:07 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:17:07 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:17:07 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:17:35 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:17:35 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:17:35 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:17:50 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:17:51 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:17:51 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:17:59 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:18:00 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:18:00 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:18:10 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:18:10 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:18:10 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:18:47 [[32minfo[39m]: Redis connected successfully
+2026-03-29 16:18:48 [[32minfo[39m]: MongoDB connected successfully
+2026-03-29 16:18:48 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-29 16:19:12 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 57.177 ms - 1258[0m
+2026-03-29 16:19:12 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 46.675 ms - 1258[0m
+2026-03-29 16:19:12 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 58.302 ms - 1258[0m
+2026-03-29 16:19:24 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 49.670 ms - 1258[0m
+2026-03-29 16:19:24 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 49.078 ms - 1258[0m
+2026-03-29 16:19:25 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 1.269 ms - 52[0m
+2026-03-29 16:19:34 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.686 ms - 46[0m
+2026-03-29 16:19:34 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.197 ms - 46[0m
+2026-03-29 16:19:42 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 205.607 ms - 182[0m
+2026-03-29 16:19:42 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [32m200[0m 326.424 ms - 79[0m
+2026-03-29 16:19:42 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 49.898 ms - -[0m
+2026-03-29 16:20:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 46.559 ms - 79[0m
+2026-03-29 16:20:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 48.187 ms - -[0m
+2026-03-29 16:20:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.577 ms - -[0m
+2026-03-29 16:20:38 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.579 ms - 52[0m
+2026-03-29 16:20:42 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.184 ms - 46[0m
+2026-03-29 16:20:42 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.054 ms - 46[0m
+2026-03-29 16:20:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.144 ms - 46[0m
+2026-03-29 16:20:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.086 ms - 46[0m
+2026-03-29 16:20:47 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 214.839 ms - 174[0m
+2026-03-29 16:20:47 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 58.678 ms - 1258[0m
+2026-03-29 16:20:47 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 57.872 ms - 1258[0m
+2026-03-29 16:20:49 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 57.287 ms - 1258[0m
+2026-03-29 16:20:49 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 55.973 ms - 1258[0m
+2026-03-29 16:20:58 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 68.566 ms - -[0m
+2026-03-29 16:20:58 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 64.823 ms - -[0m
+2026-03-29 16:20:58 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 68.897 ms - -[0m
+2026-03-29 16:21:17 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 68.071 ms - 1258[0m
+2026-03-29 16:21:17 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 67.689 ms - 1258[0m
+2026-03-29 16:21:18 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 73.176 ms - 1258[0m
+2026-03-29 16:21:19 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 49.497 ms - -[0m
+2026-03-29 16:21:19 [[32minfo[39m]: [0mGET /vv/admin/users/69c3929b6edb30f6a55460da [36m304[0m 45.414 ms - -[0m
+2026-03-29 16:21:19 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [36m304[0m 47.282 ms - -[0m
+2026-03-29 16:21:24 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 72.458 ms - -[0m
+2026-03-29 16:21:24 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 50.564 ms - -[0m
+2026-03-29 16:21:25 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 71.638 ms - -[0m
+2026-03-29 16:21:28 [[32minfo[39m]: [0mPATCH /vv/admin/repositories/69c77a7f690862aef9c8137f/unblock [32m200[0m 82.515 ms - 350[0m
+2026-03-29 16:21:31 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 48.160 ms - 1258[0m
+2026-03-29 16:21:31 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 48.230 ms - 1258[0m
+2026-03-29 16:21:31 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 54.142 ms - 1258[0m
+2026-03-29 16:21:35 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [36m304[0m 67.190 ms - -[0m
+2026-03-29 16:21:35 [[32minfo[39m]: [0mGET /vv/admin/users/69c2e09b1842c339b663e15f [36m304[0m 65.324 ms - -[0m
+2026-03-29 16:21:35 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jayasooryaegurukulam_1774424731229 [36m304[0m 66.367 ms - -[0m
+2026-03-29 16:21:35 [[32minfo[39m]: [0mGET /vv/admin/users/69c2e09b1842c339b663e15f [36m304[0m 66.142 ms - -[0m
+2026-03-29 16:21:35 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jay123 [32m200[0m 63.775 ms - 79[0m
+2026-03-29 16:21:39 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 68.700 ms - 1258[0m
+2026-03-29 16:21:39 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 66.570 ms - 1258[0m
+2026-03-29 16:21:39 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 54.988 ms - 1258[0m
+2026-03-29 16:21:40 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 45.697 ms - -[0m
+2026-03-29 16:21:40 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jay123 [36m304[0m 47.800 ms - -[0m
+2026-03-29 16:21:40 [[32minfo[39m]: [0mGET /vv/admin/users/69c1305ef15538deb980a562 [36m304[0m 46.666 ms - -[0m
+2026-03-29 16:21:40 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jay123 [36m304[0m 45.998 ms - -[0m
+2026-03-29 16:21:40 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5&search=jsurya114 [32m200[0m 45.258 ms - 728[0m
+2026-03-29 16:21:44 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 53.590 ms - 1258[0m
+2026-03-29 16:21:44 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 48.558 ms - 1258[0m
+2026-03-29 16:21:45 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 56.899 ms - 1258[0m
+2026-03-29 16:22:16 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 65.024 ms - 1258[0m
+2026-03-29 16:22:16 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 50.390 ms - 1258[0m
+2026-03-29 16:26:00 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 60.813 ms - 1258[0m
+2026-03-29 16:26:18 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.171 ms - 1258[0m
+2026-03-29 16:26:20 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 54.808 ms - 1258[0m
+2026-03-29 16:26:21 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 54.817 ms - 1258[0m
+2026-03-29 16:26:26 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.428 ms - 1258[0m
+2026-03-29 16:26:36 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 65.799 ms - 1258[0m
+2026-03-29 16:26:50 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 58.954 ms - 1258[0m
+2026-03-29 16:26:50 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.245 ms - 1258[0m
+2026-03-29 16:27:13 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 54.523 ms - 1258[0m
+2026-03-29 16:27:13 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 46.111 ms - 1258[0m
+2026-03-29 16:27:20 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 72.426 ms - 1258[0m
+2026-03-29 16:27:20 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 194.531 ms - 1258[0m
+2026-03-29 16:27:34 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 68.649 ms - 1258[0m
+2026-03-29 16:27:34 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 67.116 ms - 1258[0m
+2026-03-29 16:27:42 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 56.416 ms - 1258[0m
+2026-03-29 16:27:45 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.932 ms - 1258[0m
+2026-03-29 16:27:45 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 48.048 ms - 1258[0m
+2026-03-29 16:27:49 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 55.040 ms - 1258[0m
+2026-03-29 16:27:49 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.933 ms - 1258[0m
+2026-03-29 16:27:50 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.684 ms - 1258[0m
+2026-03-29 16:27:50 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 45.984 ms - 1258[0m
+2026-03-29 16:27:52 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 65.950 ms - 1258[0m
+2026-03-29 16:27:52 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [32m200[0m 64.443 ms - 728[0m
+2026-03-29 16:28:01 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 50.850 ms - 1258[0m
+2026-03-29 16:28:01 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 50.417 ms - -[0m
+2026-03-29 16:28:12 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 58.758 ms - 1258[0m
+2026-03-29 16:28:12 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 57.607 ms - -[0m
+2026-03-29 16:28:25 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 194.354 ms - -[0m
+2026-03-29 16:28:25 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 198.916 ms - 1258[0m
+2026-03-29 16:28:27 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 60.127 ms - 1258[0m
+2026-03-29 16:28:27 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 59.485 ms - -[0m
+2026-03-29 16:28:44 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 56.289 ms - 1258[0m
+2026-03-29 16:28:44 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 54.375 ms - -[0m
+2026-03-29 16:28:47 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 55.491 ms - -[0m
+2026-03-29 16:28:47 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 56.560 ms - 1258[0m
+2026-03-29 16:28:49 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 55.790 ms - -[0m
+2026-03-29 16:28:49 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 58.740 ms - 1258[0m
+2026-03-29 16:29:04 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 47.730 ms - 1258[0m
+2026-03-29 16:29:04 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 47.575 ms - -[0m
+2026-03-29 16:29:49 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5 [32m201[0m 59.422 ms - 1258[0m
+2026-03-29 16:29:49 [[32minfo[39m]: [0mGET /vv/admin/repositories?page=1&limit=5 [36m304[0m 58.238 ms - -[0m
+2026-03-29 16:30:20 [[32minfo[39m]: [0mGET /vv/admin/users?page=1&limit=5&sort=createdAt&order=desc [32m201[0m 52.023 ms - 1258[0m

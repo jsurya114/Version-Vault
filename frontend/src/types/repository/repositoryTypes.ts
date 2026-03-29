@@ -9,6 +9,7 @@ export interface RepositoryResponseDTO {
   stars: number;
   forks: number;
   size: number;
+  isBlocked: boolean;
   createdAt?: string;
   updatedAt?: string;
   language?: string;
