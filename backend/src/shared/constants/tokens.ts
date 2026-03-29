@@ -80,4 +80,5 @@ export const TOKENS = {
   IGetRepoByIdUseCase: Symbol.for('IGetRepoByIdUseCase'),
   IBlockRepoUseCase: Symbol.for('IBlockRepoUseCase'),
   IUnblockRepoUseCase: Symbol.for('IUnblockRepoUseCase'),
+  ILogger: Symbol.for('ILogger'),
 } as const;

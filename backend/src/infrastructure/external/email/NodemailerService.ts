@@ -1,13 +1,16 @@
 import nodemailer from 'nodemailer';
-import { injectable } from 'tsyringe';
+import { injectable, inject } from 'tsyringe';
 import type { IEmailService } from '../../../domain/interfaces/services/IEmailService';
 import { envConfig } from '../../../shared/config/env.config';
-import { logger } from '../../../shared/logger/Logger';
+import { ILogger } from '../../../domain/interfaces/services/ILogger';
+import { TOKENS } from '../../../shared/constants/tokens';
 import { resolve4 } from 'node:dns/promises';
 
 @injectable()
 export class NodemailerService implements IEmailService {
   private transporter: nodemailer.Transporter | null = null;
+
+  constructor(@inject(TOKENS.ILogger) private readonly _logger: ILogger) {}
 
   private async getTransporter(): Promise<nodemailer.Transporter> {
     if (!this.transporter) {
@@ -19,7 +22,7 @@ export class NodemailerService implements IEmailService {
           hostParams = { host: ips[0], tls: { servername: envConfig.SMTP_HOST } };
         }
       } catch (error) {
-        logger.warn(
+        this._logger.warn(
           `Could not resolve IPv4 for ${envConfig.SMTP_HOST}, falling back to default lookup: ${error}`,
         );
       }
@@ -46,7 +49,7 @@ export class NodemailerService implements IEmailService {
       html: this.buildOtpTemplate(otp),
     });
 
-    logger.info(`OTP email sent to ${to}`);
+    this._logger.info(`OTP email sent to ${to}`);
   }
 
   private buildOtpTemplate(otp: string): string {
