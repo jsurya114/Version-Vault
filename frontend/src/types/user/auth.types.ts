@@ -22,6 +22,8 @@ export interface IAuthuser {
   email: string;
   role: string;
   avatar?: string;
+  bio?: string;
+  createdAt?: string | Date; // Backend might return string or Date depending on serialization
 }
 export interface AuthState {
   isLoading: boolean;
