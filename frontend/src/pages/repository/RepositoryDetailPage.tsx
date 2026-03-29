@@ -59,7 +59,11 @@ import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 const RepositoryDetailPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { username, reponame } = useParams();
+  const { username, reponame, branchName } = useParams<{
+    username: string;
+    reponame: string;
+    branchName?: string;
+  }>();
   const repo = useAppSelector(selectSelectedRepository);
   const isLoading = useAppSelector(selectRepositoryLoading);
   const branches = useAppSelector(selectBranches);
@@ -104,12 +108,28 @@ const RepositoryDetailPage = () => {
 
   useEffect(() => {
     if (username && reponame) {
-      dispatch(getRepositoryThunk({ username, reponame }));
       dispatch(getFilesThunk({ username, reponame, branch, path: '' }));
       dispatch(getCommitsThunk({ username, reponame, branch }));
+
+      dispatch(getRepositoryThunk({ username, reponame }));
       dispatch(getBranchesThunk({ username, reponame }));
     }
-  }, [username, reponame, branch]);
+  }, [username, reponame, branch, dispatch]);
+
+  useEffect(() => {
+    if (branchName) {
+      setBranch(branchName);
+    } else if (repo?.defaultBranch) {
+      setBranch(repo.defaultBranch);
+    }
+  }, [branchName, repo?.defaultBranch]);
+
+  useEffect(() => {
+    setCurrentPath('');
+    setSelectFile('');
+    setExpandedPaths(new Set());
+    setTreeSearch('');
+  }, [branch]);
 
   useEffect(() => {
     const readme = files.find((f) => f.name.toLowerCase() === 'readme.md');
@@ -344,7 +364,8 @@ const RepositoryDetailPage = () => {
                 <select
                   value={branch}
                   onChange={(e) => {
-                    setBranch(e.target.value);
+                    const newBranch = e.target.value;
+                    navigate(`/${username}/${reponame}/tree/${newBranch}`);
                     setCurrentPath('');
                     setSelectFile('');
                     setExpandedPaths(new Set());

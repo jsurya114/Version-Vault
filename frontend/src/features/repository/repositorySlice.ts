@@ -92,6 +92,7 @@ const repositorySlice = createSlice({
       //getFiles
       .addCase(getFilesThunk.pending, (state) => {
         state.isFilesLoading = true;
+        state.files = [];
       })
       .addCase(getFilesThunk.fulfilled, (state, action) => {
         state.isFilesLoading = false;
@@ -117,6 +118,7 @@ const repositorySlice = createSlice({
       //getcommits
       .addCase(getCommitsThunk.pending, (state) => {
         state.isCommitsLoading = true;
+        state.commits = [];
       })
       .addCase(getCommitsThunk.fulfilled, (state, action) => {
         state.isCommitsLoading = false;
