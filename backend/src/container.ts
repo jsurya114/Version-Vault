@@ -15,6 +15,7 @@ import { OtpService } from './infrastructure/services/OtpService';
 import { NodemailerService } from './infrastructure/external/email/NodemailerService';
 import { GoogleAuthService } from './infrastructure/services/GoogleAuthService';
 import { GitService } from './infrastructure/services/GitService';
+import { WinstonLogger } from './infrastructure/services/WinstonLogger';
 
 //validator
 import { RegisterValidator } from './application/use-cases/validators/RegisterValidator';
@@ -97,6 +98,7 @@ container.register(TOKENS.IOtpService, { useClass: OtpService });
 container.register(TOKENS.IEmailService, { useClass: NodemailerService });
 container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 container.registerSingleton(GitService, GitService);
+container.registerSingleton(TOKENS.ILogger, WinstonLogger);
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });

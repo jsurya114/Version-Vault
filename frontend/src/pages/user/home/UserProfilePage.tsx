@@ -36,6 +36,7 @@ import ActivityTimeline, {
 } from '../../../types/common/Profile/ActivityTimeline';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getMeThunk } from 'src/features/auth/authThunks';
+import { UserResponseDTO } from 'src/types/admin/adminTypes';
 
 interface ActivityGroup {
   date: string;
@@ -430,7 +431,10 @@ const UserProfilePage = () => {
 
       {/* Edit Profile Modal */}
       {isOwnProfile && isEditModalOpen && (
-        <EditProfileModal user={authUser as any} onClose={() => setIsEditModalOpen(false)} />
+        <EditProfileModal
+          user={authUser as unknown as UserResponseDTO}
+          onClose={() => setIsEditModalOpen(false)}
+        />
       )}
 
       <AppFooter />

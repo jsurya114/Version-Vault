@@ -1,22 +1,14 @@
-import winston from 'winston';
+import { container } from 'tsyringe';
+import { TOKENS } from '../constants/tokens';
+import { ILogger } from '../../domain/interfaces/services/ILogger';
 
-const { combine, timestamp, printf, colorize, errors } = winston.format;
-
-const logFormat = printf(({ level, message, timestamp, stack }) => {
-  return `${timestamp} [${level}]: ${stack || message}`;
-});
-
-export const logger = winston.createLogger({
-  level: process.env.NODE_ENV === 'production' ? 'info' : 'debug',
-  format: combine(
-    colorize(),
-    timestamp({ format: 'YYYY-MM-DD HH:mm:ss' }),
-    errors({ stack: true }),
-    logFormat,
-  ),
-  transports: [
-    new winston.transports.Console(),
-    new winston.transports.File({ filename: 'logs/error.log', level: 'error' }),
-    new winston.transports.File({ filename: 'logs/combined.log' }),
-  ],
-});
+export const logger = {
+  info: (message: string, meta?: Record<string, unknown>) =>
+    container.resolve<ILogger>(TOKENS.ILogger).info(message, meta),
+  error: (message: unknown, error?: unknown, meta?: Record<string, unknown>) =>
+    container.resolve<ILogger>(TOKENS.ILogger).error(message, error, meta),
+  warn: (message: string, meta?: Record<string, unknown>) =>
+    container.resolve<ILogger>(TOKENS.ILogger).warn(message, meta),
+  debug: (message: string, meta?: Record<string, unknown>) =>
+    container.resolve<ILogger>(TOKENS.ILogger).debug(message, meta),
+};

@@ -12,12 +12,11 @@ import type { IGetMeUseCase } from '../../../../application/use-cases/interfaces
 import type { IForgotPasswordUseCase } from '../../../../application/use-cases/interfaces/IForgotPasswordUseCase';
 import type { IResetPasswordUseCase } from '../../../../application/use-cases/interfaces/IResetPasswordUseCase';
 import type { IResendOtpUseCase } from '../../../../application/use-cases/interfaces/IResendOtpUseCase';
+import { ILogger } from '../../../../domain/interfaces/services/ILogger';
 
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
-
 import { envConfig } from '../../../../shared/config/env.config';
 import { IGetAllUsersUseCase } from 'src/application/use-cases/interfaces/admin/IGetAllUsersUseCase';
-import { logger } from '../../../../shared/logger/Logger';
 
 @injectable()
 export class AuthController {
@@ -37,6 +36,7 @@ export class AuthController {
     private readonly resetPasswordUseCase: IResetPasswordUseCase,
     @inject(TOKENS.IResendOtpUseCase) private readonly resendOtpUseCase: IResendOtpUseCase,
     @inject(TOKENS.IGetAllUsersUseCase) private readonly _getAllUsersUseCase: IGetAllUsersUseCase,
+    @inject(TOKENS.ILogger) private readonly _logger: ILogger,
   ) {}
   /**
    * POST /api/auth/register
@@ -46,7 +46,7 @@ export class AuthController {
   async register(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const result = await this.registerUser.execute(req.body);
-      logger.info(`User registered: ${result.message}`);
+      this._logger.info(`User registered: ${result.message}`);
       res.status(HttpStatusCodes.CREATED).json({
         success: true,
         message: result.message,
