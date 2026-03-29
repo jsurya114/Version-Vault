@@ -1,0 +1,50 @@
+import { IRepository } from '../../../../domain/interfaces/IRepository';
+import { RepositoryModel } from '../models/RepositoryModel';
+import { RepositoryMapper } from '../../../../application/mappers/RepositoryMapper';
+import { injectable } from 'tsyringe';
+import { IAdminRepoRepository } from '../../../../domain/interfaces/repositories/IAdminRepoRepository';
+import { MongoBaseRepository } from './MongoBaseRepository';
+import {
+  PaginatedResponseDTO,
+  PaginationQueryDTO,
+} from '../../../../application/dtos/reusable/PaginationDTO';
+
+@injectable()
+export class MongoAdminRepoRepository
+  extends MongoBaseRepository<IRepository>
+  implements IAdminRepoRepository
+{
+  constructor() {
+    super(RepositoryModel);
+  }
+
+  protected toEntity(doc: any): IRepository {
+    return RepositoryMapper.toIRepository(doc);
+  }
+
+  async getAllRepos(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IRepository>> {
+    const filter: Record<string, any> = { isDeleted: false };
+
+    if (query.search) {
+      filter.$or = [
+        { name: { $regex: query.search, $options: 'i' } },
+        { ownerUsername: { $regex: query.search, $options: 'i' } },
+      ];
+    }
+    if (query.status) {
+      if (query.status === 'blocked') {
+        filter.isBlocked = true;
+      } else if (query.status === 'active') {
+        filter.isBlocked = { $ne: true };
+      }
+    }
+    return this.findWithpagination(filter, query);
+  }
+
+  async blockRepo(id: string): Promise<IRepository | null> {
+    return this.update(id, { isBlocked: true });
+  }
+  async unblockRepo(id: string): Promise<IRepository | null> {
+    return this.update(id, { isBlocked: false });
+  }
+}

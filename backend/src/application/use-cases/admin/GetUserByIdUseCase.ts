@@ -4,6 +4,7 @@ import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRe
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
+import { UserMapper } from 'src/application/mappers/UserMapper';
 
 @injectable()
 export class GetUserByIdUseCase implements IGetUserByIdUseCase {
@@ -14,22 +15,6 @@ export class GetUserByIdUseCase implements IGetUserByIdUseCase {
 
     if (!user) throw new NotFoundError('User not found');
 
-    return {
-      id: user.id as string,
-      userId: user.userId,
-      username: user.username,
-      email: user.email,
-      avatar: user.avatar,
-      bio: user.bio,
-      role: user.role,
-      isVerified: user.isVerified,
-      isBlocked: user.isBlocked,
-      provider: user.provider,
-      subscriptionPlan: user.subscriptionPlan,
-      followersCount: user.followersCount,
-      followingCount: user.followingCount,
-      createdAt: user.createdAt,
-      updatedAt: user.updatedAt,
-    };
+    return UserMapper.toDTO(user);
   }
 }

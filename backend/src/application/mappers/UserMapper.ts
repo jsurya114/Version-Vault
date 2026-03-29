@@ -1,4 +1,5 @@
 import { IUser } from '../../domain/interfaces/IUser';
+import { UserResponseDTO } from '../dtos/admin/UserResponseDTO';
 
 export class UserMapper {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -20,6 +21,26 @@ export class UserMapper {
       followingCount: doc.followingCount,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
+    };
+  }
+
+  static toDTO(user: IUser): UserResponseDTO {
+    return {
+      id: user.id as string,
+      userId: user.userId,
+      username: user.username,
+      email: user.email,
+      avatar: user.avatar,
+      bio: user.bio,
+      role: user.role,
+      isVerified: user.isVerified,
+      isBlocked: user.isBlocked,
+      provider: user.provider,
+      subscriptionPlan: user.subscriptionPlan,
+      followersCount: user.followersCount,
+      followingCount: user.followingCount,
+      createdAt: user.createdAt,
+      updatedAt: user.updatedAt,
     };
   }
 }
