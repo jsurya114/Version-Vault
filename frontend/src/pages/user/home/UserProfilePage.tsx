@@ -39,7 +39,7 @@ import { getMeThunk } from 'src/features/auth/authThunks';
 import { UserResponseDTO } from 'src/types/admin/adminTypes';
 
 interface ActivityGroup {
-  date: string;
+  month: string;
   items: ActivityItemProps[];
 }
 
@@ -105,90 +105,70 @@ const UserProfilePage = () => {
     return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
   };
 
+  // Inside UserProfilePage.tsx component:
+
   const fetchRealActivity = async () => {
     if (!displayUser) return;
     setActivityLoading(true);
     try {
-      const activeRepos = visibleRepositories.slice(0, 5);
-      const allActivity: (ActivityItemProps & { date: Date })[] = [];
-      let total = 0;
+      const activeRepos = visibleRepositories.slice(0, 10);
+      const months: { [key: string]: ActivityItemProps[] } = {};
 
-      await Promise.all(
-        activeRepos.map(async (repo) => {
-          const commitsAction = await dispatch(
-            getCommitsThunk({
-              username: repo.ownerUsername,
-              reponame: repo.name,
-              limit: 10,
-            }),
-          );
+      // Process repositories one by one to avoid race conditions
+      for (const repo of activeRepos) {
+        const date = new Date(repo.createdAt || new Date());
+        const monthKey = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
-          if (getCommitsThunk.fulfilled.match(commitsAction)) {
-            const commits = commitsAction.payload;
-            total += commits.length;
+        if (!months[monthKey]) months[monthKey] = [];
 
-            if (commits.length > 0) {
-              const date = new Date(commits[0].date);
-              allActivity.push({
-                type: 'push',
-                repo: `${repo.ownerUsername}/${repo.name}`,
-                branch: repo.defaultBranch || 'main',
-                count: commits.length,
-                date,
-                time: formatRelativeTime(date),
-                commits: commits.slice(0, 2).map((c) => ({ hash: c.hash, message: c.message })),
-              });
+        // 1. Handle Commits for this repo
+        const commitsAction = await dispatch(
+          getCommitsThunk({
+            username: repo.ownerUsername,
+            reponame: repo.name,
+            limit: 30,
+          }),
+        );
+
+        if (getCommitsThunk.fulfilled.match(commitsAction)) {
+          const commits = commitsAction.payload;
+          if (commits.length > 0) {
+            let commitGroup = months[monthKey].find((item) => item.type === 'commits');
+            if (!commitGroup) {
+              commitGroup = { type: 'commits', totalCommits: 0, repoCount: 0, repos: [] };
+              months[monthKey].unshift(commitGroup);
             }
-          }
 
-          const prsAction = await dispatch(
-            listPRThunk({
-              username: repo.ownerUsername,
-              reponame: repo.name,
-            }),
-          );
-
-          if (listPRThunk.fulfilled.match(prsAction)) {
-            const prs = prsAction.payload.data;
-            total += prs.length;
-            prs.forEach((pr) => {
-              const date = new Date(pr.createdAt || '');
-              allActivity.push({
-                type: 'pr',
-                repo: `${repo.ownerUsername}/${repo.name}`,
-                date,
-                time: formatRelativeTime(date),
-                id: pr.id.substring(0, 4),
-                title: pr.title,
-                status: pr.status as 'open' | 'closed' | 'merged',
-              });
+            commitGroup.repos?.push({
+              repoName: `${repo.ownerUsername}/${repo.name}`,
+              commitCount: commits.length,
             });
+            commitGroup.repoCount = (commitGroup.repoCount || 0) + 1;
+            commitGroup.totalCommits = (commitGroup.totalCommits || 0) + commits.length;
           }
-        }),
-      );
-
-      allActivity.sort((a, b) => b.date.getTime() - a.date.getTime());
-
-      const grouped: ActivityGroup[] = [];
-      allActivity.forEach((item) => {
-        const dateStr = item.date
-          .toLocaleDateString('en-US', {
-            month: 'long',
-            day: 'numeric',
-            year: 'numeric',
-          })
-          .toUpperCase();
-
-        let group = grouped.find((g) => g.date === dateStr);
-        if (!group) {
-          group = { date: dateStr, items: [] };
-          grouped.push(group);
         }
-        group.items.push(item);
-      });
 
-      setUserActivities(grouped);
-      setTotalContributions(total);
+        // 2. Handle Repository Creation for this repo
+        let repoGroup = months[monthKey].find((item) => item.type === 'repo_created');
+        if (!repoGroup) {
+          repoGroup = { type: 'repo_created', repoCount: 0, repos: [] };
+          months[monthKey].push(repoGroup);
+        }
+
+        repoGroup.repos?.push({
+          repoName: `${repo.ownerUsername}/${repo.name}`,
+          language: repo.language || 'TypeScript',
+          date: date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' }),
+          commitCount: 0,
+        });
+        repoGroup.repoCount = (repoGroup.repoCount || 0) + 1;
+      }
+
+      const sortedActivities = Object.entries(months)
+        .sort((a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime())
+        .map(([month, items]) => ({ month, items }));
+
+      setUserActivities(sortedActivities);
     } catch (err) {
       console.error('Failed to fetch activity:', err);
     } finally {
@@ -349,11 +329,7 @@ const UserProfilePage = () => {
                 </div>
 
                 {/* Contribution / Activity Timeline */}
-                <ActivityTimeline
-                  activities={userActivities}
-                  totalContributions={totalContributions}
-                  isLoading={activityLoading}
-                />
+                <ActivityTimeline activities={userActivities} isLoading={activityLoading} />
               </div>
             ) : (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">

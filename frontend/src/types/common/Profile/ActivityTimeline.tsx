@@ -1,183 +1,133 @@
 import React from 'react';
+import { GitCommit, Book, ChevronDown } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
 
-export interface ActivityItemProps {
-  type: 'push' | 'pr' | 'issue';
-  repo: string;
-  branch?: string;
-  count?: number;
-  time: string;
-  title?: string;
-  id?: string;
-  commits?: Array<{ hash: string; message: string }>;
-  status?: 'merged' | 'closed' | 'open';
+export interface RepoCommitActivity {
+  repoName: string;
+  commitCount: number;
+  language?: string; // Add this
+  date?: string; // Add this
 }
 
-const ActivityItem: React.FC<ActivityItemProps> = ({
-  type,
-  repo,
-  branch,
-  count,
-  time,
-  title,
-  id,
-  commits,
-  status: _status, // Rename to avoid unused warning if it's in the interface but not used here
-}) => {
-  const getBorderColor = () => {
-    switch (type) {
-      case 'push':
-        return 'border-blue-500/30';
-      case 'pr':
-        return 'border-green-500/30';
-      case 'issue':
-        return 'border-purple-500/30';
-      default:
-        return 'border-gray-800';
-    }
-  };
-
+export interface ActivityItemProps {
+  type: 'commits' | 'repo_created';
+  repoName?: string;
+  totalCommits?: number;
+  repoCount?: number;
+  repos?: RepoCommitActivity[];
+  language?: string;
+  date?: string;
+}
+const ActivityItem: React.FC<ActivityItemProps> = ({ type, totalCommits, repoCount, repos }) => {
+  const navigate = useNavigate();
   return (
-    <div className="relative pl-10 pb-8 last:pb-0">
-      {/* Timeline Line */}
-      <div className="absolute left-4 top-0 bottom-0 w-px bg-gray-800/50" />
+    <div className="relative pl-8 pb-8 last:pb-0">
+      <div className="absolute left-[11px] top-0 bottom-0 w-[1.5px] bg-gray-800/60" />
 
       {/* Icon Node */}
-      <div
-        className={`absolute left-[7px] top-1 w-[18px] h-[18px] rounded-full bg-gray-950 border-2 ${getBorderColor()} flex items-center justify-center z-10 animate-in fade-in zoom-in duration-500`}
-      >
-        <div
-          className={`w-2 h-2 rounded-full ${type === 'push' ? 'bg-blue-400' : type === 'pr' ? 'bg-green-400' : 'bg-purple-400'}`}
-        />
-      </div>
-
-      <div className="flex flex-col gap-2">
-        <div className="flex items-center gap-2 flex-wrap text-sm">
-          <span className="text-gray-300">
-            {type === 'push' ? (
-              <>
-                Pushed {count} {count === 1 ? 'commit' : 'commits'} to{' '}
-                <code className="text-blue-400 bg-blue-500/10 px-1.5 py-0.5 rounded text-xs mx-0.5">
-                  {branch}
-                </code>{' '}
-                in{' '}
-              </>
-            ) : type === 'pr' ? (
-              <>Opened a pull request in </>
-            ) : (
-              <>Closed an issue in </>
-            )}
-            <span className="text-white font-bold hover:underline cursor-pointer">{repo}</span>
-          </span>
-          <span className="text-gray-500 text-xs">{time}</span>
-        </div>
-
-        {/* Inner Content Box */}
-        {(commits || title) && (
-          <div className="bg-gray-900/40 border border-gray-800/50 rounded-xl p-4 mt-1 hover:border-gray-700 transition-colors duration-200">
-            {type === 'push' && commits && (
-              <div className="space-y-3">
-                {commits.map((commit, idx) => (
-                  <div
-                    key={idx}
-                    className="flex items-center justify-between gap-4 font-mono text-xs"
-                  >
-                    <span className="text-blue-400 hover:underline cursor-pointer flex-shrink-0">
-                      {commit.hash}
-                    </span>
-                    <span className="text-gray-400 truncate flex-1 text-right">
-                      {commit.message}
-                    </span>
-                  </div>
-                ))}
-              </div>
-            )}
-            {type === 'pr' && title && (
-              <div className="flex items-center gap-3">
-                <span className="text-gray-300 font-medium text-sm">
-                  #{id} {title}
-                </span>
-              </div>
-            )}
-          </div>
+      <div className="absolute left-0 top-1 w-6 h-6 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center z-10 shadow-sm text-gray-500">
+        {type === 'commits' ? (
+          <GitCommit className="w-3.5 h-3.5" />
+        ) : (
+          <Book className="w-3.5 h-3.5" />
         )}
+      </div>
+      <div className="flex flex-col gap-4">
+        {/* Header */}
+        <div className="flex items-center justify-between group cursor-pointer pr-2">
+          <h3 className="text-white text-[15px] font-semibold hover:text-blue-400">
+            {
+              type === 'commits'
+                ? `Created ${totalCommits || 0} commits in ${repoCount || 0} repositories`
+                : `Created ${repoCount || 0} ${repoCount === 1 ? 'repository' : 'repositories'}` // Add || 0 and plural check
+            }
+          </h3>
+          <div className="flex flex-col gap-[2px] opacity-0 group-hover:opacity-100 transition-opacity">
+            <div className="w-3 h-[1px] bg-gray-600" />
+            <div className="w-3 h-[1px] bg-gray-600" />
+          </div>
+        </div>
+        {/* Rows */}
+        <div className="space-y-2">
+          {repos?.map((repo, idx) => (
+            <div
+              key={idx}
+              className="flex items-center justify-between group/row pr-4 h-8 hover:bg-gray-800/10 rounded-lg transition-colors"
+            >
+              {/* Left Column: Name + Link */}
+              <div className="flex items-center gap-2 flex-1">
+                {type === 'repo_created' && <Book className="w-3.5 h-3.5 text-gray-600" />}
+                <span
+                  onClick={() => navigate(`/${repo.repoName}`)}
+                  className="text-blue-400 hover:underline cursor-pointer font-medium text-[13.5px]"
+                >
+                  {repo.repoName}
+                </span>
+                {type === 'commits' && (
+                  <span className="text-gray-600 text-xs italic">{repo.commitCount} commits</span>
+                )}
+              </div>
+              {/* Middle Column: Language (only for repo creation) */}
+              {type === 'repo_created' && (
+                <div className="flex items-center gap-1.5 w-32 text-[12px] text-gray-400">
+                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                  {repo.language}
+                </div>
+              )}
+              {/* Right Column: Progress Bar or Date */}
+              {type === 'commits' ? (
+                <div className="w-24 md:w-32 h-1.5 bg-gray-800/50 rounded-full overflow-hidden">
+                  <div
+                    className="h-full bg-[#3fb950] rounded-full"
+                    style={{
+                      width: `${Math.min((repo.commitCount / (totalCommits || 1)) * 100, 100)}%`,
+                    }}
+                  />
+                </div>
+              ) : (
+                <span className="text-gray-500 text-[11px] w-16 text-right">{repo.date}</span>
+              )}
+            </div>
+          ))}
+        </div>
       </div>
     </div>
   );
 };
 
 interface ActivityTimelineProps {
-  activities: Array<{
-    date: string;
-    items: ActivityItemProps[];
-  }>;
-  totalContributions: number;
+  activities: Array<{ month: string; items: ActivityItemProps[] }>;
   isLoading?: boolean;
 }
 
-const ActivityTimeline: React.FC<ActivityTimelineProps> = ({
-  activities,
-  totalContributions,
-  isLoading,
-}) => {
-  if (isLoading) {
+const ActivityTimeline: React.FC<ActivityTimelineProps> = ({ activities, isLoading }) => {
+  if (isLoading)
     return (
-      <div className="mt-12 animate-pulse">
-        <div className="h-8 w-48 bg-gray-800 rounded mb-4" />
-        <div className="h-4 w-64 bg-gray-800 rounded mb-8" />
-        <div className="space-y-8">
-          {[1, 2].map((i) => (
-            <div key={i} className="space-y-4">
-              <div className="h-6 w-32 bg-gray-800 rounded" />
-              <div className="h-20 w-full bg-gray-800/50 rounded-xl" />
-            </div>
-          ))}
-        </div>
-      </div>
+      <div className="animate-pulse space-y-8 mt-12 bg-gray-900/20 p-8 rounded-2xl border border-gray-800/50" />
     );
-  }
-  const totalItems = activities?.reduce((sum, group) => sum + (group.items?.length || 0), 0) || 0;
 
   return (
-    <div className="mt-12">
-      {/* Header */}
-      <div className="mb-8">
-        <h2 className="text-white text-xl font-bold flex items-center gap-3">
-          Contribution Activity
-        </h2>
-        <p className="text-gray-500 text-sm mt-1">
-          {totalContributions} contributions in the last year
-        </p>
-      </div>
+    <div className="mt-12 max-w-3xl">
+      <h2 className="text-white text-lg font-bold mb-8">Contribution activity</h2>
 
-      <div className="flex gap-8">
-        {/* Timeline */}
-        <div className="flex-1">
-          {!activities || activities.length === 0 ? (
-            <div className="py-12 text-center bg-gray-900/20 border border-dashed border-gray-800 rounded-2xl">
-              <p className="text-gray-500 text-sm">No recent activity found</p>
-            </div>
-          ) : (
-            activities.map((group, gIdx) => (
-              <div key={gIdx} className="mb-10 last:mb-0">
-                <div className="bg-gray-900/50 border border-gray-800/50 px-3 py-1.5 rounded-lg text-[10px] font-bold text-gray-500 uppercase tracking-wider w-fit mb-6">
-                  {group.date}
-                </div>
-                <div className="space-y-4">
-                  {group.items?.map((item, iIdx) => (
-                    <ActivityItem key={iIdx} {...item} />
-                  ))}
-                </div>
-              </div>
-            ))
-          )}
+      {activities.map((group, gIdx) => (
+        <div key={gIdx} className="mb-12 last:mb-0">
+          {/* Monthly Header */}
+          <div className="flex items-center gap-4 mb-8">
+            <span className="text-white text-sm font-bold whitespace-nowrap">
+              {group.month.split(' ')[0]}{' '}
+              <span className="text-gray-600 font-medium">{group.month.split(' ')[1]}</span>
+            </span>
+            <div className="w-full h-px bg-gray-800/60" />
+          </div>
 
-          {totalItems > 5 && (
-            <button className="w-full py-3 mt-6 text-sm text-blue-400 hover:text-blue-300 hover:bg-gray-900/30 border border-gray-800/50 rounded-xl transition-all duration-200">
-              Show more activity
-            </button>
-          )}
+          <div className="space-y-4">
+            {group.items.map((item, iIdx) => (
+              <ActivityItem key={iIdx} {...item} />
+            ))}
+          </div>
         </div>
-      </div>
+      ))}
     </div>
   );
 };

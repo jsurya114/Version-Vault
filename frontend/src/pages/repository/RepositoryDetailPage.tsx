@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useParams, useNavigate } from 'react-router-dom';
+import { Link, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Star,
   GitFork,
@@ -100,6 +100,7 @@ const RepositoryDetailPage = () => {
     title: '',
     subtitle: '',
   });
+  const [searchParams] = useSearchParams();
 
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
@@ -127,6 +128,12 @@ const RepositoryDetailPage = () => {
       setBranch(repo.defaultBranch);
     }
   }, [branchName, repo?.defaultBranch]);
+  useEffect(() => {
+    const tab = searchParams.get('tab');
+    if (tab === 'commits' || tab === 'pulls' || tab === 'issues' || tab === 'branches') {
+      setActiveTab(tab as Tab);
+    }
+  }, [searchParams]);
 
   useEffect(() => {
     setCurrentPath('');
