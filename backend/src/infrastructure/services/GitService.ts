@@ -142,16 +142,27 @@ export class GitService {
     repoName: string,
     branch: string = 'main',
     filePath: string = '',
+    recursive: boolean = false,
   ): Promise<GitFileEntry[]> {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
 
     try {
       const treePath = filePath ? `${branch}:${filePath}` : `${branch}:`;
-      //to get name only (to avoid the blob)
-      const namesResult = await git.raw(['ls-tree', '--name-only', treePath]); //listing the files
 
-      const typesResult = await git.raw(['ls-tree', treePath]);
+      const namesArgs = ['ls-tree', '--name-only', treePath];
+      const typesArgs = ['ls-tree', treePath];
+
+      if (recursive) {
+        namesArgs.splice(1, 0, '-r');
+        typesArgs.splice(1, 0, '-r');
+      }
+      // For type mapping, we also need ls-tree results
+
+      //to get name only (to avoid the blob)
+      const namesResult = await git.raw(namesArgs); //listing the files
+
+      const typesResult = await git.raw(typesArgs);
 
       if (!namesResult) return [];
       const names = namesResult.trim().split('\n').filter(Boolean);
@@ -161,7 +172,7 @@ export class GitService {
         const typeLine = typeLines.find((l) => l.includes(name)) || '';
         const type = typeLine.includes('tree') ? 'tree' : 'blob';
         return {
-          name: name.trim(),
+          name: recursive ? name.trim().split('/').pop() || '' : name.trim(),
           path: filePath ? `${filePath}/${name.trim()}` : name.trim(),
           type,
         };

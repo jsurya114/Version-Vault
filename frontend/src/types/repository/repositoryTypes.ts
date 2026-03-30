@@ -32,6 +32,7 @@ export interface GetFilesParams {
   reponame: string;
   branch?: string;
   path?: string;
+  recursive?: boolean;
 }
 
 export interface GetFileContentParams {
@@ -75,6 +76,7 @@ export interface RepositoryState {
   repositories: RepositoryResponseDTO[];
   selectedRepository: RepositoryResponseDTO | null;
   files: GitFileEntry[];
+  allFiles: GitFileEntry[];
   fileContent: string;
   commits: GitCommit[];
   branches: GitBranch[];
@@ -94,6 +96,7 @@ export const repositoryInitialState: RepositoryState = {
   repositories: [],
   selectedRepository: null,
   files: [],
+  allFiles: [],
   fileContent: '',
   commits: [],
   branches: [],

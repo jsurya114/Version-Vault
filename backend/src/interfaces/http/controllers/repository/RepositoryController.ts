@@ -132,7 +132,8 @@ export class RepositoryController {
       const { username, reponame } = req.params;
       const branch = (req.query.branch as string) || 'main';
       const path = (req.query.path as string) || '';
-      const files = await this.filesUseCase.execute(username, reponame, branch, path);
+      const recursive = req.query.recursive === 'true';
+      const files = await this.filesUseCase.execute(username, reponame, branch, path, recursive);
       res.status(HttpStatusCodes.OK).json({ success: true, data: files });
     } catch (error) {
       next(error);

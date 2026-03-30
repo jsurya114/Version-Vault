@@ -6,5 +6,6 @@ export interface IGetFilesUseCase {
     repoName: string,
     branch: string,
     path: string,
+    recursive?: boolean,
   ): Promise<GitFileEntry[]>;
 }

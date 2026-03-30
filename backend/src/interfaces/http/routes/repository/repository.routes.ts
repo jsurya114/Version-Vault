@@ -13,7 +13,7 @@ const repoController = container.resolve(RepositoryController);
 const branchController = container.resolve(BranchController);
 const commitController = container.resolve(CommitController);
 
-router.post('/', authMiddleware, ownerMiddleware, (req, res, next) =>
+router.post('/', authMiddleware, (req, res, next) =>
   repoController.createRepository(req as AuthRequest, res, next),
 );
 router.get('/', authMiddleware, (req, res, next) =>

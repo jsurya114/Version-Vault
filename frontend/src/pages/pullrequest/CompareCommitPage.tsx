@@ -7,6 +7,7 @@ import {
   GitCommit as CommitIcon,
   Code,
   XCircle,
+  AlertCircle,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { compareCommitThunk } from '../../features/commit/compareCommitThunk';
@@ -68,7 +69,11 @@ const CompareCommitPage = () => {
   }, [base, head, username, reponame, dispatch, navigate]);
 
   const handleCreatePR = () => {
-    navigate(`/${username}/${reponame}/pulls/new/form?base=${base}&head=${head}`);
+    const defaultTile =
+      data?.commits && data.commits.length > 0 ? encodeURIComponent(data.commits[0].message) : '';
+    navigate(
+      `/${username}/${reponame}/pulls/new/form?base=${base}&head=${head}&title=${defaultTile}`,
+    );
   };
 
   const groupCommitsByDate = (commits: GitCommit[]) => {
@@ -184,26 +189,37 @@ const CompareCommitPage = () => {
                   <div className="flex items-center gap-2 pl-2">
                     {head !== base && base === 'main' && (
                       <>
-                        {data.isMergeable ? (
+                        {data.commits.length > 0 ? (
                           <>
-                            <CheckCircle2 className="w-4 h-4 text-[#3fb950]" />
-                            <span className="text-[#3fb950] text-[13px] font-medium">
-                              Able to merge.
-                            </span>
+                            {data.isMergeable ? (
+                              <>
+                                <CheckCircle2 className="w-4 h-4 text-[#3fb950]" />
+                                <span className="text-[#3fb950] text-[13px] font-medium">
+                                  Able to merge.
+                                </span>
+                              </>
+                            ) : (
+                              <>
+                                <XCircle className="w-4 h-4 text-[#f85149]" />
+                                <span className="text-[#f85149] text-[13px] font-medium">
+                                  Can't automatically merge.
+                                </span>
+                              </>
+                            )}
                           </>
                         ) : (
-                          <>
-                            <XCircle className="w-4 h-4 text-[#f85149]" />
-                            <span className="text-[#f85149] text-[13px] font-medium">
-                              Can't automatically merge.
+                          <div className="flex items-center gap-2">
+                            <AlertCircle className="w-4 h-4 text-gray-500" />
+                            <span className="text-gray-500 text-[13px] font-medium font-mono">
+                              There isn’t anything to compare.
                             </span>
-                          </>
+                          </div>
                         )}
                       </>
                     )}
                   </div>
 
-                  {head !== base && data.commits.length > 0 && base === 'main' && (
+                  {head !== base && data.commits.length > 0 && (
                     <button
                       onClick={handleCreatePR}
                       className="bg-[#238636] hover:bg-[#2ea043] border border-[rgba(240,246,252,0.1)] text-white text-[13px] font-semibold px-4 py-1.5 rounded-md transition-all shadow-sm flex items-center gap-2"

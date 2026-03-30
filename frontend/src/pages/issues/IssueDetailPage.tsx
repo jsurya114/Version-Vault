@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CircleDot, CheckCircle, Clock, MessageSquare, Tag, AlertCircle } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -9,6 +9,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { IssuePriority } from '../../types/issues/issues.types';
+import ConfirmModal from '../../types/common/Modal/ConfirmModal';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',
@@ -23,13 +24,13 @@ const IssueDetailPage = () => {
   const isLoading = useAppSelector(selectIssueLoading);
   const user = useAppSelector(selectAuthUser);
   const isOwner = user?.userId === username;
+  const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
 
   useEffect(() => {
     if (id) dispatch(getIssueThunk({ username: username!, reponame: reponame!, id }));
   }, [id]);
 
-  const handleClose = async () => {
-    if (!confirm('Close this issue?')) return;
+  const handleCloseConfirm = async () => {
     await dispatch(closeIssueThunk({ username: username!, reponame: reponame!, id: id! }));
   };
 
@@ -56,6 +57,16 @@ const IssueDetailPage = () => {
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
       <AppHeader />
 
+      <ConfirmModal
+        isOpen={isCloseModalOpen}
+        onClose={() => setIsCloseModalOpen(false)}
+        onConfirm={handleCloseConfirm}
+        title="Close Issue"
+        message={`Are you sure you want to close issue #${issue.id.slice(-6)}? This will mark it as completed.`}
+        confirmText="Close Issue"
+        confirmColor="bg-red-600"
+        icon={<AlertCircle className="w-5 h-5 text-red-400" />}
+      />
       {/* Breadcrumb */}
       <div className="border-b border-gray-800 px-6 py-2">
         <div className="max-w-5xl mx-auto flex items-center gap-1 text-sm">
@@ -116,7 +127,7 @@ const IssueDetailPage = () => {
 
             {isOwner && issue.status === 'open' && (
               <button
-                onClick={handleClose}
+                onClick={() => setIsCloseModalOpen(true)}
                 className="flex items-center gap-1.5 bg-red-500/10 hover:bg-red-500/20 border border-red-500/30 text-red-400 text-xs px-3 py-1.5 rounded-lg transition shrink-0"
               >
                 <CheckCircle className="w-3.5 h-3.5" /> Close Issue

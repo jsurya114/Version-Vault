@@ -21,7 +21,9 @@ const PRFormPage = () => {
   const baseBranch = searchParams.get('base') || 'main';
   const headBranch = searchParams.get('head') || '';
 
-  const [title, setTitle] = useState('');
+  const initialState = searchParams.get('title') || '';
+
+  const [title, setTitle] = useState(initialState);
   const [description, setDescription] = useState('');
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);

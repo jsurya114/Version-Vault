@@ -36,9 +36,10 @@ export const repositoryService = {
     reponame: string,
     branch: string = 'main',
     path: string = '',
+    recursive: boolean = false,
   ) => {
     const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/files`, {
-      params: { branch, path },
+      params: { branch, path, recursive },
     });
     return res.data.data;
   },

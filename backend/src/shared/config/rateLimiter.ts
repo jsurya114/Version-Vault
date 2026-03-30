@@ -1,33 +1,34 @@
 import rateLimit from 'express-rate-limit';
+import { envConfig } from './env.config';
 
 export const globalLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 100,
+  windowMs: envConfig.RATE_LIMIT_WINDOW_MS,
+  max: envConfig.RATE_LIMIT_MAX_REQUESTS,
   message: {
     success: false,
-    message: 'Too many requests, please try again after 15 minutes',
+    message: `Too many requests, please try again after ${envConfig.RATE_LIMIT_WINDOW_MS / 60000} minutes`,
   },
   standardHeaders: true,
   legacyHeaders: false,
 });
 
 export const authLimiter = rateLimit({
-  windowMs: 10 * 60 * 1000, // 15 minutes
-  max: 60,
+  windowMs: envConfig.RATE_LIMIT_WINDOW_MS, // 15 minutes
+  max: envConfig.RATE_LIMIT_MAX_REQUESTS,
   message: {
     success: false,
-    message: 'Too many auth attempts, please try again after 15 minutes',
+    message: `Too many requests, please try again after ${envConfig.RATE_LIMIT_WINDOW_MS / 60000} minutes`,
   },
   standardHeaders: true,
   legacyHeaders: false,
 });
 
 export const otpLimiter = rateLimit({
-  windowMs: 15 * 60 * 1000, // 15 minutes
-  max: 5,
+  windowMs: envConfig.RATE_LIMIT_WINDOW_MS, // 15 minutes
+  max: envConfig.RATE_LIMIT_MAX_REQUESTS,
   message: {
     success: false,
-    message: 'Too many OTP attempts, please try again after 15 minutes',
+    message: `Too many requests, please try again after ${envConfig.RATE_LIMIT_WINDOW_MS / 60000} minutes`,
   },
   standardHeaders: true,
   legacyHeaders: false,
