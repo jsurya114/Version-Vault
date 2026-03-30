@@ -68,7 +68,11 @@ const CompareCommitPage = () => {
   }, [base, head, username, reponame, dispatch, navigate]);
 
   const handleCreatePR = () => {
-    navigate(`/${username}/${reponame}/pulls/new/form?base=${base}&head=${head}`);
+    const defaultTile =
+      data?.commits && data.commits.length > 0 ? encodeURIComponent(data.commits[0].message) : '';
+    navigate(
+      `/${username}/${reponame}/pulls/new/form?base=${base}&head=${head}&title=${defaultTile}`,
+    );
   };
 
   const groupCommitsByDate = (commits: GitCommit[]) => {

@@ -67,9 +67,12 @@ export const deleteRepositoryThunk = createAsyncThunk<void, RepoParams>(
 
 export const getFilesThunk = createAsyncThunk<GitFileEntry[], GetFilesParams>(
   'repository/getfiles',
-  async ({ username, reponame, branch = 'main', path = '' }, { rejectWithValue }) => {
+  async (
+    { username, reponame, branch = 'main', path = '', recursive = false },
+    { rejectWithValue },
+  ) => {
     try {
-      return await repositoryService.getFiles(username, reponame, branch, path);
+      return await repositoryService.getFiles(username, reponame, branch, path, recursive);
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       return rejectWithValue(err.response?.data?.message || 'Failed to fetch files');

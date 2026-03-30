@@ -105,10 +105,14 @@ const RepositoryDetailPage = () => {
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
   const isEmpty = !isFilesLoading && files.length === 0;
+  const allFiles = useAppSelector((state) => state.repository.allFiles);
 
   useEffect(() => {
     if (username && reponame) {
+      //for normal folder view
       dispatch(getFilesThunk({ username, reponame, branch, path: '' }));
+
+      dispatch(getFilesThunk({ username, reponame, branch, path: '', recursive: true }));
       dispatch(getCommitsThunk({ username, reponame, branch }));
 
       dispatch(getRepositoryThunk({ username, reponame }));
@@ -248,7 +252,7 @@ const RepositoryDetailPage = () => {
     return (a.name || '').localeCompare(b.name || '');
   });
 
-  const languageData = calculateLanguagesFromFiles(files);
+  const languageData = calculateLanguagesFromFiles(allFiles);
 
   if (isLoading) {
     return (

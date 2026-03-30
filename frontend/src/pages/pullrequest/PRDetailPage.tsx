@@ -11,6 +11,7 @@ import { ROUTES } from '../../constants/routes';
 import { PRStatus } from '../../types/pullrequest/pullrequest.types';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import MergeConfirmModal from '../../types/common/Modal/MergeConfirmModal';
+import ConfirmModal from 'src/types/common/Modal/ConfirmModal';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -27,6 +28,7 @@ const PRDetailPage = () => {
   const [isMerging, setIsMerging] = useState(false);
   const [isMergeModalOpen, setIsMergeModalOpen] = useState(false);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+  const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
 
   const isOwner = user?.userId === username;
 
@@ -52,8 +54,7 @@ const PRDetailPage = () => {
     }
   };
 
-  const handleClose = async () => {
-    if (!window.confirm('Close this pull request?')) return;
+  const handleCloseConfirm = async () => {
     await dispatch(closePRThunk({ username: username!, reponame: reponame!, id: id! }));
   };
 
@@ -133,6 +134,16 @@ const PRDetailPage = () => {
           targetBranch={pr.targetBranch}
         />
 
+        <ConfirmModal
+          isOpen={isCloseModalOpen}
+          onClose={() => setIsCloseModalOpen(false)}
+          onConfirm={handleCloseConfirm}
+          title="Close Pull Request"
+          message="Are you sure you want to close this pull request? You can always reopen it later."
+          confirmText="Close PR"
+          confirmColor="bg-gray-700"
+          icon={<X className="w-5 h-5 text-red-500" />}
+        />
         {/* PR Header */}
         <div className="mb-6">
           <div className="flex items-start justify-between gap-4">
@@ -182,12 +193,8 @@ const PRDetailPage = () => {
                   <GitMerge className="w-4 h-4" />
                   Merge Pull Request
                 </button>
-                <button
-                  onClick={handleClose}
-                  disabled={isMerging}
-                  className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-red-400 font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <X className="w-4 h-4" /> Close
+                <button onClick={() => setIsCloseModalOpen(true)}>
+                  <X className="w-4 h-4" /> Close PR
                 </button>
               </div>
             )}

@@ -12,7 +12,8 @@ export class GetFilesUseCase implements IGetFilesUseCase {
     repoName: string,
     branch: string = 'main',
     path: string = '',
+    recursive: boolean = false,
   ): Promise<GitFileEntry[]> {
-    return this.gitService.getFiles(ownerUsername, repoName, branch, path);
+    return this.gitService.getFiles(ownerUsername, repoName, branch, path, recursive);
   }
 }
