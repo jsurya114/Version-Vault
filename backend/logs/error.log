@@ -2419,3 +2419,28 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-30 15:23:16 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
 2026-03-30 15:38:56 [[31merror[39m]: PATCH /vv/user/profile — Unknown API key your_api_key
 2026-03-30 15:39:07 [[31merror[39m]: PATCH /vv/user/profile — Unknown API key your_api_key
+2026-03-30 15:55:45 [[31merror[39m]: POST /vv/repo — Access denied: Only the repository owner can perform this action.
+2026-03-30 16:06:25 [[31merror[39m]: GET /vv/pr/jayasooryaegurukulam_1774424731229/mockrepo — Repository not found
+2026-03-30 16:06:25 [[31merror[39m]: GET /vv/pr/jayasooryaegurukulam_1774424731229/mockrepo — Repository not found
+2026-03-30 16:06:26 [[31merror[39m]: GET /vv/pr/jayasooryaegurukulam_1774424731229/mockrepo — Repository not found
+2026-03-30 16:06:27 [[31merror[39m]: GET /vv/pr/jayasooryaegurukulam_1774424731229/mockrepo — Repository not found
+2026-03-30 16:06:37 [[31merror[39m]: GET /vv/pr/jayasooryaegurukulam_1774424731229/mockrepo — Repository not found
+2026-03-30 16:06:37 [[31merror[39m]: GET /vv/pr/jayasooryaegurukulam_1774424731229/mockrepo — Repository not found
+2026-03-30 16:32:34 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-30 16:32:42 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/main — Invalid or expired access token
+2026-03-30 16:32:42 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/main — Invalid or expired access token
+2026-03-30 16:32:45 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/test/main — Invalid or expired access token
+2026-03-30 16:32:45 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/test/main — Invalid or expired access token
+2026-03-30 16:32:48 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/main — Invalid or expired access token
+2026-03-30 16:32:48 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/main — Invalid or expired access token
+2026-03-30 16:32:50 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-30 16:32:50 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-30 16:48:19 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-30 16:48:19 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-30 16:49:05 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/fd8b45f%5E/fd8b45f — Invalid or expired access token
+2026-03-30 16:49:05 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/fd8b45f%5E/fd8b45f — Invalid or expired access token
+2026-03-30 16:49:17 [[31merror[39m]: GET /vv/repo/jsurya114/version/compare/main/test — Invalid or expired access token
+2026-03-30 16:49:34 [[31merror[39m]: POST /vv/pr/jsurya114/version — Invalid or expired access token
+2026-03-30 17:24:24 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 17:24:24 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 17:24:25 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
