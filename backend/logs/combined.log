@@ -16980,3 +16980,314 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-30 17:25:32 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 84.800 ms - -[0m
 2026-03-30 17:25:32 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 84.731 ms - -[0m
 2026-03-30 17:25:32 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/version?page=1&limit=2 [36m304[0m 87.795 ms - -[0m
+2026-03-30 17:53:12 [[32minfo[39m]: Redis connected successfully
+2026-03-30 17:53:13 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 17:53:13 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 17:53:14 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 59.647 ms - 44[0m
+2026-03-30 17:53:14 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 58.098 ms - 44[0m
+2026-03-30 17:53:14 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 53.880 ms - -[0m
+2026-03-30 17:53:14 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 55.178 ms - -[0m
+2026-03-30 17:53:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [32m200[0m 56.744 ms - 429[0m
+2026-03-30 17:53:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.373 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.103 ms - 44[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.736 ms - 44[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.735 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.908 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.011 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.169 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [32m200[0m 35.963 ms - 931[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 42.482 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.601 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 91.322 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 91.463 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 14.621 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 84.392 ms - -[0m
+2026-03-30 17:53:18 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 84.424 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 16.049 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 13.790 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 31.359 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 28.520 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 18.979 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 17.004 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 48.678 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 23.702 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 22.707 ms - -[0m
+2026-03-30 18:30:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 41.763 ms - -[0m
+2026-03-30 18:30:57 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 1.585 ms - 61[0m
+2026-03-30 18:30:57 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.686 ms - 61[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 27.253 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 46.312 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 19.548 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.311 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 41.729 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.287 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 86.645 ms - -[0m
+2026-03-30 18:30:57 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 85.943 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 21.428 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 27.003 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 47.655 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 47.148 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 19.132 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 19.425 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 51.615 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 26.121 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 24.443 ms - -[0m
+2026-03-30 18:30:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 51.163 ms - -[0m
+2026-03-30 18:31:02 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:31:02 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.605 ms - 61[0m
+2026-03-30 18:31:02 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:31:02 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.574 ms - 61[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 37.079 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 60.585 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 21.508 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 62.166 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 123.736 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 123.540 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 122.822 ms - -[0m
+2026-03-30 18:31:03 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 123.138 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 22.975 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 26.110 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 47.372 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 44.532 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 18.676 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 17.674 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 54.260 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 25.750 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 24.805 ms - -[0m
+2026-03-30 18:31:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 51.347 ms - -[0m
+2026-03-30 18:31:07 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.760 ms - 61[0m
+2026-03-30 18:31:07 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.558 ms - 61[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 27.002 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 19.675 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 61.160 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 127.461 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 67.915 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 129.522 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 104.763 ms - -[0m
+2026-03-30 18:31:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 122.957 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 25.846 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 23.926 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 46.118 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 44.164 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 43.683 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 18.877 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 17.707 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 25.042 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 24.029 ms - -[0m
+2026-03-30 18:31:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 44.037 ms - -[0m
+2026-03-30 18:31:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.449 ms - 61[0m
+2026-03-30 18:31:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [33m401[0m 0.838 ms - 61[0m
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 29.824 ms - -[0m
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.058 ms - -[0m
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 21.079 ms - -[0m
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.408 ms - -[0m
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.108 ms - -[0m
+2026-03-30 18:31:11 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.313 ms - -[0m
+2026-03-30 18:31:12 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 86.192 ms - -[0m
+2026-03-30 18:31:12 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 89.036 ms - -[0m
+2026-03-30 18:33:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 30.195 ms - -[0m
+2026-03-30 18:33:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 40.163 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 45.449 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 42.231 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 15.261 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 45.043 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 15.482 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 24.371 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 23.596 ms - -[0m
+2026-03-30 18:33:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 41.884 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 27.875 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 26.402 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 44.433 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 50.222 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 55.312 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 23.212 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 23.383 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 32.749 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 31.553 ms - -[0m
+2026-03-30 18:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 42.127 ms - -[0m
+2026-03-30 18:35:16 [[32minfo[39m]: Redis connected successfully
+2026-03-30 18:35:17 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 18:35:17 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 18:35:17 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 179.496 ms - 303[0m
+2026-03-30 18:35:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.594 ms - -[0m
+2026-03-30 18:35:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 43.415 ms - -[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [32m200[0m 26.012 ms - 931[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [32m200[0m 24.061 ms - 245[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [32m200[0m 48.925 ms - 183[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [32m200[0m 42.515 ms - 344[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 18.282 ms - -[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 16.529 ms - -[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [32m200[0m 45.266 ms - 350[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 28.759 ms - -[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 27.541 ms - -[0m
+2026-03-30 18:35:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 42.289 ms - -[0m
+2026-03-30 18:35:21 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.257 ms - -[0m
+2026-03-30 18:35:21 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 46.612 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [32m200[0m 27.605 ms - 931[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [32m200[0m 44.920 ms - 586[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [32m200[0m 44.929 ms - 405[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 22.659 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 12.861 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [32m200[0m 88.987 ms - 267[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [32m200[0m 88.389 ms - 267[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.012 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.889 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 14.001 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 86.595 ms - -[0m
+2026-03-30 18:35:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.297 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 25.802 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 24.105 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 47.861 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 44.827 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 16.280 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 18.640 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 45.715 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 25.319 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 24.331 ms - -[0m
+2026-03-30 18:35:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 49.580 ms - -[0m
+2026-03-30 18:38:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 43.855 ms - -[0m
+2026-03-30 18:38:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 29.533 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 27.182 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 24.742 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 44.409 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 47.519 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 19.864 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 19.638 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 62.354 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 24.622 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 23.538 ms - -[0m
+2026-03-30 18:38:12 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 60.325 ms - -[0m
+2026-03-30 18:38:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 26.900 ms - -[0m
+2026-03-30 18:38:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 18.243 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 25.425 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 31.037 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=test&limit=20 [36m304[0m 28.275 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 47.000 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 53.154 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 16.505 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 53.351 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=test&path=&recursive=false [36m304[0m 33.124 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 18.784 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=test&path=&recursive=true [36m304[0m 33.845 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 14.569 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 28.312 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 25.919 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 44.718 ms - -[0m
+2026-03-30 18:38:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 43.826 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 54.257 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 28.792 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 23.358 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 79.049 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 95.567 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 48.685 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 14.230 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 123.456 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 61.155 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 14.621 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 122.674 ms - -[0m
+2026-03-30 18:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 121.665 ms - -[0m
+2026-03-30 18:42:47 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 26.365 ms - -[0m
+2026-03-30 18:42:47 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 61.565 ms - -[0m
+2026-03-30 18:42:47 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 54.806 ms - -[0m
+2026-03-30 18:42:47 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 16.136 ms - -[0m
+2026-03-30 18:42:47 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 124.109 ms - -[0m
+2026-03-30 18:42:47 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 113.107 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 28.956 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 47.249 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.439 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 16.180 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 13.579 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 93.214 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 96.700 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 46.032 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 45.945 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 13.820 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 85.596 ms - -[0m
+2026-03-30 18:43:39 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 86.315 ms - -[0m
+2026-03-30 18:43:57 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.467 ms - -[0m
+2026-03-30 18:43:57 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 44.011 ms - -[0m
+2026-03-30 18:43:57 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 84.158 ms - -[0m
+2026-03-30 18:43:57 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 85.342 ms - -[0m
+2026-03-30 18:45:54 [[32minfo[39m]: Redis connected successfully
+2026-03-30 18:45:55 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 18:45:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 18:45:58 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 179.399 ms - 303[0m
+2026-03-30 18:45:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 58.675 ms - -[0m
+2026-03-30 18:45:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 43.174 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 25.715 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 23.983 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 49.033 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 42.457 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 18.687 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 44.077 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 18.962 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 29.580 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 28.522 ms - -[0m
+2026-03-30 18:46:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 42.105 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [32m200[0m 21.999 ms - 931[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [32m200[0m 44.089 ms - 586[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 17.570 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [32m200[0m 43.174 ms - 405[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 13.331 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [32m200[0m 85.917 ms - 267[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 42.939 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [32m200[0m 86.157 ms - 267[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.199 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 13.320 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 85.609 ms - -[0m
+2026-03-30 18:46:09 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 86.510 ms - -[0m
+2026-03-30 18:51:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 17.977 ms - -[0m
+2026-03-30 18:51:40 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 53.559 ms - -[0m
+2026-03-30 18:51:40 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 56.494 ms - -[0m
+2026-03-30 18:51:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 14.173 ms - -[0m
+2026-03-30 18:51:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 94.352 ms - -[0m
+2026-03-30 18:51:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 97.077 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 22.903 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 27.166 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 46.638 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 57.439 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 54.275 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/branches [36m304[0m 29.029 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=20 [36m304[0m 27.361 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version [36m304[0m 46.460 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=false [36m304[0m 32.326 ms - -[0m
+2026-03-30 18:52:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/files?branch=main&path=&recursive=true [36m304[0m 31.124 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 25.769 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 45.470 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 45.475 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 21.991 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 14.020 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 88.994 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 86.736 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 42.970 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.457 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/version/commits?branch=main&limit=30 [36m304[0m 12.907 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.410 ms - -[0m
+2026-03-30 18:52:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 87.531 ms - -[0m
+2026-03-30 19:00:35 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:00:35 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:00:35 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 19:00:46 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:00:46 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:00:46 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 19:01:53 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:01:53 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:01:53 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 19:04:32 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:04:33 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:04:33 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 19:08:03 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:08:04 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:08:04 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 19:08:42 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:08:42 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:08:42 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-30 19:12:38 [[32minfo[39m]: Redis connected successfully
+2026-03-30 19:12:38 [[32minfo[39m]: MongoDB connected successfully
+2026-03-30 19:12:38 [[32minfo[39m]: Server running on port 3125 in development mode
