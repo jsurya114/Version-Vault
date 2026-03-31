@@ -39,6 +39,7 @@ import { getMeThunk } from '../../../features/auth/authThunks';
 import { UserResponseDTO } from '../../../types/admin/adminTypes';
 import { GitCommit } from 'src/types/repository/repositoryTypes';
 import ContributionGraph from '../../../types/common/Profile/ContributionGraph';
+import { FollowListModal } from '../components/FollowListModal';
 
 interface ActivityGroup {
   month: string;
@@ -67,6 +68,14 @@ const UserProfilePage = () => {
   const [userActivities, setUserActivities] = useState<ActivityGroup[]>([]);
   const [dailyStats, setDailyStats] = useState<{ [key: string]: number }>({});
   const [totalYearlyContributions, setTotalYearlyContributions] = useState(0);
+
+  const [followModal, setFollowModal] = useState<{
+    isOpen: boolean;
+    type: 'Followers' | 'Following';
+  }>({
+    isOpen: false,
+    type: 'Followers',
+  });
 
   // Derived State: Are we looking at our OWN profile?
   const isOwnProfile = authUser?.userId === userId;
@@ -291,14 +300,24 @@ const UserProfilePage = () => {
 
             {/* Stats */}
             <div className="flex items-center gap-4 text-sm mb-6 pb-6 border-b border-gray-800">
-              <div className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition">
+              {/* Corrected: following.length shows how many people THIS user follows */}
+              <div
+                onClick={() => setFollowModal({ isOpen: true, type: 'Following' })}
+                className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition"
+              >
                 <Users className="w-4 h-4" />
-                <span className="font-bold text-white">{followers.length}</span>
+                <span className="font-bold text-white">{following.length}</span>
                 <span>following</span>
               </div>
+
               <span className="text-gray-700">·</span>
-              <div className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition">
-                <span className="font-bold text-white">{following.length}</span>
+
+              {/* Corrected: followers.length shows how many people follow THIS user */}
+              <div
+                onClick={() => setFollowModal({ isOpen: true, type: 'Followers' })}
+                className="flex items-center gap-1 text-gray-400 hover:text-blue-400 cursor-pointer transition"
+              >
+                <span className="font-bold text-white">{followers.length}</span>
                 <span>followers</span>
               </div>
             </div>
@@ -441,6 +460,12 @@ const UserProfilePage = () => {
           onClose={() => setIsEditModalOpen(false)}
         />
       )}
+      <FollowListModal
+        isOpen={followModal.isOpen}
+        title={followModal.type}
+        data={followModal.type === 'Followers' ? followers : following}
+        onClose={() => setFollowModal({ ...followModal, isOpen: false })}
+      />
 
       <AppFooter />
     </div>

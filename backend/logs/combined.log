@@ -18611,3 +18611,37 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-31 15:47:47 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 0.983 ms - 52[0m
 2026-03-31 15:48:52 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.372 ms - -[0m
 2026-03-31 15:48:52 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 58.831 ms - -[0m
+2026-03-31 20:09:10 [[32minfo[39m]: Redis connected successfully
+2026-03-31 20:09:11 [[32minfo[39m]: MongoDB connected successfully
+2026-03-31 20:09:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-03-31 20:09:18 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-31 20:09:18 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 46.628 ms - 46[0m
+2026-03-31 20:09:27 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-03-31 20:09:27 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 42.640 ms - 46[0m
+2026-03-31 20:09:33 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 180.492 ms - 297[0m
+2026-03-31 20:09:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 54.177 ms - -[0m
+2026-03-31 20:09:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 38.734 ms - -[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [32m200[0m 40.768 ms - 580[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [32m200[0m 41.039 ms - 79[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [32m200[0m 82.319 ms - 482[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 40.994 ms - -[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [32m200[0m 81.698 ms - 267[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 40.732 ms - -[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 77.675 ms - -[0m
+2026-03-31 20:09:38 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 79.904 ms - -[0m
+2026-03-31 20:09:44 [[32minfo[39m]: [0mGET /vv/user/test123 [32m200[0m 40.082 ms - 420[0m
+2026-03-31 20:09:44 [[32minfo[39m]: [0mGET /vv/follow/test123/followers [32m200[0m 81.167 ms - 26[0m
+2026-03-31 20:09:44 [[32minfo[39m]: [0mGET /vv/follow/test123/following [32m200[0m 81.784 ms - 240[0m
+2026-03-31 20:09:44 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69cb9e5e271b8c7f9c78d6c2 [32m200[0m 39.362 ms - 79[0m
+2026-03-31 20:09:50 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 49.197 ms - -[0m
+2026-03-31 20:09:50 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 50.004 ms - -[0m
+2026-03-31 20:09:50 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.998 ms - -[0m
+2026-03-31 20:09:50 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 94.153 ms - -[0m
+2026-03-31 20:09:58 [[32minfo[39m]: [0mGET /vv/user/jayasooryaegurukulam_1774424731229 [32m200[0m 38.635 ms - 543[0m
+2026-03-31 20:09:58 [[32minfo[39m]: [0mGET /vv/follow/jayasooryaegurukulam_1774424731229/following [32m200[0m 85.048 ms - 267[0m
+2026-03-31 20:09:58 [[32minfo[39m]: [0mGET /vv/follow/jayasooryaegurukulam_1774424731229/followers [36m304[0m 91.387 ms - -[0m
+2026-03-31 20:09:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c3929b6edb30f6a55460da [36m304[0m 43.327 ms - -[0m
+2026-03-31 20:10:02 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 41.450 ms - -[0m
+2026-03-31 20:10:02 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.434 ms - -[0m
+2026-03-31 20:10:02 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 80.347 ms - -[0m
+2026-03-31 20:10:02 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 81.217 ms - -[0m
