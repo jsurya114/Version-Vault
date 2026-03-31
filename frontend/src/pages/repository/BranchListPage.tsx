@@ -46,6 +46,7 @@ const BranchListPage = () => {
   const { username, reponame } = useParams();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
+
   const isOwner = user?.userId === username;
 
   // Safely select branches and ensure we handle both object array and string array (though it should now be objects)
@@ -295,6 +296,7 @@ const BranchRow = ({
   reponame: string;
 }) => {
   const navigate = useNavigate();
+  const user = useAppSelector((state) => state.auth.user);
   return (
     <div
       onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
@@ -312,8 +314,17 @@ const BranchRow = ({
       </div>
 
       <div className="flex items-center gap-2.5 text-gray-400 text-xs">
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm">
-          {branch.lastCommitAuthor?.[0] || 'U'}
+        {/* Updated avatar display logic using the standard user selector */}
+        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm overflow-hidden border border-gray-800">
+          {isOwner && user?.avatar ? (
+            <img
+              src={user.avatar}
+              alt={branch.lastCommitAuthor}
+              className="w-full h-full object-cover"
+            />
+          ) : (
+            branch.lastCommitAuthor?.[0] || 'U'
+          )}
         </div>
         <span>{timeAgo(branch.lastCommitDate || '')}</span>
       </div>

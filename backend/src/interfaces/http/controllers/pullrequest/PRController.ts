@@ -9,6 +9,8 @@ import { IGetRepoUseCase } from '../../../../application/use-cases/interfaces/re
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
+import { AuthRequest } from '../repository/RepositoryController';
+import { ITokenPayload } from 'src/domain/interfaces/services/ITokenService';
 
 @injectable()
 export class PRController {
@@ -26,10 +28,10 @@ export class PRController {
     try {
       const { username, reponame } = req.params;
       const { title, description, sourceBranch, targetBranch } = req.body;
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-      const { id: authorId, userId: authorUsername } = (req as any).user;
 
-      const repo = await this._getRepo.execute(username, reponame);
+      const { id: authorId, userId: authorUsername } = (req as AuthRequest).user;
+
+      const repo = await this._getRepo.execute(username, reponame, authorId);
       const pr = await this._createPR.execute({
         title,
         description,
@@ -48,6 +50,8 @@ export class PRController {
   async listPr(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { username, reponame } = req.params;
+      const authenticateUser = (req as AuthRequest).user as ITokenPayload | undefined;
+      const authenticateUserId = authenticateUser?.id;
       const query: PaginationQueryDTO = {
         page: req.query.page ? Number(req.query.page) : 1,
         limit: req.query.limit ? Number(req.query.limit) : 5,
@@ -56,7 +60,7 @@ export class PRController {
         search: req.query.search as string | undefined,
         status: req.query.status as 'active' | 'blocked' | 'pending' | undefined,
       };
-      const repo = await this._getRepo.execute(username, reponame);
+      const repo = await this._getRepo.execute(username, reponame, authenticateUserId);
       const result = await this._listPRs.execute(repo.id, query);
 
       res.status(HttpStatusCodes.OK).json({

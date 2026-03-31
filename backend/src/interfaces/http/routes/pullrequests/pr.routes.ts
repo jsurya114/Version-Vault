@@ -3,12 +3,15 @@ import { container } from 'tsyringe';
 import { PRController } from '../../controllers/pullrequest/PRController';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
 import { ownerMiddleware } from '../../middleware/ownerMiddleware';
+import { visibilityMiddleware } from '../../middleware/visibilityMiddleware';
 
 const router = Router();
 const prController = container.resolve(PRController);
 
 // GET /vv/pr/:username/:reponame — list PRs
-router.get('/:username/:reponame', (req, res, next) => prController.listPr(req, res, next));
+router.get('/:username/:reponame', visibilityMiddleware, (req, res, next) =>
+  prController.listPr(req, res, next),
+);
 
 // GET /vv/pr/:username/:reponame/:id — get single PR
 router.get('/:username/:reponame/:id', (req, res, next) => prController.getPr(req, res, next));

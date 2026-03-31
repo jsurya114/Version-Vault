@@ -19,7 +19,7 @@ import {
   listRepositoryThunk,
   getCommitsThunk,
 } from '../../../features/repository/repositoryThunks';
-import { listPRThunk } from '../../../features/pullrequest/prThunk';
+
 import {
   selectRepositories,
   selectRepositoryLoading,
@@ -35,8 +35,10 @@ import ActivityTimeline, {
   ActivityItemProps,
 } from '../../../types/common/Profile/ActivityTimeline';
 import { EditProfileModal } from '../components/EditProfileModal';
-import { getMeThunk } from 'src/features/auth/authThunks';
-import { UserResponseDTO } from 'src/types/admin/adminTypes';
+import { getMeThunk } from '../../../features/auth/authThunks';
+import { UserResponseDTO } from '../../../types/admin/adminTypes';
+import { GitCommit } from 'src/types/repository/repositoryTypes';
+import ContributionGraph from '../../../types/common/Profile/ContributionGraph';
 
 interface ActivityGroup {
   month: string;
@@ -63,7 +65,8 @@ const UserProfilePage = () => {
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [activityLoading, setActivityLoading] = useState(false);
   const [userActivities, setUserActivities] = useState<ActivityGroup[]>([]);
-  const [totalContributions, setTotalContributions] = useState<number>(0);
+  const [dailyStats, setDailyStats] = useState<{ [key: string]: number }>({});
+  const [totalYearlyContributions, setTotalYearlyContributions] = useState(0);
 
   // Derived State: Are we looking at our OWN profile?
   const isOwnProfile = authUser?.userId === userId;
@@ -94,17 +97,6 @@ const UserProfilePage = () => {
     }
   }, [displayUser?.id]);
 
-  const formatRelativeTime = (date: Date) => {
-    const now = new Date();
-    const diffInMs = now.getTime() - date.getTime();
-    const diffInHours = diffInMs / (1000 * 60 * 60);
-
-    if (diffInHours < 1) return 'Just now';
-    if (diffInHours < 24) return `${Math.floor(diffInHours)} hours ago`;
-    if (diffInHours < 48) return 'Yesterday';
-    return date.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
-  };
-
   // Inside UserProfilePage.tsx component:
 
   const fetchRealActivity = async () => {
@@ -114,11 +106,16 @@ const UserProfilePage = () => {
       const activeRepos = visibleRepositories.slice(0, 10);
       const months: { [key: string]: ActivityItemProps[] } = {};
 
+      const stats: { [key: string]: number } = {};
+      let yearTotal = 0;
       // Process repositories one by one to avoid race conditions
       for (const repo of activeRepos) {
         const date = new Date(repo.createdAt || new Date());
         const monthKey = date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 
+        const repoDayKey = date.toISOString().split('T')[0];
+        stats[repoDayKey] = (stats[repoDayKey] || 0) + 1;
+        yearTotal++;
         if (!months[monthKey]) months[monthKey] = [];
 
         // 1. Handle Commits for this repo
@@ -145,6 +142,12 @@ const UserProfilePage = () => {
             });
             commitGroup.repoCount = (commitGroup.repoCount || 0) + 1;
             commitGroup.totalCommits = (commitGroup.totalCommits || 0) + commits.length;
+
+            commits.forEach((c: GitCommit) => {
+              const commitDayKey = new Date(c.date).toISOString().split('T')[0];
+              stats[commitDayKey] = (stats[commitDayKey] || 0) + 1;
+              yearTotal++;
+            });
           }
         }
 
@@ -163,6 +166,10 @@ const UserProfilePage = () => {
         });
         repoGroup.repoCount = (repoGroup.repoCount || 0) + 1;
       }
+
+      // 5. Update the states for the Heatmap
+      setDailyStats(stats);
+      setTotalYearlyContributions(yearTotal);
 
       const sortedActivities = Object.entries(months)
         .sort((a, b) => new Date(b[0]).getTime() - new Date(a[0]).getTime())
@@ -328,6 +335,12 @@ const UserProfilePage = () => {
                   )}
                 </div>
 
+                <ContributionGraph
+                  data={dailyStats}
+                  totalContributions={totalYearlyContributions}
+                  currentYear={new Date().getFullYear()}
+                  joinedYear={new Date(displayUser?.createdAt || new Date()).getFullYear()}
+                />
                 {/* Contribution / Activity Timeline */}
                 <ActivityTimeline activities={userActivities} isLoading={activityLoading} />
               </div>

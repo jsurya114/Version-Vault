@@ -598,8 +598,16 @@ const RepositoryDetailPage = () => {
                 {/* Latest commit bar */}
                 {latestCommit && !selectedFile && (
                   <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-3 bg-gray-900/30 shrink-0">
-                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
-                      {latestCommit.author?.[0]?.toUpperCase()}
+                    <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0 overflow-hidden shadow-sm border border-gray-800">
+                      {isOwner && user?.avatar ? (
+                        <img
+                          src={user.avatar}
+                          alt={latestCommit.author}
+                          className="w-full h-full object-cover"
+                        />
+                      ) : (
+                        latestCommit.author?.[0]?.toUpperCase()
+                      )}
                     </div>
                     <span className="text-gray-300 text-xs font-medium">{latestCommit.author}</span>
                     <span className="text-gray-400 text-xs truncate flex-1">
@@ -623,8 +631,16 @@ const RepositoryDetailPage = () => {
                   <div className="flex-1 overflow-auto flex flex-col">
                     <div className="px-4 py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-900/30">
                       <div className="flex items-center gap-3">
-                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
-                          {latestCommit?.author?.[0]?.toUpperCase()}
+                        <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0 overflow-hidden shadow-sm border border-gray-800">
+                          {isOwner && user?.avatar ? (
+                            <img
+                              src={user.avatar}
+                              alt={latestCommit.author}
+                              className="w-full h-full object-cover"
+                            />
+                          ) : (
+                            latestCommit.author?.[0]?.toUpperCase()
+                          )}
                         </div>
                         <span className="text-gray-300 text-xs font-medium">
                           {latestCommit?.author}
