@@ -81,42 +81,42 @@ const AdminLoginPage = () => {
         className="fixed inset-0 pointer-events-none z-0"
         style={{
           background:
-            'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,255,70,0.015) 2px, rgba(0,255,70,0.015) 4px)',
+            'repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(59,130,246,0.015) 2px, rgba(59,130,246,0.015) 4px)',
         }}
       />
 
       <div className="w-full max-w-lg z-10">
         {/* Terminal Header */}
-        <div className="bg-gray-950 border border-green-500/30 rounded-t-xl px-4 py-2 flex items-center gap-2">
+        <div className="bg-gray-950 border border-blue-500/30 rounded-t-xl px-4 py-2 flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500" />
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
-          <div className="w-3 h-3 rounded-full bg-green-500" />
-          <span className="text-green-500/60 text-xs ml-2">admin@version-vault ~ secure-login</span>
+          <div className="w-3 h-3 rounded-full bg-blue-500" />
+          <span className="text-blue-500/60 text-xs ml-2">admin@version-vault ~ secure-login</span>
         </div>
 
         {/* Terminal Body */}
-        <div className="bg-gray-950 border-x border-green-500/30 px-6 py-4 min-h-24">
+        <div className="bg-gray-950 border-x border-blue-500/30 px-6 py-4 min-h-24">
           {bootText.map((line, i) => (
-            <p key={i} className="text-green-400 text-xs leading-relaxed">
+            <p key={i} className="text-blue-400 text-xs leading-relaxed">
               {line}
             </p>
           ))}
-          {bootText.length < 4 && <span className="text-green-400 text-xs animate-pulse">█</span>}
+          {bootText.length < 4 && <span className="text-blue-400 text-xs animate-pulse">█</span>}
         </div>
 
         {/* Main Card */}
-        <div className="bg-gray-950 border border-green-500/30 border-t-0 rounded-b-xl px-8 py-8">
+        <div className="bg-gray-950 border border-blue-500/30 border-t-0 rounded-b-xl px-8 py-8">
           {/* Title */}
           <div className="mb-6 text-center">
             <div className="inline-flex items-center gap-2 mb-3">
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-green-400 text-xs tracking-widest uppercase">
+              <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+              <span className="text-blue-400 text-xs tracking-widest uppercase">
                 Secure Access Portal
               </span>
-              <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
             </div>
             <h1 className="text-2xl font-bold text-white tracking-tight">
-              Version<span className="text-green-400">Vault</span> Admin
+              Version<span className="text-blue-400">Vault</span> Admin
             </h1>
             <p className="text-gray-500 text-xs mt-1 tracking-wider">AUTHORIZED PERSONNEL ONLY</p>
           </div>
@@ -142,11 +142,11 @@ const AdminLoginPage = () => {
           <form onSubmit={handleSubmit} className="space-y-4">
             {/* Admin ID */}
             <div>
-              <label className="block text-green-400/70 text-xs mb-1 tracking-wider uppercase">
+              <label className="block text-blue-400/70 text-xs mb-1 tracking-wider uppercase">
                 Admin ID
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-green-500/50 text-sm">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500/50 text-sm">
                   $
                 </span>
                 <input
@@ -155,7 +155,7 @@ const AdminLoginPage = () => {
                   value={formData.userId}
                   onChange={handleChange}
                   placeholder="admin_id"
-                  className="w-full bg-black border border-green-500/30 rounded-lg pl-8 pr-4 py-2.5 text-green-300 placeholder-green-900 focus:outline-none focus:border-green-400 transition text-sm"
+                  className="w-full bg-black border border-blue-500/30 rounded-lg pl-8 pr-4 py-2.5 text-blue-300 placeholder-blue-900 focus:outline-none focus:border-blue-400 transition text-sm"
                 />
               </div>
               {fieldErrors.userId && (
@@ -165,11 +165,11 @@ const AdminLoginPage = () => {
 
             {/* Password */}
             <div>
-              <label className="block text-green-400/70 text-xs mb-1 tracking-wider uppercase">
+              <label className="block text-blue-400/70 text-xs mb-1 tracking-wider uppercase">
                 Password
               </label>
               <div className="relative">
-                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-green-500/50 text-sm">
+                <span className="absolute left-3 top-1/2 -translate-y-1/2 text-blue-500/50 text-sm">
                   $
                 </span>
                 <input
@@ -178,12 +178,12 @@ const AdminLoginPage = () => {
                   value={formData.password}
                   onChange={handleChange}
                   placeholder="••••••••"
-                  className="w-full bg-black border border-green-500/30 rounded-lg pl-8 pr-10 py-2.5 text-green-300 placeholder-green-900 focus:outline-none focus:border-green-400 transition text-sm"
+                  className="w-full bg-black border border-blue-500/30 rounded-lg pl-8 pr-10 py-2.5 text-blue-300 placeholder-blue-900 focus:outline-none focus:border-blue-400 transition text-sm"
                 />
                 <button
                   type="button"
                   onClick={() => setShowPassword(!showPassword)}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 text-green-700 hover:text-green-400 transition"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 text-blue-700 hover:text-blue-400 transition"
                 >
                   {showPassword ? (
                     <svg
@@ -232,7 +232,7 @@ const AdminLoginPage = () => {
             <button
               type="submit"
               disabled={isLoading}
-              className="w-full bg-green-500/10 hover:bg-green-500/20 disabled:opacity-50 disabled:cursor-not-allowed border border-green-500/40 hover:border-green-400 text-green-400 font-semibold py-2.5 rounded-lg transition text-sm mt-2 tracking-wider"
+              className="w-full bg-blue-500/10 hover:bg-blue-500/20 disabled:opacity-50 disabled:cursor-not-allowed border border-blue-500/40 hover:border-blue-400 text-blue-400 font-semibold py-2.5 rounded-lg transition text-sm mt-2 tracking-wider"
             >
               {isLoading ? (
                 <span className="flex items-center justify-center gap-2">
@@ -247,7 +247,7 @@ const AdminLoginPage = () => {
           {/* Footer */}
           {/* <p className="text-center text-gray-700 text-xs mt-6">
             Not an admin?{' '}
-            <Link to={ROUTES.LOGIN} className="text-green-600 hover:text-green-400 transition">
+            <Link to={ROUTES.LOGIN} className="text-blue-600 hover:text-blue-400 transition">
               User Login →
             </Link>
           </p> */}

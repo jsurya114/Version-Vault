@@ -193,7 +193,10 @@ const PRDetailPage = () => {
                   <GitMerge className="w-4 h-4" />
                   Merge Pull Request
                 </button>
-                <button onClick={() => setIsCloseModalOpen(true)}>
+                <button
+                  onClick={() => setIsCloseModalOpen(true)}
+                  className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 font-bold text-xs px-4 py-2 rounded-xl transition"
+                >
                   <X className="w-4 h-4" /> Close PR
                 </button>
               </div>

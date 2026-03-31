@@ -1,5 +1,5 @@
 import React from 'react';
-import { GitCommit, Book, ChevronDown } from 'lucide-react';
+import { GitCommit, Book } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 
 export interface RepoCommitActivity {
@@ -34,19 +34,18 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ type, totalCommits, repoCou
       </div>
       <div className="flex flex-col gap-4">
         {/* Header */}
-        <div className="flex items-center justify-between group cursor-pointer pr-2">
-          <h3 className="text-white text-[15px] font-semibold hover:text-blue-400">
-            {
-              type === 'commits'
-                ? `Created ${totalCommits || 0} commits in ${repoCount || 0} repositories`
-                : `Created ${repoCount || 0} ${repoCount === 1 ? 'repository' : 'repositories'}` // Add || 0 and plural check
-            }
+        <div className="flex items-center justify-between group pr-2">
+          <h3 className="text-white text-[15px] font-semibold">
+            {type === 'commits'
+              ? `Created ${totalCommits || 0} commits in ${repoCount || 0} repositories`
+              : `Created ${repoCount || 0} ${repoCount === 1 ? 'repository' : 'repositories'}`}
           </h3>
           <div className="flex flex-col gap-[2px] opacity-0 group-hover:opacity-100 transition-opacity">
             <div className="w-3 h-[1px] bg-gray-600" />
             <div className="w-3 h-[1px] bg-gray-600" />
           </div>
         </div>
+
         {/* Rows */}
         <div className="space-y-2">
           {repos?.map((repo, idx) => (
@@ -63,20 +62,33 @@ const ActivityItem: React.FC<ActivityItemProps> = ({ type, totalCommits, repoCou
                 >
                   {repo.repoName}
                 </span>
+
+                {/* 1. FIXED: Added click handler to link to commits tab */}
                 {type === 'commits' && (
-                  <span className="text-gray-600 text-xs italic">{repo.commitCount} commits</span>
+                  <span
+                    onClick={() => navigate(`/${repo.repoName}?tab=commits`)}
+                    className="text-gray-400 hover:text-blue-400 cursor-pointer text-xs italic transition-colors"
+                  >
+                    {repo.commitCount} commits
+                  </span>
                 )}
               </div>
+
               {/* Middle Column: Language (only for repo creation) */}
               {type === 'repo_created' && (
                 <div className="flex items-center gap-1.5 w-32 text-[12px] text-gray-400">
-                  <div className="w-2.5 h-2.5 rounded-full bg-yellow-400" />
+                  <div className="w-2.5 h-2.5 rounded-full bg-blue-500" />
                   {repo.language}
                 </div>
               )}
+
               {/* Right Column: Progress Bar or Date */}
               {type === 'commits' ? (
-                <div className="w-24 md:w-32 h-1.5 bg-gray-800/50 rounded-full overflow-hidden">
+                /* 2. FIXED: Made progress bar clickable to link to commits */
+                <div
+                  onClick={() => navigate(`/${repo.repoName}?tab=commits`)}
+                  className="w-24 md:w-32 h-1.5 bg-gray-800/50 rounded-full overflow-hidden cursor-pointer hover:ring-1 hover:ring-blue-500/50 transition-all"
+                >
                   <div
                     className="h-full bg-[#3fb950] rounded-full"
                     style={{
