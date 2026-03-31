@@ -635,11 +635,11 @@ const RepositoryDetailPage = () => {
                           {isOwner && user?.avatar ? (
                             <img
                               src={user.avatar}
-                              alt={latestCommit.author}
+                              alt={latestCommit?.author}
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            latestCommit.author?.[0]?.toUpperCase()
+                            latestCommit?.author?.[0]?.toUpperCase()
                           )}
                         </div>
                         <span className="text-gray-300 text-xs font-medium">
