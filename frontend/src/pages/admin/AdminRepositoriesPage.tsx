@@ -1,7 +1,6 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
-import { ROUTES } from '../../constants/routes';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getAllRepoThunk } from 'src/features/admin/getRepoThunk';
 import {

@@ -38,7 +38,10 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
     });
   };
 
-  const handleMouseEnter = (e: React.MouseEvent, day: any) => {
+  const handleMouseEnter = (
+    e: React.MouseEvent,
+    day: { date: string; count: number; isFuture: boolean },
+  ) => {
     // Get mouse position relative to the graph container for positioning
     const rect = e.currentTarget.getBoundingClientRect();
     setHoveredDay({
@@ -138,9 +141,27 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-8 border-transparent border-t-gray-900" />
         </div>
       )}
-      {/* ... (Year Selection stays the same) ... */}
-      <div className="w-full bg-[#0d1117] border border-gray-800 rounded-xl p-6 overflow-hidden flex flex-col items-center shadow-xl">
-        {/* ... (Header stays the same) ... */}
+      <div className="w-full bg-[#0d1117] border border-gray-800 rounded-xl p-6 overflow-hidden flex flex-col shadow-xl">
+        <div className="flex justify-between items-center mb-4">
+          <h3 className="text-gray-300 text-sm font-medium">
+            {totalContributions.toLocaleString()} contributions
+          </h3>
+          <div className="flex gap-2">
+            {availableYears.map((year) => (
+              <button
+                key={year}
+                onClick={() => setSelectedYear(year)}
+                className={`text-[10px] px-2 py-0.5 rounded transition ${
+                  selectedYear === year
+                    ? 'bg-blue-600 text-white'
+                    : 'bg-gray-800 text-gray-400 hover:bg-gray-700'
+                }`}
+              >
+                {year}
+              </button>
+            ))}
+          </div>
+        </div>
         <div className="w-full flex justify-end">
           <div className="flex gap-2 min-w-max">
             {/* Day Labels - Add pointer-events-none to avoid hit-box issues */}

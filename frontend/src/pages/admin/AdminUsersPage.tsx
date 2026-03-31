@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ROUTES } from '../../constants/routes';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { getAllUsersThunk } from '../../features/admin/getUsersThunk';

@@ -79,6 +79,9 @@ const UserProfilePage = () => {
   // Initial Data Fetching
   useEffect(() => {
     if (userId) {
+      setDailyStats({});
+      setUserActivities([]);
+      setTotalYearlyContributions(0);
       // 1. Fetch public profile of the handle in the URL
       dispatch(getProfileThunk(userId));
       dispatch(getFollowersThunk(userId));
@@ -87,6 +90,10 @@ const UserProfilePage = () => {
     return () => {
       // Cleanup: clear the viewedUser state when leaving the page
       dispatch(clearViewedUser());
+
+      setDailyStats({});
+      setUserActivities([]);
+      setTotalYearlyContributions(0);
     };
   }, [userId]);
 
@@ -103,7 +110,9 @@ const UserProfilePage = () => {
     if (!displayUser) return;
     setActivityLoading(true);
     try {
-      const activeRepos = visibleRepositories.slice(0, 10);
+      const userSpecificRepos = visibleRepositories.filter((r) => r.ownerId === displayUser.id);
+
+      const activeRepos = userSpecificRepos.slice(0, 10);
       const months: { [key: string]: ActivityItemProps[] } = {};
 
       const stats: { [key: string]: number } = {};
@@ -184,10 +193,14 @@ const UserProfilePage = () => {
   };
 
   useEffect(() => {
-    if (repositories.length > 0) {
+    if (repositories.length > 0 && displayUser?.id) {
       fetchRealActivity();
+    } else if (repositories.length === 0) {
+      setDailyStats({});
+      setUserActivities([]);
+      setTotalYearlyContributions(0);
     }
-  }, [repositories]);
+  }, [repositories, displayUser?.id]);
 
   const handleFollowToggle = async () => {
     if (!userId) return;

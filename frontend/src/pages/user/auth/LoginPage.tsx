@@ -78,7 +78,6 @@ const LoginPage = () => {
 
             <div className="flex flex-col gap-3">
               {[
-                { title: 'Secure Access', desc: 'JWT tokens stored in HTTP-only cookies' },
                 { title: 'Your Repositories', desc: 'Access all your projects instantly' },
                 { title: 'Team Activity', desc: 'Stay updated with real-time notifications' },
               ].map((f) => (
@@ -146,7 +145,7 @@ const LoginPage = () => {
                   name="userId"
                   value={formData.userId}
                   onChange={handleChange}
-                  placeholder="jay123"
+                  placeholder="example113"
                   className="w-full bg-gray-800 border border-gray-700 rounded-lg px-4 py-2.5 text-white placeholder-gray-500 focus:outline-none focus:border-blue-500 transition text-sm"
                 />
                 {fieldErrors.userId && (

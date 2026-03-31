@@ -23,7 +23,7 @@ import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
-
+import VisibilityConfirmModal from '../../types/common/Modal/VisibilityModal';
 const visibilityColors: Record<string, string> = {
   public: 'bg-green-500/10 text-green-400 border border-green-500/30',
   private: 'bg-gray-700 text-gray-400 border border-gray-600',
@@ -37,7 +37,6 @@ const RepositoryListPage = () => {
   const error = useAppSelector(selectRepositoryError);
   const meta = useAppSelector(selectRepositoryMeta);
   const authUser = useAppSelector(selectAuthUser);
-
   const [search, setSearch] = useState('');
   const [visibilityFilter, setVisibilityFilter] = useState('all');
   const [sortField, setSortField] = useState('createdAt');
@@ -47,6 +46,11 @@ const RepositoryListPage = () => {
     open: boolean;
     repo: RepositoryResponseDTO | null;
   }>({ open: false, repo: null });
+  const [visibilityModal, setVisibilityModal] = useState<{
+    open: boolean;
+    repo: RepositoryResponseDTO | null;
+  }>({ open: false, repo: null });
+
   const limit = 5;
 
   const fetchRepos = (overrides = {}) => {
@@ -62,6 +66,26 @@ const RepositoryListPage = () => {
         ...overrides,
       }),
     );
+  };
+
+  const openVisibilityModal = (repo: RepositoryResponseDTO) => {
+    setVisibilityModal({ open: true, repo });
+  };
+
+  const handleConfirmVisibility = async () => {
+    if (!visibilityModal.repo) return;
+
+    const newVisibility = visibilityModal.repo.visibility === 'public' ? 'private' : 'public';
+    await dispatch(
+      updateVisibilityThunk({
+        username: authUser?.userId || '',
+        reponame: visibilityModal.repo.name,
+        visibility: newVisibility,
+      }),
+    );
+
+    setVisibilityModal({ open: false, repo: null });
+    fetchRepos();
   };
 
   useEffect(() => {
@@ -85,20 +109,6 @@ const RepositoryListPage = () => {
       }),
     );
     setDeleteModal({ open: false, repo: null });
-    fetchRepos();
-  };
-
-  const handleToggleVisibility = async (repo: RepositoryResponseDTO) => {
-    const newVisibility = repo.visibility === 'public' ? 'private' : 'public';
-
-    await dispatch(
-      updateVisibilityThunk({
-        username: authUser?.userId || '',
-        reponame: repo.name,
-        visibility: newVisibility,
-      }),
-    );
-
     fetchRepos();
   };
 
@@ -168,7 +178,7 @@ const RepositoryListPage = () => {
           <button
             onClick={(e) => {
               e.stopPropagation();
-              handleToggleVisibility(r);
+              openVisibilityModal(r);
             }}
             className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
           >
@@ -273,6 +283,14 @@ const RepositoryListPage = () => {
         onConfirm={handleDelete}
         itemPath={`${authUser?.userId}/${deleteModal.repo?.name}`}
         itemName="repository"
+        isLoading={isLoading}
+      />
+      <VisibilityConfirmModal
+        isOpen={visibilityModal.open}
+        onClose={() => setVisibilityModal({ open: false, repo: null })}
+        onConfirm={handleConfirmVisibility}
+        repoName={visibilityModal.repo?.name || ''}
+        newVisibility={visibilityModal.repo?.visibility === 'public' ? 'private' : 'public'}
         isLoading={isLoading}
       />
     </div>
