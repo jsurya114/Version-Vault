@@ -1,13 +1,36 @@
 import { RootState } from '../../app/store';
-export const selectRepositories = (state: RootState) => state.repository.repositories;
-export const selectSelectedRepository = (state: RootState) => state.repository.selectedRepository;
-export const selectRepositoryLoading = (state: RootState) => state.repository.isLoading;
-export const selectRepositoryError = (state: RootState) => state.repository.error;
-export const selectRepositoryMeta = (state: RootState) => state.repository.meta;
-export const selectFiles = (state: RootState) => state.repository.files;
-export const selectFileContent = (state: RootState) => state.repository.fileContent;
-export const selectCommits = (state: RootState) => state.repository.commits;
-export const selectFilesLoading = (state: RootState) => state.repository.isFilesLoading;
-export const selectCommitsLoading = (state: RootState) => state.repository.isCommitsLoading;
-export const selectBranches = (state: RootState) => state.repository.branches || [];
-export const selectRepositoryVisibilityError = (state: RootState) => state.repository.error;
+
+import { createSelector } from '@reduxjs/toolkit';
+
+const selectBaseState = (state: RootState) => state.repository;
+
+export const selectRepositories = createSelector([selectBaseState], (state) => state.repositories);
+export const selectSelectedRepository = createSelector(
+  [selectBaseState],
+  (state) => state.selectedRepository,
+);
+export const selectRepositoryLoading = createSelector(
+  [selectBaseState],
+  (state) => state.isLoading,
+);
+export const selectRepositoryError = createSelector([selectBaseState], (state) => state.error);
+export const selectRepositoryMeta = createSelector([selectBaseState], (state) => state.meta);
+
+export const selectFiles = createSelector([selectBaseState], (state) => state.files);
+export const selectFileContent = createSelector([selectBaseState], (state) => state.fileContent);
+export const selectCommits = createSelector([selectBaseState], (state) => state.commits);
+
+export const selectFilesLoading = createSelector(
+  [selectBaseState],
+  (state) => state.isFilesLoading,
+);
+
+export const selectCommitsLoading = createSelector(
+  [selectBaseState],
+  (state) => state.isCommitsLoading,
+);
+export const selectBranches = createSelector([selectBaseState], (state) => state.branches || []);
+export const selectRepositoryVisibilityError = createSelector(
+  [selectBaseState],
+  (state) => state.error,
+);

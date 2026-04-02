@@ -5,8 +5,68 @@ import { selectAdminUsers } from '../../features/admin/adminSelectors';
 import { getAllRepoThunk } from 'src/features/admin/getRepoThunk';
 import { selectAdminRepos, selectAdminReposMeta } from 'src/features/admin/adminRepoSelectors';
 import { ROUTES } from '../../constants/routes';
-import { useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
+
+const UserRow = React.memo(({ user }: { user: any }) => (
+  <tr className="border-b border-gray-800/50 last:border-0">
+    <td className="py-2.5">
+      <div className="flex items-center gap-2">
+        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+          {user.username?.[0]?.toUpperCase()}
+        </div>
+        <div>
+          <p className="text-white text-xs font-medium">{user.username}</p>
+          <p className="text-gray-500 text-xs">{user.email}</p>
+        </div>
+      </div>
+    </td>
+    <td className="py-2.5 text-gray-400 text-xs">
+      {user.createdAt
+        ? new Date(user.createdAt).toLocaleDateString('en-US', {
+            month: 'short',
+            day: 'numeric',
+          })
+        : '—'}
+    </td>
+    <td className="py-2.5">
+      <Link
+        to={`/admin/users/${user.id}`}
+        className="text-blue-400 hover:text-blue-300 text-xs transition"
+      >
+        View
+      </Link>
+    </td>
+  </tr>
+));
+
+const RepoRow = React.memo(({ repo }: { repo: any }) => (
+  <tr className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
+    <td className="py-2.5">
+      <div className="flex items-center gap-2">
+        <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
+          📁
+        </div>
+        <div>
+          <p className="text-white text-xs font-medium">{repo.name}</p>
+          <p className="text-gray-500 text-[10px] uppercase font-mono">{repo.defaultBranch}</p>
+        </div>
+      </div>
+    </td>
+    <td className="py-2.5 text-blue-400 text-xs text-center font-bold">@{repo.ownerUsername}</td>
+    <td className="py-2.5 text-right">
+      <span
+        className={`text-[9px] px-2 py-0.5 rounded font-black tracking-tighter uppercase ${
+          repo.visibility === 'private'
+            ? 'bg-gray-800 text-gray-400 border border-gray-700'
+            : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
+        }`}
+      >
+        {repo.visibility}
+      </span>
+    </td>
+  </tr>
+));
 
 const AdminDashboard = () => {
   const dispatch = useAppDispatch();
@@ -19,40 +79,49 @@ const AdminDashboard = () => {
     dispatch(getAllRepoThunk({ limit: 5 }));
   }, []);
 
-  const newestRepos = repos.slice(0, 3);
+  const newestRepos = useMemo(() => repos.slice(0, 3), [repos]);
 
-  const totalActive = users.filter((u) => !u.isBlocked && u.isVerified).length;
-  const totalBlocked = users.filter((u) => u.isBlocked).length;
-  const newestUsers = [...users]
-    .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
-    .slice(0, 3);
+  const totalActive = useMemo(
+    () => users.filter((u) => !u.isBlocked && u.isVerified).length,
+    [users],
+  );
+  const totalBlocked = useMemo(() => users.filter((u) => u.isBlocked).length, [users]);
 
-  const stats = [
-    {
-      label: 'Total Users',
-      value: users.length.toLocaleString(),
-      icon: 'group',
-      color: 'text-blue-400',
-    },
-    {
-      label: 'Total Repositories',
-      value: repoMeta.total.toLocaleString(),
-      icon: 'folder_managed',
-      color: 'text-blue-400',
-    },
-    {
-      label: 'Active Users',
-      value: totalActive.toLocaleString(),
-      icon: 'history',
-      color: 'text-blue-400',
-    },
-    {
-      label: 'Blocked Users',
-      value: totalBlocked.toLocaleString(),
-      icon: 'database',
-      color: 'text-blue-400',
-    },
-  ];
+  const newestUsers = useMemo(() => {
+    return [...users]
+      .sort((a, b) => new Date(b.createdAt || 0).getTime() - new Date(a.createdAt || 0).getTime())
+      .slice(0, 3);
+  }, [users]);
+
+  const stats = useMemo(
+    () => [
+      {
+        label: 'Total Users',
+        value: users.length.toLocaleString(),
+        icon: 'group',
+        color: 'text-blue-400',
+      },
+      {
+        label: 'Total Repositories',
+        value: (repoMeta?.total ?? 0).toLocaleString(),
+        icon: 'folder_managed',
+        color: 'text-blue-400',
+      },
+      {
+        label: 'Active Users',
+        value: totalActive.toLocaleString(),
+        icon: 'history',
+        color: 'text-blue-400',
+      },
+      {
+        label: 'Blocked Users',
+        value: totalBlocked.toLocaleString(),
+        icon: 'database',
+        color: 'text-blue-400',
+      },
+    ],
+    [users.length, repoMeta?.total, totalActive, totalBlocked],
+  );
 
   return (
     <AdminLayout>
@@ -120,35 +189,7 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               {newestUsers.map((u) => (
-                <tr key={u.id} className="border-b border-gray-800/50 last:border-0">
-                  <td className="py-2.5">
-                    <div className="flex items-center gap-2">
-                      <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-                        {u.username?.[0]?.toUpperCase()}
-                      </div>
-                      <div>
-                        <p className="text-white text-xs font-medium">{u.username}</p>
-                        <p className="text-gray-500 text-xs">{u.email}</p>
-                      </div>
-                    </div>
-                  </td>
-                  <td className="py-2.5 text-gray-400 text-xs">
-                    {u.createdAt
-                      ? new Date(u.createdAt).toLocaleDateString('en-US', {
-                          month: 'short',
-                          day: 'numeric',
-                        })
-                      : '—'}
-                  </td>
-                  <td className="py-2.5">
-                    <Link
-                      to={`/admin/users/${u.id}`}
-                      className="text-blue-400 hover:text-blue-300 text-xs transition"
-                    >
-                      View
-                    </Link>
-                  </td>
-                </tr>
+                <UserRow key={u.id} user={u} />
               ))}
             </tbody>
           </table>
@@ -172,40 +213,7 @@ const AdminDashboard = () => {
             </thead>
             <tbody>
               {newestRepos.length > 0 ? (
-                newestRepos.map((r) => (
-                  <tr
-                    key={r.id}
-                    className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition"
-                  >
-                    <td className="py-2.5">
-                      <div className="flex items-center gap-2">
-                        <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-                          📁
-                        </div>
-                        <div>
-                          <p className="text-white text-xs font-medium">{r.name}</p>
-                          <p className="text-gray-500 text-[10px] uppercase font-mono">
-                            {r.defaultBranch}
-                          </p>
-                        </div>
-                      </div>
-                    </td>
-                    <td className="py-2.5 text-blue-400 text-xs text-center font-bold">
-                      @{r.ownerUsername}
-                    </td>
-                    <td className="py-2.5 text-right">
-                      <span
-                        className={`text-[9px] px-2 py-0.5 rounded font-black tracking-tighter uppercase ${
-                          r.visibility === 'private'
-                            ? 'bg-gray-800 text-gray-400 border border-gray-700'
-                            : 'bg-blue-500/10 text-blue-400 border border-blue-500/20'
-                        }`}
-                      >
-                        {r.visibility}
-                      </span>
-                    </td>
-                  </tr>
-                ))
+                newestRepos.map((r) => <RepoRow key={r.id} repo={r} />)
               ) : (
                 <tr>
                   <td colSpan={3} className="py-6 text-gray-500 text-xs italic text-center">

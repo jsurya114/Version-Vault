@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -53,26 +53,44 @@ const RepositoryListPage = () => {
 
   const limit = 5;
 
-  const fetchRepos = (overrides = {}) => {
-    dispatch(
-      listRepositoryThunk({
-        page,
-        limit,
-        search: search || undefined,
-        sort: sortField,
-        order: sortOrder,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        status: visibilityFilter === 'all' ? undefined : (visibilityFilter as any),
-        ...overrides,
+  const fetchParams = useMemo(
+    () => ({
+      page,
+      limit: 5,
+      search: search || undefined,
+      sort: sortField,
+      order: sortOrder,
+      status: visibilityFilter === 'all' ? undefined : (visibilityFilter as any),
+    }),
+    [page, search, sortField, sortOrder, visibilityFilter],
+  );
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        dispatch(listRepositoryThunk(fetchParams));
+      },
+      search ? 500 : 0,
+    );
+    return () => clearTimeout(timer);
+  }, [dispatch, fetchParams, search]);
+
+  const handleDelete = useCallback(async () => {
+    if (!deleteModal.repo) return;
+    await dispatch(
+      deleteRepositoryThunk({
+        username: authUser?.userId || '',
+        reponame: deleteModal.repo.name,
       }),
     );
-  };
+    setDeleteModal({ open: false, repo: null });
+  }, [dispatch, authUser?.userId, deleteModal.repo]);
 
-  const openVisibilityModal = (repo: RepositoryResponseDTO) => {
+  const openVisibilityModal = useCallback((repo: RepositoryResponseDTO) => {
     setVisibilityModal({ open: true, repo });
-  };
+  }, []);
 
-  const handleConfirmVisibility = async () => {
+  const handleConfirmVisibility = useCallback(async () => {
     if (!visibilityModal.repo) return;
 
     const newVisibility = visibilityModal.repo.visibility === 'public' ? 'private' : 'public';
@@ -85,119 +103,97 @@ const RepositoryListPage = () => {
     );
 
     setVisibilityModal({ open: false, repo: null });
-    fetchRepos();
-  };
+  }, [dispatch, authUser?.userId, visibilityModal.repo]);
 
-  useEffect(() => {
-    fetchRepos();
-  }, [page, sortField, sortOrder, visibilityFilter]);
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPage(1);
-      fetchRepos({ page: 1 });
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [search]);
-
-  const handleDelete = async () => {
-    if (!deleteModal.repo) return;
-    await dispatch(
-      deleteRepositoryThunk({
-        username: authUser?.userId || '',
-        reponame: deleteModal.repo.name,
-      }),
-    );
-    setDeleteModal({ open: false, repo: null });
-    fetchRepos();
-  };
-
-  const columns: ColumnDef<RepositoryResponseDTO>[] = [
-    {
-      key: 'name',
-      label: 'REPOSITORY',
-      render: (r) => (
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-            📁
+  const columns: ColumnDef<RepositoryResponseDTO>[] = useMemo(
+    () => [
+      {
+        key: 'name',
+        label: 'REPOSITORY',
+        render: (r) => (
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
+              📁
+            </div>
+            <div>
+              <p
+                className="text-blue-400 text-sm font-medium hover:underline cursor-pointer"
+                onClick={() => navigate(`/${authUser?.userId}/${r.name}`)}
+              >
+                {r.name}
+              </p>
+              <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
+            </div>
           </div>
-          <div>
-            <p
-              className="text-blue-400 text-sm font-medium hover:underline cursor-pointer"
-              onClick={() => navigate(`/${authUser?.userId}/${r.name}`)}
+        ),
+      },
+      {
+        key: 'visibility',
+        label: 'VISIBILITY',
+        render: (r) => (
+          <span
+            className={`text-xs px-2 py-0.5 rounded font-medium ${visibilityColors[r.visibility]}`}
+          >
+            {r.visibility.toUpperCase()}
+          </span>
+        ),
+      },
+      {
+        key: 'defaultBranch',
+        label: 'DEFAULT BRANCH',
+        render: (r) => <span className="text-gray-400 text-sm">{r.defaultBranch}</span>,
+      },
+      {
+        key: 'stars',
+        label: 'STARS',
+        render: (r) => <span className="text-gray-400 text-sm">⭐ {r.stars}</span>,
+      },
+      {
+        key: 'createdAt',
+        label: 'CREATED',
+        render: (r) => (
+          <span className="text-gray-400 text-sm">
+            {r.createdAt
+              ? new Date(r.createdAt).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })
+              : '—'}
+          </span>
+        ),
+      },
+      {
+        key: 'actions',
+        label: 'ACTIONS',
+        render: (r) => (
+          <div className="flex items-center gap-4">
+            {/* 3. The Visibility Toggle Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                openVisibilityModal(r);
+              }}
+              className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
             >
-              {r.name}
-            </p>
-            <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
+              Make {r.visibility === 'public' ? 'Private' : 'Public'}
+            </button>
+            {/* Existing Delete Button */}
+            <button
+              onClick={(e) => {
+                e.stopPropagation();
+                setDeleteModal({ open: true, repo: r });
+              }}
+              className="text-red-400 hover:text-red-300 text-xs transition"
+            >
+              Delete
+            </button>
           </div>
-        </div>
-      ),
-    },
-    {
-      key: 'visibility',
-      label: 'VISIBILITY',
-      render: (r) => (
-        <span
-          className={`text-xs px-2 py-0.5 rounded font-medium ${visibilityColors[r.visibility]}`}
-        >
-          {r.visibility.toUpperCase()}
-        </span>
-      ),
-    },
-    {
-      key: 'defaultBranch',
-      label: 'DEFAULT BRANCH',
-      render: (r) => <span className="text-gray-400 text-sm">{r.defaultBranch}</span>,
-    },
-    {
-      key: 'stars',
-      label: 'STARS',
-      render: (r) => <span className="text-gray-400 text-sm">⭐ {r.stars}</span>,
-    },
-    {
-      key: 'createdAt',
-      label: 'CREATED',
-      render: (r) => (
-        <span className="text-gray-400 text-sm">
-          {r.createdAt
-            ? new Date(r.createdAt).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })
-            : '—'}
-        </span>
-      ),
-    },
-    {
-      key: 'actions',
-      label: 'ACTIONS',
-      render: (r) => (
-        <div className="flex items-center gap-4">
-          {/* 3. The Visibility Toggle Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              openVisibilityModal(r);
-            }}
-            className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
-          >
-            Make {r.visibility === 'public' ? 'Private' : 'Public'}
-          </button>
-          {/* Existing Delete Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setDeleteModal({ open: true, repo: r });
-            }}
-            className="text-red-400 hover:text-red-300 text-xs transition"
-          >
-            Delete
-          </button>
-        </div>
-      ),
-    },
-  ];
+        ),
+      },
+    ],
+    [navigate, authUser?.userId, openVisibilityModal],
+  );
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">

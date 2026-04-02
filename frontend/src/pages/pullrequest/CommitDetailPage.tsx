@@ -1,4 +1,4 @@
-import { useEffect } from 'react';
+import React, { useEffect } from 'react';
 import { useParams } from 'react-router-dom';
 import { CheckCircle2, Code, FileCode } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -11,7 +11,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { CommitDiffs } from './components/CommitDiffs';
 
-const CommitDetailPage = () => {
+const CommitDetailPage = React.memo(() => {
   const { username, reponame, hash } = useParams();
   const dispatch = useAppDispatch();
 
@@ -44,7 +44,6 @@ const CommitDetailPage = () => {
           </div>
         ) : commit ? (
           <div className="space-y-6">
-            {/* The single commit card from the user's screenshot */}
             <div className="bg-gray-950 border border-gray-800 rounded-md divide-y divide-gray-800 shadow-sm">
               <div className="p-4 flex flex-col gap-1">
                 <div className="flex items-center justify-between">
@@ -87,6 +86,6 @@ const CommitDetailPage = () => {
       <AppFooter />
     </div>
   );
-};
+});
 
 export default CommitDetailPage;

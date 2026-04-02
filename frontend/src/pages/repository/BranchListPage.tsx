@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   GitBranch as GitBranchIcon,
@@ -41,6 +41,112 @@ const timeAgo = (dateStr: string) => {
   return `${mins} min${mins > 1 ? 's' : ''} ago`;
 };
 
+const BranchRow = React.memo(
+  ({
+    branch,
+    isDefault,
+    isOwner,
+    onDelete,
+    username,
+    reponame,
+  }: {
+    branch: GitBranch;
+    isDefault?: boolean;
+    isOwner: boolean;
+    onDelete: (name: string) => void;
+    username: string;
+    reponame: string;
+  }) => {
+    const navigate = useNavigate();
+    const user = useAppSelector((state) => state.auth.user);
+
+    const handleDelete = useCallback(
+      (e: React.MouseEvent) => {
+        e.stopPropagation();
+        onDelete(branch.name);
+      },
+      [onDelete, branch.name],
+    );
+
+    return (
+      <div
+        onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
+        className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group"
+      >
+        <div className="flex items-center gap-3">
+          <div className="bg-blue-500/10 px-2.5 py-1.5 rounded-md text-blue-400 font-mono text-xs flex items-center gap-2 border border-blue-500/20">
+            <GitBranchIcon className="w-3.5 h-3.5" /> {branch.name}
+          </div>
+          {isDefault && (
+            <span className="text-[9px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded font-bold uppercase ring-1 ring-gray-700">
+              Default
+            </span>
+          )}
+        </div>
+
+        <div className="flex items-center gap-2.5 text-gray-400 text-xs">
+          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm overflow-hidden border border-gray-800">
+            {isOwner && user?.avatar ? (
+              <img
+                src={user.avatar}
+                alt={branch.lastCommitAuthor}
+                className="w-full h-full object-cover"
+              />
+            ) : (
+              branch.lastCommitAuthor?.[0] || 'U'
+            )}
+          </div>
+          <span>{timeAgo(branch.lastCommitDate || '')}</span>
+        </div>
+
+        <div
+          className={`flex items-center gap-1.5 text-xs font-medium ${
+            branch.status === 'success'
+              ? 'text-green-500'
+              : branch.status === 'failure'
+                ? 'text-red-500'
+                : branch.status === 'pending'
+                  ? 'text-yellow-500'
+                  : 'text-gray-600'
+          }`}
+        >
+          {branch.status === 'success' && <CheckCircle2 className="w-3.5 h-3.5" />}
+          {branch.status === 'failure' && <X className="w-3.5 h-3.5 text-red-500" />}
+          {branch.status === 'pending' && <Clock className="w-3.5 h-3.5 animate-spin" />}
+
+          <span>{branch.checks || '--'}</span>
+        </div>
+
+        <div className="flex items-center justify-center">
+          <div className="flex bg-gray-800/50 h-1.5 w-16 rounded-full overflow-hidden ring-1 ring-white/5">
+            <div className="bg-gray-600 h-full" style={{ width: '60%' }} />
+            <div className="bg-blue-500 h-full border-l border-gray-950" style={{ width: '40%' }} />
+          </div>
+          <span className="text-[10px] text-gray-500 ml-2.5 tabular-nums">3 | 2</span>
+        </div>
+
+        <div className="flex items-center justify-end gap-4">
+          {!isDefault && (
+            <div className="flex items-center gap-1.5 text-gray-500 hover:text-blue-400 transition cursor-pointer text-[10px] font-bold">
+              <GitPullRequest className="w-3.5 h-3.5" /> #4
+            </div>
+          )}
+          {!isDefault && (
+            <Trash2
+              className={`w-4 h-4 transition ${
+                !isOwner
+                  ? 'text-gray-800 cursor-not-allowed opacity-30'
+                  : 'text-gray-600 hover:text-red-500 cursor-pointer'
+              }`}
+              onClick={isOwner ? handleDelete : undefined}
+            />
+          )}
+        </div>
+      </div>
+    );
+  },
+);
+
 // --- Component ---
 const BranchListPage = () => {
   const { username, reponame } = useParams();
@@ -67,38 +173,45 @@ const BranchListPage = () => {
   }, [username, reponame, dispatch]);
 
   // Fixed filtering: handle object structure
-  const filteredBranches = rawBranches.filter((b) => {
-    const name = typeof b === 'string' ? b : b.name;
-    return name.toLowerCase().includes(searchTerm.toLowerCase());
-  });
-
-  const handleCreateBranch = async (newBranch: string, fromBranch: string) => {
-    const result = await dispatch(
-      createBranchThunk({
-        username: username!,
-        reponame: reponame!,
-        newBranch,
-        fromBranch,
+  const filteredBranches = useMemo(
+    () =>
+      rawBranches.filter((b) => {
+        const name = typeof b === 'string' ? b : b.name;
+        return name.toLowerCase().includes(searchTerm.toLowerCase());
       }),
-    );
-    if (createBranchThunk.fulfilled.match(result)) {
-      setShowCreateModal(false);
-      setIsCreatingLoader(true);
+    [rawBranches, searchTerm],
+  );
 
-      // Show loader for 2 seconds, then show sonar and refresh data
-      setTimeout(() => {
-        setIsCreatingLoader(false);
-        setSuccessSonar({
-          isOpen: true,
-          title: 'Branch Created!',
-          subtitle: `Branch "${newBranch}" is ready.`,
-        });
-        dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
-      }, 2000);
-    }
-  };
+  const handleCreateBranch = useCallback(
+    async (newBranch: string, fromBranch: string) => {
+      const result = await dispatch(
+        createBranchThunk({
+          username: username!,
+          reponame: reponame!,
+          newBranch,
+          fromBranch,
+        }),
+      );
+      if (createBranchThunk.fulfilled.match(result)) {
+        setShowCreateModal(false);
+        setIsCreatingLoader(true);
 
-  const handleConfirmDelete = async () => {
+        // Show loader for 2 seconds, then show sonar and refresh data
+        setTimeout(() => {
+          setIsCreatingLoader(false);
+          setSuccessSonar({
+            isOpen: true,
+            title: 'Branch Created!',
+            subtitle: `Branch "${newBranch}" is ready.`,
+          });
+          dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
+        }, 2000);
+      }
+    },
+    [dispatch, username, reponame],
+  );
+
+  const handleConfirmDelete = useCallback(async () => {
     const result = await dispatch(
       deleteBranchThunk({
         username: username!,
@@ -110,7 +223,12 @@ const BranchListPage = () => {
       setShowDeleteModal(false);
       dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
     }
-  };
+  }, [dispatch, username, reponame, selectedBranch]);
+
+  const handleDeleteClick = useCallback((name: string) => {
+    setSelectedBranch(name);
+    setShowDeleteModal(true);
+  }, []);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col font-sans">
@@ -210,10 +328,7 @@ const BranchListPage = () => {
                     key={branchObj.name}
                     branch={branchObj}
                     isOwner={isOwner}
-                    onDelete={() => {
-                      setSelectedBranch(branchObj.name);
-                      setShowDeleteModal(true);
-                    }}
+                    onDelete={handleDeleteClick}
                     username={username!}
                     reponame={reponame!}
                   />
@@ -279,101 +394,5 @@ const BranchTableContainer = ({ children }: { children: React.ReactNode }) => (
     {children}
   </div>
 );
-
-const BranchRow = ({
-  branch,
-  isDefault,
-  isOwner,
-  onDelete,
-  username,
-  reponame,
-}: {
-  branch: GitBranch;
-  isDefault?: boolean;
-  isOwner: boolean;
-  onDelete: () => void;
-  username: string;
-  reponame: string;
-}) => {
-  const navigate = useNavigate();
-  const user = useAppSelector((state) => state.auth.user);
-  return (
-    <div
-      onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
-      className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group"
-    >
-      <div className="flex items-center gap-3">
-        <div className="bg-blue-500/10 px-2.5 py-1.5 rounded-md text-blue-400 font-mono text-xs flex items-center gap-2 border border-blue-500/20">
-          <GitBranchIcon className="w-3.5 h-3.5" /> {branch.name}
-        </div>
-        {isDefault && (
-          <span className="text-[9px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded font-bold uppercase ring-1 ring-gray-700">
-            Default
-          </span>
-        )}
-      </div>
-
-      <div className="flex items-center gap-2.5 text-gray-400 text-xs">
-        {/* Updated avatar display logic using the standard user selector */}
-        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm overflow-hidden border border-gray-800">
-          {isOwner && user?.avatar ? (
-            <img
-              src={user.avatar}
-              alt={branch.lastCommitAuthor}
-              className="w-full h-full object-cover"
-            />
-          ) : (
-            branch.lastCommitAuthor?.[0] || 'U'
-          )}
-        </div>
-        <span>{timeAgo(branch.lastCommitDate || '')}</span>
-      </div>
-
-      <div
-        className={`flex items-center gap-1.5 text-xs font-medium ${
-          branch.status === 'success'
-            ? 'text-green-500'
-            : branch.status === 'failure'
-              ? 'text-red-500'
-              : branch.status === 'pending'
-                ? 'text-yellow-500'
-                : 'text-gray-600'
-        }`}
-      >
-        {branch.status === 'success' && <CheckCircle2 className="w-3.5 h-3.5" />}
-        {branch.status === 'failure' && <X className="w-3.5 h-3.5 text-red-500" />}
-        {branch.status === 'pending' && <Clock className="w-3.5 h-3.5 animate-spin" />}
-
-        <span>{branch.checks || '--'}</span>
-      </div>
-
-      <div className="flex items-center justify-center">
-        <div className="flex bg-gray-800/50 h-1.5 w-16 rounded-full overflow-hidden ring-1 ring-white/5">
-          <div className="bg-gray-600 h-full" style={{ width: '60%' }} />
-          <div className="bg-blue-500 h-full border-l border-gray-950" style={{ width: '40%' }} />
-        </div>
-        <span className="text-[10px] text-gray-500 ml-2.5 tabular-nums">3 | 2</span>
-      </div>
-
-      <div className="flex items-center justify-end gap-4">
-        {!isDefault && (
-          <div className="flex items-center gap-1.5 text-gray-500 hover:text-blue-400 transition cursor-pointer text-[10px] font-bold">
-            <GitPullRequest className="w-3.5 h-3.5" /> #4
-          </div>
-        )}
-        {!isDefault && (
-          <Trash2
-            className={`w-4 h-4 transition ${
-              !isOwner
-                ? 'text-gray-800 cursor-not-allowed opacity-30'
-                : 'text-gray-600 hover:text-red-500 cursor-pointer'
-            }`}
-            onClick={isOwner ? onDelete : undefined}
-          />
-        )}
-      </div>
-    </div>
-  );
-};
 
 export default BranchListPage;

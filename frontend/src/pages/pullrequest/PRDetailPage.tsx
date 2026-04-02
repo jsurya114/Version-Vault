@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback, ReactNode } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { GitPullRequest, GitMerge, X, Clock, GitBranch, MessageSquare } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -19,6 +19,15 @@ const statusColors: Record<PRStatus, string> = {
   merged: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
 };
 
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
 const PRDetailPage = () => {
   const dispatch = useAppDispatch();
   const { username, reponame, id } = useParams();
@@ -36,7 +45,7 @@ const PRDetailPage = () => {
     if (id) dispatch(getPRThunk({ username: username!, reponame: reponame!, id }));
   }, [id, dispatch, username, reponame]);
 
-  const handleMergeConfirm = async () => {
+  const handleMergeConfirm = useCallback(async () => {
     setIsMerging(true);
     try {
       const result = await dispatch(
@@ -52,20 +61,11 @@ const PRDetailPage = () => {
     } finally {
       setIsMerging(false);
     }
-  };
+  }, [dispatch, username, reponame, id, pr?.targetBranch]);
 
-  const handleCloseConfirm = async () => {
+  const handleCloseConfirm = useCallback(async () => {
     await dispatch(closePRThunk({ username: username!, reponame: reponame!, id: id! }));
-  };
-
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+  }, [dispatch, username, reponame, id]);
 
   if (isLoading) {
     return (

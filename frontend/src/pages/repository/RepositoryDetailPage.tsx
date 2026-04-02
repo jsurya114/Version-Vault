@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Star,
@@ -160,53 +160,56 @@ const RepositoryDetailPage = () => {
     }
   }, [files]);
 
-  const handleTreeNodeClick = (node: TreeNode) => {
-    if (node.type === 'tree') {
-      const newExpanded = new Set(expandedPaths);
-      if (newExpanded.has(node.path)) {
-        newExpanded.delete(node.path);
+  const handleTreeNodeClick = useCallback(
+    (node: TreeNode) => {
+      if (node.type === 'tree') {
+        const newExpanded = new Set(expandedPaths);
+        if (newExpanded.has(node.path)) {
+          newExpanded.delete(node.path);
+        } else {
+          newExpanded.add(node.path);
+          setCurrentPath(node.path);
+          setSelectFile('');
+          dispatch(
+            getFilesThunk({ username: username!, reponame: reponame!, branch, path: node.path }),
+          );
+        }
+        setExpandedPaths(newExpanded);
       } else {
-        newExpanded.add(node.path);
-        setCurrentPath(node.path);
-        setSelectFile('');
+        setSelectFile(node.path);
         dispatch(
-          getFilesThunk({ username: username!, reponame: reponame!, branch, path: node.path }),
+          getFileContentThunk({
+            username: username!,
+            reponame: reponame!,
+            filePath: node.path,
+            branch,
+          }),
         );
       }
-      setExpandedPaths(newExpanded);
-    } else {
-      setSelectFile(node.path);
-      dispatch(
-        getFileContentThunk({
-          username: username!,
-          reponame: reponame!,
-          filePath: node.path,
-          branch,
-        }),
-      );
-    }
-  };
+    },
+    [dispatch, username, reponame, branch, expandedPaths],
+  );
 
-  const handleBack = () => {
+  const handleBack = useCallback(() => {
     const parts = currentPath.split('/');
     parts.pop();
     const newPath = parts.join('/');
     setCurrentPath(newPath);
     setSelectFile('');
     dispatch(getFilesThunk({ username: username!, reponame: reponame!, branch, path: newPath }));
-  };
+  }, [dispatch, username, reponame, branch, currentPath]);
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(cloneUrl);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
-  };
+  }, [cloneUrl]);
 
-  const handleDelete = async () => {
+  const handleDelete = useCallback(async () => {
     await dispatch(deleteRepositoryThunk({ username: username!, reponame: reponame! }));
     setShowDeleteModal(false);
     navigate(ROUTES.REPO_LIST);
-  };
+  }, [dispatch, username, reponame, navigate]);
 
   const onConfirmDeleteBranch = async () => {
     setIsDeletingBranch(true);
@@ -253,13 +256,119 @@ const RepositoryDetailPage = () => {
     return `${mins} min${mins > 1 ? 's' : ''} ago`;
   };
 
-  const sortedFiles = [...files].sort((a, b) => {
-    if (a.type === 'tree' && b.type !== 'tree') return -1;
-    if (a.type !== 'tree' && b.type === 'tree') return 1;
-    return (a.name || '').localeCompare(b.name || '');
-  });
+  const TreeItem = React.memo(
+    ({
+      file,
+      selectedFile,
+      currentPath,
+      expandedPaths,
+      onClick,
+    }: {
+      file: any;
+      selectedFile: string;
+      currentPath: string;
+      expandedPaths: Set<string>;
+      onClick: (node: any) => void;
+    }) => (
+      <div
+        className={`flex items-center gap-1.5 px-3 py-1.5 cursor-pointer transition text-xs ${
+          selectedFile === file.path
+            ? 'bg-blue-600/20 text-blue-400 border-l-2 border-l-blue-500'
+            : currentPath === file.path && !selectedFile
+              ? 'bg-gray-800/50 text-white'
+              : 'text-gray-400 hover:bg-gray-800/50 hover:text-white'
+        }`}
+        onClick={() => onClick(file)}
+      >
+        {file.type === 'tree' ? (
+          expandedPaths.has(file.path) ? (
+            <ChevronDown className="w-3 h-3 text-gray-500 shrink-0" />
+          ) : (
+            <ChevronRight className="w-3 h-3 text-gray-500 shrink-0" />
+          )
+        ) : (
+          <span className="w-3 shrink-0" />
+        )}
+        {file.type === 'tree' ? (
+          expandedPaths.has(file.path) ? (
+            <FolderOpen className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+          ) : (
+            <Folder className="w-3.5 h-3.5 text-blue-400 shrink-0" />
+          )
+        ) : (
+          <File className="w-3.5 h-3.5 text-gray-500 shrink-0" />
+        )}
+        <span className="truncate">{file.name}</span>
+      </div>
+    ),
+  );
 
-  const languageData = calculateLanguagesFromFiles(allFiles);
+  const FileListItem = React.memo(
+    ({
+      file,
+      latestCommitMessage,
+      latestCommitDate,
+      onClick,
+    }: {
+      file: any;
+      latestCommitMessage: string;
+      latestCommitDate: string;
+      onClick: (node: any) => void;
+    }) => (
+      <tr
+        className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 cursor-pointer transition"
+        onClick={() => onClick(file)}
+      >
+        <td className="px-4 py-2.5">
+          <div className="flex items-center gap-2">
+            {file.type === 'tree' ? (
+              <Folder className="w-4 h-4 text-blue-400 shrink-0" />
+            ) : (
+              <File className="w-4 h-4 text-gray-400 shrink-0" />
+            )}
+            <span className="text-blue-400 hover:text-blue-300 text-sm">{file.name}</span>
+          </div>
+        </td>
+        <td className="px-4 py-2.5">
+          <span className="text-gray-400 text-xs truncate max-w-md block">
+            {latestCommitMessage}
+          </span>
+        </td>
+        <td className="px-4 py-2.5 text-right">
+          <span className="text-gray-500 text-xs">{latestCommitDate}</span>
+        </td>
+      </tr>
+    ),
+  );
+
+  const CommitItem = React.memo(({ commit }: { commit: any }) => (
+    <div className="flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
+      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+        {commit.author?.[0]?.toUpperCase()}
+      </div>
+      <div className="flex-1 min-w-0">
+        <p className="text-white text-sm font-medium truncate">{commit.message}</p>
+        <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+          <Clock className="w-3 h-3" />
+          {commit.author} · {formatDate(commit.date)}
+        </p>
+      </div>
+      <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
+        <GitCommit className="w-3 h-3" />
+        {commit.hash}
+      </span>
+    </div>
+  ));
+
+  const sortedFiles = useMemo(() => {
+    return [...files].sort((a, b) => {
+      if (a.type === 'tree' && b.type !== 'tree') return -1;
+      if (a.type !== 'tree' && b.type === 'tree') return 1;
+      return (a.name || '').localeCompare(b.name || '');
+    });
+  }, [files]);
+
+  const languageData = useMemo(() => calculateLanguagesFromFiles(allFiles), [allFiles]);
 
   if (isLoading) {
     return (
@@ -433,37 +542,14 @@ const RepositoryDetailPage = () => {
                     (f) => !treeSearch || f.name.toLowerCase().includes(treeSearch.toLowerCase()),
                   )
                   .map((file) => (
-                    <div
+                    <TreeItem
                       key={file.path}
-                      className={`flex items-center gap-1.5 px-3 py-1.5 cursor-pointer transition text-xs ${
-                        selectedFile === file.path
-                          ? 'bg-blue-600/20 text-blue-400 border-l-2 border-l-blue-500'
-                          : currentPath === file.path && !selectedFile
-                            ? 'bg-gray-800/50 text-white'
-                            : 'text-gray-400 hover:bg-gray-800/50 hover:text-white'
-                      }`}
-                      onClick={() => handleTreeNodeClick(file)}
-                    >
-                      {file.type === 'tree' ? (
-                        expandedPaths.has(file.path) ? (
-                          <ChevronDown className="w-3 h-3 text-gray-500 shrink-0" />
-                        ) : (
-                          <ChevronRight className="w-3 h-3 text-gray-500 shrink-0" />
-                        )
-                      ) : (
-                        <span className="w-3 shrink-0" />
-                      )}
-                      {file.type === 'tree' ? (
-                        expandedPaths.has(file.path) ? (
-                          <FolderOpen className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                        ) : (
-                          <Folder className="w-3.5 h-3.5 text-blue-400 shrink-0" />
-                        )
-                      ) : (
-                        <File className="w-3.5 h-3.5 text-gray-500 shrink-0" />
-                      )}
-                      <span className="truncate">{file.name}</span>
-                    </div>
+                      file={file}
+                      selectedFile={selectedFile}
+                      currentPath={currentPath}
+                      expandedPaths={expandedPaths}
+                      onClick={handleTreeNodeClick}
+                    />
                   ))
               )}
             </div>
@@ -781,34 +867,13 @@ const RepositoryDetailPage = () => {
                           </thead>
                           <tbody>
                             {sortedFiles.map((file) => (
-                              <tr
+                              <FileListItem
                                 key={file.path}
-                                className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 cursor-pointer transition"
-                                onClick={() => handleTreeNodeClick(file)}
-                              >
-                                <td className="px-4 py-2.5">
-                                  <div className="flex items-center gap-2">
-                                    {file.type === 'tree' ? (
-                                      <Folder className="w-4 h-4 text-blue-400 shrink-0" />
-                                    ) : (
-                                      <File className="w-4 h-4 text-gray-400 shrink-0" />
-                                    )}
-                                    <span className="text-blue-400 hover:text-blue-300 text-sm">
-                                      {file.name}
-                                    </span>
-                                  </div>
-                                </td>
-                                <td className="px-4 py-2.5">
-                                  <span className="text-gray-400 text-xs truncate max-w-md block">
-                                    {latestCommit?.message || '—'}
-                                  </span>
-                                </td>
-                                <td className="px-4 py-2.5 text-right">
-                                  <span className="text-gray-500 text-xs">
-                                    {latestCommit ? timeAgo(latestCommit.date) : '—'}
-                                  </span>
-                                </td>
-                              </tr>
+                                file={file}
+                                latestCommitMessage={latestCommit?.message || '—'}
+                                latestCommitDate={latestCommit ? timeAgo(latestCommit.date) : '—'}
+                                onClick={handleTreeNodeClick}
+                              />
                             ))}
                           </tbody>
                         </table>
@@ -909,27 +974,7 @@ const RepositoryDetailPage = () => {
             ) : commits.length === 0 ? (
               <div className="px-4 py-10 text-center text-gray-500 text-sm">No commits yet</div>
             ) : (
-              commits.map((commit) => (
-                <div
-                  key={commit.hash}
-                  className="flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition"
-                >
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
-                    {commit.author?.[0]?.toUpperCase()}
-                  </div>
-                  <div className="flex-1 min-w-0">
-                    <p className="text-white text-sm font-medium truncate">{commit.message}</p>
-                    <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
-                      <Clock className="w-3 h-3" />
-                      {commit.author} · {formatDate(commit.date)}
-                    </p>
-                  </div>
-                  <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
-                    <GitCommit className="w-3 h-3" />
-                    {commit.hash}
-                  </span>
-                </div>
-              ))
+              commits.map((commit) => <CommitItem key={commit.hash} commit={commit} />)
             )}
           </div>
         </div>

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { CircleDot, CheckCircle, Clock, MessageSquare, Tag, AlertCircle } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -17,6 +17,15 @@ const priorityColors: Record<IssuePriority, string> = {
   high: 'text-red-400 bg-red-500/10 border-red-500/30',
 };
 
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
 const IssueDetailPage = () => {
   const dispatch = useAppDispatch();
   const { username, reponame, id } = useParams();
@@ -28,20 +37,11 @@ const IssueDetailPage = () => {
 
   useEffect(() => {
     if (id) dispatch(getIssueThunk({ username: username!, reponame: reponame!, id }));
-  }, [id]);
+  }, [id, dispatch, username, reponame]);
 
-  const handleCloseConfirm = async () => {
+  const handleCloseConfirm = useCallback(async () => {
     await dispatch(closeIssueThunk({ username: username!, reponame: reponame!, id: id! }));
-  };
-
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+  }, [dispatch, username, reponame, id]);
 
   if (isLoading) {
     return (

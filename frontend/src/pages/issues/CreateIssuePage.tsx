@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CircleDot } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -11,7 +11,7 @@ import { IssuePriority } from '../../types/issues/issues.types';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import { CommonLoader } from '../../types/common/Layout/Loader';
 
-const CreateIssuePage = () => {
+const CreateIssuePage = React.memo(() => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { username, reponame } = useParams();
@@ -26,18 +26,21 @@ const CreateIssuePage = () => {
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
-  const handleAddLabel = (e: React.KeyboardEvent) => {
-    if (e.key === 'Enter' && labelInput.trim()) {
-      setLabels([...labels, labelInput.trim()]);
-      setLabelInput('');
-    }
-  };
+  const handleAddLabel = useCallback(
+    (e: React.KeyboardEvent) => {
+      if (e.key === 'Enter' && labelInput.trim()) {
+        setLabels((prev) => [...prev, labelInput.trim()]);
+        setLabelInput('');
+      }
+    },
+    [labelInput],
+  );
 
-  const handleRemoveLabel = (label: string) => {
-    setLabels(labels.filter((l) => l !== label));
-  };
+  const handleRemoveLabel = useCallback((label: string) => {
+    setLabels((prev) => prev.filter((l) => l !== label));
+  }, []);
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     if (!title) return;
     const result = await dispatch(
       createIssueThunk({
@@ -60,13 +63,12 @@ const CreateIssuePage = () => {
         }, 2500);
       }, 2000);
     }
-  };
+  }, [dispatch, username, reponame, title, description, priority, labels, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
       <AppHeader />
 
-      {/* Breadcrumb */}
       <div className="border-b border-gray-800 px-6 py-2">
         <div className="max-w-3xl mx-auto flex items-center gap-1 text-sm">
           <Link to={ROUTES.REPO_LIST} className="text-blue-400 hover:underline">
@@ -100,7 +102,6 @@ const CreateIssuePage = () => {
         )}
 
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-5">
-          {/* Title */}
           <div>
             <label className="block text-gray-400 text-xs mb-2">
               Title <span className="text-red-400">*</span>
@@ -114,7 +115,6 @@ const CreateIssuePage = () => {
             />
           </div>
 
-          {/* Description */}
           <div>
             <label className="block text-gray-400 text-xs mb-2">Description</label>
             <textarea
@@ -126,7 +126,6 @@ const CreateIssuePage = () => {
             />
           </div>
 
-          {/* Priority */}
           <div>
             <label className="block text-gray-400 text-xs mb-2">Priority</label>
             <div className="flex items-center gap-2">
@@ -150,7 +149,6 @@ const CreateIssuePage = () => {
             </div>
           </div>
 
-          {/* Labels */}
           <div>
             <label className="block text-gray-400 text-xs mb-2">Labels (press Enter to add)</label>
             <input
@@ -181,7 +179,6 @@ const CreateIssuePage = () => {
             )}
           </div>
 
-          {/* Actions */}
           <div className="flex gap-3 pt-2">
             <button
               onClick={() => navigate(`/${username}/${reponame}/issues`)}
@@ -214,6 +211,6 @@ const CreateIssuePage = () => {
       )}
     </div>
   );
-};
+});
 
 export default CreateIssuePage;

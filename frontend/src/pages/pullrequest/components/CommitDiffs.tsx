@@ -1,3 +1,4 @@
+import React, { useCallback } from 'react';
 import { FileCode } from 'lucide-react';
 import { FileTree } from './FileTree';
 import { FileDiffViewer } from './DiffViewer';
@@ -9,17 +10,15 @@ interface CommitDiffsProps {
   filesChanged: number;
 }
 
-export const CommitDiffs = ({ diffs, filesChanged }: CommitDiffsProps) => {
+export const CommitDiffs = React.memo(({ diffs, filesChanged }: CommitDiffsProps) => {
+  const handleSelect = useCallback((path: string) => {
+    document.getElementById(path)?.scrollIntoView({ behavior: 'smooth' });
+  }, []);
+
   return (
     <>
-      {/* Diff View Section */}
       <div className="mt-12 flex gap-8 pt-12 border-t border-gray-800">
-        <FileTree
-          diffs={diffs}
-          onSelect={(path: string) =>
-            document.getElementById(path)?.scrollIntoView({ behavior: 'smooth' })
-          }
-        />
+        <FileTree diffs={diffs} onSelect={handleSelect} />
 
         <div className="flex-1 min-w-0">
           <div className="flex items-center justify-between mb-6">
@@ -39,7 +38,6 @@ export const CommitDiffs = ({ diffs, filesChanged }: CommitDiffsProps) => {
         </div>
       </div>
 
-      {/* Bottom Info Status */}
       <div className="pt-8 border-t border-gray-800 flex items-center justify-between opacity-70">
         <div className="flex items-center gap-2 text-gray-500 text-[13px]">
           <FileCode className="w-4 h-4" />
@@ -50,4 +48,4 @@ export const CommitDiffs = ({ diffs, filesChanged }: CommitDiffsProps) => {
       </div>
     </>
   );
-};
+});

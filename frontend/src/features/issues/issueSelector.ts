@@ -1,7 +1,13 @@
 import { RootState } from '../../app/store';
+import { createSelector } from '@reduxjs/toolkit';
 
-export const selectIssues = (state: RootState) => state.issue.issues;
-export const selectSelectedIssue = (state: RootState) => state.issue.selectedIssue;
-export const selectIssueLoading = (state: RootState) => state.issue.isLoading;
-export const selectIssueError = (state: RootState) => state.issue.error;
-export const selectIssueMeta = (state: RootState) => state.issue.meta;
+const selectBaseState = (state: RootState) => state.issue;
+
+export const selectIssues = createSelector([selectBaseState], (state) => state.issues);
+export const selectSelectedIssue = createSelector(
+  [selectBaseState],
+  (state) => state.selectedIssue,
+);
+export const selectIssueLoading = createSelector([selectBaseState], (state) => state.isLoading);
+export const selectIssueError = createSelector([selectBaseState], (state) => state.error);
+export const selectIssueMeta = createSelector([selectBaseState], (state) => state.meta);
