@@ -20,6 +20,7 @@ import pullrequesRoutes from './interfaces/http/routes/pullrequests/pr.routes';
 import issuesRoutese from './interfaces/http/routes/issues/issue.route';
 import follwoRoutes from './interfaces/http/routes/follow/follow.routes';
 import userRoutes from './interfaces/http/routes/user/user.routes';
+import collaboratorRoutes from './interfaces/http/routes/collaborator/collaborator.routes';
 
 const app = express();
 
@@ -60,6 +61,7 @@ app.use('/vv/pr', pullrequesRoutes);
 app.use('/vv/issues', issuesRoutese);
 app.use('/vv/follow', follwoRoutes);
 app.use('/vv/user', userRoutes);
+app.use('/vv/collaborators', collaboratorRoutes);
 
 //error hanlding middleware
 app.use(errorMiddleware);

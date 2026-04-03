@@ -82,4 +82,12 @@ export const TOKENS = {
   IBlockRepoUseCase: Symbol.for('IBlockRepoUseCase'),
   IUnblockRepoUseCase: Symbol.for('IUnblockRepoUseCase'),
   ILogger: Symbol.for('ILogger'),
+
+  // Collaborator
+  ICollaboratorRepository: Symbol.for('ICollaboratorRepository'),
+  IAddCollaboratorUseCase: Symbol.for('IAddCollaboratorUseCase'),
+  IRemoveCollaboratorUseCase: Symbol.for('IRemoveCollaboratorUseCase'),
+  IGetCollaboratorUseCase: Symbol.for('IGetCollaboratorUseCase'),
+  IUpdateCollaboratorUseCase: Symbol.for('IUpdateCollaboratorUseCase'),
+  ICheckCollaboratorUseCase: Symbol.for('ICheckCollaboratorUseCase'),
 } as const;
