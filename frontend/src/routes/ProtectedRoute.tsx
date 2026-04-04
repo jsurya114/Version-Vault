@@ -12,9 +12,10 @@ const ProtectRoute = ({ children, requiredRole }: ProtectedRouteProps) => {
   const isAuthenticated = useAppSelector(selectIsAuthenticated);
   const user = useAppSelector(selectAuthUser);
 
-  //not logged in redirect to login
+ // Not logged in — redirect to login with `redirect` query param
   if (!isAuthenticated) {
-    return <Navigate to={ROUTES.LOGIN} replace />;
+    const redirectPath = location.pathname + location.search;
+    return <Navigate to={`${ROUTES.LOGIN}?redirect=${encodeURIComponent(redirectPath)}`} replace />;
   }
 
   //admin route but user is not admin redirect to home

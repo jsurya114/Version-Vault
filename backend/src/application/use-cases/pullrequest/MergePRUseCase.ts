@@ -25,9 +25,14 @@ export class MergePRUseCase implements IMergePRUseCase {
         if (!repo) {
       throw new NotFoundError('Repository not found for this pull request');
     }
+
+    const baseCommits = await this._gitService.getCommits(repo.ownerUsername, repo.name, pr.targetBranch, 1);
+    const headCommits = await this._gitService.getCommits(repo.ownerUsername, repo.name, pr.sourceBranch, 1);
 // Perform the actual Git merge using your new GitService method
     await this._gitService.mergeBranch(repo.ownerUsername,repo.name,pr.sourceBranch,pr.targetBranch)
-    const updated = await this._prRepository.update(id, { status: 'merged' });
+    const updated = await this._prRepository.update(id, { status: 'merged' ,       baseCommitHash: baseCommits[0]?.hash, 
+       headCommitHash: headCommits[0]?.hash 
+});
     return PullRequestMapper.toDTO(updated!);
   }
 }

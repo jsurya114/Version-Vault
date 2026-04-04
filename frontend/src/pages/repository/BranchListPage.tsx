@@ -28,6 +28,7 @@ import CreateBranchModal from '../../types/common/Modal/CreateBranchModal';
 import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
 import { CommonLoader } from '../../types/common/Layout/Loader';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import { collaboratorService } from 'src/services/collaborator.service';
 
 // --- Time Helper ---
 const timeAgo = (dateStr: string) => {
@@ -154,6 +155,7 @@ const BranchListPage = () => {
   const user = useAppSelector((state) => state.auth.user);
 
   const isOwner = user?.userId === username;
+  const [hasWriteAccess,setHasWriteAccess]=useState(false)
 
   // Safely select branches and ensure we handle both object array and string array (though it should now be objects)
   const rawBranches = useAppSelector(selectBranches);
@@ -171,6 +173,18 @@ const BranchListPage = () => {
       dispatch(getBranchesThunk({ username, reponame }));
     }
   }, [username, reponame, dispatch]);
+
+  useEffect(()=>{
+    if(username && reponame && user){
+      if(isOwner){
+        setHasWriteAccess(true)
+      }else{
+        collaboratorService.checkAccess(username,reponame).then((data)=>{
+          setHasWriteAccess(data.hasAccess && data.role!=='read')
+        }).catch(()=>setHasWriteAccess(false))
+      }
+    }
+  },[username,reponame,user,isOwner])
 
   // Fixed filtering: handle object structure
   const filteredBranches = useMemo(
@@ -238,10 +252,10 @@ const BranchListPage = () => {
         <div className="flex items-center justify-between mb-8">
           <h1 className="text-2xl font-bold">Branches</h1>
           <button
-            disabled={!isOwner}
+            disabled={!hasWriteAccess}
             onClick={() => setShowCreateModal(true)}
             className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
-              !isOwner
+              !hasWriteAccess
                 ? 'bg-gray-800 text-gray-600 cursor-not-allowed opacity-50 border border-gray-700'
                 : 'bg-green-600 hover:bg-green-700 text-white'
             }`}

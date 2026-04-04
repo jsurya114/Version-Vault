@@ -24,6 +24,8 @@ export class CreatePRUseCase implements ICreatePRUseCase {
       authorUsername: dto.authorUsername,
       reviewers: [],
       commentsCount: 0,
+      baseCommitHash:dto.baseCommitHash,
+      headCommitHash:dto.headCommitHash
     });
     return PullRequestMapper.toDTO(pr);
   }

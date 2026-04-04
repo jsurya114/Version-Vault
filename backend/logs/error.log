@@ -2485,3 +2485,57 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-03-31 15:45:00 [[31merror[39m]: POST /vv/auth/login — UserId not found
 2026-03-31 20:09:18 [[31merror[39m]: POST /vv/auth/login — UserId not found
 2026-03-31 20:09:27 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-04-04 10:35:48 [[31merror[39m]: POST /vv/repo — Invalid or expired access token
+2026-04-04 10:41:17 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock — Cast to ObjectId failed for value "jsurya114" (type string) at path "_id" for model "User"
+2026-04-04 10:41:17 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock — Cast to ObjectId failed for value "jsurya114" (type string) at path "_id" for model "User"
+2026-04-04 10:55:36 [[31merror[39m]: POST /vv/collaborators/invitation/e24cbec1-a629-4ec6-adf5-f1c2552dee33/accept — This invitation was sent to a different email address
+2026-04-04 10:55:45 [[31merror[39m]: POST /vv/collaborators/invitation/e24cbec1-a629-4ec6-adf5-f1c2552dee33/accept — This invitation was sent to a different email address
+2026-04-04 10:58:57 [[31merror[39m]: POST /vv/collaborators/invitation/e24cbec1-a629-4ec6-adf5-f1c2552dee33/accept — Cast to ObjectId failed for value "{ token: 'e24cbec1-a629-4ec6-adf5-f1c2552dee33' }" (type Object) at path "_id" for model "Invitation"
+2026-04-04 11:00:38 [[31merror[39m]: POST /vv/collaborators/invitation/e24cbec1-a629-4ec6-adf5-f1c2552dee33/accept — You are already a collaborator on this repository
+2026-04-04 13:17:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-04 13:17:11 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-04 13:17:20 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-04 13:17:20 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-04 13:17:20 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-04 13:17:20 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-04 13:20:40 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 13:20:40 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 13:20:42 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock — Invalid or expired access token
+2026-04-04 13:20:42 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock — Invalid or expired access token
+2026-04-04 18:37:56 [[31merror[39m]: POST /vv/repo/jsurya114/mock/commit — Access denied: Only the repository owner can perform this action.
+2026-04-04 18:38:49 [[31merror[39m]: POST /vv/repo/jsurya114/mock/commit — Access denied: Only the repository owner can perform this action.
+2026-04-04 18:55:18 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/main — Invalid or expired access token
+2026-04-04 18:55:39 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-04 18:55:39 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-04 18:55:39 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-04 19:19:52 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:19:56 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:00 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:03 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:07 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:09 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:27 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:59 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 19:20:59 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 20:27:08 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 20:27:08 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 20:27:08 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 20:27:13 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 20:27:13 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 20:27:13 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/collab1/main — Invalid or expired access token
+2026-04-04 20:27:17 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/collab1/main — Invalid or expired access token
+2026-04-04 20:27:17 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/collab1/main — Invalid or expired access token
+2026-04-04 20:27:18 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 21:22:49 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 21:22:49 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 21:22:52 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 21:30:39 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 21:30:39 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 21:30:39 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/collab1/main — Invalid or expired access token
+2026-04-04 21:30:42 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 21:30:42 [[31merror[39m]: GET /vv/collaborators/jsurya114/mock/check — Invalid or expired access token
+2026-04-04 21:30:42 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/main/collab1 — Invalid or expired access token
+2026-04-04 21:47:32 [[31merror[39m]: GET /vv/repo/jsurya114/mock/compare/96102d5/f111415 — Repository not found
+2026-04-04 21:47:34 [[31merror[39m]: GET /vv/pr/jsurya114/mock — Repository not found
+2026-04-04 21:54:32 [[31merror[39m]: POST /vv/collaborators/invitation/7587553e-e467-4e6c-848c-52c169e336e5/accept — Cast to ObjectId failed for value "{ token: '7587553e-e467-4e6c-848c-52c169e336e5' }" (type Object) at path "_id" for model "Invitation"
+2026-04-04 21:56:37 [[31merror[39m]: POST /vv/collaborators/invitation/7587553e-e467-4e6c-848c-52c169e336e5/accept — You are already a collaborator on this repository

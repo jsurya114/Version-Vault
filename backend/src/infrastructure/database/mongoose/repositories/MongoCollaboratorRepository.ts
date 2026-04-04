@@ -46,7 +46,7 @@ export class MongoCollaboratorRepository
     collaboratorId: string,
     role: string,
   ): Promise<ICollaborator | null> {
-    const doc = await CollaboratorModel.findOneAndReplace(
+    const doc = await CollaboratorModel.findOneAndUpdate(
       { repositoryId, collaboratorId },
       { role },
       { new: true },

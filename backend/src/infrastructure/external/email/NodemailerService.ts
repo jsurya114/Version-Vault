@@ -51,6 +51,48 @@ export class NodemailerService implements IEmailService {
 
     this._logger.info(`OTP email sent to ${to}`);
   }
+    async sendInvitationEmail(
+    to: string,
+    ownerUsername: string,
+    repositoryName: string,
+    role: string,
+    inviteLink: string,
+  ): Promise<void> {
+    const transporter = await this.getTransporter();
+    await transporter.sendMail({
+      from: envConfig.EMAIL_FROM,
+      to,
+      subject: `Version Vault — You've been invited to collaborate on ${repositoryName}`,
+      html: this.buildInvitationTemplate(ownerUsername, repositoryName, role, inviteLink),
+    });
+    this._logger.info(`Invitation email sent to ${to}`);
+  }
+  // ADD this private method inside the class body, after buildOtpTemplate
+  private buildInvitationTemplate(
+    ownerUsername: string,
+    repositoryName: string,
+    role: string,
+    inviteLink: string,
+  ): string {
+    return `
+      <div style="font-family: Arial, sans-serif; max-width: 480px; margin: auto; padding: 32px; border: 1px solid #e0e0e0; border-radius: 8px;">
+        <h2 style="color: #1a1a1a;">Version Vault</h2>
+        <p style="color: #444;">
+          <strong>${ownerUsername}</strong> has invited you to collaborate on the repository
+          <strong>${repositoryName}</strong> with <strong>${role}</strong> access.
+        </p>
+        <div style="margin: 24px 0;">
+          <a href="${inviteLink}"
+             style="display: inline-block; padding: 12px 24px; background-color: #4f46e5;
+                    color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: bold;">
+            View Invitation
+          </a>
+        </div>
+        <p style="color: #888; font-size: 13px;">This invitation expires in 7 days.</p>
+        <p style="color: #888; font-size: 13px;">If you did not expect this invitation, you can safely ignore this email.</p>
+      </div>
+    `;
+  }
 
   private buildOtpTemplate(otp: string): string {
     return `

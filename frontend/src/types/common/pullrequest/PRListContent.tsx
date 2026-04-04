@@ -22,10 +22,12 @@ const PRListContent = ({
   username,
   reponame,
   isOwner,
+  hasWriteAccess
 }: {
   username: string;
   reponame: string;
   isOwner: boolean;
+  hasWriteAccess:boolean
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -66,9 +68,9 @@ const PRListContent = ({
           <GitPullRequest className="w-5 h-5 text-gray-400" /> Pull Requests
         </h1>
         <Link
-          to={isOwner ? `/${username}/${reponame}/pulls/new` : '#'}
+          to={hasWriteAccess ? `/${username}/${reponame}/pulls/new` : '#'}
           className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition ${
-            !isOwner
+            !hasWriteAccess
               ? 'bg-gray-800 text-gray-600 cursor-not-allowed pointer-events-none opacity-50 border border-gray-700'
               : 'bg-blue-600 hover:bg-blue-700 text-white'
           }`}
@@ -116,8 +118,8 @@ const PRListContent = ({
             <GitPullRequest className="w-10 h-10 text-gray-700 mx-auto mb-3" />
             <p className="text-gray-500 text-sm">No pull requests found</p>
             <Link
-              to={isOwner ? `/${username}/${reponame}/pulls/new` : '#'}
-              className={`text-sm mt-2 block ${!isOwner ? 'text-gray-600 cursor-not-allowed pointer-events-none' : 'text-blue-400 hover:underline'}`}
+              to={hasWriteAccess ? `/${username}/${reponame}/pulls/new` : '#'}
+              className={`text-sm mt-2 block ${!hasWriteAccess ? 'text-gray-600 cursor-not-allowed pointer-events-none' : 'text-blue-400 hover:underline'}`}
             >
               {statusFilter === 'all' && !search
                 ? 'Create your first pull request'

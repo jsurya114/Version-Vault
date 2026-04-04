@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { Link, useParams, useNavigate, useSearchParams } from 'react-router-dom';
+import { Link, useParams, useNavigate, useSearchParams, data } from 'react-router-dom';
 import {
   Star,
   GitFork,
@@ -20,6 +20,7 @@ import {
   History,
   GitPullRequest,
   CircleDot,
+  Users 
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
@@ -44,16 +45,19 @@ import {
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
 
+import { collaboratorService } from '../../services/collaborator.service';
+
 import { RepositoryLanguages } from './components/RepositoryLanguages';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
 import CommitModal from '../../types/common/Modal/CreateCommitModal';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import CollaboratorsTabContent from 'src/types/common/collaborator/CollaboratorsTablContent';
 
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
 import PRListContent from '../../types/common/pullrequest/PRListContent';
-type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues';
+type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues'| 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 
 const RepositoryDetailPage = () => {
@@ -75,7 +79,9 @@ const RepositoryDetailPage = () => {
   const isCommitsLoading = useAppSelector(selectCommitsLoading);
 
   const [copied, setCopied] = useState(false);
-  const [activeTab, setActiveTab] = useState<Tab>('code');
+  const [searchParams,setSearchParams]=useSearchParams()
+  const [activeTab,setActiveTab]=useState<Tab>((searchParams.get('tab') as Tab)||'code')
+
   const [branch, setBranch] = useState('main');
   const [currentPath, setCurrentPath] = useState('');
   const [selectedFile, setSelectFile] = useState('');
@@ -100,13 +106,15 @@ const RepositoryDetailPage = () => {
     title: '',
     subtitle: '',
   });
-  const [searchParams] = useSearchParams();
+  
+
 
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
   const isEmpty = !isFilesLoading && files.length === 0;
   const allFiles = useAppSelector((state) => state.repository.allFiles);
+  const [hasWriteAccess,setHasWriteAccess]=useState(false)
 
   useEffect(() => {
     if (username && reponame) {
@@ -121,6 +129,20 @@ const RepositoryDetailPage = () => {
     }
   }, [username, reponame, branch, dispatch]);
 
+
+  useEffect(()=>{
+    if(username&&reponame&&user){
+      if(isOwner){
+        setHasWriteAccess(true)
+      }else{
+        collaboratorService.checkAccess(username,reponame).then((data)=>{
+          setHasWriteAccess(data.hasAccess && data.role !=='read')
+        })
+        .catch(()=>setHasWriteAccess(false))
+      }
+    }
+  },[username,reponame,user,isOwner])
+
   useEffect(() => {
     if (branchName) {
       setBranch(branchName);
@@ -130,7 +152,7 @@ const RepositoryDetailPage = () => {
   }, [branchName, repo?.defaultBranch]);
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab === 'commits' || tab === 'pulls' || tab === 'issues' || tab === 'branches') {
+    if (tab === 'commits' || tab === 'pulls' || tab === 'issues' || tab === 'branches' || tab==='collaborators') {
       setActiveTab(tab as Tab);
     }
   }, [searchParams]);
@@ -159,6 +181,11 @@ const RepositoryDetailPage = () => {
       setReadmeContent('');
     }
   }, [files]);
+
+  const handleTablChange = useCallback((tab:Tab)=>{
+    setActiveTab(tab)
+    setSearchParams(tab==='code'?{}:{tab})
+  },[searchParams])
 
   const handleTreeNodeClick = useCallback(
     (node: TreeNode) => {
@@ -416,7 +443,7 @@ const RepositoryDetailPage = () => {
       <div className="border-b border-gray-800 px-6">
         <div className="flex items-center gap-1">
           <button
-            onClick={() => setActiveTab('code')}
+            onClick={() => handleTablChange('code')}
             className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
               activeTab === 'code'
                 ? 'text-white border-blue-500'
@@ -426,7 +453,7 @@ const RepositoryDetailPage = () => {
             <Folder className="w-4 h-4" /> Code
           </button>
           <button
-            onClick={() => setActiveTab('commits')}
+            onClick={() => handleTablChange('commits')}
             className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
               activeTab === 'commits'
                 ? 'text-white border-blue-500'
@@ -438,7 +465,7 @@ const RepositoryDetailPage = () => {
           </button>
           {/* Branches Tab */}
           <button
-            onClick={() => setActiveTab('branches')}
+            onClick={() => handleTablChange('branches')}
             className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
               activeTab === 'branches'
                 ? 'text-white border-blue-500'
@@ -450,19 +477,32 @@ const RepositoryDetailPage = () => {
           </button>
 
           <button
-            onClick={() => setActiveTab('pulls')}
+            onClick={() => handleTablChange('pulls')}
             className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
           >
             <GitPullRequest className="w-4 h-4" />
             Pull Requests
           </button>
           <button
-            onClick={() => setActiveTab('issues')}
+            onClick={() => handleTablChange('issues')}
             className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
           >
             <CircleDot className="w-4 h-4" />
             Issues
           </button>
+          <button
+            onClick={() => handleTablChange('collaborators')}
+            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+              activeTab === 'collaborators'
+                ? 'text-white border-blue-500'
+                : 'text-gray-500 border-transparent hover:text-gray-300'
+            }`}
+          >
+            <Users className="w-4 h-4" />
+            Collaborators
+          </button>
+
+
         </div>
       </div>
       {/* CODE TAB */}
@@ -744,13 +784,13 @@ const RepositoryDetailPage = () => {
                       <div className="flex items-center gap-2">
                         {!isEditing && (
                           <button
-                            disabled={!isOwner}
+                            disabled={!hasWriteAccess}
                             onClick={() => {
                               setIsEditing(true);
                               setEditedContent(fileContent);
                             }}
                             className={`text-xs flex items-center gap-1 transition ${
-                              !isOwner
+                              !hasWriteAccess
                                 ? 'text-gray-600 cursor-not-allowed opacity-50'
                                 : 'text-blue-400 hover:text-blue-300'
                             }`}
@@ -773,10 +813,10 @@ const RepositoryDetailPage = () => {
                         </button>
                         {isEditing && (
                           <button
-                            disabled={!isOwner}
+                            disabled={!hasWriteAccess}
                             onClick={() => setShowCommitModal(true)}
                             className={`text-xs px-3 py-1 rounded transition ${
-                              !isOwner
+                              !hasWriteAccess
                                 ? 'bg-gray-700 text-gray-500 cursor-not-allowed opacity-50'
                                 : 'bg-blue-600 hover:bg-blue-700 text-white'
                             }`}
@@ -995,12 +1035,20 @@ const RepositoryDetailPage = () => {
         </div>
       )}
       {activeTab === 'pulls' && (
-        <PRListContent username={username!} reponame={reponame!} isOwner={isOwner} />
+        <PRListContent username={username!} reponame={reponame!} isOwner={isOwner} hasWriteAccess={hasWriteAccess}/>
       )}
 
       {activeTab === 'issues' && (
         <IssueListContent username={username!} reponame={reponame!} isOwner={isOwner} />
       )}
+            {activeTab === 'collaborators' && (
+        <CollaboratorsTabContent
+          username={username!}
+          reponame={reponame!}
+          isOwner={isOwner}
+        />
+      )}
+
 
       <AppFooter />
 

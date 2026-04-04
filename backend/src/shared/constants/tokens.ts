@@ -90,4 +90,16 @@ export const TOKENS = {
   IGetCollaboratorUseCase: Symbol.for('IGetCollaboratorUseCase'),
   IUpdateCollaboratorUseCase: Symbol.for('IUpdateCollaboratorUseCase'),
   ICheckCollaboratorUseCase: Symbol.for('ICheckCollaboratorUseCase'),
+
+
+
+    // Invitation
+  IInvitationRepository: Symbol.for('IInvitationRepository'),
+  ISendInvitationUseCase: Symbol.for('ISendInvitationUseCase'),
+  IAcceptInvitationUseCase: Symbol.for('IAcceptInvitationUseCase'),
+  IDeclineInvitationUseCase: Symbol.for('IDeclineInvitationUseCase'),
+  IGetInvitationByTokenUseCase: Symbol.for('IGetInvitationByTokenUseCase'),
+  IGetPendingInvitationsUseCase: Symbol.for('IGetPendingInvitationsUseCase'),
+  IGetAllCollabsUseCase:Symbol.for('IGetAllCollabsUseCase')
+
 } as const;

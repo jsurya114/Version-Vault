@@ -13,6 +13,8 @@ import {
   selectRepositoryError,
   selectRepositoryMeta,
 } from '../../features/repository/repositorySelectors';
+import { getAllCollabsReposThunk } from '../../features/collaborator/invitationThunk';
+import { selectCollabRepos } from '../../features/collaborator/invitationSelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import TableFilters from '../../types/common/Filters/TableFilters';
 import DataTable from '../../types/common/Table/DataTable';
@@ -64,6 +66,7 @@ const RepositoryListPage = () => {
     }),
     [page, search, sortField, sortOrder, visibilityFilter],
   );
+    const collabRepos = useAppSelector(selectCollabRepos)
 
   useEffect(() => {
     const timer = setTimeout(
@@ -74,6 +77,9 @@ const RepositoryListPage = () => {
     );
     return () => clearTimeout(timer);
   }, [dispatch, fetchParams, search]);
+   useEffect(()=>{
+      dispatch(getAllCollabsReposThunk())
+    },[dispatch])
 
   const handleDelete = useCallback(async () => {
     if (!deleteModal.repo) return;
@@ -85,6 +91,13 @@ const RepositoryListPage = () => {
     );
     setDeleteModal({ open: false, repo: null });
   }, [dispatch, authUser?.userId, deleteModal.repo]);
+
+  const allRepos = useMemo(() => {
+  const ownedIds = new Set(repositories.map((r) => r.id));
+  const uniqueCollabRepos = collabRepos.filter((r) => !ownedIds.has(r.repo.id)).map((c)=>c.repo)
+  return [...repositories, ...uniqueCollabRepos];
+}, [repositories, collabRepos]);
+
 
   const openVisibilityModal = useCallback((repo: RepositoryResponseDTO) => {
     setVisibilityModal({ open: true, repo });
@@ -107,26 +120,37 @@ const RepositoryListPage = () => {
 
   const columns: ColumnDef<RepositoryResponseDTO>[] = useMemo(
     () => [
-      {
-        key: 'name',
-        label: 'REPOSITORY',
-        render: (r) => (
+{
+  key: 'name',
+  label: 'REPOSITORY',
+  render: (r) => {
+    const isCollab = collabRepos.some((cr) => cr.repo.id === r.id);
+    return (
+      <div className="flex items-center gap-2">
+        <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
+          📁
+        </div>
+        <div>
           <div className="flex items-center gap-2">
-            <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-              📁
-            </div>
-            <div>
-              <p
-                className="text-blue-400 text-sm font-medium hover:underline cursor-pointer"
-                onClick={() => navigate(`/${authUser?.userId}/${r.name}`)}
-              >
-                {r.name}
-              </p>
-              <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
-            </div>
+            <p
+              className="text-blue-400 text-sm font-medium hover:underline cursor-pointer"
+              onClick={() => navigate(`/${r.ownerUsername}/${r.name}`)}
+            >
+              {isCollab ? `${r.ownerUsername}/${r.name}` : r.name}
+            </p>
+            {isCollab && (
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-purple-500/30 text-purple-400 bg-purple-500/10">
+                collaborator
+              </span>
+            )}
           </div>
-        ),
-      },
+          <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
+        </div>
+      </div>
+    );
+  },
+},
+
       {
         key: 'visibility',
         label: 'VISIBILITY',
@@ -163,36 +187,52 @@ const RepositoryListPage = () => {
           </span>
         ),
       },
-      {
-        key: 'actions',
-        label: 'ACTIONS',
-        render: (r) => (
-          <div className="flex items-center gap-4">
-            {/* 3. The Visibility Toggle Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                openVisibilityModal(r);
-              }}
-              className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
-            >
-              Make {r.visibility === 'public' ? 'Private' : 'Public'}
-            </button>
-            {/* Existing Delete Button */}
-            <button
-              onClick={(e) => {
-                e.stopPropagation();
-                setDeleteModal({ open: true, repo: r });
-              }}
-              className="text-red-400 hover:text-red-300 text-xs transition"
-            >
-              Delete
-            </button>
-          </div>
-        ),
-      },
+{
+  key: 'actions',
+  label: 'ACTIONS',
+  render: (r) => {
+    const collabEntry = collabRepos.find((cr) => cr.repo.id === r.id);
+    if (collabEntry) {
+      return (
+        <span className={`text-xs italic ${
+          collabEntry.role === 'read' 
+            ? 'text-gray-600' 
+            : collabEntry.role === 'write'
+              ? 'text-blue-400'
+              : 'text-purple-400'
+        }`}>
+          {collabEntry.role} access
+        </span>
+      );
+    }
+    return (
+      <div className="flex items-center gap-4">
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            openVisibilityModal(r);
+          }}
+          className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
+        >
+          Make {r.visibility === 'public' ? 'Private' : 'Public'}
+        </button>
+        <button
+          onClick={(e) => {
+            e.stopPropagation();
+            setDeleteModal({ open: true, repo: r });
+          }}
+          className="text-red-400 hover:text-red-300 text-xs transition"
+        >
+          Delete
+        </button>
+      </div>
+    );
+  },
+},
+
+
     ],
-    [navigate, authUser?.userId, openVisibilityModal],
+    [navigate, authUser?.userId, openVisibilityModal,collabRepos],
   );
 
   return (
@@ -256,7 +296,7 @@ const RepositoryListPage = () => {
         {/* Table */}
         <DataTable
           columns={columns}
-          data={repositories}
+          data={allRepos}
           isLoading={isLoading}
           emptyMessage="No repositories yet. Create your first repository!"
         />

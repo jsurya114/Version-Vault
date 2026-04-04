@@ -19,7 +19,7 @@ import {
   listRepositoryThunk,
   getCommitsThunk,
 } from '../../../features/repository/repositoryThunks';
-
+import { getAllCollabsReposThunk } from '../../../features/collaborator/invitationThunk';
 import {
   selectRepositories,
   selectRepositoryLoading,
@@ -34,6 +34,7 @@ import PinnedRepoCard from '../../../types/common/Profile/PinnedRepoCard';
 import ActivityTimeline, {
   ActivityItemProps,
 } from '../../../types/common/Profile/ActivityTimeline';
+import { selectCollabRepos } from 'src/features/collaborator/invitationSelectors';
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getMeThunk } from '../../../features/auth/authThunks';
 import { UserResponseDTO } from '../../../types/admin/adminTypes';
@@ -52,7 +53,7 @@ const formatDateJoined = (dateString?: string | Date) => {
   return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 };
 
-const RepoItem = React.memo(({ repo, onClick }: { repo: any; onClick: () => void }) => (
+const RepoItem = React.memo(({ repo, onClick, isCollab }: { repo: any; onClick: () => void; isCollab?: boolean }) => (
   <div
     className="bg-gray-900/40 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/60 rounded-xl p-5 cursor-pointer transition-all duration-300 group shadow-md"
     onClick={onClick}
@@ -61,17 +62,21 @@ const RepoItem = React.memo(({ repo, onClick }: { repo: any; onClick: () => void
       <div className="flex-1 min-w-0">
         <div className="flex items-center gap-3 mb-2">
           <span className="text-blue-400 text-base font-bold group-hover:text-blue-300 group-hover:underline decoration-2 underline-offset-4">
-            {repo.name}
+            {isCollab ? `${repo.ownerUsername}/${repo.name}` : repo.name}
           </span>
           <span
-            className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-bold border ${
-              repo.visibility === 'public'
+            className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-bold border ${repo.visibility === 'public'
                 ? 'border-green-500/30 text-green-400 bg-green-500/10'
                 : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
-            }`}
+              }`}
           >
             {repo.visibility}
           </span>
+          {isCollab && (
+            <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-purple-500/30 text-purple-400 bg-purple-500/10">
+              collaborator
+            </span>
+          )}
         </div>
         {repo.description && (
           <p className="text-gray-400 text-sm mb-3 leading-relaxed max-w-2xl">{repo.description}</p>
@@ -95,6 +100,7 @@ const RepoItem = React.memo(({ repo, onClick }: { repo: any; onClick: () => void
   </div>
 ));
 
+
 const UserProfilePage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -117,6 +123,8 @@ const UserProfilePage = () => {
   const [userActivities, setUserActivities] = useState<ActivityGroup[]>([]);
   const [dailyStats, setDailyStats] = useState<{ [key: string]: number }>({});
   const [totalYearlyContributions, setTotalYearlyContributions] = useState(0);
+  const collabRepos = useAppSelector(selectCollabRepos);
+
 
   const [followModal, setFollowModal] = useState<{
     isOpen: boolean;
@@ -144,6 +152,9 @@ const UserProfilePage = () => {
       dispatch(getProfileThunk(userId));
       dispatch(getFollowersThunk(userId));
       dispatch(getFollowingThunk(userId));
+      if (isOwnProfile) {
+        dispatch(getAllCollabsReposThunk())
+      }
     }
     return () => {
       // Cleanup: clear the viewedUser state when leaving the page
@@ -161,6 +172,13 @@ const UserProfilePage = () => {
       dispatch(listRepositoryThunk({ userId: displayUser.id }));
     }
   }, [displayUser?.id]);
+
+  const allProfileRepos = useMemo(() => {
+    if (!isOwnProfile) return visibleRepositories;
+    const ownedIds = new Set(repositories.map((r) => r.id));
+    const uniqueCollabRepos = collabRepos.filter((r) => !ownedIds.has(r.repo.id)).map((r)=>r.repo)
+    return [...visibleRepositories, ...uniqueCollabRepos];
+  }, [isOwnProfile, visibleRepositories, repositories, collabRepos]);
 
   // Inside UserProfilePage.tsx component:
 
@@ -324,11 +342,10 @@ const UserProfilePage = () => {
               <button
                 onClick={handleFollowToggle}
                 disabled={followLoading}
-                className={`w-full py-2 text-sm font-bold rounded-lg border transition mb-6 shadow-lg ${
-                  isFollowing
+                className={`w-full py-2 text-sm font-bold rounded-lg border transition mb-6 shadow-lg ${isFollowing
                     ? 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400'
                     : 'bg-blue-600 border-blue-600 text-white hover:bg-blue-700 shadow-blue-900/40'
-                }`}
+                  }`}
               >
                 {followLoading ? '...' : isFollowing ? 'Unfollow' : 'Follow'}
               </button>
@@ -379,27 +396,27 @@ const UserProfilePage = () => {
             <ProfileTabs
               activeTab={activeTab}
               onTabChange={setActiveTab}
-              repoCount={visibleRepositories.length}
+              repoCount={allProfileRepos.length}
             />
 
             {activeTab === 'overview' ? (
               <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                 {/* Pinned / Selected Repositories */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
-                  {repositories.length > 0 ? (
-                    repositories
-                      .slice(0, 4)
-                      .map((repo) => (
-                        <PinnedRepoCard
-                          key={repo.id}
-                          name={repo.name}
-                          description={repo.description}
-                          language={repo.language || 'JavaScript'}
-                          languageColor={repo.language === 'TypeScript' ? '#3178c6' : '#f1e05a'}
-                          stars={repo.stars}
-                          onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
-                        />
-                      ))
+                  {allProfileRepos.length > 0 ? (
+                    allProfileRepos.slice(0, 4).map((repo) => (
+                      <PinnedRepoCard
+                        key={repo.id}
+                        name={collabRepos.some((cr) => cr.repo.id === repo.id)
+                          ? `${repo.ownerUsername}/${repo.name}`
+                          : repo.name}
+                        description={repo.description}
+                        language={repo.language || 'JavaScript'}
+                        languageColor={repo.language === 'TypeScript' ? '#3178c6' : '#f1e05a'}
+                        stars={repo.stars}
+                        onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
+                      />
+                    ))
                   ) : (
                     <div className="col-span-2 bg-gray-900/30 border border-dashed border-gray-800 rounded-2xl p-12 text-center">
                       <BookOpen className="w-8 h-8 text-gray-700 mx-auto mb-3" />
@@ -434,7 +451,7 @@ const UserProfilePage = () => {
                   <div className="flex items-center justify-center py-20">
                     <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
                   </div>
-                ) : repositories.length === 0 ? (
+                ) : allProfileRepos.length === 0 ? (
                   <div className="bg-gray-900/30 border border-gray-800 rounded-2xl p-20 text-center">
                     <BookOpen className="w-12 h-12 text-gray-800 mx-auto mb-4" />
                     <p className="text-gray-500 font-medium tracking-wide">
@@ -443,7 +460,7 @@ const UserProfilePage = () => {
                   </div>
                 ) : (
                   <div className="grid grid-cols-1 gap-3">
-                    {repositories.map((repo) => (
+                    {allProfileRepos.map((repo) => (
                       <RepoItem
                         key={repo.id}
                         repo={repo}

@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { prInitialState } from '../../types/pullrequest/pullrequest.types';
-import { createPRThunk, listPRThunk, getPRThunk, mergePRThunk, closePRThunk } from './prThunk';
+import { createPRThunk, listPRThunk, getPRThunk, mergePRThunk, closePRThunk,requestMergeThunk,approveMergeThunk,rejectMergeThunk } from './prThunk';
 
 const prSlice = createSlice({
   name: 'pullrequest',
@@ -91,7 +91,53 @@ const prSlice = createSlice({
       .addCase(closePRThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
+      })
+      //request merge
+            .addCase(requestMergeThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(requestMergeThunk.fulfilled,(state,action)=>{
+        state.isLoading=false
+        if(state.selectedPR&& action.payload &&!action.payload.id){
+          state.selectedPR.mergeApproval='pending'
+        }else if(action.payload.id){
+          state.selectedPR=action.payload
+        }
+      })
+      .addCase(requestMergeThunk.rejected,(state,action)=>{
+        state.isLoading=false
+        state.error=action.payload as string
+      })
+            // approve merge
+      .addCase(approveMergeThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(approveMergeThunk.fulfilled,(state,action)=>{
+        state.isLoading=false
+        const prData =(action.payload as any).data || action.payload
+        state.prs = state.prs.map((pr)=>(pr.id==prData.id ? prData:pr))
+        if(state.selectedPR?.id===prData.id){
+          state.selectedPR=prData
+        }
+      })
+            // reject merge
+      .addCase(rejectMergeThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(rejectMergeThunk.fulfilled,(state,action)=>{
+        state.isLoading=false
+        if(state.selectedPR){
+          state.selectedPR.mergeApproval='rejected'
+        }
+      })
+            .addCase(rejectMergeThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
       });
+
   },
 });
 

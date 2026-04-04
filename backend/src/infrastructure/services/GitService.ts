@@ -385,8 +385,33 @@ export class GitService {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
-      const range = `${targetBranch}..${sourceBranch}`;
-      const log = await git.log([range]);
+      const logRange = `${targetBranch}..${sourceBranch}`;
+      const diffRange = `${targetBranch}...${sourceBranch}`;
+
+      const log = await git.log([logRange]);
+      // if(log.all.length===0){
+      // try {
+      //   const mergeCommitHash = await git.raw([
+      //     'log',
+      //     targetBranch,
+      //     '--merges',
+      //     `--grep=Merge branch '${sourceBranch}' into '${targetBranch}'`,
+      //     '-n',
+      //     '1',
+      //     '--format=%H'
+      //   ])
+      //   if(mergeCommitHash.trim()){
+      //     const hash = mergeCommitHash.trim()
+
+      //                 logRange = `${hash}^1..${hash}^2`;
+      //       diffRange = `${hash}^1...${hash}^2`;
+      //       log = await git.log([logRange]);
+      //   }
+      // } catch (error) {
+
+      // }
+      // }
+
       const commits = log.all.map((commit) => ({
         hash: commit.hash.substring(0, 7),
         message: commit.message,
@@ -395,7 +420,7 @@ export class GitService {
       }));
 
       //files changed counts
-      const diffSummary = await git.diffSummary([range]);
+      const diffSummary = await git.diffSummary([diffRange]);
       const filesChanged = diffSummary.files.length;
       //get unique contributors cout
       const contributors = new Set(log.all.map((c) => c.author_email)).size;
@@ -408,7 +433,7 @@ export class GitService {
         isMergeable = false;
       }
 
-      const diffString = await git.raw(['diff', range]);
+      const diffString = await git.raw(['diff', diffRange]);
       const diffs = this.parseDiff(diffString);
 
       return { commits, filesChanged, contributors, isMergeable, diffs };

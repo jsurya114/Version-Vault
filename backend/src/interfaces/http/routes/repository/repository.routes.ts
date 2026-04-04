@@ -7,6 +7,7 @@ import { BranchController } from '../../controllers/branch/BranchController';
 import { AuthRequest } from '../../controllers/repository/RepositoryController';
 import { CommitController } from '../../controllers/commit/CommitController';
 import { visibilityMiddleware } from '../../middleware/visibilityMiddleware';
+import { writeAccessMiddleware } from '../../middleware/WriteAccessMiddleware';
 
 const router = Router();
 const repoController = container.resolve(RepositoryController);
@@ -43,21 +44,21 @@ router.get('/:username/:reponame/commits', (req, res, next) =>
 router.get('/:username/:reponame/branches', (req, res, next) =>
   branchController.getBranches(req, res, next),
 );
-router.post('/:username/:reponame/branches', authMiddleware, ownerMiddleware, (req, res, next) =>
+router.post('/:username/:reponame/branches', authMiddleware, writeAccessMiddleware, (req, res, next) =>
   branchController.createBranch(req, res, next),
 );
 router.delete(
   '/:username/:reponame/branches/:branchName',
   authMiddleware,
-  ownerMiddleware,
+  writeAccessMiddleware,
   (req, res, next) => branchController.deleteBranch(req, res, next),
 );
 
-router.post('/:username/:reponame/commit', authMiddleware, ownerMiddleware, (req, res, next) =>
+router.post('/:username/:reponame/commit', authMiddleware, writeAccessMiddleware, (req, res, next) =>
   commitController.createCommit(req as AuthRequest, res, next),
 );
 
-router.get('/:username/:reponame/compare/:base/:head', authMiddleware, (req, res, next) =>
+router.get('/:username/:reponame/compare/:base/:head', authMiddleware,writeAccessMiddleware, (req, res, next) =>
   commitController.compareCommit(req, res, next),
 );
 

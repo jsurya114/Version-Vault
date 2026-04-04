@@ -75,25 +75,27 @@ const CompareCommitPage = () => {
       `/${username}/${reponame}/pulls/new/form?base=${base}&head=${head}&title=${defaultTile}`,
     );
   }, [data?.commits, navigate, username, reponame, base, head]);
+  const groupCommitsByDate = (commits: GitCommit[]) => {
+return commits.reduce(
+  (acc,commit)=>{
+    const date = new Date(commit.date).toLocaleDateString('en-US',{
+      month:'short',
+      day:'numeric',
+      year:'numeric'
+    })
+    if(!acc[date]) acc[date]=[]
+    acc[date].push(commit)
+    return acc
+  },
+  {} as Record<string, GitCommit[]>,
+)
+  };
 
   const commitGroups = useMemo(() => {
     return data?.commits ? groupCommitsByDate(data.commits) : {};
   }, [data?.commits]);
 
-  const groupCommitsByDate = (commits: GitCommit[]) => {
-    const groups: { [key: string]: GitCommit[] } = {};
-    commits?.forEach((commit) => {
-      const dateStr = new Date(commit.date).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      });
-      const dateKey = `Commits on ${dateStr}`;
-      if (!groups[dateKey]) groups[dateKey] = [];
-      groups[dateKey].push(commit);
-    });
-    return groups;
-  };
+
 
   const CommitItem = React.memo(
     ({ commit, onClick }: { commit: GitCommit; onClick: () => void }) => (

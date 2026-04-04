@@ -94,11 +94,19 @@ import { VisibilityUseCase } from './application/use-cases/repository/Visibility
 
 //collaborators
 import { MongoCollaboratorRepository } from './infrastructure/database/mongoose/repositories/MongoCollaboratorRepository';
+import { MongoInvitationRepository } from './infrastructure/database/mongoose/repositories/MongoInvitationRepository';
 import { AddCollaboratorUseCase } from './application/use-cases/collaborators/AddCollaboratorUseCase';
 import { RemoveCollaboratorUseCase } from './application/use-cases/collaborators/RemoveCollaboratorUseCase';
 import { UpdateCollaboratorUseCase } from './application/use-cases/collaborators/UpdateCollaboratorUseCase';
 import { GetCollaboratorUseCase } from './application/use-cases/collaborators/GetCollaboratorUseCase';
 import { CheckCollaboratorUseCase } from './application/use-cases/collaborators/CheckCollaboratorUseCase';
+import { SendInvitationUseCase } from './application/use-cases/collaborators/SendInvitationUseCase';
+import { AcceptInvitationUseCase } from './application/use-cases/collaborators/AcceptInvitationUseCase';
+import { DeclineInvitationUseCase } from './application/use-cases/collaborators/DeclineInvitationUseCase';
+import { GetInvitationByTokenUseCase } from './application/use-cases/collaborators/GetInvitationByTokenUseCase';
+import { GetPendingInvitationsUseCase } from './application/use-cases/collaborators/GetPendingInvitationsUseCase'
+import { GetAllCollabsUseCase } from './application/use-cases/collaborators/GetAllCollabsUseCase';
+
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -196,5 +204,12 @@ container.register(TOKENS.IRemoveCollaboratorUseCase, { useClass: RemoveCollabor
 container.register(TOKENS.IGetCollaboratorUseCase, { useClass: GetCollaboratorUseCase });
 container.register(TOKENS.IUpdateCollaboratorUseCase, { useClass: UpdateCollaboratorUseCase });
 container.register(TOKENS.ICheckCollaboratorUseCase, { useClass: CheckCollaboratorUseCase });
+container.register(TOKENS.IInvitationRepository, { useClass: MongoInvitationRepository });
+container.register(TOKENS.ISendInvitationUseCase, { useClass: SendInvitationUseCase });
+container.register(TOKENS.IAcceptInvitationUseCase, { useClass: AcceptInvitationUseCase });
+container.register(TOKENS.IDeclineInvitationUseCase, { useClass: DeclineInvitationUseCase });
+container.register(TOKENS.IGetInvitationByTokenUseCase, { useClass: GetInvitationByTokenUseCase });
+container.register(TOKENS.IGetPendingInvitationsUseCase, { useClass: GetPendingInvitationsUseCase });
+container.register(TOKENS.IGetAllCollabsUseCase,{useClass:GetAllCollabsUseCase})
 
 export { container };
