@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { CircleDot, CheckCircle, Plus, Search } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -19,6 +19,68 @@ const priorityColors: Record<IssuePriority, string> = {
   high: 'text-red-400 bg-red-500/10 border-red-500/30',
 };
 
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
+interface IssueItemProps {
+  issue: {
+    id: string;
+    status: string;
+    title: string;
+    labels: string[];
+    createdAt?: string;
+    authorUsername: string;
+    priority: string;
+  };
+  onNavigate: (id: string) => void;
+}
+
+const IssueItem = React.memo(({ issue, onNavigate }: IssueItemProps) => (
+  <div
+    className="flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition border-b border-gray-800/50 last:border-b-0"
+    onClick={() => onNavigate(issue.id)}
+  >
+    <div className="mt-0.5 shrink-0">
+      {issue.status === 'open' ? (
+        <CircleDot className="w-5 h-5 text-green-400" />
+      ) : (
+        <CheckCircle className="w-5 h-5 text-purple-400" />
+      )}
+    </div>
+    <div className="flex-1 min-w-0">
+      <div className="flex items-center gap-2 flex-wrap">
+        <p className="text-white text-sm font-medium hover:text-blue-400 transition">
+          {issue.title}
+        </p>
+        {issue.labels.map((label: string) => (
+          <span
+            key={label}
+            className="text-xs px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400"
+          >
+            {label}
+          </span>
+        ))}
+      </div>
+      <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
+        <span>#{issue.id.slice(-6)}</span>
+        <span>opened {formatDate(issue.createdAt)}</span>
+        <span>by {issue.authorUsername}</span>
+      </div>
+    </div>
+    <span
+      className={`text-xs px-2 py-0.5 rounded border capitalize shrink-0 ${priorityColors[issue.priority as IssuePriority]}`}
+    >
+      {issue.priority}
+    </span>
+  </div>
+));
+
 const IssueListPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -32,48 +94,37 @@ const IssueListPage = () => {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const limit = 5;
 
-  useEffect(() => {
-    if (username && reponame) {
-      dispatch(
-        listIssuesThunk({
-          username,
-          reponame,
-          page,
-          limit,
-          search: search || undefined,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          status: statusFilter === 'all' ? undefined : (statusFilter as any),
-        }),
-      );
-    }
-  }, [username, reponame, page, statusFilter]);
+  const fetchParams = useMemo(
+    () => ({
+      username: username!,
+      reponame: reponame!,
+      page,
+      limit,
+      search: search || undefined,
+      status: statusFilter === 'all' ? undefined : (statusFilter as 'open' | 'closed'),
+    }),
+    [username, reponame, page, statusFilter, search],
+  );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPage(1);
-      dispatch(
-        listIssuesThunk({
-          username: username!,
-          reponame: reponame!,
-          page: 1,
-          limit,
-          search: search || undefined,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          status: statusFilter === 'all' ? undefined : (statusFilter as any),
-        }),
-      );
-    }, 500);
+    const timer = setTimeout(
+      () => {
+        if (username && reponame) {
+          dispatch(listIssuesThunk(fetchParams));
+        }
+      },
+      search ? 500 : 0,
+    );
+
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [dispatch, fetchParams, search]);
 
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+  const handleNavigate = useCallback(
+    (id: string) => {
+      navigate(`/${username}/${reponame}/issues/${id}`);
+    },
+    [navigate, username, reponame],
+  );
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
@@ -156,47 +207,8 @@ const IssueListPage = () => {
               </Link>
             </div>
           ) : (
-            issues.map((issue, i) => (
-              <div
-                key={issue.id}
-                className={`flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition ${
-                  i !== issues.length - 1 ? 'border-b border-gray-800/50' : ''
-                }`}
-                onClick={() => navigate(`/${username}/${reponame}/issues/${issue.id}`)}
-              >
-                <div className="mt-0.5 shrink-0">
-                  {issue.status === 'open' ? (
-                    <CircleDot className="w-5 h-5 text-green-400" />
-                  ) : (
-                    <CheckCircle className="w-5 h-5 text-purple-400" />
-                  )}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <div className="flex items-center gap-2 flex-wrap">
-                    <p className="text-white text-sm font-medium hover:text-blue-400 transition">
-                      {issue.title}
-                    </p>
-                    {issue.labels.map((label) => (
-                      <span
-                        key={label}
-                        className="text-xs px-1.5 py-0.5 rounded bg-blue-500/10 border border-blue-500/20 text-blue-400"
-                      >
-                        {label}
-                      </span>
-                    ))}
-                  </div>
-                  <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
-                    <span>#{issue.id.slice(-6)}</span>
-                    <span>opened {formatDate(issue.createdAt)}</span>
-                    <span>by {issue.authorUsername}</span>
-                  </div>
-                </div>
-                <span
-                  className={`text-xs px-2 py-0.5 rounded border capitalize shrink-0 ${priorityColors[issue.priority as IssuePriority]}`}
-                >
-                  {issue.priority}
-                </span>
-              </div>
+            issues.map((issue) => (
+              <IssueItem key={issue.id} issue={issue} onNavigate={handleNavigate} />
             ))
           )}
         </div>

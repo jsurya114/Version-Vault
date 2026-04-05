@@ -3,6 +3,7 @@ export interface PullRequestResponseDTO {
   title: string;
   description?: string;
   status: string;
+  mergeApproval?:string
   sourceBranch: string;
   targetBranch: string;
   repositoryId: string;
@@ -10,6 +11,8 @@ export interface PullRequestResponseDTO {
   authorUsername: string;
   reviewers: string[];
   commentsCount: number;
+  baseCommitHash?:string
+  headCommitHash?:string
   createdAt?: Date;
   updatedAt?: Date;
 }
@@ -22,4 +25,6 @@ export interface CreatePullRequestDTO {
   repositoryId: string;
   authorId: string;
   authorUsername: string;
+    baseCommitHash?: string;
+  headCommitHash?: string;
 }

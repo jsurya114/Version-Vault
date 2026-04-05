@@ -1,6 +1,12 @@
 import { RootState } from '../../app/store';
+import { createSelector } from '@reduxjs/toolkit';
 
-export const selectAdminRepos = (state: RootState) => state.adminRepos.repos;
-export const selectAdminReposLoading = (state: RootState) => state.adminRepos.isLoading;
-export const selectAdminReposError = (state: RootState) => state.adminRepos.error;
-export const selectAdminReposMeta = (state: RootState) => state.adminRepos.meta;
+const selectBaseState = (state: RootState) => state.adminRepos;
+
+export const selectAdminRepos = createSelector([selectBaseState], (state) => state.repos);
+export const selectAdminReposLoading = createSelector(
+  [selectBaseState],
+  (state) => state.isLoading,
+);
+export const selectAdminReposError = createSelector([selectBaseState], (state) => state.error);
+export const selectAdminReposMeta = createSelector([selectBaseState], (state) => state.meta);

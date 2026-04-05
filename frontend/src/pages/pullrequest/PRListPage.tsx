@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
 import { GitMerge, GitPullRequest, X, Plus, Search } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -21,6 +21,57 @@ const statusIcons: Record<PRStatus, JSX.Element> = {
   merged: <GitMerge className="w-3.5 h-3.5" />,
 };
 
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
+};
+
+interface PRItemProps {
+  pr: {
+    id: string;
+    title: string;
+    status: PRStatus;
+    createdAt?: string;
+    authorUsername: string;
+    sourceBranch: string;
+    targetBranch: string;
+  };
+  onNavigate: (id: string) => void;
+}
+
+const PRItem = React.memo(({ pr, onNavigate }: PRItemProps) => (
+  <div
+    className="flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition border-b border-gray-800/50 last:border-b-0"
+    onClick={() => onNavigate(pr.id)}
+  >
+    <div
+      className={`mt-0.5 flex items-center justify-center w-6 h-6 rounded-full border ${statusColors[pr.status]}`}
+    >
+      {statusIcons[pr.status]}
+    </div>
+    <div className="flex-1 min-w-0">
+      <p className="text-white text-sm font-medium hover:text-blue-400 transition truncate">
+        {pr.title}
+      </p>
+      <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
+        <span>#{pr.id.slice(-6)}</span>
+        <span>opened {formatDate(pr.createdAt)}</span>
+        <span>by {pr.authorUsername}</span>
+        <span className="flex items-center gap-1">
+          {pr.sourceBranch} → {pr.targetBranch}
+        </span>
+      </div>
+    </div>
+    <span className={`text-xs px-2 py-0.5 rounded border capitalize ${statusColors[pr.status]}`}>
+      {pr.status}
+    </span>
+  </div>
+));
+
 const PRListPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -34,48 +85,37 @@ const PRListPage = () => {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const limit = 5;
 
-  useEffect(() => {
-    if (username && reponame) {
-      dispatch(
-        listPRThunk({
-          username,
-          reponame,
-          page,
-          limit,
-          search: search || undefined,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          status: statusFilter === 'all' ? undefined : (statusFilter as any),
-        }),
-      );
-    }
-  }, [username, reponame, page, statusFilter]);
+  const fetchParams = useMemo(
+    () => ({
+      username: username!,
+      reponame: reponame!,
+      page,
+      limit,
+      search: search || undefined,
+      status: statusFilter === 'all' ? undefined : (statusFilter as 'open' | 'closed' | 'merged'),
+    }),
+    [username, reponame, page, statusFilter, search],
+  );
 
   useEffect(() => {
-    const timer = setTimeout(() => {
-      setPage(1);
-      dispatch(
-        listPRThunk({
-          username: username!,
-          reponame: reponame!,
-          page: 1,
-          limit,
-          search: search || undefined,
-          // eslint-disable-next-line @typescript-eslint/no-explicit-any
-          status: statusFilter === 'all' ? undefined : (statusFilter as any),
-        }),
-      );
-    }, 500);
+    const timer = setTimeout(
+      () => {
+        if (username && reponame) {
+          dispatch(listPRThunk(fetchParams));
+        }
+      },
+      search ? 500 : 0,
+    );
+
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [dispatch, fetchParams, search]);
 
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+  const handleNavigate = useCallback(
+    (id: string) => {
+      navigate(`/${username}/${reponame}/pulls/${id}`);
+    },
+    [navigate, username, reponame],
+  );
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
@@ -158,39 +198,7 @@ const PRListPage = () => {
               </Link>
             </div>
           ) : (
-            prs.map((pr, i) => (
-              <div
-                key={pr.id}
-                className={`flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition ${
-                  i !== prs.length - 1 ? 'border-b border-gray-800/50' : ''
-                }`}
-                onClick={() => navigate(`/${username}/${reponame}/pulls/${pr.id}`)}
-              >
-                <div
-                  className={`mt-0.5 flex items-center justify-center w-6 h-6 rounded-full border ${statusColors[pr.status]}`}
-                >
-                  {statusIcons[pr.status]}
-                </div>
-                <div className="flex-1 min-w-0">
-                  <p className="text-white text-sm font-medium hover:text-blue-400 transition truncate">
-                    {pr.title}
-                  </p>
-                  <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
-                    <span>#{pr.id.slice(-6)}</span>
-                    <span>opened {formatDate(pr.createdAt)}</span>
-                    <span>by {pr.authorUsername}</span>
-                    <span className="flex items-center gap-1">
-                      {pr.sourceBranch} → {pr.targetBranch}
-                    </span>
-                  </div>
-                </div>
-                <span
-                  className={`text-xs px-2 py-0.5 rounded border capitalize ${statusColors[pr.status]}`}
-                >
-                  {pr.status}
-                </span>
-              </div>
-            ))
+            prs.map((pr) => <PRItem key={pr.id} pr={pr} onNavigate={handleNavigate} />)
           )}
         </div>
 

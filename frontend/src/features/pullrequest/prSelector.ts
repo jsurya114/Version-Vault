@@ -1,7 +1,9 @@
 import { RootState } from '../../app/store';
+import { createSelector } from '@reduxjs/toolkit';
 
-export const selectPRs = (state: RootState) => state.pullrequest.prs;
-export const selectSelectedPR = (state: RootState) => state.pullrequest.selectedPR;
-export const selectPRLoading = (state: RootState) => state.pullrequest.isLoading;
-export const selectPRError = (state: RootState) => state.pullrequest.error;
-export const selectPRMeta = (state: RootState) => state.pullrequest.meta;
+const selectBaseState = (state: RootState) => state.pullrequest;
+export const selectPRs = createSelector([selectBaseState], (state) => state.prs);
+export const selectSelectedPR = createSelector([selectBaseState], (state) => state.selectedPR);
+export const selectPRLoading = createSelector([selectBaseState], (state) => state.isLoading);
+export const selectPRError = createSelector([selectBaseState], (state) => state.error);
+export const selectPRMeta = createSelector([selectBaseState], (state) => state.meta);

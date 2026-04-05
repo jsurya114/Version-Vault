@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -47,111 +47,107 @@ const AdminUsersPage = () => {
   const [page, setPage] = useState(1);
   const limit = 5;
 
-  const fetchUsers = (overrides = {}) => {
-    dispatch(
-      getAllUsersThunk({
-        page,
-        limit,
-        search: search || undefined,
-        sort: sortField,
-        order: sortOrder,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        status: statusFilter === 'all' ? undefined : (statusFilter as any),
-        ...overrides,
-      }),
-    );
-  };
-
-  useEffect(() => {
-    fetchUsers();
-  }, [page, sortField, sortOrder, statusFilter]);
+  const fetchParams = useMemo(
+    () => ({
+      page,
+      limit,
+      search: search || undefined,
+      sort: sortField,
+      order: sortOrder,
+      status:
+        statusFilter === 'all' ? undefined : (statusFilter as 'active' | 'blocked' | 'pending'),
+    }),
+    [page, search, sortField, sortOrder, statusFilter],
+  );
 
   useEffect(() => {
     const timer = setTimeout(() => {
-      setPage(1);
-      fetchUsers({ page: 1 });
+      dispatch(getAllUsersThunk(fetchParams));
     }, 500);
     return () => clearTimeout(timer);
-  }, [search]);
+  }, [dispatch, fetchParams]);
 
   // column definitions
-  const columns: ColumnDef<UserResponseDTO>[] = [
-    {
-      key: 'username',
-      label: 'USER',
-      render: (u) => (
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-            {u.username?.[0]?.toUpperCase()}
+  const columns: ColumnDef<UserResponseDTO>[] = useMemo(
+    () => [
+      {
+        key: 'username',
+        label: 'USER',
+        render: (u) => (
+          <div className="flex items-center gap-2">
+            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+              {u.username?.[0]?.toUpperCase()}
+            </div>
+            <div>
+              <p className="text-white text-sm font-medium">{u.username}</p>
+              <p className="text-gray-500 text-xs">@{u.userId}</p>
+            </div>
           </div>
-          <div>
-            <p className="text-white text-sm font-medium">{u.username}</p>
-            <p className="text-gray-500 text-xs">@{u.userId}</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      key: 'email',
-      label: 'EMAIL ADDRESS',
-      render: (u) => <span className="text-gray-400 text-sm">{u.email}</span>,
-    },
-    {
-      key: 'status',
-      label: 'STATUS',
-      render: (u) => {
-        const status = getStatus(u);
-        return (
-          <span className={`text-xs px-2 py-0.5 rounded font-medium ${statusColors[status]}`}>
-            {status.toUpperCase()}
-          </span>
-        );
+        ),
       },
-    },
-    {
-      key: 'role',
-      label: 'ROLE',
-      render: (u) => (
-        <span
-          className={`text-xs px-2 py-0.5 rounded font-medium ${roleColors[u.role] || 'bg-gray-700 text-gray-400'}`}
-        >
-          {u.role}
-        </span>
-      ),
-    },
-    {
-      key: 'provider',
-      label: 'PROVIDER',
-      render: (u) => <span className="text-gray-400 text-sm capitalize">{u.provider}</span>,
-    },
-    {
-      key: 'createdAt',
-      label: 'DATE JOINED',
-      render: (u) => (
-        <span className="text-gray-400 text-sm">
-          {u.createdAt
-            ? new Date(u.createdAt).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })
-            : '—'}
-        </span>
-      ),
-    },
-    {
-      key: 'actions',
-      label: 'ACTIONS',
-      render: (u) => (
-        <button
-          onClick={() => navigate(`/admin/users/${u.id}`)}
-          className="text-blue-400 hover:text-blue-300 text-xs transition"
-        >
-          View
-        </button>
-      ),
-    },
-  ];
+      {
+        key: 'email',
+        label: 'EMAIL ADDRESS',
+        render: (u) => <span className="text-gray-400 text-sm">{u.email}</span>,
+      },
+      {
+        key: 'status',
+        label: 'STATUS',
+        render: (u) => {
+          const status = getStatus(u);
+          return (
+            <span className={`text-xs px-2 py-0.5 rounded font-medium ${statusColors[status]}`}>
+              {status.toUpperCase()}
+            </span>
+          );
+        },
+      },
+      {
+        key: 'role',
+        label: 'ROLE',
+        render: (u) => (
+          <span
+            className={`text-xs px-2 py-0.5 rounded font-medium ${roleColors[u.role] || 'bg-gray-700 text-gray-400'}`}
+          >
+            {u.role}
+          </span>
+        ),
+      },
+      {
+        key: 'provider',
+        label: 'PROVIDER',
+        render: (u) => <span className="text-gray-400 text-sm capitalize">{u.provider}</span>,
+      },
+      {
+        key: 'createdAt',
+        label: 'DATE JOINED',
+        render: (u) => (
+          <span className="text-gray-400 text-sm">
+            {u.createdAt
+              ? new Date(u.createdAt).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })
+              : '—'}
+          </span>
+        ),
+      },
+      {
+        key: 'actions',
+        label: 'ACTIONS',
+        render: (u) => (
+          <button
+            onClick={() => navigate(`/admin/users/${u.id}`)}
+            className="text-blue-400 hover:text-blue-300 text-xs transition"
+          >
+            View
+          </button>
+        ),
+      },
+    ],
+    [navigate],
+  );
 
   return (
     <AdminLayout>

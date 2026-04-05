@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import { ROUTES } from '../../constants/routes';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
@@ -15,7 +15,7 @@ const statusColors: Record<string, string> = {
   blocked: 'bg-red-500/20 text-red-400 border border-red-500/30',
 };
 
-const AdminRepositoryDetailPage = () => {
+const AdminRepositoryDetailPage = React.memo(() => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
@@ -23,7 +23,7 @@ const AdminRepositoryDetailPage = () => {
   const isLoading = useAppSelector(selectAdminReposLoading);
   const error = useAppSelector(selectAdminReposError);
 
-  const repo = repos.find((r) => r.id === id);
+  const repo = useMemo(() => repos.find((r) => r.id === id), [repos, id]);
   const [pendingBlocked, setPendingBlocked] = useState<boolean | null>(null);
 
   useEffect(() => {
@@ -37,6 +37,21 @@ const AdminRepositoryDetailPage = () => {
       setPendingBlocked(repo.isBlocked);
     }
   }, [repo]);
+
+  const status = useMemo(() => (repo?.isBlocked ? 'blocked' : 'active'), [repo?.isBlocked]);
+
+  const stats = useMemo(
+    () =>
+      repo
+        ? [
+            { label: 'Total Stars', value: repo.stars || 0, color: 'text-amber-400' },
+            { label: 'Total Forks', value: repo.forks || 0, color: 'text-blue-400' },
+            { label: 'Branches', value: '4 active', color: 'text-purple-400' },
+            { label: 'Storage', value: `${repo.size} KB`, color: 'text-cyan-400' },
+          ]
+        : [],
+    [repo],
+  );
 
   if (isLoading && !repo) {
     return (
@@ -57,8 +72,6 @@ const AdminRepositoryDetailPage = () => {
     );
   }
 
-  const status = repo.isBlocked ? 'blocked' : 'active';
-
   return (
     <AdminLayout>
       {error && (
@@ -78,7 +91,6 @@ const AdminRepositoryDetailPage = () => {
         <p className="text-gray-500 text-xs mt-0.5">Comprehensive audit and governance control.</p>
       </div>
 
-      {/* Header Bar */}
       <div className="flex items-center gap-5 mb-8 bg-gray-900/40 p-6 rounded-3xl border border-gray-800/50 shadow-sm">
         <div className="w-16 h-16 rounded-2xl bg-gray-800 flex items-center justify-center text-gray-400 ring-1 ring-gray-700 shadow-inner">
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -107,14 +119,8 @@ const AdminRepositoryDetailPage = () => {
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3 space-y-6">
-          {/* Stats Bar */}
           <div className="grid grid-cols-4 gap-4">
-            {[
-              { label: 'Total Stars', value: repo.stars || 0, color: 'text-amber-400' },
-              { label: 'Total Forks', value: repo.forks || 0, color: 'text-blue-400' },
-              { label: 'Branches', value: '4 active', color: 'text-purple-400' }, // New Stat
-              { label: 'Storage', value: `${repo.size} KB`, color: 'text-cyan-400' },
-            ].map((s) => (
+            {stats.map((s) => (
               <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-2xl p-4">
                 <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">
                   {s.label}
@@ -238,6 +244,6 @@ const AdminRepositoryDetailPage = () => {
       </div>
     </AdminLayout>
   );
-};
+});
 
 export default AdminRepositoryDetailPage;

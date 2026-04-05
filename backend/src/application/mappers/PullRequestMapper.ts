@@ -10,6 +10,7 @@ export class PullRequestMapper {
       title: doc.title,
       description: doc.description,
       status: doc.status,
+      mergeApproval:doc.mergeApproval||'none',
       sourceBranch: doc.sourceBranch,
       targetBranch: doc.targetBranch,
       repositoryId: doc.repositoryId,
@@ -17,6 +18,8 @@ export class PullRequestMapper {
       authorUsername: doc.authorUsername,
       reviewers: doc.reviewers,
       commentsCount: doc.commentsCount,
+      baseCommitHash: doc.baseCommitHash,
+      headCommitHash: doc.headCommitHash,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
     };
@@ -29,6 +32,7 @@ export class PullRequestMapper {
       title: pr.title,
       description: pr.description,
       status: pr.status,
+      mergeApproval:pr.mergeApproval,
       sourceBranch: pr.sourceBranch,
       targetBranch: pr.targetBranch,
       repositoryId: pr.repositoryId,
@@ -36,6 +40,8 @@ export class PullRequestMapper {
       authorUsername: pr.authorUsername,
       reviewers: pr.reviewers || [],
       commentsCount: pr.commentsCount,
+      baseCommitHash: pr.baseCommitHash,
+      headCommitHash: pr.headCommitHash,
       createdAt: pr.createdAt,
       updatedAt: pr.updatedAt,
     };

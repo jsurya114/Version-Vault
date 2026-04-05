@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { Star, Filter, ChevronDown, BookOpen, MoreHorizontal, GitMerge, Smile } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -12,6 +12,18 @@ import { ROUTES } from '../../../constants/routes';
 import AppHeader from '../../../types/common/Layout/AppHeader';
 import AppFooter from '../../../types/common/Layout/AppFooter';
 import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
+
+const SideRepoLink = React.memo(({ repo }: { repo: { ownerUsername: string; name: string } }) => (
+  <Link
+    to={`/${repo.ownerUsername}/${repo.name}`}
+    className="flex items-center gap-2 hover:underline text-sm font-medium text-gray-300"
+  >
+    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] shrink-0 font-bold">
+      {repo.ownerUsername?.[0]?.toUpperCase()}
+    </div>
+    <span className="truncate">{repo.name}</span>
+  </Link>
+));
 
 const HomePage = () => {
   const dispatch = useAppDispatch();
@@ -39,9 +51,11 @@ const HomePage = () => {
     dispatch(listRepositoryThunk({}));
   }, [dispatch]);
 
-  const filteredRepos = repositories.filter((r) =>
-    r.name.toLowerCase().includes(repoSearch.toLowerCase()),
-  );
+  const filteredRepos = useMemo(() => {
+    return repositories.filter((r) => r.name.toLowerCase().includes(repoSearch.toLowerCase()));
+  }, [repositories, repoSearch]);
+
+  const topRepos = useMemo(() => filteredRepos.slice(0, 7), [filteredRepos]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans">
@@ -75,21 +89,10 @@ const HomePage = () => {
             <div className="py-4 text-center text-sm text-gray-500">Loading...</div>
           ) : (
             <div className="space-y-3 mt-4">
-              {filteredRepos.length === 0 ? (
+              {topRepos.length === 0 ? (
                 <div className="text-sm text-gray-500 mt-4">No repositories found</div>
               ) : (
-                filteredRepos.slice(0, 7).map((repo) => (
-                  <Link
-                    key={repo.id}
-                    to={`/${repo.ownerUsername}/${repo.name}`}
-                    className="flex items-center gap-2 hover:underline text-sm font-medium text-gray-300"
-                  >
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] shrink-0 font-bold">
-                      {repo.ownerUsername?.[0]?.toUpperCase()}
-                    </div>
-                    <span className="truncate">{repo.name}</span>
-                  </Link>
-                ))
+                topRepos.map((repo) => <SideRepoLink key={repo.id} repo={repo} />)
               )}
               {filteredRepos.length > 7 && (
                 <button className="text-xs text-gray-500 hover:text-blue-500 mt-2 block">

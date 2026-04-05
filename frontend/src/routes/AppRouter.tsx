@@ -50,6 +50,8 @@ const IssueDetailPage = lazy(() => import('../pages/issues/IssueDetailPage'));
 //commits
 const CompareCommitPage = lazy(() => import('../pages/pullrequest/CompareCommitPage'));
 const CommitDetailPage = lazy(() => import('../pages/pullrequest/CommitDetailPage'));
+const AcceptInvitationPage = lazy(() => import('../pages/collaborators/AcceptInvitationPage'));
+
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
@@ -198,6 +200,15 @@ const AppRouter = () => {
             />
 
             {/* repositories */}
+            <Route
+              path={ROUTES.ACCEPT_INVITATION}
+              element={
+                <ProtectRoute>
+                  <AcceptInvitationPage />
+                </ProtectRoute>
+              }
+            />
+
             <Route
               path={ROUTES.REPO_LIST}
               element={

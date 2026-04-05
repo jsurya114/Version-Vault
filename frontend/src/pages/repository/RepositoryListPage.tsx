@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -13,6 +13,8 @@ import {
   selectRepositoryError,
   selectRepositoryMeta,
 } from '../../features/repository/repositorySelectors';
+import { getAllCollabsReposThunk } from '../../features/collaborator/invitationThunk';
+import { selectCollabRepos } from '../../features/collaborator/invitationSelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import TableFilters from '../../types/common/Filters/TableFilters';
 import DataTable from '../../types/common/Table/DataTable';
@@ -53,26 +55,56 @@ const RepositoryListPage = () => {
 
   const limit = 5;
 
-  const fetchRepos = (overrides = {}) => {
-    dispatch(
-      listRepositoryThunk({
-        page,
-        limit,
-        search: search || undefined,
-        sort: sortField,
-        order: sortOrder,
-        // eslint-disable-next-line @typescript-eslint/no-explicit-any
-        status: visibilityFilter === 'all' ? undefined : (visibilityFilter as any),
-        ...overrides,
+  const fetchParams = useMemo(
+    () => ({
+      page,
+      limit: 5,
+      search: search || undefined,
+      sort: sortField,
+      order: sortOrder,
+      status: visibilityFilter === 'all' ? undefined : (visibilityFilter as 'active'),
+    }),
+    [page, search, sortField, sortOrder, visibilityFilter],
+  );
+  const collabRepos = useAppSelector(selectCollabRepos);
+
+  useEffect(() => {
+    const timer = setTimeout(
+      () => {
+        dispatch(listRepositoryThunk(fetchParams));
+      },
+      search ? 500 : 0,
+    );
+    return () => clearTimeout(timer);
+  }, [dispatch, fetchParams, search]);
+  useEffect(() => {
+    dispatch(getAllCollabsReposThunk());
+  }, [dispatch]);
+
+  const handleDelete = useCallback(async () => {
+    if (!deleteModal.repo) return;
+    await dispatch(
+      deleteRepositoryThunk({
+        username: authUser?.userId || '',
+        reponame: deleteModal.repo.name,
       }),
     );
-  };
+    setDeleteModal({ open: false, repo: null });
+  }, [dispatch, authUser?.userId, deleteModal.repo]);
 
-  const openVisibilityModal = (repo: RepositoryResponseDTO) => {
+  const allRepos = useMemo(() => {
+    const ownedIds = new Set(repositories.map((r) => r.id));
+    const uniqueCollabRepos = collabRepos
+      .filter((r) => !ownedIds.has(r.repo.id))
+      .map((c) => c.repo);
+    return [...repositories, ...uniqueCollabRepos];
+  }, [repositories, collabRepos]);
+
+  const openVisibilityModal = useCallback((repo: RepositoryResponseDTO) => {
     setVisibilityModal({ open: true, repo });
-  };
+  }, []);
 
-  const handleConfirmVisibility = async () => {
+  const handleConfirmVisibility = useCallback(async () => {
     if (!visibilityModal.repo) return;
 
     const newVisibility = visibilityModal.repo.visibility === 'public' ? 'private' : 'public';
@@ -85,119 +117,124 @@ const RepositoryListPage = () => {
     );
 
     setVisibilityModal({ open: false, repo: null });
-    fetchRepos();
-  };
+  }, [dispatch, authUser?.userId, visibilityModal.repo]);
 
-  useEffect(() => {
-    fetchRepos();
-  }, [page, sortField, sortOrder, visibilityFilter]);
+  const columns: ColumnDef<RepositoryResponseDTO>[] = useMemo(
+    () => [
+      {
+        key: 'name',
+        label: 'REPOSITORY',
+        render: (r) => {
+          const isCollab = collabRepos.some((cr) => cr.repo.id === r.id);
+          return (
+            <div className="flex items-center gap-2">
+              <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
+                📁
+              </div>
+              <div>
+                <div className="flex items-center gap-2">
+                  <p
+                    className="text-blue-400 text-sm font-medium hover:underline cursor-pointer"
+                    onClick={() => navigate(`/${r.ownerUsername}/${r.name}`)}
+                  >
+                    {isCollab ? `${r.ownerUsername}/${r.name}` : r.name}
+                  </p>
+                  {isCollab && (
+                    <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-purple-500/30 text-purple-400 bg-purple-500/10">
+                      collaborator
+                    </span>
+                  )}
+                </div>
+                <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
+              </div>
+            </div>
+          );
+        },
+      },
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setPage(1);
-      fetchRepos({ page: 1 });
-    }, 500);
-    return () => clearTimeout(timer);
-  }, [search]);
-
-  const handleDelete = async () => {
-    if (!deleteModal.repo) return;
-    await dispatch(
-      deleteRepositoryThunk({
-        username: authUser?.userId || '',
-        reponame: deleteModal.repo.name,
-      }),
-    );
-    setDeleteModal({ open: false, repo: null });
-    fetchRepos();
-  };
-
-  const columns: ColumnDef<RepositoryResponseDTO>[] = [
-    {
-      key: 'name',
-      label: 'REPOSITORY',
-      render: (r) => (
-        <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-            📁
-          </div>
-          <div>
-            <p
-              className="text-blue-400 text-sm font-medium hover:underline cursor-pointer"
-              onClick={() => navigate(`/${authUser?.userId}/${r.name}`)}
-            >
-              {r.name}
-            </p>
-            <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
-          </div>
-        </div>
-      ),
-    },
-    {
-      key: 'visibility',
-      label: 'VISIBILITY',
-      render: (r) => (
-        <span
-          className={`text-xs px-2 py-0.5 rounded font-medium ${visibilityColors[r.visibility]}`}
-        >
-          {r.visibility.toUpperCase()}
-        </span>
-      ),
-    },
-    {
-      key: 'defaultBranch',
-      label: 'DEFAULT BRANCH',
-      render: (r) => <span className="text-gray-400 text-sm">{r.defaultBranch}</span>,
-    },
-    {
-      key: 'stars',
-      label: 'STARS',
-      render: (r) => <span className="text-gray-400 text-sm">⭐ {r.stars}</span>,
-    },
-    {
-      key: 'createdAt',
-      label: 'CREATED',
-      render: (r) => (
-        <span className="text-gray-400 text-sm">
-          {r.createdAt
-            ? new Date(r.createdAt).toLocaleDateString('en-US', {
-                month: 'short',
-                day: 'numeric',
-                year: 'numeric',
-              })
-            : '—'}
-        </span>
-      ),
-    },
-    {
-      key: 'actions',
-      label: 'ACTIONS',
-      render: (r) => (
-        <div className="flex items-center gap-4">
-          {/* 3. The Visibility Toggle Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              openVisibilityModal(r);
-            }}
-            className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
+      {
+        key: 'visibility',
+        label: 'VISIBILITY',
+        render: (r) => (
+          <span
+            className={`text-xs px-2 py-0.5 rounded font-medium ${visibilityColors[r.visibility]}`}
           >
-            Make {r.visibility === 'public' ? 'Private' : 'Public'}
-          </button>
-          {/* Existing Delete Button */}
-          <button
-            onClick={(e) => {
-              e.stopPropagation();
-              setDeleteModal({ open: true, repo: r });
-            }}
-            className="text-red-400 hover:text-red-300 text-xs transition"
-          >
-            Delete
-          </button>
-        </div>
-      ),
-    },
-  ];
+            {r.visibility.toUpperCase()}
+          </span>
+        ),
+      },
+      {
+        key: 'defaultBranch',
+        label: 'DEFAULT BRANCH',
+        render: (r) => <span className="text-gray-400 text-sm">{r.defaultBranch}</span>,
+      },
+      {
+        key: 'stars',
+        label: 'STARS',
+        render: (r) => <span className="text-gray-400 text-sm">⭐ {r.stars}</span>,
+      },
+      {
+        key: 'createdAt',
+        label: 'CREATED',
+        render: (r) => (
+          <span className="text-gray-400 text-sm">
+            {r.createdAt
+              ? new Date(r.createdAt).toLocaleDateString('en-US', {
+                  month: 'short',
+                  day: 'numeric',
+                  year: 'numeric',
+                })
+              : '—'}
+          </span>
+        ),
+      },
+      {
+        key: 'actions',
+        label: 'ACTIONS',
+        render: (r) => {
+          const collabEntry = collabRepos.find((cr) => cr.repo.id === r.id);
+          if (collabEntry) {
+            return (
+              <span
+                className={`text-xs italic ${
+                  collabEntry.role === 'read'
+                    ? 'text-gray-600'
+                    : collabEntry.role === 'write'
+                      ? 'text-blue-400'
+                      : 'text-purple-400'
+                }`}
+              >
+                {collabEntry.role} access
+              </span>
+            );
+          }
+          return (
+            <div className="flex items-center gap-4">
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  openVisibilityModal(r);
+                }}
+                className="text-xs text-blue-400 hover:text-blue-300 font-medium transition"
+              >
+                Make {r.visibility === 'public' ? 'Private' : 'Public'}
+              </button>
+              <button
+                onClick={(e) => {
+                  e.stopPropagation();
+                  setDeleteModal({ open: true, repo: r });
+                }}
+                className="text-red-400 hover:text-red-300 text-xs transition"
+              >
+                Delete
+              </button>
+            </div>
+          );
+        },
+      },
+    ],
+    [navigate, authUser?.userId, openVisibilityModal, collabRepos],
+  );
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
@@ -260,7 +297,7 @@ const RepositoryListPage = () => {
         {/* Table */}
         <DataTable
           columns={columns}
-          data={repositories}
+          data={allRepos}
           isLoading={isLoading}
           emptyMessage="No repositories yet. Create your first repository!"
         />

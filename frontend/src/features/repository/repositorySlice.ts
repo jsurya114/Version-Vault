@@ -204,9 +204,16 @@ const repositorySlice = createSlice({
       })
       .addCase(updateVisibilityThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        if (state.selectedRepository) {
+        // Using the reponame that was passed into the thunk
+        const { reponame } = action.meta.arg;
+        // Update the repository if it's currently selected
+        if (state.selectedRepository && state.selectedRepository.name === reponame) {
           state.selectedRepository.visibility = action.payload.visibility;
         }
+
+        state.repositories = state.repositories.map((repo) =>
+          repo.name === reponame ? { ...repo, visibility: action.payload.visibility } : repo,
+        );
       })
       .addCase(updateVisibilityThunk.rejected, (state, action) => {
         state.isLoading = false;

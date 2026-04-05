@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
   CheckCircle2,
@@ -68,30 +68,71 @@ const CompareCommitPage = () => {
     }
   }, [base, head, username, reponame, dispatch, navigate]);
 
-  const handleCreatePR = () => {
+  const handleCreatePR = useCallback(() => {
     const defaultTile =
       data?.commits && data.commits.length > 0 ? encodeURIComponent(data.commits[0].message) : '';
     navigate(
       `/${username}/${reponame}/pulls/new/form?base=${base}&head=${head}&title=${defaultTile}`,
     );
-  };
-
+  }, [data?.commits, navigate, username, reponame, base, head]);
   const groupCommitsByDate = (commits: GitCommit[]) => {
-    const groups: { [key: string]: GitCommit[] } = {};
-    commits?.forEach((commit) => {
-      const dateStr = new Date(commit.date).toLocaleDateString('en-US', {
-        month: 'short',
-        day: 'numeric',
-        year: 'numeric',
-      });
-      const dateKey = `Commits on ${dateStr}`;
-      if (!groups[dateKey]) groups[dateKey] = [];
-      groups[dateKey].push(commit);
-    });
-    return groups;
+return commits.reduce(
+  (acc,commit)=>{
+    const date = new Date(commit.date).toLocaleDateString('en-US',{
+      month:'short',
+      day:'numeric',
+      year:'numeric'
+    })
+    if(!acc[date]) acc[date]=[]
+    acc[date].push(commit)
+    return acc
+  },
+  {} as Record<string, GitCommit[]>,
+)
   };
 
-  const commitGroups = data?.commits ? groupCommitsByDate(data.commits) : {};
+  const commitGroups = useMemo(() => {
+    return data?.commits ? groupCommitsByDate(data.commits) : {};
+  }, [data?.commits]);
+
+
+
+  const CommitItem = React.memo(
+    ({ commit, onClick }: { commit: GitCommit; onClick: () => void }) => (
+      <div
+        onClick={onClick}
+        className="p-4 flex flex-col gap-1 hover:bg-gray-900/40 transition-all cursor-pointer group/card"
+      >
+        <div className="flex items-start justify-between">
+          <div className="flex items-center gap-2">
+            <span className="text-white text-[14px] font-bold group-hover/card:text-blue-400 transition-colors">
+              {commit.message}
+            </span>
+          </div>
+          <div className="flex items-center gap-1 opacity-80">
+            <div className="flex items-center bg-gray-800 border border-gray-700/50 rounded px-2 py-0.5 gap-1.5 text-gray-400 hover:text-white transition-colors">
+              <FileCode className="w-3 h-3" />
+              <span className="text-[11px] font-mono font-bold tracking-tight">
+                {commit.hash.substring(0, 7)}
+              </span>
+            </div>
+            <div className="p-1 px-1.5 bg-gray-800 border border-gray-700/50 rounded text-gray-400 hover:text-white transition-colors">
+              <Code className="w-3 h-3" />
+            </div>
+          </div>
+        </div>
+        <div className="flex items-center gap-2 text-[12px] text-gray-500 mt-1">
+          <div className="w-5 h-5 rounded-md bg-gradient-to-br from-indigo-500/20 to-purple-600/20 border border-gray-800 flex items-center justify-center text-[8px] font-bold text-blue-300">
+            {commit.author[0]?.toUpperCase()}
+          </div>
+          <span className="text-gray-300 font-bold hover:underline cursor-pointer">
+            {commit.author}
+          </span>
+          committed recently
+        </div>
+      </div>
+    ),
+  );
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans selection:bg-blue-500/30">
@@ -297,42 +338,11 @@ const CompareCommitPage = () => {
                     </div>
                     <div className="bg-gray-950 border border-gray-800 rounded-md divide-y divide-gray-800">
                       {commits.map((commit: GitCommit) => (
-                        <div
+                        <CommitItem
                           key={commit.hash}
+                          commit={commit}
                           onClick={() => navigate(`/${username}/${reponame}/commit/${commit.hash}`)}
-                          className="p-4 flex flex-col gap-1 hover:bg-gray-900/40 transition-all cursor-pointer group/card"
-                        >
-                          <div className="flex items-center justify-between">
-                            <div className="flex items-center gap-2">
-                              <span className="text-white text-[14px] font-bold group-hover/card:text-blue-400 transition-colors">
-                                {commit.message}
-                              </span>
-                            </div>
-                            <div className="flex items-center gap-1 opacity-80">
-                              <div className="flex items-center bg-gray-800 border border-gray-700/50 rounded px-2 py-0.5 gap-1.5 text-gray-400 hover:text-white transition-colors">
-                                <FileCode className="w-3 h-3" />
-                                <span className="text-[11px] font-mono font-bold tracking-tight">
-                                  {commit.hash.substring(0, 7)}
-                                </span>
-                              </div>
-                              <div className="p-1 px-1.5 bg-gray-800 border border-gray-700/50 rounded text-gray-400 hover:text-white transition-colors">
-                                <Code className="w-3 h-3" />
-                              </div>
-                            </div>
-                          </div>
-                          <div className="flex items-center gap-2 text-[12px] text-gray-500 mt-1">
-                            <div className="w-5 h-5 rounded-md bg-gradient-to-br from-indigo-500/20 to-purple-600/20 border border-gray-800 flex items-center justify-center text-[8px] font-bold text-blue-300">
-                              {commit.author[0]?.toUpperCase()}
-                            </div>
-                            <span className="text-gray-300 font-bold hover:underline cursor-pointer">
-                              {commit.author}
-                            </span>
-                            committed recently{' '}
-                            {data.isMergeable && (
-                              <CheckCircle2 className="w-3.5 h-3.5 text-green-500 inline ml-0.5" />
-                            )}
-                          </div>
-                        </div>
+                        />
                       ))}
                     </div>
                   </div>

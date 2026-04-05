@@ -1,8 +1,23 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { GitPullRequest, GitMerge, X, Clock, GitBranch, MessageSquare } from 'lucide-react';
+import {
+  GitPullRequest,
+  GitMerge,
+  X,
+  Clock,
+  GitBranch,
+  MessageSquare,
+  FileCode,
+} from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getPRThunk, mergePRThunk, closePRThunk } from '../../features/pullrequest/prThunk';
+import {
+  getPRThunk,
+  mergePRThunk,
+  closePRThunk,
+  requestMergeThunk,
+  approveMergeThunk,
+  rejectMergeThunk,
+} from '../../features/pullrequest/prThunk';
 import { selectSelectedPR, selectPRLoading } from '../../features/pullrequest/prSelector';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
@@ -12,11 +27,28 @@ import { PRStatus } from '../../types/pullrequest/pullrequest.types';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import MergeConfirmModal from '../../types/common/Modal/MergeConfirmModal';
 import ConfirmModal from 'src/types/common/Modal/ConfirmModal';
+import { collaboratorService } from 'src/services/collaborator.service';
+
+import { FileDiffViewer } from './components/DiffViewer';
+import { compareCommitThunk } from 'src/features/commit/compareCommitThunk';
+import {
+  selectCompareData,
+  selectCompareLoading,
+} from 'src/features/commit/compareCommitSelectors';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
   closed: 'text-red-400 bg-red-500/10 border-red-500/30',
   merged: 'text-purple-400 bg-purple-500/10 border-purple-500/30',
+};
+
+const formatDate = (dateStr?: string) => {
+  if (!dateStr) return '—';
+  return new Date(dateStr).toLocaleDateString('en-US', {
+    month: 'short',
+    day: 'numeric',
+    year: 'numeric',
+  });
 };
 
 const PRDetailPage = () => {
@@ -29,14 +61,76 @@ const PRDetailPage = () => {
   const [isMergeModalOpen, setIsMergeModalOpen] = useState(false);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
+  const [hasWriteAccess, setHasWriteAccess] = useState(false);
+  const compareData = useAppSelector(selectCompareData);
+  const isCompareLoading = useAppSelector(selectCompareLoading);
 
   const isOwner = user?.userId === username;
+
+  useEffect(() => {
+    // Check if the PR loaded in Redux actually matches the PR we are clicking!
+    if (pr && pr.id === id) {
+      dispatch({ type: 'compareSlice/clearCommitComparison' });
+      dispatch(
+        compareCommitThunk({
+          username: username!,
+          reponame: reponame!,
+          base: pr.baseCommitHash || pr.targetBranch,
+          head: pr.headCommitHash || pr.sourceBranch,
+        }),
+      );
+    }
+  }, [
+    pr?.id,
+    pr?.targetBranch,
+    pr?.sourceBranch,
+    pr?.baseCommitHash,
+    pr?.headCommitHash,
+    username,
+    reponame,
+    dispatch,
+    id,
+  ]);
 
   useEffect(() => {
     if (id) dispatch(getPRThunk({ username: username!, reponame: reponame!, id }));
   }, [id, dispatch, username, reponame]);
 
-  const handleMergeConfirm = async () => {
+  useEffect(() => {
+    if (username && reponame && user) {
+      if (isOwner) {
+        setHasWriteAccess(true);
+      } else {
+        collaboratorService
+          .checkAccess(username, reponame)
+          .then((data) => {
+            setHasWriteAccess(data.hasAccess && data.role !== 'read');
+          })
+          .catch(() => setHasWriteAccess(false));
+      }
+    }
+  }, [username, reponame, user, isOwner]);
+
+  const handleRequestMerge = useCallback(async () => {
+    await dispatch(requestMergeThunk({ username: username!, reponame: reponame!, id: id! }));
+    dispatch(getPRThunk({ username: username!, reponame: reponame!, id: id! }));
+  }, [dispatch, username, reponame, id]);
+  const handleApproveMerge = useCallback(async () => {
+    setIsMerging(true);
+    try {
+      await dispatch(approveMergeThunk({ username: username!, reponame: reponame!, id: id! }));
+      dispatch(getPRThunk({ username: username!, reponame: reponame!, id: id! }));
+    } finally {
+      setIsMerging(false);
+    }
+  }, [dispatch, username, reponame, id, pr?.targetBranch]);
+
+  const handleRejectMerge = useCallback(async () => {
+    await dispatch(rejectMergeThunk({ username: username!, reponame: reponame!, id: id! }));
+    dispatch(getPRThunk({ username: username!, reponame: reponame!, id: id! }));
+  }, [dispatch, username, reponame, id]);
+
+  const handleMergeConfirm = useCallback(async () => {
     setIsMerging(true);
     try {
       const result = await dispatch(
@@ -52,20 +146,11 @@ const PRDetailPage = () => {
     } finally {
       setIsMerging(false);
     }
-  };
+  }, [dispatch, username, reponame, id, pr?.targetBranch]);
 
-  const handleCloseConfirm = async () => {
+  const handleCloseConfirm = useCallback(async () => {
     await dispatch(closePRThunk({ username: username!, reponame: reponame!, id: id! }));
-  };
-
-  const formatDate = (dateStr?: string) => {
-    if (!dateStr) return '—';
-    return new Date(dateStr).toLocaleDateString('en-US', {
-      month: 'short',
-      day: 'numeric',
-      year: 'numeric',
-    });
-  };
+  }, [dispatch, username, reponame, id]);
 
   if (isLoading) {
     return (
@@ -183,22 +268,90 @@ const PRDetailPage = () => {
             </div>
 
             {/* Actions */}
-            {isOwner && pr.status === 'open' && (
+            {/* Actions */}
+            {pr.status === 'open' && (
               <div className="flex items-center gap-2 shrink-0">
-                <button
-                  onClick={() => setIsMergeModalOpen(true)}
-                  disabled={isMerging}
-                  className="flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 shadow-md shadow-purple-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  <GitMerge className="w-4 h-4" />
-                  Merge Pull Request
-                </button>
-                <button
-                  onClick={() => setIsCloseModalOpen(true)}
-                  className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 font-bold text-xs px-4 py-2 rounded-xl transition"
-                >
-                  <X className="w-4 h-4" /> Close PR
-                </button>
+                {isOwner ? (
+                  <>
+                    {pr.mergeApproval === 'pending' ? (
+                      <>
+                        <span className="text-yellow-400 text-xs italic mr-2">
+                          Merge requested by {pr.authorUsername}
+                        </span>
+                        <button
+                          onClick={() => handleApproveMerge()}
+                          disabled={isMerging}
+                          className="flex items-center gap-1.5 bg-green-600 hover:bg-green-700 shadow-md shadow-green-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                        >
+                          <GitMerge className="w-4 h-4" />
+                          Approve
+                        </button>
+                        <button
+                          onClick={() => handleRejectMerge()}
+                          className="flex items-center gap-1.5 bg-red-600 hover:bg-red-700 border border-red-700 text-white font-bold text-xs px-4 py-2 rounded-xl transition"
+                        >
+                          <X className="w-4 h-4" />
+                          Reject
+                        </button>
+                      </>
+                    ) : pr.mergeApproval === 'rejected' ? (
+                      <>
+                        <span className="text-red-400 text-xs italic mr-2">
+                          Merge request rejected
+                        </span>
+                        <button
+                          disabled={true}
+                          className="flex items-center gap-1.5 bg-gray-800 text-gray-500 font-bold text-xs px-4 py-2 rounded-xl cursor-not-allowed opacity-50 border border-gray-700"
+                        >
+                          <GitMerge className="w-4 h-4" />
+                          Merge Pull Request
+                        </button>
+                      </>
+                    ) : (
+                      <button
+                        onClick={() => setIsMergeModalOpen(true)}
+                        disabled={isMerging}
+                        className="flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 shadow-md shadow-purple-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                      >
+                        <GitMerge className="w-4 h-4" />
+                        Merge Pull Request
+                      </button>
+                    )}
+
+                    <button
+                      onClick={() => setIsCloseModalOpen(true)}
+                      className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 font-bold text-xs px-4 py-2 rounded-xl transition"
+                    >
+                      <X className="w-4 h-4" /> Close PR
+                    </button>
+                  </>
+                ) : hasWriteAccess ? (
+                  <>
+                    {pr.mergeApproval === 'pending' ? (
+                      <span className="text-yellow-400 text-sm italic font-medium px-4 py-2 bg-yellow-900/20 border border-yellow-700/50 rounded-xl">
+                        Merge request pending owner approval
+                      </span>
+                    ) : pr.mergeApproval === 'rejected' ? (
+                      <span className="text-red-400 text-sm italic font-medium px-4 py-2 bg-red-900/20 border border-red-700/50 rounded-xl">
+                        Merge request was rejected
+                      </span>
+                    ) : (
+                      <button
+                        onClick={() => handleRequestMerge()}
+                        className="flex items-center gap-1.5 bg-blue-600 hover:bg-blue-700 shadow-md shadow-blue-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition"
+                      >
+                        <GitMerge className="w-4 h-4" />
+                        Request Merge
+                      </button>
+                    )}
+                    <button
+                      onClick={() => setIsCloseModalOpen(true)}
+                      className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 font-bold text-xs px-4 py-2 rounded-xl transition"
+                    >
+                      <X className="w-4 h-4" /> Close PR
+                    </button>
+                  </>
+                ) : null}
               </div>
             )}
           </div>
@@ -231,6 +384,29 @@ const PRDetailPage = () => {
                 </p>
               ) : (
                 <p className="text-gray-600 text-sm italic">No description provided.</p>
+              )}
+            </div>
+
+            {/* Changed Files */}
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+              <h3 className="text-white text-sm font-semibold mb-4 flex items-center gap-2">
+                <FileCode className="w-4 h-4" /> Files Changed
+              </h3>
+
+              {isCompareLoading ? (
+                <div className="flex items-center justify-center py-10">
+                  <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : compareData?.diffs && compareData.diffs.length > 0 ? (
+                <div className="space-y-4">
+                  {compareData.diffs.map((file, idx) => (
+                    <FileDiffViewer key={file.path} file={file} id={`pr-diff-${idx}`} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-600 text-sm italic text-center py-6">
+                  No changes found between these branches.
+                </p>
               )}
             </div>
 

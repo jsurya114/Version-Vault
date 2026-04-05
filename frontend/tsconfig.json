@@ -14,6 +14,6 @@
       "src/*": ["./src/*"]
     }
   },
-  "include": ["src/**/*.ts", "src/**/*.tsx", "src/features/issues"],
+  "include": ["src/**/*.ts", "src/**/*.tsx", "src/features/issues", "src/features/collaborator"],
   "exclude": ["node_modules", "dist"]
 }

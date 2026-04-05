@@ -69,3 +69,40 @@ export const closePRThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
     }
   },
 );
+
+
+export const requestMergeThunk = createAsyncThunk<PRResponseDTO,PRIdParams>(
+  'pr/requestMerge',
+  async({username,reponame,id},{rejectWithValue})=>{
+    try {
+      return await prService.requestMerge(username,reponame,id)
+     } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to request merge');
+    }
+  }
+)
+
+export const approveMergeThunk = createAsyncThunk<PRResponseDTO,PRIdParams>(
+  'pr/approvMerge',
+  async({username,reponame,id},{rejectWithValue})=>{
+    try {
+      return await prService.approveMerge(username,reponame,id)
+     } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to request merge');
+    }
+  }
+)
+
+export const rejectMergeThunk = createAsyncThunk<PRResponseDTO,PRIdParams>(
+  'pr/rejectMerge',
+    async({username,reponame,id},{rejectWithValue})=>{
+    try {
+      return await prService.rejectMerge(username,reponame,id)
+     } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to request merge');
+    }
+  }
+)

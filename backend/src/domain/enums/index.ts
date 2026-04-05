@@ -17,3 +17,9 @@ export enum RepositoryVisibility {
   PUBLIC = 'public',
   PRIVATE = 'private',
 }
+
+export enum CollaboratorRole {
+  READ = 'read',
+  WRITE = 'write',
+  ADMIN = 'admin',
+}

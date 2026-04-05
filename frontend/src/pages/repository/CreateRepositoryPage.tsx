@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createRepositoryThunk } from '../../features/repository/repositoryThunks';
@@ -13,7 +13,7 @@ import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import { CommonLoader } from '../../types/common/Layout/Loader';
 import AppHeader from '../../types/common/Layout/AppHeader';
 
-const CreateRepositoryPage = () => {
+const CreateRepositoryPage = React.memo(() => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const isLoading = useAppSelector(selectRepositoryLoading);
@@ -26,20 +26,26 @@ const CreateRepositoryPage = () => {
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
-  const cloneUrl = `http://localhost:3125/vv/git/${user?.userId}/${name || 'new-repo'}.git`;
+  const cloneUrl = useMemo(
+    () => `http://localhost:3125/vv/git/${user?.userId}/${name || 'new-repo'}.git`,
+    [user?.userId, name],
+  );
 
-  const cliCommands = `git init
+  const cliCommands = useMemo(
+    () => `git init
 git add .
 git commit -m "initial commit"
 git branch -M main
 git remote add origin ${cloneUrl}
-git push -u origin main`;
+git push -u origin main`,
+    [cloneUrl],
+  );
 
-  const handleCopy = () => {
+  const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(cliCommands);
-  };
+  }, [cliCommands]);
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     if (!name.trim()) return;
     const result = await dispatch(createRepositoryThunk({ name, description, visibility }));
     if (createRepositoryThunk.fulfilled.match(result)) {
@@ -56,15 +62,13 @@ git push -u origin main`;
         }, 2500);
       }, 2000);
     }
-  };
+  }, [dispatch, name, description, visibility, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <AppHeader />
 
-      {/* Main */}
       <main className="max-w-5xl mx-auto px-6 py-8">
-        {/* Header */}
         <div className="mb-8">
           <h1 className="text-white text-2xl font-bold">Create a New Repository</h1>
           <p className="text-gray-500 text-sm mt-1">
@@ -73,12 +77,10 @@ git push -u origin main`;
         </div>
 
         <div className="grid grid-cols-2 gap-6">
-          {/* Left — Basic Setup */}
           <div className="space-y-6">
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
               <h2 className="text-white font-semibold mb-4">1. Basic Setup</h2>
 
-              {/* Owner + Repo Name */}
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div>
                   <label className="block text-gray-400 text-xs mb-1">Owner</label>
@@ -103,7 +105,6 @@ git push -u origin main`;
                 </div>
               </div>
 
-              {/* Description */}
               <div className="mb-4">
                 <label className="block text-gray-400 text-xs mb-1">
                   Description <span className="text-gray-600">(optional)</span>
@@ -117,7 +118,6 @@ git push -u origin main`;
                 />
               </div>
 
-              {/* Name hint */}
               {name && (
                 <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg px-3 py-2 mb-4">
                   <p className="text-blue-400 text-xs">
@@ -129,16 +129,11 @@ git push -u origin main`;
                 </div>
               )}
 
-              {/* Visibility */}
               <div>
                 <label className="block text-gray-400 text-xs mb-2">Visibility</label>
                 <div className="grid grid-cols-2 gap-3">
                   <label
-                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                      visibility === 'public'
-                        ? 'border-blue-500 bg-blue-500/10'
-                        : 'border-gray-700 hover:border-gray-600'
-                    }`}
+                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition ${visibility === 'public' ? 'border-blue-500 bg-blue-500/10' : 'border-gray-700 hover:border-gray-600'}`}
                   >
                     <input
                       type="radio"
@@ -156,11 +151,7 @@ git push -u origin main`;
                     </div>
                   </label>
                   <label
-                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition ${
-                      visibility === 'private'
-                        ? 'border-blue-500 bg-blue-500/10'
-                        : 'border-gray-700 hover:border-gray-600'
-                    }`}
+                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition ${visibility === 'private' ? 'border-blue-500 bg-blue-500/10' : 'border-gray-700 hover:border-gray-600'}`}
                   >
                     <input
                       type="radio"
@@ -182,7 +173,6 @@ git push -u origin main`;
             </div>
           </div>
 
-          {/* Right — CLI Setup */}
           <div className="space-y-4">
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
               <div className="flex items-center justify-between mb-4">
@@ -192,7 +182,6 @@ git push -u origin main`;
                 </span>
               </div>
 
-              {/* Code block */}
               <div className="bg-gray-950 rounded-lg p-4 mb-3 font-mono text-xs space-y-1">
                 {cliCommands.split('\n').map((line, i) => (
                   <div key={i} className="flex gap-3">
@@ -220,7 +209,6 @@ git push -u origin main`;
               </button>
             </div>
 
-            {/* Actions */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-3">
               {error && (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-red-400 text-sm">
@@ -259,6 +247,6 @@ git push -u origin main`;
       )}
     </div>
   );
-};
+});
 
 export default CreateRepositoryPage;

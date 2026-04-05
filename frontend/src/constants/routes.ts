@@ -51,6 +51,10 @@ export const ROUTES = {
   //compare
   REPO_COMPARE: '/:username/:reponame/compare/:range',
   COMMIT_DETAIL: '/:username/:reponame/commit/:hash',
+
+    // Invitation
+  ACCEPT_INVITATION: '/invitation/accept/:token',
+
   // Error
   NOT_FOUND: '*',
 } as const;

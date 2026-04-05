@@ -1,3 +1,4 @@
+import React from 'react';
 import { FileDiff } from '../../../types/commit/commit.types';
 
 interface FileDiffViewerProps {
@@ -5,7 +6,7 @@ interface FileDiffViewerProps {
   id?: string;
 }
 
-export const FileDiffViewer = ({ file, id }: FileDiffViewerProps) => {
+export const FileDiffViewer = React.memo(({ file, id }: FileDiffViewerProps) => {
   return (
     <div
       id={id}
@@ -56,4 +57,4 @@ export const FileDiffViewer = ({ file, id }: FileDiffViewerProps) => {
       </div>
     </div>
   );
-};
+});

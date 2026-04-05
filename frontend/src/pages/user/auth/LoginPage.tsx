@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
+import { useNavigate, Link,useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { loginThunk } from '../../../features/auth/authThunks';
 import { clearError } from '../../../features/auth/authSlice';
@@ -14,6 +14,8 @@ import { ROUTES } from '../../../constants/routes';
 const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const [searchParams]=useSearchParams()
+  
 
   const isLoading = useAppSelector(selectAuthLoading);
   const error = useAppSelector(selectAuthError);
@@ -28,11 +30,16 @@ const LoginPage = () => {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   //redirect to after successful login
-  useEffect(() => {
-    if (isAuthenticated) {
+useEffect(() => {
+  if (isAuthenticated) {
+    const redirectTo = searchParams.get('redirect');
+    if (redirectTo) {
+      navigate(redirectTo, { replace: true });
+    } else {
       navigate(ROUTES.HOME, { replace: true, state: { showLoginSuccess: true } });
     }
-  }, [isAuthenticated]);
+  }
+}, [isAuthenticated, searchParams, navigate]);
 
   //clear error when user types
   useEffect(() => {

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useMemo } from 'react';
 
 export interface LanguageStat {
   name: string;
@@ -10,19 +10,21 @@ interface RepositoryLanguagesProps {
   languages: LanguageStat[];
 }
 
-export const RepositoryLanguages = ({ languages }: RepositoryLanguagesProps) => {
-  const totalSize = languages.reduce((acc, lang) => acc + lang.size, 0);
+export const RepositoryLanguages = React.memo(({ languages }: RepositoryLanguagesProps) => {
+  const totalSize = useMemo(() => languages.reduce((acc, lang) => acc + lang.size, 0), [languages]);
 
-  if (!languages || languages.length === 0 || totalSize === 0) {
-    return null;
-  }
+  const languageStats = useMemo(() => {
+    if (!languages || languages.length === 0 || totalSize === 0) return [];
 
-  const languageStats = languages
-    .map((lang) => ({
-      ...lang,
-      percentage: ((lang.size / totalSize) * 100).toFixed(1),
-    }))
-    .sort((a, b) => b.size - a.size);
+    return languages
+      .map((lang) => ({
+        ...lang,
+        percentage: ((lang.size / totalSize) * 100).toFixed(1),
+      }))
+      .sort((a, b) => b.size - a.size);
+  }, [languages, totalSize]);
+
+  if (languageStats.length === 0) return null;
 
   return (
     <div className="border-t border-gray-800 pt-4">
@@ -53,4 +55,4 @@ export const RepositoryLanguages = ({ languages }: RepositoryLanguagesProps) => 
       </div>
     </div>
   );
-};
+});

@@ -1,7 +1,10 @@
 import { RootState } from '../../app/store';
+import { createSelector } from '@reduxjs/toolkit';
 
-export const selectAdminUsers = (state: RootState) => state.adminusers.users;
-export const selectSelectedUser = (state: RootState) => state.adminusers.selectedUser;
-export const selectAdminLoading = (state: RootState) => state.adminusers.isLoading;
-export const selectAdminError = (state: RootState) => state.adminusers.error;
-export const selectAdminMeta = (state: RootState) => state.adminusers.meta;
+const selectBaseState = (state: RootState) => state.adminusers;
+
+export const selectAdminUsers = createSelector([selectBaseState], (state) => state.users);
+export const selectSelectedUser = createSelector([selectBaseState], (state) => state.selectedUser);
+export const selectAdminLoading = createSelector([selectBaseState], (state) => state.isLoading);
+export const selectAdminError = createSelector([selectBaseState], (state) => state.error);
+export const selectAdminMeta = createSelector([selectBaseState], (state) => state.meta);

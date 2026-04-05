@@ -38,4 +38,17 @@ export const prService = {
     );
     return res.data.data;
   },
+  requestMerge:async(username:string,reponame:string,id:string)=>{
+    const res = await axiosInstance.patch(`${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/request-merge`)
+    return res.data
+  },
+   
+  approveMerge:async(username:string,reponame:string,id:string)=>{
+    const res = await axiosInstance.patch(`${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/approve-merge`);
+  return res.data
+  },
+  rejectMerge:async(username:string,reponame:string,id:string)=>{
+    const res = await axiosInstance.patch(`${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/reject-merge`);
+return res.data
+  }
 };

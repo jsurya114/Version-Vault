@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState, useCallback } from 'react';
 import { useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import { GitPullRequest, ArrowLeft } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -9,7 +9,7 @@ import AppFooter from '../../types/common/Layout/AppFooter';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import { CommonLoader } from '../../types/common/Layout/Loader';
 
-const PRFormPage = () => {
+const PRFormPage = React.memo(() => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const [searchParams] = useSearchParams();
@@ -28,7 +28,7 @@ const PRFormPage = () => {
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
-  const handleSubmit = async () => {
+  const handleSubmit = useCallback(async () => {
     if (!title || !headBranch || !baseBranch) return;
     const result = await dispatch(
       createPRThunk({
@@ -49,7 +49,7 @@ const PRFormPage = () => {
         setTimeout(() => navigate(`/${username}/${reponame}/pulls`), 2500);
       }, 2000);
     }
-  };
+  }, [dispatch, username, reponame, title, description, headBranch, baseBranch, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
@@ -144,5 +144,5 @@ const PRFormPage = () => {
       />
     </div>
   );
-};
+});
 export default PRFormPage;

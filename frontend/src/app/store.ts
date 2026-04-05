@@ -8,6 +8,7 @@ import followReducer from '../features/follow/followSlice';
 import commitReducer from '../features/commit/compareCommitSlice';
 import userReducer from '../features/user/userSlice';
 import adminReposReducer from '../features/admin/getRepoSlice';
+import invitationReducer from '../features/collaborator/invitationSlice'
 
 export const store = configureStore({
   reducer: {
@@ -20,6 +21,7 @@ export const store = configureStore({
     commits: commitReducer,
     user: userReducer,
     adminRepos: adminReposReducer,
+    invitation:invitationReducer
   },
 });
 
