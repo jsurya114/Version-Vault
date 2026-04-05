@@ -1,4 +1,4 @@
-import { injectable, inject } from 'tsyringe';
+import { injectable } from 'tsyringe';
 import { IInvitation } from '../../../../domain/interfaces/IInvitation';
 import { IInvitationRepository } from '../../../../domain/interfaces/repositories/IInvitationRepository';
 import { InvitationModel } from '../models/InvitationModel';
@@ -14,7 +14,7 @@ export class MongoInvitationRepository
     super(InvitationModel);
   }
 
-  protected toEntity(doc: any): IInvitation {
+  protected toEntity(doc: unknown): IInvitation {
     return InvitationMapper.toEntity(doc);
   }
 

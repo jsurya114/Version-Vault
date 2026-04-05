@@ -1,7 +1,7 @@
 import { useEffect, useState, useCallback } from 'react';
 import { Mail, Shield, Trash2, UserPlus, Users, Crown, Loader2 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectAuthUser } from '../../../features/auth/authSelectors';
+
 import {
   sendInvitationThunk,
   getPendingInvitationsThunk,
@@ -34,7 +34,6 @@ interface CollaboratorsTabContentProps {
 
 const CollaboratorsTabContent = ({ username, reponame, isOwner }: CollaboratorsTabContentProps) => {
   const dispatch = useAppDispatch();
-  const user = useAppSelector(selectAuthUser);
   const invLoading = useAppSelector(selectInvitationLoading);
   const invError = useAppSelector(selectInvitationError);
   const invSuccess = useAppSelector(selectInvitationSuccess);

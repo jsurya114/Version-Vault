@@ -1,8 +1,23 @@
-import { useEffect, useState, useCallback, ReactNode } from 'react';
+import { useEffect, useState, useCallback } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { GitPullRequest, GitMerge, X, Clock, GitBranch, MessageSquare,FileCode } from 'lucide-react';
+import {
+  GitPullRequest,
+  GitMerge,
+  X,
+  Clock,
+  GitBranch,
+  MessageSquare,
+  FileCode,
+} from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { getPRThunk, mergePRThunk, closePRThunk, requestMergeThunk, approveMergeThunk, rejectMergeThunk } from '../../features/pullrequest/prThunk';
+import {
+  getPRThunk,
+  mergePRThunk,
+  closePRThunk,
+  requestMergeThunk,
+  approveMergeThunk,
+  rejectMergeThunk,
+} from '../../features/pullrequest/prThunk';
 import { selectSelectedPR, selectPRLoading } from '../../features/pullrequest/prSelector';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
@@ -16,7 +31,10 @@ import { collaboratorService } from 'src/services/collaborator.service';
 
 import { FileDiffViewer } from './components/DiffViewer';
 import { compareCommitThunk } from 'src/features/commit/compareCommitThunk';
-import { selectCompareData,selectCompareLoading } from 'src/features/commit/compareCommitSelectors';
+import {
+  selectCompareData,
+  selectCompareLoading,
+} from 'src/features/commit/compareCommitSelectors';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -43,39 +61,52 @@ const PRDetailPage = () => {
   const [isMergeModalOpen, setIsMergeModalOpen] = useState(false);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isCloseModalOpen, setIsCloseModalOpen] = useState(false);
-  const [hasWriteAccess, setHasWriteAccess] = useState(false)
-  const compareData = useAppSelector(selectCompareData)
-  const isCompareLoading = useAppSelector(selectCompareLoading)
-
+  const [hasWriteAccess, setHasWriteAccess] = useState(false);
+  const compareData = useAppSelector(selectCompareData);
+  const isCompareLoading = useAppSelector(selectCompareLoading);
 
   const isOwner = user?.userId === username;
 
-useEffect(() => {
+  useEffect(() => {
     // Check if the PR loaded in Redux actually matches the PR we are clicking!
     if (pr && pr.id === id) {
       dispatch({ type: 'compareSlice/clearCommitComparison' });
-      dispatch(compareCommitThunk({
-        username: username!,
-        reponame: reponame!,
-        base: pr.baseCommitHash || pr.targetBranch,
-        head: pr.headCommitHash || pr.sourceBranch
-      }));
+      dispatch(
+        compareCommitThunk({
+          username: username!,
+          reponame: reponame!,
+          base: pr.baseCommitHash || pr.targetBranch,
+          head: pr.headCommitHash || pr.sourceBranch,
+        }),
+      );
     }
-  }, [pr?.id, pr?.targetBranch, pr?.sourceBranch, pr?.baseCommitHash, pr?.headCommitHash, username, reponame, dispatch, id]);
+  }, [
+    pr?.id,
+    pr?.targetBranch,
+    pr?.sourceBranch,
+    pr?.baseCommitHash,
+    pr?.headCommitHash,
+    username,
+    reponame,
+    dispatch,
+    id,
+  ]);
 
   useEffect(() => {
     if (id) dispatch(getPRThunk({ username: username!, reponame: reponame!, id }));
   }, [id, dispatch, username, reponame]);
-
 
   useEffect(() => {
     if (username && reponame && user) {
       if (isOwner) {
         setHasWriteAccess(true);
       } else {
-        collaboratorService.checkAccess(username, reponame).then((data) => {
-          setHasWriteAccess(data.hasAccess && data.role !== 'read');
-        }).catch(() => setHasWriteAccess(false));
+        collaboratorService
+          .checkAccess(username, reponame)
+          .then((data) => {
+            setHasWriteAccess(data.hasAccess && data.role !== 'read');
+          })
+          .catch(() => setHasWriteAccess(false));
       }
     }
   }, [username, reponame, user, isOwner]);
@@ -87,10 +118,8 @@ useEffect(() => {
   const handleApproveMerge = useCallback(async () => {
     setIsMerging(true);
     try {
-      await dispatch(
-        approveMergeThunk({ username: username!, reponame: reponame!, id: id! }),
-      );
-      dispatch(getPRThunk({ username: username!, reponame: reponame!, id: id! }))
+      await dispatch(approveMergeThunk({ username: username!, reponame: reponame!, id: id! }));
+      dispatch(getPRThunk({ username: username!, reponame: reponame!, id: id! }));
     } finally {
       setIsMerging(false);
     }
@@ -289,7 +318,6 @@ useEffect(() => {
                       </button>
                     )}
 
-
                     <button
                       onClick={() => setIsCloseModalOpen(true)}
                       className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 border border-gray-700 text-gray-300 font-bold text-xs px-4 py-2 rounded-xl transition"
@@ -326,7 +354,6 @@ useEffect(() => {
                 ) : null}
               </div>
             )}
-
           </div>
         </div>
 
@@ -365,7 +392,7 @@ useEffect(() => {
               <h3 className="text-white text-sm font-semibold mb-4 flex items-center gap-2">
                 <FileCode className="w-4 h-4" /> Files Changed
               </h3>
-              
+
               {isCompareLoading ? (
                 <div className="flex items-center justify-center py-10">
                   <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
@@ -378,13 +405,10 @@ useEffect(() => {
                 </div>
               ) : (
                 <p className="text-gray-600 text-sm italic text-center py-6">
-                   No changes found between these branches.
+                  No changes found between these branches.
                 </p>
               )}
             </div>
-
-
-
 
             {/* Comments placeholder */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">

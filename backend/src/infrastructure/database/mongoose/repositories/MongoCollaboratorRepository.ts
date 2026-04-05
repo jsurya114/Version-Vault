@@ -14,7 +14,7 @@ export class MongoCollaboratorRepository
     super(CollaboratorModel);
   }
 
-  protected toEntity(doc: any): ICollaborator {
+  protected toEntity(doc: unknown): ICollaborator {
     return CollaboratorMapper.toICollaborator(doc);
   }
 

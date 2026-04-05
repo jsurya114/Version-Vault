@@ -21,13 +21,13 @@ const statusIcons: Record<PRStatus, JSX.Element> = {
 const PRListContent = ({
   username,
   reponame,
-  isOwner,
-  hasWriteAccess
+  isOwner: _isOwner,
+  hasWriteAccess,
 }: {
   username: string;
   reponame: string;
   isOwner: boolean;
-  hasWriteAccess:boolean
+  hasWriteAccess: boolean;
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();

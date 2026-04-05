@@ -53,53 +53,73 @@ const formatDateJoined = (dateString?: string | Date) => {
   return date.toLocaleDateString('en-US', { month: 'long', year: 'numeric' });
 };
 
-const RepoItem = React.memo(({ repo, onClick, isCollab }: { repo: any; onClick: () => void; isCollab?: boolean }) => (
-  <div
-    className="bg-gray-900/40 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/60 rounded-xl p-5 cursor-pointer transition-all duration-300 group shadow-md"
-    onClick={onClick}
-  >
-    <div className="flex items-start justify-between">
-      <div className="flex-1 min-w-0">
-        <div className="flex items-center gap-3 mb-2">
-          <span className="text-blue-400 text-base font-bold group-hover:text-blue-300 group-hover:underline decoration-2 underline-offset-4">
-            {isCollab ? `${repo.ownerUsername}/${repo.name}` : repo.name}
-          </span>
-          <span
-            className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-bold border ${repo.visibility === 'public'
-                ? 'border-green-500/30 text-green-400 bg-green-500/10'
-                : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
-              }`}
-          >
-            {repo.visibility}
-          </span>
-          {isCollab && (
-            <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-purple-500/30 text-purple-400 bg-purple-500/10">
-              collaborator
+const RepoItem = React.memo(
+  ({
+    repo,
+    onClick,
+    isCollab,
+  }: {
+    repo: {
+      ownerUsername: string;
+      name: string;
+      visibility?: string;
+      description?: string;
+      stars?: number;
+      forks?: number;
+      topics?: string[];
+    };
+    onClick: () => void;
+    isCollab?: boolean;
+  }) => (
+    <div
+      className="bg-gray-900/40 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/60 rounded-xl p-5 cursor-pointer transition-all duration-300 group shadow-md"
+      onClick={onClick}
+    >
+      <div className="flex items-start justify-between">
+        <div className="flex-1 min-w-0">
+          <div className="flex items-center gap-3 mb-2">
+            <span className="text-blue-400 text-base font-bold group-hover:text-blue-300 group-hover:underline decoration-2 underline-offset-4">
+              {isCollab ? `${repo.ownerUsername}/${repo.name}` : repo.name}
             </span>
+            <span
+              className={`text-[10px] uppercase tracking-widest px-2 py-0.5 rounded-full font-bold border ${
+                repo.visibility === 'public'
+                  ? 'border-green-500/30 text-green-400 bg-green-500/10'
+                  : 'border-yellow-500/30 text-yellow-400 bg-yellow-500/10'
+              }`}
+            >
+              {repo.visibility}
+            </span>
+            {isCollab && (
+              <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-purple-500/30 text-purple-400 bg-purple-500/10">
+                collaborator
+              </span>
+            )}
+          </div>
+          {repo.description && (
+            <p className="text-gray-400 text-sm mb-3 leading-relaxed max-w-2xl">
+              {repo.description}
+            </p>
           )}
-        </div>
-        {repo.description && (
-          <p className="text-gray-400 text-sm mb-3 leading-relaxed max-w-2xl">{repo.description}</p>
-        )}
-        <div className="flex items-center gap-6 text-gray-500 text-xs font-semibold">
-          <span className="flex items-center gap-1.5 group-hover:text-yellow-400 transition-colors">
-            <Star className="w-3.5 h-3.5" />
-            {repo.stars}
-          </span>
-          <span className="flex items-center gap-1.5 group-hover:text-blue-400 transition-colors">
-            <GitFork className="w-3.5 h-3.5" />
-            {repo.forks}
-          </span>
-          <span className="flex items-center gap-2">
-            <div className="w-2.5 h-2.5 rounded-full bg-[#f1e05a]" />
-            JavaScript
-          </span>
+          <div className="flex items-center gap-6 text-gray-500 text-xs font-semibold">
+            <span className="flex items-center gap-1.5 group-hover:text-yellow-400 transition-colors">
+              <Star className="w-3.5 h-3.5" />
+              {repo.stars}
+            </span>
+            <span className="flex items-center gap-1.5 group-hover:text-blue-400 transition-colors">
+              <GitFork className="w-3.5 h-3.5" />
+              {repo.forks}
+            </span>
+            <span className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-[#f1e05a]" />
+              JavaScript
+            </span>
+          </div>
         </div>
       </div>
     </div>
-  </div>
-));
-
+  ),
+);
 
 const UserProfilePage = () => {
   const dispatch = useAppDispatch();
@@ -124,7 +144,6 @@ const UserProfilePage = () => {
   const [dailyStats, setDailyStats] = useState<{ [key: string]: number }>({});
   const [totalYearlyContributions, setTotalYearlyContributions] = useState(0);
   const collabRepos = useAppSelector(selectCollabRepos);
-
 
   const [followModal, setFollowModal] = useState<{
     isOpen: boolean;
@@ -153,7 +172,7 @@ const UserProfilePage = () => {
       dispatch(getFollowersThunk(userId));
       dispatch(getFollowingThunk(userId));
       if (isOwnProfile) {
-        dispatch(getAllCollabsReposThunk())
+        dispatch(getAllCollabsReposThunk());
       }
     }
     return () => {
@@ -176,7 +195,9 @@ const UserProfilePage = () => {
   const allProfileRepos = useMemo(() => {
     if (!isOwnProfile) return visibleRepositories;
     const ownedIds = new Set(repositories.map((r) => r.id));
-    const uniqueCollabRepos = collabRepos.filter((r) => !ownedIds.has(r.repo.id)).map((r)=>r.repo)
+    const uniqueCollabRepos = collabRepos
+      .filter((r) => !ownedIds.has(r.repo.id))
+      .map((r) => r.repo);
     return [...visibleRepositories, ...uniqueCollabRepos];
   }, [isOwnProfile, visibleRepositories, repositories, collabRepos]);
 
@@ -342,10 +363,11 @@ const UserProfilePage = () => {
               <button
                 onClick={handleFollowToggle}
                 disabled={followLoading}
-                className={`w-full py-2 text-sm font-bold rounded-lg border transition mb-6 shadow-lg ${isFollowing
+                className={`w-full py-2 text-sm font-bold rounded-lg border transition mb-6 shadow-lg ${
+                  isFollowing
                     ? 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-red-500/10 hover:border-red-500/30 hover:text-red-400'
                     : 'bg-blue-600 border-blue-600 text-white hover:bg-blue-700 shadow-blue-900/40'
-                  }`}
+                }`}
               >
                 {followLoading ? '...' : isFollowing ? 'Unfollow' : 'Follow'}
               </button>
@@ -404,19 +426,23 @@ const UserProfilePage = () => {
                 {/* Pinned / Selected Repositories */}
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-8">
                   {allProfileRepos.length > 0 ? (
-                    allProfileRepos.slice(0, 4).map((repo) => (
-                      <PinnedRepoCard
-                        key={repo.id}
-                        name={collabRepos.some((cr) => cr.repo.id === repo.id)
-                          ? `${repo.ownerUsername}/${repo.name}`
-                          : repo.name}
-                        description={repo.description}
-                        language={repo.language || 'JavaScript'}
-                        languageColor={repo.language === 'TypeScript' ? '#3178c6' : '#f1e05a'}
-                        stars={repo.stars}
-                        onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
-                      />
-                    ))
+                    allProfileRepos
+                      .slice(0, 4)
+                      .map((repo) => (
+                        <PinnedRepoCard
+                          key={repo.id}
+                          name={
+                            collabRepos.some((cr) => cr.repo.id === repo.id)
+                              ? `${repo.ownerUsername}/${repo.name}`
+                              : repo.name
+                          }
+                          description={repo.description}
+                          language={repo.language || 'JavaScript'}
+                          languageColor={repo.language === 'TypeScript' ? '#3178c6' : '#f1e05a'}
+                          stars={repo.stars}
+                          onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
+                        />
+                      ))
                   ) : (
                     <div className="col-span-2 bg-gray-900/30 border border-dashed border-gray-800 rounded-2xl p-12 text-center">
                       <BookOpen className="w-8 h-8 text-gray-700 mx-auto mb-3" />

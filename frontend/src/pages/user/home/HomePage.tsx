@@ -13,7 +13,7 @@ import AppHeader from '../../../types/common/Layout/AppHeader';
 import AppFooter from '../../../types/common/Layout/AppFooter';
 import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
 
-const SideRepoLink = React.memo(({ repo }: { repo: any }) => (
+const SideRepoLink = React.memo(({ repo }: { repo: { ownerUsername: string; name: string } }) => (
   <Link
     to={`/${repo.ownerUsername}/${repo.name}`}
     className="flex items-center gap-2 hover:underline text-sm font-medium text-gray-300"

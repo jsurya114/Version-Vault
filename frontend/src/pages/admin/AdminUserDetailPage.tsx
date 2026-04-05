@@ -16,6 +16,7 @@ import {
 import { getAllRepoThunk } from 'src/features/admin/getRepoThunk';
 import { selectAdminRepos } from 'src/features/admin/adminRepoSelectors';
 import { UserResponseDTO } from '../../types/admin/adminTypes';
+import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
 
 const statusColors: Record<string, string> = {
   active: 'bg-green-500/20 text-green-400 border border-green-500/30',
@@ -29,7 +30,7 @@ const getStatus = (user: UserResponseDTO) => {
   return 'active';
 };
 
-const RepoRow = React.memo(({ repo }: { repo: any }) => (
+const RepoRow = React.memo(({ repo }: { repo: RepositoryResponseDTO }) => (
   <tr className="border-b border-gray-800/50 hover:bg-gray-800/30 transition">
     <td className="py-3">
       <Link

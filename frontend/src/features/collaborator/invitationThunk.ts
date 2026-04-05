@@ -1,6 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { collaboratorService } from '../../services/collaborator.service';
-import { RepositoryResponseDTO } from 'src/types/repository/repositoryTypes';
+
 import { CollabRepoWithRole } from 'src/types/collaborator/invitationTypes';
 
 export const getInvitationByTokenThunk = createAsyncThunk(

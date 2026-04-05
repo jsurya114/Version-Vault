@@ -2,17 +2,18 @@ import { ICollaborator } from '../../domain/interfaces/ICollaborator';
 import { CollaboratorResponseDTO } from '../dtos/repository/CollaboratorDTO';
 
 export class CollaboratorMapper {
-  static toICollaborator(doc: any): ICollaborator {
+  static toICollaborator(doc: unknown): ICollaborator {
+    const d = doc as ICollaborator & { _id?: { toString(): string } };
     return {
-      id: doc.id?.toString() || doc._id?.toString(),
-      repositoryId: doc.repositoryId,
-      repositoryName: doc.repositoryName,
-      ownerId: doc.ownerId,
-      ownerUsername: doc.ownerUsername,
-      collaboratorId: doc.collaboratorId,
-      collaboratorUsername: doc.collaboratorUsername,
-      role: doc.role,
-      createdAt: doc.createdAt,
+      id: d.id?.toString() || d._id?.toString() || '',
+      repositoryId: d.repositoryId,
+      repositoryName: d.repositoryName,
+      ownerId: d.ownerId,
+      ownerUsername: d.ownerUsername,
+      collaboratorId: d.collaboratorId,
+      collaboratorUsername: d.collaboratorUsername,
+      role: d.role,
+      createdAt: d.createdAt,
     };
   }
 

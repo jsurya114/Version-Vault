@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { container } from 'tsyringe';
 import { IssueController } from '../../controllers/issues/IssueController';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
-import { ownerMiddleware } from '../../middleware/ownerMiddleware';
+
 import { writeAccessMiddleware } from '../../middleware/WriteAccessMiddleware';
 
 const router = Router();
@@ -20,8 +20,11 @@ router.post('/:username/:reponame', authMiddleware, writeAccessMiddleware, (req,
 );
 
 // PATCH /vv/issues/:username/:reponame/:id/close — close issue (auth required)
-router.patch('/:username/:reponame/:id/close', authMiddleware, writeAccessMiddleware, (req, res, next) =>
-  issueController.close(req, res, next),
+router.patch(
+  '/:username/:reponame/:id/close',
+  authMiddleware,
+  writeAccessMiddleware,
+  (req, res, next) => issueController.close(req, res, next),
 );
 
 export default router;

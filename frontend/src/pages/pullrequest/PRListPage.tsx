@@ -92,7 +92,7 @@ const PRListPage = () => {
       page,
       limit,
       search: search || undefined,
-      status: statusFilter === 'all' ? undefined : (statusFilter as any),
+      status: statusFilter === 'all' ? undefined : (statusFilter as 'open' | 'closed' | 'merged'),
     }),
     [username, reponame, page, statusFilter, search],
   );

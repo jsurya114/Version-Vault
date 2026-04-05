@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { Link, useParams, useNavigate, useSearchParams, data } from 'react-router-dom';
+import { Link, useParams, useNavigate, useSearchParams } from 'react-router-dom';
 import {
   Star,
   GitFork,
@@ -20,7 +20,7 @@ import {
   History,
   GitPullRequest,
   CircleDot,
-  Users 
+  Users,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
@@ -57,7 +57,7 @@ import CollaboratorsTabContent from 'src/types/common/collaborator/Collaborators
 
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
 import PRListContent from '../../types/common/pullrequest/PRListContent';
-type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues'| 'collaborators';
+type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 
 const RepositoryDetailPage = () => {
@@ -79,8 +79,8 @@ const RepositoryDetailPage = () => {
   const isCommitsLoading = useAppSelector(selectCommitsLoading);
 
   const [copied, setCopied] = useState(false);
-  const [searchParams,setSearchParams]=useSearchParams()
-  const [activeTab,setActiveTab]=useState<Tab>((searchParams.get('tab') as Tab)||'code')
+  const [searchParams, setSearchParams] = useSearchParams();
+  const [activeTab, setActiveTab] = useState<Tab>((searchParams.get('tab') as Tab) || 'code');
 
   const [branch, setBranch] = useState('main');
   const [currentPath, setCurrentPath] = useState('');
@@ -106,15 +106,13 @@ const RepositoryDetailPage = () => {
     title: '',
     subtitle: '',
   });
-  
-
 
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
   const isEmpty = !isFilesLoading && files.length === 0;
   const allFiles = useAppSelector((state) => state.repository.allFiles);
-  const [hasWriteAccess,setHasWriteAccess]=useState(false)
+  const [hasWriteAccess, setHasWriteAccess] = useState(false);
 
   useEffect(() => {
     if (username && reponame) {
@@ -129,19 +127,20 @@ const RepositoryDetailPage = () => {
     }
   }, [username, reponame, branch, dispatch]);
 
-
-  useEffect(()=>{
-    if(username&&reponame&&user){
-      if(isOwner){
-        setHasWriteAccess(true)
-      }else{
-        collaboratorService.checkAccess(username,reponame).then((data)=>{
-          setHasWriteAccess(data.hasAccess && data.role !=='read')
-        })
-        .catch(()=>setHasWriteAccess(false))
+  useEffect(() => {
+    if (username && reponame && user) {
+      if (isOwner) {
+        setHasWriteAccess(true);
+      } else {
+        collaboratorService
+          .checkAccess(username, reponame)
+          .then((data) => {
+            setHasWriteAccess(data.hasAccess && data.role !== 'read');
+          })
+          .catch(() => setHasWriteAccess(false));
       }
     }
-  },[username,reponame,user,isOwner])
+  }, [username, reponame, user, isOwner]);
 
   useEffect(() => {
     if (branchName) {
@@ -152,7 +151,13 @@ const RepositoryDetailPage = () => {
   }, [branchName, repo?.defaultBranch]);
   useEffect(() => {
     const tab = searchParams.get('tab');
-    if (tab === 'commits' || tab === 'pulls' || tab === 'issues' || tab === 'branches' || tab==='collaborators') {
+    if (
+      tab === 'commits' ||
+      tab === 'pulls' ||
+      tab === 'issues' ||
+      tab === 'branches' ||
+      tab === 'collaborators'
+    ) {
       setActiveTab(tab as Tab);
     }
   }, [searchParams]);
@@ -182,10 +187,13 @@ const RepositoryDetailPage = () => {
     }
   }, [files]);
 
-  const handleTablChange = useCallback((tab:Tab)=>{
-    setActiveTab(tab)
-    setSearchParams(tab==='code'?{}:{tab})
-  },[searchParams])
+  const handleTablChange = useCallback(
+    (tab: Tab) => {
+      setActiveTab(tab);
+      setSearchParams(tab === 'code' ? {} : { tab });
+    },
+    [searchParams],
+  );
 
   const handleTreeNodeClick = useCallback(
     (node: TreeNode) => {
@@ -291,11 +299,11 @@ const RepositoryDetailPage = () => {
       expandedPaths,
       onClick,
     }: {
-      file: any;
+      file: TreeNode;
       selectedFile: string;
       currentPath: string;
       expandedPaths: Set<string>;
-      onClick: (node: any) => void;
+      onClick: (node: TreeNode) => void;
     }) => (
       <div
         className={`flex items-center gap-1.5 px-3 py-1.5 cursor-pointer transition text-xs ${
@@ -337,10 +345,10 @@ const RepositoryDetailPage = () => {
       latestCommitDate,
       onClick,
     }: {
-      file: any;
+      file: TreeNode;
       latestCommitMessage: string;
       latestCommitDate: string;
-      onClick: (node: any) => void;
+      onClick: (node: TreeNode) => void;
     }) => (
       <tr
         className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 cursor-pointer transition"
@@ -368,24 +376,26 @@ const RepositoryDetailPage = () => {
     ),
   );
 
-  const CommitItem = React.memo(({ commit }: { commit: any }) => (
-    <div className="flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
-      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
-        {commit.author?.[0]?.toUpperCase()}
+  const CommitItem = React.memo(
+    ({ commit }: { commit: { hash: string; author: string; message: string; date: string } }) => (
+      <div className="flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
+        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+          {commit.author?.[0]?.toUpperCase()}
+        </div>
+        <div className="flex-1 min-w-0">
+          <p className="text-white text-sm font-medium truncate">{commit.message}</p>
+          <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+            <Clock className="w-3 h-3" />
+            {commit.author} · {formatDate(commit.date)}
+          </p>
+        </div>
+        <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
+          <GitCommit className="w-3 h-3" />
+          {commit.hash}
+        </span>
       </div>
-      <div className="flex-1 min-w-0">
-        <p className="text-white text-sm font-medium truncate">{commit.message}</p>
-        <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
-          <Clock className="w-3 h-3" />
-          {commit.author} · {formatDate(commit.date)}
-        </p>
-      </div>
-      <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
-        <GitCommit className="w-3 h-3" />
-        {commit.hash}
-      </span>
-    </div>
-  ));
+    ),
+  );
 
   const sortedFiles = useMemo(() => {
     return [...files].sort((a, b) => {
@@ -501,8 +511,6 @@ const RepositoryDetailPage = () => {
             <Users className="w-4 h-4" />
             Collaborators
           </button>
-
-
         </div>
       </div>
       {/* CODE TAB */}
@@ -1035,20 +1043,20 @@ const RepositoryDetailPage = () => {
         </div>
       )}
       {activeTab === 'pulls' && (
-        <PRListContent username={username!} reponame={reponame!} isOwner={isOwner} hasWriteAccess={hasWriteAccess}/>
+        <PRListContent
+          username={username!}
+          reponame={reponame!}
+          isOwner={isOwner}
+          hasWriteAccess={hasWriteAccess}
+        />
       )}
 
       {activeTab === 'issues' && (
         <IssueListContent username={username!} reponame={reponame!} isOwner={isOwner} />
       )}
-            {activeTab === 'collaborators' && (
-        <CollaboratorsTabContent
-          username={username!}
-          reponame={reponame!}
-          isOwner={isOwner}
-        />
+      {activeTab === 'collaborators' && (
+        <CollaboratorsTabContent username={username!} reponame={reponame!} isOwner={isOwner} />
       )}
-
 
       <AppFooter />
 

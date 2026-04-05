@@ -5,7 +5,6 @@ import {
 } from '../interfaces/collaborator/IGetAllCollabsUseCase';
 import { ICollaboratorRepository } from '../../../domain/interfaces/repositories/ICollaboratorRepository';
 import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
-import { IRepository } from '../../../domain/interfaces/IRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
 
 @injectable()

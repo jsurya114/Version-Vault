@@ -29,7 +29,15 @@ const formatDate = (dateStr?: string) => {
 };
 
 interface IssueItemProps {
-  issue: any;
+  issue: {
+    id: string;
+    status: string;
+    title: string;
+    labels: string[];
+    createdAt?: string;
+    authorUsername: string;
+    priority: string;
+  };
   onNavigate: (id: string) => void;
 }
 
@@ -93,7 +101,7 @@ const IssueListPage = () => {
       page,
       limit,
       search: search || undefined,
-      status: statusFilter === 'all' ? undefined : (statusFilter as any),
+      status: statusFilter === 'all' ? undefined : (statusFilter as 'open' | 'closed'),
     }),
     [username, reponame, page, statusFilter, search],
   );

@@ -7,8 +7,10 @@ import { selectAdminRepos, selectAdminReposMeta } from 'src/features/admin/admin
 import { ROUTES } from '../../constants/routes';
 import React, { useEffect, useMemo } from 'react';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
+import { UserResponseDTO } from '../../types/admin/adminTypes';
+import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
 
-const UserRow = React.memo(({ user }: { user: any }) => (
+const UserRow = React.memo(({ user }: { user: UserResponseDTO }) => (
   <tr className="border-b border-gray-800/50 last:border-0">
     <td className="py-2.5">
       <div className="flex items-center gap-2">
@@ -40,7 +42,7 @@ const UserRow = React.memo(({ user }: { user: any }) => (
   </tr>
 ));
 
-const RepoRow = React.memo(({ repo }: { repo: any }) => (
+const RepoRow = React.memo(({ repo }: { repo: RepositoryResponseDTO }) => (
   <tr className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
     <td className="py-2.5">
       <div className="flex items-center gap-2">

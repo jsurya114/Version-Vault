@@ -1,4 +1,4 @@
-import { useEffect, useState, useMemo, useCallback } from 'react';
+import { useEffect, useState, useMemo } from 'react';
 import { useNavigate } from 'react-router-dom';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
@@ -54,7 +54,8 @@ const AdminUsersPage = () => {
       search: search || undefined,
       sort: sortField,
       order: sortOrder,
-      status: statusFilter === 'all' ? undefined : (statusFilter as any),
+      status:
+        statusFilter === 'all' ? undefined : (statusFilter as 'active' | 'blocked' | 'pending'),
     }),
     [page, search, sortField, sortOrder, statusFilter],
   );
