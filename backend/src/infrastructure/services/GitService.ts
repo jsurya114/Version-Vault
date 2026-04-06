@@ -10,6 +10,7 @@ import {
   FileDiff,
   DiffHunk,
 } from '../../domain/interfaces/IGitTypes';
+import { NotFoundError } from 'src/domain/errors/NotFoundError';
 
 @injectable()
 export class GitService {
@@ -441,5 +442,28 @@ export class GitService {
       console.error('Error comparing branches:', error);
       return { commits: [], filesChanged: 0, contributors: 0, isMergeable: false, diffs: [] };
     }
+  }
+
+  async forkBareRepo(
+    sourceOwnerUsername: string,
+    sourceRepoName: string,
+    forkerUsername: string,
+    newRepoName: string,
+  ): Promise<void> {
+    const sourceRepoPath = this.getRepoPath(sourceOwnerUsername, sourceRepoName);
+    const newRepoPath = this.getRepoPath(forkerUsername, newRepoName);
+
+    //ensure forker's base directory exists
+    const forkerBasePath = path.join(this.repoBasePath, forkerUsername);
+    if (!fs.existsSync(forkerBasePath)) {
+      fs.mkdirSync(forkerBasePath, { recursive: true });
+    }
+    //verify source exists before duplicating
+    if (!fs.existsSync(sourceRepoPath)) {
+      throw new NotFoundError('Source repository disk contents not found');
+    }
+    //copy the entire bare reository contents
+
+    fs.cpSync(sourceRepoPath, newRepoPath, { recursive: true });
   }
 }

@@ -91,6 +91,7 @@ import { GetRepoByIdUseCase } from './application/use-cases/admin/GetRepoByIdUse
 import { BlockRepoUseCase } from './application/use-cases/admin/BlockRepoUseCase';
 import { UnblockRepoUseCase } from './application/use-cases/admin/UnblockRepoUseCase';
 import { VisibilityUseCase } from './application/use-cases/repository/VisibilityUseCase';
+import { ForkRepoUseCase } from './application/use-cases/repository/ForkRepoUseCase';
 
 //collaborators
 import { MongoCollaboratorRepository } from './infrastructure/database/mongoose/repositories/MongoCollaboratorRepository';
@@ -201,6 +202,7 @@ container.register(TOKENS.IGetAllRepoUseCase, { useClass: GetAllRepoUseCase });
 container.register(TOKENS.IBlockRepoUseCase, { useClass: BlockRepoUseCase });
 container.register(TOKENS.IUnblockRepoUseCase, { useClass: UnblockRepoUseCase });
 container.register(TOKENS.IGetRepoByIdUseCase, { useClass: GetRepoByIdUseCase });
+container.register(TOKENS.IForkRepoUseCase, { useClass: ForkRepoUseCase });
 
 //collabs
 container.register(TOKENS.ICollaboratorRepository, { useClass: MongoCollaboratorRepository });

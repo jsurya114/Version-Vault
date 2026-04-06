@@ -9,7 +9,8 @@ import { IGetCommitsUseCase } from '../../../../application/use-cases/interfaces
 import { IGetFileContentUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFileContentUseCase';
 import { IGetFilesUseCase } from '../../../../application/use-cases/interfaces/repository/IGetFilesUseCase';
 import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/branch/IGetBranchesUseCase';
-import { IVisibilityUseCase } from 'src/application/use-cases/interfaces/repository/IVisibilityUseCase';
+import { IVisibilityUseCase } from '../../../../application/use-cases/interfaces/repository/IVisibilityUseCase';
+import { IForkRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IForkRepoUseCase';
 
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
@@ -33,6 +34,7 @@ export class RepositoryController {
     @inject(TOKENS.IGetFilesUseCase) private filesUseCase: IGetFilesUseCase,
     @inject(TOKENS.IGetBranchesUseCase) private branchUseCase: IGetBranchesUseCase,
     @inject(TOKENS.IVisibilityUseCase) private _visbilityUseCase: IVisibilityUseCase,
+    @inject(TOKENS.IForkRepoUseCase) private _forkRepoUseCase: IForkRepoUseCase,
   ) {}
 
   /**
@@ -184,6 +186,25 @@ export class RepositoryController {
         success: true,
         message: `Repository is now ${visibility}`,
       });
+    } catch (error) {
+      next(error);
+    }
+  }
+  /**
+   * POST /vv/repo/:username/:reponame/fork
+   * Fork an existing repository
+   */
+  async forkRepository(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username: sourceOwnerUsername, reponame: sourceRepoName } = req.params;
+      const { id: forkerId, userId: forkerUsername } = req.user;
+      const forkedRepo = await this._forkRepoUseCase.execute({
+        sourceOwnerUsername,
+        sourceRepoName,
+        forkerId,
+        forkerUsername,
+      });
+      res.status(HttpStatusCodes.CREATED).json({ success: true, data: forkedRepo });
     } catch (error) {
       next(error);
     }

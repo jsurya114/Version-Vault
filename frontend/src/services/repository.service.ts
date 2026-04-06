@@ -114,4 +114,8 @@ export const repositoryService = {
     );
     return res.data;
   },
+  forkRepo: async (username: string, reponame: string) => {
+    const res = await axiosInstance.post(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/fork`);
+    return res.data;
+  },
 };

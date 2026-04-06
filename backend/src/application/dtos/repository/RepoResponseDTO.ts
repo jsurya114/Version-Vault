@@ -10,6 +10,8 @@ export interface RepoResponseDTO {
   forks: number;
   size: number;
   isBlocked: boolean;
+  isFork?: boolean;
+  parentRepoOwnerUsername?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

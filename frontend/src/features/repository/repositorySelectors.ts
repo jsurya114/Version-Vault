@@ -34,3 +34,6 @@ export const selectRepositoryVisibilityError = createSelector(
   [selectBaseState],
   (state) => state.error,
 );
+
+export const selectIsForking = (state: RootState) => state.repository.isForking;
+export const selectForkError = (state: RootState) => state.repository.forkError;
