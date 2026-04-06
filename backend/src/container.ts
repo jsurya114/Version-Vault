@@ -91,6 +91,7 @@ import { GetRepoByIdUseCase } from './application/use-cases/admin/GetRepoByIdUse
 import { BlockRepoUseCase } from './application/use-cases/admin/BlockRepoUseCase';
 import { UnblockRepoUseCase } from './application/use-cases/admin/UnblockRepoUseCase';
 import { VisibilityUseCase } from './application/use-cases/repository/VisibilityUseCase';
+import { ForkRepoUseCase } from './application/use-cases/repository/ForkRepoUseCase';
 
 //collaborators
 import { MongoCollaboratorRepository } from './infrastructure/database/mongoose/repositories/MongoCollaboratorRepository';
@@ -104,9 +105,14 @@ import { SendInvitationUseCase } from './application/use-cases/collaborators/Sen
 import { AcceptInvitationUseCase } from './application/use-cases/collaborators/AcceptInvitationUseCase';
 import { DeclineInvitationUseCase } from './application/use-cases/collaborators/DeclineInvitationUseCase';
 import { GetInvitationByTokenUseCase } from './application/use-cases/collaborators/GetInvitationByTokenUseCase';
-import { GetPendingInvitationsUseCase } from './application/use-cases/collaborators/GetPendingInvitationsUseCase'
+import { GetPendingInvitationsUseCase } from './application/use-cases/collaborators/GetPendingInvitationsUseCase';
 import { GetAllCollabsUseCase } from './application/use-cases/collaborators/GetAllCollabsUseCase';
 
+//comments
+import { MongoCommentRepository } from './infrastructure/database/mongoose/repositories/MongoCommentRepository';
+import { CreateCommentUseCase } from './application/use-cases/comments/CreateCommentUseCase';
+import { ListCommentUseCase } from './application/use-cases/comments/ListCommentUseCase';
+import { DeleteCommentUseCase } from './application/use-cases/comments/DeleteCommentUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -196,6 +202,7 @@ container.register(TOKENS.IGetAllRepoUseCase, { useClass: GetAllRepoUseCase });
 container.register(TOKENS.IBlockRepoUseCase, { useClass: BlockRepoUseCase });
 container.register(TOKENS.IUnblockRepoUseCase, { useClass: UnblockRepoUseCase });
 container.register(TOKENS.IGetRepoByIdUseCase, { useClass: GetRepoByIdUseCase });
+container.register(TOKENS.IForkRepoUseCase, { useClass: ForkRepoUseCase });
 
 //collabs
 container.register(TOKENS.ICollaboratorRepository, { useClass: MongoCollaboratorRepository });
@@ -209,7 +216,16 @@ container.register(TOKENS.ISendInvitationUseCase, { useClass: SendInvitationUseC
 container.register(TOKENS.IAcceptInvitationUseCase, { useClass: AcceptInvitationUseCase });
 container.register(TOKENS.IDeclineInvitationUseCase, { useClass: DeclineInvitationUseCase });
 container.register(TOKENS.IGetInvitationByTokenUseCase, { useClass: GetInvitationByTokenUseCase });
-container.register(TOKENS.IGetPendingInvitationsUseCase, { useClass: GetPendingInvitationsUseCase });
-container.register(TOKENS.IGetAllCollabsUseCase,{useClass:GetAllCollabsUseCase})
+container.register(TOKENS.IGetPendingInvitationsUseCase, {
+  useClass: GetPendingInvitationsUseCase,
+});
+container.register(TOKENS.IGetAllCollabsUseCase, { useClass: GetAllCollabsUseCase });
+
+//comments
+
+container.register(TOKENS.ICommentRepository, { useClass: MongoCommentRepository });
+container.register(TOKENS.ICreateCommentUseCase, { useClass: CreateCommentUseCase });
+container.register(TOKENS.IListCommentUseCase, { useClass: ListCommentUseCase });
+container.register(TOKENS.IDeleteCommentUseCase, { useClass: DeleteCommentUseCase });
 
 export { container };

@@ -23105,3 +23105,1513 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-04-05 11:33:06 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 46.435 ms - -[0m
 2026-04-05 11:33:06 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 258.023 ms - -[0m
 2026-04-05 11:33:14 [[32minfo[39m]: [0mPATCH /vv/repo/jsurya114/newone/visibility [32m200[0m 237.892 ms - 54[0m
+2026-04-05 21:28:29 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:28:30 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:28:30 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:28:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 53.922 ms - 44[0m
+2026-04-05 21:28:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 59.514 ms - 44[0m
+2026-04-05 21:28:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.906 ms - -[0m
+2026-04-05 21:28:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.727 ms - -[0m
+2026-04-05 21:28:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 51.065 ms - -[0m
+2026-04-05 21:28:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 46.216 ms - -[0m
+2026-04-05 21:28:39 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 49.851 ms - -[0m
+2026-04-05 21:28:39 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 507.715 ms - -[0m
+2026-04-05 21:28:39 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 137.580 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 13.921 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 13.166 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 27.661 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 12.333 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 24.543 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 12.034 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 19.739 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 18.586 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 47.039 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 45.200 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.148 ms - -[0m
+2026-04-05 21:28:42 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.657 ms - -[0m
+2026-04-05 21:28:45 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 99.069 ms - -[0m
+2026-04-05 21:28:45 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 96.803 ms - -[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 49.201 ms - 527[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.059 ms - -[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.512 ms - -[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.339 ms - -[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [32m200[0m 156.685 ms - 1048[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 352.016 ms - 70[0m
+2026-04-05 21:28:47 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 94.340 ms - -[0m
+2026-04-05 21:29:22 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [0m-[0m - ms - -[0m
+2026-04-05 21:29:22 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.120 ms - 44[0m
+2026-04-05 21:29:22 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.423 ms - 44[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.217 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.533 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.995 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.325 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.692 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.198 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 89.282 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 162.115 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 115.603 ms - -[0m
+2026-04-05 21:29:23 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.629 ms - -[0m
+2026-04-05 21:31:31 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [0m-[0m - ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.038 ms - 44[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.372 ms - 44[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.094 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.923 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.007 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.052 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 171.171 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 372.089 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 356.805 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.006 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 358.173 ms - -[0m
+2026-04-05 21:31:32 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.739 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.714 ms - 44[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.599 ms - 44[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.139 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.033 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 48.351 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 46.403 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 96.121 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 168.538 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 353.954 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.529 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 350.156 ms - -[0m
+2026-04-05 21:31:36 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 103.824 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.020 ms - 44[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.311 ms - 44[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.841 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.424 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 44.722 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.660 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 48.022 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 92.477 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.622 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 136.570 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 343.850 ms - -[0m
+2026-04-05 21:31:43 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 349.389 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.273 ms - 44[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.181 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.878 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.016 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 306.073 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.382 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 96.057 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 167.576 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 92.341 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 826.415 ms - 44[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.083 ms - -[0m
+2026-04-05 21:31:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.939 ms - -[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.942 ms - 44[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.090 ms - 44[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.245 ms - -[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.830 ms - -[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.031 ms - -[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.545 ms - -[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.498 ms - -[0m
+2026-04-05 21:31:55 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.091 ms - -[0m
+2026-04-05 21:33:53 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:33:53 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:33:53 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:33:58 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:33:58 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:33:58 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:34:46 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:34:46 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:34:46 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:34:48 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:34:51 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:34:53 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:34:56 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:34:57 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:34:57 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:35:01 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:35:01 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:35:01 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:35:04 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:35:05 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:35:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:35:08 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:35:08 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:35:08 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:35:33 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:35:34 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:35:34 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:38:44 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:38:44 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:38:44 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:38:49 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:38:50 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:38:50 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:38:53 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:38:54 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:38:54 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:05 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:39:06 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:39:06 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:22 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:39:23 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:39:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:27 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:39:27 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:39:27 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:31 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:39:31 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:39:31 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:33 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:39:34 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:39:34 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:42 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:39:43 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:39:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:39:51 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.826 ms - 44[0m
+2026-04-05 21:39:51 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.481 ms - 44[0m
+2026-04-05 21:39:51 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.127 ms - -[0m
+2026-04-05 21:39:51 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.912 ms - -[0m
+2026-04-05 21:39:51 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 48.420 ms - 713[0m
+2026-04-05 21:39:51 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 306.731 ms - -[0m
+2026-04-05 21:39:51 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 45.655 ms - -[0m
+2026-04-05 21:39:55 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 1.935 ms - 327[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0Aci98E8gTShlprG55wiEb7-2zELxwGglgJtXu-D_BVehob-b7-yIdCO-47HjFqFDs4-tcw&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 546.826 ms - 55[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.674 ms - 44[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.442 ms - 44[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.671 ms - -[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.924 ms - -[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 47.214 ms - -[0m
+2026-04-05 21:40:01 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 46.593 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/user/jayasooryaegurukulam_1774424731229 [36m304[0m 45.771 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c3929b6edb30f6a55460da [36m304[0m 46.942 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/user/jayasooryaegurukulam_1774424731229 [36m304[0m 53.386 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c3929b6edb30f6a55460da [36m304[0m 52.379 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/follow/jayasooryaegurukulam_1774424731229/following [36m304[0m 102.822 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/follow/jayasooryaegurukulam_1774424731229/following [36m304[0m 90.715 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/follow/jayasooryaegurukulam_1774424731229/followers [36m304[0m 346.323 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/follow/jayasooryaegurukulam_1774424731229/followers [36m304[0m 91.516 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 485.229 ms - -[0m
+2026-04-05 21:40:07 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 138.668 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 23.021 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 27.739 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 52.154 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 46.796 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 16.688 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 15.933 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 46.700 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 25.646 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 23.816 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [32m200[0m 91.321 ms - 64[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 45.747 ms - -[0m
+2026-04-05 21:40:10 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.991 ms - -[0m
+2026-04-05 21:40:13 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test [36m304[0m 96.638 ms - -[0m
+2026-04-05 21:40:13 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test [36m304[0m 381.043 ms - -[0m
+2026-04-05 21:40:16 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 100.352 ms - -[0m
+2026-04-05 21:40:16 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 96.014 ms - -[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.946 ms - -[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 94.586 ms - -[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 303.638 ms - -[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.989 ms - -[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 93.771 ms - 79[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.374 ms - -[0m
+2026-04-05 21:40:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [32m200[0m 434.674 ms - 1048[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [0m-[0m - ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.915 ms - 44[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.151 ms - 44[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.400 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.256 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.993 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 94.530 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 48.262 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 98.261 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 302.891 ms - 44[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.317 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 317.380 ms - 44[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 174.353 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 62.965 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 94.197 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 102.995 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.818 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 43.959 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.033 ms - -[0m
+2026-04-05 21:44:38 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 44.527 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.334 ms - 44[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.075 ms - 44[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.624 ms - 44[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.294 ms - 44[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.998 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.829 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.216 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.055 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 90.992 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 151.809 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 296.902 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.516 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.984 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 44.987 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 49.101 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 349.822 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 45.069 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 89.630 ms - -[0m
+2026-04-05 21:44:41 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.599 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.094 ms - 44[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.610 ms - 44[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.265 ms - 44[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.383 ms - 44[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.736 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.936 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.400 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.690 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.080 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 44.976 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.896 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.690 ms - -[0m
+2026-04-05 21:44:50 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 387.223 ms - -[0m
+2026-04-05 21:46:36 [[32minfo[39m]: Redis connected successfully
+2026-04-05 21:46:37 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 21:46:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 21:46:38 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 2.102 ms - 327[0m
+2026-04-05 21:46:44 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0Aci98E-hul-z6Vi634_nR_RcdJQsA09eA3yTOxgYanJFl4jI8mFNicuvpIyt15aEtFZa_w&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 622.382 ms - 55[0m
+2026-04-05 21:46:44 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.441 ms - 44[0m
+2026-04-05 21:46:44 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.089 ms - 44[0m
+2026-04-05 21:46:45 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 301.385 ms - -[0m
+2026-04-05 21:46:45 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 58.281 ms - -[0m
+2026-04-05 21:46:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 51.015 ms - -[0m
+2026-04-05 21:46:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 299.374 ms - -[0m
+2026-04-05 21:46:47 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 48.614 ms - -[0m
+2026-04-05 21:46:47 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 149.782 ms - -[0m
+2026-04-05 21:46:47 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 140.912 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 24.886 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 21.843 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 50.035 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 43.589 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 17.994 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 17.054 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 47.049 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 26.419 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 26.809 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [32m200[0m 92.608 ms - 64[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 300.044 ms - -[0m
+2026-04-05 21:46:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 358.497 ms - -[0m
+2026-04-05 21:46:52 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 234.163 ms - -[0m
+2026-04-05 21:46:52 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 95.365 ms - -[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 49.830 ms - -[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.198 ms - -[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.080 ms - -[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 93.635 ms - 79[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.068 ms - -[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [32m200[0m 164.122 ms - 1048[0m
+2026-04-05 21:46:53 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 341.741 ms - -[0m
+2026-04-05 22:04:45 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:04:46 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:04:46 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:05:15 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:05:15 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:05:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:05:22 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:05:22 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:05:22 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:05:33 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:05:34 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:05:34 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:05:39 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:05:40 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:05:40 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:05:51 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:05:52 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:05:52 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:05:54 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:05:55 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:05:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:06:36 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:06:37 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:06:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:09 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:10 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:10 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:13 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:14 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:14 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:17 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:18 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:18 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:20 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:20 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:20 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:26 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:26 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:26 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:43 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:44 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:44 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:52 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:55 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:07:55 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:07:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:07:59 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:00 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:00 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:08:14 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:14 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:14 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:08:20 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:30 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:30 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:30 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:08:35 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:36 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:36 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:08:42 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:43 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:08:52 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:52 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:52 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:08:55 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:08:56 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:08:56 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:09:43 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 106.213 ms - -[0m
+2026-04-05 22:09:49 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 357.464 ms - -[0m
+2026-04-05 22:09:53 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 154.536 ms - -[0m
+2026-04-05 22:10:03 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:10:04 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:10:04 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:10:07 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.560 ms - 44[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 59.663 ms - 44[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 313.042 ms - -[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 51.565 ms - -[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.238 ms - -[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.131 ms - -[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 99.135 ms - -[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 101.111 ms - -[0m
+2026-04-05 22:10:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 154.371 ms - -[0m
+2026-04-05 22:10:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 345.571 ms - -[0m
+2026-04-05 22:10:08 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 345.170 ms - -[0m
+2026-04-05 22:10:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 101.938 ms - -[0m
+2026-04-05 22:12:55 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:12:56 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:12:56 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:13:53 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:13:53 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:13:53 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:13:56 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:13:56 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:13:56 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:15:08 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [0m-[0m - ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.033 ms - 44[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.744 ms - 44[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.275 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.375 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.899 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.699 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 160.000 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 352.054 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 352.026 ms - -[0m
+2026-04-05 22:15:08 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.432 ms - -[0m
+2026-04-05 22:15:09 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 405.088 ms - -[0m
+2026-04-05 22:15:09 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.028 ms - -[0m
+2026-04-05 22:22:04 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:22:05 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:22:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:22:20 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:22:20 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:22:20 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:22:23 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:22:24 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:22:24 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:22:32 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:22:32 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:22:32 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:22:36 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:22:36 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:22:36 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:23:03 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 111.296 ms - -[0m
+2026-04-05 22:23:06 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 100.889 ms - -[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.432 ms - 44[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 61.120 ms - 44[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 50.858 ms - -[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.565 ms - -[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 48.330 ms - -[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.128 ms - -[0m
+2026-04-05 22:23:13 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 103.574 ms - -[0m
+2026-04-05 22:23:14 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 114.985 ms - -[0m
+2026-04-05 22:23:14 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 116.938 ms - -[0m
+2026-04-05 22:23:14 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 350.410 ms - -[0m
+2026-04-05 22:23:14 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 427.539 ms - -[0m
+2026-04-05 22:23:14 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 364.483 ms - -[0m
+2026-04-05 22:31:40 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:31:41 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:31:41 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:04 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:32:05 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:32:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:08 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:32:09 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:32:09 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:15 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:32:15 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:32:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:22 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:32:23 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:32:23 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:26 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:32:26 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:32:26 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:36 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:32:37 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:32:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:32:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 56.918 ms - 44[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 53.056 ms - 44[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 51.163 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.343 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 46.133 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 46.922 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 155.868 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 350.268 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 355.701 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.362 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 98.847 ms - -[0m
+2026-04-05 22:32:41 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.840 ms - -[0m
+2026-04-05 22:32:46 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Cannot read properties of undefined (reading 'id')
+2026-04-05 22:32:46 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [31m500[0m 153.014 ms - 51[0m
+2026-04-05 22:37:54 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:37:55 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:37:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:37:58 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:37:59 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:37:59 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:39:57 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:39:57 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:39:57 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:39:59 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 1.975 ms - 327[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0Aci98E9bM7dy8GNb-xG9i1HKUjbTYiUcZvFNDbh6o3T8fomkYhkn7IvOc9kpcGPi3mOnYg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 533.872 ms - 55[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.408 ms - 44[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.287 ms - 44[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 53.222 ms - -[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.348 ms - -[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 51.125 ms - -[0m
+2026-04-05 22:40:06 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 47.142 ms - -[0m
+2026-04-05 22:40:08 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 51.376 ms - -[0m
+2026-04-05 22:40:09 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 169.458 ms - -[0m
+2026-04-05 22:40:09 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 136.713 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 24.512 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 22.389 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 52.991 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 46.367 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 22.487 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 20.247 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 49.280 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 30.275 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 29.294 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.157 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 45.084 ms - -[0m
+2026-04-05 22:40:11 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 89.749 ms - -[0m
+2026-04-05 22:40:14 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 96.349 ms - -[0m
+2026-04-05 22:40:14 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 92.193 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.458 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.997 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.146 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 94.266 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 99.362 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 171.929 ms - -[0m
+2026-04-05 22:40:15 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 89.829 ms - -[0m
+2026-04-05 22:40:19 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Cannot read properties of undefined (reading 'id')
+2026-04-05 22:40:19 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [31m500[0m 48.135 ms - 51[0m
+2026-04-05 22:42:10 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:42:11 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:42:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:42:17 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:42:17 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:42:17 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:42:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 57.298 ms - 44[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 55.073 ms - 44[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.901 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.003 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 46.423 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.266 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 46.847 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.690 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.532 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 173.422 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 93.795 ms - -[0m
+2026-04-05 22:42:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 91.952 ms - -[0m
+2026-04-05 22:42:35 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Repository context is missing. Verify repoAccessMiddleware is setting res.locals.repo
+2026-04-05 22:42:35 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [31m500[0m 57.127 ms - 51[0m
+2026-04-05 22:49:00 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:49:01 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:49:01 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:49:04 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:49:04 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:49:04 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:49:29 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 60.803 ms - 44[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 57.184 ms - 44[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.168 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.910 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.422 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.527 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 44.785 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.673 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 163.233 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.457 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 351.198 ms - -[0m
+2026-04-05 22:49:29 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 90.463 ms - -[0m
+2026-04-05 22:49:33 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Repository context is missing. Verify repoAccessMiddleware is setting res.locals.repo
+2026-04-05 22:49:33 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [31m500[0m 51.687 ms - 51[0m
+2026-04-05 22:51:33 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:51:34 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:51:34 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:51:39 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:51:39 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:51:39 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:51:46 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 54.361 ms - 44[0m
+2026-04-05 22:51:46 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 65.147 ms - 44[0m
+2026-04-05 22:51:46 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.447 ms - -[0m
+2026-04-05 22:51:46 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.709 ms - -[0m
+2026-04-05 22:51:46 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 44.143 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.434 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 97.421 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 92.762 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.689 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 157.036 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.675 ms - -[0m
+2026-04-05 22:51:47 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 102.659 ms - -[0m
+2026-04-05 22:51:50 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 241.627 ms - 263[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.262 ms - 44[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.696 ms - 44[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.369 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.592 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 48.465 ms - 527[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.151 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 49.024 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 98.528 ms - 318[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.555 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 156.635 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.362 ms - -[0m
+2026-04-05 22:51:57 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.030 ms - -[0m
+2026-04-05 22:52:00 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a2e193aa7ce928d8c58 [32m200[0m 97.315 ms - 49[0m
+2026-04-05 22:52:31 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 322.414 ms - 264[0m
+2026-04-05 22:52:34 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 193.974 ms - 263[0m
+2026-04-05 22:52:37 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 194.866 ms - 262[0m
+2026-04-05 22:52:39 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 463.158 ms - 263[0m
+2026-04-05 22:52:43 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 190.485 ms - 261[0m
+2026-04-05 22:52:45 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 338.851 ms - 262[0m
+2026-04-05 22:52:49 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 198.542 ms - 263[0m
+2026-04-05 22:52:54 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a69193aa7ce928d8c91 [32m200[0m 95.723 ms - 49[0m
+2026-04-05 22:52:56 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a65193aa7ce928d8c8c [32m200[0m 101.285 ms - 49[0m
+2026-04-05 22:52:56 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a63193aa7ce928d8c87 [32m200[0m 95.369 ms - 49[0m
+2026-04-05 22:52:56 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a5f193aa7ce928d8c82 [32m200[0m 98.013 ms - 49[0m
+2026-04-05 22:52:57 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a5c193aa7ce928d8c7d [32m200[0m 100.978 ms - 49[0m
+2026-04-05 22:52:57 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a59193aa7ce928d8c78 [32m200[0m 100.849 ms - 49[0m
+2026-04-05 22:52:57 [[32minfo[39m]: [0mDELETE /vv/comments/69d29a57193aa7ce928d8c73 [32m200[0m 94.930 ms - 49[0m
+2026-04-05 22:53:47 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:53:47 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:53:47 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:53:56 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:53:56 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:53:56 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:54:03 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 56.616 ms - 44[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 53.063 ms - 44[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.558 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.292 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 47.102 ms - 527[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.231 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 110.308 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 98.533 ms - 79[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.832 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 150.145 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.089 ms - -[0m
+2026-04-05 22:54:03 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 92.910 ms - -[0m
+2026-04-05 22:56:37 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:56:37 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:56:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:57:34 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:57:35 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:57:35 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:57:50 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:57:52 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:57:54 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:57:55 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:57:55 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:58:10 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:58:11 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:58:11 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:58:26 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:58:27 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:58:27 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:58:32 [[32minfo[39m]: Redis connected successfully
+2026-04-05 22:58:33 [[32minfo[39m]: MongoDB connected successfully
+2026-04-05 22:58:33 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-05 22:58:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 74.351 ms - 44[0m
+2026-04-05 22:58:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 84.130 ms - 44[0m
+2026-04-05 22:58:36 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 98.240 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 68.251 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 47.318 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 43.769 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.460 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 115.084 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 95.329 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 172.194 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 113.703 ms - -[0m
+2026-04-05 22:58:37 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 97.989 ms - -[0m
+2026-04-05 23:03:51 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 204.527 ms - -[0m
+2026-04-05 23:04:00 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 108.093 ms - -[0m
+2026-04-05 23:04:23 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.542 ms - -[0m
+2026-04-05 23:04:23 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 94.392 ms - -[0m
+2026-04-05 23:05:14 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 164.259 ms - -[0m
+2026-04-05 23:05:33 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 110.616 ms - -[0m
+2026-04-05 23:05:41 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 100.569 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 58.740 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 48.868 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 108.412 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 110.554 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 158.131 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 95.981 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 95.221 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 135.998 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.415 ms - -[0m
+2026-04-05 23:05:54 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.653 ms - -[0m
+2026-04-05 23:07:05 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 117.509 ms - -[0m
+2026-04-05 23:07:06 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 96.597 ms - -[0m
+2026-04-05 23:07:08 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 99.302 ms - -[0m
+2026-04-05 23:07:12 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 229.401 ms - 264[0m
+2026-04-05 23:07:16 [[32minfo[39m]: [0mDELETE /vv/comments/69d29dc89697bf71e28ae7d1 [32m200[0m 206.849 ms - 49[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.157 ms - 44[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.961 ms - 44[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.700 ms - -[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.767 ms - -[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 44.314 ms - 527[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 45.107 ms - -[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 97.387 ms - -[0m
+2026-04-05 23:07:21 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.677 ms - -[0m
+2026-04-05 23:07:22 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 98.569 ms - -[0m
+2026-04-05 23:07:22 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 156.071 ms - -[0m
+2026-04-05 23:07:22 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 94.658 ms - -[0m
+2026-04-05 23:07:22 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.934 ms - -[0m
+2026-04-05 23:07:31 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 95.845 ms - -[0m
+2026-04-05 23:07:36 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=5 [32m200[0m 103.014 ms - 1092[0m
+2026-04-05 23:07:37 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13c320f0ab5074f0aaf09 [36m304[0m 44.652 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13c320f0ab5074f0aaf09 [36m304[0m 44.223 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 97.311 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 99.554 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13c320f0ab5074f0aaf09?page=1&limit=5 [32m200[0m 93.255 ms - 79[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 90.774 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 95.653 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13c320f0ab5074f0aaf09?page=1&limit=5 [36m304[0m 98.543 ms - -[0m
+2026-04-05 23:07:38 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/0d2c552/320ba17 [36m304[0m 507.893 ms - -[0m
+2026-04-05 23:07:44 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13c320f0ab5074f0aaf09 [32m201[0m 189.588 ms - 261[0m
+2026-04-05 23:07:48 [[32minfo[39m]: [0mDELETE /vv/comments/69d29de89697bf71e28ae808 [32m200[0m 192.019 ms - 49[0m
+2026-04-05 23:07:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.914 ms - 44[0m
+2026-04-05 23:07:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.771 ms - 44[0m
+2026-04-05 23:07:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.000 ms - -[0m
+2026-04-05 23:07:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.545 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13c320f0ab5074f0aaf09 [32m200[0m 47.360 ms - 533[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.180 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13c320f0ab5074f0aaf09 [36m304[0m 48.578 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13c320f0ab5074f0aaf09?page=1&limit=5 [36m304[0m 93.962 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 96.282 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/0d2c552/320ba17 [36m304[0m 164.064 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13c320f0ab5074f0aaf09?page=1&limit=5 [36m304[0m 95.353 ms - -[0m
+2026-04-05 23:07:51 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 95.827 ms - -[0m
+2026-04-05 23:07:54 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=5 [32m200[0m 107.404 ms - 1092[0m
+2026-04-06 10:07:13 [[32minfo[39m]: Redis connected successfully
+2026-04-06 10:07:14 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 10:07:14 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 10:07:48 [[32minfo[39m]: Redis connected successfully
+2026-04-06 10:07:50 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 10:07:50 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 10:08:05 [[32minfo[39m]: Redis connected successfully
+2026-04-06 10:08:06 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 10:08:06 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 10:08:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 49.980 ms - 44[0m
+2026-04-06 10:08:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.912 ms - -[0m
+2026-04-06 10:08:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 239.673 ms - 44[0m
+2026-04-06 10:08:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.224 ms - -[0m
+2026-04-06 10:08:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [32m200[0m 233.908 ms - 713[0m
+2026-04-06 10:08:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.596 ms - -[0m
+2026-04-06 10:08:38 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.654 ms - 44[0m
+2026-04-06 10:08:38 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.524 ms - 44[0m
+2026-04-06 10:08:38 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.954 ms - -[0m
+2026-04-06 10:08:38 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.082 ms - -[0m
+2026-04-06 10:08:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 47.623 ms - -[0m
+2026-04-06 10:08:38 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 132.545 ms - -[0m
+2026-04-06 10:08:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.047 ms - -[0m
+2026-04-06 10:08:45 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 355.620 ms - -[0m
+2026-04-06 10:08:45 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 136.567 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 22.530 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 19.240 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 34.256 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 32.197 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 11.755 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 13.073 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 45.916 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 22.120 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 19.921 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 245.836 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 311.824 ms - -[0m
+2026-04-06 10:08:49 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 97.129 ms - -[0m
+2026-04-06 10:08:51 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [32m200[0m 96.371 ms - 1093[0m
+2026-04-06 10:08:51 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 92.369 ms - -[0m
+2026-04-06 10:08:52 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 44.332 ms - -[0m
+2026-04-06 10:08:52 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 89.183 ms - -[0m
+2026-04-06 10:08:52 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 42.606 ms - -[0m
+2026-04-06 10:08:53 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 89.296 ms - -[0m
+2026-04-06 10:08:53 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 87.176 ms - -[0m
+2026-04-06 10:08:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 145.282 ms - -[0m
+2026-04-06 10:08:53 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 97.140 ms - -[0m
+2026-04-06 10:09:02 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 199.232 ms - 261[0m
+2026-04-06 10:09:04 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 199.615 ms - 262[0m
+2026-04-06 10:09:07 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 218.233 ms - 262[0m
+2026-04-06 10:09:09 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 241.706 ms - 263[0m
+2026-04-06 10:09:12 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 187.835 ms - 263[0m
+2026-04-06 10:09:16 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 197.348 ms - 264[0m
+2026-04-06 10:09:23 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 188.484 ms - 263[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.729 ms - 44[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.578 ms - 44[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.673 ms - -[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.800 ms - -[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 45.656 ms - 528[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 89.367 ms - -[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 89.318 ms - 1278[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 88.982 ms - -[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 157.295 ms - -[0m
+2026-04-06 10:09:29 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 86.748 ms - -[0m
+2026-04-06 10:09:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 87.054 ms - -[0m
+2026-04-06 10:09:30 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 236.191 ms - -[0m
+2026-04-06 10:09:34 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=2&limit=5 [32m200[0m 92.006 ms - 555[0m
+2026-04-06 10:12:58 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=2&limit=5 [36m304[0m 90.433 ms - -[0m
+2026-04-06 10:12:58 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 89.596 ms - -[0m
+2026-04-06 10:12:59 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 91.893 ms - -[0m
+2026-04-06 10:12:59 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 87.683 ms - -[0m
+2026-04-06 10:13:06 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 550.428 ms - -[0m
+2026-04-06 10:13:06 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 90.344 ms - -[0m
+2026-04-06 10:13:12 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 89.770 ms - -[0m
+2026-04-06 10:13:17 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 92.479 ms - -[0m
+2026-04-06 10:13:20 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 92.515 ms - -[0m
+2026-04-06 10:13:25 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 90.543 ms - -[0m
+2026-04-06 10:13:26 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 89.998 ms - -[0m
+2026-04-06 10:13:30 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 92.853 ms - -[0m
+2026-04-06 10:14:11 [[32minfo[39m]: [0mDELETE /vv/comments/69d338ebf4ab5e4b4a4c29f8 [32m200[0m 198.483 ms - 49[0m
+2026-04-06 10:14:13 [[32minfo[39m]: [0mDELETE /vv/comments/69d338edf4ab5e4b4a4c29fd [32m200[0m 203.648 ms - 49[0m
+2026-04-06 10:14:15 [[32minfo[39m]: [0mDELETE /vv/comments/69d338f0f4ab5e4b4a4c2a02 [32m200[0m 576.509 ms - 49[0m
+2026-04-06 10:14:17 [[32minfo[39m]: [0mDELETE /vv/comments/69d338f4f4ab5e4b4a4c2a07 [32m200[0m 189.672 ms - 49[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.614 ms - 44[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.401 ms - 44[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.300 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.570 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 44.392 ms - 528[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 44.257 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 89.073 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 89.689 ms - 795[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 88.947 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 159.700 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 89.605 ms - -[0m
+2026-04-06 10:14:19 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 88.842 ms - -[0m
+2026-04-06 10:14:23 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 209.817 ms - 262[0m
+2026-04-06 10:14:26 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 189.920 ms - 262[0m
+2026-04-06 10:14:31 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 268.762 ms - 261[0m
+2026-04-06 10:14:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.182 ms - 44[0m
+2026-04-06 10:14:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 52.022 ms - 44[0m
+2026-04-06 10:14:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.227 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.012 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 88.529 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 90.127 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 244.537 ms - 528[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 88.416 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 43.250 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 132.543 ms - -[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 297.549 ms - 1273[0m
+2026-04-06 10:14:33 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 87.905 ms - -[0m
+2026-04-06 10:17:14 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 104.072 ms - -[0m
+2026-04-06 10:17:31 [[32minfo[39m]: Redis connected successfully
+2026-04-06 10:17:32 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 10:17:32 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 10:17:37 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.716 ms - 44[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 57.858 ms - 44[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.954 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.248 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 42.871 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 43.137 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 88.234 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 96.468 ms - 1273[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 86.400 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 146.576 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 110.657 ms - -[0m
+2026-04-06 10:17:37 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 276.616 ms - -[0m
+2026-04-06 10:17:41 [[32minfo[39m]: [0mDELETE /vv/comments/69d338e8f4ab5e4b4a4c29f3 [32m200[0m 380.548 ms - 49[0m
+2026-04-06 10:17:46 [[32minfo[39m]: [0mDELETE /vv/comments/69d33a2ff4ab5e4b4a4c2a7a [32m200[0m 190.773 ms - 49[0m
+2026-04-06 10:17:49 [[32minfo[39m]: [0mDELETE /vv/comments/69d33a2af4ab5e4b4a4c2a75 [32m200[0m 182.394 ms - 49[0m
+2026-04-06 10:17:50 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=2&limit=5 [32m200[0m 98.499 ms - 79[0m
+2026-04-06 10:17:52 [[32minfo[39m]: [0mDELETE /vv/comments/69d338fbf4ab5e4b4a4c2a0c [32m200[0m 182.421 ms - 49[0m
+2026-04-06 10:17:54 [[32minfo[39m]: [0mDELETE /vv/comments/69d33a27f4ab5e4b4a4c2a70 [32m200[0m 186.413 ms - 49[0m
+2026-04-06 10:23:50 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 101.269 ms - 316[0m
+2026-04-06 10:23:50 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 403.905 ms - 261[0m
+2026-04-06 10:23:53 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 283.766 ms - 262[0m
+2026-04-06 10:23:56 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 414.887 ms - 263[0m
+2026-04-06 10:23:58 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 352.757 ms - 263[0m
+2026-04-06 10:24:04 [[32minfo[39m]: [0mPOST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba [32m201[0m 419.093 ms - 265[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.537 ms - 44[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.492 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 45.912 ms - 528[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 46.651 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 93.030 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 244.885 ms - 44[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 89.147 ms - 1277[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 49.279 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 95.477 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 276.060 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 367.479 ms - -[0m
+2026-04-06 10:24:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 87.866 ms - -[0m
+2026-04-06 10:24:12 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=2&limit=5 [32m200[0m 100.881 ms - 316[0m
+2026-04-06 10:24:14 [[32minfo[39m]: [0mDELETE /vv/comments/69d338e6f4ab5e4b4a4c29ee [32m200[0m 196.451 ms - 49[0m
+2026-04-06 10:24:16 [[32minfo[39m]: [0mDELETE /vv/comments/69d33c5e2a01080798666647 [32m200[0m 192.536 ms - 49[0m
+2026-04-06 10:24:18 [[32minfo[39m]: [0mDELETE /vv/comments/69d33c612a0108079866664c [32m200[0m 191.304 ms - 49[0m
+2026-04-06 10:24:20 [[32minfo[39m]: [0mDELETE /vv/comments/69d33c642a01080798666651 [32m200[0m 188.356 ms - 49[0m
+2026-04-06 10:24:23 [[32minfo[39m]: [0mDELETE /vv/comments/69d33c662a01080798666656 [32m200[0m 186.836 ms - 49[0m
+2026-04-06 10:24:27 [[32minfo[39m]: [0mDELETE /vv/comments/69d33c6b2a0108079866665b [32m200[0m 190.094 ms - 49[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.401 ms - 44[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.807 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [32m200[0m 43.825 ms - 527[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test/69d13d545d27d3b7ab90a6ba [36m304[0m 43.098 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 94.629 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 234.939 ms - 44[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [32m200[0m 95.847 ms - 79[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 72.686 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 100.908 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79/d1cca40 [36m304[0m 161.040 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba?page=1&limit=5 [36m304[0m 301.440 ms - -[0m
+2026-04-06 10:24:30 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/test/check [36m304[0m 282.406 ms - -[0m
+2026-04-06 12:48:47 [[32minfo[39m]: Redis connected successfully
+2026-04-06 12:48:49 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 12:48:49 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 12:51:55 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 220.769 ms - 297[0m
+2026-04-06 12:51:55 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 58.490 ms - -[0m
+2026-04-06 12:51:55 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 62.747 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 15.161 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 13.475 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 25.493 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 30.300 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 11.717 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 12.909 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 21.377 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 19.213 ms - -[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [32m200[0m 54.735 ms - 349[0m
+2026-04-06 12:51:58 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 52.308 ms - -[0m
+2026-04-06 12:52:02 [[31merror[39m]: POST /vv/repo/jsurya114/newone/fork — You already have a repository wiht this name
+2026-04-06 12:52:02 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [33m409[0m 144.410 ms - 74[0m
+2026-04-06 12:52:19 [[32minfo[39m]: [0mGET /vv/auth/google [36m302[0m 3.234 ms - 327[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mGET /vv/auth/google/callback?iss=https%3A%2F%2Faccounts.google.com&code=4%2F0Aci98E-AEwcxCiOpIw5qvYwQqQY2n9IdNFeko3DIb0-FpIMSTijlSxgxpHwRGlf3f59Sdg&scope=email+profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.profile+https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fuserinfo.email+openid&authuser=0&prompt=consent [36m302[0m 681.819 ms - 55[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 43.778 ms - 44[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 56.017 ms - 44[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.027 ms - -[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.843 ms - -[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 55.357 ms - -[0m
+2026-04-06 12:52:28 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 64.290 ms - -[0m
+2026-04-06 12:52:31 [[32minfo[39m]: [0mGET /vv/collaborators/repos [32m200[0m 291.564 ms - 26[0m
+2026-04-06 12:52:31 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 290.529 ms - -[0m
+2026-04-06 12:52:32 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 309.810 ms - -[0m
+2026-04-06 12:52:39 [[32minfo[39m]: [0mPATCH /vv/repo/jsurya114/newone/visibility [32m200[0m 108.209 ms - 53[0m
+2026-04-06 12:52:48 [[32minfo[39m]: [0mGET /vv/auth/search?q=ja [36m304[0m 75.541 ms - -[0m
+2026-04-06 12:52:48 [[32minfo[39m]: [0mGET /vv/auth/search?q=jay [32m200[0m 78.491 ms - 1335[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 41.298 ms - -[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 108.015 ms - -[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [32m200[0m 274.539 ms - 712[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 332.812 ms - -[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 292.196 ms - -[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [32m200[0m 39.068 ms - 352[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 36.584 ms - -[0m
+2026-04-06 12:52:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 82.823 ms - -[0m
+2026-04-06 12:52:50 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 866.730 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [32m200[0m 25.704 ms - 352[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [32m200[0m 23.126 ms - 246[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 46.725 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 46.598 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 18.483 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 17.418 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 25.973 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 24.562 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [32m200[0m 71.640 ms - 348[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 121.301 ms - -[0m
+2026-04-06 12:52:52 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 107.782 ms - -[0m
+2026-04-06 12:52:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 730.777 ms - -[0m
+2026-04-06 12:52:54 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/content?path=fact.py&branch=main [36m304[0m 26.173 ms - -[0m
+2026-04-06 12:52:59 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [32m201[0m 2435.914 ms - 373[0m
+2026-04-06 12:53:04 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [32m200[0m 24.966 ms - 352[0m
+2026-04-06 12:53:04 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [32m200[0m 24.555 ms - 246[0m
+2026-04-06 12:53:04 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [32m200[0m 43.726 ms - 193[0m
+2026-04-06 12:53:04 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [32m200[0m 46.116 ms - 125[0m
+2026-04-06 12:53:04 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 54.205 ms - 373[0m
+2026-04-06 12:53:11 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 45.395 ms - 428[0m
+2026-04-06 12:53:11 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 435.548 ms - -[0m
+2026-04-06 12:53:11 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 453.279 ms - -[0m
+2026-04-06 12:53:23 [[32minfo[39m]: [0mDELETE /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 398.497 ms - 60[0m
+2026-04-06 12:53:27 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 594.908 ms - 44[0m
+2026-04-06 12:53:27 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 644.577 ms - 44[0m
+2026-04-06 12:53:27 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 303.146 ms - -[0m
+2026-04-06 12:53:27 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 52.926 ms - -[0m
+2026-04-06 12:53:27 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 126.097 ms - -[0m
+2026-04-06 12:53:28 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 125.700 ms - -[0m
+2026-04-06 12:53:28 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 257.615 ms - 79[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [31m500[0m 0.551 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [31m500[0m 0.221 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [31m500[0m 0.194 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [31m500[0m 0.173 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [31m500[0m 0.134 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [31m500[0m 0.197 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [31m500[0m 0.178 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [31m500[0m 0.199 ms - 51[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone — Repository not found
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [33m404[0m 40.970 ms - 50[0m
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone — Repository not found
+2026-04-06 12:53:29 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [33m404[0m 43.181 ms - 50[0m
+2026-04-06 12:53:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 21.781 ms - -[0m
+2026-04-06 12:53:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 25.914 ms - -[0m
+2026-04-06 12:53:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 46.060 ms - -[0m
+2026-04-06 12:53:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 42.997 ms - -[0m
+2026-04-06 12:53:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 42.437 ms - -[0m
+2026-04-06 12:53:32 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 101.984 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 41.374 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.634 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.164 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 86.888 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 56.166 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 29.859 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 28.202 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 87.505 ms - -[0m
+2026-04-06 12:53:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 291.851 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 30.547 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 27.351 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 43.548 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 52.013 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 55.490 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 19.407 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 20.734 ms - -[0m
+2026-04-06 12:53:35 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 83.972 ms - -[0m
+2026-04-06 12:55:39 [[32minfo[39m]: Redis connected successfully
+2026-04-06 12:55:39 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 12:55:39 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 12:55:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.774 ms - 44[0m
+2026-04-06 12:55:43 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.291 ms - 44[0m
+2026-04-06 12:55:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.535 ms - -[0m
+2026-04-06 12:55:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 54.287 ms - -[0m
+2026-04-06 12:55:43 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 55.101 ms - 79[0m
+2026-04-06 12:55:43 [[32minfo[39m]: [0mGET /vv/collaborators/repos [32m200[0m 150.056 ms - 376[0m
+2026-04-06 12:55:43 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.093 ms - -[0m
+2026-04-06 12:55:47 [[32minfo[39m]: [0mGET /vv/auth/search?q=ja [36m304[0m 49.427 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 49.258 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 86.709 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 89.701 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 42.178 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.892 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 27.950 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 22.445 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 81.444 ms - -[0m
+2026-04-06 12:55:49 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 83.180 ms - -[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [32m200[0m 29.858 ms - 352[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [32m200[0m 23.911 ms - 246[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [32m200[0m 50.043 ms - 125[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [32m200[0m 47.714 ms - 193[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [32m200[0m 44.746 ms - 348[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 18.298 ms - -[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 17.784 ms - -[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 27.021 ms - -[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 26.045 ms - -[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 42.036 ms - -[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [32m200[0m 83.223 ms - 55[0m
+2026-04-06 12:55:50 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 83.964 ms - -[0m
+2026-04-06 12:55:51 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [32m201[0m 203.670 ms - 373[0m
+2026-04-06 12:55:53 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [32m200[0m 14.763 ms - 352[0m
+2026-04-06 12:55:53 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [32m200[0m 14.371 ms - 246[0m
+2026-04-06 12:55:53 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [32m200[0m 27.913 ms - 193[0m
+2026-04-06 12:55:53 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [32m200[0m 29.660 ms - 125[0m
+2026-04-06 12:55:53 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 42.552 ms - 373[0m
+2026-04-06 12:55:56 [[31merror[39m]: POST /vv/repo/jayasooryaegurukulam_1774424731229/newone/fork — You already have a repository wiht this name
+2026-04-06 12:55:56 [[32minfo[39m]: [0mPOST /vv/repo/jayasooryaegurukulam_1774424731229/newone/fork [33m409[0m 98.880 ms - 74[0m
+2026-04-06 12:56:10 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/content?path=fact.py&branch=main [32m200[0m 35.570 ms - 175[0m
+2026-04-06 12:56:14 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 25.813 ms - -[0m
+2026-04-06 12:56:14 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 23.637 ms - -[0m
+2026-04-06 12:56:14 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 47.224 ms - -[0m
+2026-04-06 12:56:14 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 42.154 ms - -[0m
+2026-04-06 12:56:14 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 45.354 ms - -[0m
+2026-04-06 12:56:14 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 82.851 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 41.985 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 42.708 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 85.880 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.717 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 24.531 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 32.758 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 45.480 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 19.667 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 18.979 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 82.788 ms - -[0m
+2026-04-06 12:56:15 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 82.654 ms - -[0m
+2026-04-06 12:56:19 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 43.062 ms - 428[0m
+2026-04-06 12:56:19 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 129.308 ms - -[0m
+2026-04-06 12:56:19 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 127.026 ms - -[0m
+2026-04-06 12:56:28 [[32minfo[39m]: [0mDELETE /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 105.860 ms - 60[0m
+2026-04-06 12:56:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.265 ms - 44[0m
+2026-04-06 12:56:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.786 ms - 44[0m
+2026-04-06 12:56:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.702 ms - -[0m
+2026-04-06 12:56:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.724 ms - -[0m
+2026-04-06 12:56:30 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 44.076 ms - 79[0m
+2026-04-06 12:56:30 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.241 ms - -[0m
+2026-04-06 12:56:31 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 124.833 ms - -[0m
+2026-04-06 12:58:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.070 ms - 44[0m
+2026-04-06 12:58:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.811 ms - 44[0m
+2026-04-06 12:58:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.297 ms - -[0m
+2026-04-06 12:58:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.008 ms - -[0m
+2026-04-06 12:58:57 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 45.333 ms - -[0m
+2026-04-06 12:58:57 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 46.592 ms - 712[0m
+2026-04-06 12:58:58 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.640 ms - -[0m
+2026-04-06 12:59:05 [[32minfo[39m]: [0mGET /vv/auth/search?q=ja [36m304[0m 68.639 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 61.650 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 123.993 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 124.101 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 62.802 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 49.211 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 34.301 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 31.265 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 116.219 ms - -[0m
+2026-04-06 12:59:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 116.231 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 27.989 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 27.590 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 49.799 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 49.177 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 22.147 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 19.238 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 61.275 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 31.820 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 30.077 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 117.572 ms - -[0m
+2026-04-06 12:59:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 59.647 ms - -[0m
+2026-04-06 12:59:09 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 122.942 ms - -[0m
+2026-04-06 12:59:10 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [32m201[0m 273.584 ms - 373[0m
+2026-04-06 12:59:11 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [36m304[0m 27.001 ms - -[0m
+2026-04-06 12:59:11 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [36m304[0m 25.611 ms - -[0m
+2026-04-06 12:59:11 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 51.186 ms - 373[0m
+2026-04-06 12:59:11 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [36m304[0m 77.549 ms - -[0m
+2026-04-06 12:59:11 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [36m304[0m 75.121 ms - -[0m
+2026-04-06 12:59:24 [[32minfo[39m]: Redis connected successfully
+2026-04-06 12:59:25 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 12:59:25 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 12:59:28 [[31merror[39m]: POST /vv/repo/jayasooryaegurukulam_1774424731229/newone/fork — You already have a repository wiht this name
+2026-04-06 12:59:28 [[32minfo[39m]: [0mPOST /vv/repo/jayasooryaegurukulam_1774424731229/newone/fork [33m409[0m 140.046 ms - 74[0m
+2026-04-06 12:59:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 47.902 ms - 428[0m
+2026-04-06 12:59:33 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 153.592 ms - -[0m
+2026-04-06 12:59:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.799 ms - -[0m
+2026-04-06 12:59:42 [[32minfo[39m]: [0mDELETE /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 137.437 ms - 60[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.289 ms - 44[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.420 ms - 44[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.021 ms - -[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.864 ms - -[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 42.958 ms - 79[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 136.333 ms - -[0m
+2026-04-06 12:59:48 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 133.508 ms - -[0m
+2026-04-06 13:05:10 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.850 ms - -[0m
+2026-04-06 13:05:10 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 48.465 ms - -[0m
+2026-04-06 13:05:10 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 134.805 ms - -[0m
+2026-04-06 13:05:11 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 369.359 ms - -[0m
+2026-04-06 13:06:31 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 42.732 ms - -[0m
+2026-04-06 13:06:31 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 40.887 ms - -[0m
+2026-04-06 13:06:31 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 43.684 ms - -[0m
+2026-04-06 13:06:31 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 131.066 ms - -[0m
+2026-04-06 13:06:32 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.579 ms - -[0m
+2026-04-06 13:06:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.085 ms - -[0m
+2026-04-06 13:06:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 43.265 ms - -[0m
+2026-04-06 13:06:32 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 126.183 ms - -[0m
+2026-04-06 13:06:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.057 ms - -[0m
+2026-04-06 13:06:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 42.151 ms - -[0m
+2026-04-06 13:06:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 41.246 ms - -[0m
+2026-04-06 13:06:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 130.472 ms - -[0m
+2026-04-06 13:06:41 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.815 ms - -[0m
+2026-04-06 13:06:41 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 42.947 ms - -[0m
+2026-04-06 13:06:41 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.387 ms - -[0m
+2026-04-06 13:06:41 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 126.568 ms - -[0m
+2026-04-06 13:07:37 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 48.063 ms - -[0m
+2026-04-06 13:07:37 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 56.887 ms - -[0m
+2026-04-06 13:07:37 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 57.394 ms - -[0m
+2026-04-06 13:07:37 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 132.799 ms - -[0m
+2026-04-06 13:07:54 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.794 ms - -[0m
+2026-04-06 13:07:54 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.108 ms - -[0m
+2026-04-06 13:07:54 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.753 ms - -[0m
+2026-04-06 13:07:54 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 134.009 ms - -[0m
+2026-04-06 13:07:58 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.869 ms - -[0m
+2026-04-06 13:07:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.060 ms - -[0m
+2026-04-06 13:07:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.083 ms - -[0m
+2026-04-06 13:07:58 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 129.165 ms - -[0m
+2026-04-06 13:08:03 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 43.421 ms - -[0m
+2026-04-06 13:08:03 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 43.560 ms - -[0m
+2026-04-06 13:08:03 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 42.020 ms - -[0m
+2026-04-06 13:08:03 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.290 ms - -[0m
+2026-04-06 13:08:33 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 45.724 ms - -[0m
+2026-04-06 13:08:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.597 ms - -[0m
+2026-04-06 13:08:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.228 ms - -[0m
+2026-04-06 13:08:33 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 125.810 ms - -[0m
+2026-04-06 13:08:36 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.298 ms - -[0m
+2026-04-06 13:08:36 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 43.164 ms - -[0m
+2026-04-06 13:08:36 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 43.075 ms - -[0m
+2026-04-06 13:08:36 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 125.709 ms - -[0m
+2026-04-06 13:08:51 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:08:52 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:08:52 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:08:57 [[32minfo[39m]: [0mGET /vv/auth/search?q=ja [36m304[0m 86.466 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.091 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 40.929 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 97.317 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 94.423 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 49.192 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 21.207 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 25.832 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 91.561 ms - -[0m
+2026-04-06 13:08:59 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 91.638 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.399 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 25.305 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 47.024 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 45.194 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 19.668 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 19.161 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 45.278 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 27.745 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 26.038 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 92.498 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 44.388 ms - -[0m
+2026-04-06 13:09:02 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 89.713 ms - -[0m
+2026-04-06 13:09:04 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [32m201[0m 219.177 ms - 373[0m
+2026-04-06 13:09:05 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [36m304[0m 26.418 ms - -[0m
+2026-04-06 13:09:05 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [36m304[0m 24.912 ms - -[0m
+2026-04-06 13:09:05 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 46.081 ms - 373[0m
+2026-04-06 13:09:05 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [36m304[0m 40.421 ms - -[0m
+2026-04-06 13:09:05 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [36m304[0m 47.404 ms - -[0m
+2026-04-06 13:09:08 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 54.887 ms - 428[0m
+2026-04-06 13:09:08 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 150.142 ms - -[0m
+2026-04-06 13:09:09 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 137.426 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [36m304[0m 30.889 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [36m304[0m 34.678 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [36m304[0m 50.221 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [36m304[0m 60.328 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [36m304[0m 53.215 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [36m304[0m 23.162 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [36m304[0m 28.175 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [36m304[0m 45.391 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [36m304[0m 79.386 ms - -[0m
+2026-04-06 13:10:21 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [36m304[0m 84.792 ms - -[0m
+2026-04-06 13:10:23 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 54.359 ms - -[0m
+2026-04-06 13:10:23 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 149.170 ms - -[0m
+2026-04-06 13:10:23 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 138.635 ms - -[0m
+2026-04-06 13:17:42 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:17:43 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:17:43 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:18:17 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:18:17 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:18:17 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:18:31 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:18:31 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:18:31 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:18:36 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:18:36 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:18:36 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:18:50 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:18:51 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:18:51 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:19:46 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:19:47 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:19:47 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:20:07 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:20:07 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:20:07 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:20:49 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:20:50 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:20:50 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:21:38 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:21:39 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:21:39 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:21:47 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:21:48 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:21:48 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 13:22:36 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [33m401[0m 2.839 ms - 61[0m
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 13:22:36 [[32minfo[39m]: [0mGET /vv/collaborators/repos [33m401[0m 0.583 ms - 61[0m
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 13:22:36 [[32minfo[39m]: [0mGET /vv/collaborators/repos [33m401[0m 0.471 ms - 61[0m
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 13:22:36 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [33m401[0m 0.407 ms - 61[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.974 ms - 44[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.441 ms - 44[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.956 ms - 44[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.701 ms - 44[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 64.038 ms - -[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 67.302 ms - -[0m
+2026-04-06 13:28:54 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 40.768 ms - -[0m
+2026-04-06 13:28:55 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 49.686 ms - -[0m
+2026-04-06 13:28:55 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 245.020 ms - 442[0m
+2026-04-06 13:28:55 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 917.180 ms - -[0m
+2026-04-06 13:28:55 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 951.377 ms - -[0m
+2026-04-06 13:28:55 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.473 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 1253.107 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/collaborators/repos [0m-[0m - ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 42.506 ms - 44[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 43.816 ms - 44[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.747 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.310 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.779 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.618 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.158 ms - -[0m
+2026-04-06 13:28:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 222.818 ms - 44[0m
+2026-04-06 13:28:57 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 245.838 ms - 44[0m
+2026-04-06 13:28:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.665 ms - -[0m
+2026-04-06 13:28:57 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.601 ms - -[0m
+2026-04-06 13:28:57 [[32minfo[39m]: [0mGET /vv/collaborators/repos [32m200[0m 1024.392 ms - 376[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 306.658 ms - -[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [0m-[0m - ms - -[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 55.762 ms - 44[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 56.914 ms - 44[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 57.620 ms - 44[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 58.025 ms - 44[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.257 ms - -[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.735 ms - -[0m
+2026-04-06 13:28:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 44.056 ms - 712[0m
+2026-04-06 13:28:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 239.272 ms - -[0m
+2026-04-06 13:28:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.897 ms - -[0m
+2026-04-06 13:28:59 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 241.362 ms - -[0m
+2026-04-06 13:28:59 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.164 ms - -[0m
+2026-04-06 13:28:59 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 483.885 ms - -[0m
+2026-04-06 13:28:59 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 570.667 ms - -[0m
+2026-04-06 13:29:00 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 980.207 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 53.186 ms - 44[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 52.690 ms - 44[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 53.661 ms - 44[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.403 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.242 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.162 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.992 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.981 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.552 ms - -[0m
+2026-04-06 13:29:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 222.818 ms - 44[0m
+2026-04-06 13:29:02 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 125.340 ms - -[0m
+2026-04-06 13:29:02 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 40.984 ms - -[0m
+2026-04-06 13:29:02 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 246.035 ms - -[0m
+2026-04-06 13:29:02 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 124.787 ms - -[0m
+2026-04-06 13:29:12 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 43.164 ms - 44[0m
+2026-04-06 13:29:12 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 42.903 ms - 44[0m
+2026-04-06 13:29:12 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 236.557 ms - -[0m
+2026-04-06 13:29:12 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 526.562 ms - -[0m
+2026-04-06 13:29:12 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 580.267 ms - -[0m
+2026-04-06 13:29:13 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1310.498 ms - -[0m
+2026-04-06 13:29:14 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 1353.069 ms - 44[0m
+2026-04-06 13:29:14 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 1291.410 ms - -[0m
+2026-04-06 13:29:15 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 1330.729 ms - -[0m
+2026-04-06 13:29:15 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.646 ms - -[0m
+2026-04-06 13:29:15 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 43.739 ms - -[0m
+2026-04-06 13:29:15 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 42.484 ms - -[0m
+2026-04-06 13:29:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 41.580 ms - 44[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 229.757 ms - 44[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 475.760 ms - -[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 65.843 ms - -[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 154.458 ms - -[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [0m-[0m - ms - -[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 224.595 ms - -[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 42.145 ms - 44[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 125.255 ms - -[0m
+2026-04-06 13:29:20 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.595 ms - -[0m
+2026-04-06 13:29:21 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 226.181 ms - -[0m
+2026-04-06 13:29:21 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 44.264 ms - -[0m
+2026-04-06 13:29:21 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 516.794 ms - 44[0m
+2026-04-06 13:29:21 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.705 ms - -[0m
+2026-04-06 13:29:21 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 497.535 ms - -[0m
+2026-04-06 13:34:19 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 103.486 ms - -[0m
+2026-04-06 13:34:19 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 98.201 ms - -[0m
+2026-04-06 13:34:19 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 97.784 ms - -[0m
+2026-04-06 13:34:19 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 197.714 ms - -[0m
+2026-04-06 13:34:42 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.643 ms - -[0m
+2026-04-06 13:34:43 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 143.764 ms - -[0m
+2026-04-06 13:34:43 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 49.900 ms - -[0m
+2026-04-06 13:34:43 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 53.810 ms - -[0m
+2026-04-06 13:34:50 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 51.459 ms - -[0m
+2026-04-06 13:34:50 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 170.895 ms - -[0m
+2026-04-06 13:34:50 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 56.888 ms - -[0m
+2026-04-06 13:34:50 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 56.383 ms - -[0m
+2026-04-06 13:36:48 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:36:49 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:36:49 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:36:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 77.708 ms - 44[0m
+2026-04-06 13:36:50 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 74.378 ms - 44[0m
+2026-04-06 13:36:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 92.342 ms - -[0m
+2026-04-06 13:36:50 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 57.715 ms - -[0m
+2026-04-06 13:36:50 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.170 ms - -[0m
+2026-04-06 13:36:50 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.908 ms - -[0m
+2026-04-06 13:36:51 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 157.530 ms - -[0m
+2026-04-06 13:36:58 [[32minfo[39m]: [0mDELETE /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 113.560 ms - 60[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.290 ms - 44[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.957 ms - 44[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.895 ms - -[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.276 ms - -[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 43.441 ms - 79[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.100 ms - -[0m
+2026-04-06 13:37:02 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 124.852 ms - -[0m
+2026-04-06 13:37:05 [[32minfo[39m]: [0mGET /vv/auth/search?q=ja [36m304[0m 50.404 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 46.890 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 88.883 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.934 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.509 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.100 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 34.739 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 24.900 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 83.835 ms - -[0m
+2026-04-06 13:37:07 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 84.999 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 23.371 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 26.031 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 49.053 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 19.373 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 48.123 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 42.554 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 29.239 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 41.440 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 39.140 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 41.418 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 87.713 ms - -[0m
+2026-04-06 13:37:10 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 83.186 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 42.077 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 22.182 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 19.180 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.083 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 85.682 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.934 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 44.772 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 14.306 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 16.136 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 83.030 ms - -[0m
+2026-04-06 13:37:16 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 81.835 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 18.355 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 20.363 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 37.274 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 36.602 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 15.113 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 15.037 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 41.321 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 29.746 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 28.520 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 41.050 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 85.032 ms - -[0m
+2026-04-06 13:37:21 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 83.384 ms - -[0m
+2026-04-06 13:37:23 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [32m201[0m 210.240 ms - 425[0m
+2026-04-06 13:37:25 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [36m304[0m 22.308 ms - -[0m
+2026-04-06 13:37:25 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [36m304[0m 24.463 ms - -[0m
+2026-04-06 13:37:25 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 42.558 ms - 425[0m
+2026-04-06 13:37:25 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [36m304[0m 43.721 ms - -[0m
+2026-04-06 13:37:25 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [36m304[0m 41.483 ms - -[0m
+2026-04-06 13:37:27 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 42.616 ms - 480[0m
+2026-04-06 13:37:27 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 125.258 ms - -[0m
+2026-04-06 13:37:27 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 127.559 ms - -[0m
+2026-04-06 13:37:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 56.821 ms - -[0m
+2026-04-06 13:37:45 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 139.365 ms - -[0m
+2026-04-06 13:37:46 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 47.994 ms - -[0m
+2026-04-06 13:37:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 46.904 ms - -[0m
+2026-04-06 13:37:53 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.589 ms - -[0m
+2026-04-06 13:37:54 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 127.985 ms - -[0m
+2026-04-06 13:37:54 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 41.071 ms - -[0m
+2026-04-06 13:37:54 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 42.550 ms - -[0m
+2026-04-06 13:40:06 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:40:06 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:40:06 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:40:20 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:40:20 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:40:20 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:40:29 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:40:30 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:40:30 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:40:35 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:40:36 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:40:36 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:40:40 [[32minfo[39m]: Redis connected successfully
+2026-04-06 13:40:41 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 13:40:41 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 13:40:52 [[32minfo[39m]: [0mGET /vv/auth/search?q=ja [36m304[0m 65.245 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.626 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 95.006 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 92.027 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 45.476 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 56.192 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 28.431 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 22.013 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 82.691 ms - -[0m
+2026-04-06 13:40:53 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 84.005 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 24.387 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.341 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 42.574 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 51.841 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 49.129 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 26.427 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 23.802 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 27.249 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 26.124 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 41.257 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 84.928 ms - -[0m
+2026-04-06 13:40:56 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 83.517 ms - -[0m
+2026-04-06 13:40:59 [[31merror[39m]: POST /vv/repo/jsurya114/newone/fork — You already have a repository wiht this name
+2026-04-06 13:40:59 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [33m409[0m 172.075 ms - 74[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 45.017 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.675 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 91.544 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 103.910 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 40.061 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 38.388 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.640 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 13.750 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 13.268 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 83.075 ms - -[0m
+2026-04-06 13:41:24 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 104.006 ms - -[0m
+2026-04-06 13:41:25 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 54.053 ms - -[0m
+2026-04-06 13:41:25 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 127.900 ms - -[0m
+2026-04-06 13:41:25 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 128.585 ms - -[0m
+2026-04-06 13:41:34 [[32minfo[39m]: [0mDELETE /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 118.578 ms - 60[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.048 ms - 44[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 55.904 ms - 44[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.561 ms - -[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 41.888 ms - -[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 42.246 ms - 79[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 161.953 ms - -[0m
+2026-04-06 13:41:36 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 159.620 ms - -[0m
+2026-04-06 13:41:40 [[32minfo[39m]: [0mGET /vv/auth/search?q=jay [36m304[0m 59.825 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 51.583 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 83.389 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 84.151 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 53.067 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 43.271 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 29.468 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 27.354 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 83.242 ms - -[0m
+2026-04-06 13:41:42 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 83.167 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 25.615 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.700 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 44.141 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 43.379 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 43.400 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 20.316 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 23.223 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 28.334 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 26.223 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 81.370 ms - -[0m
+2026-04-06 13:41:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 40.733 ms - -[0m
+2026-04-06 13:41:44 [[32minfo[39m]: [0mGET /vv/collaborators/jsurya114/newone/check [36m304[0m 84.335 ms - -[0m
+2026-04-06 13:41:46 [[32minfo[39m]: [0mPOST /vv/repo/jsurya114/newone/fork [32m201[0m 262.760 ms - 425[0m
+2026-04-06 13:41:47 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits?branch=main&limit=20 [36m304[0m 25.539 ms - -[0m
+2026-04-06 13:41:47 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches [36m304[0m 24.664 ms - -[0m
+2026-04-06 13:41:47 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone [32m200[0m 41.362 ms - 425[0m
+2026-04-06 13:41:47 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=false [36m304[0m 46.931 ms - -[0m
+2026-04-06 13:41:47 [[32minfo[39m]: [0mGET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files?branch=main&path=&recursive=true [36m304[0m 45.423 ms - -[0m
+2026-04-06 14:20:04 [[32minfo[39m]: Redis connected successfully
+2026-04-06 14:20:05 [[32minfo[39m]: MongoDB connected successfully
+2026-04-06 14:20:05 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 23.317 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 20.900 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 46.865 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 39.413 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 18.363 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 16.708 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [32m200[0m 47.162 ms - 348[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 27.893 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 30.434 ms - -[0m
+2026-04-06 14:20:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 41.206 ms - -[0m

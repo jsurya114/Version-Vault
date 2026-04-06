@@ -10,6 +10,7 @@ import {
   GetCommitsParams,
   GitCommit,
   GitBranch,
+  ForkRepoPayload,
 } from '../../types/repository/repositoryTypes';
 import { PaginatedResponse, PaginationQuery } from '../../types/common/Pagination/paginationTypes';
 import { RootState } from '../../app/store';
@@ -184,6 +185,19 @@ export const updateVisibilityThunk = createAsyncThunk<
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       return rejectWithValue(err.response?.data?.message || 'Failed to update visibility');
+    }
+  },
+);
+
+export const forkRepoThunk = createAsyncThunk<RepositoryResponseDTO, ForkRepoPayload>(
+  'repository/forkrepository',
+  async ({ username, reponame }: ForkRepoPayload, { rejectWithValue }) => {
+    try {
+      const res = await repositoryService.forkRepo(username, reponame);
+      return res.data;
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fork repository');
     }
   },
 );

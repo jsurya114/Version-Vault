@@ -13,6 +13,9 @@ export interface IRepositoryDocument extends Document {
   size: number;
   isDeleted: boolean;
   isBlocked: boolean;
+  isFork: boolean;
+  parentRepoId?: boolean;
+  parentRepoOwnerUsername?: string;
   createdAt: Date;
   updatedAt: Date;
 }
@@ -34,6 +37,9 @@ const RepositorySchema = new Schema<IRepositoryDocument>(
     size: { type: Number, default: 0 },
     isDeleted: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
+    isFork: { type: Boolean, default: false },
+    parentRepoId: { type: String, default: null },
+    parentRepoOwnerUsername: { type: String, default: null },
   },
   { timestamps: true },
 );

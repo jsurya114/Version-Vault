@@ -44,8 +44,11 @@ router.get('/:username/:reponame/commits', (req, res, next) =>
 router.get('/:username/:reponame/branches', (req, res, next) =>
   branchController.getBranches(req, res, next),
 );
-router.post('/:username/:reponame/branches', authMiddleware, writeAccessMiddleware, (req, res, next) =>
-  branchController.createBranch(req, res, next),
+router.post(
+  '/:username/:reponame/branches',
+  authMiddleware,
+  writeAccessMiddleware,
+  (req, res, next) => branchController.createBranch(req, res, next),
 );
 router.delete(
   '/:username/:reponame/branches/:branchName',
@@ -54,16 +57,26 @@ router.delete(
   (req, res, next) => branchController.deleteBranch(req, res, next),
 );
 
-router.post('/:username/:reponame/commit', authMiddleware, writeAccessMiddleware, (req, res, next) =>
-  commitController.createCommit(req as AuthRequest, res, next),
+router.post(
+  '/:username/:reponame/commit',
+  authMiddleware,
+  writeAccessMiddleware,
+  (req, res, next) => commitController.createCommit(req as AuthRequest, res, next),
 );
 
-router.get('/:username/:reponame/compare/:base/:head', authMiddleware,writeAccessMiddleware, (req, res, next) =>
-  commitController.compareCommit(req, res, next),
+router.get(
+  '/:username/:reponame/compare/:base/:head',
+  authMiddleware,
+  writeAccessMiddleware,
+  (req, res, next) => commitController.compareCommit(req, res, next),
 );
 
 router.patch('/:username/:reponame/visibility', authMiddleware, ownerMiddleware, (req, res, next) =>
   repoController.updateVisibility(req as AuthRequest, res, next),
+);
+
+router.post('/:username/:reponame/fork', authMiddleware, (req, res, next) =>
+  repoController.forkRepository(req as AuthRequest, res, next),
 );
 
 export default router;

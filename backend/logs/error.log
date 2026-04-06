@@ -2539,3 +2539,25 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-04-04 21:47:34 [[31merror[39m]: GET /vv/pr/jsurya114/mock — Repository not found
 2026-04-04 21:54:32 [[31merror[39m]: POST /vv/collaborators/invitation/7587553e-e467-4e6c-848c-52c169e336e5/accept — Cast to ObjectId failed for value "{ token: '7587553e-e467-4e6c-848c-52c169e336e5' }" (type Object) at path "_id" for model "Invitation"
 2026-04-04 21:56:37 [[31merror[39m]: POST /vv/collaborators/invitation/7587553e-e467-4e6c-848c-52c169e336e5/accept — You are already a collaborator on this repository
+2026-04-05 22:32:46 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Cannot read properties of undefined (reading 'id')
+2026-04-05 22:40:19 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Cannot read properties of undefined (reading 'id')
+2026-04-05 22:42:35 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Repository context is missing. Verify repoAccessMiddleware is setting res.locals.repo
+2026-04-05 22:49:33 [[31merror[39m]: POST /vv/comments/jsurya114/test/pr/69d13d545d27d3b7ab90a6ba — Repository context is missing. Verify repoAccessMiddleware is setting res.locals.repo
+2026-04-06 12:52:02 [[31merror[39m]: POST /vv/repo/jsurya114/newone/fork — You already have a repository wiht this name
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/files — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone — Repository not found
+2026-04-06 12:53:29 [[31merror[39m]: GET /vv/repo/jayasooryaegurukulam_1774424731229/newone — Repository not found
+2026-04-06 12:55:56 [[31merror[39m]: POST /vv/repo/jayasooryaegurukulam_1774424731229/newone/fork — You already have a repository wiht this name
+2026-04-06 12:59:28 [[31merror[39m]: POST /vv/repo/jayasooryaegurukulam_1774424731229/newone/fork — You already have a repository wiht this name
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 13:22:36 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 13:40:59 [[31merror[39m]: POST /vv/repo/jsurya114/newone/fork — You already have a repository wiht this name

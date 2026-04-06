@@ -18,6 +18,9 @@ export class RepositoryMapper {
       size: doc.size,
       isDeleted: doc.isDeleted,
       isBlocked: doc.isBlocked,
+      isFork: doc.isFork,
+      parentRepoId: doc.parentRepoId,
+      parentRepoOwnerUsername: doc.parentRepoOwnerUsername,
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
     };
@@ -37,6 +40,8 @@ export class RepositoryMapper {
       forks: repo.forks,
       size: repo.size,
       isBlocked: repo.isBlocked,
+      isFork: repo.isFork,
+      parentRepoOwnerUsername: repo.parentRepoOwnerUsername,
       createdAt: repo.createdAt,
       updatedAt: repo.updatedAt,
     };

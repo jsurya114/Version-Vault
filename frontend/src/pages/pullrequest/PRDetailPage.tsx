@@ -35,6 +35,7 @@ import {
   selectCompareData,
   selectCompareLoading,
 } from 'src/features/commit/compareCommitSelectors';
+import CommentSection from '../../types/common/comment/CommentSection';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -410,13 +411,13 @@ const PRDetailPage = () => {
               )}
             </div>
 
-            {/* Comments placeholder */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
-              <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-2">
-                <MessageSquare className="w-4 h-4" /> Comments
-              </h3>
-              <p className="text-gray-600 text-sm text-center py-4">Comments coming soon</p>
-            </div>
+            {/* Comments Section */}
+            <CommentSection
+              username={username!}
+              reponame={reponame!}
+              targetType="pr"
+              targetId={pr.id}
+            />
           </div>
 
           {/* Sidebar */}

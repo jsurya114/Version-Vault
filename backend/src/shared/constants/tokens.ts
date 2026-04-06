@@ -82,6 +82,7 @@ export const TOKENS = {
   IBlockRepoUseCase: Symbol.for('IBlockRepoUseCase'),
   IUnblockRepoUseCase: Symbol.for('IUnblockRepoUseCase'),
   ILogger: Symbol.for('ILogger'),
+  IForkRepoUseCase: Symbol.for('IForkRepoUseCase'),
 
   // Collaborator
   ICollaboratorRepository: Symbol.for('ICollaboratorRepository'),
@@ -91,15 +92,18 @@ export const TOKENS = {
   IUpdateCollaboratorUseCase: Symbol.for('IUpdateCollaboratorUseCase'),
   ICheckCollaboratorUseCase: Symbol.for('ICheckCollaboratorUseCase'),
 
-
-
-    // Invitation
+  // Invitation
   IInvitationRepository: Symbol.for('IInvitationRepository'),
   ISendInvitationUseCase: Symbol.for('ISendInvitationUseCase'),
   IAcceptInvitationUseCase: Symbol.for('IAcceptInvitationUseCase'),
   IDeclineInvitationUseCase: Symbol.for('IDeclineInvitationUseCase'),
   IGetInvitationByTokenUseCase: Symbol.for('IGetInvitationByTokenUseCase'),
   IGetPendingInvitationsUseCase: Symbol.for('IGetPendingInvitationsUseCase'),
-  IGetAllCollabsUseCase:Symbol.for('IGetAllCollabsUseCase')
+  IGetAllCollabsUseCase: Symbol.for('IGetAllCollabsUseCase'),
 
+  //comments
+  ICommentRepository: Symbol.for('ICommentRepository'),
+  ICreateCommentUseCase: Symbol.for('ICreateCommentUsecase'),
+  IListCommentUseCase: Symbol.for('IListCommentUseCase'),
+  IDeleteCommentUseCase: Symbol.for('IDeleteCommentUseCase'),
 } as const;

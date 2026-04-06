@@ -13,6 +13,9 @@ export interface IRepository {
   size: number;
   isDeleted: boolean;
   isBlocked: boolean;
+  isFork?: boolean;
+  parentRepoId?: string;
+  parentRepoOwnerUsername?: string;
   createdAt?: Date;
   updatedAt?: Date;
 }

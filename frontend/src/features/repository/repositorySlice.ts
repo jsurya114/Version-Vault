@@ -13,6 +13,7 @@ import {
   deleteBranchThunk,
   createCommitThunk,
   updateVisibilityThunk,
+  forkRepoThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -218,6 +219,20 @@ const repositorySlice = createSlice({
       .addCase(updateVisibilityThunk.rejected, (state, action) => {
         state.isLoading = false;
         state.error = action.payload as string;
+      })
+
+      //fork
+      .addCase(forkRepoThunk.pending, (state) => {
+        state.isForking = true;
+        state.forkError = null;
+      })
+      .addCase(forkRepoThunk.fulfilled, (state, action) => {
+        state.isForking = false;
+        state.repositories.push(action.payload);
+      })
+      .addCase(forkRepoThunk.rejected, (state, action) => {
+        state.isForking = false;
+        state.forkError = action.payload as string;
       });
   },
 });

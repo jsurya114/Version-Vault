@@ -10,6 +10,7 @@ import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { IssuePriority } from '../../types/issues/issues.types';
 import ConfirmModal from '../../types/common/Modal/ConfirmModal';
+import CommentSection from '../../types/common/comment/CommentSection';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',
@@ -149,13 +150,13 @@ const IssueDetailPage = () => {
               )}
             </div>
 
-            {/* Comments placeholder */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
-              <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-2">
-                <MessageSquare className="w-4 h-4" /> Comments
-              </h3>
-              <p className="text-gray-600 text-sm text-center py-4">Comments coming soon</p>
-            </div>
+            {/* Comments Section */}
+            <CommentSection
+              username={username!}
+              reponame={reponame!}
+              targetType="issue"
+              targetId={issue.id}
+            />
           </div>
 
           {/* Sidebar */}

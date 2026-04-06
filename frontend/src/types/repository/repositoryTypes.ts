@@ -10,6 +10,9 @@ export interface RepositoryResponseDTO {
   forks: number;
   size: number;
   isBlocked: boolean;
+  isFork: boolean;
+  parentRepoId: string;
+  parentRepoOwnerUsername?: string;
   createdAt?: string;
   updatedAt?: string;
   language?: string;
@@ -83,6 +86,8 @@ export interface RepositoryState {
   isLoading: boolean;
   isFilesLoading: boolean;
   isCommitsLoading: boolean;
+  isForking: boolean;
+  forkError: string | null;
   error: string | null;
   meta: {
     total: number;
@@ -103,6 +108,8 @@ export const repositoryInitialState: RepositoryState = {
   isLoading: false,
   isFilesLoading: false,
   isCommitsLoading: false,
+  isForking: false,
+  forkError: null,
   error: null,
   meta: {
     total: 0,
@@ -111,3 +118,8 @@ export const repositoryInitialState: RepositoryState = {
     totalPages: 0,
   },
 };
+
+export interface ForkRepoPayload {
+  username: string;
+  reponame: string;
+}

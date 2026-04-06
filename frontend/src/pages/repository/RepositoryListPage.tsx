@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-
+import { GitFork, Folder, Star } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   listRepositoryThunk,
@@ -129,7 +129,7 @@ const RepositoryListPage = () => {
           return (
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-                📁
+                <Folder className="w-4 h-4" />
               </div>
               <div>
                 <div className="flex items-center gap-2">
@@ -139,13 +139,27 @@ const RepositoryListPage = () => {
                   >
                     {isCollab ? `${r.ownerUsername}/${r.name}` : r.name}
                   </p>
+
                   {isCollab && (
                     <span className="text-[10px] uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-purple-500/30 text-purple-400 bg-purple-500/10">
                       collaborator
                     </span>
                   )}
+                  {r.isFork && (
+                    <span className="text-[10px] flex items-center gap-1 uppercase tracking-wider px-1.5 py-0.5 rounded-full font-bold border border-blue-500/30 text-blue-400 bg-blue-500/10">
+                      <GitFork className="w-3 h-3" /> Forked
+                    </span>
+                  )}
                 </div>
                 <p className="text-gray-500 text-xs">{r.description || 'No description'}</p>
+                {r.isFork && (
+                  <p className="text-gray-500 text-[10px] mt-0.5 flex items-center gap-1">
+                    <GitFork className="w-2.5 h-2.5" />
+                    {r.parentRepoOwnerUsername
+                      ? `Forked from ${r.parentRepoOwnerUsername}`
+                      : 'Forked repository'}
+                  </p>
+                )}
               </div>
             </div>
           );
@@ -171,7 +185,11 @@ const RepositoryListPage = () => {
       {
         key: 'stars',
         label: 'STARS',
-        render: (r) => <span className="text-gray-400 text-sm">⭐ {r.stars}</span>,
+        render: (r) => (
+          <span className="text-gray-400 text-sm flex items-center gap-1.5">
+            <Star className="w-4 h-4 text-yellow-500" /> {r.stars}
+          </span>
+        ),
       },
       {
         key: 'createdAt',
