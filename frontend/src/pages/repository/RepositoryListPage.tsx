@@ -26,6 +26,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
 import VisibilityConfirmModal from '../../types/common/Modal/VisibilityModal';
+import { StarButton } from './components/StarButton';
 const visibilityColors: Record<string, string> = {
   public: 'bg-green-500/10 text-green-400 border border-green-500/30',
   private: 'bg-gray-700 text-gray-400 border border-gray-600',
@@ -186,9 +187,17 @@ const RepositoryListPage = () => {
         key: 'stars',
         label: 'STARS',
         render: (r) => (
-          <span className="text-gray-400 text-sm flex items-center gap-1.5">
-            <Star className="w-4 h-4 text-yellow-500" /> {r.stars}
-          </span>
+          <div onClick={(e) => e.stopPropagation()}>
+            {' '}
+            {/* Prevents navigating to the repo when clicking the button */}
+            <StarButton
+              username={r.ownerUsername}
+              reponame={r.name}
+              initialStars={r.stars}
+              initialStarredBy={r.starredBy || []}
+              isOwner={authUser?.id === r.ownerId}
+            />
+          </div>
         ),
       },
       {

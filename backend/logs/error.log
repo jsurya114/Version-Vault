@@ -2561,3 +2561,55 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-04-06 13:22:36 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
 2026-04-06 13:22:36 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
 2026-04-06 13:40:59 [[31merror[39m]: POST /vv/repo/jsurya114/newone/fork — You already have a repository wiht this name
+2026-04-06 16:52:05 [[31merror[39m]: POST /vv/repo/jsurya114/newone/fork — You already have a repository wiht this name
+2026-04-06 17:01:00 [[31merror[39m]: GET /vv/collaborators/jsurya114/newone/check — Invalid or expired access token
+2026-04-06 17:01:01 [[31merror[39m]: GET /vv/collaborators/jsurya114/newone/check — Invalid or expired access token
+2026-04-06 17:01:08 [[31merror[39m]: GET /vv/collaborators/jsurya114/newone/check — Invalid or expired access token
+2026-04-06 17:01:08 [[31merror[39m]: GET /vv/collaborators/jsurya114/newone/check — Invalid or expired access token
+2026-04-06 17:01:13 [[31merror[39m]: GET /vv/collaborators/jsurya114/newone/check — Invalid or expired access token
+2026-04-06 17:01:17 [[31merror[39m]: GET /vv/collaborators/jsurya114/newone/check — Invalid or expired access token
+2026-04-06 19:30:43 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:30:43 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:30:43 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:30:43 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:30:46 [[31merror[39m]: GET /vv/collaborators/jsurya114/test/check — Invalid or expired access token
+2026-04-06 19:30:46 [[31merror[39m]: GET /vv/collaborators/jsurya114/test/check — Invalid or expired access token
+2026-04-06 19:30:50 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:30:50 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:30:50 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:30:50 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:30:58 [[31merror[39m]: POST /vv/repo/jsurya114/test/star — Invalid or expired access token
+2026-04-06 19:30:59 [[31merror[39m]: POST /vv/repo/jsurya114/test/star — Invalid or expired access token
+2026-04-06 19:30:59 [[31merror[39m]: POST /vv/repo/jsurya114/test/star — Invalid or expired access token
+2026-04-06 19:31:00 [[31merror[39m]: POST /vv/repo/jsurya114/test/star — Invalid or expired access token
+2026-04-06 19:31:00 [[31merror[39m]: POST /vv/repo/jsurya114/test/star — Invalid or expired access token
+2026-04-06 19:31:22 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:31:22 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:31:33 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:31:33 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:31:44 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:31:44 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:31:44 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:31:44 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:31:55 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:31:55 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:34:18 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:34:18 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:34:27 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:34:27 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:34:40 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:34:40 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:34:59 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:34:59 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:38:47 [[31merror[39m]: POST /vv/repo/jsurya114/newone/star — You cannot star your own repository
+2026-04-06 19:38:48 [[31merror[39m]: POST /vv/repo/jsurya114/newone/star — You cannot star your own repository
+2026-04-06 19:38:51 [[31merror[39m]: POST /vv/repo/jsurya114/newone/star — You cannot star your own repository
+2026-04-06 19:39:38 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:39:38 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:39:40 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:39:40 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 19:39:41 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-06 19:39:41 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-06 21:06:54 [[31merror[39m]: GET /vv/repo/jsurya114/newone/star/users — Cast to ObjectId failed for value "jayasooryaegurukulam_1774424731229" (type string) at path "_id" for model "User"
+2026-04-06 21:07:06 [[31merror[39m]: GET /vv/repo/jsurya114/newone/star/users — Cast to ObjectId failed for value "jayasooryaegurukulam_1774424731229" (type string) at path "_id" for model "User"
+2026-04-06 21:07:09 [[31merror[39m]: GET /vv/repo/jsurya114/newone/star/users — Cast to ObjectId failed for value "jayasooryaegurukulam_1774424731229" (type string) at path "_id" for model "User"

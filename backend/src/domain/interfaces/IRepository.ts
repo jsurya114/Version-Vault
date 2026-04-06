@@ -16,6 +16,7 @@ export interface IRepository {
   isFork?: boolean;
   parentRepoId?: string;
   parentRepoOwnerUsername?: string;
+  starredBy?: string[];
   createdAt?: Date;
   updatedAt?: Date;
 }

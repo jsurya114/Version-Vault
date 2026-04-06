@@ -11,9 +11,12 @@ import {
   GitCommit,
   GitBranch,
   ForkRepoPayload,
+  ToggleStarPayload,
+  ToggleStarResponse,
 } from '../../types/repository/repositoryTypes';
 import { PaginatedResponse, PaginationQuery } from '../../types/common/Pagination/paginationTypes';
 import { RootState } from '../../app/store';
+import { UserResponseDTO } from 'src/types/admin/adminTypes';
 
 export const createRepositoryThunk = createAsyncThunk<RepositoryResponseDTO, CreateRepositoryDTO>(
   'repository/create',
@@ -201,3 +204,29 @@ export const forkRepoThunk = createAsyncThunk<RepositoryResponseDTO, ForkRepoPay
     }
   },
 );
+
+export const toggleStarThunk = createAsyncThunk<ToggleStarResponse, ToggleStarPayload>(
+  'repository/star',
+  async ({ username, reponame }, { rejectWithValue }) => {
+    try {
+      const res = await repositoryService.toggleStar(username, reponame);
+      return res.data;
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to toggle star');
+    }
+  },
+);
+
+export const getStarredUsersThunk = createAsyncThunk<
+  UserResponseDTO[],
+  { username: string; reponame: string }
+>('repository/getStarredUsers', async ({ username, reponame }, { rejectWithValue }) => {
+  try {
+    const response = await repositoryService.getStarredUsers(username, reponame);
+    return response;
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to fetch starred users');
+  }
+});

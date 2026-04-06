@@ -79,4 +79,11 @@ router.post('/:username/:reponame/fork', authMiddleware, (req, res, next) =>
   repoController.forkRepository(req as AuthRequest, res, next),
 );
 
+router.post('/:username/:reponame/star', authMiddleware, (req, res, next) =>
+  repoController.toggleStar(req as AuthRequest, res, next),
+);
+router.get('/:username/:reponame/star/users', (req, res, next) =>
+  repoController.getStarredUsers(req, res, next),
+);
+
 export default router;

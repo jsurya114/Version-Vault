@@ -18,6 +18,7 @@ import { selectAuthUser } from '../../../features/auth/authSelectors';
 import {
   listRepositoryThunk,
   getCommitsThunk,
+  getStarredUsersThunk,
 } from '../../../features/repository/repositoryThunks';
 import { getAllCollabsReposThunk } from '../../../features/collaborator/invitationThunk';
 import {
@@ -38,9 +39,11 @@ import { selectCollabRepos } from 'src/features/collaborator/invitationSelectors
 import { EditProfileModal } from '../components/EditProfileModal';
 import { getMeThunk } from '../../../features/auth/authThunks';
 import { UserResponseDTO } from '../../../types/admin/adminTypes';
-import { GitCommit } from 'src/types/repository/repositoryTypes';
+import { GitCommit, RepositoryResponseDTO } from 'src/types/repository/repositoryTypes';
 import ContributionGraph from '../../../types/common/Profile/ContributionGraph';
 import { FollowListModal } from '../components/FollowListModal';
+import { StarButton } from '../../repository/components/StarButton'; // Fixed Import Path
+import { StarListModal } from '../components/StarListModal';
 
 interface ActivityGroup {
   month: string;
@@ -58,18 +61,14 @@ const RepoItem = React.memo(
     repo,
     onClick,
     isCollab,
+    authUserId,
+    onStarCountClick,
   }: {
-    repo: {
-      ownerUsername: string;
-      name: string;
-      visibility?: string;
-      description?: string;
-      stars?: number;
-      forks?: number;
-      topics?: string[];
-    };
+    repo: RepositoryResponseDTO; // Updated to use the full DTO
     onClick: () => void;
     isCollab?: boolean;
+    authUserId?: string;
+    onStarCountClick: () => void;
   }) => (
     <div
       className="bg-gray-900/40 border border-gray-800 hover:border-blue-500/50 hover:bg-gray-900/60 rounded-xl p-5 cursor-pointer transition-all duration-300 group shadow-md"
@@ -101,19 +100,29 @@ const RepoItem = React.memo(
               {repo.description}
             </p>
           )}
-          <div className="flex items-center gap-6 text-gray-500 text-xs font-semibold">
-            <span className="flex items-center gap-1.5 group-hover:text-yellow-400 transition-colors">
-              <Star className="w-3.5 h-3.5" />
-              {repo.stars}
-            </span>
-            <span className="flex items-center gap-1.5 group-hover:text-blue-400 transition-colors">
-              <GitFork className="w-3.5 h-3.5" />
-              {repo.forks}
-            </span>
-            <span className="flex items-center gap-2">
-              <div className="w-2.5 h-2.5 rounded-full bg-[#f1e05a]" />
-              JavaScript
-            </span>
+          <div className="flex items-center justify-between">
+            <div className="flex items-center gap-6 text-gray-500 text-xs font-semibold">
+              {/* Dynamic Star Button */}
+              <div onClick={(e) => e.stopPropagation()}>
+                <StarButton
+                  username={repo.ownerUsername}
+                  reponame={repo.name}
+                  initialStars={repo.stars || 0}
+                  initialStarredBy={repo.starredBy || []}
+                  isOwner={authUserId === repo.ownerId}
+                  onCountClick={onStarCountClick}
+                />
+              </div>
+
+              <span className="flex items-center gap-1.5 group-hover:text-blue-400 transition-colors">
+                <GitFork className="w-3.5 h-3.5" />
+                {repo.forks}
+              </span>
+              <span className="flex items-center gap-2">
+                <div className="w-2.5 h-2.5 rounded-full bg-[#f1e05a]" />
+                {repo.language || 'JavaScript'}
+              </span>
+            </div>
           </div>
         </div>
       </div>
@@ -136,7 +145,7 @@ const UserProfilePage = () => {
   const followLoading = useAppSelector(selectFollowLoading);
   const repositories = useAppSelector(selectRepositories);
   const repoLoading = useAppSelector(selectRepositoryLoading);
-
+  const [starModal, setStarModal] = useState({ isOpen: false, data: [] as UserResponseDTO[] });
   const [activeTab, setActiveTab] = useState<'overview' | 'repositories'>('overview');
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
   const [activityLoading, setActivityLoading] = useState(false);
@@ -491,6 +500,16 @@ const UserProfilePage = () => {
                         key={repo.id}
                         repo={repo}
                         onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
+                        authUserId={authUser?.id}
+                        onStarCountClick={async () => {
+                          const result = await dispatch(
+                            getStarredUsersThunk({
+                              username: repo.ownerUsername,
+                              reponame: repo.name,
+                            }),
+                          ).unwrap();
+                          setStarModal({ isOpen: true, data: result });
+                        }}
                       />
                     ))}
                   </div>
@@ -513,6 +532,11 @@ const UserProfilePage = () => {
         title={followModal.type}
         data={followModal.type === 'Followers' ? followers : following}
         onClose={() => setFollowModal({ ...followModal, isOpen: false })}
+      />
+      <StarListModal
+        isOpen={starModal.isOpen}
+        data={starModal.data}
+        onClose={() => setStarModal({ ...starModal, isOpen: false })}
       />
 
       <AppFooter />

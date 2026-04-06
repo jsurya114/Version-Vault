@@ -11,12 +11,14 @@ import { IGetFilesUseCase } from '../../../../application/use-cases/interfaces/r
 import { IGetBranchesUseCase } from '../../../../application/use-cases/interfaces/branch/IGetBranchesUseCase';
 import { IVisibilityUseCase } from '../../../../application/use-cases/interfaces/repository/IVisibilityUseCase';
 import { IForkRepoUseCase } from '../../../../application/use-cases/interfaces/repository/IForkRepoUseCase';
+import { IToggleStarUseCase } from '../../../../application/use-cases/interfaces/repository/IToggleStarUseCase';
 
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
 
 import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 import { TOKENS } from '../../../../shared/constants/tokens';
+import { IGetStarUseCase } from '../../../../application/use-cases/interfaces/repository/IGetStarsUseCase';
 
 export interface AuthRequest extends Request {
   user: ITokenPayload;
@@ -35,6 +37,8 @@ export class RepositoryController {
     @inject(TOKENS.IGetBranchesUseCase) private branchUseCase: IGetBranchesUseCase,
     @inject(TOKENS.IVisibilityUseCase) private _visbilityUseCase: IVisibilityUseCase,
     @inject(TOKENS.IForkRepoUseCase) private _forkRepoUseCase: IForkRepoUseCase,
+    @inject(TOKENS.IToggleStarUseCase) private _toggleStarUseCase: IToggleStarUseCase,
+    @inject(TOKENS.IGetStarsUseCase) private _getStarsUseCase: IGetStarUseCase,
   ) {}
 
   /**
@@ -205,6 +209,36 @@ export class RepositoryController {
         forkerUsername,
       });
       res.status(HttpStatusCodes.CREATED).json({ success: true, data: forkedRepo });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async toggleStar(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const userId = req.user?.id;
+      if (!userId) {
+        res.status(HttpStatusCodes.UNAUTHORIZED).json({ success: false, message: 'Unauthorized' });
+        return;
+      }
+      const result = await this._toggleStarUseCase.execute({
+        userId,
+        ownerUsername: username,
+        repoName: reponame,
+      });
+
+      res.status(HttpStatusCodes.OK).json({ success: true, data: result });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getStarredUsers(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const users = await this._getStarsUseCase.execute(username, reponame);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: users });
     } catch (error) {
       next(error);
     }

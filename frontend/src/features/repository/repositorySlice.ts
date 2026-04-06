@@ -14,6 +14,7 @@ import {
   createCommitThunk,
   updateVisibilityThunk,
   forkRepoThunk,
+  toggleStarThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -233,6 +234,26 @@ const repositorySlice = createSlice({
       .addCase(forkRepoThunk.rejected, (state, action) => {
         state.isForking = false;
         state.forkError = action.payload as string;
+      })
+
+      .addCase(toggleStarThunk.pending, (state) => {
+        state.isStarring = true;
+        state.error = null;
+      })
+      .addCase(toggleStarThunk.fulfilled, (state, action) => {
+        state.isStarring = false;
+        const { starsCount } = action.payload;
+        const reponame = action.meta.arg.reponame;
+        if (state.selectedRepository && state.selectedRepository.name === reponame) {
+          state.selectedRepository.stars = action.payload.starsCount;
+        }
+        state.repositories = state.repositories.map((repo) =>
+          repo.name === reponame ? { ...repo, stars: starsCount } : repo,
+        );
+      })
+      .addCase(toggleStarThunk.rejected, (state, action) => {
+        state.isStarring = false;
+        state.starError = action.payload as string;
       });
   },
 });

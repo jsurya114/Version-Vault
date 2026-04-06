@@ -113,6 +113,8 @@ import { MongoCommentRepository } from './infrastructure/database/mongoose/repos
 import { CreateCommentUseCase } from './application/use-cases/comments/CreateCommentUseCase';
 import { ListCommentUseCase } from './application/use-cases/comments/ListCommentUseCase';
 import { DeleteCommentUseCase } from './application/use-cases/comments/DeleteCommentUseCase';
+import { ToggleStarUseCase } from './application/use-cases/repository/ToggleStarUseCase';
+import { GetStarsUseCase } from './application/use-cases/repository/GetStarsUsecase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -203,6 +205,8 @@ container.register(TOKENS.IBlockRepoUseCase, { useClass: BlockRepoUseCase });
 container.register(TOKENS.IUnblockRepoUseCase, { useClass: UnblockRepoUseCase });
 container.register(TOKENS.IGetRepoByIdUseCase, { useClass: GetRepoByIdUseCase });
 container.register(TOKENS.IForkRepoUseCase, { useClass: ForkRepoUseCase });
+container.register(TOKENS.IToggleStarUseCase, { useClass: ToggleStarUseCase });
+container.register(TOKENS.IGetStarsUseCase, { useClass: GetStarsUseCase });
 
 //collabs
 container.register(TOKENS.ICollaboratorRepository, { useClass: MongoCollaboratorRepository });
