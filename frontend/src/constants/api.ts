@@ -44,7 +44,10 @@ export const USER_ENDPOINTs = {
   UPDATE_PROFILE: '/user/profile',
 } as const;
 
-
 export const COLLABORATOR_ENDPOINTS = {
   BASE: '/collaborators',
+} as const;
+
+export const COMMENT_ENDPOINTS = {
+  BASE: '/comments',
 } as const;
