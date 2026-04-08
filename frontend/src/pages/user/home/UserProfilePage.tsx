@@ -1,7 +1,7 @@
-// src/pages/user/home/UserProfilePage.tsx
+
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GitFork, Star, BookOpen, Users, Calendar, Edit2 } from 'lucide-react';
+import { GitFork, BookOpen, Users, Calendar, Edit2 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
   getFollowersThunk,

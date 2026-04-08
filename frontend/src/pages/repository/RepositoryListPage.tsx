@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { GitFork, Folder, Star } from 'lucide-react';
+import { GitFork, Folder} from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   listRepositoryThunk,

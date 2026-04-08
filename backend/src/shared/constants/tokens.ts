@@ -108,4 +108,12 @@ export const TOKENS = {
   ICreateCommentUseCase: Symbol.for('ICreateCommentUsecase'),
   IListCommentUseCase: Symbol.for('IListCommentUseCase'),
   IDeleteCommentUseCase: Symbol.for('IDeleteCommentUseCase'),
+
+
+  //chat usecase
+  IChatRepository:Symbol.for('IChatRepository'),
+  ISendMessageUseCase:Symbol.for('ISendMessageUseCase'),
+  IGetChatHistoryUseCase:Symbol.for('IGetChatHistoryUseCase'),
+  IGetMessageUsecase:Symbol.for('IGetMessageUsecase'),
+  IDeleteMessageUseCase:Symbol.for('IDeleteMessageUseCase')
 } as const;
