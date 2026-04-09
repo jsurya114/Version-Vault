@@ -12,6 +12,13 @@ export interface RepoResponseDTO {
   isBlocked: boolean;
   isFork?: boolean;
   parentRepoOwnerUsername?: string;
+  starredBy?: string[];
   createdAt?: Date;
   updatedAt?: Date;
+}
+
+export interface ToggleStarDTO {
+  userId: string;
+  ownerUsername: string;
+  repoName: string;
 }

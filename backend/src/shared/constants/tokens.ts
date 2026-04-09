@@ -83,6 +83,8 @@ export const TOKENS = {
   IUnblockRepoUseCase: Symbol.for('IUnblockRepoUseCase'),
   ILogger: Symbol.for('ILogger'),
   IForkRepoUseCase: Symbol.for('IForkRepoUseCase'),
+  IToggleStarUseCase: Symbol.for('IToggleStarUseCase'),
+  IGetStarsUseCase: Symbol.for('IGetStarsUseCase'),
 
   // Collaborator
   ICollaboratorRepository: Symbol.for('ICollaboratorRepository'),
@@ -106,4 +108,15 @@ export const TOKENS = {
   ICreateCommentUseCase: Symbol.for('ICreateCommentUsecase'),
   IListCommentUseCase: Symbol.for('IListCommentUseCase'),
   IDeleteCommentUseCase: Symbol.for('IDeleteCommentUseCase'),
+
+
+  //chat usecase
+  IChatRepository:Symbol.for('IChatRepository'),
+  ISendMessageUseCase:Symbol.for('ISendMessageUseCase'),
+  IGetChatHistoryUseCase:Symbol.for('IGetChatHistoryUseCase'),
+  IGetMessageUsecase:Symbol.for('IGetMessageUsecase'),
+  IDeleteMessageUseCase:Symbol.for('IDeleteMessageUseCase'),
+  IListChatRepoUseCase:Symbol.for('IListChatRepoUseCase'),
+  HttpServer:Symbol.for('HttpServer')
+
 } as const;

@@ -21,6 +21,7 @@ export class RepositoryMapper {
       isFork: doc.isFork,
       parentRepoId: doc.parentRepoId,
       parentRepoOwnerUsername: doc.parentRepoOwnerUsername,
+      starredBy: doc.starredBy || [],
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
     };
@@ -42,6 +43,7 @@ export class RepositoryMapper {
       isBlocked: repo.isBlocked,
       isFork: repo.isFork,
       parentRepoOwnerUsername: repo.parentRepoOwnerUsername,
+      starredBy: repo.starredBy || [],
       createdAt: repo.createdAt,
       updatedAt: repo.updatedAt,
     };

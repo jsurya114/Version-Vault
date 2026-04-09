@@ -22,6 +22,7 @@ import follwoRoutes from './interfaces/http/routes/follow/follow.routes';
 import userRoutes from './interfaces/http/routes/user/user.routes';
 import collaboratorRoutes from './interfaces/http/routes/collaborator/collaborator.routes';
 import commentRoutes from './interfaces/http/routes/comments/comment.routes';
+import chatRoutes from './interfaces/http/routes/chat/chat.routes'
 
 const app = express();
 
@@ -64,6 +65,7 @@ app.use('/vv/follow', follwoRoutes);
 app.use('/vv/user', userRoutes);
 app.use('/vv/collaborators', collaboratorRoutes);
 app.use('/vv/comments', commentRoutes);
+app.use('/vv/chats',chatRoutes)
 
 //error hanlding middleware
 app.use(errorMiddleware);

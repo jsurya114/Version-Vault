@@ -33,4 +33,9 @@ export class MongoUserRepository extends MongoBaseRepository<IUser> implements I
     if (!doc) return null;
     return this.toEntity(doc);
   }
+  async findManyByIds(ids: string[]): Promise<IUser[]> {
+    const docs = await this.model.find({ userId: { $in: ids } }).lean();
+    if (!docs) return [];
+    return docs.map((doc) => this.toEntity(doc));
+  }
 }

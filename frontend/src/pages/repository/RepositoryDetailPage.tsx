@@ -58,6 +58,8 @@ import CollaboratorsTabContent from 'src/types/common/collaborator/Collaborators
 import IssueListContent from '../../types/common/Issues/IssuelistContent';
 import PRListContent from '../../types/common/pullrequest/PRListContent';
 import { ForkButton } from './components/ForkButton';
+import { StarButton } from './components/StarButton'; // IMPORT NEW COMPONENT
+
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 
@@ -86,7 +88,7 @@ const RepositoryDetailPage = () => {
   const [branch, setBranch] = useState('main');
   const [currentPath, setCurrentPath] = useState('');
   const [selectedFile, setSelectFile] = useState('');
-  const [starred, setStarred] = useState(false);
+  // REMOVED: local starred state (now handled by StarButton and Redux)
   const [expandedPaths, setExpandedPaths] = useState<Set<string>>(new Set());
   const [treeSearch, setTreeSearch] = useState('');
   const [readmeContent, setReadmeContent] = useState('');
@@ -667,22 +669,14 @@ const RepositoryDetailPage = () => {
 
               {/* Star + Fork */}
               <div className="flex items-center gap-2">
-                <div className="flex items-center">
-                  <button
-                    onClick={() => setStarred(!starred)}
-                    className={`flex items-center gap-1.5 px-2.5 py-1 text-xs rounded-l-lg border transition ${
-                      starred
-                        ? 'bg-yellow-500/10 border-yellow-500/30 text-yellow-400'
-                        : 'bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700'
-                    }`}
-                  >
-                    <Star className={`w-3 h-3 ${starred ? 'fill-yellow-400' : ''}`} />
-                    Star
-                  </button>
-                  <span className="px-2 py-1 text-xs bg-gray-800 border border-l-0 border-gray-700 text-gray-300 rounded-r-lg">
-                    {repo.stars + (starred ? 1 : 0)}
-                  </span>
-                </div>
+                {/* REPLACED WITH STARBUTTON */}
+                <StarButton
+                  username={username!}
+                  reponame={reponame!}
+                  initialStars={repo.stars}
+                  initialStarredBy={repo.starredBy || []}
+                  isOwner={isOwner}
+                />
                 <ForkButton username={username!} reponame={reponame!} forksCount={repo.forks} />
               </div>
             </div>
@@ -976,7 +970,7 @@ const RepositoryDetailPage = () => {
                 <h3 className="text-white text-sm font-semibold mb-3">Stats</h3>
                 <div className="space-y-2">
                   {[
-                    { icon: Star, label: 'Stars', value: repo.stars + (starred ? 1 : 0) },
+                    { icon: Star, label: 'Stars', value: repo.stars }, // UPDATED: uses repo.stars directly
                     { icon: GitFork, label: 'Forks', value: repo.forks },
                     { icon: GitCommit, label: 'Commits', value: commits.length },
                     { icon: GitBranch, label: 'Branches', value: branches.length },

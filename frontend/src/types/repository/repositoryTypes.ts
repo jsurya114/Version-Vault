@@ -13,6 +13,7 @@ export interface RepositoryResponseDTO {
   isFork: boolean;
   parentRepoId: string;
   parentRepoOwnerUsername?: string;
+  starredBy?: string[];
   createdAt?: string;
   updatedAt?: string;
   language?: string;
@@ -88,6 +89,8 @@ export interface RepositoryState {
   isCommitsLoading: boolean;
   isForking: boolean;
   forkError: string | null;
+  isStarring: boolean;
+  starError: string | null;
   error: string | null;
   meta: {
     total: number;
@@ -110,6 +113,8 @@ export const repositoryInitialState: RepositoryState = {
   isCommitsLoading: false,
   isForking: false,
   forkError: null,
+  isStarring: false,
+  starError: null,
   error: null,
   meta: {
     total: 0,
@@ -122,4 +127,14 @@ export const repositoryInitialState: RepositoryState = {
 export interface ForkRepoPayload {
   username: string;
   reponame: string;
+}
+
+export interface ToggleStarPayload {
+  username: string;
+  reponame: string;
+}
+
+export interface ToggleStarResponse {
+  isStarred: boolean;
+  starsCount: number;
 }

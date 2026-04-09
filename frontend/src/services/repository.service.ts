@@ -118,4 +118,13 @@ export const repositoryService = {
     const res = await axiosInstance.post(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/fork`);
     return res.data;
   },
+
+  toggleStar: async (username: string, reponame: string) => {
+    const res = await axiosInstance.post(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/star`);
+    return res.data;
+  },
+  getStarredUsers: async (username: string, reponame: string) => {
+    const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/star/users`);
+    return res.data.data;
+  },
 };

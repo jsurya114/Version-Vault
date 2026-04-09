@@ -16,6 +16,7 @@ export interface IRepositoryDocument extends Document {
   isFork: boolean;
   parentRepoId?: boolean;
   parentRepoOwnerUsername?: string;
+  starredBy?: string[];
   createdAt: Date;
   updatedAt: Date;
 }
@@ -40,6 +41,7 @@ const RepositorySchema = new Schema<IRepositoryDocument>(
     isFork: { type: Boolean, default: false },
     parentRepoId: { type: String, default: null },
     parentRepoOwnerUsername: { type: String, default: null },
+    starredBy: { type: [String], default: [] },
   },
   { timestamps: true },
 );

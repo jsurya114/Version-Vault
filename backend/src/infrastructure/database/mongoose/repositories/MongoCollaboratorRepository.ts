@@ -53,4 +53,13 @@ export class MongoCollaboratorRepository
     );
     return doc ? this.toEntity(doc) : null;
   }
+  async findCollabedRepos(userId: string): Promise<ICollaborator[]> {
+    const docs = await CollaboratorModel.find({
+      $or:[
+        {collaboratorId:userId},
+        {ownerId:userId}
+      ]
+    })
+    return docs.map(this.toEntity.bind(this))
+  }
 }

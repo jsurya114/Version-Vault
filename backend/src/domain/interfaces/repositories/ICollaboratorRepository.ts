@@ -11,4 +11,5 @@ export interface ICollaboratorRepository extends IBaseRepository<ICollaborator> 
     collaboratorId: string,
     role: string,
   ): Promise<ICollaborator | null>;
+  findCollabedRepos(userId:string):Promise<ICollaborator[]>
 }
