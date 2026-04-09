@@ -122,6 +122,7 @@ import { GetMessageUseCase } from './application/use-cases/chats/GetMessageUseCa
 import { DeleteMessageUseCase } from './application/use-cases/chats/DeleteMessageUseCase';
 import { MongoChatRepository } from './infrastructure/database/mongoose/repositories/MongoChatRepository';
 import { SocketService } from './infrastructure/services/SocketService';
+import { ListChatRepoUseCase } from './application/use-cases/chats/LIstChatRepoUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -246,5 +247,6 @@ container.register(TOKENS.ICommentRepository, { useClass: MongoCommentRepository
 container.register(TOKENS.ICreateCommentUseCase, { useClass: CreateCommentUseCase });
 container.register(TOKENS.IListCommentUseCase, { useClass: ListCommentUseCase });
 container.register(TOKENS.IDeleteCommentUseCase, { useClass: DeleteCommentUseCase });
+container.register(TOKENS.IListChatRepoUseCase,{useClass:ListChatRepoUseCase})
 
 export { container };

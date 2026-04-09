@@ -7,14 +7,17 @@ import { ITokenService } from '../../domain/interfaces/services/ITokenService';
 import { UnauthorizedError } from '../../domain/errors/UnauthorizedError';
 import { logger } from '../../shared/logger/Logger';
 import { injectable, inject } from 'tsyringe';
+import { IRepoRepository } from '../../domain/interfaces/repositories/IRepoRepository';
 
 @injectable()
 export class SocketService {
   private io: SocketIOServer;
   constructor(
-    server: HttpServer,
+
     @inject(TOKENS.ITokenService) private _tokenService: ITokenService,
     @inject(TOKENS.ISendMessageUseCase) private _sendMessage: ISendMessageUseCase,
+    @inject(TOKENS.IRepoRepository) private _repoRepo:IRepoRepository,
+    @inject(TOKENS.HttpServer) server: HttpServer
   ) {
     this.io = new SocketIOServer(server, {
       cors: {
@@ -28,7 +31,16 @@ export class SocketService {
 
   private initialize() {
     this.io.use((socket: Socket, next) => {
-      const token = socket.handshake.auth.token;
+      let token = socket.handshake.auth.token;
+     if(!token&&socket.handshake.headers.cookie){
+        const cookies:Record<string,string>={}
+        socket.handshake.headers.cookie.split(';').forEach((c)=>{
+            const [key,val]=c.trim().split('=')
+            cookies[key]=val
+        })
+        token=cookies.accessToken
+     }
+
       if (!token) return next(new UnauthorizedError('Authentication Error'));
 
       const tokenService = this._tokenService;
@@ -53,19 +65,36 @@ export class SocketService {
       //user sends message
       socket.on('send_message', async (data: { repositoryId: string; content: string }) => {
         try {
-          const sendMessageUseCase = this._sendMessage;
-          const savedMessage = await sendMessageUseCase.execute({
-            repositoryId: data.repositoryId,
+          const [ownerUsername,name]=data.repositoryId.split('/')
+
+          const repo =await this._repoRepo.findByOwnerAndName(ownerUsername,name)
+
+    if (!repo) {
+      logger.error(`Repository not found for socket message: ${data.repositoryId}`);
+      return;
+    }
+          const savedMessage = await this._sendMessage.execute({
+            repositoryId: repo.id!,
             senderId: socket.data.user.id,
             senderUsername: socket.data.user.userId,
             content: data.content,
           });
 
+          const room = data.repositoryId
+          const rooms = this.io.sockets.adapter.rooms.get(room)
+          const numClients = rooms?rooms.size:0
+
+logger.info(`Emitting message to room: ${room} (Clients in room: ${numClients})`);
           this.io.to(data.repositoryId).emit('receive_message', savedMessage);
         } catch (error) {
           logger.error('Error saving message', error);
         }
       });
+
+      socket.on('join_repo', (repositoryId: string) => {
+  socket.join(repositoryId);
+  logger.info(`Socket ${socket.id} joined room: ${repositoryId}`);
+});
 
       socket.on('disconnect', () => {
         logger.info(`User disconnected from socket: ${socket.data.user.id}`);

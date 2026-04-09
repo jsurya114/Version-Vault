@@ -4,6 +4,7 @@ import { IGetChatHistoryUseCase } from '../../../../application/use-cases/interf
 import { IDeleteMessageUseCase } from '../../../../application/use-cases/interfaces/chats/IDeleteMessageUsecase';
 import { IGetMessageUseCase } from '../../../../application/use-cases/interfaces/chats/IGetMessageUseCase';
 import { ISendMessageUseCase } from '../../../../application/use-cases/interfaces/chats/ISendMessageUseCase';
+import { IListChatRepoUseCase } from '../../../../application/use-cases/interfaces/chats/IListChatRepoUseCase';
 import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { TOKENS } from '../../../../shared/constants/tokens';
@@ -17,6 +18,7 @@ export class ChatController {
     @inject(TOKENS.IDeleteMessageUseCase) private _deleteMessageUseCase: IDeleteMessageUseCase,
     @inject(TOKENS.IGetChatHistoryUseCase) private _getChatUseCase: IGetChatHistoryUseCase,
     @inject(TOKENS.IGetMessageUsecase) private _getMessageUseCase: IGetMessageUseCase,
+    @inject(TOKENS.IListChatRepoUseCase) private _listChatUseCase:IListChatRepoUseCase,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
   ) {}
 
@@ -39,7 +41,15 @@ export class ChatController {
       };
 
       const history = await this._getChatUseCase.execute(repo.id!, query);
-      res.status(HttpStatusCodes.OK).json({ success: true, data: history });
+      res.status(HttpStatusCodes.OK).json({ success: true, data: {
+        data:history.data,
+        meta:{
+            total:history.total,
+            page:history.page,
+            limit:history.limit,
+            totalPages:history.totalPages
+        }
+      } });
     } catch (error) {
       next(error);
     }
@@ -99,4 +109,15 @@ export class ChatController {
       next(error);
     }
   }
+
+  async getChatRepo(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+        const {id:userId}=req.user
+        const repos =await this._listChatUseCase.execute(userId)
+        res.status(HttpStatusCodes.OK).json({success:true,data:repos})
+    } catch (error) {
+        next(error)
+    }
+  }
+
 }

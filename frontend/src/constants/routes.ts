@@ -55,6 +55,10 @@ export const ROUTES = {
     // Invitation
   ACCEPT_INVITATION: '/invitation/accept/:token',
 
+  //chats
+  REPO_CHAT: '/:username/:reponame/chat',
+  CHAT_LIST: '/chat',  
+
   // Error
   NOT_FOUND: '*',
 } as const;

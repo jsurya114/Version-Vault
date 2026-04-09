@@ -52,6 +52,9 @@ const CompareCommitPage = lazy(() => import('../pages/pullrequest/CompareCommitP
 const CommitDetailPage = lazy(() => import('../pages/pullrequest/CommitDetailPage'));
 const AcceptInvitationPage = lazy(() => import('../pages/collaborators/AcceptInvitationPage'));
 
+//chat
+const ChatRoomPage =lazy(()=>import('../pages/user/home/ChatRoomPage'))
+
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
@@ -311,6 +314,15 @@ const AppRouter = () => {
               }
             />
 
+            <Route
+              path={ROUTES.REPO_CHAT}
+              element={
+                <ProtectRoute>
+                  <ChatRoomPage />
+                </ProtectRoute>
+              }
+            />
+            <Route path={ROUTES.CHAT_LIST} element={<ProtectRoute><ChatRoomPage /></ProtectRoute>} />
             <Route
               path={ROUTES.REPO_DETAIL}
               element={

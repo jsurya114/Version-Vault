@@ -115,5 +115,8 @@ export const TOKENS = {
   ISendMessageUseCase:Symbol.for('ISendMessageUseCase'),
   IGetChatHistoryUseCase:Symbol.for('IGetChatHistoryUseCase'),
   IGetMessageUsecase:Symbol.for('IGetMessageUsecase'),
-  IDeleteMessageUseCase:Symbol.for('IDeleteMessageUseCase')
+  IDeleteMessageUseCase:Symbol.for('IDeleteMessageUseCase'),
+  IListChatRepoUseCase:Symbol.for('IListChatRepoUseCase'),
+  HttpServer:Symbol.for('HttpServer')
+
 } as const;

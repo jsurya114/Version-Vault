@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate,useParams } from 'react-router-dom';
 import { Bell, Search, LogOut } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
@@ -17,6 +17,7 @@ const AppHeader = () => {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const [searchResults, setSearchResults] = useState<any[]>([]);
   const [isSearching, setIsSearching] = useState(false);
+  const { username, reponame } = useParams<{ username: string; reponame: string }>();
 
   // get first repo for PR/Issues links
   const firstRepo = repositories[0];
@@ -69,14 +70,14 @@ const AppHeader = () => {
       },
     },
     {
-      label: 'Repositories', // Add this
+      label: 'Repositories', 
       onClick: () => navigate(ROUTES.REPO_LIST),
     },
 
-    {
-      label: 'ChatRoom',
-      onClick: () => {},
-    },
+{
+  label: 'ChatRoom',
+ onClick: () => navigate(ROUTES.CHAT_LIST),
+},
   ];
 
   return (

@@ -23,4 +23,8 @@ router.delete('/:messageId', authMiddleware, (req, res, next) =>
   chatController.deleteMessage(req as AuthRequest, res, next),
 );
 
+router.get('/conversations', authMiddleware, (req, res, next) =>
+  chatController.getChatRepo(req as AuthRequest, res, next),
+);
+
 export default router;

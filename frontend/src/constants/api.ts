@@ -51,3 +51,8 @@ export const COLLABORATOR_ENDPOINTS = {
 export const COMMENT_ENDPOINTS = {
   BASE: '/comments',
 } as const;
+
+export const CHAT_ENDPOINTS={
+  BASE:'/chats',
+  CONVERSATIONS: '/chats/conversations'
+}
