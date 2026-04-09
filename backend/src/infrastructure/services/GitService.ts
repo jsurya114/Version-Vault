@@ -466,4 +466,69 @@ export class GitService {
 
     fs.cpSync(sourceRepoPath, newRepoPath, { recursive: true });
   }
+
+  async commitMultipleFiles(
+    ownerUsername: string,
+    repoName: string,
+    branch: string,
+    message: string,
+    files: { filePath: string; tempDiskPath: string }[],
+    authorName: string,
+    authorEmail: string,
+  ): Promise<void> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const indexFile = path.join(repoPath, `index-${Date.now()}.tmp`);
+    const git = simpleGit(repoPath);
+
+    try {
+      const gitWithIndex = simpleGit(repoPath).env({ ...process.env, GIT_INDEX_FILE: indexFile });
+      // Read current branch into index if it exists, otherwise start fresh
+      try {
+        await gitWithIndex.raw(['read-tree', branch]);
+      } catch {
+        // Branch might not exist yet if this is the very first initial commit
+      }
+      for (const file of files) {
+        // Hash the multer temporary file directly into the git objects database
+        const blobHash = await git.raw(['hash-object', '-w', file.tempDiskPath]);
+        // Add to our temporary index
+        await gitWithIndex.raw([
+          'update-index',
+          '--add',
+          '--cacheinfo',
+          '100644',
+          blobHash,
+          file.filePath, // Ensure this path maintains folder structure (e.g., 'src/components/Button.tsx')
+        ]);
+      }
+      const treeHash = (await gitWithIndex.raw(['write-tree'])).trim();
+
+      let parentAgrs: string[] = [];
+      try {
+        const parentHash = (await git.raw(['rev-parse', branch])).trim();
+        parentAgrs = ['-p', parentHash];
+      } catch {
+        //no parent , this is the root commit
+      }
+
+      const commitHash = (
+        await git
+          .env({
+            ...process.env,
+            GIT_AUTHOR_NAME: authorName,
+            GIT_AUTHOR_EMAIL: authorEmail,
+            GIT_COMMITTER_NAME: authorName,
+            GIT_COMMITTER_EMAIL: authorEmail,
+          })
+          .raw(['commit-tree', treeHash, ...parentAgrs, '-m', message])
+      ).trim();
+      //Update the branch reference so the commit actually shows up
+      await git.raw(['update-ref', `refs/heads/${branch}`, commitHash]);
+    } catch (error) {
+      console.error('Multiple commit operation failed:', error);
+      throw error;
+    } finally {
+      if (fs.existsSync(indexFile)) fs.unlinkSync(indexFile);
+    }
+  }
 }

@@ -28560,3 +28560,919 @@ usage: git commit-tree <tree> [(-p <parent>)...]
 2026-04-09 11:31:48 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 61.055 ms - -[0m
 2026-04-09 11:31:48 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 54.528 ms - -[0m
 2026-04-09 11:32:01 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/newone?page=1&limit=5 [36m304[0m 171.186 ms - -[0m
+2026-04-09 15:02:14 [[32minfo[39m]: Redis connected successfully
+2026-04-09 15:02:15 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 15:02:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 15:02:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 394.168 ms - 44[0m
+2026-04-09 15:02:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 393.204 ms - 44[0m
+2026-04-09 15:02:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.395 ms - -[0m
+2026-04-09 15:02:20 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 565.994 ms - -[0m
+2026-04-09 15:02:20 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 511.930 ms - -[0m
+2026-04-09 15:02:20 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.109 ms - -[0m
+2026-04-09 15:02:23 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 15:02:23 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 15:02:23 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 15:02:23 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 15:02:23 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 15:02:23 [[32minfo[39m]: [0mGET /vv/chats/conversations [32m200[0m 133.045 ms - 763[0m
+2026-04-09 15:02:23 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 15:02:23 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 15:02:23 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 15:02:23 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 15:02:23 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 15:02:23 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 125.961 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 18.935 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 12.096 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.030 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [32m200[0m 46.055 ms - 778[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 21.059 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 28.630 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 88.769 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 16.132 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 11.065 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 108.657 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 50.070 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 13.346 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 12.356 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.181 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 302.910 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/collaborators/repos [32m200[0m 351.754 ms - 501[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 353.835 ms - -[0m
+2026-04-09 15:02:26 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 342.181 ms - -[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 16.837 ms - -[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [32m200[0m 16.245 ms - 249[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [32m200[0m 30.569 ms - 187[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [32m200[0m 29.330 ms - 319[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 11.607 ms - -[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 12.721 ms - -[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 20.212 ms - -[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 19.457 ms - -[0m
+2026-04-09 15:03:26 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 84.692 ms - 50[0m
+2026-04-09 15:03:26 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 59.222 ms - 50[0m
+2026-04-09 15:03:26 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [32m200[0m 142.129 ms - 64[0m
+2026-04-09 15:03:27 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 345.815 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 67.444 ms - 44[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 69.288 ms - 44[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 56.897 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 56.898 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 23.919 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 27.442 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 45.949 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 43.751 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 17.903 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 17.197 ms - -[0m
+2026-04-09 15:03:30 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 49.461 ms - 50[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 25.485 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 24.453 ms - -[0m
+2026-04-09 15:03:30 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 71.577 ms - 50[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 175.744 ms - -[0m
+2026-04-09 15:03:30 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 362.910 ms - -[0m
+2026-04-09 15:03:31 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 610.483 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 56.927 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 61.882 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 30.406 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 16.616 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 123.580 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 124.893 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 65.403 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 67.004 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 18.713 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 20.436 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 178.185 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 177.206 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 449.073 ms - -[0m
+2026-04-09 15:03:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 122.464 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 31.406 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 27.624 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 44.506 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 40.008 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 17.981 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 16.822 ms - -[0m
+2026-04-09 15:03:42 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 57.931 ms - 50[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 26.904 ms - -[0m
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 25.979 ms - -[0m
+2026-04-09 15:03:42 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:03:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 63.132 ms - 50[0m
+2026-04-09 15:03:43 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 422.521 ms - -[0m
+2026-04-09 15:03:43 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 99.754 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 23.424 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 17.279 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 14.103 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 13.317 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 119.288 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 125.309 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 18.207 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 13.033 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 198.480 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 200.672 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 86.987 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 209.910 ms - -[0m
+2026-04-09 15:03:45 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 87.548 ms - -[0m
+2026-04-09 15:03:46 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 17.260 ms - -[0m
+2026-04-09 15:03:46 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 16.414 ms - -[0m
+2026-04-09 15:03:46 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 484.706 ms - -[0m
+2026-04-09 15:03:46 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 487.153 ms - -[0m
+2026-04-09 15:03:46 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 531.255 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 58.748 ms - 44[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 57.746 ms - 44[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 122.437 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.843 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 45.447 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 144.019 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 145.429 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 100.310 ms - -[0m
+2026-04-09 15:03:59 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 170.449 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 303.497 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 305.871 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 281.599 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 692.340 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 35.105 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 33.336 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 61.333 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 17.681 ms - -[0m
+2026-04-09 15:04:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 19.719 ms - -[0m
+2026-04-09 15:04:06 [[32minfo[39m]: Redis connected successfully
+2026-04-09 15:04:09 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 15:04:09 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 15:04:13 [[32minfo[39m]: [0mPOST /vv/repo/test123/practice/star [32m200[0m 106.506 ms - 58[0m
+2026-04-09 15:04:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 35.639 ms - -[0m
+2026-04-09 15:04:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 23.495 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 22.024 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 27.026 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 45.678 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 44.843 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 18.704 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 17.801 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 29.666 ms - -[0m
+2026-04-09 15:04:14 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 27.439 ms - -[0m
+2026-04-09 15:04:15 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:04:15 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 183.957 ms - 50[0m
+2026-04-09 15:04:15 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:04:15 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 380.795 ms - 50[0m
+2026-04-09 15:04:15 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 563.125 ms - -[0m
+2026-04-09 15:04:15 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 205.627 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 29.310 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 30.778 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 46.762 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 18.196 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 16.229 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 91.549 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 94.524 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 45.203 ms - -[0m
+2026-04-09 15:05:15 [[32minfo[39m]: [0mGET /vv/collaborators/repos [32m200[0m 94.572 ms - 475[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 104.132 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 124.013 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 382.565 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 16.911 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 19.887 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 51.848 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 14.736 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 16.617 ms - -[0m
+2026-04-09 15:05:16 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 500.579 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 25.923 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 22.622 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 47.940 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 45.961 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 19.841 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 18.669 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [32m200[0m 46.495 ms - 347[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 28.907 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 30.597 ms - -[0m
+2026-04-09 15:05:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 43.431 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 23.953 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.191 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 22.024 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 18.388 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 68.168 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 17.098 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 87.411 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 99.116 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 101.679 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 51.385 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 37.210 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 33.507 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 67.908 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 13.886 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 16.230 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 88.121 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 89.563 ms - -[0m
+2026-04-09 15:05:23 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 89.399 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 27.307 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 23.663 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 48.287 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 45.471 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 17.138 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 15.559 ms - -[0m
+2026-04-09 15:05:24 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 44.923 ms - 50[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 24.757 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 26.196 ms - -[0m
+2026-04-09 15:05:24 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 44.082 ms - 50[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 86.323 ms - -[0m
+2026-04-09 15:05:24 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 99.747 ms - -[0m
+2026-04-09 15:05:31 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/content?path=prime.py&branch=main [32m200[0m 26.032 ms - 244[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 23.059 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 47.508 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 21.231 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 47.884 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 15.971 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 14.147 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 13.306 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.851 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 89.944 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 12.309 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 42.380 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.811 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 12.573 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 14.413 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 134.720 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 86.011 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.156 ms - -[0m
+2026-04-09 15:05:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 132.529 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 28.554 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 18.845 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 167.178 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 173.334 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 216.348 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 223.846 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 40.698 ms - -[0m
+2026-04-09 15:11:40 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 38.620 ms - -[0m
+2026-04-09 15:11:41 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 546.971 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 28.990 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 48.030 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 19.270 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.789 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 13.044 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 14.591 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 91.697 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 93.987 ms - -[0m
+2026-04-09 15:11:46 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 131.412 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 25.043 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 43.144 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 18.354 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.056 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 15.391 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 14.262 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.801 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.104 ms - -[0m
+2026-04-09 15:11:53 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 134.685 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 26.123 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 19.775 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 59.457 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 58.803 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 14.631 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 16.273 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 102.856 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 102.342 ms - -[0m
+2026-04-09 15:15:45 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 136.462 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 47.658 ms - 44[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 69.077 ms - 44[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.085 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.988 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 45.213 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 69.042 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 88.516 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 89.863 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 92.436 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 46.168 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 24.352 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 21.079 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 68.953 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 14.388 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 13.545 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 90.285 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.959 ms - -[0m
+2026-04-09 15:16:33 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 88.503 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 27.220 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 17.178 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 46.907 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.362 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=30 [36m304[0m 15.883 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=30 [36m304[0m 14.769 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 87.341 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 134.282 ms - -[0m
+2026-04-09 15:17:30 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 353.995 ms - -[0m
+2026-04-09 20:43:06 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:43:07 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:43:07 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:43:13 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:43:14 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:43:14 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:43:18 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-04-09 20:43:18 [[32minfo[39m]: [0mPOST /vv/auth/login [33m404[0m 80.100 ms - 46[0m
+2026-04-09 20:43:41 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 244.759 ms - 300[0m
+2026-04-09 20:43:41 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [32m200[0m 75.545 ms - 466[0m
+2026-04-09 20:43:41 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 356.207 ms - -[0m
+2026-04-09 20:43:46 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 52.897 ms - -[0m
+2026-04-09 20:43:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 54.024 ms - 466[0m
+2026-04-09 20:43:46 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 50.534 ms - -[0m
+2026-04-09 20:44:31 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 74.732 ms - 44[0m
+2026-04-09 20:44:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 73.703 ms - -[0m
+2026-04-09 20:44:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 72.947 ms - -[0m
+2026-04-09 20:44:32 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 350.951 ms - 44[0m
+2026-04-09 20:44:32 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 76.931 ms - -[0m
+2026-04-09 20:44:32 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 343.050 ms - -[0m
+2026-04-09 20:46:44 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 186.431 ms - 385[0m
+2026-04-09 20:46:44 [[31merror[39m]: POST /vv/repo/upload — fatal: could not open 'w' for reading: No such file or directory
+
+2026-04-09 20:46:44 [[32minfo[39m]: [0mPOST /vv/repo/upload [31m500[0m 45.710 ms - 51[0m
+2026-04-09 20:46:49 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 217.062 ms - -[0m
+2026-04-09 20:46:49 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 214.743 ms - 828[0m
+2026-04-09 20:46:49 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 63.854 ms - -[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=false [32m200[0m 14.729 ms - 26[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=true [32m200[0m 13.710 ms - 26[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/commits?branch=main&limit=20 [32m200[0m 13.073 ms - 26[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=true [36m304[0m 10.729 ms - -[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=false [36m304[0m 10.147 ms - -[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/commits?branch=main&limit=20 [36m304[0m 9.564 ms - -[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example [32m200[0m 52.859 ms - 385[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/branches [32m200[0m 61.128 ms - 26[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example [36m304[0m 52.110 ms - -[0m
+2026-04-09 20:46:51 [[32minfo[39m]: [0mGET /vv/repo/test123/example/branches [36m304[0m 62.043 ms - -[0m
+2026-04-09 20:47:21 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 51.984 ms - -[0m
+2026-04-09 20:47:21 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 56.025 ms - -[0m
+2026-04-09 20:47:21 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 53.131 ms - -[0m
+2026-04-09 20:47:31 [[32minfo[39m]: [0mDELETE /vv/repo/test123/example [32m200[0m 118.455 ms - 60[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 53.064 ms - 44[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 55.130 ms - 44[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 53.160 ms - -[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 53.014 ms - -[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 50.059 ms - -[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 50.667 ms - 466[0m
+2026-04-09 20:47:34 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 50.285 ms - -[0m
+2026-04-09 20:49:20 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:49:21 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:49:21 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:49:42 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:49:42 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:49:42 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:50:09 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:10 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:50:10 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:50:15 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:15 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:50:15 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:50:19 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:21 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:25 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:25 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:50:25 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:50:36 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:37 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:50:37 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:50:40 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:40 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:50:40 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:50:50 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:52 [[32minfo[39m]: Redis connected successfully
+2026-04-09 20:50:57 [[32minfo[39m]: MongoDB connected successfully
+2026-04-09 20:50:57 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-09 20:51:16 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 307.133 ms - 385[0m
+2026-04-09 20:51:16 [[32minfo[39m]: [0mPOST /vv/repo/upload [32m200[0m 189.867 ms - 56[0m
+2026-04-09 20:51:21 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 66.309 ms - -[0m
+2026-04-09 20:51:21 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 64.985 ms - 828[0m
+2026-04-09 20:51:21 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 62.781 ms - -[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/branches [32m200[0m 20.866 ms - 131[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/commits?branch=main&limit=20 [32m200[0m 24.887 ms - 140[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=true [32m200[0m 43.519 ms - 85[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=false [32m200[0m 40.863 ms - 75[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/branches [36m304[0m 16.064 ms - -[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/commits?branch=main&limit=20 [36m304[0m 15.297 ms - -[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=true [36m304[0m 24.217 ms - -[0m
+2026-04-09 20:51:23 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=false [36m304[0m 22.770 ms - -[0m
+2026-04-09 20:51:24 [[32minfo[39m]: [0mGET /vv/repo/test123/example [32m200[0m 548.038 ms - 385[0m
+2026-04-09 20:51:24 [[32minfo[39m]: [0mGET /vv/repo/test123/example [36m304[0m 62.326 ms - -[0m
+2026-04-09 20:51:25 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=example&recursive=false [32m200[0m 46.021 ms - 85[0m
+2026-04-09 20:51:27 [[32minfo[39m]: [0mGET /vv/repo/test123/example/content?path=example%2Ftypes.ts&branch=main [32m200[0m 24.764 ms - 139[0m
+2026-04-09 20:51:43 [[32minfo[39m]: [0mGET /vv/repo/test123/example/files?branch=main&path=&recursive=false [36m304[0m 43.241 ms - -[0m
+2026-04-09 20:51:48 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 464.682 ms - -[0m
+2026-04-09 20:51:48 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 489.749 ms - -[0m
+2026-04-09 20:51:49 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 1327.624 ms - -[0m
+2026-04-09 20:51:56 [[32minfo[39m]: [0mDELETE /vv/repo/test123/example [32m200[0m 132.222 ms - 60[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 57.392 ms - 44[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 59.649 ms - 44[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 62.256 ms - -[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 89.531 ms - -[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 89.053 ms - 466[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 119.932 ms - -[0m
+2026-04-09 20:51:59 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 51.890 ms - -[0m
+2026-04-09 20:52:09 [[32minfo[39m]: [0mPOST /vv/repo [32m201[0m 146.906 ms - 382[0m
+2026-04-09 20:52:10 [[32minfo[39m]: [0mPOST /vv/repo/upload [32m200[0m 192.574 ms - 56[0m
+2026-04-09 20:52:14 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 77.542 ms - -[0m
+2026-04-09 20:52:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [32m200[0m 78.034 ms - 825[0m
+2026-04-09 20:52:14 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 51.340 ms - -[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [32m200[0m 23.936 ms - 140[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [32m200[0m 21.027 ms - 131[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [32m200[0m 44.016 ms - 75[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [32m200[0m 42.315 ms - 85[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 16.689 ms - -[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 18.407 ms - -[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 24.289 ms - -[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [32m200[0m 63.592 ms - 382[0m
+2026-04-09 20:52:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 23.826 ms - -[0m
+2026-04-09 20:52:17 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 1117.317 ms - -[0m
+2026-04-09 20:52:17 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=example&recursive=false [32m200[0m 42.348 ms - 85[0m
+2026-04-09 20:52:19 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/content?path=example%2Ftypes.ts&branch=main [32m200[0m 25.601 ms - 139[0m
+2026-04-09 20:53:22 [[32minfo[39m]: [0mGET /vv/pr/test123/mock?page=1&limit=10 [32m200[0m 424.853 ms - 80[0m
+2026-04-09 20:53:22 [[32minfo[39m]: [0mGET /vv/pr/test123/mock?page=1&limit=10 [36m304[0m 143.814 ms - -[0m
+2026-04-09 20:53:24 [[32minfo[39m]: [0mGET /vv/issues/test123/mock?page=1&limit=10 [32m200[0m 626.405 ms - 80[0m
+2026-04-09 20:53:24 [[32minfo[39m]: [0mGET /vv/issues/test123/mock?page=1&limit=10 [36m304[0m 122.061 ms - -[0m
+2026-04-09 20:53:25 [[32minfo[39m]: [0mGET /vv/collaborators/invitations/pending [36m304[0m 283.874 ms - -[0m
+2026-04-09 20:53:25 [[32minfo[39m]: [0mGET /vv/collaborators/invitations/pending [36m304[0m 151.234 ms - -[0m
+2026-04-09 20:53:25 [[32minfo[39m]: [0mGET /vv/collaborators/test123/mock [32m200[0m 441.165 ms - 26[0m
+2026-04-09 20:53:26 [[32minfo[39m]: [0mGET /vv/collaborators/test123/mock [36m304[0m 174.487 ms - -[0m
+2026-04-09 20:53:54 [[32minfo[39m]: [0mGET /vv/collaborators/invitations/pending [36m304[0m 119.120 ms - -[0m
+2026-04-09 20:53:54 [[32minfo[39m]: [0mGET /vv/collaborators/test123/mock [36m304[0m 155.064 ms - -[0m
+2026-04-09 20:53:54 [[32minfo[39m]: [0mGET /vv/collaborators/invitations/pending [36m304[0m 76.174 ms - -[0m
+2026-04-09 20:53:54 [[32minfo[39m]: [0mGET /vv/collaborators/test123/mock [36m304[0m 131.910 ms - -[0m
+2026-04-09 20:53:59 [[32minfo[39m]: [0mGET /vv/issues/test123/mock?page=1&limit=10 [36m304[0m 216.721 ms - -[0m
+2026-04-09 20:54:06 [[32minfo[39m]: [0mGET /vv/issues/test123/mock?page=1&limit=10 [36m304[0m 6681.188 ms - -[0m
+2026-04-09 20:57:56 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 20:57:56 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 20:57:56 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 20:57:56 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 76.112 ms - -[0m
+2026-04-09 20:57:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 20:57:56 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 20:57:56 [[32minfo[39m]: [0mGET /vv/chats/conversations [32m200[0m 154.341 ms - 737[0m
+2026-04-09 20:57:56 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 72.046 ms - -[0m
+2026-04-09 20:57:56 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 20:57:56 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 20:57:56 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 20:57:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 20:57:57 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 20:57:57 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 170.211 ms - -[0m
+2026-04-09 21:01:22 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-09 21:01:22 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [33m401[0m 1.397 ms - 61[0m
+2026-04-09 21:01:22 [[31merror[39m]: GET /vv/chats/conversations — Invalid or expired access token
+2026-04-09 21:01:22 [[32minfo[39m]: [0mGET /vv/chats/conversations [33m401[0m 0.153 ms - 61[0m
+2026-04-09 21:01:42 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.821 ms - 44[0m
+2026-04-09 21:01:42 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 58.297 ms - 44[0m
+2026-04-09 21:01:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 54.601 ms - -[0m
+2026-04-09 21:01:43 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:01:43 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 55.157 ms - -[0m
+2026-04-09 21:01:43 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.002 ms - -[0m
+2026-04-09 21:01:43 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:01:43 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:01:43 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.918 ms - -[0m
+2026-04-09 21:01:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:01:43 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:01:43 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 108.276 ms - -[0m
+2026-04-09 21:01:43 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:01:43 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:01:43 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:01:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:01:44 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:01:44 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 1630.565 ms - -[0m
+2026-04-09 21:02:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.503 ms - 44[0m
+2026-04-09 21:02:18 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 54.805 ms - 44[0m
+2026-04-09 21:02:18 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 51.579 ms - -[0m
+2026-04-09 21:02:18 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:02:18 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 49.341 ms - -[0m
+2026-04-09 21:02:18 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:02:18 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:02:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 57.584 ms - -[0m
+2026-04-09 21:02:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:02:18 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:02:18 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 105.907 ms - -[0m
+2026-04-09 21:02:18 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:02:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.704 ms - -[0m
+2026-04-09 21:02:18 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:02:18 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:02:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:02:18 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:02:18 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 106.320 ms - -[0m
+2026-04-09 21:03:44 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:03:44 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 71.505 ms - -[0m
+2026-04-09 21:03:44 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:03:44 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:03:44 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:03:45 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:03:45 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 1103.890 ms - -[0m
+2026-04-09 21:04:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 75.276 ms - 44[0m
+2026-04-09 21:04:01 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 72.049 ms - 44[0m
+2026-04-09 21:04:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 90.424 ms - -[0m
+2026-04-09 21:04:01 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:04:01 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 70.800 ms - -[0m
+2026-04-09 21:04:01 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:04:01 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:04:01 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 74.610 ms - -[0m
+2026-04-09 21:04:01 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:04:01 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:04:01 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 167.958 ms - -[0m
+2026-04-09 21:04:01 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:04:01 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:04:01 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:04:02 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:04:02 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:04:02 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 177.930 ms - -[0m
+2026-04-09 21:04:02 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 880.336 ms - -[0m
+2026-04-09 21:04:04 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 54.701 ms - -[0m
+2026-04-09 21:04:04 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 103.210 ms - -[0m
+2026-04-09 21:04:05 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 647.315 ms - -[0m
+2026-04-09 21:04:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 230.557 ms - 44[0m
+2026-04-09 21:04:13 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 231.662 ms - 44[0m
+2026-04-09 21:04:14 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 763.459 ms - -[0m
+2026-04-09 21:04:14 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 102.630 ms - -[0m
+2026-04-09 21:04:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 70.935 ms - -[0m
+2026-04-09 21:04:14 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 137.085 ms - -[0m
+2026-04-09 21:04:14 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 111.387 ms - -[0m
+2026-04-09 21:04:18 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:04:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 54.529 ms - -[0m
+2026-04-09 21:04:18 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:04:18 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:04:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:04:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 54.006 ms - -[0m
+2026-04-09 21:04:19 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:04:19 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 522.523 ms - -[0m
+2026-04-09 21:04:19 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:04:19 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:04:19 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:04:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:04:19 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:04:19 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 106.242 ms - -[0m
+2026-04-09 21:05:28 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:05:28 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:05:28 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:05:28 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 76.260 ms - -[0m
+2026-04-09 21:05:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:05:28 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:05:28 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 117.796 ms - -[0m
+2026-04-09 21:07:00 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:07:00 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:07:00 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:07:00 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 112.811 ms - -[0m
+2026-04-09 21:07:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:07:00 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 62.669 ms - -[0m
+2026-04-09 21:07:00 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:07:00 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 173.037 ms - -[0m
+2026-04-09 21:07:00 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:07:00 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:07:00 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:07:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:07:01 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:07:01 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 485.063 ms - -[0m
+2026-04-09 21:10:25 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 62.805 ms - -[0m
+2026-04-09 21:10:25 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 115.613 ms - -[0m
+2026-04-09 21:10:25 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 93.024 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 24.697 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 29.079 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 45.997 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 51.299 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 16.083 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 17.822 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 25.068 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 24.014 ms - -[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [32m200[0m 191.029 ms - 399[0m
+2026-04-09 21:10:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 49.724 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 35.093 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 31.647 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 48.982 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 23.988 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.037 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 50.280 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 49.564 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 44.287 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 39.226 ms - -[0m
+2026-04-09 21:37:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 49.398 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 27.692 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 26.428 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 22.291 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 25.605 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 45.886 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 44.062 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 39.061 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 37.544 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 48.581 ms - -[0m
+2026-04-09 21:37:52 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 45.732 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 34.129 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 34.153 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 30.086 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 24.365 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 44.725 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 47.667 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 51.199 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 44.084 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 43.462 ms - -[0m
+2026-04-09 21:38:06 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 46.857 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 28.310 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 27.141 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 24.520 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 17.399 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 39.126 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 41.989 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 39.245 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 37.576 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 47.471 ms - -[0m
+2026-04-09 21:38:11 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 46.083 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 26.819 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 26.459 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 24.231 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 23.157 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 47.747 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 46.058 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 44.087 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 40.761 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 40.616 ms - -[0m
+2026-04-09 21:38:13 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 47.118 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 18.834 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 17.993 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 17.803 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 17.112 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 31.811 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 31.764 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 30.369 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 29.797 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 46.758 ms - -[0m
+2026-04-09 21:38:27 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 43.525 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 26.671 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 25.405 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 22.065 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.175 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 40.807 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 38.479 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 37.863 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 36.199 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 45.706 ms - -[0m
+2026-04-09 21:38:29 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 46.188 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 26.614 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 25.866 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 26.181 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 21.882 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 44.218 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 47.380 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 40.709 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 39.288 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 47.124 ms - -[0m
+2026-04-09 21:38:31 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 44.697 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 29.116 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 30.139 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 24.957 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 23.158 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 44.753 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 47.783 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 45.080 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 40.229 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 38.468 ms - -[0m
+2026-04-09 21:38:35 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 47.675 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 22.678 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.868 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 20.490 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 19.759 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 35.062 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 36.372 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 33.586 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 32.054 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 44.376 ms - -[0m
+2026-04-09 21:38:39 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 314.894 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 27.264 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 27.549 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 26.380 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 21.566 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 48.188 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 45.809 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 47.734 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 43.064 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 36.018 ms - -[0m
+2026-04-09 21:38:48 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 44.079 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 24.275 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 25.368 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 21.962 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 19.820 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 38.583 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 35.641 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 36.143 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 34.808 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 45.814 ms - -[0m
+2026-04-09 21:39:00 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 49.124 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 28.581 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 21.899 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 23.633 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 21.571 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 48.195 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 45.387 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 35.873 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 41.633 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 50.484 ms - -[0m
+2026-04-09 21:39:24 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 47.210 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 22.566 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 21.571 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 18.752 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 21.051 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 35.825 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 35.357 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 32.787 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 28.110 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 45.958 ms - -[0m
+2026-04-09 21:39:30 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 46.713 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 24.574 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 23.754 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 19.967 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 18.178 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 34.197 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 35.510 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 30.925 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 32.209 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 47.758 ms - -[0m
+2026-04-09 21:39:43 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 56.764 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 31.101 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 30.916 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 29.319 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 26.837 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 49.379 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 53.463 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 56.651 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 25.270 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 22.635 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 48.226 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 55.436 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 19.684 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 21.496 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 51.040 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 27.909 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 31.119 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 26.438 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 26.666 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 48.033 ms - -[0m
+2026-04-09 21:39:44 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 43.439 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 24.275 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 28.244 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 23.457 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 27.514 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 48.856 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 49.388 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 48.737 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 24.759 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 48.001 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 30.576 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 54.944 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 57.247 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 31.821 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 30.299 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 45.063 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 42.185 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 43.672 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 35.134 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 36.890 ms - -[0m
+2026-04-09 21:39:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 46.567 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 28.055 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 27.836 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 28.246 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 25.603 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 46.751 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 44.615 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 40.863 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 35.464 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 48.210 ms - -[0m
+2026-04-09 21:40:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 57.758 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 29.513 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 33.539 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 23.645 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 46.880 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 29.204 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 51.525 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 49.930 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 48.965 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 36.589 ms - -[0m
+2026-04-09 21:40:32 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 46.638 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 19.303 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 21.460 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 19.427 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 19.291 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 33.126 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 34.665 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 31.325 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 30.946 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 43.860 ms - -[0m
+2026-04-09 21:40:57 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 47.309 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 16.473 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 14.983 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 27.766 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 26.053 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 312.466 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 25.707 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 24.169 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 43.186 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 47.869 ms - -[0m
+2026-04-09 21:41:01 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 49.329 ms - -[0m
+2026-04-09 21:41:03 [[31merror[39m]: GET /vv/repo/jsurya114/newone/compare/b2c58ff~1/b2c58ff — Invalid or expired access token
+2026-04-09 21:41:03 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/b2c58ff~1/b2c58ff [33m401[0m 1.282 ms - 61[0m
+2026-04-09 21:41:04 [[31merror[39m]: GET /vv/repo/jsurya114/newone/compare/bf3ad5c~1/bf3ad5c — Invalid or expired access token
+2026-04-09 21:41:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/bf3ad5c~1/bf3ad5c [33m401[0m 0.617 ms - 61[0m
+2026-04-09 21:41:05 [[31merror[39m]: GET /vv/repo/jsurya114/newone/compare/a709511~1/a709511 — Invalid or expired access token
+2026-04-09 21:41:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/a709511~1/a709511 [33m401[0m 0.764 ms - 61[0m
+2026-04-09 21:41:08 [[31merror[39m]: GET /vv/repo/jsurya114/newone/compare/bf3ad5c~1/bf3ad5c — Invalid or expired access token
+2026-04-09 21:41:08 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/bf3ad5c~1/bf3ad5c [33m401[0m 0.810 ms - 61[0m
+2026-04-09 21:41:09 [[31merror[39m]: GET /vv/repo/jsurya114/newone/compare/b2c58ff~1/b2c58ff — Invalid or expired access token
+2026-04-09 21:41:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/b2c58ff~1/b2c58ff [33m401[0m 0.727 ms - 61[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 48.389 ms - 44[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.138 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 23.784 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 21.935 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 46.345 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 43.312 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/branches [36m304[0m 17.371 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/commits?branch=main&limit=20 [36m304[0m 19.116 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=false [36m304[0m 25.283 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/files?branch=main&path=&recursive=true [36m304[0m 24.151 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 300.975 ms - 44[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 49.710 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 574.316 ms - -[0m
+2026-04-09 21:41:15 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone [36m304[0m 44.288 ms - -[0m
+2026-04-09 21:41:16 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/a709511~1/a709511 [32m200[0m 42.799 ms - 79[0m
+2026-04-09 21:41:17 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/bf3ad5c~1/bf3ad5c [32m200[0m 75.333 ms - 756[0m
+2026-04-09 21:41:18 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/b2c58ff~1/b2c58ff [32m200[0m 67.750 ms - 880[0m
+2026-04-09 21:41:21 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/bf3ad5c~1/bf3ad5c [36m304[0m 74.449 ms - -[0m
+2026-04-09 21:41:23 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/a709511~1/a709511 [36m304[0m 26.631 ms - -[0m
+2026-04-09 21:41:26 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/newone/compare/b2c58ff~1/b2c58ff [36m304[0m 68.308 ms - -[0m
+2026-04-09 21:41:30 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 160.903 ms - -[0m
+2026-04-09 21:41:30 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 94.773 ms - -[0m
+2026-04-09 21:41:30 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 331.877 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 24.945 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 23.566 ms - -[0m
+2026-04-09 21:41:32 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 43.843 ms - 50[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 46.210 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 44.026 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/branches [36m304[0m 16.124 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/commits?branch=main&limit=20 [36m304[0m 17.821 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=true [36m304[0m 25.224 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/files?branch=main&path=&recursive=false [36m304[0m 26.497 ms - -[0m
+2026-04-09 21:41:32 [[31merror[39m]: GET /vv/repo/test123/practice — Repository not found
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/repo/test123/practice [33m404[0m 44.795 ms - 50[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 101.919 ms - -[0m
+2026-04-09 21:41:32 [[32minfo[39m]: [0mGET /vv/collaborators/test123/practice/check [36m304[0m 100.851 ms - -[0m
+2026-04-09 21:41:36 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/compare/e735b54~1/e735b54 [32m200[0m 190.397 ms - 1273[0m
+2026-04-09 21:41:40 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/compare/34e140c~1/34e140c [32m200[0m 161.857 ms - 1148[0m
+2026-04-09 21:41:42 [[32minfo[39m]: [0mGET /vv/repo/test123/practice/compare/ed64420~1/ed64420 [32m200[0m 178.881 ms - 79[0m
+2026-04-09 21:41:52 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 50.386 ms - -[0m
+2026-04-09 21:41:52 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 89.201 ms - -[0m
+2026-04-09 21:41:52 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 88.649 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 31.212 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 29.762 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 44.481 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 48.658 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 43.659 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/branches [36m304[0m 15.643 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/commits?branch=main&limit=20 [36m304[0m 17.040 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=false [36m304[0m 25.943 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/files?branch=main&path=&recursive=true [36m304[0m 24.303 ms - -[0m
+2026-04-09 21:41:56 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test [36m304[0m 47.496 ms - -[0m
+2026-04-09 21:41:59 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/320ba17~1/320ba17 [32m200[0m 69.293 ms - 979[0m
+2026-04-09 21:42:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/f336e79~1/f336e79 [32m200[0m 67.360 ms - 1099[0m
+2026-04-09 21:42:04 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/d1cca40~1/d1cca40 [32m200[0m 68.279 ms - 1048[0m
+2026-04-09 21:42:07 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/0d9cdd8~1/0d9cdd8 [32m200[0m 73.656 ms - 1168[0m
+2026-04-09 21:42:09 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/test/compare/0d2c552~1/0d2c552 [32m200[0m 34.963 ms - 79[0m
+2026-04-09 21:42:17 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [32m200[0m 99.243 ms - 1093[0m
+2026-04-09 21:42:17 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/test?page=1&limit=10 [36m304[0m 343.882 ms - -[0m
+2026-04-09 21:42:23 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:42:23 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:42:23 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:42:23 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:42:23 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:42:23 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 93.974 ms - -[0m
+2026-04-09 21:42:23 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:42:23 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:42:23 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:42:23 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:42:23 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:42:23 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 93.775 ms - -[0m
+2026-04-09 21:42:23 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 327.550 ms - -[0m
+2026-04-09 21:42:23 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 50.756 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.563 ms - 44[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.258 ms - 44[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.857 ms - 44[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.009 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.951 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 47.901 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 18.299 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 15.481 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:44:16 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 50.296 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 36.391 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 37.323 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/commits?branch=main&limit=20 [36m304[0m 19.471 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/branches [36m304[0m 17.494 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 48.729 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=false [36m304[0m 29.723 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock/files?branch=main&path=&recursive=true [36m304[0m 26.811 ms - -[0m
+2026-04-09 21:44:16 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.127 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 321.635 ms - 44[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.143 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/repo/test123/mock [36m304[0m 304.971 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 446.127 ms - -[0m
+2026-04-09 21:44:16 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-09 21:44:16 [[32minfo[39m]: Found 3 collaboration records for user 69c1305ef15538deb980a562
+2026-04-09 21:44:16 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698
+2026-04-09 21:44:16 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-09 21:44:16 [[32minfo[39m]: Successfully mapped 2 repositories to DTOs.
+2026-04-09 21:44:16 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 90.870 ms - -[0m

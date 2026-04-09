@@ -124,6 +124,8 @@ import { MongoChatRepository } from './infrastructure/database/mongoose/reposito
 import { SocketService } from './infrastructure/services/SocketService';
 import { ListChatRepoUseCase } from './application/use-cases/chats/LIstChatRepoUseCase';
 
+import { UploadFileUseCase } from './application/use-cases/repository/UploadFileUsecase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -132,7 +134,7 @@ container.register(TOKENS.IEmailService, { useClass: NodemailerService });
 container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 container.registerSingleton(GitService, GitService);
 container.registerSingleton(TOKENS.ILogger, WinstonLogger);
-container.registerSingleton(SocketService,SocketService)
+container.registerSingleton(SocketService, SocketService);
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
@@ -216,13 +218,14 @@ container.register(TOKENS.IGetRepoByIdUseCase, { useClass: GetRepoByIdUseCase })
 container.register(TOKENS.IForkRepoUseCase, { useClass: ForkRepoUseCase });
 container.register(TOKENS.IToggleStarUseCase, { useClass: ToggleStarUseCase });
 container.register(TOKENS.IGetStarsUseCase, { useClass: GetStarsUseCase });
+container.register(TOKENS.IUploadFileUseCase, { useClass: UploadFileUseCase });
 
 //chats
-container.register(TOKENS.ISendMessageUseCase,{useClass:SendMessageUseCase})
-container.register(TOKENS.IGetChatHistoryUseCase,{useClass:GetChatHistoryUseCase})
-container.register(TOKENS.IGetMessageUsecase,{useClass:GetMessageUseCase})
-container.register(TOKENS.IDeleteMessageUseCase,{useClass:DeleteMessageUseCase})
-container.register(TOKENS.IChatRepository,{useClass:MongoChatRepository})
+container.register(TOKENS.ISendMessageUseCase, { useClass: SendMessageUseCase });
+container.register(TOKENS.IGetChatHistoryUseCase, { useClass: GetChatHistoryUseCase });
+container.register(TOKENS.IGetMessageUsecase, { useClass: GetMessageUseCase });
+container.register(TOKENS.IDeleteMessageUseCase, { useClass: DeleteMessageUseCase });
+container.register(TOKENS.IChatRepository, { useClass: MongoChatRepository });
 
 //collabs
 container.register(TOKENS.ICollaboratorRepository, { useClass: MongoCollaboratorRepository });
@@ -247,6 +250,6 @@ container.register(TOKENS.ICommentRepository, { useClass: MongoCommentRepository
 container.register(TOKENS.ICreateCommentUseCase, { useClass: CreateCommentUseCase });
 container.register(TOKENS.IListCommentUseCase, { useClass: ListCommentUseCase });
 container.register(TOKENS.IDeleteCommentUseCase, { useClass: DeleteCommentUseCase });
-container.register(TOKENS.IListChatRepoUseCase,{useClass:ListChatRepoUseCase})
+container.register(TOKENS.IListChatRepoUseCase, { useClass: ListChatRepoUseCase });
 
 export { container };

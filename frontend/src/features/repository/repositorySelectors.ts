@@ -40,3 +40,6 @@ export const selectForkError = (state: RootState) => state.repository.forkError;
 
 export const selectISstarring = (state: RootState) => state.repository.isStarring;
 export const selectStarError = (state: RootState) => state.repository.starError;
+
+export const selectIsUploading = createSelector([selectBaseState], (state) => state.isUploading);
+export const selectUploadError = createSelector([selectBaseState], (state) => state.uploadError);

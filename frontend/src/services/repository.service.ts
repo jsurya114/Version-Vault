@@ -127,4 +127,19 @@ export const repositoryService = {
     const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/star/users`);
     return res.data.data;
   },
+
+  uploadFiles: async (repoName: string, files: File[]) => {
+    const formData = new FormData();
+    formData.append('repositoryName', repoName);
+    files.forEach((file) => {
+      formData.append('files', file);
+      formData.append('filePaths', file.webkitRelativePath || file.name);
+    });
+    const response = await axiosInstance.post(REPO_ENDPOINTS.UPLOAD, formData, {
+      headers: {
+        'Content-Type': 'multipart/form-data',
+      },
+    });
+    return response.data;
+  },
 };

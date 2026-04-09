@@ -1,6 +1,15 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Star, Filter, ChevronDown, BookOpen, MoreHorizontal, GitMerge, Smile } from 'lucide-react';
+import {
+  Star,
+  Filter,
+  ChevronDown,
+  BookOpen,
+  MoreHorizontal,
+  GitMerge,
+  Smile,
+  Users,
+} from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
 import { listRepositoryThunk } from '../../../features/repository/repositoryThunks';
@@ -8,6 +17,8 @@ import {
   selectRepositories,
   selectRepositoryLoading,
 } from '../../../features/repository/repositorySelectors';
+import { listChatRepoThunk } from '../../../features/chats/chatThunk';
+import { selectChatConversations } from '../../../features/chats/chatSelector';
 import { ROUTES } from '../../../constants/routes';
 import AppHeader from '../../../types/common/Layout/AppHeader';
 import AppFooter from '../../../types/common/Layout/AppFooter';
@@ -31,8 +42,10 @@ const HomePage = () => {
   const user = useAppSelector(selectAuthUser);
   const repositories = useAppSelector(selectRepositories);
   const repoLoading = useAppSelector(selectRepositoryLoading);
+  const collabRepos = useAppSelector(selectChatConversations);
 
   const [repoSearch, setRepoSearch] = useState('');
+  const [collabSearch, setCollabSearch] = useState('');
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   useEffect(() => {
@@ -49,13 +62,28 @@ const HomePage = () => {
 
   useEffect(() => {
     dispatch(listRepositoryThunk({}));
+    dispatch(listChatRepoThunk());
   }, [dispatch]);
 
+  const collabRepoIds = useMemo(() => {
+    if (!collabRepos) return new Set<string>();
+    return new Set(collabRepos.map((r) => r.id));
+  }, [collabRepos]);
+
   const filteredRepos = useMemo(() => {
-    return repositories.filter((r) => r.name.toLowerCase().includes(repoSearch.toLowerCase()));
-  }, [repositories, repoSearch]);
+    return repositories
+      .filter((r) => !collabRepoIds.has(r.id))
+      .filter((r) => r.name.toLowerCase().includes(repoSearch.toLowerCase()));
+  }, [repositories, repoSearch, collabRepoIds]);
 
   const topRepos = useMemo(() => filteredRepos.slice(0, 7), [filteredRepos]);
+
+  const filteredCollabRepos = useMemo(() => {
+    if (!collabRepos) return [];
+    return collabRepos.filter((r) => r.name.toLowerCase().includes(collabSearch.toLowerCase()));
+  }, [collabRepos, collabSearch]);
+
+  const topCollabRepos = useMemo(() => filteredCollabRepos.slice(0, 7), [filteredCollabRepos]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans">
@@ -100,6 +128,41 @@ const HomePage = () => {
                 </button>
               )}
             </div>
+          )}
+
+          {/* COLLABORATED REPOSITORIES */}
+          {collabRepos && collabRepos.length > 0 && (
+            <>
+              <div className="border-t border-gray-800 pt-4 mt-4">
+                <div className="flex items-center gap-2 mb-2">
+                  <Users className="w-4 h-4 text-blue-400" />
+                  <h2 className="text-white text-sm font-semibold">Collaborated</h2>
+                </div>
+
+                <div className="relative mt-2">
+                  <input
+                    type="text"
+                    placeholder="Find a collab repo..."
+                    value={collabSearch}
+                    onChange={(e) => setCollabSearch(e.target.value)}
+                    className="w-full bg-gray-900 border border-gray-800 rounded-md px-3 py-1.5 text-sm text-gray-300 placeholder-gray-500 focus:outline-none focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition"
+                  />
+                </div>
+
+                <div className="space-y-3 mt-4">
+                  {topCollabRepos.length === 0 ? (
+                    <div className="text-sm text-gray-500 mt-4">No collab repos found</div>
+                  ) : (
+                    topCollabRepos.map((repo) => <SideRepoLink key={repo.id} repo={repo} />)
+                  )}
+                  {filteredCollabRepos.length > 7 && (
+                    <button className="text-xs text-gray-500 hover:text-blue-500 mt-2 block">
+                      Show more
+                    </button>
+                  )}
+                </div>
+              </div>
+            </>
           )}
         </div>
 

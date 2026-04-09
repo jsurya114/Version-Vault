@@ -15,6 +15,7 @@ import {
   updateVisibilityThunk,
   forkRepoThunk,
   toggleStarThunk,
+  fileUploadThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -254,6 +255,18 @@ const repositorySlice = createSlice({
       .addCase(toggleStarThunk.rejected, (state, action) => {
         state.isStarring = false;
         state.starError = action.payload as string;
+      })
+
+      .addCase(fileUploadThunk.pending, (state) => {
+        state.isUploading = true;
+        state.uploadError = null;
+      })
+      .addCase(fileUploadThunk.fulfilled, (state) => {
+        state.isUploading = false;
+      })
+      .addCase(fileUploadThunk.rejected, (state, action) => {
+        state.isUploading = false;
+        state.uploadError = action.payload as string;
       });
   },
 });

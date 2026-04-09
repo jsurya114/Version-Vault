@@ -92,6 +92,8 @@ export interface RepositoryState {
   isStarring: boolean;
   starError: string | null;
   error: string | null;
+  isUploading: boolean;
+  uploadError: string | null;
   meta: {
     total: number;
     page: number;
@@ -116,6 +118,8 @@ export const repositoryInitialState: RepositoryState = {
   isStarring: false,
   starError: null,
   error: null,
+  isUploading: false,
+  uploadError: null,
   meta: {
     total: 0,
     page: 1,
