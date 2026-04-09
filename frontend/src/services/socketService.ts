@@ -1,5 +1,4 @@
 import { io, Socket } from 'socket.io-client';
-import Cookies from 'js-cookie';
 
 const SOCKET_URL = import.meta.env.VITE_SOCKET_URL;
 

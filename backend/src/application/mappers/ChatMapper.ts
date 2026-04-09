@@ -13,15 +13,16 @@ export class ChatMapper {
     };
   }
 
-  public static toEntity(doc: any): IChatMessage {
+  public static toEntity(doc: unknown): IChatMessage {
+    const d = doc as IChatMessage & { _id?: { toString(): string } };
     return {
-      id: doc._id.toString(),
-      repositoryId: doc.repositoryId.toString(),
-      senderId: doc.senderId.toString(),
-      senderUsername: doc.senderUsername,
-      content: doc.content,
-      createdAt: doc.createdAt?.toISOString(),
-      updatedAt: doc.updatedAt?.toISOString(),
+      id: d.id?.toString() || d._id?.toString() || '',
+      repositoryId: d.repositoryId.toString(),
+      senderId: d.senderId.toString(),
+      senderUsername: d.senderUsername,
+      content: d.content,
+      createdAt: d.createdAt,
+      updatedAt: d.updatedAt,
     };
   }
 }

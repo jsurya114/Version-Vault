@@ -1,10 +1,5 @@
 import axiosInstance from './axiosInstance';
 import { CHAT_ENDPOINTS } from '../constants/api';
-import {
-  ChatMessage,
-  FetchChatHistoryParams,
-  SendMessageHttpParams,
-} from '../types/chat/chatTypes';
 import { PaginationQuery } from '../types/common/Pagination/paginationTypes';
 
 export const chatService = {

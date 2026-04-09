@@ -48,6 +48,7 @@ export const StarButton: React.FC<StarButtonProps> = ({
     } catch (err) {
       setIsStarred(wasStarred);
       setStarsCount(initialStars);
+      console.error(err);
     }
   };
 

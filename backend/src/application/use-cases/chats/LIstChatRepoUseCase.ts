@@ -5,7 +5,8 @@ import { TOKENS } from '../../../shared/constants/tokens';
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 import { IListChatRepoUseCase } from '../../../application/use-cases/interfaces/chats/IListChatRepoUseCase';
 import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
-import { logger } from 'src/shared/logger/Logger';
+import { logger } from '../../../shared/logger/Logger';
+import { IRepository } from '../../../domain/interfaces/IRepository';
 
 @injectable()
 export class ListChatRepoUseCase implements IListChatRepoUseCase {
@@ -36,7 +37,7 @@ export class ListChatRepoUseCase implements IListChatRepoUseCase {
       }),
     );
 
-    const filteredRepos = repos.filter((r): r is any => r !== null);
+    const filteredRepos = repos.filter((r): r is IRepository => r !== null);
     logger.info(`Successfully mapped ${filteredRepos.length} repositories to DTOs.`);
     return filteredRepos.map(RepositoryMapper.toDTO);
   }

@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Send, MessageSquare, Search, ChevronRight, Clock, Trash2 } from 'lucide-react';
+import { Send, MessageSquare, ChevronRight, Clock, Trash2 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
 import {

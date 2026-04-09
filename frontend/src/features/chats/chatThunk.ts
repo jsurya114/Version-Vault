@@ -1,10 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { chatService } from '../../services/chat.service';
-import {
-  FetchChatHistoryParams,
-  SendMessageHttpParams,
-  ChatMessage,
-} from 'src/types/chat/chatTypes';
+import { FetchChatHistoryParams } from 'src/types/chat/chatTypes';
 import { RepositoryResponseDTO } from 'src/types/repository/repositoryTypes';
 
 export const fetchChatHistoryThunk = createAsyncThunk(

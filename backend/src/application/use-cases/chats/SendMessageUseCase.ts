@@ -5,7 +5,6 @@ import { CreateMessageDTO } from '../../../application/dtos/user/CreateMessageDT
 import { MessageResponseDTO } from '../../../application/dtos/user/MessageResponseDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { ChatMapper } from '../../../application/mappers/ChatMapper';
-import { IChatMessage } from 'src/domain/interfaces/IChatMessage';
 
 @injectable()
 export class SendMessageUseCase implements ISendMessageUseCase {
