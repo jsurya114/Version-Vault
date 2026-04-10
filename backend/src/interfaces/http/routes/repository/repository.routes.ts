@@ -95,4 +95,9 @@ router.post(
   uploadRepoFiles.array('files'), // "files" is the form-data key
   (req, res, next) => fileUploadController.fileUpload(req as AuthRequest, res, next),
 );
+
+router.get('/:username/:reponame/active-branches', authMiddleware, (req, res, next) =>
+  repoController.getActiveBranches(req, res, next),
+);
+
 export default router;

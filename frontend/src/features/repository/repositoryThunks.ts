@@ -243,3 +243,15 @@ export const fileUploadThunk = createAsyncThunk(
     }
   },
 );
+
+export const getRecentPushThunk = createAsyncThunk<GitBranch[], RepoParams>(
+  'repository/getRecentPush',
+  async ({ username, reponame }, { rejectWithValue }) => {
+    try {
+      return await repositoryService.getActiveBranches(username, reponame);
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch recent pushes');
+    }
+  },
+);

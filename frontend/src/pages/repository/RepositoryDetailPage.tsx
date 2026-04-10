@@ -32,6 +32,7 @@ import {
   getFileContentThunk,
   getBranchesThunk,
   deleteBranchThunk,
+  getRecentPushThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
@@ -66,6 +67,7 @@ import {
   selectCompareData,
   selectCompareLoading,
 } from '../../features/commit/compareCommitSelectors';
+import { RecentPushesBanner } from './components/RecentPushesBanner';
 
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
@@ -117,6 +119,7 @@ const RepositoryDetailPage = () => {
     subtitle: '',
   });
 
+  const activeBranches = useAppSelector((state) => state.repository.activeBranches || []);
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
@@ -137,6 +140,7 @@ const RepositoryDetailPage = () => {
 
       dispatch(getRepositoryThunk({ username, reponame }));
       dispatch(getBranchesThunk({ username, reponame }));
+      dispatch(getRecentPushThunk({ username, reponame }));
     }
   }, [username, reponame, branch, dispatch]);
 
@@ -808,6 +812,14 @@ const RepositoryDetailPage = () => {
             {/* NON-EMPTY STATE */}
             {!isEmpty && (
               <>
+                {activeBranches.length > 0 && !selectedFile && (
+                  <RecentPushesBanner
+                    username={username!}
+                    reponame={reponame!}
+                    branches={activeBranches}
+                    defaultBranch={repo.defaultBranch}
+                  />
+                )}
                 {/* Latest commit bar */}
                 {latestCommit && !selectedFile && (
                   <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-3 bg-gray-900/30 shrink-0">

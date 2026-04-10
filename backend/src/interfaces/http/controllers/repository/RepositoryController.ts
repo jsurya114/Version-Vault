@@ -19,6 +19,7 @@ import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenServ
 import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { IGetStarUseCase } from '../../../../application/use-cases/interfaces/repository/IGetStarsUseCase';
+import { IGetActiveBranchUseCase } from '../../../../application/use-cases/interfaces/repository/IGetActiveBranchUseCase';
 
 export interface AuthRequest extends Request {
   user: ITokenPayload;
@@ -39,6 +40,7 @@ export class RepositoryController {
     @inject(TOKENS.IForkRepoUseCase) private _forkRepoUseCase: IForkRepoUseCase,
     @inject(TOKENS.IToggleStarUseCase) private _toggleStarUseCase: IToggleStarUseCase,
     @inject(TOKENS.IGetStarsUseCase) private _getStarsUseCase: IGetStarUseCase,
+    @inject(TOKENS.IGetActiveBranchUseCase) private _getActiveBranch: IGetActiveBranchUseCase,
   ) {}
 
   /**
@@ -239,6 +241,16 @@ export class RepositoryController {
       const { username, reponame } = req.params;
       const users = await this._getStarsUseCase.execute(username, reponame);
       res.status(HttpStatusCodes.OK).json({ success: true, data: users });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getActiveBranches(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame } = req.params;
+      const branches = await this._getActiveBranch.execute(username, reponame);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: branches });
     } catch (error) {
       next(error);
     }

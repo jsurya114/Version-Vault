@@ -16,6 +16,7 @@ import {
   forkRepoThunk,
   toggleStarThunk,
   fileUploadThunk,
+  getRecentPushThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -267,6 +268,11 @@ const repositorySlice = createSlice({
       .addCase(fileUploadThunk.rejected, (state, action) => {
         state.isUploading = false;
         state.uploadError = action.payload as string;
+      })
+
+      //getActive branches
+      .addCase(getRecentPushThunk.fulfilled, (state, action) => {
+        state.activeBranches = action.payload;
       });
   },
 });

@@ -142,4 +142,11 @@ export const repositoryService = {
     });
     return response.data;
   },
+
+  getActiveBranches: async (username: string, reponame: string) => {
+    const res = await axiosInstance.get(
+      `${REPO_ENDPOINTS.GET}/${username}/${reponame}/active-branches`,
+    );
+    return res.data.data;
+  },
 };

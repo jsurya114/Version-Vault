@@ -86,6 +86,7 @@ export const TOKENS = {
   IToggleStarUseCase: Symbol.for('IToggleStarUseCase'),
   IGetStarsUseCase: Symbol.for('IGetStarsUseCase'),
   IUploadFileUseCase: Symbol.for('IUploadFileUseCase'),
+  IGetActiveBranchUseCase: Symbol.for('IGetActiveBranchUseCase'),
 
   // Collaborator
   ICollaboratorRepository: Symbol.for('ICollaboratorRepository'),

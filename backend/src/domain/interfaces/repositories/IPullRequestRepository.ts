@@ -10,4 +10,5 @@ export interface IPullRequestRepository extends IBaseRepository<IPullRequest> {
     repositoryId: string,
     query: PaginationQueryDTO,
   ): Promise<PaginatedResponseDTO<IPullRequest>>;
+  existOpenPR(repositoryId: string, sourceBranch: string, targetBranch: string): Promise<boolean>;
 }

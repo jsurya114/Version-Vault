@@ -125,6 +125,7 @@ import { SocketService } from './infrastructure/services/SocketService';
 import { ListChatRepoUseCase } from './application/use-cases/chats/LIstChatRepoUseCase';
 
 import { UploadFileUseCase } from './application/use-cases/repository/UploadFileUsecase';
+import { GetActiveBranchUseCase } from './application/use-cases/repository/GetActiveBranchUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -219,6 +220,7 @@ container.register(TOKENS.IForkRepoUseCase, { useClass: ForkRepoUseCase });
 container.register(TOKENS.IToggleStarUseCase, { useClass: ToggleStarUseCase });
 container.register(TOKENS.IGetStarsUseCase, { useClass: GetStarsUseCase });
 container.register(TOKENS.IUploadFileUseCase, { useClass: UploadFileUseCase });
+container.register(TOKENS.IGetActiveBranchUseCase, { useClass: GetActiveBranchUseCase });
 
 //chats
 container.register(TOKENS.ISendMessageUseCase, { useClass: SendMessageUseCase });

@@ -11,6 +11,7 @@ import {
   DiffHunk,
 } from '../../domain/interfaces/IGitTypes';
 import { NotFoundError } from 'src/domain/errors/NotFoundError';
+import { logger } from 'src/shared/logger/Logger';
 
 @injectable()
 export class GitService {
@@ -225,18 +226,19 @@ export class GitService {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
-      const format = '%(refname:short)|%(committerdate:iso8601)|%(authorname)';
+      const format = '%(refname:short)|%(committerdate:iso8601)|%(authorname)|%(subject)';
       const result = await git.raw(['branch', `--format=${format}`]);
       return result
         .trim()
         .split('\n')
         .filter(Boolean)
         .map((l) => {
-          const [name, date, author] = l.split('|');
+          const [name, date, author, message] = l.split('|');
           return {
             name,
             lastCommitDate: date,
             lastCommitAuthor: author,
+            lastCommitMessage: message,
             current: false,
           };
         });
@@ -529,6 +531,24 @@ export class GitService {
       throw error;
     } finally {
       if (fs.existsSync(indexFile)) fs.unlinkSync(indexFile);
+    }
+  }
+
+  async isAhead(
+    ownerUsername: string,
+    repoName: string,
+    base: string,
+    head: string,
+  ): Promise<boolean> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      // Get number of commits that are in 'head' but not in 'base'
+      const count = await git.raw(['rev-list', '--count', `${base}..${head}`]);
+      return parseInt(count.trim(), 10) > 0;
+    } catch (error) {
+      logger.error(`Error checking if ${head} is ahead of ${base}:`, error);
+      return false;
     }
   }
 }

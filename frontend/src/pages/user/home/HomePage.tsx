@@ -66,9 +66,9 @@ const HomePage = () => {
   }, [dispatch]);
 
   const collabRepoIds = useMemo(() => {
-    if (!collabRepos) return new Set<string>();
-    return new Set(collabRepos.map((r) => r.id));
-  }, [collabRepos]);
+    if (!collabRepos || !user) return new Set<string>();
+    return new Set(collabRepos.filter((r) => r.ownerUsername !== user.userId).map((r) => r.id));
+  }, [collabRepos, user]);
 
   const filteredRepos = useMemo(() => {
     return repositories
@@ -79,9 +79,11 @@ const HomePage = () => {
   const topRepos = useMemo(() => filteredRepos.slice(0, 7), [filteredRepos]);
 
   const filteredCollabRepos = useMemo(() => {
-    if (!collabRepos) return [];
-    return collabRepos.filter((r) => r.name.toLowerCase().includes(collabSearch.toLowerCase()));
-  }, [collabRepos, collabSearch]);
+    if (!collabRepos || !user) return [];
+    return collabRepos
+      .filter((r) => r.ownerUsername !== user.userId)
+      .filter((r) => r.name.toLowerCase().includes(collabSearch.toLowerCase()));
+  }, [collabRepos, collabSearch, user]);
 
   const topCollabRepos = useMemo(() => filteredCollabRepos.slice(0, 7), [filteredCollabRepos]);
 

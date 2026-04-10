@@ -31,4 +31,20 @@ export class MongoPullRequestRepository
     if (query.search) filter.title = { $regex: query.search, $options: 'i' };
     return this.findWithpagination(filter, query);
   }
+
+  async existOpenPR(
+    repositoryId: string,
+    sourceBranch: string,
+    targetBranch: string,
+  ): Promise<boolean> {
+    const pr = await this.model
+      .findOne({
+        repositoryId,
+        sourceBranch,
+        targetBranch,
+        status: 'open',
+      })
+      .lean();
+    return !!pr;
+  }
 }
