@@ -3,4 +3,5 @@ export interface ActiveBranchDTO {
   lastCommitDate: string;
   lastCommitAuthor: string;
   lastCommitMessage: string;
+  isRejected?: boolean;
 }

@@ -75,11 +75,9 @@ import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 const RepositoryDetailPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { username, reponame, branchName } = useParams<{
-    username: string;
-    reponame: string;
-    branchName?: string;
-  }>();
+  const params = useParams();
+  const { username, reponame } = params;
+  const branchName = params['*'];
   const repo = useAppSelector(selectSelectedRepository);
   const isLoading = useAppSelector(selectRepositoryLoading);
   const branches = useAppSelector(selectBranches);
@@ -812,7 +810,7 @@ const RepositoryDetailPage = () => {
             {/* NON-EMPTY STATE */}
             {!isEmpty && (
               <>
-                {activeBranches.length > 0 && !selectedFile && (
+                {isOwner && activeBranches.length > 0 && !selectedFile && (
                   <RecentPushesBanner
                     username={username!}
                     reponame={reponame!}

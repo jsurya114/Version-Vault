@@ -24,7 +24,7 @@ export const ROUTES = {
   REPO_LIST: '/repos',
   REPO_CREATE: '/repos/new',
   REPO_DETAIL: '/:username/:reponame',
-  REPO_BRANCH_DETAIL: '/:username/:reponame/tree/:branchName',
+  REPO_BRANCH_DETAIL: '/:username/:reponame/tree/*',
 
   // Admin
   ADMIN_LOGIN: '/admin/login',
@@ -49,15 +49,15 @@ export const ROUTES = {
   BRANCH_LIST: '/:username/:reponame/branches',
 
   //compare
-  REPO_COMPARE: '/:username/:reponame/compare/:range',
+  REPO_COMPARE: '/:username/:reponame/compare/*',
   COMMIT_DETAIL: '/:username/:reponame/commit/:hash',
 
-    // Invitation
+  // Invitation
   ACCEPT_INVITATION: '/invitation/accept/:token',
 
   //chats
   REPO_CHAT: '/:username/:reponame/chat',
-  CHAT_LIST: '/chat',  
+  CHAT_LIST: '/chat',
 
   // Error
   NOT_FOUND: '*',

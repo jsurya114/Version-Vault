@@ -25,7 +25,13 @@ import { GitPullRequest } from 'lucide-react';
 import { FileDiffViewer } from './components/DiffViewer';
 
 const CompareCommitPage = () => {
-  const { username, reponame, base: urlBase, head: urlHead } = useParams();
+  const params = useParams();
+  const { username, reponame } = params;
+  const range = params['*'];
+
+  // Parse branches from the "base...head" URL format if available
+  const [urlBase, urlHead] = range?.split('...') || ['main', ''];
+
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
 
@@ -34,7 +40,6 @@ const CompareCommitPage = () => {
   const data = useAppSelector(selectCompareData);
   const isLoading = useAppSelector(selectCompareLoading);
 
-  // Parse branches from the "base...head" URL format if available
   const initialBase = urlBase || 'main';
   const initialHead = urlHead || '';
 
@@ -76,26 +81,24 @@ const CompareCommitPage = () => {
     );
   }, [data?.commits, navigate, username, reponame, base, head]);
   const groupCommitsByDate = (commits: GitCommit[]) => {
-return commits.reduce(
-  (acc,commit)=>{
-    const date = new Date(commit.date).toLocaleDateString('en-US',{
-      month:'short',
-      day:'numeric',
-      year:'numeric'
-    })
-    if(!acc[date]) acc[date]=[]
-    acc[date].push(commit)
-    return acc
-  },
-  {} as Record<string, GitCommit[]>,
-)
+    return commits.reduce(
+      (acc, commit) => {
+        const date = new Date(commit.date).toLocaleDateString('en-US', {
+          month: 'short',
+          day: 'numeric',
+          year: 'numeric',
+        });
+        if (!acc[date]) acc[date] = [];
+        acc[date].push(commit);
+        return acc;
+      },
+      {} as Record<string, GitCommit[]>,
+    );
   };
 
   const commitGroups = useMemo(() => {
     return data?.commits ? groupCommitsByDate(data.commits) : {};
   }, [data?.commits]);
-
-
 
   const CommitItem = React.memo(
     ({ commit, onClick }: { commit: GitCommit; onClick: () => void }) => (

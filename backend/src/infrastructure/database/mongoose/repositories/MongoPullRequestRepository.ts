@@ -47,4 +47,21 @@ export class MongoPullRequestRepository
       .lean();
     return !!pr;
   }
+
+  async findLatestOpenPR(
+    repositoryId: string,
+    sourceBranch: string,
+    targetBranch: string,
+  ): Promise<IPullRequest | null> {
+    const pr = await this.model
+      .findOne({
+        repositoryId,
+        sourceBranch,
+        targetBranch,
+        status: 'open',
+      })
+      .sort({ createdAt: -1 })
+      .lean({});
+    return pr ? this.toEntity(pr) : null;
+  }
 }

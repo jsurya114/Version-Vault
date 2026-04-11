@@ -37,14 +37,15 @@ export class GetActiveBranchUseCase implements IGetActiveBranchUseCase {
       if (!ahead) continue;
 
       //does it already have an open pr
-      const prExists = await this._pullrequestRepo.existOpenPR(repo.id!, b.name, defaultBranch);
-      if (prExists) continue;
+      const pr = await this._pullrequestRepo.findLatestOpenPR(repo.id!, b.name, defaultBranch);
+      if (pr && pr.mergeApproval !== 'rejected') continue;
 
       activeBranches.push({
         name: b.name,
         lastCommitDate: b.lastCommitDate || '',
         lastCommitAuthor: b.lastCommitAuthor || '',
         lastCommitMessage: b.lastCommitMessage || '',
+        isRejected: pr?.mergeApproval === 'rejected',
       });
     }
     //sort by most recently updated

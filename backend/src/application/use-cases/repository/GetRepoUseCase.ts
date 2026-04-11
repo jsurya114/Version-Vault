@@ -6,10 +6,14 @@ import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 import { RepositoryVisibility } from 'src/domain/enums';
+import { ICollaboratorRepository } from 'src/domain/interfaces/repositories/ICollaboratorRepository';
 
 @injectable()
 export class GetRepoUseCase implements IGetRepoUseCase {
-  constructor(@inject(TOKENS.IRepoRepository) private repoRepository: IRepoRepository) {}
+  constructor(
+    @inject(TOKENS.IRepoRepository) private repoRepository: IRepoRepository,
+    @inject(TOKENS.ICollaboratorRepository) private _collabRepo: ICollaboratorRepository,
+  ) {}
 
   async execute(
     ownerUsername: string,
@@ -26,8 +30,15 @@ export class GetRepoUseCase implements IGetRepoUseCase {
     }
 
     if (repo.visibility === RepositoryVisibility.PRIVATE) {
-      if (!authenticatedUserId || repo.ownerId.toString() !== authenticatedUserId.toString()) {
-        throw new NotFoundError('Repository not found');
+      const isOwner =
+        authenticatedUserId && repo.ownerId?.toString() === authenticatedUserId.toString();
+      let iscollabed = false;
+      if (!isOwner && authenticatedUserId) {
+        const collab = await this._collabRepo.findByRepoAndUser(repo.id!, authenticatedUserId);
+        if (collab) iscollabed = true;
+      }
+      if (!isOwner && !iscollabed) {
+        throw new Error('Repository not found');
       }
     }
     return RepositoryMapper.toDTO(repo);
