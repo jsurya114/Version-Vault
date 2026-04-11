@@ -8,6 +8,7 @@ import {
   Clock,
   CheckCircle2,
   GitPullRequest,
+  GitMerge,
   Info,
   X,
 } from 'lucide-react';
@@ -59,7 +60,6 @@ const BranchRow = React.memo(
     reponame: string;
   }) => {
     const navigate = useNavigate();
-    const user = useAppSelector((state) => state.auth.user);
 
     const handleDelete = useCallback(
       (e: React.MouseEvent) => {
@@ -68,6 +68,11 @@ const BranchRow = React.memo(
       },
       [onDelete, branch.name],
     );
+
+    // Dynamic Bar Calculation
+    const totalDiff = (branch.behind || 0) + (branch.ahead || 0);
+    const behindPercent = totalDiff > 0 ? ((branch.behind || 0) / totalDiff) * 100 : 0;
+    const aheadPercent = totalDiff > 0 ? ((branch.ahead || 0) / totalDiff) * 100 : 0;
 
     return (
       <div
@@ -85,53 +90,95 @@ const BranchRow = React.memo(
           )}
         </div>
 
-        <div className="flex items-center gap-2.5 text-gray-400 text-xs">
-          <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm overflow-hidden border border-gray-800">
-            {isOwner && user?.avatar ? (
-              <img
-                src={user.avatar}
-                alt={branch.lastCommitAuthor}
-                className="w-full h-full object-cover"
-              />
-            ) : (
-              branch.lastCommitAuthor?.[0] || 'U'
-            )}
+        <div className="flex flex-col gap-1 text-gray-400">
+          <div className="flex items-center gap-2 text-xs">
+            <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm border border-gray-800">
+              {branch.lastCommitAuthor?.[0] || 'U'}
+            </div>
+            <span className="font-medium text-gray-300">
+              {branch.lastCommitAuthor || 'Unknown User'}
+            </span>
           </div>
-          <span>{timeAgo(branch.lastCommitDate || '')}</span>
+          <div className="flex items-center gap-1.5 text-[10px] text-gray-500 ml-7">
+            <Clock className="w-3 h-3" />
+            pushed {timeAgo(branch.lastCommitDate || '')}
+          </div>
         </div>
 
-        <div
-          className={`flex items-center gap-1.5 text-xs font-medium ${
-            branch.status === 'success'
-              ? 'text-green-500'
-              : branch.status === 'failure'
-                ? 'text-red-500'
-                : branch.status === 'pending'
-                  ? 'text-yellow-500'
-                  : 'text-gray-600'
-          }`}
-        >
-          {branch.status === 'success' && <CheckCircle2 className="w-3.5 h-3.5" />}
-          {branch.status === 'failure' && <X className="w-3.5 h-3.5 text-red-500" />}
-          {branch.status === 'pending' && <Clock className="w-3.5 h-3.5 animate-spin" />}
-
-          <span>{branch.checks || '--'}</span>
+        <div className={`flex items-center gap-1.5 text-xs font-medium text-gray-600`}>
+          {/* Placeholder for CI/CD checks logic */}
+          <span className="opacity-50">--</span>
         </div>
 
-        <div className="flex items-center justify-center">
-          <div className="flex bg-gray-800/50 h-1.5 w-16 rounded-full overflow-hidden ring-1 ring-white/5">
-            <div className="bg-gray-600 h-full" style={{ width: '60%' }} />
-            <div className="bg-blue-500 h-full border-l border-gray-950" style={{ width: '40%' }} />
-          </div>
-          <span className="text-[10px] text-gray-500 ml-2.5 tabular-nums">3 | 2</span>
+        {/* Dynamic Behind/Ahead Section */}
+        <div className="flex items-center justify-center min-w-[120px]">
+          {totalDiff > 0 ? (
+            <div className="flex items-center gap-3 bg-white/5 px-2 py-1 rounded-md border border-white/5">
+              <div className="relative flex bg-gray-800 h-1.5 w-16 rounded-full overflow-hidden shadow-inner">
+                <div
+                  className="bg-gray-500 h-full transition-all duration-500"
+                  style={{ width: `${behindPercent}%` }}
+                />
+                <div
+                  className="bg-blue-400 h-full border-l border-gray-950 shadow-[0_0_8px_rgba(96,165,250,0.5)] transition-all duration-500"
+                  style={{ width: `${aheadPercent}%` }}
+                />
+              </div>
+              <div className="flex items-center gap-1 font-mono text-[10px] tabular-nums font-bold">
+                <span className={branch.behind ? 'text-gray-300' : 'text-gray-600'}>
+                  {branch.behind || 0}
+                </span>
+                <span className="text-gray-700">|</span>
+                <span className={branch.ahead ? 'text-blue-400' : 'text-gray-600'}>
+                  {branch.ahead || 0}
+                </span>
+              </div>
+            </div>
+          ) : (
+            <div className="flex items-center gap-3 opacity-40 grayscale group-hover:opacity-100 group-hover:grayscale-0 transition-radius duration-300">
+              <div className="h-1 w-16 bg-gray-800 rounded-full" />
+              <span className="text-[10px] text-gray-700 font-mono">0 | 0</span>
+            </div>
+          )}
         </div>
 
         <div className="flex items-center justify-end gap-4">
-          {!isDefault && (
-            <div className="flex items-center gap-1.5 text-gray-500 hover:text-blue-400 transition cursor-pointer text-[10px] font-bold">
-              <GitPullRequest className="w-3.5 h-3.5" /> #4
+          {!isDefault && branch.prId ? (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/${username}/${reponame}/pulls/${branch.prId}`);
+              }}
+              className={`flex items-center gap-1.5 transition cursor-pointer text-[11px] font-bold px-2 py-1 rounded border 
+                ${
+                  branch.prStatus === 'merged'
+                    ? 'text-purple-400 hover:text-purple-300 bg-purple-500/10 border-purple-500/30'
+                    : branch.prStatus === 'closed'
+                      ? 'text-red-400 hover:text-red-300 bg-red-500/10 border-red-500/30'
+                      : 'text-green-400 hover:text-green-300 bg-green-500/10 border-green-500/30'
+                }`}
+            >
+              {branch.prStatus === 'merged' ? (
+                <GitMerge className="w-3 h-3" />
+              ) : branch.prStatus === 'closed' ? (
+                <X className="w-3 h-3" />
+              ) : (
+                <GitPullRequest className="w-3 h-3" />
+              )}
+              #{branch.prNumber}
             </div>
-          )}
+          ) : !isDefault && branch.ahead! > 0 ? (
+            <div
+              onClick={(e) => {
+                e.stopPropagation();
+                navigate(`/${username}/${reponame}/pulls/new?head=${branch.name}`);
+              }}
+              className="flex items-center gap-1 text-[10px] font-bold text-gray-400 hover:text-white bg-white/5 hover:bg-white/10 px-2 py-1 rounded transition cursor-pointer"
+            >
+              <GitPullRequest className="w-3 h-3" />
+              New pull request
+            </div>
+          ) : null}
           {!isDefault && (
             <Trash2
               className={`w-4 h-4 transition ${
@@ -148,16 +195,15 @@ const BranchRow = React.memo(
   },
 );
 
-// --- Component ---
+// --- Main Component ---
 const BranchListPage = () => {
   const { username, reponame } = useParams();
   const dispatch = useAppDispatch();
   const user = useAppSelector((state) => state.auth.user);
 
   const isOwner = user?.userId === username;
-  const [hasWriteAccess,setHasWriteAccess]=useState(false)
+  const [hasWriteAccess, setHasWriteAccess] = useState(false);
 
-  // Safely select branches and ensure we handle both object array and string array (though it should now be objects)
   const rawBranches = useAppSelector(selectBranches);
   const isLoading = useAppSelector(selectRepositoryLoading);
 
@@ -174,19 +220,21 @@ const BranchListPage = () => {
     }
   }, [username, reponame, dispatch]);
 
-  useEffect(()=>{
-    if(username && reponame && user){
-      if(isOwner){
-        setHasWriteAccess(true)
-      }else{
-        collaboratorService.checkAccess(username,reponame).then((data)=>{
-          setHasWriteAccess(data.hasAccess && data.role!=='read')
-        }).catch(()=>setHasWriteAccess(false))
+  useEffect(() => {
+    if (username && reponame && user) {
+      if (isOwner) {
+        setHasWriteAccess(true);
+      } else {
+        collaboratorService
+          .checkAccess(username, reponame)
+          .then((data) => {
+            setHasWriteAccess(data.hasAccess && data.role !== 'read');
+          })
+          .catch(() => setHasWriteAccess(false));
       }
     }
-  },[username,reponame,user,isOwner])
+  }, [username, reponame, user, isOwner]);
 
-  // Fixed filtering: handle object structure
   const filteredBranches = useMemo(
     () =>
       rawBranches.filter((b) => {
@@ -210,7 +258,6 @@ const BranchListPage = () => {
         setShowCreateModal(false);
         setIsCreatingLoader(true);
 
-        // Show loader for 2 seconds, then show sonar and refresh data
         setTimeout(() => {
           setIsCreatingLoader(false);
           setSuccessSonar({
@@ -264,24 +311,6 @@ const BranchListPage = () => {
           </button>
         </div>
 
-        {/* Tabs */}
-        {/* <div className="flex border-b border-gray-800 mb-6">
-          {tabs.map(tab => (
-            <button
-              key={tab}
-              onClick={() => setActiveTab(tab)}
-              className={`px-4 py-2.5 text-sm font-medium transition border-b-2 ${
-                activeTab === tab 
-                  ? 'border-blue-500 text-white' 
-                  : 'border-transparent text-gray-500 hover:text-gray-300'
-              }`}
-            >
-              {tab}
-            </button>
-          ))}
-        </div> */}
-
-        {/* Search */}
         <div className="relative mb-8">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
@@ -293,17 +322,20 @@ const BranchListPage = () => {
           />
         </div>
 
-        {/* Default Branch Section */}
         <SectionHeader title="Default" />
         <BranchTableContainer>
           {(() => {
             const mainBranch = rawBranches.find(
               (b) => (typeof b === 'string' ? b : b.name) === 'main',
-            ) || { name: 'main' };
-            const branchObj = typeof mainBranch === 'string' ? { name: mainBranch } : mainBranch;
+            );
+            const branchObj =
+              typeof mainBranch === 'string'
+                ? { name: mainBranch, current: true }
+                : mainBranch || { name: 'main', current: true };
+
             return (
               <BranchRow
-                branch={branchObj}
+                branch={branchObj as GitBranch}
                 isDefault
                 isOwner={isOwner}
                 onDelete={() => {}}
@@ -329,18 +361,17 @@ const BranchListPage = () => {
           </div>
         </BranchTableContainer>
 
-        {/* Active Branches */}
         <div className="mt-10">
           <SectionHeader title="Active branches" />
           <BranchTableContainer>
             {filteredBranches
               .filter((b) => (typeof b === 'string' ? b : b.name) !== 'main')
               .map((b) => {
-                const branchObj = typeof b === 'string' ? { name: b } : b;
+                const branchObj = typeof b === 'string' ? { name: b, current: false } : b;
                 return (
                   <BranchRow
                     key={branchObj.name}
-                    branch={branchObj}
+                    branch={branchObj as GitBranch}
                     isOwner={isOwner}
                     onDelete={handleDeleteClick}
                     username={username!}
@@ -348,9 +379,10 @@ const BranchListPage = () => {
                   />
                 );
               })}
-            {filteredBranches.length === 0 && (
+            {filteredBranches.filter((b) => (typeof b === 'string' ? b : b.name) !== 'main')
+              .length === 0 && (
               <div className="p-10 text-center text-gray-500 text-sm italic">
-                No other branches found.
+                No active branches found.
               </div>
             )}
           </BranchTableContainer>
@@ -391,7 +423,7 @@ const BranchListPage = () => {
   );
 };
 
-// --- Styled Components Helper ---
+// --- Helpers ---
 const SectionHeader = ({ title }: { title: string }) => (
   <h2 className="text-xs font-bold text-gray-500 mb-3 uppercase tracking-wider">{title}</h2>
 );

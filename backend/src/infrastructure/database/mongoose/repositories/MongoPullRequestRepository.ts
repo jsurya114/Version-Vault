@@ -7,7 +7,7 @@ import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
 } from '../../../../application/dtos/reusable/PaginationDTO';
-import { IPullRequest } from '../../../../domain/interfaces/IPullRequest';
+import { IPullRequest, PRStatus } from '../../../../domain/interfaces/IPullRequest';
 @injectable()
 export class MongoPullRequestRepository
   extends MongoBaseRepository<IPullRequest>
@@ -24,7 +24,7 @@ export class MongoPullRequestRepository
 
   async findByRepo(
     repositoryId: string,
-    query: PaginationQueryDTO,
+    query: PaginationQueryDTO<PRStatus>,
   ): Promise<PaginatedResponseDTO<IPullRequest>> {
     const filter: Record<string, unknown> = { repositoryId };
     if (query.status) filter.status = query.status;
@@ -63,5 +63,9 @@ export class MongoPullRequestRepository
       .sort({ createdAt: -1 })
       .lean({});
     return pr ? this.toEntity(pr) : null;
+  }
+
+  async countPRsByRepo(repositoryId: string): Promise<number> {
+    return this.model.countDocuments({ repositoryId });
   }
 }

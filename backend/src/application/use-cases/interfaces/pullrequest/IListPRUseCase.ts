@@ -1,3 +1,4 @@
+import { PRStatus } from '../../../../domain/interfaces/IPullRequest';
 import { PullRequestResponseDTO } from '../../../../application/dtos/repository/PullRequestDTO';
 import {
   PaginatedResponseDTO,
@@ -7,6 +8,6 @@ import {
 export interface IListPRUseCase {
   execute(
     repositoryId: string,
-    query: PaginationQueryDTO,
+    query: PaginationQueryDTO<PRStatus>,
   ): Promise<PaginatedResponseDTO<PullRequestResponseDTO>>;
 }
