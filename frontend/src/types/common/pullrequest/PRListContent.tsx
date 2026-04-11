@@ -143,7 +143,7 @@ const PRListContent = ({
                   {pr.title}
                 </p>
                 <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
-                  <span>#{pr.id.slice(-6)}</span>
+                  <span>#{pr.prNumber}</span>
                   <span>opened {formatDate(pr.createdAt)}</span>
                   <span>by {pr.authorUsername}</span>
                 </div>

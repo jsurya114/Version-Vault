@@ -1,4 +1,4 @@
-import { IPullRequest } from '../IPullRequest';
+import { IPullRequest, PRStatus } from '../IPullRequest';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
@@ -8,7 +8,7 @@ import { IBaseRepository } from './IBaseRepository';
 export interface IPullRequestRepository extends IBaseRepository<IPullRequest> {
   findByRepo(
     repositoryId: string,
-    query: PaginationQueryDTO,
+    query: PaginationQueryDTO<PRStatus>,
   ): Promise<PaginatedResponseDTO<IPullRequest>>;
   existOpenPR(repositoryId: string, sourceBranch: string, targetBranch: string): Promise<boolean>;
   findLatestOpenPR(
@@ -16,4 +16,5 @@ export interface IPullRequestRepository extends IBaseRepository<IPullRequest> {
     sourceBranch: string,
     targetBranch: string,
   ): Promise<IPullRequest | null>;
+  countPRsByRepo(repositoryId: string): Promise<number>;
 }

@@ -3,6 +3,8 @@ export interface GitFileEntry {
   path: string;
   type: 'blob' | 'tree';
   size?: number;
+  lastCommitMessage?: string;
+  lastCommitDate?: string;
 }
 
 export interface GitCommit {
@@ -16,8 +18,14 @@ export interface GitBranch {
   name: string;
   lastCommitDate?: string;
   lastCommitAuthor?: string;
+  lastCommitAuthorEmail?: string;
   lastCommitMessage?: string;
   current: boolean;
+  ahead?: number;
+  behind?: number;
+  prId?: string;
+  prNumber?: number;
+  prStatus?: 'open' | 'closed' | 'merged';
 }
 
 export interface DiffLine {

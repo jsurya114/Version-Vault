@@ -4,6 +4,8 @@ export interface TreeNode {
   name: string;
   path: string;
   type: 'blob' | 'tree';
+  lastCommitMessage?: string;
+  lastCommitDate?: string;
 }
 
 export const calculateLanguagesFromFiles = (files: GitFileEntry[]) => {

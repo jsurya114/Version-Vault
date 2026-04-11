@@ -374,41 +374,35 @@ const RepositoryDetailPage = () => {
   );
 
   const FileListItem = React.memo(
-    ({
-      file,
-      latestCommitMessage,
-      latestCommitDate,
-      onClick,
-    }: {
-      file: TreeNode;
-      latestCommitMessage: string;
-      latestCommitDate: string;
-      onClick: (node: TreeNode) => void;
-    }) => (
-      <tr
-        className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 cursor-pointer transition"
-        onClick={() => onClick(file)}
-      >
-        <td className="px-4 py-2.5">
-          <div className="flex items-center gap-2">
-            {file.type === 'tree' ? (
-              <Folder className="w-4 h-4 text-blue-400 shrink-0" />
-            ) : (
-              <File className="w-4 h-4 text-gray-400 shrink-0" />
-            )}
-            <span className="text-blue-400 hover:text-blue-300 text-sm">{file.name}</span>
-          </div>
-        </td>
-        <td className="px-4 py-2.5">
-          <span className="text-gray-400 text-xs truncate max-w-md block">
-            {latestCommitMessage}
-          </span>
-        </td>
-        <td className="px-4 py-2.5 text-right">
-          <span className="text-gray-500 text-xs">{latestCommitDate}</span>
-        </td>
-      </tr>
-    ),
+    ({ file, onClick }: { file: TreeNode; onClick: (node: TreeNode) => void }) => {
+      // Use file-specific metadata with proper fallbacks
+      const commitMessage = file.lastCommitMessage || '—';
+      const commitDate = file.lastCommitDate ? timeAgo(file.lastCommitDate) : '—';
+
+      return (
+        <tr
+          className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/30 cursor-pointer transition"
+          onClick={() => onClick(file)}
+        >
+          <td className="px-4 py-2.5">
+            <div className="flex items-center gap-2">
+              {file.type === 'tree' ? (
+                <Folder className="w-4 h-4 text-blue-400 shrink-0" />
+              ) : (
+                <File className="w-4 h-4 text-gray-400 shrink-0" />
+              )}
+              <span className="text-blue-400 hover:text-blue-300 text-sm">{file.name}</span>
+            </div>
+          </td>
+          <td className="px-4 py-2.5">
+            <span className="text-gray-400 text-xs truncate max-w-md block">{commitMessage}</span>
+          </td>
+          <td className="px-4 py-2.5 text-right">
+            <span className="text-gray-500 text-xs">{commitDate}</span>
+          </td>
+        </tr>
+      );
+    },
   );
 
   const CommitItem = React.memo(
@@ -1007,8 +1001,6 @@ const RepositoryDetailPage = () => {
                               <FileListItem
                                 key={file.path}
                                 file={file}
-                                latestCommitMessage={latestCommit?.message || '—'}
-                                latestCommitDate={latestCommit ? timeAgo(latestCommit.date) : '—'}
                                 onClick={handleTreeNodeClick}
                               />
                             ))}
