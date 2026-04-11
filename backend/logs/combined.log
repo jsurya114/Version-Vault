@@ -36780,3 +36780,452 @@ fatal: git update-index: --cacheinfo cannot add mock/.git/config
 2026-04-11 19:21:23 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/polygot-project?page=1&limit=10 [36m304[0m 90.679 ms - -[0m
 2026-04-11 19:21:25 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/polygot-project?page=1&limit=10&status=open [32m200[0m 99.868 ms - 80[0m
 2026-04-11 19:21:26 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/polygot-project?page=1&limit=10&status=closed [32m200[0m 88.480 ms - 489[0m
+2026-04-11 22:48:45 [[32minfo[39m]: Redis connected successfully
+2026-04-11 22:48:47 [[32minfo[39m]: MongoDB connected successfully
+2026-04-11 22:48:47 [[32minfo[39m]: Server running on port 3125 in development mode
+2026-04-11 22:49:00 [[32minfo[39m]: [0mPOST /vv/auth/logout [32m200[0m 4.937 ms - 52[0m
+2026-04-11 22:49:04 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.862 ms - 46[0m
+2026-04-11 22:49:04 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.216 ms - 46[0m
+2026-04-11 22:59:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.389 ms - 46[0m
+2026-04-11 22:59:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [33m401[0m 0.112 ms - 46[0m
+2026-04-11 22:59:59 [[32minfo[39m]: [0mPOST /vv/auth/login [32m200[0m 183.176 ms - 303[0m
+2026-04-11 22:59:59 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 22:59:59 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.386 ms - -[0m
+2026-04-11 22:59:59 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 22:59:59 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 22:59:59 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 53.186 ms - -[0m
+2026-04-11 22:59:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 22:59:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 22:59:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:00 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:00 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 601.985 ms - -[0m
+2026-04-11 23:00:00 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:00 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:00 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:00 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:00 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:00 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 94.870 ms - -[0m
+2026-04-11 23:00:25 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 42.781 ms - 44[0m
+2026-04-11 23:00:25 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 43.262 ms - 44[0m
+2026-04-11 23:00:25 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.655 ms - -[0m
+2026-04-11 23:00:25 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.162 ms - -[0m
+2026-04-11 23:00:25 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:26 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:26 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:26 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 49.818 ms - -[0m
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:26 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:26 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 346.421 ms - -[0m
+2026-04-11 23:00:26 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:26 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 335.543 ms - -[0m
+2026-04-11 23:00:26 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:26 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:26 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:26 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 92.757 ms - -[0m
+2026-04-11 23:00:35 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.194 ms - 44[0m
+2026-04-11 23:00:35 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.053 ms - 44[0m
+2026-04-11 23:00:35 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.950 ms - -[0m
+2026-04-11 23:00:35 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.331 ms - -[0m
+2026-04-11 23:00:35 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:35 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:35 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 46.341 ms - -[0m
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:35 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:35 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 93.112 ms - -[0m
+2026-04-11 23:00:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 44.157 ms - -[0m
+2026-04-11 23:00:35 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:35 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:35 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:35 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:35 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 90.387 ms - -[0m
+2026-04-11 23:00:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.165 ms - 44[0m
+2026-04-11 23:00:56 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 51.330 ms - 44[0m
+2026-04-11 23:00:56 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 55.887 ms - -[0m
+2026-04-11 23:00:56 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:56 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 48.029 ms - -[0m
+2026-04-11 23:00:56 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 83.296 ms - -[0m
+2026-04-11 23:00:56 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:56 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:57 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 348.112 ms - -[0m
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:57 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:57 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 432.791 ms - -[0m
+2026-04-11 23:00:57 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:00:57 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:00:57 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:00:57 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:00:57 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:00:57 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 113.698 ms - -[0m
+2026-04-11 23:03:22 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:03:22 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:03:22 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:03:22 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:03:22 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 97.870 ms - -[0m
+2026-04-11 23:03:22 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:03:22 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:03:22 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:03:22 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:03:22 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:03:22 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 106.758 ms - -[0m
+2026-04-11 23:04:03 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:04:07 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:04:07 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:04:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:04:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:04:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:04:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:04:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:04:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:04:11 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:04:11 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 8098.380 ms - -[0m
+2026-04-11 23:04:11 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:04:18 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:04:18 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:04:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:04:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:04:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:04:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:04:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:04:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:04:21 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:04:21 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 10652.319 ms - -[0m
+2026-04-11 23:04:33 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:04:33 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:04:33 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:04:33 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:04:33 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:04:33 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:04:33 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:04:33 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:04:33 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:04:33 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:04:33 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 133.049 ms - -[0m
+2026-04-11 23:06:46 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:06:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 52.659 ms - -[0m
+2026-04-11 23:06:46 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:06:46 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:06:46 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 46.294 ms - -[0m
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:06:46 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:06:46 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 102.254 ms - -[0m
+2026-04-11 23:06:46 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:06:46 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:06:46 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:06:46 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:06:46 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:06:46 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 98.559 ms - -[0m
+2026-04-11 23:06:49 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:06:49 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 43.804 ms - -[0m
+2026-04-11 23:06:49 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:06:49 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:06:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:06:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:06:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:06:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:06:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:06:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:06:49 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:06:49 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 91.296 ms - -[0m
+2026-04-11 23:08:14 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:08:14 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:08:14 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:08:14 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 46.702 ms - -[0m
+2026-04-11 23:08:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:08:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:08:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:08:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:08:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:08:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:08:14 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:08:14 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 97.438 ms - -[0m
+2026-04-11 23:08:20 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:08:20 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.910 ms - -[0m
+2026-04-11 23:08:20 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:08:20 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:08:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:08:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:08:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:08:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:08:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:08:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:08:20 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:08:20 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 93.225 ms - -[0m
+2026-04-11 23:10:35 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.289 ms - 44[0m
+2026-04-11 23:10:35 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.305 ms - 44[0m
+2026-04-11 23:10:35 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.636 ms - -[0m
+2026-04-11 23:10:35 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.257 ms - -[0m
+2026-04-11 23:10:35 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:10:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 45.120 ms - -[0m
+2026-04-11 23:10:35 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:10:35 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:10:35 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 50.099 ms - -[0m
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:10:35 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:10:35 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 96.156 ms - -[0m
+2026-04-11 23:10:35 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:10:35 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:10:35 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:10:35 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:10:35 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:10:35 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 111.971 ms - -[0m
+2026-04-11 23:11:12 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:11:12 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 44.358 ms - -[0m
+2026-04-11 23:11:12 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:11:12 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:11:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:11:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:11:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:11:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:11:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:11:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:11:12 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:11:12 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 96.141 ms - -[0m
+2026-04-11 23:16:43 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:16:43 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:16:43 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:16:43 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 55.468 ms - -[0m
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:16:43 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:16:43 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 98.742 ms - -[0m
+2026-04-11 23:16:43 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:16:43 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5 [36m304[0m 47.869 ms - -[0m
+2026-04-11 23:16:43 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:16:43 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:16:43 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:16:43 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:16:43 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 92.639 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 25.359 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 22.465 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 49.063 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 70.268 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 87.829 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 49.022 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 43.622 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 49.138 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 108.252 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 131.857 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 80.278 ms - -[0m
+2026-04-11 23:18:05 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:18:05 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 112.163 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=30 [32m200[0m 14.803 ms - 1043[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=30 [36m304[0m 13.311 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.121 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 46.215 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=30 [36m304[0m 12.790 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 88.620 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/user/jsurya114 [36m304[0m 44.460 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 90.299 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 89.560 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&userId=69c1305ef15538deb980a562 [36m304[0m 45.426 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=30 [36m304[0m 12.667 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/followers [36m304[0m 89.530 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/follow/jsurya114/following [36m304[0m 92.726 ms - -[0m
+2026-04-11 23:18:10 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 92.501 ms - -[0m
+2026-04-11 23:19:07 [[32minfo[39m]: [0mGET /vv/pr/jsurya114/polygot-project?page=1&limit=5 [36m304[0m 93.974 ms - -[0m
+2026-04-11 23:25:20 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:25:20 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:25:20 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:25:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:25:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:25:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:25:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:25:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:25:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:25:20 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:25:20 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 100.777 ms - -[0m
+2026-04-11 23:25:20 [[32minfo[39m]: Fetching chat repositories for user ID: 69c1305ef15538deb980a562
+2026-04-11 23:25:21 [[32minfo[39m]: Found 10 collaboration records for user 69c1305ef15538deb980a562
+2026-04-11 23:25:21 [[32minfo[39m]: Unique repository IDs to fetch: 69d09cc4a548e455cba9349f, 69d139c7452ef7cf3dcb2be9, 69d72ff69291db697a052698, 69d9b988c8ea41d113f73af5, 69d9f9c6d6ee493c1e639f3f, 69d9ff6354b72cfc43ddac13, 69da01cf2b3ec0367718e951
+2026-04-11 23:25:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-11 23:25:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-11 23:25:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-11 23:25:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-11 23:25:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-11 23:25:21 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-11 23:25:21 [[32minfo[39m]: Successfully mapped 1 repositories to DTOs.
+2026-04-11 23:25:21 [[32minfo[39m]: [0mGET /vv/chats/conversations [36m304[0m 101.436 ms - -[0m
+2026-04-11 23:25:56 [[31merror[39m]: GET /vv/chats/jsurya114/polygot-project/history — Invalid or expired access token
+2026-04-11 23:25:56 [[32minfo[39m]: [0mGET /vv/chats/jsurya114/polygot-project/history?page=1&limit=20 [33m401[0m 0.699 ms - 61[0m
+2026-04-11 23:26:49 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-11 23:26:49 [[32minfo[39m]: [0mGET /vv/collaborators/repos [33m401[0m 1.407 ms - 61[0m
+2026-04-11 23:26:49 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-11 23:26:49 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [33m401[0m 1.079 ms - 61[0m
+2026-04-11 23:26:49 [[31merror[39m]: GET /vv/collaborators/repos — Invalid or expired access token
+2026-04-11 23:26:49 [[32minfo[39m]: [0mGET /vv/collaborators/repos [33m401[0m 0.435 ms - 61[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 50.169 ms - 44[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 46.077 ms - 44[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.132 ms - -[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.655 ms - -[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.004 ms - -[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.762 ms - -[0m
+2026-04-11 23:26:51 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.136 ms - -[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.227 ms - 44[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.228 ms - 44[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.888 ms - -[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 42.905 ms - -[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.583 ms - -[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 88.565 ms - -[0m
+2026-04-11 23:26:58 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 88.155 ms - -[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.610 ms - 44[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.665 ms - 44[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 45.382 ms - -[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.164 ms - -[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.944 ms - -[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.750 ms - -[0m
+2026-04-11 23:27:00 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 88.487 ms - -[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 45.793 ms - 44[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 44.973 ms - 44[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 44.788 ms - -[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 43.101 ms - -[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 44.696 ms - -[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.918 ms - -[0m
+2026-04-11 23:27:19 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.888 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 32.873 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 45.448 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 25.414 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 83.342 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 84.849 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 56.493 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 118.656 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 45.140 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 43.654 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 164.517 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 93.210 ms - -[0m
+2026-04-11 23:27:50 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:27:50 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 117.445 ms - -[0m
+2026-04-11 23:28:02 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/content?path=script.js&branch=main [32m200[0m 30.628 ms - 475[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 24.799 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 20.998 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 48.267 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 64.389 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 68.609 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 45.802 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 47.788 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 50.402 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 119.447 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 148.556 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 81.375 ms - -[0m
+2026-04-11 23:34:25 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:34:25 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 111.154 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 22.791 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 18.196 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 45.469 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 65.353 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 61.351 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 44.365 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 42.960 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 42.994 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 99.632 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 147.457 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 90.589 ms - -[0m
+2026-04-11 23:34:27 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:34:28 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 137.414 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 902.339 ms - 44[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mPOST /vv/auth/refresh-token [32m200[0m 905.734 ms - 44[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 51.242 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/auth/me [36m304[0m 46.768 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 29.873 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/commits?branch=main&limit=20 [36m304[0m 19.386 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 51.825 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 74.328 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 77.919 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project [36m304[0m 46.117 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=false [36m304[0m 42.936 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/files?branch=main&path=&recursive=true [36m304[0m 44.828 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 117.113 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 198.243 ms - -[0m
+2026-04-11 23:34:34 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/active-branches [36m304[0m 122.999 ms - -[0m
+2026-04-11 23:34:35 [[32minfo[39m]: Repo ID: 69da01cf2b3ec0367718e951
+2026-04-11 23:34:35 [[32minfo[39m]: [0mGET /vv/repo/jsurya114/polygot-project/branches [36m304[0m 602.126 ms - -[0m
+2026-04-11 23:35:18 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 45.456 ms - -[0m
+2026-04-11 23:35:18 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 91.888 ms - -[0m
+2026-04-11 23:35:18 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 87.538 ms - -[0m
+2026-04-11 23:35:40 [[32minfo[39m]: [0mGET /vv/repo?page=1&limit=5&sort=createdAt&order=desc [36m304[0m 50.875 ms - -[0m
+2026-04-11 23:35:40 [[32minfo[39m]: [0mGET /vv/collaborators/repos [36m304[0m 113.625 ms - -[0m

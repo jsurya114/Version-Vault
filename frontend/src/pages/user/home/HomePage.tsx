@@ -9,6 +9,8 @@ import {
   GitMerge,
   Smile,
   Users,
+  Menu,
+  X,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
@@ -47,6 +49,7 @@ const HomePage = () => {
   const [repoSearch, setRepoSearch] = useState('');
   const [collabSearch, setCollabSearch] = useState('');
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+  const [sidebarOpen, setSidebarOpen] = useState(false);
 
   useEffect(() => {
     if (location.state?.showLoginSuccess && user) {
@@ -64,6 +67,25 @@ const HomePage = () => {
     dispatch(listRepositoryThunk({}));
     dispatch(listChatRepoThunk());
   }, [dispatch]);
+
+  // Close sidebar when clicking outside on mobile
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      const sidebar = document.getElementById('home-sidebar');
+      const toggleBtn = document.getElementById('sidebar-toggle');
+      if (
+        sidebarOpen &&
+        sidebar &&
+        !sidebar.contains(e.target as Node) &&
+        toggleBtn &&
+        !toggleBtn.contains(e.target as Node)
+      ) {
+        setSidebarOpen(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [sidebarOpen]);
 
   const collabRepoIds = useMemo(() => {
     if (!collabRepos || !user) return new Set<string>();
@@ -91,10 +113,37 @@ const HomePage = () => {
     <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans">
       <AppHeader />
 
+      {/* Mobile sidebar toggle button */}
+      <div className="lg:hidden flex items-center px-4 pt-4 pb-2">
+        <button
+          id="sidebar-toggle"
+          onClick={() => setSidebarOpen(!sidebarOpen)}
+          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-md transition"
+        >
+          {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
+          {sidebarOpen ? 'Close' : 'Repositories'}
+        </button>
+      </div>
+
       {/* MAIN CONTENT */}
-      <div className="max-w-[1440px] mx-auto px-6 py-8 flex gap-8 w-full flex-1 items-start">
-        {/* LEFT SIDEBAR */}
-        <div className="w-72 shrink-0 space-y-4">
+      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-4 sm:py-8 flex gap-6 xl:gap-8 w-full flex-1 items-start relative">
+        {/* LEFT SIDEBAR — overlay on mobile, static on lg+ */}
+        <div
+          id="home-sidebar"
+          className={`
+            ${sidebarOpen ? 'flex' : 'hidden'} lg:flex
+            flex-col
+            w-72 shrink-0 space-y-4
+            lg:static
+            fixed top-[130px] left-4 z-40
+            bg-gray-950 lg:bg-transparent
+            border border-gray-800 lg:border-none
+            rounded-xl lg:rounded-none
+            p-4 lg:p-0
+            shadow-2xl lg:shadow-none
+            max-h-[calc(100vh-160px)] overflow-y-auto lg:overflow-visible lg:max-h-none
+          `}
+        >
           <div className="flex items-center justify-between mt-2">
             <h2 className="text-white text-sm font-semibold">Top repositories</h2>
             <Link
@@ -170,7 +219,7 @@ const HomePage = () => {
 
         {/* MIDDLE COLUMN */}
         <div className="flex-1 min-w-0 space-y-6 max-w-3xl">
-          <h1 className="text-2xl font-semibold text-white">Home</h1>
+          <h1 className="text-xl sm:text-2xl font-semibold text-white">Home</h1>
 
           {/* Ask Anything Box (Temporarily Disabled) */}
           {/*
@@ -236,44 +285,44 @@ const HomePage = () => {
           {/* Feed Items */}
           <div className="space-y-4">
             {/* Feed Item 1 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 shadow-sm">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 sm:p-4 shadow-sm">
               <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-0">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center shrink-0 border border-gray-700">
                     {/* Skeleton graphic of an avatar */}
                     <span className="text-white text-xs font-bold font-mono">F</span>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-400">
+                  <div className="min-w-0">
+                    <p className="text-sm text-gray-400 flex flex-wrap gap-1">
                       <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer">
                         FizanMuhammedFaisal
                       </span>{' '}
-                      made this repository public
+                      <span>made this repository public</span>
                     </p>
                     <p className="text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
                       yesterday
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500 hover:text-gray-300 transition">
+                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-2">
                   <MoreHorizontal className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-4 ml-10">
-                <div className="flex items-start justify-between mb-3">
-                  <div className="flex items-center gap-2">
+              <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-3 sm:p-4 ml-0 sm:ml-10">
+                <div className="flex items-start justify-between mb-3 gap-2 flex-wrap">
+                  <div className="flex items-center gap-2 min-w-0">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] shrink-0 font-bold border border-gray-700">
                       F
                     </div>
                     <Link
                       to="#"
-                      className="font-semibold text-gray-300 hover:text-blue-400 text-sm"
+                      className="font-semibold text-gray-300 hover:text-blue-400 text-sm truncate"
                     >
                       FizanMuhammedFaisal/pixelmeet-backend
                     </Link>
                   </div>
-                  <div className="flex items-center divide-x divide-gray-700 rounded-md border border-gray-700 bg-gray-800">
+                  <div className="flex items-center divide-x divide-gray-700 rounded-md border border-gray-700 bg-gray-800 shrink-0">
                     <button className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-gray-300 hover:bg-gray-700 transition h-7">
                       <Star className="w-3.5 h-3.5 text-gray-400" /> Star
                     </button>
@@ -282,7 +331,7 @@ const HomePage = () => {
                     </button>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-400 mt-2">
+                <div className="flex items-center gap-4 text-xs text-gray-400 mt-2 flex-wrap">
                   <span className="flex items-center gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-blue-500 border border-gray-700"></span>{' '}
                     TypeScript
@@ -295,18 +344,18 @@ const HomePage = () => {
             </div>
 
             {/* Feed Item 2 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 shadow-sm">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 sm:p-4 shadow-sm">
               <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-2 min-w-0">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shrink-0 border border-gray-700">
                     <span className="text-white text-xs font-bold font-mono">N</span>
                   </div>
-                  <div>
-                    <p className="text-sm text-gray-400">
+                  <div className="min-w-0">
+                    <p className="text-sm text-gray-400 flex flex-wrap gap-1">
                       <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer">
                         Nandakumar-S-1
                       </span>{' '}
-                      contributed to{' '}
+                      <span>contributed to</span>{' '}
                       <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer">
                         Nandakumar-S-1/Nandakumar-S-1
                       </span>
@@ -316,12 +365,12 @@ const HomePage = () => {
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500 hover:text-gray-300 transition">
+                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-2">
                   <MoreHorizontal className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="ml-10">
+              <div className="ml-0 sm:ml-10">
                 <h3 className="text-base font-semibold text-gray-300 mb-3 hover:text-blue-400 cursor-pointer">
                   merging changes to main{' '}
                   <span className="text-gray-500 font-normal font-mono text-sm ml-1 hover:text-blue-400">
@@ -329,7 +378,7 @@ const HomePage = () => {
                   </span>
                 </h3>
 
-                <div className="flex items-center gap-3 mb-4">
+                <div className="flex items-center gap-3 mb-4 flex-wrap">
                   <span className="flex items-center gap-1.5 bg-purple-600 text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
                     <GitMerge className="w-3.5 h-3.5" /> Merged
                   </span>
@@ -355,8 +404,8 @@ const HomePage = () => {
           </div>
         </div>
 
-        {/* RIGHT SIDEBAR */}
-        <div className="w-80 shrink-0">
+        {/* RIGHT SIDEBAR — hidden on small screens, shown on xl+ */}
+        <div className="hidden xl:block w-80 shrink-0">
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
             <h3 className="text-sm font-semibold text-white mb-6">Latest from our changelog</h3>
 

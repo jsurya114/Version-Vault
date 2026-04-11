@@ -1,6 +1,6 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Send, MessageSquare, ChevronRight, Clock, Trash2 } from 'lucide-react';
+import { Send, MessageSquare, ChevronRight, Clock, Trash2, X, Menu } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
 import {
@@ -25,6 +25,9 @@ const ChatRoomPage = () => {
   const [isSocketConnected, setIsSocketConnected] = useState(false);
   const [content, setContent] = useState('');
   const scrollRef = useRef<HTMLDivElement>(null);
+
+  // Mobile sidebar toggle
+  const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
   // Modal State
   const [isDeleteModalOpen, setIsDeleteModalOpen] = useState(false);
@@ -82,13 +85,36 @@ const ChatRoomPage = () => {
     <div className="h-screen bg-gray-950 text-white flex flex-col overflow-hidden font-sans">
       <AppHeader />
 
-      <div className="flex flex-1 overflow-hidden">
+      <div className="flex flex-1 overflow-hidden relative">
+        {/* Mobile overlay backdrop */}
+        {isSidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/60 z-20 md:hidden"
+            onClick={() => setIsSidebarOpen(false)}
+          />
+        )}
+
         {/* SIDEBAR: List of Collaborative Chats */}
-        <aside className="w-80 border-r border-gray-800 bg-gray-900/40 flex flex-col shadow-xl">
-          <div className="p-4 border-b border-gray-800 bg-gray-900/20">
+        <aside
+          className={`
+            fixed md:relative z-30 md:z-auto
+            w-72 md:w-80
+            h-full
+            border-r border-gray-800 bg-gray-900 md:bg-gray-900/40 flex flex-col shadow-xl
+            transition-transform duration-300
+            ${isSidebarOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
+          `}
+        >
+          <div className="p-4 border-b border-gray-800 bg-gray-900/20 flex items-center justify-between">
             <h2 className="text-xl font-bold flex items-center gap-2">
               <MessageSquare className="w-6 h-6 text-blue-500" /> Chats
             </h2>
+            <button
+              className="md:hidden p-1 text-gray-400 hover:text-white"
+              onClick={() => setIsSidebarOpen(false)}
+            >
+              <X className="w-5 h-5" />
+            </button>
           </div>
 
           <div className="flex-1 overflow-y-auto custom-scrollbar">
@@ -96,22 +122,25 @@ const ChatRoomPage = () => {
               conversations.map((repo) => (
                 <div
                   key={repo.id}
-                  onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}/chat`)}
+                  onClick={() => {
+                    navigate(`/${repo.ownerUsername}/${repo.name}/chat`);
+                    setIsSidebarOpen(false);
+                  }}
                   className={`p-4 flex items-center gap-3 cursor-pointer border-b border-gray-800/30 transition-all hover:bg-gray-800/50 ${
                     reponame === repo.name ? 'bg-blue-600/15 border-r-4 border-r-blue-500' : ''
                   }`}
                 >
-                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-sm font-bold shadow-inner">
+                  <div className="w-11 h-11 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center text-sm font-bold shadow-inner shrink-0">
                     {repo.name[0].toUpperCase()}
                   </div>
-                  <div className="flex-1 truncate">
+                  <div className="flex-1 min-w-0">
                     <h3 className="text-sm font-semibold truncate leading-tight">{repo.name}</h3>
                     <p className="text-[11px] text-gray-500 truncate mt-0.5">
                       @{repo.ownerUsername}
                     </p>
                   </div>
                   <ChevronRight
-                    className={`w-4 h-4 transition-transform ${reponame === repo.name ? 'text-blue-500' : 'text-gray-700'}`}
+                    className={`w-4 h-4 shrink-0 transition-transform ${reponame === repo.name ? 'text-blue-500' : 'text-gray-700'}`}
                   />
                 </div>
               ))
@@ -124,17 +153,24 @@ const ChatRoomPage = () => {
         </aside>
 
         {/* MAIN CHAT AREA */}
-        <main className="flex-1 flex flex-col relative bg-gray-950/80">
+        <main className="flex-1 flex flex-col relative bg-gray-950/80 min-w-0">
           {username && reponame ? (
             <>
               {/* Chat Header */}
-              <div className="p-4 border-b border-gray-800 bg-gray-900/40 backdrop-blur-md flex justify-between items-center sticky top-0 z-10">
+              <div className="p-3 md:p-4 border-b border-gray-800 bg-gray-900/40 backdrop-blur-md flex justify-between items-center sticky top-0 z-10">
                 <div className="flex items-center gap-3 font-semibold">
-                  <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-sm shadow-lg">
+                  {/* Mobile hamburger to open sidebar */}
+                  <button
+                    className="md:hidden p-1.5 text-gray-400 hover:text-white rounded-lg hover:bg-gray-800 transition"
+                    onClick={() => setIsSidebarOpen(true)}
+                  >
+                    <Menu className="w-5 h-5" />
+                  </button>
+                  <div className="w-9 h-9 rounded-lg bg-blue-600 flex items-center justify-center text-sm shadow-lg shrink-0">
                     {reponame[0].toUpperCase()}
                   </div>
                   <div>
-                    <h2 className="text-sm">{reponame}</h2>
+                    <h2 className="text-sm truncate max-w-[140px] sm:max-w-none">{reponame}</h2>
                     <p
                       className={`text-[10px] ${isSocketConnected ? 'text-green-500' : 'text-yellow-500'}`}
                     >
@@ -147,7 +183,7 @@ const ChatRoomPage = () => {
               {/* Messages Content */}
               <div
                 ref={scrollRef}
-                className="flex-1 p-6 overflow-y-auto space-y-4 custom-scrollbar"
+                className="flex-1 p-3 md:p-6 overflow-y-auto space-y-4 custom-scrollbar"
               >
                 {messages?.map((msg) => {
                   const isMe =
@@ -170,10 +206,10 @@ const ChatRoomPage = () => {
                       )}
 
                       <div
-                        className={`max-w-[70%] p-3 px-4 rounded-2xl text-[13px] shadow-sm border ${
+                        className={`max-w-[85%] sm:max-w-[70%] p-3 px-4 rounded-2xl text-[13px] shadow-sm border ${
                           isMe
                             ? 'bg-gray-800 border-gray-700 text-gray-200 rounded-tr-none ml-2'
-                            : 'bg-blue-600 border-blue-500 text-white rounded-tl-none mr-12'
+                            : 'bg-blue-600 border-blue-500 text-white rounded-tl-none mr-2 sm:mr-12'
                         }`}
                       >
                         <p
@@ -200,19 +236,19 @@ const ChatRoomPage = () => {
               </div>
 
               {/* Chat Input */}
-              <div className="p-4 bg-gray-900/60 border-t border-gray-800 flex gap-3 backdrop-blur-md">
+              <div className="p-3 md:p-4 bg-gray-900/60 border-t border-gray-800 flex gap-3 backdrop-blur-md">
                 <input
                   type="text"
                   value={content}
                   onChange={(e) => setContent(e.target.value)}
                   onKeyDown={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Type your message..."
-                  className="flex-1 bg-gray-800/80 rounded-xl px-4 py-2.5 border-none focus:ring-2 focus:ring-blue-500 text-sm placeholder:text-gray-600"
+                  className="flex-1 min-w-0 bg-gray-800/80 rounded-xl px-4 py-2.5 border-none focus:ring-2 focus:ring-blue-500 text-sm placeholder:text-gray-600"
                 />
                 <button
                   onClick={handleSend}
                   disabled={!content.trim()}
-                  className="p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-50 transition-all active:scale-95 shadow-lg"
+                  className="p-3 bg-blue-600 text-white rounded-xl hover:bg-blue-500 disabled:opacity-50 transition-all active:scale-95 shadow-lg shrink-0"
                 >
                   <Send className="w-5 h-5" />
                 </button>
@@ -220,7 +256,14 @@ const ChatRoomPage = () => {
             </>
           ) : (
             /* Empty State Container */
-            <div className="flex-1 flex flex-col items-center justify-center opacity-40">
+            <div className="flex-1 flex flex-col items-center justify-center opacity-40 p-6 text-center">
+              {/* Mobile hint to open sidebar */}
+              <button
+                className="md:hidden mb-4 p-2 text-gray-500 hover:text-white rounded-lg hover:bg-gray-800 transition"
+                onClick={() => setIsSidebarOpen(true)}
+              >
+                <Menu className="w-6 h-6" />
+              </button>
               <div className="w-24 h-24 rounded-full bg-gray-900 flex items-center justify-center mb-6 shadow-2xl border border-gray-800">
                 <MessageSquare className="w-12 h-12 text-gray-700" />
               </div>
