@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { container } from 'tsyringe';
 import { RepositoryController } from '../../controllers/repository/RepositoryController';
+import { UploadFileController } from '../../controllers/repository/UploadFileController';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
 import { ownerMiddleware } from '../../middleware/ownerMiddleware';
 import { BranchController } from '../../controllers/branch/BranchController';
@@ -8,11 +9,13 @@ import { AuthRequest } from '../../controllers/repository/RepositoryController';
 import { CommitController } from '../../controllers/commit/CommitController';
 import { visibilityMiddleware } from '../../middleware/visibilityMiddleware';
 import { writeAccessMiddleware } from '../../middleware/WriteAccessMiddleware';
+import { uploadRepoFiles } from 'src/infrastructure/config/multer.config';
 
 const router = Router();
 const repoController = container.resolve(RepositoryController);
 const branchController = container.resolve(BranchController);
 const commitController = container.resolve(CommitController);
+const fileUploadController = container.resolve(UploadFileController);
 
 router.post('/', authMiddleware, (req, res, next) =>
   repoController.createRepository(req as AuthRequest, res, next),
@@ -84,6 +87,17 @@ router.post('/:username/:reponame/star', authMiddleware, (req, res, next) =>
 );
 router.get('/:username/:reponame/star/users', (req, res, next) =>
   repoController.getStarredUsers(req, res, next),
+);
+
+router.post(
+  '/upload',
+  authMiddleware,
+  uploadRepoFiles.array('files'), // "files" is the form-data key
+  (req, res, next) => fileUploadController.fileUpload(req as AuthRequest, res, next),
+);
+
+router.get('/:username/:reponame/active-branches', authMiddleware, (req, res, next) =>
+  repoController.getActiveBranches(req, res, next),
 );
 
 export default router;

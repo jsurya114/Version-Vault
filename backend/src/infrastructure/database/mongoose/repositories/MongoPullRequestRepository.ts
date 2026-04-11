@@ -31,4 +31,37 @@ export class MongoPullRequestRepository
     if (query.search) filter.title = { $regex: query.search, $options: 'i' };
     return this.findWithpagination(filter, query);
   }
+
+  async existOpenPR(
+    repositoryId: string,
+    sourceBranch: string,
+    targetBranch: string,
+  ): Promise<boolean> {
+    const pr = await this.model
+      .findOne({
+        repositoryId,
+        sourceBranch,
+        targetBranch,
+        status: 'open',
+      })
+      .lean();
+    return !!pr;
+  }
+
+  async findLatestOpenPR(
+    repositoryId: string,
+    sourceBranch: string,
+    targetBranch: string,
+  ): Promise<IPullRequest | null> {
+    const pr = await this.model
+      .findOne({
+        repositoryId,
+        sourceBranch,
+        targetBranch,
+        status: 'open',
+      })
+      .sort({ createdAt: -1 })
+      .lean({});
+    return pr ? this.toEntity(pr) : null;
+  }
 }

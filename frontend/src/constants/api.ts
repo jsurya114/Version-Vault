@@ -25,6 +25,7 @@ export const REPO_ENDPOINTS = {
   LIST: '/repo',
   GET: '/repo',
   DELETE: '/repo',
+  UPLOAD: '/repo/upload',
 } as const;
 
 export const PR_ENDPOINTS = {
@@ -52,7 +53,7 @@ export const COMMENT_ENDPOINTS = {
   BASE: '/comments',
 } as const;
 
-export const CHAT_ENDPOINTS={
-  BASE:'/chats',
-  CONVERSATIONS: '/chats/conversations'
-}
+export const CHAT_ENDPOINTS = {
+  BASE: '/chats',
+  CONVERSATIONS: '/chats/conversations',
+};

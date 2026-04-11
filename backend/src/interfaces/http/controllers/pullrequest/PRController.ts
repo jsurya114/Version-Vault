@@ -159,7 +159,7 @@ async approveMerge(req: Request, res: Response, next: NextFunction): Promise<voi
       return 
 
     }
-   const upatedPr= await this._prReository.update(id,{mergeApproval:'approval'})
+   const upatedPr= await this._prReository.update(id,{mergeApproval:'approved'})
    
     res.status(HttpStatusCodes.OK).json({success:true,message:'PR approved and merged',data:upatedPr})
   } catch (error) {

@@ -56,6 +56,7 @@ export interface GitBranch {
   name: string;
   lastCommitDate?: string;
   lastCommitAuthor?: string;
+  lastCommitMessage?: string;
   current?: boolean;
   status?: 'success' | 'failure' | 'pending' | 'none';
   check?: string;
@@ -92,6 +93,9 @@ export interface RepositoryState {
   isStarring: boolean;
   starError: string | null;
   error: string | null;
+  isUploading: boolean;
+  uploadError: string | null;
+  activeBranches: GitBranch[];
   meta: {
     total: number;
     page: number;
@@ -116,6 +120,9 @@ export const repositoryInitialState: RepositoryState = {
   isStarring: false,
   starError: null,
   error: null,
+  isUploading: false,
+  uploadError: null,
+  activeBranches: [],
   meta: {
     total: 0,
     page: 1,

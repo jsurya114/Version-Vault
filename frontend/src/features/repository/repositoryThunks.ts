@@ -230,3 +230,28 @@ export const getStarredUsersThunk = createAsyncThunk<
     return rejectWithValue(err.response?.data?.message || 'Failed to fetch starred users');
   }
 });
+
+export const fileUploadThunk = createAsyncThunk(
+  'repository/uploadFiles',
+  async (payload: { repoName: string; files: File[] }, { rejectWithValue }) => {
+    try {
+      const response = await repositoryService.uploadFiles(payload.repoName, payload.files);
+      return response;
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to upload files');
+    }
+  },
+);
+
+export const getRecentPushThunk = createAsyncThunk<GitBranch[], RepoParams>(
+  'repository/getRecentPush',
+  async ({ username, reponame }, { rejectWithValue }) => {
+    try {
+      return await repositoryService.getActiveBranches(username, reponame);
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch recent pushes');
+    }
+  },
+);

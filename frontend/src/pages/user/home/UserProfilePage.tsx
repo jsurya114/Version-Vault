@@ -1,4 +1,3 @@
-
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { GitFork, BookOpen, Users, Calendar, Edit2 } from 'lucide-react';
@@ -501,6 +500,7 @@ const UserProfilePage = () => {
                         repo={repo}
                         onClick={() => navigate(`/${repo.ownerUsername}/${repo.name}`)}
                         authUserId={authUser?.id}
+                        isCollab={collabRepos.some((cr) => cr.repo.id === repo.id)}
                         onStarCountClick={async () => {
                           const result = await dispatch(
                             getStarredUsersThunk({

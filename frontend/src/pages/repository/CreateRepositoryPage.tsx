@@ -1,10 +1,11 @@
 import React, { useState, useMemo, useCallback } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
-import { createRepositoryThunk } from '../../features/repository/repositoryThunks';
+import { createRepositoryThunk, fileUploadThunk } from '../../features/repository/repositoryThunks';
 import {
   selectRepositoryLoading,
   selectRepositoryError,
+  selectIsUploading,
 } from '../../features/repository/repositorySelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
@@ -12,6 +13,7 @@ import AppFooter from '../../types/common/Layout/AppFooter';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import { CommonLoader } from '../../types/common/Layout/Loader';
 import AppHeader from '../../types/common/Layout/AppHeader';
+import { DragAndDrop } from './components/DragAndDrop';
 
 const CreateRepositoryPage = React.memo(() => {
   const dispatch = useAppDispatch();
@@ -19,6 +21,8 @@ const CreateRepositoryPage = React.memo(() => {
   const isLoading = useAppSelector(selectRepositoryLoading);
   const error = useAppSelector(selectRepositoryError);
   const user = useAppSelector(selectAuthUser);
+  const [selectedFiles, setSelectedFiles] = useState<File[]>([]);
+  const isUploading = useAppSelector(selectIsUploading);
 
   const [name, setName] = useState('');
   const [description, setDescription] = useState('');
@@ -47,27 +51,42 @@ git push -u origin main`,
 
   const handleSubmit = useCallback(async () => {
     if (!name.trim()) return;
+
+    // A. Create the base repository first
     const result = await dispatch(createRepositoryThunk({ name, description, visibility }));
+
     if (createRepositoryThunk.fulfilled.match(result)) {
       setIsCreatingLoader(true);
+
+      // B. If files were dropped, upload them to the new repo
+      if (selectedFiles.length > 0) {
+        await dispatch(
+          fileUploadThunk({
+            repoName: name,
+            files: selectedFiles,
+          }),
+        );
+      }
       setTimeout(() => {
         setIsCreatingLoader(false);
         setSuccessSonar({
           isOpen: true,
           title: 'Repository Created!',
-          subtitle: `Your new repository "${name}" is ready.`,
+          subtitle:
+            selectedFiles.length > 0
+              ? `Repository "${name}" created with ${selectedFiles.length} files.`
+              : `Your new repository "${name}" is ready.`,
         });
         setTimeout(() => {
           navigate(ROUTES.REPO_LIST);
         }, 2500);
       }, 2000);
     }
-  }, [dispatch, name, description, visibility, navigate]);
+  }, [dispatch, name, description, visibility, navigate, selectedFiles]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white">
       <AppHeader />
-
       <main className="max-w-5xl mx-auto px-6 py-8">
         <div className="mb-8">
           <h1 className="text-white text-2xl font-bold">Create a New Repository</h1>
@@ -75,12 +94,12 @@ git push -u origin main`,
             A repository contains all project files, including the revision history.
           </p>
         </div>
-
-        <div className="grid grid-cols-2 gap-6">
+        {/* Changed grid-cols-1 md:grid-cols-2 to handle the two-column layout from your screenshot */}
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* LEFT COLUMN: Setup & Drag/Drop */}
           <div className="space-y-6">
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
               <h2 className="text-white font-semibold mb-4">1. Basic Setup</h2>
-
               <div className="grid grid-cols-2 gap-3 mb-4">
                 <div>
                   <label className="block text-gray-400 text-xs mb-1">Owner</label>
@@ -104,7 +123,6 @@ git push -u origin main`,
                   />
                 </div>
               </div>
-
               <div className="mb-4">
                 <label className="block text-gray-400 text-xs mb-1">
                   Description <span className="text-gray-600">(optional)</span>
@@ -117,7 +135,6 @@ git push -u origin main`,
                   className="w-full bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm placeholder-gray-600 focus:outline-none focus:border-blue-500 transition"
                 />
               </div>
-
               {name && (
                 <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg px-3 py-2 mb-4">
                   <p className="text-blue-400 text-xs">
@@ -128,7 +145,6 @@ git push -u origin main`,
                   </p>
                 </div>
               )}
-
               <div>
                 <label className="block text-gray-400 text-xs mb-2">Visibility</label>
                 <div className="grid grid-cols-2 gap-3">
@@ -171,8 +187,13 @@ git push -u origin main`,
                 </div>
               </div>
             </div>
+            {/* NEW SECTION 2: Drag & Drop component placed exactly where requested */}
+            <DragAndDrop
+              onFilesSelected={setSelectedFiles}
+              selectedFilesCount={selectedFiles.length}
+            />
           </div>
-
+          {/* RIGHT COLUMN: CLI & Actions */}
           <div className="space-y-4">
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
               <div className="flex items-center justify-between mb-4">
@@ -181,7 +202,6 @@ git push -u origin main`,
                   EXISTING PROJECT
                 </span>
               </div>
-
               <div className="bg-gray-950 rounded-lg p-4 mb-3 font-mono text-xs space-y-1">
                 {cliCommands.split('\n').map((line, i) => (
                   <div key={i} className="flex gap-3">
@@ -200,7 +220,6 @@ git push -u origin main`,
                   </div>
                 ))}
               </div>
-
               <button
                 onClick={handleCopy}
                 className="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm py-2 rounded-lg transition"
@@ -208,7 +227,6 @@ git push -u origin main`,
                 Copy to clipboard
               </button>
             </div>
-
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-3">
               {error && (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-red-400 text-sm">
@@ -217,10 +235,10 @@ git push -u origin main`,
               )}
               <button
                 onClick={handleSubmit}
-                disabled={isLoading || !name.trim()}
+                disabled={isLoading || isUploading || !name.trim()}
                 className="w-full bg-blue-600 hover:bg-blue-700 disabled:opacity-50 disabled:cursor-not-allowed text-white text-sm font-medium py-2.5 rounded-lg transition"
               >
-                {isLoading ? 'Creating...' : 'Create Repository'}
+                {isLoading || isUploading ? 'Processing...' : 'Create Repository'}
               </button>
               <button
                 onClick={() => navigate(ROUTES.REPO_LIST)}
@@ -232,11 +250,10 @@ git push -u origin main`,
           </div>
         </div>
       </main>
-
       <AppFooter />
-
-      {isCreatingLoader && <CommonLoader message="Creating Repository..." />}
-
+      {(isCreatingLoader || isUploading) && (
+        <CommonLoader message={isUploading ? 'Uploading Files...' : 'Creating Repository...'} />
+      )}
       {successSonar.isOpen && (
         <SuccessSonar
           isOpen={successSonar.isOpen}
@@ -248,5 +265,4 @@ git push -u origin main`,
     </div>
   );
 });
-
 export default CreateRepositoryPage;

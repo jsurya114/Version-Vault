@@ -85,6 +85,8 @@ export const TOKENS = {
   IForkRepoUseCase: Symbol.for('IForkRepoUseCase'),
   IToggleStarUseCase: Symbol.for('IToggleStarUseCase'),
   IGetStarsUseCase: Symbol.for('IGetStarsUseCase'),
+  IUploadFileUseCase: Symbol.for('IUploadFileUseCase'),
+  IGetActiveBranchUseCase: Symbol.for('IGetActiveBranchUseCase'),
 
   // Collaborator
   ICollaboratorRepository: Symbol.for('ICollaboratorRepository'),
@@ -109,14 +111,12 @@ export const TOKENS = {
   IListCommentUseCase: Symbol.for('IListCommentUseCase'),
   IDeleteCommentUseCase: Symbol.for('IDeleteCommentUseCase'),
 
-
   //chat usecase
-  IChatRepository:Symbol.for('IChatRepository'),
-  ISendMessageUseCase:Symbol.for('ISendMessageUseCase'),
-  IGetChatHistoryUseCase:Symbol.for('IGetChatHistoryUseCase'),
-  IGetMessageUsecase:Symbol.for('IGetMessageUsecase'),
-  IDeleteMessageUseCase:Symbol.for('IDeleteMessageUseCase'),
-  IListChatRepoUseCase:Symbol.for('IListChatRepoUseCase'),
-  HttpServer:Symbol.for('HttpServer')
-
+  IChatRepository: Symbol.for('IChatRepository'),
+  ISendMessageUseCase: Symbol.for('ISendMessageUseCase'),
+  IGetChatHistoryUseCase: Symbol.for('IGetChatHistoryUseCase'),
+  IGetMessageUsecase: Symbol.for('IGetMessageUsecase'),
+  IDeleteMessageUseCase: Symbol.for('IDeleteMessageUseCase'),
+  IListChatRepoUseCase: Symbol.for('IListChatRepoUseCase'),
+  HttpServer: Symbol.for('HttpServer'),
 } as const;

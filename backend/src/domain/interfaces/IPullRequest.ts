@@ -1,5 +1,5 @@
 export type PRStatus = 'open' | 'closed' | 'merged';
-export type MergeApproval ='none'|'pending'|'approval'|'rejected'
+export type MergeApproval ='none'|'pending'|'approved'|'rejected'
 
 export interface IPullRequest {
   id?: string;

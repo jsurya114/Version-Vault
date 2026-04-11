@@ -21,6 +21,7 @@ import {
   GitPullRequest,
   CircleDot,
   Users,
+  FileCode,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
@@ -31,6 +32,7 @@ import {
   getFileContentThunk,
   getBranchesThunk,
   deleteBranchThunk,
+  getRecentPushThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
@@ -59,6 +61,13 @@ import IssueListContent from '../../types/common/Issues/IssuelistContent';
 import PRListContent from '../../types/common/pullrequest/PRListContent';
 import { ForkButton } from './components/ForkButton';
 import { StarButton } from './components/StarButton'; // IMPORT NEW COMPONENT
+import { FileDiffViewer } from '../pullrequest/components/DiffViewer';
+import { compareCommitThunk } from '../../features/commit/compareCommitThunk';
+import {
+  selectCompareData,
+  selectCompareLoading,
+} from '../../features/commit/compareCommitSelectors';
+import { RecentPushesBanner } from './components/RecentPushesBanner';
 
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
@@ -66,11 +75,9 @@ import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
 const RepositoryDetailPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const { username, reponame, branchName } = useParams<{
-    username: string;
-    reponame: string;
-    branchName?: string;
-  }>();
+  const params = useParams();
+  const { username, reponame } = params;
+  const branchName = params['*'];
   const repo = useAppSelector(selectSelectedRepository);
   const isLoading = useAppSelector(selectRepositoryLoading);
   const branches = useAppSelector(selectBranches);
@@ -110,12 +117,16 @@ const RepositoryDetailPage = () => {
     subtitle: '',
   });
 
+  const activeBranches = useAppSelector((state) => state.repository.activeBranches || []);
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
   const isEmpty = !isFilesLoading && files.length === 0;
   const allFiles = useAppSelector((state) => state.repository.allFiles);
   const [hasWriteAccess, setHasWriteAccess] = useState(false);
+  const compareData = useAppSelector(selectCompareData);
+  const isCompareLoading = useAppSelector(selectCompareLoading);
+  const [expandedCommitHash, setExpandedCommitHash] = useState<string | null>(null);
 
   useEffect(() => {
     if (username && reponame) {
@@ -127,6 +138,7 @@ const RepositoryDetailPage = () => {
 
       dispatch(getRepositoryThunk({ username, reponame }));
       dispatch(getBranchesThunk({ username, reponame }));
+      dispatch(getRecentPushThunk({ username, reponame }));
     }
   }, [username, reponame, branch, dispatch]);
 
@@ -196,6 +208,26 @@ const RepositoryDetailPage = () => {
       setSearchParams(tab === 'code' ? {} : { tab });
     },
     [searchParams],
+  );
+
+  const handleCommitClick = useCallback(
+    (commitHash: string) => {
+      if (expandedCommitHash === commitHash) {
+        // Toggle off — collapse
+        setExpandedCommitHash(null);
+        return;
+      }
+      setExpandedCommitHash(commitHash);
+      dispatch(
+        compareCommitThunk({
+          username: username!,
+          reponame: reponame!,
+          base: `${commitHash}~1`,
+          head: commitHash,
+        }),
+      );
+    },
+    [dispatch, username, reponame, expandedCommitHash],
   );
 
   const handleTreeNodeClick = useCallback(
@@ -380,22 +412,83 @@ const RepositoryDetailPage = () => {
   );
 
   const CommitItem = React.memo(
-    ({ commit }: { commit: { hash: string; author: string; message: string; date: string } }) => (
-      <div className="flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
-        <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
-          {commit.author?.[0]?.toUpperCase()}
+    ({
+      commit,
+      isExpanded,
+      onClick,
+      isCompareLoading,
+      compareData,
+    }: {
+      commit: { hash: string; author: string; message: string; date: string };
+      isExpanded: boolean;
+      onClick: (hash: string) => void;
+      isCompareLoading: boolean;
+      compareData: typeof import('src/types/commit/commit.types').initialState.data;
+    }) => (
+      <div>
+        <div
+          className={`flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition cursor-pointer ${
+            isExpanded ? 'bg-gray-800/30 border-l-2 border-l-blue-500' : ''
+          }`}
+          onClick={() => onClick(commit.hash)}
+        >
+          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+            {commit.author?.[0]?.toUpperCase()}
+          </div>
+          <div className="flex-1 min-w-0">
+            <p className="text-white text-sm font-medium truncate">{commit.message}</p>
+            <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
+              <Clock className="w-3 h-3" />
+              {commit.author} · {formatDate(commit.date)}
+            </p>
+          </div>
+          <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
+            <GitCommit className="w-3 h-3" />
+            {commit.hash}
+          </span>
         </div>
-        <div className="flex-1 min-w-0">
-          <p className="text-white text-sm font-medium truncate">{commit.message}</p>
-          <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
-            <Clock className="w-3 h-3" />
-            {commit.author} · {formatDate(commit.date)}
-          </p>
-        </div>
-        <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
-          <GitCommit className="w-3 h-3" />
-          {commit.hash}
-        </span>
+
+        {/* Expanded Diff Section */}
+        {isExpanded && (
+          <div className="border-b border-gray-800/50 bg-gray-950/50">
+            <div className="px-4 py-3 border-b border-gray-800/30">
+              <h4 className="text-white text-sm font-semibold flex items-center gap-2">
+                <FileCode className="w-4 h-4" /> Files Changed
+              </h4>
+            </div>
+            <div className="p-4">
+              {isCompareLoading ? (
+                <div className="flex items-center justify-center py-10">
+                  <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                </div>
+              ) : compareData?.diffs && compareData.diffs.length > 0 ? (
+                <div className="space-y-4">
+                  {/* Summary bar */}
+                  <div className="flex items-center gap-4 text-xs text-gray-400 mb-2">
+                    <span>
+                      <span className="text-white font-semibold">{compareData.filesChanged}</span>{' '}
+                      file{compareData.filesChanged !== 1 ? 's' : ''} changed
+                    </span>
+                    <span className="text-green-400">
+                      +{compareData.diffs.reduce((sum, f) => sum + f.additions, 0)}
+                    </span>
+                    <span className="text-red-400">
+                      -{compareData.diffs.reduce((sum, f) => sum + f.deletions, 0)}
+                    </span>
+                  </div>
+
+                  {compareData.diffs.map((file, idx) => (
+                    <FileDiffViewer key={file.path} file={file} id={`commit-diff-${idx}`} />
+                  ))}
+                </div>
+              ) : (
+                <p className="text-gray-600 text-sm italic text-center py-6">
+                  No changes found for this commit.
+                </p>
+              )}
+            </div>
+          </div>
+        )}
       </div>
     ),
   );
@@ -717,6 +810,14 @@ const RepositoryDetailPage = () => {
             {/* NON-EMPTY STATE */}
             {!isEmpty && (
               <>
+                {isOwner && activeBranches.length > 0 && !selectedFile && (
+                  <RecentPushesBanner
+                    username={username!}
+                    reponame={reponame!}
+                    branches={activeBranches}
+                    defaultBranch={repo.defaultBranch}
+                  />
+                )}
                 {/* Latest commit bar */}
                 {latestCommit && !selectedFile && (
                   <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-3 bg-gray-900/30 shrink-0">
@@ -1010,11 +1111,21 @@ const RepositoryDetailPage = () => {
             ) : commits.length === 0 ? (
               <div className="px-4 py-10 text-center text-gray-500 text-sm">No commits yet</div>
             ) : (
-              commits.map((commit) => <CommitItem key={commit.hash} commit={commit} />)
+              commits.map((commit) => (
+                <CommitItem
+                  key={commit.hash}
+                  commit={commit}
+                  isExpanded={expandedCommitHash === commit.hash}
+                  onClick={handleCommitClick}
+                  isCompareLoading={isCompareLoading}
+                  compareData={compareData}
+                />
+              ))
             )}
           </div>
         </div>
       )}
+
       {activeTab === 'branches' && (
         <div className="max-w-4xl mx-auto px-6 py-6 w-full text-center flex-1">
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-10">

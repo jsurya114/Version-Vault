@@ -22,9 +22,10 @@ const PRFormPage = React.memo(() => {
   const headBranch = searchParams.get('head') || '';
 
   const initialState = searchParams.get('title') || '';
+  const initialDescription = searchParams.get('description') || '';
 
   const [title, setTitle] = useState(initialState);
-  const [description, setDescription] = useState('');
+  const [description, setDescription] = useState(initialDescription);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
