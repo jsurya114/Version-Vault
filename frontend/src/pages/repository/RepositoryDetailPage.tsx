@@ -421,22 +421,22 @@ const RepositoryDetailPage = () => {
     }) => (
       <div>
         <div
-          className={`flex items-start gap-4 px-4 py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition cursor-pointer ${
+          className={`flex items-start gap-2 xs:gap-3 sm:gap-4 px-3 xs:px-4 py-3 xs:py-4 border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition cursor-pointer ${
             isExpanded ? 'bg-gray-800/30 border-l-2 border-l-blue-500' : ''
           }`}
           onClick={() => onClick(commit.hash)}
         >
-          <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+          <div className="w-6 h-6 xs:w-8 xs:h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] xs:text-xs font-bold shrink-0">
             {commit.author?.[0]?.toUpperCase()}
           </div>
           <div className="flex-1 min-w-0">
-            <p className="text-white text-sm font-medium truncate">{commit.message}</p>
+            <p className="text-white text-xs xs:text-sm font-medium truncate">{commit.message}</p>
             <p className="text-gray-500 text-xs mt-1 flex items-center gap-1">
               <Clock className="w-3 h-3" />
               {commit.author} · {formatDate(commit.date)}
             </p>
           </div>
-          <span className="text-blue-400 text-xs font-mono bg-blue-500/10 px-2 py-1 rounded shrink-0 flex items-center gap-1">
+          <span className="text-blue-400 text-[10px] xs:text-xs font-mono bg-blue-500/10 px-1.5 xs:px-2 py-0.5 xs:py-1 rounded shrink-0 flex items-center gap-1 hidden xs:flex">
             <GitCommit className="w-3 h-3" />
             {commit.hash}
           </span>
@@ -458,7 +458,7 @@ const RepositoryDetailPage = () => {
               ) : compareData?.diffs && compareData.diffs.length > 0 ? (
                 <div className="space-y-4">
                   {/* Summary bar */}
-                  <div className="flex items-center gap-4 text-xs text-gray-400 mb-2">
+                  <div className="flex flex-wrap items-center gap-2 xs:gap-4 text-xs text-gray-400 mb-2">
                     <span>
                       <span className="text-white font-semibold">{compareData.filesChanged}</span>{' '}
                       file{compareData.filesChanged !== 1 ? 's' : ''} changed
@@ -508,12 +508,12 @@ const RepositoryDetailPage = () => {
   if (!repo) return null;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
       <AppHeader />
 
       {/* Repo breadcrumb bar */}
-      <div className="border-b border-gray-800 px-6 py-2 flex items-center justify-between">
-        <div className="flex items-center gap-1 text-sm">
+      <div className="border-b border-gray-800 px-3 xs:px-4 sm:px-6 py-2 flex items-center justify-between gap-2 flex-wrap">
+        <div className="flex items-center gap-1 text-xs xs:text-sm min-w-0">
           <Link to={ROUTES.REPO_LIST} className="text-blue-400 hover:underline font-medium">
             {username}
           </Link>
@@ -540,11 +540,11 @@ const RepositoryDetailPage = () => {
       </div>
 
       {/* Tabs */}
-      <div className="border-b border-gray-800 px-6">
-        <div className="flex items-center gap-1">
+      <div className="border-b border-gray-800 px-2 xs:px-3 sm:px-6 overflow-x-auto">
+        <div className="flex items-center gap-0.5 xs:gap-1 min-w-max">
           <button
             onClick={() => handleTablChange('code')}
-            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+            className={`flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-xs xs:text-sm transition border-b-2 whitespace-nowrap ${
               activeTab === 'code'
                 ? 'text-white border-blue-500'
                 : 'text-gray-500 border-transparent hover:text-gray-300'
@@ -554,7 +554,7 @@ const RepositoryDetailPage = () => {
           </button>
           <button
             onClick={() => handleTablChange('commits')}
-            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+            className={`flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-xs xs:text-sm transition border-b-2 whitespace-nowrap ${
               activeTab === 'commits'
                 ? 'text-white border-blue-500'
                 : 'text-gray-500 border-transparent hover:text-gray-300'
@@ -566,7 +566,7 @@ const RepositoryDetailPage = () => {
           {/* Branches Tab */}
           <button
             onClick={() => handleTablChange('branches')}
-            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+            className={`flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-xs xs:text-sm transition border-b-2 whitespace-nowrap ${
               activeTab === 'branches'
                 ? 'text-white border-blue-500'
                 : 'text-gray-500 border-transparent hover:text-gray-300'
@@ -578,21 +578,21 @@ const RepositoryDetailPage = () => {
 
           <button
             onClick={() => handleTablChange('pulls')}
-            className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
+            className="flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-xs xs:text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300 whitespace-nowrap"
           >
             <GitPullRequest className="w-4 h-4" />
             Pull Requests
           </button>
           <button
             onClick={() => handleTablChange('issues')}
-            className="flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300"
+            className="flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-xs xs:text-sm transition border-b-2 text-gray-500 border-transparent hover:text-gray-300 whitespace-nowrap"
           >
             <CircleDot className="w-4 h-4" />
             Issues
           </button>
           <button
             onClick={() => handleTablChange('collaborators')}
-            className={`flex items-center gap-2 px-4 py-3 text-sm transition border-b-2 ${
+            className={`flex items-center gap-1.5 xs:gap-2 px-2 xs:px-3 sm:px-4 py-2.5 xs:py-3 text-xs xs:text-sm transition border-b-2 whitespace-nowrap ${
               activeTab === 'collaborators'
                 ? 'text-white border-blue-500'
                 : 'text-gray-500 border-transparent hover:text-gray-300'
@@ -605,9 +605,9 @@ const RepositoryDetailPage = () => {
       </div>
       {/* CODE TAB */}
       {activeTab === 'code' && (
-        <div className="flex flex-1">
+        <div className="flex flex-col lg:flex-row flex-1">
           {/* Left Sidebar — File Tree */}
-          <div className="w-64 border-r border-gray-800 flex flex-col shrink-0">
+          <div className="hidden md:flex w-56 lg:w-64 border-r border-gray-800 flex-col shrink-0">
             <div className="px-3 py-2.5 border-b border-gray-800 flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <Folder className="w-4 h-4 text-gray-400" />
@@ -696,8 +696,8 @@ const RepositoryDetailPage = () => {
           {/* Main Content */}
           <div className="flex-1 flex flex-col min-w-0">
             {/* Breadcrumb + Star/Fork */}
-            <div className="px-4 py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-950 shrink-0">
-              <div className="flex items-center gap-1 text-sm">
+            <div className="px-3 xs:px-4 py-2 xs:py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-950 shrink-0 gap-2 flex-wrap">
+              <div className="flex items-center gap-1 text-xs xs:text-sm min-w-0 flex-wrap">
                 <span
                   className="text-blue-400 hover:underline cursor-pointer text-xs font-medium"
                   onClick={() => {
@@ -770,11 +770,11 @@ const RepositoryDetailPage = () => {
 
             {/* EMPTY STATE */}
             {isEmpty && (
-              <div className="flex-1 p-6">
+              <div className="flex-1 p-3 xs:p-4 sm:p-6">
                 <p className="text-gray-500 text-sm mb-4">
                   This repository is empty. Push your first commit:
                 </p>
-                <div className="bg-gray-950 border border-gray-800 rounded-lg p-4 font-mono text-xs space-y-1 max-w-xl">
+                <div className="bg-gray-950 border border-gray-800 rounded-lg p-3 xs:p-4 font-mono text-[10px] xs:text-xs space-y-1 max-w-xl overflow-x-auto">
                   {[
                     `echo "# ${reponame}" >> README.md`,
                     'git init',
@@ -814,7 +814,7 @@ const RepositoryDetailPage = () => {
                 )}
                 {/* Latest commit bar */}
                 {latestCommit && !selectedFile && (
-                  <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-3 bg-gray-900/30 shrink-0">
+                  <div className="px-3 xs:px-4 py-2 xs:py-2.5 border-b border-gray-800 flex items-center gap-2 xs:gap-3 bg-gray-900/30 shrink-0 flex-wrap">
                     <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0 overflow-hidden shadow-sm border border-gray-800">
                       {isOwner && user?.avatar ? (
                         <img
@@ -846,8 +846,8 @@ const RepositoryDetailPage = () => {
                 {/* File content viewer */}
                 {selectedFile && (
                   <div className="flex-1 overflow-auto flex flex-col">
-                    <div className="px-4 py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-900/30">
-                      <div className="flex items-center gap-3">
+                    <div className="px-3 xs:px-4 py-2 xs:py-2.5 border-b border-gray-800 flex items-center justify-between bg-gray-900/30 flex-wrap gap-2">
+                      <div className="flex items-center gap-2 xs:gap-3 min-w-0 flex-wrap">
                         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0 overflow-hidden shadow-sm border border-gray-800">
                           {isOwner && user?.avatar ? (
                             <img
@@ -894,7 +894,7 @@ const RepositoryDetailPage = () => {
                         </button>
                       </div>
                     </div>
-                    <div className="px-4 py-2 border-b border-gray-800 flex items-center justify-between bg-gray-900">
+                    <div className="px-3 xs:px-4 py-2 border-b border-gray-800 flex items-center justify-between bg-gray-900 flex-wrap gap-2">
                       <div className="flex items-center gap-3">
                         <button
                           className={`text-xs px-3 py-1 border border-gray-700 rounded font-medium transition ${!isEditing ? 'bg-gray-800 text-white' : 'text-gray-400 hover:text-white'}`}
@@ -1009,13 +1009,13 @@ const RepositoryDetailPage = () => {
 
                         {/* README */}
                         {readmeContent && (
-                          <div className="m-4">
+                          <div className="m-3 xs:m-4">
                             <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
                               <div className="px-4 py-2.5 border-b border-gray-800 flex items-center gap-2">
                                 <File className="w-3.5 h-3.5 text-gray-400" />
                                 <span className="text-white text-xs font-semibold">README.md</span>
                               </div>
-                              <div className="p-6">
+                              <div className="p-3 xs:p-4 sm:p-6">
                                 <pre className="text-gray-300 text-sm whitespace-pre-wrap font-sans leading-relaxed">
                                   {readmeContent}
                                 </pre>
@@ -1033,7 +1033,7 @@ const RepositoryDetailPage = () => {
 
           {/* Right Sidebar — only when repo has files */}
           {!isEmpty && (
-            <div className="w-64 shrink-0 border-l border-gray-800 p-4 space-y-4 overflow-y-auto min-h-full">
+            <div className="w-full lg:w-64 shrink-0 lg:border-l border-t lg:border-t-0 border-gray-800 p-3 xs:p-4 space-y-4 overflow-y-auto">
               <div>
                 <h3 className="text-white text-sm font-semibold mb-3">About</h3>
                 <p className="text-gray-400 text-xs leading-relaxed mb-3">
@@ -1094,7 +1094,7 @@ const RepositoryDetailPage = () => {
 
       {/* COMMITS TAB */}
       {activeTab === 'commits' && (
-        <div className="max-w-4xl mx-auto px-6 py-6 w-full flex-1">
+        <div className="max-w-4xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
           <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
             {isCommitsLoading ? (
               <div className="flex items-center justify-center py-10">
@@ -1119,8 +1119,8 @@ const RepositoryDetailPage = () => {
       )}
 
       {activeTab === 'branches' && (
-        <div className="max-w-4xl mx-auto px-6 py-6 w-full text-center flex-1">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-10">
+        <div className="max-w-4xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full text-center flex-1">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 xs:p-8 sm:p-10">
             <GitBranch className="w-12 h-12 text-gray-700 mx-auto mb-4" />
             <h3 className="text-xl font-bold mb-2">Branches</h3>
             <p className="text-gray-500 mb-6">Manage your repository branches here.</p>

@@ -87,12 +87,12 @@ const AdminRepositoryDetailPage = React.memo(() => {
         >
           ← Back to Repositories
         </Link>
-        <h1 className="text-white text-2xl font-black">Repository Detail</h1>
+        <h1 className="text-white text-xl xs:text-2xl font-black">Repository Detail</h1>
         <p className="text-gray-500 text-xs mt-0.5">Comprehensive audit and governance control.</p>
       </div>
 
-      <div className="flex items-center gap-5 mb-8 bg-gray-900/40 p-6 rounded-3xl border border-gray-800/50 shadow-sm">
-        <div className="w-16 h-16 rounded-2xl bg-gray-800 flex items-center justify-center text-gray-400 ring-1 ring-gray-700 shadow-inner">
+      <div className="flex flex-col xs:flex-row items-start xs:items-center gap-3 xs:gap-5 mb-6 xs:mb-8 bg-gray-900/40 p-4 xs:p-5 sm:p-6 rounded-2xl xs:rounded-3xl border border-gray-800/50 shadow-sm">
+        <div className="w-12 h-12 xs:w-14 xs:h-14 sm:w-16 sm:h-16 rounded-xl xs:rounded-2xl bg-gray-800 flex items-center justify-center text-gray-400 ring-1 ring-gray-700 shadow-inner shrink-0">
           <svg className="w-8 h-8" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path
               strokeLinecap="round"
@@ -102,9 +102,9 @@ const AdminRepositoryDetailPage = React.memo(() => {
             />
           </svg>
         </div>
-        <div>
-          <div className="flex items-center gap-3">
-            <h2 className="text-white text-2xl font-black tracking-tight">{repo.name}</h2>
+        <div className="min-w-0">
+          <div className="flex flex-wrap items-center gap-2 xs:gap-3">
+            <h2 className="text-white text-lg xs:text-xl sm:text-2xl font-black tracking-tight break-words">{repo.name}</h2>
             <span
               className={`text-[10px] px-3 py-1 rounded-full font-black uppercase tracking-tighter ${statusColors[status]}`}
             >
@@ -112,16 +112,16 @@ const AdminRepositoryDetailPage = React.memo(() => {
             </span>
           </div>
           <p className="text-gray-500 text-sm mt-0.5">
-            Primary Owner: <span className="text-blue-400 font-bold">@{repo.ownerUsername}</span>
+            Primary Owner: <span className="text-blue-400 font-bold break-all">@{repo.ownerUsername}</span>
           </p>
         </div>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-5 gap-6">
         <div className="lg:col-span-3 space-y-6">
-          <div className="grid grid-cols-4 gap-4">
+          <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 xs:gap-3 sm:gap-4">
             {stats.map((s) => (
-              <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-2xl p-4">
+              <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-xl xs:rounded-2xl p-3 xs:p-4">
                 <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">
                   {s.label}
                 </p>
@@ -131,7 +131,7 @@ const AdminRepositoryDetailPage = React.memo(() => {
           </div>
 
           {/* Languages Section */}
-          <div className="bg-gray-900 border border-gray-800 rounded-3xl p-6">
+          <div className="bg-gray-900 border border-gray-800 rounded-2xl xs:rounded-3xl p-4 xs:p-5 sm:p-6">
             <h3 className="text-white font-bold text-sm mb-6 flex items-center gap-2">
               <span className="w-1 h-4 bg-purple-500 rounded-full"></span>
               Tech Stack / Languages
@@ -150,17 +150,17 @@ const AdminRepositoryDetailPage = React.memo(() => {
           </div>
 
           {/* Metadata Card */}
-          <div className="bg-gray-900 border border-gray-800 rounded-3xl p-6">
+          <div className="bg-gray-900 border border-gray-800 rounded-2xl xs:rounded-3xl p-4 xs:p-5 sm:p-6">
             <h3 className="text-white font-bold text-sm mb-6 flex items-center gap-2">
               <span className="w-1 h-4 bg-cyan-500 rounded-full"></span>
               Registry Metadata
             </h3>
-            <div className="grid grid-cols-2 gap-6 mb-6">
+            <div className="grid grid-cols-1 xs:grid-cols-2 gap-4 xs:gap-6 mb-4 xs:mb-6">
               <div>
                 <label className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] block mb-2">
                   Access Type
                 </label>
-                <div className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm capitalize font-bold">
+                <div className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm capitalize font-bold break-words">
                   {repo.visibility}
                 </div>
               </div>
@@ -168,7 +168,7 @@ const AdminRepositoryDetailPage = React.memo(() => {
                 <label className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] block mb-2">
                   Root Branch
                 </label>
-                <div className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm font-mono">
+                <div className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-3 text-white text-sm font-mono break-all">
                   {repo.defaultBranch}
                 </div>
               </div>
@@ -177,7 +177,7 @@ const AdminRepositoryDetailPage = React.memo(() => {
               <label className="text-gray-500 text-[10px] uppercase font-bold tracking-[0.2em] block mb-2">
                 Description
               </label>
-              <div className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-4 text-gray-400 text-sm italic leading-relaxed min-h-[80px]">
+              <div className="bg-gray-950 border border-gray-800 rounded-xl px-4 py-4 text-gray-400 text-sm italic leading-relaxed min-h-[80px] break-words">
                 {repo.description || 'Official source code for VersionVault repository system.'}
               </div>
             </div>
@@ -186,13 +186,13 @@ const AdminRepositoryDetailPage = React.memo(() => {
 
         <div className="lg:col-span-2 space-y-6">
           {/* Controls */}
-          <div className="bg-gray-900 border border-gray-800 rounded-3xl p-6 sticky top-0">
+          <div className="bg-gray-900 border border-gray-800 rounded-2xl xs:rounded-3xl p-4 xs:p-5 sm:p-6 sticky top-0">
             <h3 className="text-white font-bold text-sm mb-6 flex items-center gap-2">
               <span className="w-1 h-4 bg-red-500 rounded-full"></span>
               Governance Controls
             </h3>
 
-            <div className="bg-gray-950 border border-gray-800 rounded-2xl p-5 mb-6">
+            <div className="bg-gray-950 border border-gray-800 rounded-xl xs:rounded-2xl p-3 xs:p-4 sm:p-5 mb-4 xs:mb-6">
               <p className="text-white text-sm font-bold">Suspension Lock</p>
               <p className="text-gray-500 text-[11px] mt-2 leading-relaxed">
                 {pendingBlocked
@@ -221,7 +221,7 @@ const AdminRepositoryDetailPage = React.memo(() => {
             </button>
           </div>
 
-          <div className="bg-gray-900 border border-gray-800 rounded-3xl p-7">
+          <div className="bg-gray-900 border border-gray-800 rounded-2xl xs:rounded-3xl p-4 xs:p-5 sm:p-7">
             <h4 className="text-gray-500 text-[10px] font-black uppercase tracking-[0.2em] mb-4">
               Registry Trace
             </h4>

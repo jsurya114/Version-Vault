@@ -77,11 +77,11 @@ const BranchRow = React.memo(
     return (
       <div
         onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
-        className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group"
+        className="md:grid md:grid-cols-[1fr,150px,120px,120px,100px] md:gap-4 px-3 xs:px-4 py-3 xs:py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group flex flex-col md:flex-row gap-2.5 md:gap-4"  
       >
-        <div className="flex items-center gap-3">
-          <div className="bg-blue-500/10 px-2.5 py-1.5 rounded-md text-blue-400 font-mono text-xs flex items-center gap-2 border border-blue-500/20">
-            <GitBranchIcon className="w-3.5 h-3.5" /> {branch.name}
+        <div className="flex items-center gap-2 xs:gap-3 flex-wrap w-full md:w-auto">
+          <div className="bg-blue-500/10 px-2 xs:px-2.5 py-1 xs:py-1.5 rounded-md text-blue-400 font-mono text-[11px] xs:text-xs flex items-center gap-1.5 xs:gap-2 border border-blue-500/20 max-w-full">
+            <GitBranchIcon className="w-3 h-3 xs:w-3.5 xs:h-3.5 shrink-0" /> <span className="truncate">{branch.name}</span>
           </div>
           {isDefault && (
             <span className="text-[9px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded font-bold uppercase ring-1 ring-gray-700">
@@ -90,7 +90,7 @@ const BranchRow = React.memo(
           )}
         </div>
 
-        <div className="flex flex-col gap-1 text-gray-400">
+        <div className="flex flex-col gap-0.5 xs:gap-1 text-gray-400 w-full md:w-auto">
           <div className="flex items-center gap-2 text-xs">
             <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[7px] font-bold text-white uppercase shadow-sm border border-gray-800">
               {branch.lastCommitAuthor?.[0] || 'U'}
@@ -105,13 +105,13 @@ const BranchRow = React.memo(
           </div>
         </div>
 
-        <div className={`flex items-center gap-1.5 text-xs font-medium text-gray-600`}>
+        <div className={`items-center gap-1.5 text-xs font-medium text-gray-600 hidden md:flex`}>
           {/* Placeholder for CI/CD checks logic */}
           <span className="opacity-50">--</span>
         </div>
 
         {/* Dynamic Behind/Ahead Section */}
-        <div className="flex items-center justify-center min-w-[120px]">
+        <div className="flex items-center justify-start md:justify-center min-w-0 md:min-w-[120px] w-full md:w-auto">
           {totalDiff > 0 ? (
             <div className="flex items-center gap-3 bg-white/5 px-2 py-1 rounded-md border border-white/5">
               <div className="relative flex bg-gray-800 h-1.5 w-16 rounded-full overflow-hidden shadow-inner">
@@ -142,7 +142,7 @@ const BranchRow = React.memo(
           )}
         </div>
 
-        <div className="flex items-center justify-end gap-4">
+        <div className="flex items-center justify-end gap-2 xs:gap-4 w-full md:w-auto">
           {!isDefault && branch.prId ? (
             <div
               onClick={(e) => {
@@ -292,16 +292,16 @@ const BranchListPage = () => {
   }, []);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col font-sans">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col font-sans overflow-x-hidden">
       <AppHeader />
 
-      <main className="max-w-6xl mx-auto w-full px-6 py-8 flex-1">
-        <div className="flex items-center justify-between mb-8">
-          <h1 className="text-2xl font-bold">Branches</h1>
+      <main className="max-w-6xl mx-auto w-full px-3 xs:px-4 sm:px-6 py-4 xs:py-6 sm:py-8 flex-1">
+        <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between mb-6 xs:mb-8 gap-3">
+          <h1 className="text-xl xs:text-2xl font-bold">Branches</h1>
           <button
             disabled={!hasWriteAccess}
             onClick={() => setShowCreateModal(true)}
-            className={`flex items-center gap-2 px-4 py-2 rounded-lg font-medium transition ${
+            className={`flex items-center gap-1.5 xs:gap-2 px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg font-medium transition text-xs xs:text-sm whitespace-nowrap ${
               !hasWriteAccess
                 ? 'bg-gray-800 text-gray-600 cursor-not-allowed opacity-50 border border-gray-700'
                 : 'bg-green-600 hover:bg-green-700 text-white'
@@ -311,14 +311,14 @@ const BranchListPage = () => {
           </button>
         </div>
 
-        <div className="relative mb-8">
+        <div className="relative mb-6 xs:mb-8">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-500" />
           <input
             type="text"
             placeholder="Search branches..."
             value={searchTerm}
             onChange={(e) => setSearchTerm(e.target.value)}
-            className="w-full bg-gray-900 border border-gray-800 rounded-lg pl-10 pr-4 py-2 text-sm focus:outline-none focus:border-blue-500 transition"
+            className="w-full bg-gray-900 border border-gray-800 rounded-lg pl-10 pr-4 py-2 text-xs xs:text-sm focus:outline-none focus:border-blue-500 transition"
           />
         </div>
 
@@ -345,17 +345,17 @@ const BranchListPage = () => {
             );
           })()}
 
-          <div className="p-4 bg-gray-900/30 border-t border-gray-800 flex items-start gap-3">
+          <div className="p-3 xs:p-4 bg-gray-900/30 border-t border-gray-800 flex items-start gap-2 xs:gap-3 flex-wrap">
             <div className="w-8 h-8 rounded-full bg-blue-500/10 flex items-center justify-center shrink-0">
               <Info className="w-4 h-4 text-blue-400" />
             </div>
-            <div className="flex-1 text-sm">
+            <div className="flex-1 text-xs xs:text-sm min-w-0">
               <p className="font-medium text-gray-200">Your main branch isn't protected</p>
               <p className="text-gray-500 mt-1">
                 Protect this branch from force pushing or deletion.
               </p>
             </div>
-            <button className="text-xs bg-gray-800 hover:bg-gray-700 px-3 py-1.5 rounded-lg border border-gray-700 transition">
+            <button className="text-[10px] xs:text-xs bg-gray-800 hover:bg-gray-700 px-2.5 xs:px-3 py-1 xs:py-1.5 rounded-lg border border-gray-700 transition shrink-0">
               Protect
             </button>
           </div>
@@ -430,7 +430,7 @@ const SectionHeader = ({ title }: { title: string }) => (
 
 const BranchTableContainer = ({ children }: { children: React.ReactNode }) => (
   <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden mb-6">
-    <div className="grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-3 bg-gray-950/50 border-b border-gray-800 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+    <div className="hidden md:grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-3 bg-gray-950/50 border-b border-gray-800 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
       <div>Branch</div>
       <div>Updated</div>
       <div>Check status</div>

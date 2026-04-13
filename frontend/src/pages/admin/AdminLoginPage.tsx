@@ -85,17 +85,17 @@ const AdminLoginPage = () => {
         }}
       />
 
-      <div className="w-full max-w-lg z-10">
+      <div className="w-full max-w-lg z-10 px-1">
         {/* Terminal Header */}
-        <div className="bg-gray-950 border border-blue-500/30 rounded-t-xl px-4 py-2 flex items-center gap-2">
+        <div className="bg-gray-950 border border-blue-500/30 rounded-t-xl px-3 xs:px-4 py-2 flex items-center gap-2">
           <div className="w-3 h-3 rounded-full bg-red-500" />
           <div className="w-3 h-3 rounded-full bg-yellow-500" />
           <div className="w-3 h-3 rounded-full bg-blue-500" />
-          <span className="text-blue-500/60 text-xs ml-2">admin@version-vault ~ secure-login</span>
+          <span className="text-blue-500/60 text-[10px] xs:text-xs ml-2 truncate">admin@version-vault ~ secure-login</span>
         </div>
 
         {/* Terminal Body */}
-        <div className="bg-gray-950 border-x border-blue-500/30 px-6 py-4 min-h-24">
+        <div className="bg-gray-950 border-x border-blue-500/30 px-3 xs:px-4 sm:px-6 py-3 xs:py-4 min-h-24">
           {bootText.map((line, i) => (
             <p key={i} className="text-blue-400 text-xs leading-relaxed">
               {line}
@@ -105,7 +105,7 @@ const AdminLoginPage = () => {
         </div>
 
         {/* Main Card */}
-        <div className="bg-gray-950 border border-blue-500/30 border-t-0 rounded-b-xl px-8 py-8">
+        <div className="bg-gray-950 border border-blue-500/30 border-t-0 rounded-b-xl px-4 xs:px-6 sm:px-8 py-6 xs:py-8">
           {/* Title */}
           <div className="mb-6 text-center">
             <div className="inline-flex items-center gap-2 mb-3">
@@ -115,7 +115,7 @@ const AdminLoginPage = () => {
               </span>
               <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
             </div>
-            <h1 className="text-2xl font-bold text-white tracking-tight">
+            <h1 className="text-xl xs:text-2xl font-bold text-white tracking-tight">
               Version<span className="text-blue-400">Vault</span> Admin
             </h1>
             <p className="text-gray-500 text-xs mt-1 tracking-wider">AUTHORIZED PERSONNEL ONLY</p>

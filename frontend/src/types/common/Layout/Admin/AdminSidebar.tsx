@@ -3,7 +3,7 @@ import { useAppDispatch } from '../../../../app/hooks';
 import { logoutThunk } from '../../../../features/auth/authThunks';
 import { ROUTES } from '../../../../constants/routes';
 
-const AdminSidebar = () => {
+const AdminSidebar = ({ isOpen, onClose }: { isOpen?: boolean; onClose?: () => void }) => {
   const location = useLocation();
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -20,7 +20,18 @@ const AdminSidebar = () => {
   ];
 
   return (
-    <aside className="w-44 shrink-0 border-r border-gray-800 flex flex-col py-4 bg-gray-950">
+    <>
+      {isOpen && (
+        <div 
+          className="fixed inset-0 bg-black/60 z-40 md:hidden" 
+          onClick={onClose} 
+        />
+      )}
+      <aside 
+        className={`w-44 shrink-0 border-r border-gray-800 flex-col py-4 bg-gray-950 fixed md:static inset-y-0 left-0 z-50 transform transition-transform duration-300 ${
+          isOpen ? 'translate-x-0' : '-translate-x-full md:translate-x-0'
+        } md:flex`}
+      >
       <div className="px-4 mb-6 flex items-center gap-2">
         <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
           <svg viewBox="0 0 24 24" fill="currentColor" className="w-3.5 h-3.5 text-white">
@@ -60,6 +71,7 @@ const AdminSidebar = () => {
         </button>
       </div>
     </aside>
+    </>
   );
 };
 

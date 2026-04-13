@@ -33,8 +33,8 @@ export const ErrorSonar: React.FC<ErrorSonarProps> = ({
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 border border-red-400/10 rounded-full animate-ping opacity-10 [animation-delay:0.5s]" />
 
         {/* Red Notification Box */}
-        <div className="bg-gray-900/95 backdrop-blur-xl border border-gray-800 rounded-2xl pl-2 pr-8 py-3 flex items-center gap-4 shadow-[0_20px_50px_rgba(0,0,0,0.5)] border-red-500/10 animate-in zoom-in slide-in-from-top-4 duration-500">
-          <div className="w-12 h-12 bg-red-500/20 border border-red-500/40 rounded-full flex items-center justify-center shadow-lg shadow-red-500/10">
+        <div className="bg-gray-900/80 backdrop-blur-2xl border border-red-500/30 rounded-2xl pl-2 pr-8 py-3 flex items-center gap-4 shadow-[0_0_40px_-10px_rgba(239,68,68,0.4)] ring-1 ring-white/5 animate-in zoom-in slide-in-from-top-4 duration-500">
+          <div className="w-12 h-12 bg-red-500/20 border border-red-400/40 rounded-full flex items-center justify-center shadow-[0_0_20px_rgba(239,68,68,0.3)]">
             <X className="w-7 h-7 text-red-400 stroke-[3]" />
           </div>
           <div className="flex flex-col">

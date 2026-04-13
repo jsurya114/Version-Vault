@@ -74,13 +74,13 @@ const AdminUsersPage = () => {
         key: 'username',
         label: 'USER',
         render: (u) => (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
               {u.username?.[0]?.toUpperCase()}
             </div>
-            <div>
-              <p className="text-white text-sm font-medium">{u.username}</p>
-              <p className="text-gray-500 text-xs">@{u.userId}</p>
+            <div className="min-w-0">
+              <p className="text-white text-sm font-medium truncate">{u.username}</p>
+              <p className="text-gray-500 text-xs truncate">@{u.userId}</p>
             </div>
           </div>
         ),
@@ -88,7 +88,7 @@ const AdminUsersPage = () => {
       {
         key: 'email',
         label: 'EMAIL ADDRESS',
-        render: (u) => <span className="text-gray-400 text-sm">{u.email}</span>,
+        render: (u) => <span className="text-gray-400 text-sm truncate block">{u.email}</span>,
       },
       {
         key: 'status',
@@ -152,14 +152,14 @@ const AdminUsersPage = () => {
   return (
     <AdminLayout>
       <div className="mb-6">
-        <h1 className="text-white text-xl font-bold">User Management</h1>
+        <h1 className="text-white text-lg xs:text-xl font-bold">User Management</h1>
         <p className="text-gray-500 text-sm mt-1">
           Manage platform access, roles, and repository permissions.
         </p>
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-6">
         {[
           { label: 'Total Users', value: meta.total },
           { label: 'Active', value: users.filter((u) => !u.isBlocked && u.isVerified).length },
@@ -168,10 +168,10 @@ const AdminUsersPage = () => {
         ].map((s) => (
           <div
             key={s.label}
-            className="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center"
+            className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 text-center"
           >
             <p className="text-gray-400 text-xs mb-1">{s.label}</p>
-            <p className="text-white text-2xl font-bold">{s.value}</p>
+            <p className="text-white text-xl xs:text-2xl font-bold">{s.value}</p>
           </div>
         ))}
       </div>

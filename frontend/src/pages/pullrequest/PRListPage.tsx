@@ -45,7 +45,7 @@ interface PRItemProps {
 
 const PRItem = React.memo(({ pr, onNavigate }: PRItemProps) => (
   <div
-    className="flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition border-b border-gray-800/50 last:border-b-0"
+    className="flex items-start gap-2 xs:gap-3 sm:gap-4 px-3 xs:px-4 py-3 xs:py-4 hover:bg-gray-800/30 cursor-pointer transition border-b border-gray-800/50 last:border-b-0"
     onClick={() => onNavigate(pr.id)}
   >
     <div
@@ -57,7 +57,7 @@ const PRItem = React.memo(({ pr, onNavigate }: PRItemProps) => (
       <p className="text-white text-sm font-medium hover:text-blue-400 transition truncate">
         {pr.title}
       </p>
-      <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
+      <div className="flex flex-wrap items-center gap-1.5 xs:gap-2 sm:gap-3 mt-1 text-gray-500 text-[10px] xs:text-xs">
         <span>#{pr.id.slice(-6)}</span>
         <span>opened {formatDate(pr.createdAt)}</span>
         <span>by {pr.authorUsername}</span>
@@ -118,12 +118,12 @@ const PRListPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
       <AppHeader />
 
       {/* Breadcrumb */}
-      <div className="border-b border-gray-800 px-6 py-2">
-        <div className="max-w-5xl mx-auto flex items-center gap-1 text-sm">
+      <div className="border-b border-gray-800 px-3 xs:px-4 sm:px-6 py-2">
+        <div className="max-w-5xl mx-auto flex items-center gap-1 text-xs xs:text-sm min-w-0 flex-wrap">
           <Link to={ROUTES.REPO_LIST} className="text-blue-400 hover:underline">
             {username}
           </Link>
@@ -136,20 +136,20 @@ const PRListPage = () => {
         </div>
       </div>
 
-      <main className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
+      <main className="max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
         {/* Header */}
-        <div className="flex items-center justify-between mb-4">
+        <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between mb-4 gap-3">
           <h1 className="text-white font-semibold">Pull Requests</h1>
           <Link
             to={`/${username}/${reponame}/pulls/new`}
-            className="flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white text-sm px-4 py-2 rounded-lg transition"
+            className="flex items-center gap-1.5 xs:gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs xs:text-sm px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg transition whitespace-nowrap shrink-0"
           >
             <Plus className="w-4 h-4" /> New Pull Request
           </Link>
         </div>
 
         {/* Filters */}
-        <div className="flex items-center gap-3 mb-4">
+        <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 xs:gap-3 mb-4">
           <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 flex-1">
             <Search className="w-3.5 h-3.5 text-gray-500" />
             <input
@@ -204,7 +204,7 @@ const PRListPage = () => {
 
         {/* Pagination */}
         {!isLoading && meta.totalPages > 1 && (
-          <div className="flex items-center justify-between mt-4">
+          <div className="flex flex-col xs:flex-row items-center justify-between mt-4 gap-2">
             <p className="text-gray-500 text-xs">
               Showing {(page - 1) * limit + 1}–{Math.min(page * limit, meta.total)} of {meta.total}
             </p>

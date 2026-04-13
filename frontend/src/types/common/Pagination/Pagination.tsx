@@ -2,7 +2,7 @@ import { PaginationProps } from './paginationTypes';
 
 const Pagination = ({ page, totalPages, total, limit, onPageChange }: PaginationProps) => {
   return (
-    <div className="border-t border-gray-800 px-4 py-3 flex items-center justify-between">
+    <div className="border-t border-gray-800 px-3 xs:px-4 py-3 flex flex-col xs:flex-row items-center justify-between gap-2">
       <p className="text-gray-500 text-xs">
         Showing {total === 0 ? 0 : (page - 1) * limit + 1}–{Math.min(page * limit, total)} of{' '}
         {total} results

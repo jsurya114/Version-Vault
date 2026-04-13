@@ -225,14 +225,14 @@ const CollaboratorsTabContent = ({ username, reponame, isOwner }: CollaboratorsT
               .map((inv) => (
                 <div
                   key={inv.id}
-                  className="px-4 py-3 flex items-center justify-between hover:bg-gray-800/30 transition"
+                  className="px-4 py-3 flex items-center justify-between hover:bg-gray-800/30 transition gap-2"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center">
+                  <div className="flex items-center gap-3 min-w-0">
+                    <div className="w-8 h-8 rounded-full bg-yellow-500/10 flex items-center justify-center shrink-0">
                       <Mail className="w-4 h-4 text-yellow-400" />
                     </div>
-                    <div>
-                      <p className="text-white text-sm">{inv.inviteeEmail}</p>
+                    <div className="min-w-0">
+                      <p className="text-white text-sm truncate">{inv.inviteeEmail}</p>
                       <p className="text-gray-500 text-xs">Invitation pending</p>
                     </div>
                   </div>
@@ -273,17 +273,17 @@ const CollaboratorsTabContent = ({ username, reponame, isOwner }: CollaboratorsT
         ) : (
           <div className="divide-y divide-gray-800">
             {/* Owner entry */}
-            <div className="px-4 py-3 flex items-center justify-between hover:bg-gray-800/20 transition">
-              <div className="flex items-center gap-3">
+            <div className="px-4 py-3 flex items-center justify-between hover:bg-gray-800/20 transition gap-2">
+              <div className="flex items-center gap-3 min-w-0">
                 <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
                   {username[0]?.toUpperCase()}
                 </div>
-                <div>
+                <div className="min-w-0">
                   <div className="flex items-center gap-2">
-                    <p className="text-white text-sm font-medium">{username}</p>
-                    <Crown className="w-3.5 h-3.5 text-yellow-400" />
+                    <p className="text-white text-sm font-medium truncate">{username}</p>
+                    <Crown className="w-3.5 h-3.5 text-yellow-400 shrink-0" />
                   </div>
-                  <p className="text-gray-500 text-xs">Repository owner</p>
+                  <p className="text-gray-500 text-xs truncate">Repository owner</p>
                 </div>
               </div>
               <span className="text-xs px-2.5 py-1 rounded-full border bg-yellow-500/10 text-yellow-400 border-yellow-500/30">
@@ -295,15 +295,15 @@ const CollaboratorsTabContent = ({ username, reponame, isOwner }: CollaboratorsT
             {collaborators.map((collab) => (
               <div
                 key={collab.id}
-                className="px-4 py-3 flex items-center justify-between hover:bg-gray-800/20 transition"
+                className="px-4 py-3 flex items-center justify-between hover:bg-gray-800/20 transition gap-2 flex-wrap sm:flex-nowrap"
               >
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-3 min-w-0">
                   <div className="w-8 h-8 rounded-full bg-gradient-to-br from-cyan-500 to-blue-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
                     {collab.collaboratorUsername[0]?.toUpperCase()}
                   </div>
-                  <div>
-                    <p className="text-white text-sm font-medium">{collab.collaboratorUsername}</p>
-                    <p className="text-gray-500 text-xs">
+                  <div className="min-w-0">
+                    <p className="text-white text-sm font-medium truncate">{collab.collaboratorUsername}</p>
+                    <p className="text-gray-500 text-xs truncate">
                       Joined{' '}
                       {collab.createdAt
                         ? new Date(collab.createdAt).toLocaleDateString('en-US', {

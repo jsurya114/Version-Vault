@@ -264,19 +264,19 @@ const RepositoryListPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
       <AppHeader />
 
-      <main className="p-6 max-w-6xl mx-auto w-full flex-1">
+      <main className="px-3 xs:px-4 sm:px-6 py-4 xs:py-6 max-w-6xl mx-auto w-full flex-1 min-w-0">
         {/* Page Header */}
-        <div className="flex items-center justify-between mb-6">
+        <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between mb-4 xs:mb-6 gap-3 xs:gap-4">
           <div>
-            <h1 className="text-white text-xl font-bold">Repositories</h1>
+            <h1 className="text-white text-lg xs:text-xl font-bold">Repositories</h1>
             <p className="text-gray-500 text-sm mt-1">{meta.total} repositories</p>
           </div>
           <Link
             to={ROUTES.REPO_CREATE}
-            className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-2 rounded-lg transition"
+            className="bg-blue-600 hover:bg-blue-700 text-white text-xs xs:text-sm font-medium px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg transition whitespace-nowrap shrink-0"
           >
             + New repository
           </Link>

@@ -20,10 +20,10 @@ const CreatePRPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
       <AppHeader />
-      <div className="border-b border-gray-800 px-6 py-2">
-        <div className="max-w-6xl mx-auto flex items-center gap-1 text-sm text-gray-400">
+      <div className="border-b border-gray-800 px-3 xs:px-4 sm:px-6 py-2">
+        <div className="max-w-6xl mx-auto flex items-center gap-1 text-xs xs:text-sm text-gray-400 min-w-0 flex-wrap">
           <Link to={`/${username}/${reponame}`} className="text-blue-400 hover:underline">
             {reponame}
           </Link>
@@ -32,7 +32,7 @@ const CreatePRPage = () => {
         </div>
       </div>
 
-      <main className="max-w-6xl mx-auto px-6 py-12 w-full flex-1">
+      <main className="max-w-6xl mx-auto px-3 xs:px-4 sm:px-6 py-6 xs:py-8 sm:py-12 w-full flex-1">
         <CompareLanding branches={branches} onSelectBranch={handleCompare} />
       </main>
       <AppFooter />

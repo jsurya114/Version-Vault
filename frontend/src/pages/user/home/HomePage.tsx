@@ -114,11 +114,11 @@ const HomePage = () => {
       <AppHeader />
 
       {/* Mobile sidebar toggle button */}
-      <div className="lg:hidden flex items-center px-4 pt-4 pb-2">
+      <div className="lg:hidden flex items-center px-3 xs:px-4 pt-3 xs:pt-4 pb-2">
         <button
           id="sidebar-toggle"
           onClick={() => setSidebarOpen(!sidebarOpen)}
-          className="flex items-center gap-2 text-sm text-gray-400 hover:text-white bg-gray-900 border border-gray-800 px-3 py-1.5 rounded-md transition"
+          className="flex items-center gap-1.5 xs:gap-2 text-xs xs:text-sm text-gray-400 hover:text-white bg-gray-900 border border-gray-800 px-2.5 xs:px-3 py-1.5 rounded-md transition"
         >
           {sidebarOpen ? <X className="w-4 h-4" /> : <Menu className="w-4 h-4" />}
           {sidebarOpen ? 'Close' : 'Repositories'}
@@ -126,22 +126,22 @@ const HomePage = () => {
       </div>
 
       {/* MAIN CONTENT */}
-      <div className="max-w-[1440px] mx-auto px-4 sm:px-6 py-4 sm:py-8 flex gap-6 xl:gap-8 w-full flex-1 items-start relative">
+      <div className="max-w-[1440px] 3xl:max-w-[1800px] mx-auto px-3 xs:px-4 sm:px-6 lg:px-8 py-3 xs:py-4 sm:py-6 md:py-8 flex flex-col lg:flex-row gap-4 sm:gap-6 xl:gap-8 3xl:gap-10 w-full flex-1 items-start relative">
         {/* LEFT SIDEBAR — overlay on mobile, static on lg+ */}
         <div
           id="home-sidebar"
           className={`
             ${sidebarOpen ? 'flex' : 'hidden'} lg:flex
             flex-col
-            w-72 shrink-0 space-y-4
+            w-[calc(100%-2rem)] xs:w-72 md:w-64 lg:w-56 xl:w-64 2xl:w-72 3xl:w-80 shrink-0 space-y-4
             lg:static
-            fixed top-[130px] left-4 z-40
+            fixed top-[120px] xs:top-[130px] left-3 xs:left-4 z-40
             bg-gray-950 lg:bg-transparent
             border border-gray-800 lg:border-none
             rounded-xl lg:rounded-none
-            p-4 lg:p-0
+            p-3 xs:p-4 lg:p-0
             shadow-2xl lg:shadow-none
-            max-h-[calc(100vh-160px)] overflow-y-auto lg:overflow-visible lg:max-h-none
+            max-h-[calc(100vh-140px)] xs:max-h-[calc(100vh-160px)] overflow-y-auto lg:overflow-visible lg:max-h-none
           `}
         >
           <div className="flex items-center justify-between mt-2">
@@ -217,9 +217,17 @@ const HomePage = () => {
           )}
         </div>
 
+        {/* Mobile sidebar backdrop overlay */}
+        {sidebarOpen && (
+          <div
+            className="fixed inset-0 bg-black/50 z-30 lg:hidden"
+            onClick={() => setSidebarOpen(false)}
+          />
+        )}
+
         {/* MIDDLE COLUMN */}
-        <div className="flex-1 min-w-0 space-y-6 max-w-3xl">
-          <h1 className="text-xl sm:text-2xl font-semibold text-white">Home</h1>
+        <div className="flex-1 min-w-0 space-y-4 xs:space-y-5 sm:space-y-6 w-full max-w-full lg:max-w-3xl 3xl:max-w-4xl">
+          <h1 className="text-lg xs:text-xl sm:text-2xl 3xl:text-3xl font-semibold text-white">Home</h1>
 
           {/* Ask Anything Box (Temporarily Disabled) */}
           {/*
@@ -275,63 +283,63 @@ const HomePage = () => {
           */}
 
           {/* Feed Header */}
-          <div className="flex items-center justify-between mt-8 mb-2">
+          <div className="flex items-center justify-between mt-4 xs:mt-6 sm:mt-8 mb-2">
             <h2 className="text-white text-sm font-bold">Feed</h2>
-            <button className="flex items-center gap-1.5 px-3 py-1 bg-gray-800 border border-gray-700 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-700 transition shadow-sm">
+            <button className="flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 bg-gray-800 border border-gray-700 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-700 transition shadow-sm">
               <Filter className="w-3 h-3 text-gray-500" /> Filter
             </button>
           </div>
 
           {/* Feed Items */}
-          <div className="space-y-4">
+          <div className="space-y-3 xs:space-y-4">
             {/* Feed Item 1 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 sm:p-4 shadow-sm">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center shrink-0 border border-gray-700">
+            <div className="bg-gray-900 border border-gray-800 rounded-lg xs:rounded-xl p-2.5 xs:p-3 sm:p-4 shadow-sm">
+              <div className="flex items-start justify-between mb-2 xs:mb-3">
+                <div className="flex items-start xs:items-center gap-2 min-w-0">
+                  <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center shrink-0 border border-gray-700">
                     {/* Skeleton graphic of an avatar */}
-                    <span className="text-white text-xs font-bold font-mono">F</span>
+                    <span className="text-white text-[10px] xs:text-xs font-bold font-mono">F</span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm text-gray-400 flex flex-wrap gap-1">
-                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer">
+                    <p className="text-xs xs:text-sm text-gray-400 flex flex-wrap gap-0.5 xs:gap-1">
+                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal">
                         FizanMuhammedFaisal
                       </span>{' '}
                       <span>made this repository public</span>
                     </p>
-                    <p className="text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
+                    <p className="text-[10px] xs:text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
                       yesterday
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-2">
+                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-1 xs:ml-2">
                   <MoreHorizontal className="w-4 h-4" />
                 </button>
               </div>
 
-              <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-3 sm:p-4 ml-0 sm:ml-10">
-                <div className="flex items-start justify-between mb-3 gap-2 flex-wrap">
+              <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-2.5 xs:p-3 sm:p-4 ml-0 sm:ml-10">
+                <div className="flex flex-col mobile:flex-row mobile:items-start justify-between mb-2 xs:mb-3 gap-2">
                   <div className="flex items-center gap-2 min-w-0">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] shrink-0 font-bold border border-gray-700">
                       F
                     </div>
                     <Link
                       to="#"
-                      className="font-semibold text-gray-300 hover:text-blue-400 text-sm truncate"
+                      className="font-semibold text-gray-300 hover:text-blue-400 text-xs xs:text-sm truncate"
                     >
                       FizanMuhammedFaisal/pixelmeet-backend
                     </Link>
                   </div>
-                  <div className="flex items-center divide-x divide-gray-700 rounded-md border border-gray-700 bg-gray-800 shrink-0">
-                    <button className="flex items-center gap-1.5 px-3 py-1 text-xs font-semibold text-gray-300 hover:bg-gray-700 transition h-7">
+                  <div className="flex items-center divide-x divide-gray-700 rounded-md border border-gray-700 bg-gray-800 shrink-0 self-start">
+                    <button className="flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 text-xs font-semibold text-gray-300 hover:bg-gray-700 transition h-7">
                       <Star className="w-3.5 h-3.5 text-gray-400" /> Star
                     </button>
-                    <button className="px-2 h-7 flex items-center hover:bg-gray-700">
+                    <button className="px-1.5 xs:px-2 h-7 flex items-center hover:bg-gray-700">
                       <ChevronDown className="w-3 h-3 text-gray-300" />
                     </button>
                   </div>
                 </div>
-                <div className="flex items-center gap-4 text-xs text-gray-400 mt-2 flex-wrap">
+                <div className="flex items-center gap-3 xs:gap-4 text-[11px] xs:text-xs text-gray-400 mt-2 flex-wrap">
                   <span className="flex items-center gap-1.5">
                     <span className="w-3 h-3 rounded-full bg-blue-500 border border-gray-700"></span>{' '}
                     TypeScript
@@ -344,45 +352,45 @@ const HomePage = () => {
             </div>
 
             {/* Feed Item 2 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 sm:p-4 shadow-sm">
-              <div className="flex items-start justify-between mb-3">
-                <div className="flex items-center gap-2 min-w-0">
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shrink-0 border border-gray-700">
-                    <span className="text-white text-xs font-bold font-mono">N</span>
+            <div className="bg-gray-900 border border-gray-800 rounded-lg xs:rounded-xl p-2.5 xs:p-3 sm:p-4 shadow-sm">
+              <div className="flex items-start justify-between mb-2 xs:mb-3">
+                <div className="flex items-start xs:items-center gap-2 min-w-0">
+                  <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shrink-0 border border-gray-700">
+                    <span className="text-white text-[10px] xs:text-xs font-bold font-mono">N</span>
                   </div>
                   <div className="min-w-0">
-                    <p className="text-sm text-gray-400 flex flex-wrap gap-1">
-                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer">
+                    <p className="text-xs xs:text-sm text-gray-400 flex flex-wrap gap-0.5 xs:gap-1">
+                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal">
                         Nandakumar-S-1
                       </span>{' '}
                       <span>contributed to</span>{' '}
-                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer">
+                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal">
                         Nandakumar-S-1/Nandakumar-S-1
                       </span>
                     </p>
-                    <p className="text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
+                    <p className="text-[10px] xs:text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
                       2 days ago
                     </p>
                   </div>
                 </div>
-                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-2">
+                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-1 xs:ml-2">
                   <MoreHorizontal className="w-4 h-4" />
                 </button>
               </div>
 
               <div className="ml-0 sm:ml-10">
-                <h3 className="text-base font-semibold text-gray-300 mb-3 hover:text-blue-400 cursor-pointer">
+                <h3 className="text-sm xs:text-base font-semibold text-gray-300 mb-2 xs:mb-3 hover:text-blue-400 cursor-pointer">
                   merging changes to main{' '}
-                  <span className="text-gray-500 font-normal font-mono text-sm ml-1 hover:text-blue-400">
+                  <span className="text-gray-500 font-normal font-mono text-xs xs:text-sm ml-1 hover:text-blue-400">
                     #2
                   </span>
                 </h3>
 
-                <div className="flex items-center gap-3 mb-4 flex-wrap">
-                  <span className="flex items-center gap-1.5 bg-purple-600 text-white text-[11px] font-semibold px-2 py-0.5 rounded-full">
-                    <GitMerge className="w-3.5 h-3.5" /> Merged
+                <div className="flex items-center gap-2 xs:gap-3 mb-3 xs:mb-4 flex-wrap">
+                  <span className="flex items-center gap-1 xs:gap-1.5 bg-purple-600 text-white text-[10px] xs:text-[11px] font-semibold px-2 py-0.5 rounded-full">
+                    <GitMerge className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> Merged
                   </span>
-                  <span className="text-sm text-gray-400 hover:text-blue-400 cursor-pointer">
+                  <span className="text-xs xs:text-sm text-gray-400 hover:text-blue-400 cursor-pointer">
                     Nandakumar-S-1 merged 35 commits
                   </span>
                 </div>
@@ -397,7 +405,7 @@ const HomePage = () => {
 
             {/* Trending repositories */}
             <div className="pt-2">
-              <button className="text-sm text-blue-400 hover:underline font-medium w-full text-center py-2">
+              <button className="text-xs xs:text-sm text-blue-400 hover:underline font-medium w-full text-center py-2">
                 See more
               </button>
             </div>
@@ -405,11 +413,11 @@ const HomePage = () => {
         </div>
 
         {/* RIGHT SIDEBAR — hidden on small screens, shown on xl+ */}
-        <div className="hidden xl:block w-80 shrink-0">
-          <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 shadow-sm">
-            <h3 className="text-sm font-semibold text-white mb-6">Latest from our changelog</h3>
+        <div className="hidden xl:block w-72 2xl:w-80 3xl:w-96 shrink-0">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 2xl:p-5 3xl:p-6 shadow-sm">
+            <h3 className="text-sm 3xl:text-base font-semibold text-white mb-4 2xl:mb-6">Latest from our changelog</h3>
 
-            <div className="relative border-l border-gray-700 ml-[5px] space-y-7 pb-2">
+            <div className="relative border-l border-gray-700 ml-[5px] space-y-5 2xl:space-y-7 pb-2">
               <div className="relative pl-5">
                 <div className="absolute w-[9px] h-[9px] bg-gray-500 rounded-full -left-[5px] top-1.5 border-2 border-gray-900"></div>
                 <p className="text-[11px] font-medium text-gray-500 mb-1">12 hours ago</p>
