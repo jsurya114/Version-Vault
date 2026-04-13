@@ -85,11 +85,11 @@ git push -u origin main`,
   }, [dispatch, name, description, visibility, navigate, selectedFiles]);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white">
+    <div className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
       <AppHeader />
-      <main className="max-w-5xl mx-auto px-6 py-8">
+      <main className="max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 sm:py-8">
         <div className="mb-8">
-          <h1 className="text-white text-2xl font-bold">Create a New Repository</h1>
+          <h1 className="text-white text-xl xs:text-2xl font-bold">Create a New Repository</h1>
           <p className="text-gray-500 text-sm mt-1">
             A repository contains all project files, including the revision history.
           </p>
@@ -98,16 +98,16 @@ git push -u origin main`,
         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
           {/* LEFT COLUMN: Setup & Drag/Drop */}
           <div className="space-y-6">
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3.5 xs:p-4 sm:p-5">
               <h2 className="text-white font-semibold mb-4">1. Basic Setup</h2>
-              <div className="grid grid-cols-2 gap-3 mb-4">
+              <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 mb-4">
                 <div>
                   <label className="block text-gray-400 text-xs mb-1">Owner</label>
-                  <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-gray-300 text-sm flex items-center gap-2">
+                  <div className="bg-gray-800 border border-gray-700 rounded-lg px-2.5 xs:px-3 py-2 xs:py-2.5 text-gray-300 text-xs xs:text-sm flex items-center gap-2 min-w-0">
                     <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
                       {user?.username?.[0]?.toUpperCase()}
                     </div>
-                    {user?.userId} /
+                    <span className="truncate">{user?.userId} /</span>
                   </div>
                 </div>
                 <div>
@@ -136,10 +136,10 @@ git push -u origin main`,
                 />
               </div>
               {name && (
-                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg px-3 py-2 mb-4">
+                <div className="bg-blue-500/10 border border-blue-500/20 rounded-lg px-2.5 xs:px-3 py-2 mb-4">
                   <p className="text-blue-400 text-xs">
                     Your repo will be at{' '}
-                    <span className="font-mono">
+                    <span className="font-mono break-all">
                       {user?.userId}/{name}
                     </span>
                   </p>
@@ -149,7 +149,7 @@ git push -u origin main`,
                 <label className="block text-gray-400 text-xs mb-2">Visibility</label>
                 <div className="grid grid-cols-2 gap-3">
                   <label
-                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition ${visibility === 'public' ? 'border-blue-500 bg-blue-500/10' : 'border-gray-700 hover:border-gray-600'}`}
+                    className={`flex items-start gap-2 xs:gap-3 p-2.5 xs:p-3 rounded-lg border cursor-pointer transition ${visibility === 'public' ? 'border-blue-500 bg-blue-500/10' : 'border-gray-700 hover:border-gray-600'}`}
                   >
                     <input
                       type="radio"
@@ -160,14 +160,14 @@ git push -u origin main`,
                       className="accent-blue-500 mt-0.5"
                     />
                     <div>
-                      <p className="text-white text-sm font-medium">🌐 Public</p>
+                      <p className="text-white text-xs xs:text-sm font-medium">🌐 Public</p>
                       <p className="text-gray-500 text-xs mt-0.5">
                         Anyone on the internet can see this repository.
                       </p>
                     </div>
                   </label>
                   <label
-                    className={`flex items-start gap-3 p-3 rounded-lg border cursor-pointer transition ${visibility === 'private' ? 'border-blue-500 bg-blue-500/10' : 'border-gray-700 hover:border-gray-600'}`}
+                    className={`flex items-start gap-2 xs:gap-3 p-2.5 xs:p-3 rounded-lg border cursor-pointer transition ${visibility === 'private' ? 'border-blue-500 bg-blue-500/10' : 'border-gray-700 hover:border-gray-600'}`}
                   >
                     <input
                       type="radio"
@@ -178,7 +178,7 @@ git push -u origin main`,
                       className="accent-blue-500 mt-0.5"
                     />
                     <div>
-                      <p className="text-white text-sm font-medium">🔒 Private</p>
+                      <p className="text-white text-xs xs:text-sm font-medium">🔒 Private</p>
                       <p className="text-gray-500 text-xs mt-0.5">
                         You choose who can see and commit.
                       </p>
@@ -195,14 +195,14 @@ git push -u origin main`,
           </div>
           {/* RIGHT COLUMN: CLI & Actions */}
           <div className="space-y-4">
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-5">
-              <div className="flex items-center justify-between mb-4">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3.5 xs:p-4 sm:p-5">
+              <div className="flex items-center justify-between mb-3 xs:mb-4 flex-wrap gap-2">
                 <h2 className="text-white font-semibold">3. CLI Setup</h2>
                 <span className="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">
                   EXISTING PROJECT
                 </span>
               </div>
-              <div className="bg-gray-950 rounded-lg p-4 mb-3 font-mono text-xs space-y-1">
+              <div className="bg-gray-950 rounded-lg p-3 xs:p-4 mb-3 font-mono text-[10px] xs:text-xs space-y-1 overflow-x-auto">
                 {cliCommands.split('\n').map((line, i) => (
                   <div key={i} className="flex gap-3">
                     <span className="text-gray-600 select-none w-4 text-right">{i + 1}</span>
@@ -227,7 +227,7 @@ git push -u origin main`,
                 Copy to clipboard
               </button>
             </div>
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-5 space-y-3">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3.5 xs:p-4 sm:p-5 space-y-3">
               {error && (
                 <div className="bg-red-500/10 border border-red-500/30 rounded-lg px-4 py-3 text-red-400 text-sm">
                   {error}

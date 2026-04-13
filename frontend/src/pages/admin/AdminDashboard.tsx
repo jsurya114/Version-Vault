@@ -13,13 +13,13 @@ import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
 const UserRow = React.memo(({ user }: { user: UserResponseDTO }) => (
   <tr className="border-b border-gray-800/50 last:border-0">
     <td className="py-2.5">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 min-w-0">
         <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
           {user.username?.[0]?.toUpperCase()}
         </div>
-        <div>
-          <p className="text-white text-xs font-medium">{user.username}</p>
-          <p className="text-gray-500 text-xs">{user.email}</p>
+        <div className="min-w-0">
+          <p className="text-white text-xs font-medium truncate">{user.username}</p>
+          <p className="text-gray-500 text-xs truncate">{user.email}</p>
         </div>
       </div>
     </td>
@@ -45,17 +45,17 @@ const UserRow = React.memo(({ user }: { user: UserResponseDTO }) => (
 const RepoRow = React.memo(({ repo }: { repo: RepositoryResponseDTO }) => (
   <tr className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
     <td className="py-2.5">
-      <div className="flex items-center gap-2">
+      <div className="flex items-center gap-2 min-w-0">
         <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
           📁
         </div>
-        <div>
-          <p className="text-white text-xs font-medium">{repo.name}</p>
+        <div className="min-w-0">
+          <p className="text-white text-xs font-medium truncate">{repo.name}</p>
           <p className="text-gray-500 text-[10px] uppercase font-mono">{repo.defaultBranch}</p>
         </div>
       </div>
     </td>
-    <td className="py-2.5 text-blue-400 text-xs text-center font-bold">@{repo.ownerUsername}</td>
+    <td className="py-2.5 text-blue-400 text-xs text-center font-bold truncate">@{repo.ownerUsername}</td>
     <td className="py-2.5 text-right">
       <span
         className={`text-[9px] px-2 py-0.5 rounded font-black tracking-tighter uppercase ${
@@ -128,7 +128,7 @@ const AdminDashboard = () => {
   return (
     <AdminLayout>
       {/* System Integrity */}
-      <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 mb-6">
+      <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 mb-4 xs:mb-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
             <span className="text-green-400 text-sm">✓</span>
@@ -136,7 +136,7 @@ const AdminDashboard = () => {
           </div>
           <span className="text-gray-500 text-xs">UPTIME: 99.99%</span>
         </div>
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-2 xs:gap-3 sm:gap-4">
           {[
             { label: 'API CLUSTER', name: 'versionvault-api-prd' },
             { label: 'DATABASE POOL', name: 'postgres-main-01' },
@@ -144,7 +144,7 @@ const AdminDashboard = () => {
           ].map((s) => (
             <div
               key={s.label}
-              className="flex items-center justify-between bg-gray-800 rounded-lg px-4 py-2.5"
+              className="flex flex-col xs:flex-row items-start xs:items-center justify-between bg-gray-800 rounded-lg px-3 xs:px-4 py-2 xs:py-2.5 gap-1 xs:gap-2"
             >
               <div>
                 <p className="text-gray-500 text-xs">{s.label}</p>
@@ -159,29 +159,30 @@ const AdminDashboard = () => {
       </div>
 
       {/* Stats */}
-      <div className="grid grid-cols-4 gap-4 mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-6">
         {stats.map((s) => (
-          <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+          <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
             <div className="flex items-center justify-between mb-2">
               <p className="text-gray-400 text-xs">{s.label}</p>
               <span className={`text-xs ${s.color}`}>{s.icon}</span>
             </div>
-            <p className="text-white text-2xl font-bold">{s.value}</p>
+            <p className="text-white text-xl xs:text-2xl font-bold">{s.value}</p>
           </div>
         ))}
       </div>
 
       {/* Tables */}
-      <div className="grid grid-cols-2 gap-6">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 xs:gap-6">
         {/* Newest Users */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-semibold text-sm">Newest Users</h3>
             <Link to={ROUTES.ADMIN_USERS} className="text-blue-400 text-xs hover:underline">
               View All
             </Link>
           </div>
-          <table className="w-full">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[300px]">
             <thead>
               <tr className="text-gray-500 text-xs border-b border-gray-800">
                 <th className="text-left pb-2">USER</th>
@@ -195,17 +196,19 @@ const AdminDashboard = () => {
               ))}
             </tbody>
           </table>
+          </div>
         </div>
 
         {/* Latest Repositories */}
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
           <div className="flex items-center justify-between mb-4">
             <h3 className="text-white font-semibold text-sm">Latest Repositories</h3>
             <Link to={ROUTES.ADMIN_REPOS} className="text-blue-400 text-xs hover:underline">
               View All
             </Link>
           </div>
-          <table className="w-full">
+          <div className="overflow-x-auto">
+          <table className="w-full min-w-[300px]">
             <thead>
               <tr className="text-gray-500 text-xs border-b border-gray-800">
                 <th className="text-left pb-2">REPOSITORY</th>
@@ -225,6 +228,7 @@ const AdminDashboard = () => {
               )}
             </tbody>
           </table>
+          </div>
         </div>
       </div>
     </AdminLayout>

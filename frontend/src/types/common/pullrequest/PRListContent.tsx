@@ -62,14 +62,14 @@ const PRListContent = ({
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
-      <div className="flex items-center justify-between mb-4">
+    <div className="max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
+      <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between mb-4 gap-2 xs:gap-3">
         <h1 className="text-white font-semibold flex items-center gap-2">
           <GitPullRequest className="w-5 h-5 text-gray-400" /> Pull Requests
         </h1>
         <Link
           to={hasWriteAccess ? `/${username}/${reponame}/pulls/new` : '#'}
-          className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition ${
+          className={`flex items-center gap-1.5 xs:gap-2 text-xs xs:text-sm px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg transition whitespace-nowrap shrink-0 ${
             !hasWriteAccess
               ? 'bg-gray-800 text-gray-600 cursor-not-allowed pointer-events-none opacity-50 border border-gray-700'
               : 'bg-blue-600 hover:bg-blue-700 text-white'
@@ -80,7 +80,7 @@ const PRListContent = ({
       </div>
 
       {/* Filters */}
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 xs:gap-3 mb-4">
         <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 flex-1">
           <Search className="w-3.5 h-3.5 text-gray-500" />
           <input
@@ -130,7 +130,7 @@ const PRListContent = ({
           prs.map((pr, i) => (
             <div
               key={pr.id}
-              className={`flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition ${i !== prs.length - 1 ? 'border-b border-gray-800/50' : ''}`}
+              className={`flex items-start gap-2 xs:gap-3 sm:gap-4 px-3 xs:px-4 py-3 xs:py-4 hover:bg-gray-800/30 cursor-pointer transition ${i !== prs.length - 1 ? 'border-b border-gray-800/50' : ''}`}
               onClick={() => navigate(`/${username}/${reponame}/pulls/${pr.id}`)}
             >
               <div
@@ -142,8 +142,8 @@ const PRListContent = ({
                 <p className="text-white text-sm font-medium hover:text-blue-400 transition truncate">
                   {pr.title}
                 </p>
-                <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
-                  <span>#{pr.id.slice(-6)}</span>
+                <div className="flex flex-wrap items-center gap-1.5 xs:gap-2 sm:gap-3 mt-1 text-gray-500 text-[10px] xs:text-xs">
+                  <span>#{pr.prNumber}</span>
                   <span>opened {formatDate(pr.createdAt)}</span>
                   <span>by {pr.authorUsername}</span>
                 </div>

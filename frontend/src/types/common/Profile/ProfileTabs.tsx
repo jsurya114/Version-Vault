@@ -8,10 +8,10 @@ interface ProfileTabsProps {
 
 const ProfileTabs: React.FC<ProfileTabsProps> = ({ activeTab, onTabChange, repoCount }) => {
   return (
-    <div className="flex items-center gap-1 bg-gray-900/50 p-1 rounded-xl border border-gray-800 mb-8 w-fit mx-auto">
+    <div className="flex items-center gap-1 bg-gray-900/50 p-1 rounded-xl border border-gray-800 mb-6 xs:mb-8 w-full xs:w-fit mx-auto">
       <button
         onClick={() => onTabChange('overview')}
-        className={`px-8 py-2 text-sm font-medium rounded-lg transition-all duration-200 ${
+        className={`flex-1 xs:flex-none px-4 xs:px-6 sm:px-8 py-1.5 xs:py-2 text-xs xs:text-sm font-medium rounded-lg transition-all duration-200 ${
           activeTab === 'overview'
             ? 'bg-gray-800 text-white shadow-lg'
             : 'text-gray-500 hover:text-gray-300'
@@ -21,7 +21,7 @@ const ProfileTabs: React.FC<ProfileTabsProps> = ({ activeTab, onTabChange, repoC
       </button>
       <button
         onClick={() => onTabChange('repositories')}
-        className={`px-8 py-2 text-sm font-medium rounded-lg transition-all duration-200 flex items-center gap-2 ${
+        className={`flex-1 xs:flex-none px-4 xs:px-6 sm:px-8 py-1.5 xs:py-2 text-xs xs:text-sm font-medium rounded-lg transition-all duration-200 flex items-center justify-center gap-1.5 xs:gap-2 ${
           activeTab === 'repositories'
             ? 'bg-gray-800 text-white shadow-lg'
             : 'text-gray-500 hover:text-gray-300'

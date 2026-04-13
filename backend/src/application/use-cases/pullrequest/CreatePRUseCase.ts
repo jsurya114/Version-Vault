@@ -13,7 +13,10 @@ export class CreatePRUseCase implements ICreatePRUseCase {
   constructor(@inject(TOKENS.IPullRequestRepository) private prRepo: IPullRequestRepository) {}
 
   async execute(dto: CreatePullRequestDTO): Promise<PullRequestResponseDTO> {
+    const totalExistingPRs = await this.prRepo.countPRsByRepo(dto.repositoryId);
+    const nextPrNumber = totalExistingPRs + 1;
     const pr = await this.prRepo.save({
+      prNumber: nextPrNumber,
       title: dto.title,
       description: dto.description,
       status: 'open',
@@ -24,8 +27,8 @@ export class CreatePRUseCase implements ICreatePRUseCase {
       authorUsername: dto.authorUsername,
       reviewers: [],
       commentsCount: 0,
-      baseCommitHash:dto.baseCommitHash,
-      headCommitHash:dto.headCommitHash
+      baseCommitHash: dto.baseCommitHash,
+      headCommitHash: dto.headCommitHash,
     });
     return PullRequestMapper.toDTO(pr);
   }

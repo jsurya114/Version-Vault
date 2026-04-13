@@ -16,7 +16,8 @@ const DataTable = <T extends { id?: string }>({
 
   return (
     <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden">
-      <table className="w-full">
+      <div className="overflow-x-auto">
+      <table className="w-full min-w-[600px]">
         <thead>
           <tr className="border-b border-gray-800 text-gray-500 text-xs">
             {columns.map((col) => (
@@ -54,6 +55,7 @@ const DataTable = <T extends { id?: string }>({
           )}
         </tbody>
       </table>
+      </div>
     </div>
   );
 };

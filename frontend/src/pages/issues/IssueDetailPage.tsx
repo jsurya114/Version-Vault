@@ -55,7 +55,7 @@ const IssueDetailPage = () => {
   if (!issue) return null;
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
       <AppHeader />
 
       <ConfirmModal
@@ -69,8 +69,8 @@ const IssueDetailPage = () => {
         icon={<AlertCircle className="w-5 h-5 text-red-400" />}
       />
       {/* Breadcrumb */}
-      <div className="border-b border-gray-800 px-6 py-2">
-        <div className="max-w-5xl mx-auto flex items-center gap-1 text-sm">
+      <div className="border-b border-gray-800 px-3 xs:px-4 sm:px-6 py-2">
+        <div className="max-w-5xl mx-auto flex items-center gap-1 text-xs xs:text-sm min-w-0 flex-wrap">
           <Link to={ROUTES.REPO_LIST} className="text-blue-400 hover:underline">
             {username}
           </Link>
@@ -87,21 +87,21 @@ const IssueDetailPage = () => {
         </div>
       </div>
 
-      <main className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
+      <main className="max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
         {/* Issue Header */}
         <div className="mb-6">
-          <div className="flex items-start justify-between gap-4">
-            <div className="flex items-start gap-3">
+          <div className="flex flex-col sm:flex-row items-start justify-between gap-3 xs:gap-4">
+            <div className="flex items-start gap-2 xs:gap-3 min-w-0">
               <div className="mt-1 shrink-0">
                 {issue.status === 'open' ? (
-                  <CircleDot className="w-6 h-6 text-green-400" />
+                  <CircleDot className="w-5 h-5 xs:w-6 xs:h-6 text-green-400" />
                 ) : (
-                  <CheckCircle className="w-6 h-6 text-purple-400" />
+                  <CheckCircle className="w-5 h-5 xs:w-6 xs:h-6 text-purple-400" />
                 )}
               </div>
-              <div>
-                <h1 className="text-white text-xl font-bold">{issue.title}</h1>
-                <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs flex-wrap">
+              <div className="min-w-0">
+                <h1 className="text-white text-lg xs:text-xl font-bold break-words">{issue.title}</h1>
+                <div className="flex flex-wrap items-center gap-1.5 xs:gap-2 sm:gap-3 mt-1 text-gray-500 text-[10px] xs:text-xs">
                   <span
                     className={`px-2 py-0.5 rounded border capitalize text-xs ${
                       issue.status === 'open'
@@ -112,7 +112,7 @@ const IssueDetailPage = () => {
                     {issue.status}
                   </span>
                   <span>
-                    opened by <span className="text-gray-300">{issue.authorUsername}</span>
+                    opened by <span className="text-gray-300 break-all">{issue.authorUsername}</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
@@ -137,14 +137,14 @@ const IssueDetailPage = () => {
           </div>
         </div>
 
-        <div className="flex gap-6">
+        <div className="flex flex-col md:flex-row gap-4 xs:gap-6">
           {/* Main */}
           <div className="flex-1 space-y-4">
             {/* Description */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-sm font-semibold mb-3">Description</h3>
               {issue.description ? (
-                <p className="text-gray-400 text-sm leading-relaxed">{issue.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed break-words">{issue.description}</p>
               ) : (
                 <p className="text-gray-600 text-sm italic">No description provided.</p>
               )}
@@ -160,9 +160,9 @@ const IssueDetailPage = () => {
           </div>
 
           {/* Sidebar */}
-          <div className="w-56 shrink-0 space-y-4">
+          <div className="w-full md:w-56 shrink-0 space-y-4 min-w-0 overflow-hidden">
             {/* Priority */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-xs font-semibold mb-3 flex items-center gap-2">
                 <AlertCircle className="w-3.5 h-3.5" /> Priority
               </h3>
@@ -175,7 +175,7 @@ const IssueDetailPage = () => {
 
             {/* Labels */}
             {issue.labels.length > 0 && (
-              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
                 <h3 className="text-white text-xs font-semibold mb-3 flex items-center gap-2">
                   <Tag className="w-3.5 h-3.5" /> Labels
                 </h3>
@@ -193,24 +193,24 @@ const IssueDetailPage = () => {
             )}
 
             {/* Author */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-xs font-semibold mb-2">Author</h3>
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 min-w-0">
                 <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
                   {issue.authorUsername?.[0]?.toUpperCase()}
                 </div>
-                <span className="text-gray-400 text-xs">{issue.authorUsername}</span>
+                <span className="text-gray-400 text-xs truncate">{issue.authorUsername}</span>
               </div>
             </div>
 
             {/* Assignees */}
-            <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+            <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-xs font-semibold mb-2">Assignees</h3>
               {issue.assignees.length === 0 ? (
                 <p className="text-gray-600 text-xs">No assignees</p>
               ) : (
                 issue.assignees.map((a) => (
-                  <p key={a} className="text-gray-400 text-xs">
+                  <p key={a} className="text-gray-400 text-xs truncate">
                     {a}
                   </p>
                 ))

@@ -32,9 +32,9 @@ const CommitDetailPage = React.memo(() => {
   const commit = data?.commits?.[0];
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans selection:bg-blue-500/30 overflow-x-hidden">
       <AppHeader />
-      <main className="max-w-6xl mx-auto px-6 py-8 w-full flex-1">
+      <main className="max-w-6xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 sm:py-8 w-full flex-1">
         {isLoading ? (
           <div className="py-24 flex flex-col items-center justify-center gap-4 opacity-70">
             <div className="w-8 h-8 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
@@ -45,12 +45,12 @@ const CommitDetailPage = React.memo(() => {
         ) : commit ? (
           <div className="space-y-6">
             <div className="bg-gray-950 border border-gray-800 rounded-md divide-y divide-gray-800 shadow-sm">
-              <div className="p-4 flex flex-col gap-1">
-                <div className="flex items-center justify-between">
+              <div className="p-3 xs:p-4 flex flex-col gap-1">
+                <div className="flex items-start justify-between gap-2">
                   <div className="flex items-center gap-2">
-                    <span className="text-white text-[16px] font-bold">{commit.message}</span>
+                    <span className="text-white text-sm xs:text-[16px] font-bold break-words">{commit.message}</span>
                   </div>
-                  <div className="flex items-center gap-1 opacity-80">
+                  <div className="flex items-center gap-1 opacity-80 shrink-0 hidden xs:flex">
                     <div className="flex items-center bg-gray-800 border border-gray-700/50 rounded px-2 py-0.5 gap-1.5 text-gray-400 hover:text-white transition-colors cursor-pointer">
                       <FileCode className="w-3 h-3" />
                       <span className="text-[11px] font-mono font-bold tracking-tight">

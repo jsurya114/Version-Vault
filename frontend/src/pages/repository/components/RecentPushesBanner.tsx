@@ -48,7 +48,7 @@ export const RecentPushesBanner: React.FC<RecentPushesBannerProps> = ({
   };
 
   return (
-    <div className="mb-6 animate-in fade-in slide-in-from-top-4 duration-500 relative group">
+    <div className="mb-4 xs:mb-6 animate-in fade-in slide-in-from-top-4 duration-500 relative group px-1">
       <div
         className={`
         bg-gradient-to-r 
@@ -57,13 +57,13 @@ export const RecentPushesBanner: React.FC<RecentPushesBannerProps> = ({
             ? 'from-red-900/20 to-orange-900/20 border-red-500/30'
             : 'from-blue-900/20 to-indigo-900/20 border-blue-500/30'
         } 
-        border rounded-xl p-4 flex items-center justify-between shadow-lg backdrop-blur-sm
+        border rounded-xl p-3 xs:p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3 shadow-lg backdrop-blur-sm
       `}
       >
-        <div className="flex items-center gap-4">
+        <div className="flex items-start xs:items-center gap-2 xs:gap-3 sm:gap-4 min-w-0">
           <div
             className={`
-            w-10 h-10 
+            w-8 h-8 xs:w-10 xs:h-10 shrink-0
             ${isRejected ? 'bg-red-500/20 text-red-400' : 'bg-blue-500/20 text-blue-400'} 
             rounded-full flex items-center justify-center
           `}
@@ -75,7 +75,7 @@ export const RecentPushesBanner: React.FC<RecentPushesBannerProps> = ({
             )}
           </div>
           <div>
-            <p className="text-white text-sm font-bold flex items-center gap-2">
+            <p className="text-white text-xs xs:text-sm font-bold flex flex-wrap items-center gap-1 xs:gap-2">
               <span
                 className={`
                 ${isRejected ? 'bg-red-500/20 text-red-400' : 'bg-blue-500/20 text-blue-400'} 
@@ -100,7 +100,7 @@ export const RecentPushesBanner: React.FC<RecentPushesBannerProps> = ({
           </div>
         </div>
 
-        <div className="flex items-center gap-3">
+        <div className="flex items-center gap-2 xs:gap-3 self-end sm:self-auto shrink-0">
           {isRejected ? (
             <div className="flex items-center gap-2 px-4 py-2 rounded-lg bg-red-500/10 border border-red-500/30 text-red-400 text-xs font-black shadow-inner">
               <X className="w-4 h-4" />

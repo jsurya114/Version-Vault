@@ -56,11 +56,17 @@ export interface GitBranch {
   name: string;
   lastCommitDate?: string;
   lastCommitAuthor?: string;
+  lastCommitAuthorEmail?: string;
   lastCommitMessage?: string;
   current?: boolean;
   status?: 'success' | 'failure' | 'pending' | 'none';
   check?: string;
   checks?: string;
+  ahead?: number;
+  behind?: number;
+  prId?: string;
+  prNumber?: number;
+  prStatus?: 'open' | 'closed' | 'merged';
 }
 
 export interface GitFileEntry {
@@ -68,6 +74,8 @@ export interface GitFileEntry {
   path: string;
   type: 'blob' | 'tree';
   size?: number;
+  lastCommitMessage?: string;
+  lastCommitDate?: string;
 }
 
 export interface GitCommit {

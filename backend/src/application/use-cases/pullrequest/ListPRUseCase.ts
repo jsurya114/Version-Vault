@@ -8,6 +8,7 @@ import {
   PaginationQueryDTO,
 } from '../../../application/dtos/reusable/PaginationDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
+import { PRStatus } from '../../../domain/interfaces/IPullRequest';
 
 @injectable()
 export class ListPRUseCase implements IListPRUseCase {
@@ -17,7 +18,7 @@ export class ListPRUseCase implements IListPRUseCase {
 
   async execute(
     repositoryId: string,
-    query: PaginationQueryDTO,
+    query: PaginationQueryDTO<PRStatus>,
   ): Promise<PaginatedResponseDTO<PullRequestResponseDTO>> {
     const result = await this.listPrUseCase.findByRepo(repositoryId, query);
     return {

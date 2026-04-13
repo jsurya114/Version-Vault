@@ -21,17 +21,17 @@ const PinnedRepoCard: React.FC<PinnedRepoCardProps> = ({
   return (
     <div
       onClick={onClick}
-      className="group bg-gray-900/40 border border-gray-800 hover:border-blue-500/50 rounded-2xl p-6 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/5"
+      className="group bg-gray-900/40 border border-gray-800 hover:border-blue-500/50 rounded-xl xs:rounded-2xl p-4 xs:p-5 sm:p-6 cursor-pointer transition-all duration-300 hover:shadow-2xl hover:shadow-blue-500/5"
     >
       <div className="flex flex-col h-full justify-between">
-        <div className="mb-4">
-          <h3 className="text-white text-lg font-bold group-hover:text-blue-400 transition-colors">
+        <div className="mb-3 xs:mb-4">
+          <h3 className="text-white text-base xs:text-lg font-bold group-hover:text-blue-400 transition-colors break-all">
             {name}
           </h3>
           {description && <p className="text-gray-500 text-sm mt-1 line-clamp-2">{description}</p>}
         </div>
 
-        <div className="flex items-center gap-6 text-xs mt-auto">
+        <div className="flex items-center gap-4 xs:gap-6 text-xs mt-auto">
           <div className="flex items-center gap-2 text-gray-400 font-medium">
             <span className="w-3 h-3 rounded-full" style={{ backgroundColor: languageColor }} />
             {language}

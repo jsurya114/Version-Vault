@@ -60,7 +60,7 @@ const AdminRepositoriesPage = () => {
         key: 'name',
         label: 'REPOSITORY',
         render: (r) => (
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-2 min-w-0">
             <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400">
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path
@@ -71,9 +71,9 @@ const AdminRepositoriesPage = () => {
                 />
               </svg>
             </div>
-            <div>
-              <p className="text-white text-sm font-medium">{r.name}</p>
-              <p className="text-gray-500 text-xs">by @{r.ownerUsername}</p>
+            <div className="min-w-0">
+              <p className="text-white text-sm font-medium truncate">{r.name}</p>
+              <p className="text-gray-500 text-xs truncate">by @{r.ownerUsername}</p>
             </div>
           </div>
         ),
@@ -137,16 +137,16 @@ const AdminRepositoriesPage = () => {
   return (
     <AdminLayout>
       <div className="mb-6">
-        <h1 className="text-white text-xl font-bold">Repository Management</h1>
+        <h1 className="text-white text-lg xs:text-xl font-bold">Repository Management</h1>
         <p className="text-gray-500 text-sm mt-1">
           Audit, monitor and regulate platform repositories.
         </p>
       </div>
 
-      <div className="grid grid-cols-4 gap-4 mb-6">
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 text-center">
+      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-6">
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 text-center">
           <p className="text-gray-400 text-xs mb-1">Total Repositories</p>
-          <p className="text-white text-2xl font-bold">{meta?.total ?? 0}</p>
+          <p className="text-white text-xl xs:text-2xl font-bold">{meta?.total ?? 0}</p>
         </div>
         {/* Add more stats as needed */}
       </div>

@@ -77,13 +77,13 @@ const GitHubIcon = () => (
 );
 
 const Navbar = React.memo(() => (
-  <nav className="border-b border-gray-800 px-8 py-3 flex items-center justify-between sticky top-0 bg-gray-950/95 backdrop-blur z-50">
-    <div className="flex items-center gap-8">
+  <nav className="border-b border-gray-800 px-4 sm:px-8 py-3 flex items-center justify-between sticky top-0 bg-gray-950/95 backdrop-blur z-50">
+    <div className="flex items-center gap-4 sm:gap-8">
       <div className="flex items-center gap-2">
         <div className="w-7 h-7 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500 flex items-center justify-center">
           <GitHubIcon />
         </div>
-        <span className="font-bold text-white">VersionVault</span>
+        <span className="font-bold text-white text-sm sm:text-base">VersionVault</span>
       </div>
       <div className="hidden md:flex items-center gap-6">
         {['Product', 'Pricing', 'Docs'].map((item) => (
@@ -96,16 +96,16 @@ const Navbar = React.memo(() => (
         ))}
       </div>
     </div>
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-2 sm:gap-3">
       <Link
         to={ROUTES.LOGIN}
-        className="text-gray-300 hover:text-white text-sm transition px-3 py-1.5"
+        className="text-gray-300 hover:text-white text-xs sm:text-sm transition px-2 sm:px-3 py-1.5"
       >
         Sign in
       </Link>
       <Link
         to={ROUTES.REGISTER}
-        className="bg-blue-600 hover:bg-blue-700 text-white text-sm font-medium px-4 py-1.5 rounded-lg transition"
+        className="bg-blue-600 hover:bg-blue-700 text-white text-xs sm:text-sm font-medium px-3 sm:px-4 py-1.5 rounded-lg transition"
       >
         Sign up
       </Link>
@@ -114,33 +114,32 @@ const Navbar = React.memo(() => (
 ));
 
 const Hero = React.memo(() => (
-  <section className="max-w-4xl mx-auto px-6 pt-20 pb-10 text-center">
+  <section className="max-w-4xl mx-auto px-4 sm:px-6 pt-12 sm:pt-20 pb-10 text-center">
     <div className="inline-flex items-center gap-2 bg-blue-500/10 border border-blue-500/20 rounded-full px-4 py-1.5 mb-6">
       <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
       <span className="text-blue-400 text-xs">With VersionVault there's a better way</span>
     </div>
 
-    <h1 className="text-5xl md:text-6xl font-bold text-white leading-tight mb-5">
+    <h1 className="text-3xl sm:text-5xl md:text-6xl font-bold text-white leading-tight mb-5">
       VersionVault — Where developers
-      <br />
-      build together.
+      <br className="hidden sm:block" /> build together.
     </h1>
 
-    <p className="text-gray-400 text-base max-w-xl mx-auto mb-8 leading-relaxed">
+    <p className="text-gray-400 text-sm sm:text-base max-w-xl mx-auto mb-8 leading-relaxed">
       The next-generation code hosting platform built for speed, security, and seamless
       collaboration. Deploy faster than ever.
     </p>
 
-    <div className="flex items-center justify-center gap-3 mb-14">
+    <div className="flex flex-col sm:flex-row items-center justify-center gap-3 mb-14">
       <Link
         to={ROUTES.REGISTER}
-        className="bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm"
+        className="w-full sm:w-auto bg-blue-600 hover:bg-blue-700 text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm text-center"
       >
         Start Getting More
       </Link>
       <Link
         to={ROUTES.LOGIN}
-        className="bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm"
+        className="w-full sm:w-auto bg-gray-800 hover:bg-gray-700 border border-gray-700 text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm text-center"
       >
         View Enterprise Demo
       </Link>
@@ -155,7 +154,7 @@ const Hero = React.memo(() => (
         </div>
         <span className="text-gray-500 text-xs">main / repo</span>
       </div>
-      <div className="p-5 font-mono text-sm space-y-1.5">
+      <div className="p-4 sm:p-5 font-mono text-xs sm:text-sm space-y-1.5 overflow-x-auto">
         <p>
           <span className="text-gray-500">$</span>{' '}
           <span className="text-green-400">git init version-vault</span>
@@ -229,15 +228,17 @@ const features = [
 ];
 
 const Features = React.memo(() => (
-  <section className="border-t border-gray-800 py-20 px-6">
+  <section className="border-t border-gray-800 py-12 sm:py-20 px-4 sm:px-6">
     <div className="max-w-4xl mx-auto">
       <div className="text-center mb-12">
-        <h2 className="text-3xl font-bold text-white mb-3">Powerful features for modern teams</h2>
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
+          Powerful features for modern teams
+        </h2>
         <p className="text-gray-400 text-sm max-w-lg mx-auto">
           Everything from small startups to tech giants trust VersionVault to keep things moving.
         </p>
       </div>
-      <div className="grid grid-cols-1 md:grid-cols-4 gap-4">
+      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-4">
         {features.map((f) => (
           <div
             key={f.title}
@@ -261,10 +262,10 @@ const Features = React.memo(() => (
 ));
 
 const Security = React.memo(() => (
-  <section className="border-t border-gray-800 py-20 px-6 bg-gray-900/20">
+  <section className="border-t border-gray-800 py-12 sm:py-20 px-4 sm:px-6 bg-gray-900/20">
     <div className="max-w-4xl mx-auto flex flex-col md:flex-row gap-12 items-center">
-      <div className="md:w-1/2">
-        <h2 className="text-3xl font-bold text-white mb-4">
+      <div className="md:w-1/2 w-full">
+        <h2 className="text-2xl sm:text-3xl font-bold text-white mb-4">
           World-class security is
           <br />
           baked in by default.
@@ -288,7 +289,7 @@ const Security = React.memo(() => (
           </div>
         </div>
       </div>
-      <div className="md:w-1/2 space-y-3">
+      <div className="md:w-1/2 w-full space-y-3">
         <div className="bg-gray-900 border border-yellow-500/30 rounded-xl p-4">
           <div className="flex items-center justify-between mb-2">
             <span className="text-yellow-400 text-xs font-medium flex items-center gap-1">
@@ -326,25 +327,25 @@ const Security = React.memo(() => (
 ));
 
 const CTABanner = React.memo(() => (
-  <section className="py-20 px-6">
-    <div className="max-w-4xl mx-auto bg-blue-600 rounded-2xl px-10 py-14 text-center">
-      <h2 className="text-3xl font-bold text-white mb-3">
+  <section className="py-12 sm:py-20 px-4 sm:px-6">
+    <div className="max-w-4xl mx-auto bg-blue-600 rounded-2xl px-6 sm:px-10 py-10 sm:py-14 text-center">
+      <h2 className="text-2xl sm:text-3xl font-bold text-white mb-3">
         Build the future of software, together.
       </h2>
       <p className="text-blue-100 text-sm mb-8 max-w-md mx-auto">
         Join over 90 million developers who are already using VersionVault to build amazing things
         every single day.
       </p>
-      <div className="flex items-center justify-center gap-4">
+      <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4">
         <Link
           to={ROUTES.REGISTER}
-          className="bg-white hover:bg-gray-100 text-blue-600 font-semibold px-6 py-2.5 rounded-lg transition text-sm"
+          className="w-full sm:w-auto bg-white hover:bg-gray-100 text-blue-600 font-semibold px-6 py-2.5 rounded-lg transition text-sm text-center"
         >
           Create Free Account
         </Link>
         <Link
           to={ROUTES.LOGIN}
-          className="border border-white/40 hover:border-white text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm"
+          className="w-full sm:w-auto border border-white/40 hover:border-white text-white font-semibold px-6 py-2.5 rounded-lg transition text-sm text-center"
         >
           Talk to Sales
         </Link>
@@ -354,8 +355,8 @@ const CTABanner = React.memo(() => (
 ));
 
 const Footer = React.memo(() => (
-  <footer className="border-t border-gray-800 py-10 px-8">
-    <div className="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-5 gap-8">
+  <footer className="border-t border-gray-800 py-10 px-4 sm:px-8">
+    <div className="max-w-5xl mx-auto grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-8">
       <div className="col-span-2 md:col-span-1">
         <div className="flex items-center gap-2 mb-3">
           <div className="w-6 h-6 rounded-full bg-gradient-to-br from-cyan-400 to-blue-500" />
@@ -400,7 +401,7 @@ const Footer = React.memo(() => (
         </Link>
       </div>
     </div>
-    <div className="max-w-5xl mx-auto mt-8 pt-6 border-t border-gray-800 flex items-center justify-between">
+    <div className="max-w-5xl mx-auto mt-8 pt-6 border-t border-gray-800 flex flex-col sm:flex-row items-center justify-between gap-2">
       <span className="text-gray-600 text-xs">© 2026 VersionVault, Inc.</span>
       <span className="text-gray-600 text-xs">All rights reserved.</span>
     </div>

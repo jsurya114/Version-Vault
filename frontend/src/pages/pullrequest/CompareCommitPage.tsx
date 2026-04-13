@@ -104,15 +104,15 @@ const CompareCommitPage = () => {
     ({ commit, onClick }: { commit: GitCommit; onClick: () => void }) => (
       <div
         onClick={onClick}
-        className="p-4 flex flex-col gap-1 hover:bg-gray-900/40 transition-all cursor-pointer group/card"
+        className="p-3 xs:p-4 flex flex-col sm:flex-row gap-1 hover:bg-gray-900/40 transition-all cursor-pointer group/card"
       >
-        <div className="flex items-start justify-between">
+        <div className="flex items-start justify-between gap-2">
           <div className="flex items-center gap-2">
-            <span className="text-white text-[14px] font-bold group-hover/card:text-blue-400 transition-colors">
+            <span className="text-white text-xs xs:text-[14px] font-bold group-hover/card:text-blue-400 transition-colors break-words">
               {commit.message}
             </span>
           </div>
-          <div className="flex items-center gap-1 opacity-80">
+          <div className="flex items-center gap-1 opacity-80 shrink-0 hidden xs:flex">
             <div className="flex items-center bg-gray-800 border border-gray-700/50 rounded px-2 py-0.5 gap-1.5 text-gray-400 hover:text-white transition-colors">
               <FileCode className="w-3 h-3" />
               <span className="text-[11px] font-mono font-bold tracking-tight">
@@ -138,17 +138,17 @@ const CompareCommitPage = () => {
   );
 
   return (
-    <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans selection:bg-blue-500/30">
+    <div className="min-h-screen bg-gray-950 text-gray-300 flex flex-col font-sans selection:bg-blue-500/30 overflow-x-hidden">
       <AppHeader />
 
-      <main className="max-w-6xl mx-auto px-6 py-8 w-full flex-1">
+      <main className="max-w-6xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 sm:py-8 w-full flex-1">
         {/* Main Compare Card */}
-        <div className="bg-[#0d1117] border border-gray-800 rounded-xl p-8 flex items-start justify-between mb-8 shadow-sm w-full">
-          <div className="flex flex-col max-w-[50%]">
+        <div className="bg-[#0d1117] border border-gray-800 rounded-xl p-4 xs:p-5 sm:p-8 flex flex-col lg:flex-row items-start justify-between mb-6 xs:mb-8 shadow-sm w-full gap-4 xs:gap-6">
+          <div className="flex flex-col w-full lg:max-w-[50%]">
             <div className="w-10 h-10 bg-blue-500/10 border border-blue-500/20 rounded-lg flex items-center justify-center mb-5 shadow-sm">
               <GitPullRequest className="w-5 h-5 text-blue-500" />
             </div>
-            <h1 className="text-[28px] font-bold mb-3 text-white tracking-tight leading-none">
+            <h1 className="text-xl xs:text-2xl sm:text-[28px] font-bold mb-2 xs:mb-3 text-white tracking-tight leading-none">
               Compare changes
             </h1>
             <p className="text-[#8b949e] text-[14px] leading-relaxed">
@@ -156,8 +156,8 @@ const CompareCommitPage = () => {
             </p>
           </div>
 
-          <div className="flex flex-col items-end gap-3 mt-1">
-            <div className="bg-[#010409] border border-gray-800 rounded-lg p-2.5 px-3 flex items-center justify-center gap-4 shadow-sm">
+          <div className="flex flex-col items-start lg:items-end gap-3 mt-1 w-full lg:w-auto">
+            <div className="bg-[#010409] border border-gray-800 rounded-lg p-2 xs:p-2.5 px-2 xs:px-3 flex flex-col xs:flex-row items-stretch xs:items-center justify-center gap-2 xs:gap-4 shadow-sm w-full lg:w-auto">
               <div className="flex items-center gap-2">
                 <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest ml-1">
                   BASE
@@ -186,7 +186,7 @@ const CompareCommitPage = () => {
                 </div>
               </div>
 
-              <span className="text-gray-600 font-mono text-sm leading-none select-none">←</span>
+              <span className="text-gray-600 font-mono text-sm leading-none select-none hidden xs:block">←</span>
 
               <div className="flex items-center gap-2">
                 <span className="text-gray-500 text-[10px] font-bold uppercase tracking-widest ml-1">
@@ -227,9 +227,9 @@ const CompareCommitPage = () => {
             </div>
 
             {/* Status & Actions below selectors */}
-            <div className="flex flex-col items-end gap-3 w-full">
+            <div className="flex flex-col items-start lg:items-end gap-3 w-full">
               {!isLoading && data && head && (
-                <div className="flex items-center justify-between w-full mt-2 space-x-4">
+                <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between w-full mt-2 gap-2 xs:gap-4">
                   <div className="flex items-center gap-2 pl-2">
                     {head !== base && base === 'main' && (
                       <>
@@ -288,7 +288,7 @@ const CompareCommitPage = () => {
         ) : data ? (
           <div className="space-y-6">
             {/* Stats Summary Bar */}
-            <div className="bg-gray-900/50 border border-gray-800 rounded-md py-3 px-6 flex items-center justify-around">
+            <div className="bg-gray-900/50 border border-gray-800 rounded-md py-2 xs:py-3 px-3 xs:px-4 sm:px-6 flex flex-col xs:flex-row items-stretch xs:items-center justify-around gap-2 xs:gap-0">
               <div
                 onClick={() => setActiveTab('commits')}
                 className={`flex items-center gap-2 cursor-pointer transition-all ${activeTab === 'commits' ? 'text-blue-400' : 'text-gray-500'}`}
@@ -305,7 +305,7 @@ const CompareCommitPage = () => {
               </div>
               <div
                 onClick={() => setActiveTab('files')}
-                className={`flex items-center gap-2 cursor-pointer transition-all border-x border-gray-800 px-16 ${activeTab === 'files' ? 'text-blue-400' : 'text-gray-500'}`}
+                className={`flex items-center gap-2 cursor-pointer transition-all border-x-0 xs:border-x border-gray-800 px-4 xs:px-8 sm:px-16 py-1 xs:py-0 ${activeTab === 'files' ? 'text-blue-400' : 'text-gray-500'}`}
               >
                 <FileCode className="w-3.5 h-3.5" />
                 <span className="text-[12px]">

@@ -54,14 +54,14 @@ const IssueListContent = ({
   };
 
   return (
-    <div className="max-w-5xl mx-auto px-6 py-6 w-full flex-1">
-      <div className="flex items-center justify-between mb-4">
+    <div className="max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
+      <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between mb-4 gap-2 xs:gap-3">
         <h1 className="text-white font-semibold flex items-center gap-2">
           <CircleDot className="w-5 h-5 text-gray-400" /> Issues
         </h1>
         <Link
           to={isOwner ? `/${username}/${reponame}/issues/new` : '#'}
-          className={`flex items-center gap-2 text-sm px-4 py-2 rounded-lg transition ${
+          className={`flex items-center gap-1.5 xs:gap-2 text-xs xs:text-sm px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg transition whitespace-nowrap shrink-0 ${
             !isOwner
               ? 'bg-gray-800 text-gray-600 cursor-not-allowed pointer-events-none opacity-50 border border-gray-700'
               : 'bg-blue-600 hover:bg-blue-700 text-white'
@@ -71,7 +71,7 @@ const IssueListContent = ({
         </Link>
       </div>
 
-      <div className="flex items-center gap-3 mb-4">
+      <div className="flex flex-col xs:flex-row items-stretch xs:items-center gap-2 xs:gap-3 mb-4">
         <div className="flex items-center gap-2 bg-gray-900 border border-gray-700 rounded-lg px-3 py-2 flex-1">
           <Search className="w-3.5 h-3.5 text-gray-500" />
           <input
@@ -120,7 +120,7 @@ const IssueListContent = ({
           issues.map((issue, i) => (
             <div
               key={issue.id}
-              className={`flex items-start gap-4 px-4 py-4 hover:bg-gray-800/30 cursor-pointer transition ${i !== issues.length - 1 ? 'border-b border-gray-800/50' : ''}`}
+              className={`flex items-start gap-2 xs:gap-3 sm:gap-4 px-3 xs:px-4 py-3 xs:py-4 hover:bg-gray-800/30 cursor-pointer transition ${i !== issues.length - 1 ? 'border-b border-gray-800/50' : ''}`}
               onClick={() => navigate(`/${username}/${reponame}/issues/${issue.id}`)}
             >
               <div className="mt-0.5 shrink-0">
@@ -144,7 +144,7 @@ const IssueListContent = ({
                     </span>
                   ))}
                 </div>
-                <div className="flex items-center gap-3 mt-1 text-gray-500 text-xs">
+                <div className="flex flex-wrap items-center gap-1.5 xs:gap-2 sm:gap-3 mt-1 text-gray-500 text-[10px] xs:text-xs">
                   <span>#{issue.id.slice(-6)}</span>
                   <span>opened {formatDate(issue.createdAt)}</span>
                   <span>by {issue.authorUsername}</span>

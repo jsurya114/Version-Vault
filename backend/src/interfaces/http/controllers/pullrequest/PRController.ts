@@ -13,6 +13,7 @@ import { AuthRequest } from '../repository/RepositoryController';
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
 import { IPullRequestRepository } from '../../../../domain/interfaces/repositories/IPullRequestRepository';
 import { GitService } from '../../../../infrastructure/services/GitService';
+import { PRStatus } from '../../../../domain/interfaces/IPullRequest';
 
 @injectable()
 export class PRController {
@@ -23,8 +24,8 @@ export class PRController {
     @inject(TOKENS.IMergePRUseCase) private _mergePR: IMergePRUseCase,
     @inject(TOKENS.IClosePRUseCase) private _closePR: IClosePRUseCase,
     @inject(TOKENS.IGetRepoUseCase) private _getRepo: IGetRepoUseCase,
-    @inject(TOKENS.IPullRequestRepository) private _prReository:IPullRequestRepository,
-    @inject(GitService) private _gitService: GitService
+    @inject(TOKENS.IPullRequestRepository) private _prReository: IPullRequestRepository,
+    @inject(GitService) private _gitService: GitService,
   ) {}
 
   // POST /vv/pr/:username/:reponame
@@ -45,8 +46,6 @@ export class PRController {
         repositoryId: repo.id,
         authorId,
         authorUsername,
-
-
       });
       res.status(HttpStatusCodes.CREATED).json({ success: true, data: pr });
     } catch (error) {
@@ -59,13 +58,13 @@ export class PRController {
       const { username, reponame } = req.params;
       const authenticateUser = (req as AuthRequest).user as ITokenPayload | undefined;
       const authenticateUserId = authenticateUser?.id;
-      const query: PaginationQueryDTO = {
+      const query: PaginationQueryDTO<PRStatus> = {
         page: req.query.page ? Number(req.query.page) : 1,
         limit: req.query.limit ? Number(req.query.limit) : 5,
         sort: req.query.sort as string | undefined,
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,
-        status: req.query.status as 'active' | 'blocked' | 'pending' | undefined,
+        status: req.query.status as PRStatus | undefined,
       };
       const repo = await this._getRepo.execute(username, reponame, authenticateUserId);
       const result = await this._listPRs.execute(repo.id, query);
@@ -118,76 +117,82 @@ export class PRController {
     }
   }
 
-
   // Collaborator requests merge approval
-async requestMerge(req: Request, res: Response, next: NextFunction): Promise<void> {
-  try {
-    const {id}=req.params
-    const pr = await this._prReository.findById(id)
-    if(!pr){
+  async requestMerge(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const pr = await this._prReository.findById(id);
+      if (!pr) {
         res.status(HttpStatusCodes.NOT_FOUND).json({ success: false, message: 'PR not found' });
         return;
+      }
+      if (pr.status !== 'open') {
+        res
+          .status(HttpStatusCodes.BAD_REQUEST)
+          .json({ success: false, message: 'only open pr can request merge' });
+        return;
+      }
+      if (pr.mergeApproval === 'pending') {
+        res
+          .status(HttpStatusCodes.BAD_REQUEST)
+          .json({ success: false, message: 'Merge request already pending' });
+        return;
+      }
+      await this._prReository.update(id, { mergeApproval: 'pending' });
+      res
+        .status(HttpStatusCodes.OK)
+        .json({ success: true, message: 'Merge request sent to owner for approval' });
+    } catch (error) {
+      next(error);
     }
-    if(pr.status!=='open'){
-      res.status(HttpStatusCodes.BAD_REQUEST).json({success:false,message:'only open pr can request merge'})
-      return 
-    }
-    if(pr.mergeApproval==='pending'){
-      res.status(HttpStatusCodes.BAD_REQUEST).json({ success: false, message: 'Merge request already pending' })
-      return 
-
-    }
-    await this._prReository.update(id,{mergeApproval:'pending'})
-    res.status(HttpStatusCodes.OK).json({ success: true, message: 'Merge request sent to owner for approval' });
-  } catch (error) {
-    next(error)
   }
-}
 
   // PATCH /vv/pr/:username/:reponame/:id/approve-merge — Owner approves and merges
-async approveMerge(req: Request, res: Response, next: NextFunction): Promise<void> {
-  try {
-    const {id}=req.params
-    const pr = await this._prReository.findById(id)
-    if(!pr){
+  async approveMerge(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const pr = await this._prReository.findById(id);
+      if (!pr) {
         res.status(HttpStatusCodes.NOT_FOUND).json({ success: false, message: 'PR not found' });
         return;
-    }
+      }
 
-   if(pr.mergeApproval!=='pending'){
-      res.status(HttpStatusCodes.BAD_REQUEST).json({ success: false, message: 'No pending merge request to approve' })
-      return 
+      if (pr.mergeApproval !== 'pending') {
+        res
+          .status(HttpStatusCodes.BAD_REQUEST)
+          .json({ success: false, message: 'No pending merge request to approve' });
+        return;
+      }
+      const upatedPr = await this._prReository.update(id, { mergeApproval: 'approved' });
 
+      res
+        .status(HttpStatusCodes.OK)
+        .json({ success: true, message: 'PR approved and merged', data: upatedPr });
+    } catch (error) {
+      next(error);
     }
-   const upatedPr= await this._prReository.update(id,{mergeApproval:'approved'})
-   
-    res.status(HttpStatusCodes.OK).json({success:true,message:'PR approved and merged',data:upatedPr})
-  } catch (error) {
-    next(error)
   }
-}
 
- // PATCH /vv/pr/:username/:reponame/:id/reject-merge — Owner rejects merge request
- async rejectMerge(req:Request,res:Response,next:NextFunction):Promise<void>{
-  try {
-    const {id}=req.params
-    const pr = await this._prReository.findById(id)
+  // PATCH /vv/pr/:username/:reponame/:id/reject-merge — Owner rejects merge request
+  async rejectMerge(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const pr = await this._prReository.findById(id);
 
-    if(!pr){
+      if (!pr) {
         res.status(HttpStatusCodes.NOT_FOUND).json({ success: false, message: 'PR not found' });
         return;
+      }
+      if (pr.mergeApproval !== 'pending') {
+        res
+          .status(HttpStatusCodes.BAD_REQUEST)
+          .json({ success: false, message: 'No pending merge request to approve' });
+        return;
+      }
+      await this._prReository.update(id, { mergeApproval: 'rejected' });
+      res.status(HttpStatusCodes.OK).json({ success: true, message: 'Merge request rejected' });
+    } catch (error) {
+      next(error);
     }
-       if(pr.mergeApproval!=='pending'){
-      res.status(HttpStatusCodes.BAD_REQUEST).json({ success: false, message: 'No pending merge request to approve' })
-      return 
-
-    }
-    await this._prReository.update(id,{mergeApproval:'rejected'})
-    res.status(HttpStatusCodes.OK).json({ success: true, message: 'Merge request rejected' });
-  } catch (error) {
-    next(error)
   }
- }
-
-
 }

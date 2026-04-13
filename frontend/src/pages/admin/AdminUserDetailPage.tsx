@@ -140,20 +140,20 @@ const AdminUserDetailPage = () => {
             >
               ← Back to Users
             </Link>
-            <h1 className="text-white text-xl font-bold">User Management</h1>
+            <h1 className="text-white text-lg xs:text-xl font-bold">User Management</h1>
             <p className="text-gray-500 text-sm mt-1">
               Manage platform access, roles, and repository permissions for all users.
             </p>
           </div>
 
           {/* User Identity Bar */}
-          <div className="flex items-center gap-4 mb-6">
-            <div className="w-12 h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xl font-bold">
+          <div className="flex items-center gap-3 xs:gap-4 mb-6">
+            <div className="w-10 h-10 xs:w-12 xs:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg xs:text-xl font-bold shrink-0">
               {selectedUser.username?.[0]?.toUpperCase()}
             </div>
-            <div>
-              <div className="flex items-center gap-2">
-                <h2 className="text-white text-lg font-bold">{selectedUser.username}</h2>
+            <div className="min-w-0">
+              <div className="flex flex-wrap items-center gap-2">
+                <h2 className="text-white text-base xs:text-lg font-bold truncate">{selectedUser.username}</h2>
                 <span
                   className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase ${statusColors[status]}`}
                 >
@@ -174,14 +174,14 @@ const AdminUserDetailPage = () => {
             {/* Left Column - 3/5 */}
             <div className="lg:col-span-3 space-y-6">
               {/* User Details Card */}
-              <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 xs:p-5 sm:p-6">
                 <h3 className="text-white font-semibold text-sm mb-5">User Details</h3>
-                <div className="grid grid-cols-2 gap-4 mb-5">
+                <div className="grid grid-cols-1 xs:grid-cols-2 gap-3 xs:gap-4 mb-4 xs:mb-5">
                   <div>
                     <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
                       Display Name
                     </label>
-                    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm">
+                    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm break-words">
                       {selectedUser.username}
                     </div>
                   </div>
@@ -189,7 +189,7 @@ const AdminUserDetailPage = () => {
                     <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
                       Email Address
                     </label>
-                    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm">
+                    <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-white text-sm break-all">
                       {selectedUser.email}
                     </div>
                   </div>
@@ -198,14 +198,14 @@ const AdminUserDetailPage = () => {
                   <label className="text-gray-500 text-xs uppercase tracking-wider block mb-1.5">
                     Bio
                   </label>
-                  <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-3 text-gray-400 text-sm min-h-[80px]">
+                  <div className="bg-gray-800 border border-gray-700 rounded-lg px-3 py-3 text-gray-400 text-sm min-h-[80px] break-words">
                     {selectedUser.bio || 'No bio provided.'}
                   </div>
                 </div>
               </div>
 
               {/* Recent Repositories Card */}
-              <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 xs:p-5 sm:p-6">
                 <div className="flex items-center justify-between mb-4">
                   <h3 className="text-white font-semibold text-sm">User Repositories</h3>
                   <Link
@@ -215,7 +215,8 @@ const AdminUserDetailPage = () => {
                     View All
                   </Link>
                 </div>
-                <table className="w-full">
+                <div className="overflow-x-auto">
+                <table className="w-full min-w-[300px]">
                   <thead>
                     <tr className="text-gray-500 text-xs border-b border-gray-800">
                       <th className="text-left pb-2.5 font-medium">Repository Name</th>
@@ -235,13 +236,14 @@ const AdminUserDetailPage = () => {
                     )}
                   </tbody>
                 </table>
+                </div>
               </div>
             </div>
 
             {/* Right Column - 2/5 */}
             <div className="lg:col-span-2 space-y-6">
               {/* Account Management Card */}
-              <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 xs:p-5 sm:p-6">
                 <h3 className="text-white font-semibold text-sm mb-5">Account Management</h3>
 
                 <div className="mb-5">
@@ -301,7 +303,7 @@ const AdminUserDetailPage = () => {
               </div>
 
               {/* Quick Stats Card */}
-              <div className="bg-gray-900 border border-gray-800 rounded-xl p-6">
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 xs:p-5 sm:p-6">
                 <h3 className="text-cyan-400 text-xs font-bold uppercase tracking-wider mb-4">
                   Quick Stats
                 </h3>

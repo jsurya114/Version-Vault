@@ -66,11 +66,11 @@ const CreateIssuePage = React.memo(() => {
   }, [dispatch, username, reponame, title, description, priority, labels, navigate]);
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white flex flex-col">
+    <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
       <AppHeader />
 
-      <div className="border-b border-gray-800 px-6 py-2">
-        <div className="max-w-3xl mx-auto flex items-center gap-1 text-sm">
+      <div className="border-b border-gray-800 px-3 xs:px-4 sm:px-6 py-2">
+        <div className="max-w-3xl mx-auto flex items-center gap-1 text-xs xs:text-sm min-w-0 flex-wrap">
           <Link to={ROUTES.REPO_LIST} className="text-blue-400 hover:underline">
             {username}
           </Link>
@@ -87,12 +87,12 @@ const CreateIssuePage = React.memo(() => {
         </div>
       </div>
 
-      <main className="max-w-3xl mx-auto px-6 py-6 w-full flex-1">
-        <div className="flex items-center gap-3 mb-6">
-          <div className="w-9 h-9 rounded-full bg-green-600/20 border border-green-500/30 flex items-center justify-center">
-            <CircleDot className="w-5 h-5 text-green-400" />
+      <main className="max-w-3xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
+        <div className="flex items-center gap-2 xs:gap-3 mb-4 xs:mb-6">
+          <div className="w-8 h-8 xs:w-9 xs:h-9 rounded-full bg-green-600/20 border border-green-500/30 flex items-center justify-center shrink-0">
+            <CircleDot className="w-4 h-4 xs:w-5 xs:h-5 text-green-400" />
           </div>
-          <h1 className="text-white text-xl font-bold">New Issue</h1>
+          <h1 className="text-white text-lg xs:text-xl font-bold">New Issue</h1>
         </div>
 
         {error && (
@@ -101,7 +101,7 @@ const CreateIssuePage = React.memo(() => {
           </div>
         )}
 
-        <div className="bg-gray-900 border border-gray-800 rounded-xl p-6 space-y-5">
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 xs:p-5 sm:p-6 space-y-4 xs:space-y-5">
           <div>
             <label className="block text-gray-400 text-xs mb-2">
               Title <span className="text-red-400">*</span>
@@ -128,12 +128,12 @@ const CreateIssuePage = React.memo(() => {
 
           <div>
             <label className="block text-gray-400 text-xs mb-2">Priority</label>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               {(['low', 'medium', 'high'] as IssuePriority[]).map((p) => (
                 <button
                   key={p}
                   onClick={() => setPriority(p)}
-                  className={`px-4 py-1.5 text-xs rounded-lg border capitalize transition ${
+                  className={`px-3 xs:px-4 py-1.5 text-xs rounded-lg border capitalize transition ${
                     priority === p
                       ? p === 'high'
                         ? 'bg-red-500/20 border-red-500/40 text-red-400'
@@ -179,7 +179,7 @@ const CreateIssuePage = React.memo(() => {
             )}
           </div>
 
-          <div className="flex gap-3 pt-2">
+          <div className="flex flex-col xs:flex-row gap-3 pt-2">
             <button
               onClick={() => navigate(`/${username}/${reponame}/issues`)}
               className="flex-1 bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm font-medium py-2.5 rounded-lg transition"

@@ -170,15 +170,30 @@ export class GitService {
       const names = namesResult.trim().split('\n').filter(Boolean);
       const typeLines = typesResult.trim().split('\n').filter(Boolean);
 
-      return names.map((name) => {
-        const typeLine = typeLines.find((l) => l.includes(name)) || '';
-        const type = typeLine.includes('tree') ? 'tree' : 'blob';
-        return {
-          name: recursive ? name.trim().split('/').pop() || '' : name.trim(),
-          path: filePath ? `${filePath}/${name.trim()}` : name.trim(),
-          type,
-        };
-      });
+      return Promise.all(
+        names.map(async (name) => {
+          const typeLine = typeLines.find((l) => l.includes(name)) || '';
+          const type = typeLine.includes('tree') ? 'tree' : 'blob';
+          const relativePath = filePath ? `${filePath}/${name.trim()}` : name.trim();
+          try {
+            const log = await git.raw(['log', '-1', '--format=%s|%at', branch, '--', relativePath]);
+            const [message, timestamp] = log.trim().split('|');
+            return {
+              name: recursive ? name.trim().split('/').pop() || '' : name.trim(),
+              path: relativePath,
+              type,
+              lastCommitMessage: message || '',
+              lastCommitDate: timestamp ? new Date(parseInt(timestamp) * 1000).toISOString() : '',
+            };
+          } catch {
+            return {
+              name: recursive ? name.trim().split('/').pop() || '' : name.trim(),
+              path: relativePath,
+              type,
+            };
+          }
+        }),
+      );
     } catch {
       return [];
     }
@@ -226,22 +241,51 @@ export class GitService {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
-      const format = '%(refname:short)|%(committerdate:iso8601)|%(authorname)|%(subject)';
+      const defaultBranch = 'main';
+      const format =
+        '%(refname:short)|%(committerdate:iso8601)|%(authorname)|%(authoremail)|%(subject)';
       const result = await git.raw(['branch', `--format=${format}`]);
-      return result
-        .trim()
-        .split('\n')
-        .filter(Boolean)
-        .map((l) => {
-          const [name, date, author, message] = l.split('|');
-          return {
-            name,
-            lastCommitDate: date,
-            lastCommitAuthor: author,
-            lastCommitMessage: message,
-            current: false,
-          };
-        });
+
+      const branches = await Promise.all(
+        result
+          .trim()
+          .split('\n')
+          .filter(Boolean)
+          .map(async (l) => {
+            const [name, date, author, email, message] = l.split('|');
+
+            let ahead = 0;
+            let behind = 0;
+
+            // Calculate Ahead/Behind if not the default branch
+            if (name !== defaultBranch) {
+              try {
+                const counts = await git.raw([
+                  'rev-list',
+                  '--left-right',
+                  '--count',
+                  `${defaultBranch}...${name}`,
+                ]);
+                const [b, a] = counts.trim().split('\t');
+                behind = parseInt(b, 10);
+                ahead = parseInt(a, 10);
+              } catch (e) {
+                console.error(`Error calculating ahead/behind for ${name}:`, e);
+              }
+            }
+            return {
+              name,
+              lastCommitDate: date,
+              lastCommitAuthor: author,
+              lastCommitAuthorEmail: email.replace(/[<>]/g, ''),
+              lastCommitMessage: message,
+              current: false,
+              ahead,
+              behind,
+            };
+          }),
+      );
+      return branches;
     } catch (error) {
       console.error('Error fetching branches:', error);
       return [];

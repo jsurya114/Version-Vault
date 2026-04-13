@@ -141,12 +141,12 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
           <div className="absolute top-full left-1/2 -translate-x-1/2 -mt-[1px] border-8 border-transparent border-t-gray-900" />
         </div>
       )}
-      <div className="w-full bg-[#0d1117] border border-gray-800 rounded-xl p-6 overflow-hidden flex flex-col shadow-xl">
+      <div className="w-full bg-[#0d1117] border border-gray-800 rounded-xl p-3 xs:p-4 sm:p-6 overflow-hidden flex flex-col shadow-xl">
         <div className="flex justify-between items-center mb-4">
-          <h3 className="text-gray-300 text-sm font-medium">
+          <h3 className="text-gray-300 text-xs xs:text-sm font-medium">
             {totalContributions.toLocaleString()} contributions
           </h3>
-          <div className="flex gap-2">
+          <div className="flex gap-1.5 xs:gap-2 flex-wrap">
             {availableYears.map((year) => (
               <button
                 key={year}
@@ -162,12 +162,12 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
             ))}
           </div>
         </div>
-        <div className="w-full flex justify-end">
+        <div className="w-full overflow-x-auto">
           <div className="flex gap-2 min-w-max">
             {/* Day Labels - Add pointer-events-none to avoid hit-box issues */}
-            <div className="flex flex-col gap-[7px] pt-7 pr-2 shrink-0 text-gray-500 text-[10px] font-medium pointer-events-none">
+            <div className="flex flex-col gap-[5px] xs:gap-[7px] pt-7 pr-1.5 xs:pr-2 shrink-0 text-gray-500 text-[9px] xs:text-[10px] font-medium pointer-events-none">
               {['', 'Mon', '', 'Wed', '', 'Fri', ''].map((day, i) => (
-                <span key={i} className="h-[11px] leading-[11px]">
+                <span key={i} className="h-[10px] xs:h-[11px] leading-[10px] xs:leading-[11px]">
                   {day}
                 </span>
               ))}
@@ -186,13 +186,13 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
                 ))}
               </div>
               {/* Grid columns for 53 weeks */}
-              <div className="grid grid-flow-col auto-cols-max gap-[3.3px] mt-1">
+              <div className="grid grid-flow-col auto-cols-max gap-[2.5px] xs:gap-[3.3px] mt-1">
                 {weeks.map((week, wIdx) => (
-                  <div key={wIdx} className="grid grid-rows-7 gap-[3.3px]">
+                  <div key={wIdx} className="grid grid-rows-7 gap-[2.5px] xs:gap-[3.3px]">
                     {week.map((day) => (
                       <div
                         key={day.date}
-                        className={`w-[11px] h-[11px] rounded-[2px] ${day.isFuture ? 'bg-[#161b22]' : getColor(day.count)} hover:ring-1 hover:ring-white/50 cursor-pointer transition-all duration-150`}
+                        className={`w-[9px] h-[9px] xs:w-[11px] xs:h-[11px] rounded-[2px] ${day.isFuture ? 'bg-[#161b22]' : getColor(day.count)} hover:ring-1 hover:ring-white/50 cursor-pointer transition-all duration-150`}
                         // Add events for the custom tooltip
                         onMouseEnter={(e) => handleMouseEnter(e, day)}
                         onMouseLeave={() => setHoveredDay(null)}
@@ -206,7 +206,7 @@ const ContributionGraph: React.FC<ContributionGraphProps> = ({
         </div>
 
         {/* Legend */}
-        <div className="mt-8 w-full flex items-center justify-between text-[11px] pt-4 border-t border-gray-800/60">
+        <div className="mt-4 xs:mt-6 sm:mt-8 w-full flex flex-col xs:flex-row items-start xs:items-center justify-between gap-2 text-[10px] xs:text-[11px] pt-3 xs:pt-4 border-t border-gray-800/60">
           <button className="text-gray-500 hover:text-blue-400 transition-colors shrink-0">
             Learn how we count contributions
           </button>
