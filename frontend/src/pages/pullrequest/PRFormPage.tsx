@@ -42,13 +42,14 @@ const PRFormPage = React.memo(() => {
       setIsCreatingLoader(true);
       setTimeout(() => {
         setIsCreatingLoader(false);
-        setSuccessSonar({
-          isOpen: true,
-          title: 'Pull Request Opened!',
-          subtitle: `Successfully created PR from ${headBranch} to ${baseBranch}.`,
+        navigate(`/${username}/${reponame}/pulls`, {
+          state: {
+            showSonar: true,
+            sonarTitle: 'Pull Request Opened!',
+            sonarSubtitle: `Successfully created PR from ${headBranch} to ${baseBranch}.`,
+          }
         });
-        setTimeout(() => navigate(`/${username}/${reponame}/pulls`), 2500);
-      }, 2000);
+      }, 1500);
     }
   }, [dispatch, username, reponame, title, description, headBranch, baseBranch, navigate]);
 
@@ -137,12 +138,7 @@ const PRFormPage = React.memo(() => {
       </main>
       <AppFooter />
       {isCreatingLoader && <CommonLoader message="Creating your pull request..." />}
-      <SuccessSonar
-        isOpen={successSonar.isOpen}
-        onClose={() => {}}
-        title={successSonar.title}
-        subtitle={successSonar.subtitle}
-      />
+
     </div>
   );
 });

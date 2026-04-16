@@ -53,15 +53,14 @@ const CreateIssuePage = React.memo(() => {
       setIsCreatingLoader(true);
       setTimeout(() => {
         setIsCreatingLoader(false);
-        setSuccessSonar({
-          isOpen: true,
-          title: 'Issue Created!',
-          subtitle: `Successfully created issue: ${title}`,
+        navigate(`/${username}/${reponame}/issues`, {
+          state: {
+            showSonar: true,
+            sonarTitle: 'Issue Created!',
+            sonarSubtitle: `Successfully created issue: ${title}`,
+          }
         });
-        setTimeout(() => {
-          navigate(`/${username}/${reponame}/issues`);
-        }, 2500);
-      }, 2000);
+      }, 1500);
     }
   }, [dispatch, username, reponame, title, description, priority, labels, navigate]);
 
@@ -201,14 +200,7 @@ const CreateIssuePage = React.memo(() => {
 
       {isCreatingLoader && <CommonLoader message="Creating Issue..." />}
 
-      {successSonar.isOpen && (
-        <SuccessSonar
-          isOpen={successSonar.isOpen}
-          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
-          title={successSonar.title}
-          subtitle={successSonar.subtitle}
-        />
-      )}
+
     </div>
   );
 });

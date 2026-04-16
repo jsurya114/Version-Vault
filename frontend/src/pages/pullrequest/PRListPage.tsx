@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { GitMerge, GitPullRequest, X, Plus, Search } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { listPRThunk } from '../../features/pullrequest/prThunk';
@@ -8,6 +8,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { PRStatus } from '../../types/pullrequest/pullrequest.types';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -96,6 +97,20 @@ const PRListPage = () => {
     }),
     [username, reponame, page, statusFilter, search],
   );
+
+  const location = useLocation();
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+
+  useEffect(() => {
+    if (location.state?.showSonar) {
+      setSuccessSonar({
+        isOpen: true,
+        title: location.state.sonarTitle || '',
+        subtitle: location.state.sonarSubtitle || '',
+      });
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const timer = setTimeout(
@@ -232,6 +247,15 @@ const PRListPage = () => {
       </main>
 
       <AppFooter />
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

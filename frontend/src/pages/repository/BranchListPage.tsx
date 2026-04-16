@@ -6,7 +6,6 @@ import {
   Plus,
   Trash2,
   Clock,
-  CheckCircle2,
   GitPullRequest,
   GitMerge,
   Info,
