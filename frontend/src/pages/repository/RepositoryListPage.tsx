@@ -1,5 +1,5 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import { GitFork, Folder} from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
@@ -26,6 +26,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import DeleteConfirmModal from '../../types/common/Modal/DeleteConfirmationModal';
 import VisibilityConfirmModal from '../../types/common/Modal/VisibilityModal';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import { StarButton } from './components/StarButton';
 const visibilityColors: Record<string, string> = {
   public: 'bg-green-500/10 text-green-400 border border-green-500/30',
@@ -35,6 +36,7 @@ const visibilityColors: Record<string, string> = {
 const RepositoryListPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const location = useLocation();
   const repositories = useAppSelector(selectRepositories);
   const isLoading = useAppSelector(selectRepositoryLoading);
   const error = useAppSelector(selectRepositoryError);
@@ -53,8 +55,21 @@ const RepositoryListPage = () => {
     open: boolean;
     repo: RepositoryResponseDTO | null;
   }>({ open: false, repo: null });
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   const limit = 5;
+
+  useEffect(() => {
+    if (location.state?.showSonar) {
+      setSuccessSonar({
+        isOpen: true,
+        title: location.state.sonarTitle || '',
+        subtitle: location.state.sonarSubtitle || '',
+      });
+      // Clear location state to prevent replay on refresh
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   const fetchParams = useMemo(
     () => ({
@@ -357,6 +372,14 @@ const RepositoryListPage = () => {
         newVisibility={visibilityModal.repo?.visibility === 'public' ? 'private' : 'public'}
         isLoading={isLoading}
       />
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

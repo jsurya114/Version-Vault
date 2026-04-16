@@ -128,12 +128,22 @@ export const repositoryService = {
     return res.data.data;
   },
 
-  uploadFiles: async (repoName: string, files: File[]) => {
+  uploadFiles: async (
+    repoName: string,
+    files: File[],
+    branch?: string,
+    commitMessage?: string,
+    currentPath?: string,
+  ) => {
     const formData = new FormData();
     formData.append('repositoryName', repoName);
+    if (branch) formData.append('branch', branch);
+    if (commitMessage) formData.append('commitMessage', commitMessage);
     files.forEach((file) => {
       formData.append('files', file);
-      formData.append('filePaths', file.webkitRelativePath || file.name);
+      const relativePath = file.webkitRelativePath || file.name;
+      const finalPath = currentPath ? `${currentPath}/${relativePath}` : relativePath;
+      formData.append('filePaths', finalPath);
     });
     const response = await axiosInstance.post(REPO_ENDPOINTS.UPLOAD, formData, {
       headers: {

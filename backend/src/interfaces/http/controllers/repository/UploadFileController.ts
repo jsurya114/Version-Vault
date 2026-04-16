@@ -12,7 +12,7 @@ export class UploadFileController {
 
   async fileUpload(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { repositoryName } = req.body;
+      const { repositoryName, branch, commitMessage } = req.body;
       const ownerId = req.user!.id;
       const ownerUsername = req.user!.userId;
       const ownerEmail = req.user!.email;
@@ -46,6 +46,8 @@ export class UploadFileController {
         ownerUsername,
         ownerEmail,
         repoName: repositoryName,
+        branch,
+        commitMessage,
         files: parsedFiles,
       });
       res

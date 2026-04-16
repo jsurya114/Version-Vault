@@ -16,6 +16,7 @@ import { NodemailerService } from './infrastructure/external/email/NodemailerSer
 import { GoogleAuthService } from './infrastructure/services/GoogleAuthService';
 import { GitService } from './infrastructure/services/GitService';
 import { WinstonLogger } from './infrastructure/services/WinstonLogger';
+import { GroqService } from './infrastructure/services/GroqService';
 
 //validator
 import { RegisterValidator } from './application/use-cases/validators/RegisterValidator';
@@ -126,6 +127,7 @@ import { ListChatRepoUseCase } from './application/use-cases/chats/LIstChatRepoU
 
 import { UploadFileUseCase } from './application/use-cases/repository/UploadFileUsecase';
 import { GetActiveBranchUseCase } from './application/use-cases/repository/GetActiveBranchUseCase';
+import { AIAgentUseCase } from './application/use-cases/AIAgent/AIAgentUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -136,6 +138,7 @@ container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 container.registerSingleton(GitService, GitService);
 container.registerSingleton(TOKENS.ILogger, WinstonLogger);
 container.registerSingleton(SocketService, SocketService);
+container.register(TOKENS.IGroqService, { useClass: GroqService });
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
@@ -178,6 +181,9 @@ container.register(TOKENS.IGetFilesUseCase, { useClass: GetFilesUseCase });
 container.register(TOKENS.IGetFileContentUseCase, { useClass: GetFileContentUseCase });
 container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
 container.register(TOKENS.IGetBranchesUseCase, { useClass: GetBranchesUseCase });
+
+//ai agent
+container.register(TOKENS.IAIAgentUseCase,{useClass:AIAgentUseCase})
 
 // PR use cases
 container.register(TOKENS.ICreatePRUseCase, { useClass: CreatePRUseCase });

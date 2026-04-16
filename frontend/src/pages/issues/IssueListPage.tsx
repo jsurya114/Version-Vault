@@ -1,5 +1,5 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
-import { useParams, useNavigate, Link } from 'react-router-dom';
+import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
 import { CircleDot, CheckCircle, Plus, Search } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { listIssuesThunk } from '../../features/issues/issueThunk';
@@ -12,6 +12,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { IssuePriority } from '../../types/issues/issues.types';
+import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',
@@ -105,6 +106,20 @@ const IssueListPage = () => {
     }),
     [username, reponame, page, statusFilter, search],
   );
+
+  const location = useLocation();
+  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+
+  useEffect(() => {
+    if (location.state?.showSonar) {
+      setSuccessSonar({
+        isOpen: true,
+        title: location.state.sonarTitle || '',
+        subtitle: location.state.sonarSubtitle || '',
+      });
+      window.history.replaceState({}, document.title);
+    }
+  }, [location.state]);
 
   useEffect(() => {
     const timer = setTimeout(
@@ -243,6 +258,15 @@ const IssueListPage = () => {
       </main>
 
       <AppFooter />
+
+      {successSonar.isOpen && (
+        <SuccessSonar
+          isOpen={successSonar.isOpen}
+          onClose={() => setSuccessSonar((prev) => ({ ...prev, isOpen: false }))}
+          title={successSonar.title}
+          subtitle={successSonar.subtitle}
+        />
+      )}
     </div>
   );
 };

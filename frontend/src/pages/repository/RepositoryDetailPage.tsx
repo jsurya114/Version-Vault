@@ -33,6 +33,7 @@ import {
   getBranchesThunk,
   deleteBranchThunk,
   getRecentPushThunk,
+  fileUploadThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
@@ -68,6 +69,7 @@ import {
   selectCompareLoading,
 } from '../../features/commit/compareCommitSelectors';
 import { RecentPushesBanner } from './components/RecentPushesBanner';
+import { DragAndDrop } from './components/DragAndDrop';
 
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
@@ -127,6 +129,11 @@ const RepositoryDetailPage = () => {
   const compareData = useAppSelector(selectCompareData);
   const isCompareLoading = useAppSelector(selectCompareLoading);
   const [expandedCommitHash, setExpandedCommitHash] = useState<string | null>(null);
+
+  const [selectedUploadFiles, setSelectedUploadFiles] = useState<File[]>([]);
+  const [uploadCommitMessage, setUploadCommitMessage] = useState('');
+  const [isUploading, setIsUploading] = useState(false);
+  const [showUploadZone, setShowUploadZone] = useState(false);
 
   useEffect(() => {
     if (username && reponame) {
@@ -201,6 +208,41 @@ const RepositoryDetailPage = () => {
       setReadmeContent('');
     }
   }, [files]);
+
+  const handleUploadSubmit = async () => {
+    if (selectedUploadFiles.length === 0) return;
+    setIsUploading(true);
+    try {
+      await dispatch(
+        fileUploadThunk({
+          repoName: reponame!,
+          files: selectedUploadFiles,
+          branch: branch,
+          commitMessage: uploadCommitMessage || 'Upload files via web',
+          currentPath: currentPath,
+        }),
+      ).unwrap();
+      //cleanup locally
+      setShowUploadZone(false);
+      setSelectedUploadFiles([]);
+      setUploadCommitMessage('');
+
+      //automatically refresh the file view
+      dispatch(
+        getFilesThunk({ username: username!, reponame: reponame!, branch, path: currentPath }),
+      );
+      dispatch(getCommitsThunk({ username: username!, reponame: reponame!, branch }));
+      setSuccessSonar({
+        isOpen: true,
+        title: 'Files Committed',
+        subtitle: 'Your files were uploaded successfully.',
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setIsUploading(false);
+    }
+  };
 
   const handleTablChange = useCallback(
     (tab: Tab) => {
@@ -756,6 +798,14 @@ const RepositoryDetailPage = () => {
 
               {/* Star + Fork */}
               <div className="flex items-center gap-2">
+                {hasWriteAccess && !selectedFile && (
+                  <button
+                    onClick={() => setShowUploadZone(true)}
+                    className="flex items-center gap-1.5 bg-gray-800 hover:bg-gray-700 text-white border border-gray-700 text-xs px-3 py-1.5 rounded-lg transition"
+                  >
+                    Upload files
+                  </button>
+                )}
                 {/* REPLACED WITH STARBUTTON */}
                 <StarButton
                   username={username!}
@@ -767,6 +817,64 @@ const RepositoryDetailPage = () => {
                 <ForkButton username={username!} reponame={reponame!} forksCount={repo.forks} />
               </div>
             </div>
+
+            {showUploadZone && (
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 m-3 xs:m-4 space-y-4 shadow-lg">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between border border-gray-800 bg-gray-950/50 p-4 rounded-lg gap-4">
+                  <div className="flex flex-col gap-1">
+                    <span className="text-sm text-white font-medium">Select assets to upload</span>
+                    <span className="text-xs text-gray-500">
+                      {selectedUploadFiles.length === 0
+                        ? 'No files selected'
+                        : `${selectedUploadFiles.length} file(s) primed for commit`}
+                    </span>
+                  </div>
+                  <label className="bg-gray-800 hover:bg-gray-700 text-white text-xs px-4 py-2 rounded-lg cursor-pointer transition border border-gray-700 shrink-0">
+                    Browse Files
+                    <input
+                      type="file"
+                      multiple
+                      className="hidden"
+                      onChange={(e) => {
+                        if (e.target.files) {
+                          setSelectedUploadFiles(Array.from(e.target.files));
+                        }
+                      }}
+                    />
+                  </label>
+                </div>
+
+                <div>
+                  <input
+                    type="text"
+                    value={uploadCommitMessage}
+                    onChange={(e) => setUploadCommitMessage(e.target.value)}
+                    placeholder="Add a commit message... (optional)"
+                    className="w-full bg-gray-950 border border-gray-800 rounded-lg px-3 py-2 text-white text-sm outline-none focus:border-blue-500 transition"
+                  />
+                </div>
+
+                <div className="mt-4 flex items-center justify-end gap-3">
+                  <button
+                    onClick={() => {
+                      setShowUploadZone(false);
+                      setSelectedUploadFiles([]);
+                    }}
+                    className="text-sm text-gray-400 hover:text-white transition"
+                    disabled={isUploading}
+                  >
+                    Cancel
+                  </button>
+                  <button
+                    onClick={handleUploadSubmit}
+                    disabled={isUploading || selectedUploadFiles.length === 0}
+                    className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white text-sm px-4 py-2 rounded-lg font-medium transition"
+                  >
+                    {isUploading ? 'Committing...' : 'Commit Files'}
+                  </button>
+                </div>
+              </div>
+            )}
 
             {/* EMPTY STATE */}
             {isEmpty && (

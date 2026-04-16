@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Bell, Search, LogOut, Menu, X, ChevronDown } from 'lucide-react';
+import { Bell, Search, LogOut, Menu, X } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
 import { logoutThunk } from '../../../features/auth/authThunks';

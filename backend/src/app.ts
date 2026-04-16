@@ -23,6 +23,7 @@ import userRoutes from './interfaces/http/routes/user/user.routes';
 import collaboratorRoutes from './interfaces/http/routes/collaborator/collaborator.routes';
 import commentRoutes from './interfaces/http/routes/comments/comment.routes';
 import chatRoutes from './interfaces/http/routes/chat/chat.routes'
+import aiAgentRoutes from './interfaces/http/routes/ai-agent/aiAgent.routes'
 
 const app = express();
 
@@ -66,6 +67,7 @@ app.use('/vv/user', userRoutes);
 app.use('/vv/collaborators', collaboratorRoutes);
 app.use('/vv/comments', commentRoutes);
 app.use('/vv/chats',chatRoutes)
+app.use('/vv/ai-agent',aiAgentRoutes)
 
 //error hanlding middleware
 app.use(errorMiddleware);
