@@ -13,8 +13,8 @@ export class UploadFileUseCase implements IUploadFileUseCase {
       await this._gitService.commitMultipleFiles(
         dto.ownerUsername,
         dto.repoName,
-        'main',
-        'Initial commit via web upload',
+        dto.branch || 'main',
+        dto.commitMessage || 'Initial commit via web upload',
         dto.files,
         dto.ownerUsername,
         dto.ownerEmail,

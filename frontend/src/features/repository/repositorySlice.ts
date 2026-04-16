@@ -85,7 +85,7 @@ const repositorySlice = createSlice({
       .addCase(deleteRepositoryThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.repositories = state.repositories.filter(
-          (r) => r.id !== (action.meta.arg as { reponame: string }).reponame,
+          (r) => r.name !== (action.meta.arg as { reponame: string }).reponame,
         );
       })
       .addCase(deleteRepositoryThunk.rejected, (state, action) => {

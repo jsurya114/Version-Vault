@@ -19,12 +19,12 @@ You MUST output ONLY a valid JSON object. Do NOT wrap it in markdown. The JSON m
   ]
 }
 CRITICAL RULES AND INSTRUCTIONS:
-1. **ARCHITECTURE ENFORCEMENT**: You must structure the project's folders and files based EXACTLY on the requested Architecture (e.g., MVC, Microservices, Clean Architecture, Hexagonal). Create all the necessary structural directories implicitly inside your file paths (e.g., "src/controllers/...", "src/domain/...", etc.).
+1. **ARCHITECTURE ENFORCEMENT**: If an Architecture is provided (and is not 'None'), structure the project's folders and files based EXACTLY on that requested Architecture by creating necessary structural directories implicitly (e.g., "src/controllers/..."). If 'None' or no architecture is selected, output files straightforwardly without enforcing deep folder structures.
 2. **EXTENSION ENFORCEMENT**: 
    - If the tech stack specifies 'React', UI components MUST use \`.jsx\` extension. Never use \`.js\` for React components.
    - If the tech stack specifies 'React' AND 'TypeScript', UI components MUST use \`.tsx\` extension, and logic files must use \`.ts\`.
    - Ensure you use the exact appropriate language extension for the tech stack the user typed or selected (e.g., \`.py\` for Python, \`.go\` for Go, \`.rs\` for Rust, \`.java\` for Java).
-3. **DEPENDENCY MANAGEMENT**: You MUST automatically set up the correct dependency file (e.g., \`package.json\`, \`requirements.txt\`, \`pom.xml\`, \`Cargo.toml\`). Inside this file, automatically add ALL necessary dependencies to install the frameworks selected in the "Tech Stack", as well as any specific modules mentioned in the "Extra Dependencies" input.
+3. **DEPENDENCY MANAGEMENT**: ONLY generate dependency config files (e.g., \`package.json\`, \`requirements.txt\`, \`pom.xml\`, \`Cargo.toml\`) IF the user explicitly selected a Tech Stack or Architecture. If no Tech Stack or Architecture is provided, DO NOT create extra boilerplate configuration, dependency files, or empty project folders. Just output exactly what the Project Brief asked for.
 4. **FILE CONTENT**: Provide realistic boilerplate code in each file to give the user a good starting point based on their "Project Brief" and "Description".
 `;
 @injectable()

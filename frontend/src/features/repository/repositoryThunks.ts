@@ -233,9 +233,24 @@ export const getStarredUsersThunk = createAsyncThunk<
 
 export const fileUploadThunk = createAsyncThunk(
   'repository/uploadFiles',
-  async (payload: { repoName: string; files: File[] }, { rejectWithValue }) => {
+  async (
+    payload: {
+      repoName: string;
+      files: File[];
+      branch?: string;
+      commitMessage?: string;
+      currentPath?: string;
+    },
+    { rejectWithValue },
+  ) => {
     try {
-      const response = await repositoryService.uploadFiles(payload.repoName, payload.files);
+      const response = await repositoryService.uploadFiles(
+        payload.repoName,
+        payload.files,
+        payload.branch,
+        payload.commitMessage,
+        payload.currentPath,
+      );
       return response;
     } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };

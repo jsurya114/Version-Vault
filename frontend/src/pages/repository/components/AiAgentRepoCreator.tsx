@@ -32,7 +32,7 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
     projectBrief: '',
     visibility: 'public',
     techStack: [] as string[],
-    architecture: 'MVC',
+    architecture: '',
     dependencies: '',
   });
 
@@ -61,6 +61,7 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
     'GraphQL',
   ];
   const architectureOptions = [
+    'None',
     'MVC',
     'Monolithic',
     'Microservices',
