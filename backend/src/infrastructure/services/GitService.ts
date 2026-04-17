@@ -595,4 +595,42 @@ export class GitService {
       return false;
     }
   }
+
+  async deleteFile(
+    ownerUsername: string,
+    repoName: string,
+    branch: string,
+    message: string,
+    filePath: string,
+    authorName: string,
+    authorEmail: string,
+  ): Promise<void> {
+    const repoPath = await this.getRepoPath(ownerUsername, repoName);
+    const indexFile = path.join(repoPath, `index-${Date.now()}.tmp`);
+    try {
+      const git = simpleGit(repoPath);
+      const gitWithIndex = git.env({
+        GIT_INDEX_FILE: indexFile,
+        GIT_AUTHOR_NAME: authorName,
+        GIT_AUTHOR_EMAIL: authorEmail,
+        GIT_COMMITTER_NAME: authorName,
+        GIT_COMMITTER_EMAIL: authorEmail,
+      });
+      try {
+        await gitWithIndex.raw(['read-tree', branch]);
+      } catch {
+        throw new Error('Branch does not exist');
+      }
+      await gitWithIndex.raw(['rm', '--cached', '--ignore-unmatch', filePath]);
+      const newTreeHash = (await gitWithIndex.raw(['write-tree'])).trim();
+      const parentHash = (await git.raw('rev-parse', branch)).trim();
+
+      const commitHash = (
+        await gitWithIndex.raw(['commit-tree', newTreeHash, '-p', parentHash, '-m', message])
+      ).trim();
+      await git.raw(['update-ref', `refs/heads/${branch}`, commitHash]);
+    } finally {
+      if (fs.existsSync(indexFile)) fs.unlinkSync(indexFile);
+    }
+  }
 }

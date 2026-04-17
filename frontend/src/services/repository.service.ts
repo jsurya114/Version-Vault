@@ -159,4 +159,15 @@ export const repositoryService = {
     );
     return res.data.data;
   },
+
+  deleteFile: async (
+    username: string,
+    reponame: string,
+    data: { branch: string; filePath: string; commitMessage: string },
+  ) => {
+    const res = await axiosInstance.delete(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/file`, {
+      data,
+    });
+    return res.data;
+  },
 };

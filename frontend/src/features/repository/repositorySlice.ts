@@ -17,6 +17,7 @@ import {
   toggleStarThunk,
   fileUploadThunk,
   getRecentPushThunk,
+  deleteFileThunk,
 } from './repositoryThunks';
 
 const repositorySlice = createSlice({
@@ -273,6 +274,21 @@ const repositorySlice = createSlice({
       //getActive branches
       .addCase(getRecentPushThunk.fulfilled, (state, action) => {
         state.activeBranches = action.payload;
+      })
+
+      .addCase(deleteFileThunk.pending, (state) => {
+        state.isLoading = true;
+        state.error = null;
+      })
+      .addCase(deleteFileThunk.fulfilled, (state) => {
+        state.isLoading = false;
+        // Note: We don't splice `state.files` manually here.
+        // We dispatch `getFilesThunk` from the component immediately after completion
+        // to fetch the raw refreshed tree from the backend to ensure zero desyncs!
+      })
+      .addCase(deleteFileThunk.rejected, (state, action) => {
+        state.isLoading = false;
+        state.error = action.payload as string;
       });
   },
 });

@@ -128,6 +128,7 @@ import { ListChatRepoUseCase } from './application/use-cases/chats/LIstChatRepoU
 import { UploadFileUseCase } from './application/use-cases/repository/UploadFileUsecase';
 import { GetActiveBranchUseCase } from './application/use-cases/repository/GetActiveBranchUseCase';
 import { AIAgentUseCase } from './application/use-cases/AIAgent/AIAgentUseCase';
+import { DeleteFileUseCase } from './application/use-cases/repository/DeleteFileUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -181,9 +182,10 @@ container.register(TOKENS.IGetFilesUseCase, { useClass: GetFilesUseCase });
 container.register(TOKENS.IGetFileContentUseCase, { useClass: GetFileContentUseCase });
 container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
 container.register(TOKENS.IGetBranchesUseCase, { useClass: GetBranchesUseCase });
+container.register(TOKENS.IDeleteFileUseCase, { useClass: DeleteFileUseCase });
 
 //ai agent
-container.register(TOKENS.IAIAgentUseCase,{useClass:AIAgentUseCase})
+container.register(TOKENS.IAIAgentUseCase, { useClass: AIAgentUseCase });
 
 // PR use cases
 container.register(TOKENS.ICreatePRUseCase, { useClass: CreatePRUseCase });
