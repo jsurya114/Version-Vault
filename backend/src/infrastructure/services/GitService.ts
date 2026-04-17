@@ -9,6 +9,8 @@ import {
   GitBranch,
   FileDiff,
   DiffHunk,
+  ConflictDetails,
+  ConflictFile,
 } from '../../domain/interfaces/IGitTypes';
 import { NotFoundError } from 'src/domain/errors/NotFoundError';
 import { logger } from 'src/shared/logger/Logger';
@@ -87,6 +89,59 @@ export class GitService {
       }
     }
     return files;
+  }
+
+  private buildConflictContent(
+    ourContent: string,
+    theirContent: string,
+    targetBranch: string,
+    sourceBranch: string,
+  ): string {
+    const oursLines = ourContent.split('\n');
+    const theirsLines = theirContent.split('\n');
+
+    const result: string[] = [];
+    const maxLen = Math.max(oursLines.length, theirsLines.length);
+
+    let inConflict = false;
+    let oursBlock: string[] = [];
+    let theirsBlock: string[] = [];
+
+    for (let i = 0; i < maxLen; i++) {
+      const oursLine = i < oursLines.length ? oursLines[i] : undefined;
+      const theirsLine = i < theirsLines.length ? theirsLines[i] : undefined;
+
+      if (oursLine === theirsLine) {
+        // Lines match — flush any pending conflict block first
+        if (inConflict) {
+          result.push(`<<<<<<< ${targetBranch}`);
+          result.push(...oursBlock);
+          result.push('=======');
+          result.push(...theirsBlock);
+          result.push(`>>>>>>> ${sourceBranch}`);
+          oursBlock = [];
+          theirsBlock = [];
+          inConflict = false;
+        }
+        if (oursLine !== undefined) result.push(oursLine);
+      } else {
+        // Lines differ — accumulate into conflict block
+        inConflict = true;
+        if (oursLine !== undefined) oursBlock.push(oursLine);
+        if (theirsLine !== undefined) theirsBlock.push(theirsLine);
+      }
+    }
+
+    // Flush any remaining conflict at end of file
+    if (inConflict) {
+      result.push(`<<<<<<< ${targetBranch}`);
+      result.push(...oursBlock);
+      result.push('=======');
+      result.push(...theirsBlock);
+      result.push(`>>>>>>> ${sourceBranch}`);
+    }
+
+    return result.join('\n');
   }
 
   async createBranch(
@@ -629,6 +684,191 @@ export class GitService {
         await gitWithIndex.raw(['commit-tree', newTreeHash, '-p', parentHash, '-m', message])
       ).trim();
       await git.raw(['update-ref', `refs/heads/${branch}`, commitHash]);
+    } finally {
+      if (fs.existsSync(indexFile)) fs.unlinkSync(indexFile);
+    }
+  }
+
+  async getConflictDetails(
+    ownerUsername: string,
+    repoName: string,
+    sourceBranch: string,
+    targetBranch: string,
+  ): Promise<ConflictDetails> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      const mergeTreeResult = await git.raw(['merge-tree', targetBranch, sourceBranch]);
+      const output = mergeTreeResult.trim();
+      // If single-line hash → no conflicts
+      if (!output.includes('\n') && output.length > 0) {
+        return { hasConflicts: false, conflictFiles: [] };
+      }
+      // Parse conflict file paths from merge-tree output.
+      // merge-tree output contains lines like:
+      //   changed in both
+      //     base   100644 <hash> <path>
+      //     our    100644 <hash> <path>
+      //     their  100644 <hash> <path>
+      // We look for lines with "changed in both" followed by file paths
+      const conflictFiles: ConflictFile[] = [];
+      const lines = output.split('\n');
+      const conflictPaths = new Set<string>();
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        // Look for file paths in merge-tree output
+        // Lines that contain blob hashes and file paths
+        const blobMatch = line.match(/^\d+ [a-f0-9]+ \d+\t(.+)$/);
+        if (blobMatch) {
+          conflictPaths.add(blobMatch[1]);
+          continue;
+        }
+        // Alternative: look for +++ or --- style conflict indicators
+        if (line.startsWith('our') || line.startsWith('their')) {
+          const pathMatch = line.match(/\S+\s+\d+\s+\S+\s+(.+)/);
+          if (pathMatch) {
+            conflictPaths.add(pathMatch[1]);
+          }
+        }
+      }
+      // If parsing didn't find specific paths, try diffing to find them
+      if (conflictPaths.size === 0) {
+        try {
+          const diffOutput = await git.raw([
+            'diff',
+            '--name-only',
+            `${targetBranch}...${sourceBranch}`,
+          ]);
+          const changedFiles = diffOutput.trim().split('\n').filter(Boolean);
+          // Check each file for conflicts by trying to get content from both branches
+          for (const filePath of changedFiles) {
+            let oursContent = '';
+            let theirsContent = '';
+            try {
+              oursContent = await git.raw(['show', `${targetBranch}:${filePath}`]);
+            } catch {
+              oursContent = ''; // file doesn't exist in target
+            }
+            try {
+              theirsContent = await git.raw(['show', `${sourceBranch}:${filePath}`]);
+            } catch {
+              theirsContent = ''; // file doesn't exist in source
+            }
+            // Only treat as conflict if both branches have the file with different content
+            if (oursContent && theirsContent && oursContent !== theirsContent) {
+              conflictPaths.add(filePath);
+            }
+          }
+        } catch {
+          // fallback: return generic conflict info
+        }
+      }
+      // Get file content from both branches for each conflicting file
+      for (const filePath of conflictPaths) {
+        let oursContent = '';
+        let theirsContent = '';
+        try {
+          oursContent = await git.raw(['show', `${targetBranch}:${filePath}`]);
+        } catch {
+          oursContent = '';
+        }
+        try {
+          theirsContent = await git.raw(['show', `${sourceBranch}:${filePath}`]);
+        } catch {
+          theirsContent = '';
+        }
+        // Build conflict markers
+        const conflictContent = this.buildConflictContent(
+          oursContent,
+          theirsContent,
+          targetBranch,
+          sourceBranch,
+        );
+        conflictFiles.push({
+          path: filePath,
+          oursContent,
+          theirsContent,
+          conflictContent,
+        });
+      }
+      return {
+        hasConflicts: conflictFiles.length > 0,
+        conflictFiles,
+      };
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`Failed to get conflict details:`, message);
+      throw new Error(`Failed to get conflict details: ${message}`, { cause: error });
+    }
+  }
+
+  async resolveConflictsAndMerge(
+    ownerUsername: string,
+    repoName: string,
+    sourceBranch: string,
+    targetBranch: string,
+    resolvedFiles: { filePath: string; content: string }[],
+    authorName: string,
+    authorEmail: string,
+  ): Promise<void> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    const indexFile = path.join(repoPath, `index-merge-${Date.now()}.tmp`);
+    try {
+      const gitWithIndex = simpleGit(repoPath).env({
+        ...process.env,
+        GIT_INDEX_FILE: indexFile,
+      });
+      //read the target branch tree into index
+      await gitWithIndex.raw(['read-tree', targetBranch]);
+      //apply each resolved file
+      for (const file of resolvedFiles) {
+        //write the resolved content to a temp file, hahs it into git objects
+        const tempFile = path.join(
+          repoPath,
+          `resolved-${Date.now()}-${Math.random().toString(36).slice(2)}.tmp`,
+        );
+        fs.writeFileSync(tempFile, file.content);
+        try {
+          const blobHash = (await git.raw(['hash-object', '-w', tempFile])).trim();
+          await gitWithIndex.raw([
+            'update-index',
+            '--add',
+            '--cacheinfo',
+            '100644',
+            blobHash,
+            file.filePath,
+          ]);
+        } finally {
+          if (fs.existsSync(tempFile)) fs.unlinkSync(tempFile);
+        }
+      }
+      // Write the merged tree
+      const treeHash = (await gitWithIndex.raw(['write-tree'])).trim();
+      // Get parent commits from both branches
+      const targetHash = (await git.raw(['rev-parse', targetBranch])).trim();
+      const sourceHash = (await git.raw(['rev-parse', sourceBranch])).trim();
+
+      const commitMessage = `Merge branch '${sourceBranch}' into '${targetBranch}' (conflicts resolved)`;
+
+      // Create merge commit with two parents
+      const commitHash = (
+        await git
+          .env({
+            ...process.env,
+            GIT_AUTHOR_NAME: authorName,
+            GIT_AUTHOR_EMAIL: authorEmail,
+            GIT_COMMITTER_NAME: authorName,
+            GIT_COMMITTER_EMAIL: authorEmail,
+          })
+          .raw(['commit-tree', treeHash, '-p', targetHash, '-p', sourceHash, '-m', commitMessage])
+      ).trim();
+      //update the target branch reference
+      await git.raw(['update-ref', `refs/heads/${targetBranch}`, commitHash]);
+    } catch (error) {
+      const message = error instanceof Error ? error.message : 'Unknown error';
+      console.error(`Conflict resolution merge failed:`, message);
+      throw new Error(`Conflict resolution merge failed: ${message}`, { cause: error });
     } finally {
       if (fs.existsSync(indexFile)) fs.unlinkSync(indexFile);
     }

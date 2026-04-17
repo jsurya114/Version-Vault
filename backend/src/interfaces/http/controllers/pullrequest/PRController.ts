@@ -14,6 +14,8 @@ import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenServ
 import { IPullRequestRepository } from '../../../../domain/interfaces/repositories/IPullRequestRepository';
 import { GitService } from '../../../../infrastructure/services/GitService';
 import { PRStatus } from '../../../../domain/interfaces/IPullRequest';
+import { IGetConflictsUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IGetConflictsUseCase';
+import { IResolveConflictsUseCase } from '../../../../application/use-cases/interfaces/pullrequest/IResolveConflictsUseCase';
 
 @injectable()
 export class PRController {
@@ -26,6 +28,8 @@ export class PRController {
     @inject(TOKENS.IGetRepoUseCase) private _getRepo: IGetRepoUseCase,
     @inject(TOKENS.IPullRequestRepository) private _prReository: IPullRequestRepository,
     @inject(GitService) private _gitService: GitService,
+    @inject(TOKENS.IGetConflictsUseCase) private _getConflicts: IGetConflictsUseCase,
+    @inject(TOKENS.IResolveConflictsUseCase) private _resolveConflicts: IResolveConflictsUseCase,
   ) {}
 
   // POST /vv/pr/:username/:reponame
@@ -191,6 +195,36 @@ export class PRController {
       }
       await this._prReository.update(id, { mergeApproval: 'rejected' });
       res.status(HttpStatusCodes.OK).json({ success: true, message: 'Merge request rejected' });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async getConflicts(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const conflicts = await this._getConflicts.execute(id);
+      res.status(HttpStatusCodes.OK).json({ success: true, data: conflicts });
+    } catch (_error) {
+      next(_error);
+    }
+  }
+  async resolveConflicts(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { id } = req.params;
+      const { resolvedFiles } = req.body;
+      const { userId: authorUsername } = req.user;
+      const pr = await this._resolveConflicts.execute({
+        prId: id,
+        resolvedFiles,
+        authorName: authorUsername,
+        authorEmail: `${authorUsername}@version-vault.local`,
+      });
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        message: 'Conflicts resolved and PR merged successfully',
+        data: pr,
+      });
     } catch (error) {
       next(error);
     }

@@ -58,6 +58,8 @@ import { ListPRUseCase } from './application/use-cases/pullrequest/ListPRUseCase
 import { CreatePRUseCase } from './application/use-cases/pullrequest/CreatePRUseCase';
 import { MergePRUseCase } from './application/use-cases/pullrequest/MergePRUseCase';
 import { ClosePRUseCase } from './application/use-cases/pullrequest/ClosePRUseCase';
+import { GetConflictsUseCase } from './application/use-cases/pullrequest/GetConflictsUseCase';
+import { ResolveConflictsUseCase } from './application/use-cases/pullrequest/ResolveConflictsUseCase';
 
 //issues pr usecase
 import { GetIssueUseCase } from './application/issues/GetIssuesUseCase';
@@ -261,5 +263,9 @@ container.register(TOKENS.ICreateCommentUseCase, { useClass: CreateCommentUseCas
 container.register(TOKENS.IListCommentUseCase, { useClass: ListCommentUseCase });
 container.register(TOKENS.IDeleteCommentUseCase, { useClass: DeleteCommentUseCase });
 container.register(TOKENS.IListChatRepoUseCase, { useClass: ListChatRepoUseCase });
+
+//pr
+container.register(TOKENS.IGetConflictsUseCase, { useClass: GetConflictsUseCase });
+container.register(TOKENS.IResolveConflictsUseCase, { useClass: ResolveConflictsUseCase });
 
 export { container };

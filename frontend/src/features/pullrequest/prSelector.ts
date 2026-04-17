@@ -7,3 +7,10 @@ export const selectSelectedPR = createSelector([selectBaseState], (state) => sta
 export const selectPRLoading = createSelector([selectBaseState], (state) => state.isLoading);
 export const selectPRError = createSelector([selectBaseState], (state) => state.error);
 export const selectPRMeta = createSelector([selectBaseState], (state) => state.meta);
+
+export const selectConflicts = createSelector([selectBaseState], (state) => state.conflicts);
+export const selectConflictLoading = createSelector(
+  [selectBaseState],
+  (state) => state.isConflictLoading,
+);
+export const selectIsResolving = createSelector([selectBaseState], (state) => state.isResolving);

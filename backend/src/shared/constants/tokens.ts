@@ -50,6 +50,8 @@ export const TOKENS = {
   IListPRsUseCase: Symbol.for('IListPRsUseCase'),
   IMergePRUseCase: Symbol.for('IMergePRUseCase'),
   IClosePRUseCase: Symbol.for('IClosePRUseCase'),
+  IGetConflictsUseCase: Symbol.for('IGetConflictsUseCase'),
+  IResolveConflictsUseCase: Symbol.for('IResolveConflictsUseCase'),
 
   // Issue Use Cases
   ICreateIssueUseCase: Symbol.for('ICreateIssueUseCase'),
