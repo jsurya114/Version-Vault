@@ -6,7 +6,7 @@ import { createPRThunk } from '../../features/pullrequest/prThunk';
 import { selectPRLoading, selectPRError } from '../../features/pullrequest/prSelector';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
-import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+
 import { CommonLoader } from '../../types/common/Layout/Loader';
 
 const PRFormPage = React.memo(() => {
@@ -26,7 +26,7 @@ const PRFormPage = React.memo(() => {
 
   const [title, setTitle] = useState(initialState);
   const [description, setDescription] = useState(initialDescription);
-  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
   const handleSubmit = useCallback(async () => {
@@ -47,7 +47,7 @@ const PRFormPage = React.memo(() => {
             showSonar: true,
             sonarTitle: 'Pull Request Opened!',
             sonarSubtitle: `Successfully created PR from ${headBranch} to ${baseBranch}.`,
-          }
+          },
         });
       }, 1500);
     }
@@ -70,7 +70,9 @@ const PRFormPage = React.memo(() => {
             <GitPullRequest className="w-5 h-5 xs:w-6 xs:h-6 text-blue-400" />
           </div>
           <div>
-            <h1 className="text-xl xs:text-2xl sm:text-3xl font-bold tracking-tight text-white">Open a pull request</h1>
+            <h1 className="text-xl xs:text-2xl sm:text-3xl font-bold tracking-tight text-white">
+              Open a pull request
+            </h1>
             <p className="text-gray-400 text-sm mt-1">
               Finalize your request by adding a title and description.
             </p>
@@ -79,7 +81,9 @@ const PRFormPage = React.memo(() => {
 
         <div className="bg-gray-900 border border-gray-800 rounded-2xl xs:rounded-3xl p-4 xs:p-5 sm:p-8 space-y-5 xs:space-y-6 sm:space-y-8 shadow-2xl relative overflow-hidden">
           <div className="bg-gray-950/50 border border-gray-800 rounded-xl xs:rounded-2xl p-3 xs:p-4 flex flex-col xs:flex-row items-center justify-center gap-2 xs:gap-4 text-sm font-medium">
-            <span className="bg-gray-800 px-2.5 xs:px-3 py-1 rounded-md text-gray-300 text-xs xs:text-sm truncate max-w-full">{baseBranch}</span>
+            <span className="bg-gray-800 px-2.5 xs:px-3 py-1 rounded-md text-gray-300 text-xs xs:text-sm truncate max-w-full">
+              {baseBranch}
+            </span>
             <span className="text-gray-600">←</span>
             <span className="bg-blue-600/10 text-blue-400 px-2.5 xs:px-3 py-1 rounded-md border border-blue-500/20 text-xs xs:text-sm truncate max-w-full">
               {headBranch}
@@ -138,7 +142,6 @@ const PRFormPage = React.memo(() => {
       </main>
       <AppFooter />
       {isCreatingLoader && <CommonLoader message="Creating your pull request..." />}
-
     </div>
   );
 });

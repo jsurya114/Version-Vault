@@ -20,6 +20,7 @@ import { PaginationQueryDTO } from '../../../../application/dtos/reusable/Pagina
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { IGetStarUseCase } from '../../../../application/use-cases/interfaces/repository/IGetStarsUseCase';
 import { IGetActiveBranchUseCase } from '../../../../application/use-cases/interfaces/repository/IGetActiveBranchUseCase';
+import { IDeleteFileUseCase } from '../../../../application/use-cases/interfaces/repository/IDeleteFileUseCase';
 
 export interface AuthRequest extends Request {
   user: ITokenPayload;
@@ -41,6 +42,7 @@ export class RepositoryController {
     @inject(TOKENS.IToggleStarUseCase) private _toggleStarUseCase: IToggleStarUseCase,
     @inject(TOKENS.IGetStarsUseCase) private _getStarsUseCase: IGetStarUseCase,
     @inject(TOKENS.IGetActiveBranchUseCase) private _getActiveBranch: IGetActiveBranchUseCase,
+    @inject(TOKENS.IDeleteFileUseCase) private _deleteFileUseCase: IDeleteFileUseCase,
   ) {}
 
   /**
@@ -251,6 +253,28 @@ export class RepositoryController {
       const { username, reponame } = req.params;
       const branches = await this._getActiveBranch.execute(username, reponame);
       res.status(HttpStatusCodes.OK).json({ success: true, data: branches });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  async deleteFile(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { reponame } = req.params;
+      const { branch, filePath, commitMessage } = req.body;
+      const ownerId = req.user.id;
+      const ownerUsername = req.user.userId;
+      const ownerEmail = req.user.email;
+      await this._deleteFileUseCase.execute({
+        ownerId,
+        ownerUsername,
+        ownerEmail,
+        repoName: reponame,
+        branch,
+        filePath,
+        commitMessage,
+      });
+      res.status(HttpStatusCodes.OK).json({ success: true, message: 'File deleted successfully' });
     } catch (error) {
       next(error);
     }

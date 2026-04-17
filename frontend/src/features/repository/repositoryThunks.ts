@@ -270,3 +270,19 @@ export const getRecentPushThunk = createAsyncThunk<GitBranch[], RepoParams>(
     }
   },
 );
+
+export const deleteFileThunk = createAsyncThunk<
+  void,
+  { username: string; reponame: string; branch: string; filePath: string; commitMessage: string }
+>('repository/deletFile', async (params, { rejectWithValue }) => {
+  try {
+    await repositoryService.deleteFile(params.username, params.reponame, {
+      branch: params.branch,
+      filePath: params.filePath,
+      commitMessage: params.commitMessage,
+    });
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to delete file');
+  }
+});

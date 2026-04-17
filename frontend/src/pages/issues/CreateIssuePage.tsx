@@ -8,7 +8,7 @@ import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { IssuePriority } from '../../types/issues/issues.types';
-import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+
 import { CommonLoader } from '../../types/common/Layout/Loader';
 
 const CreateIssuePage = React.memo(() => {
@@ -24,7 +24,6 @@ const CreateIssuePage = React.memo(() => {
   const [labelInput, setLabelInput] = useState('');
   const [labels, setLabels] = useState<string[]>([]);
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
-  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
 
   const handleAddLabel = useCallback(
     (e: React.KeyboardEvent) => {
@@ -58,7 +57,7 @@ const CreateIssuePage = React.memo(() => {
             showSonar: true,
             sonarTitle: 'Issue Created!',
             sonarSubtitle: `Successfully created issue: ${title}`,
-          }
+          },
         });
       }, 1500);
     }
@@ -199,8 +198,6 @@ const CreateIssuePage = React.memo(() => {
       <AppFooter />
 
       {isCreatingLoader && <CommonLoader message="Creating Issue..." />}
-
-
     </div>
   );
 });

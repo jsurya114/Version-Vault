@@ -10,7 +10,7 @@ import {
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
 import AppFooter from '../../types/common/Layout/AppFooter';
-import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+
 import { CommonLoader } from '../../types/common/Layout/Loader';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import { DragAndDrop } from './components/DragAndDrop';
@@ -30,7 +30,7 @@ const CreateRepositoryPage = React.memo(() => {
   const [nameError, setNameError] = useState('');
   const [description, setDescription] = useState('');
   const [visibility, setVisibility] = useState<'public' | 'private'>('public');
-  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
 
   const validateName = (val: string) => {
@@ -85,38 +85,43 @@ git push -u origin main`,
           state: {
             showSonar: true,
             sonarTitle: 'Repository Created!',
-            sonarSubtitle: selectedFiles.length > 0
-              ? `Repository "${name}" created with ${selectedFiles.length} files.`
-              : `Your new repository "${name}" is ready.`,
-          }
+            sonarSubtitle:
+              selectedFiles.length > 0
+                ? `Repository "${name}" created with ${selectedFiles.length} files.`
+                : `Your new repository "${name}" is ready.`,
+          },
         });
       }, 1500);
     }
   }, [dispatch, name, description, visibility, navigate, selectedFiles]);
 
-  const handleRepoCreatedByAI = useCallback(async (repoData: RepositoryResponseDTO) => {
-    setIsCreatingLoader(true);
-    if (selectedFiles.length > 0) {
-      await dispatch(
-        fileUploadThunk({
-          repoName: repoData.name,
-          files: selectedFiles,
-        }),
-      );
-    }
-    setTimeout(() => {
-      setIsCreatingLoader(false);
-      navigate(ROUTES.REPO_LIST, {
-        state: {
-          showSonar: true,
-          sonarTitle: 'Repository Created via AI!',
-          sonarSubtitle: selectedFiles.length > 0
-            ? `Repository "${repoData.name}" created with ${selectedFiles.length} files.`
-            : `Your new repository "${repoData.name}" is ready.`,
-        }
-      });
-    }, 1500);
-  }, [dispatch, selectedFiles, navigate]);
+  const handleRepoCreatedByAI = useCallback(
+    async (repoData: RepositoryResponseDTO) => {
+      setIsCreatingLoader(true);
+      if (selectedFiles.length > 0) {
+        await dispatch(
+          fileUploadThunk({
+            repoName: repoData.name,
+            files: selectedFiles,
+          }),
+        );
+      }
+      setTimeout(() => {
+        setIsCreatingLoader(false);
+        navigate(ROUTES.REPO_LIST, {
+          state: {
+            showSonar: true,
+            sonarTitle: 'Repository Created via AI!',
+            sonarSubtitle:
+              selectedFiles.length > 0
+                ? `Repository "${repoData.name}" created with ${selectedFiles.length} files.`
+                : `Your new repository "${repoData.name}" is ready.`,
+          },
+        });
+      }, 1500);
+    },
+    [dispatch, selectedFiles, navigate],
+  );
 
   return (
     <div className="min-h-screen bg-gray-950 text-white overflow-x-hidden">
@@ -253,8 +258,8 @@ git push -u origin main`,
                     <span
                       className={
                         line.startsWith('git commit') ||
-                          line.startsWith('git remote') ||
-                          line.includes('localhost')
+                        line.startsWith('git remote') ||
+                        line.includes('localhost')
                           ? 'text-blue-400'
                           : 'text-gray-300'
                       }
@@ -298,7 +303,6 @@ git push -u origin main`,
       {(isCreatingLoader || isUploading) && (
         <CommonLoader message={isUploading ? 'Uploading Files...' : 'Creating Repository...'} />
       )}
-
     </div>
   );
 });

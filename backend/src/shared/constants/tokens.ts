@@ -87,10 +87,11 @@ export const TOKENS = {
   IGetStarsUseCase: Symbol.for('IGetStarsUseCase'),
   IUploadFileUseCase: Symbol.for('IUploadFileUseCase'),
   IGetActiveBranchUseCase: Symbol.for('IGetActiveBranchUseCase'),
+  IDeleteFileUseCase: Symbol.for('IDeleteFileUseCase'),
 
   //ai agent
-  IAIAgentUseCase:Symbol.for('IAIAgentUseCase'),
-  IGroqService:Symbol.for('IGroqService'),
+  IAIAgentUseCase: Symbol.for('IAIAgentUseCase'),
+  IGroqService: Symbol.for('IGroqService'),
 
   // Collaborator
   ICollaboratorRepository: Symbol.for('ICollaboratorRepository'),

@@ -100,4 +100,8 @@ router.get('/:username/:reponame/active-branches', authMiddleware, (req, res, ne
   repoController.getActiveBranches(req, res, next),
 );
 
+router.delete('/:username/:reponame/file', authMiddleware, (req, res, next) =>
+  repoController.deleteFile(req as AuthRequest, res, next),
+);
+
 export default router;

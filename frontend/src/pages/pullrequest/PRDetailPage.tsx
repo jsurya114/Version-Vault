@@ -360,18 +360,22 @@ const PRDetailPage = () => {
 
         <div className="flex flex-col md:flex-row gap-4 xs:gap-6">
           {/* Main */}
-          <div className="flex-1 space-y-4">
+          <div className="flex-1 space-y-4 min-w-0">
             {/* Branch info */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <div className="flex flex-wrap items-center gap-2 xs:gap-3 text-sm">
                 <div className="flex items-center gap-1.5 xs:gap-2 bg-gray-800 px-2 xs:px-3 py-1 xs:py-1.5 rounded-lg shadow-inner min-w-0">
                   <GitBranch className="w-3.5 h-3.5 text-blue-400" />
-                  <span className="text-blue-400 font-mono text-[11px] xs:text-xs truncate">{pr.sourceBranch}</span>
+                  <span className="text-blue-400 font-mono text-[11px] xs:text-xs truncate">
+                    {pr.sourceBranch}
+                  </span>
                 </div>
                 <span className="text-gray-500">→</span>
                 <div className="flex items-center gap-1.5 xs:gap-2 bg-gray-800 px-2 xs:px-3 py-1 xs:py-1.5 rounded-lg shadow-inner min-w-0">
                   <GitBranch className="w-3.5 h-3.5 text-green-400" />
-                  <span className="text-green-400 font-mono text-[11px] xs:text-xs truncate">{pr.targetBranch}</span>
+                  <span className="text-green-400 font-mono text-[11px] xs:text-xs truncate">
+                    {pr.targetBranch}
+                  </span>
                 </div>
               </div>
             </div>

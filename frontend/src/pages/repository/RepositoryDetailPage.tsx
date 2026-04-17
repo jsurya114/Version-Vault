@@ -34,6 +34,7 @@ import {
   deleteBranchThunk,
   getRecentPushThunk,
   fileUploadThunk,
+  deleteFileThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectSelectedRepository,
@@ -69,7 +70,6 @@ import {
   selectCompareLoading,
 } from '../../features/commit/compareCommitSelectors';
 import { RecentPushesBanner } from './components/RecentPushesBanner';
-import { DragAndDrop } from './components/DragAndDrop';
 
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
@@ -118,6 +118,9 @@ const RepositoryDetailPage = () => {
     title: '',
     subtitle: '',
   });
+
+  const [showFileDeleteModal, setShowFileDeleteModal] = useState(false);
+  const [isDeletingFile, setIsDeletingFile] = useState(false);
 
   const activeBranches = useAppSelector((state) => state.repository.activeBranches || []);
   const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
@@ -316,6 +319,38 @@ const RepositoryDetailPage = () => {
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, [cloneUrl]);
+
+  const handleFileDeletion = async () => {
+    if (!selectedFile) return;
+    setIsDeletingFile(true);
+    try {
+      await dispatch(
+        deleteFileThunk({
+          username: username!,
+          reponame: reponame!,
+          branch: branch,
+          filePath: selectedFile,
+          commitMessage: `Delete ${selectedFile.split('/').pop()}`,
+        }),
+      ).unwrap();
+      setShowFileDeleteModal(false);
+      setSelectFile('');
+      //automatically refresh the entire file tree so the file visible vanishes
+      dispatch(
+        getFilesThunk({ username: username!, reponame: reponame!, branch, path: currentPath }),
+      );
+      dispatch(getCommitsThunk({ username: username!, reponame: reponame!, branch }));
+      setSuccessSonar({
+        isOpen: true,
+        title: 'File Deleted Successfully',
+        subtitle: `${selectedFile} was correctly tracked and permanently removed.`,
+      });
+    } catch (err) {
+      console.error(err);
+    } finally {
+      setIsDeletingFile(false);
+    }
+  };
 
   const handleDelete = useCallback(async () => {
     await dispatch(deleteRepositoryThunk({ username: username!, reponame: reponame! }));
@@ -1023,9 +1058,7 @@ const RepositoryDetailPage = () => {
                             Commit Changes
                           </button>
                         )}
-                        <button className="text-xs px-3 py-1 text-gray-400 hover:text-white transition">
-                          Blame
-                        </button>
+                        {/* BRAND NEW DELETE BUTTON INJECTED HERE */}
                       </div>
                       <div className="flex items-center gap-3 text-gray-500 text-xs">
                         <span>
@@ -1046,6 +1079,16 @@ const RepositoryDetailPage = () => {
                         >
                           ← Back
                         </button>
+
+                        {!isEditing && hasWriteAccess && (
+                          <button
+                            disabled={!hasWriteAccess}
+                            onClick={() => setShowFileDeleteModal(true)}
+                            className="text-xs px-3 py-1 bg-red-900/40 text-red-400 hover:bg-red-900/60 transition rounded border border-red-500/20"
+                          >
+                            Delete File
+                          </button>
+                        )}
                       </div>
                     </div>
                     <div className="overflow-auto flex-1 flex flex-col bg-gray-950">
@@ -1305,6 +1348,16 @@ const RepositoryDetailPage = () => {
           subtitle={successSonar.subtitle}
         />
       )}
+
+      {/* File Deletion Confirmation Modal */}
+      <DeleteConfirmModal
+        isOpen={showFileDeleteModal}
+        onClose={() => setShowFileDeleteModal(false)}
+        onConfirm={handleFileDeletion}
+        itemName="file"
+        itemPath={selectedFile}
+        isLoading={isDeletingFile}
+      />
     </div>
   );
 };

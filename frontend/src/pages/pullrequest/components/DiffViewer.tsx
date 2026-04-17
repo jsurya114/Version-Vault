@@ -14,7 +14,9 @@ export const FileDiffViewer = React.memo(({ file, id }: FileDiffViewerProps) => 
     >
       <div className="bg-gray-950 px-3 xs:px-4 py-2 xs:py-3 border-b border-gray-800 flex items-center justify-between gap-2 flex-wrap">
         <div className="flex items-center gap-2">
-          <span className="text-gray-400 font-mono text-[10px] xs:text-xs truncate">{file.path}</span>
+          <span className="text-gray-400 font-mono text-[10px] xs:text-xs truncate">
+            {file.path}
+          </span>
         </div>
         <div className="flex gap-2 text-[10px] font-bold">
           <span className="text-green-500">+{file.additions}</span>
@@ -30,7 +32,7 @@ export const FileDiffViewer = React.memo(({ file, id }: FileDiffViewerProps) => 
             {hunk.lines.map((line, lIdx) => (
               <div
                 key={lIdx}
-                className={`flex hover:bg-white/5 transition-colors ${
+                className={`flex w-fit min-w-full hover:bg-white/5 transition-colors ${
                   line.type === 'added'
                     ? 'bg-green-500/10 text-green-400'
                     : line.type === 'deleted'
