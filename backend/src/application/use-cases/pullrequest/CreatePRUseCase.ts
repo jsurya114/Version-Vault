@@ -7,10 +7,14 @@ import {
   PullRequestResponseDTO,
 } from '../../../application/dtos/repository/PullRequestDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class CreatePRUseCase implements ICreatePRUseCase {
-  constructor(@inject(TOKENS.IPullRequestRepository) private prRepo: IPullRequestRepository) {}
+  constructor(
+    @inject(TOKENS.IPullRequestRepository) private prRepo: IPullRequestRepository,
+    @inject(NotificationService) private _notificationService: NotificationService,
+  ) {}
 
   async execute(dto: CreatePullRequestDTO): Promise<PullRequestResponseDTO> {
     const totalExistingPRs = await this.prRepo.countPRsByRepo(dto.repositoryId);
@@ -30,6 +34,17 @@ export class CreatePRUseCase implements ICreatePRUseCase {
       baseCommitHash: dto.baseCommitHash,
       headCommitHash: dto.headCommitHash,
     });
+    this._notificationService
+      .notifyRepoDevelopers({
+        actorId: dto.authorId,
+        actorUsername: dto.authorUsername,
+        type: 'pr_created',
+        message: `${dto.authorUsername} opened pull request "${dto.title}"`,
+        repositoryId: dto.repositoryId,
+        metadata: { prId: pr.id! },
+      })
+      .catch(() => {});
+
     return PullRequestMapper.toDTO(pr);
   }
 }

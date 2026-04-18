@@ -126,4 +126,11 @@ export const TOKENS = {
   IDeleteMessageUseCase: Symbol.for('IDeleteMessageUseCase'),
   IListChatRepoUseCase: Symbol.for('IListChatRepoUseCase'),
   HttpServer: Symbol.for('HttpServer'),
+
+  //notifications
+  INotificationRepository: Symbol.for('INotificationRepository'),
+  IGetNotificationsUseCase: Symbol.for('IGetNotificationsUseCase'),
+  IMarkNotificationReadUseCase: Symbol.for('IMarkNotificationReadUseCase'),
+  IMarkAllReadUseCase: Symbol.for('IMarkAllReadUseCase'),
+  NotificationService: Symbol.for('NotificationService'),
 } as const;

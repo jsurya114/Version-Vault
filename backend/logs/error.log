@@ -3740,3 +3740,72 @@ The most similar command is
 2026-04-17 19:06:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
 2026-04-17 19:06:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
 2026-04-17 19:06:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-17 20:25:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-17 20:25:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-17 20:25:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-17 20:25:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-17 20:25:08 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-17 21:04:43 [[31merror[39m]: GET /vv/repo/jsurya114/gallery/active-branches — Invalid or expired access token
+2026-04-17 21:04:43 [[31merror[39m]: GET /vv/repo/jsurya114/gallery/active-branches — Invalid or expired access token
+2026-04-17 21:04:43 [[31merror[39m]: GET /vv/repo/jsurya114/gallery — Repository not found
+2026-04-17 21:04:43 [[31merror[39m]: GET /vv/repo/jsurya114/gallery — Repository not found
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-17 21:04:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-17 21:04:49 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-17 23:04:33 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:33 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:33 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:34 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:34 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:34 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:34 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:35 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:35 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:36 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:36 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:37 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:38 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:38 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:39 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:40 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:41 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:42 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:43 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:44 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:45 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:46 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:47 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:48 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:49 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:51 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:52 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:53 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:55 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:56 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:58 [[31merror[39m]: Redis connection error
+2026-04-17 23:04:59 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:01 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:03 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:05 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:06 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:08 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:10 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:12 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:14 [[31merror[39m]: Redis connection error
+2026-04-17 23:05:16 [[31merror[39m]: Redis connection error

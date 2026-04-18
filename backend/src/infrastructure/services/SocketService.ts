@@ -7,6 +7,7 @@ import { UnauthorizedError } from '../../domain/errors/UnauthorizedError';
 import { logger } from '../../shared/logger/Logger';
 import { injectable, inject } from 'tsyringe';
 import { IRepoRepository } from '../../domain/interfaces/repositories/IRepoRepository';
+import { NotificationService } from './NotificationService';
 
 @injectable()
 export class SocketService {
@@ -16,6 +17,7 @@ export class SocketService {
     @inject(TOKENS.ISendMessageUseCase) private _sendMessage: ISendMessageUseCase,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.HttpServer) server: HttpServer,
+    @inject(NotificationService) private _notificationService: NotificationService,
   ) {
     this.io = new SocketIOServer(server, {
       cors: {
@@ -46,6 +48,7 @@ export class SocketService {
       try {
         const decoded = tokenService.verifyAccessToken(token);
         socket.data.user = decoded;
+        socket.join(`user:${socket.data.user.id}`);
         next();
       } catch (error) {
         next(new UnauthorizedError('Authentication Error'));
@@ -78,7 +81,16 @@ export class SocketService {
             senderUsername: socket.data.user.userId,
             content: data.content,
           });
-
+          this._notificationService
+            .notifyRepoDevelopers({
+              actorId: socket.data.user.id,
+              actorUsername: socket.data.user.userId,
+              type: 'chat_message',
+              message: `${socket.data.user.userId} sent a message in ${data.repositoryId}`,
+              repositoryId: repo.id!,
+              repositoryName: repo.name,
+            })
+            .catch(() => {});
           const room = data.repositoryId;
           const rooms = this.io.sockets.adapter.rooms.get(room);
           const numClients = rooms ? rooms.size : 0;
@@ -99,5 +111,13 @@ export class SocketService {
         logger.info(`User disconnected from socket: ${socket.data.user.id}`);
       });
     });
+  }
+
+  /**
+   * Emit an event to a specific user (by userId).
+   * Works because each user joins their own room on connection.
+   */
+  emitToUser(userId: string, event: string, data: unknown): void {
+    this.io.to(`user:${userId}`).emit(event, data);
   }
 }

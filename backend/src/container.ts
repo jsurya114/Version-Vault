@@ -132,6 +132,13 @@ import { GetActiveBranchUseCase } from './application/use-cases/repository/GetAc
 import { AIAgentUseCase } from './application/use-cases/AIAgent/AIAgentUseCase';
 import { DeleteFileUseCase } from './application/use-cases/repository/DeleteFileUseCase';
 
+//notifications
+import { MongoNotificationRepository } from './infrastructure/database/mongoose/repositories/MongoNotificationRepository';
+import { NotificationService } from './infrastructure/services/NotificationService';
+import { GetNotificationsUseCase } from './application/use-cases/notifications/GetNotificationsUseCase';
+import { MarkNotificationReadUseCase } from './application/use-cases/notifications/MarkNotificationReadUseCase';
+import { MarkAllReadUseCase } from './application/use-cases/notifications/MarkAllReadUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -142,6 +149,7 @@ container.registerSingleton(GitService, GitService);
 container.registerSingleton(TOKENS.ILogger, WinstonLogger);
 container.registerSingleton(SocketService, SocketService);
 container.register(TOKENS.IGroqService, { useClass: GroqService });
+container.registerSingleton(NotificationService, NotificationService);
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
@@ -267,5 +275,11 @@ container.register(TOKENS.IListChatRepoUseCase, { useClass: ListChatRepoUseCase 
 //pr
 container.register(TOKENS.IGetConflictsUseCase, { useClass: GetConflictsUseCase });
 container.register(TOKENS.IResolveConflictsUseCase, { useClass: ResolveConflictsUseCase });
+
+//notifications
+container.register(TOKENS.INotificationRepository, { useClass: MongoNotificationRepository });
+container.register(TOKENS.IGetNotificationsUseCase, { useClass: GetNotificationsUseCase });
+container.register(TOKENS.IMarkNotificationReadUseCase, { useClass: MarkNotificationReadUseCase });
+container.register(TOKENS.IMarkAllReadUseCase, { useClass: MarkAllReadUseCase });
 
 export { container };

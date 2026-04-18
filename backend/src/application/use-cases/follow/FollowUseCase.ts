@@ -4,12 +4,14 @@ import { IFollowRepository } from '../../../domain/interfaces/repositories/IFoll
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { ConflictError } from '../../../domain/errors/ConflictError';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class FollowUseCase implements IFollowUseCase {
   constructor(
     @inject(TOKENS.IFollowRepository) private _followRepo: IFollowRepository,
     @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
   ) {}
 
   async execute(
@@ -38,5 +40,14 @@ export class FollowUseCase implements IFollowUseCase {
         followersCount: (following.followersCount || 0) + 1,
       });
     }
+    this._notificationService
+      .notifyUser({
+        recipientId: followingId,
+        actorId: followerId,
+        actorUsername: followerUsername,
+        type: 'followed',
+        message: `${followerUsername} started following you`,
+      })
+      .catch(() => {});
   }
 }
