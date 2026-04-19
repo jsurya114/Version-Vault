@@ -137,6 +137,7 @@ const RepositoryDetailPage = () => {
   const [uploadCommitMessage, setUploadCommitMessage] = useState('');
   const [isUploading, setIsUploading] = useState(false);
   const [showUploadZone, setShowUploadZone] = useState(false);
+  const [showCloneDropdown, setShowCloneDropdown] = useState(false);
 
   useEffect(() => {
     if (username && reponame) {
@@ -832,7 +833,46 @@ const RepositoryDetailPage = () => {
               </div>
 
               {/* Star + Fork */}
-              <div className="flex items-center gap-2">
+              <div className="flex items-center gap-2 relative">
+                {/* Clone Repo Dropdown */}
+                <div className="relative">
+                  <button
+                    onClick={() => setShowCloneDropdown(!showCloneDropdown)}
+                    className="flex items-center gap-1.5 bg-green-600 hover:bg-green-700 text-white text-xs px-3 py-1.5 rounded-lg transition font-semibold"
+                  >
+                    <FileCode className="w-3.5 h-3.5" /> Code <ChevronDown className="w-3 h-3" />
+                  </button>
+                  {showCloneDropdown && (
+                    <div className="absolute right-0 mt-2 w-72 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 p-4">
+                      <div className="mb-2">
+                        <h4 className="text-white text-sm font-semibold flex items-center gap-2">
+                          <Globe className="w-4 h-4" /> Clone
+                        </h4>
+                        <p className="text-xs text-gray-400 mt-1">
+                          Clone with HTTPS into your local IDE.
+                        </p>
+                      </div>
+                      <div className="flex items-center gap-2 mt-3 bg-gray-800 border border-gray-700 rounded px-2 py-1.5">
+                        <input
+                          type="text"
+                          readOnly
+                          value={cloneUrl}
+                          className="flex-1 bg-transparent text-gray-300 text-xs focus:outline-none"
+                        />
+                        <button
+                          onClick={handleCopy}
+                          className="p-1.5 bg-gray-700 hover:bg-gray-600 rounded text-gray-300 hover:text-white transition"
+                        >
+                          {copied ? (
+                            <Check className="w-3.5 h-3.5 text-green-400" />
+                          ) : (
+                            <Copy className="w-3.5 h-3.5" />
+                          )}
+                        </button>
+                      </div>
+                    </div>
+                  )}
+                </div>
                 {hasWriteAccess && !selectedFile && (
                   <button
                     onClick={() => setShowUploadZone(true)}

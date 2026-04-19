@@ -14,6 +14,7 @@ import {
 import { useNotificationSocket } from '../../../hooks/useNotificationSocket';
 import { NotificationDTO } from '../../../types/notification/notification.types';
 import { useNavigate } from 'react-router-dom';
+import React from 'react';
 
 const timeAgo = (dateStr: string): string => {
   const diff = Date.now() - new Date(dateStr).getTime();
@@ -72,6 +73,50 @@ const NotificationDropdown = () => {
     setIsOpen(false);
   };
 
+  const unreadNotifications = notifications.filter((n) => !n.isRead);
+  const readNotifications = notifications.filter((n) => n.isRead);
+
+  const renderNotification = (n: NotificationDTO) => (
+    <button
+      key={n.id}
+      onClick={() => handleNotificationClick(n)}
+      className={`w-full text-left px-4 py-3 flex items-start gap-3 hover:bg-gray-800/50 transition-colors border-b border-gray-800/50 ${
+        !n.isRead ? 'bg-blue-500/5' : ''
+      }`}
+    >
+      {/* Unread dot */}
+      <div className="mt-1.5 shrink-0">
+        {!n.isRead ? (
+          <div className="w-2 h-2 rounded-full bg-blue-500" />
+        ) : (
+          <div className="w-2 h-2 rounded-full bg-transparent" />
+        )}
+      </div>
+
+      {/* Avatar */}
+      <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] font-bold shrink-0">
+        {n.actorUsername[0]?.toUpperCase()}
+      </div>
+
+      {/* Content */}
+      <div className="flex-1 min-w-0">
+        <p className="text-gray-300 text-sm leading-snug">
+          <span className="font-bold text-white">{n.actorUsername}</span>{' '}
+          {n.message.replace(n.actorUsername, '').trim()}
+        </p>
+        <div className="flex items-center gap-2 mt-1">
+          <span className="text-gray-600 text-[11px]">{timeAgo(n.createdAt)}</span>
+          {n.repositoryName && (
+            <span className="text-gray-600 text-[11px] font-mono truncate">{n.repositoryName}</span>
+          )}
+        </div>
+      </div>
+
+      {/* Read indicator */}
+      {n.isRead && <Check className="w-3 h-3 text-gray-700 mt-1 shrink-0" />}
+    </button>
+  );
+
   return (
     <div className="relative" ref={dropdownRef}>
       <button
@@ -110,48 +155,25 @@ const NotificationDropdown = () => {
                 <p className="text-gray-600 text-sm">No notifications yet</p>
               </div>
             ) : (
-              notifications.map((n) => (
-                <button
-                  key={n.id}
-                  onClick={() => handleNotificationClick(n)}
-                  className={`w-full text-left px-4 py-3 flex items-start gap-3 hover:bg-gray-800/50 transition-colors border-b border-gray-800/50 ${
-                    !n.isRead ? 'bg-blue-500/5' : ''
-                  }`}
-                >
-                  {/* Unread dot */}
-                  <div className="mt-1.5 shrink-0">
-                    {!n.isRead ? (
-                      <div className="w-2 h-2 rounded-full bg-blue-500" />
-                    ) : (
-                      <div className="w-2 h-2 rounded-full bg-transparent" />
-                    )}
-                  </div>
-
-                  {/* Avatar */}
-                  <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] font-bold shrink-0">
-                    {n.actorUsername[0]?.toUpperCase()}
-                  </div>
-
-                  {/* Content */}
-                  <div className="flex-1 min-w-0">
-                    <p className="text-gray-300 text-sm leading-snug">
-                      <span className="font-bold text-white">{n.actorUsername}</span>{' '}
-                      {n.message.replace(n.actorUsername, '').trim()}
-                    </p>
-                    <div className="flex items-center gap-2 mt-1">
-                      <span className="text-gray-600 text-[11px]">{timeAgo(n.createdAt)}</span>
-                      {n.repositoryName && (
-                        <span className="text-gray-600 text-[11px] font-mono truncate">
-                          {n.repositoryName}
-                        </span>
-                      )}
+              <div className="flex flex-col">
+                {unreadNotifications.length > 0 && (
+                  <div className="flex flex-col">
+                    <div className="px-4 py-2 bg-gray-900 border-b border-gray-800 sticky top-0 z-10 text-[10px] font-bold text-gray-400 uppercase tracking-wider shadow-sm">
+                      New
                     </div>
+                    {unreadNotifications.map(renderNotification)}
                   </div>
+                )}
 
-                  {/* Read indicator */}
-                  {n.isRead && <Check className="w-3 h-3 text-gray-700 mt-1 shrink-0" />}
-                </button>
-              ))
+                {readNotifications.length > 0 && (
+                  <div className="flex flex-col">
+                    <div className="px-4 py-2 bg-gray-900 border-b border-gray-800 sticky top-0 z-10 text-[10px] font-bold text-gray-400 uppercase tracking-wider shadow-sm">
+                      Earlier
+                    </div>
+                    {readNotifications.map(renderNotification)}
+                  </div>
+                )}
+              </div>
             )}
           </div>
         </div>
