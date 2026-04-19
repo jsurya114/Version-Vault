@@ -3,12 +3,14 @@ import { IUnfollowUseCase } from '../interfaces/follow/IUnfollowUseCase';
 import { IFollowRepository } from '../../../domain/interfaces/repositories/IFollowRepository';
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class UnfollowUseCase implements IUnfollowUseCase {
   constructor(
     @inject(TOKENS.IFollowRepository) private _followRepo: IFollowRepository,
     @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
   ) {}
 
   async execute(followerId: string, followingId: string): Promise<void> {
@@ -28,5 +30,15 @@ export class UnfollowUseCase implements IUnfollowUseCase {
       await this._userRepo.update(followingId, {
         followersCount: Math.max((following.followersCount || 0) - 1, 0),
       });
+
+    this._notificationService
+      .notifyUser({
+        recipientId: followingId,
+        actorId: followerId,
+        actorUsername: follower?.username || 'Someone',
+        type: 'unfollowed',
+        message: `${follower?.username || 'Someone'} unfollowed you`,
+      })
+      .catch(() => {});
   }
 }

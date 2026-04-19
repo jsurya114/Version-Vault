@@ -1,18 +1,26 @@
 import { injectable, inject } from 'tsyringe';
 import { IDeleteBranchUseCase } from '../interfaces/branch/IDeleteBranchUseCase';
-import { GitService } from 'src/infrastructure/services/GitService';
-import { IRepoRepository } from 'src/domain/interfaces/repositories/IRepoRepository';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { TOKENS } from 'src/shared/constants/tokens';
+import { GitService } from '../../../infrastructure/services/GitService';
+import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class DeleteBranchUseCase implements IDeleteBranchUseCase {
   constructor(
     @inject(GitService) private _gitService: GitService,
     @inject(TOKENS.IRepoRepository) private _repoRepository: IRepoRepository,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
   ) {}
 
-  async execute(username: string, reponame: string, branchName: string): Promise<void> {
+  async execute(
+    username: string,
+    reponame: string,
+    branchName: string,
+    actorId: string,
+    actorUsername: string,
+  ): Promise<void> {
     // check the branch is protected
     if (branchName === 'main' || branchName === 'master') {
       throw new Error('cannot be deleted the main branch');
@@ -23,5 +31,16 @@ export class DeleteBranchUseCase implements IDeleteBranchUseCase {
     }
 
     await this._gitService.deleteBranch(username, reponame, branchName);
+
+    this._notificationService
+      .notifyRepoDevelopers({
+        actorId,
+        actorUsername,
+        type: 'branch_deleted',
+        message: `${actorUsername} deleted branch "${branchName}"`,
+        repositoryId: repo.id as string,
+        repositoryName: repo.name,
+      })
+      .catch(() => {});
   }
 }

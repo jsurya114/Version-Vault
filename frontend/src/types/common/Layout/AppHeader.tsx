@@ -1,12 +1,13 @@
 import { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Bell, Search, LogOut, Menu, X } from 'lucide-react';
+import { Search, LogOut, Menu, X } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { selectAuthUser } from '../../../features/auth/authSelectors';
 import { logoutThunk } from '../../../features/auth/authThunks';
 import { selectRepositories } from '../../../features/repository/repositorySelectors';
 import { ROUTES } from '../../../constants/routes';
 import { authService } from 'src/services/auth.service';
+import NotificationDropdown from './NotificationDropDown';
 
 const AppHeader = () => {
   const dispatch = useAppDispatch();
@@ -194,10 +195,7 @@ const AppHeader = () => {
           </button>
 
           {/* Notifications */}
-          <button className="relative p-2 text-gray-400 hover:text-white hover:bg-gray-800 rounded-lg transition">
-            <Bell className="w-4 h-4" />
-            <span className="absolute top-1 right-1 w-2 h-2 bg-blue-500 rounded-full" />
-          </button>
+          <NotificationDropdown />
 
           {/* Avatar dropdown — desktop */}
           <div className="relative group hidden md:block">

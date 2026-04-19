@@ -4,7 +4,8 @@ import { IGetBranchesUseCase } from '../../../../application/use-cases/interface
 import { ICreateBranchUseCase } from '../../../../application/use-cases/interfaces/branch/ICreateBranchUseCase';
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { TOKENS } from '../../../../shared/constants/tokens';
-import { IDeleteBranchUseCase } from 'src/application/use-cases/interfaces/branch/IDeleteBranchUseCase';
+import { IDeleteBranchUseCase } from '../../../../application/use-cases/interfaces/branch/IDeleteBranchUseCase';
+import { AuthRequest } from '../repository/RepositoryController';
 
 @injectable()
 export class BranchController {
@@ -27,7 +28,15 @@ export class BranchController {
     try {
       const { username, reponame } = req.params;
       const { newBranch, fromBranch } = req.body;
-      await this._createBranchUseCase.execute(username, reponame, newBranch, fromBranch || 'main');
+      const user = (req as AuthRequest).user;
+      await this._createBranchUseCase.execute(
+        username,
+        reponame,
+        newBranch,
+        fromBranch || 'main',
+        user.id,
+        user.userId,
+      );
       res
         .status(HttpStatusCodes.CREATED)
         .json({ success: true, message: `Branch '${newBranch}' created` });
@@ -39,7 +48,8 @@ export class BranchController {
   async deleteBranch(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { username, reponame, branchName } = req.params;
-      await this._deleteBranchUseCase.execute(username, reponame, branchName);
+      const user = (req as AuthRequest).user;
+      await this._deleteBranchUseCase.execute(username, reponame, branchName, user.id, user.userId);
       res.status(HttpStatusCodes.OK).json({
         success: true,
         message: `Branch '${branchName}' deleted successfully`,

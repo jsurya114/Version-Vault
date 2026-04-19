@@ -5,9 +5,9 @@ import { authMiddleware } from '../../middleware/AuthMiddleware';
 import { AuthRequest } from '../../controllers/repository/RepositoryController';
 
 const router = Router();
-const aiAgentController = container.resolve(AIAgentController);
+const aiAgentController = (): AIAgentController => container.resolve(AIAgentController);
 
 router.use(authMiddleware);
-router.post('/chat', (req, res, next) => aiAgentController.chat(req as AuthRequest, res, next));
+router.post('/chat', (req, res, next) => aiAgentController().chat(req as AuthRequest, res, next));
 
 export default router;

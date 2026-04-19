@@ -4,11 +4,17 @@ import { IToggleStarUseCase } from '../interfaces/repository/IToggleStarUseCase'
 import { ToggleStarDTO } from '../../../application/dtos/repository/RepoResponseDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
-import { ValidationError } from 'src/domain/errors/ValidationError';
+import { ValidationError } from '../../../domain/errors/ValidationError';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class ToggleStarUseCase implements IToggleStarUseCase {
-  constructor(@inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository) {}
+  constructor(
+    @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
+    @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+  ) {}
 
   async execute(dto: ToggleStarDTO): Promise<{ isStarred: boolean; starsCount: number }> {
     const repo = await this._repoRepo.findByOwnerAndName(dto.ownerUsername, dto.repoName);
@@ -34,6 +40,24 @@ export class ToggleStarUseCase implements IToggleStarUseCase {
       stars: newStarsCount,
       starredBy: newStarredBy,
     });
+
+    // Only notify on star (not unstar)
+    if (!hasStarred) {
+      const actor = await this._userRepo.findById(dto.userId);
+      const actorUsername = actor?.username || 'Someone';
+
+      this._notificationService
+        .notifyUser({
+          recipientId: repo.ownerId,
+          actorId: dto.userId,
+          actorUsername,
+          type: 'repo_starred',
+          message: `${actorUsername} starred your repository "${repo.name}"`,
+          repositoryId: repo.id as string,
+          repositoryName: repo.name,
+        })
+        .catch(() => {});
+    }
 
     return { isStarred: !hasStarred, starsCount: newStarsCount };
   }

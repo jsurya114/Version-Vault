@@ -13,7 +13,7 @@ import { NotificationService } from '../../../infrastructure/services/Notificati
 export class CreatePRUseCase implements ICreatePRUseCase {
   constructor(
     @inject(TOKENS.IPullRequestRepository) private prRepo: IPullRequestRepository,
-    @inject(NotificationService) private _notificationService: NotificationService,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
   ) {}
 
   async execute(dto: CreatePullRequestDTO): Promise<PullRequestResponseDTO> {

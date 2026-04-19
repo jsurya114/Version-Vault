@@ -6,7 +6,7 @@ import { envConfig } from './shared/config/env.config';
 import { logger } from './shared/logger/Logger';
 import { connectDatabase } from './infrastructure/database/mongoose/connection';
 import { container } from 'tsyringe';
-import { SocketService } from './infrastructure/services/SocketService';
+
 import { TOKENS } from './shared/constants/tokens';
 
 const startSever = async (): Promise<void> => {
@@ -16,7 +16,7 @@ const startSever = async (): Promise<void> => {
     const server = http.createServer(app);
     container.registerInstance(TOKENS.HttpServer, server);
 
-    container.resolve(SocketService);
+    container.resolve(TOKENS.ISocketEmitter);
 
     //starting the server
     server.listen(envConfig.PORT, () => {

@@ -147,9 +147,10 @@ container.register(TOKENS.IEmailService, { useClass: NodemailerService });
 container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 container.registerSingleton(GitService, GitService);
 container.registerSingleton(TOKENS.ILogger, WinstonLogger);
-container.registerSingleton(SocketService, SocketService);
+container.registerSingleton(TOKENS.ISocketEmitter, SocketService);
+
 container.register(TOKENS.IGroqService, { useClass: GroqService });
-container.registerSingleton(NotificationService, NotificationService);
+container.registerSingleton(TOKENS.NotificationService, NotificationService);
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });

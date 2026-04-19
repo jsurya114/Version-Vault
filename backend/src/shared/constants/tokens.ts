@@ -12,6 +12,7 @@ export const TOKENS = {
   IOtpService: Symbol.for('IOtpService'),
   IEmailService: Symbol.for('IEmailService'),
   IGoogleAuthService: Symbol.for('IGoogleAuthService'),
+  ISocketEmitter: Symbol.for('ISocketEmitter'),
 
   //usecases
   IRegisterUseCase: Symbol.for('IRegisterUseCase'),

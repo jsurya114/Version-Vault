@@ -5,19 +5,18 @@ import { ISendMessageUseCase } from '../../application/use-cases/interfaces/chat
 import { ITokenService } from '../../domain/interfaces/services/ITokenService';
 import { UnauthorizedError } from '../../domain/errors/UnauthorizedError';
 import { logger } from '../../shared/logger/Logger';
-import { injectable, inject } from 'tsyringe';
+import { injectable, inject, container } from 'tsyringe';
 import { IRepoRepository } from '../../domain/interfaces/repositories/IRepoRepository';
-import { NotificationService } from './NotificationService';
+
+import { ISocketEmitter } from '../../domain/interfaces/services/ISocketEmitter';
 
 @injectable()
-export class SocketService {
+export class SocketService implements ISocketEmitter {
   private io: SocketIOServer;
   constructor(
     @inject(TOKENS.ITokenService) private _tokenService: ITokenService,
-    @inject(TOKENS.ISendMessageUseCase) private _sendMessage: ISendMessageUseCase,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.HttpServer) server: HttpServer,
-    @inject(NotificationService) private _notificationService: NotificationService,
   ) {
     this.io = new SocketIOServer(server, {
       cors: {
@@ -27,6 +26,10 @@ export class SocketService {
       },
     });
     this.initialize();
+  }
+
+  private getSendMessageUseCase(): ISendMessageUseCase {
+    return container.resolve<ISendMessageUseCase>(TOKENS.ISendMessageUseCase);
   }
 
   private initialize() {
@@ -40,11 +43,8 @@ export class SocketService {
         });
         token = cookies.accessToken;
       }
-
       if (!token) return next(new UnauthorizedError('Authentication Error'));
-
       const tokenService = this._tokenService;
-
       try {
         const decoded = tokenService.verifyAccessToken(token);
         socket.data.user = decoded;
@@ -55,7 +55,6 @@ export class SocketService {
         logger.error(error);
       }
     });
-
     this.io.on('connection', (socket: Socket) => {
       logger.info(`User connected to socket: ${socket.data.user.id}`);
       //user join a repository room
@@ -63,50 +62,32 @@ export class SocketService {
         socket.join(repositoryId);
         logger.info(`User ${socket.data.user.userId} joined repo ${repositoryId}`);
       });
-
       //user sends message
       socket.on('send_message', async (data: { repositoryId: string; content: string }) => {
         try {
           const [ownerUsername, name] = data.repositoryId.split('/');
-
           const repo = await this._repoRepo.findByOwnerAndName(ownerUsername, name);
-
           if (!repo) {
             logger.error(`Repository not found for socket message: ${data.repositoryId}`);
             return;
           }
-          const savedMessage = await this._sendMessage.execute({
+          const sendMessage = this.getSendMessageUseCase();
+          const savedMessage = await sendMessage.execute({
             repositoryId: repo.id!,
             senderId: socket.data.user.id,
             senderUsername: socket.data.user.userId,
             content: data.content,
           });
-          this._notificationService
-            .notifyRepoDevelopers({
-              actorId: socket.data.user.id,
-              actorUsername: socket.data.user.userId,
-              type: 'chat_message',
-              message: `${socket.data.user.userId} sent a message in ${data.repositoryId}`,
-              repositoryId: repo.id!,
-              repositoryName: repo.name,
-            })
-            .catch(() => {});
+          //Notification is now handled inside SendMessageUseCase (SRP)
           const room = data.repositoryId;
           const rooms = this.io.sockets.adapter.rooms.get(room);
           const numClients = rooms ? rooms.size : 0;
-
           logger.info(`Emitting message to room: ${room} (Clients in room: ${numClients})`);
           this.io.to(data.repositoryId).emit('receive_message', savedMessage);
         } catch (error) {
           logger.error('Error saving message', error);
         }
       });
-
-      socket.on('join_repo', (repositoryId: string) => {
-        socket.join(repositoryId);
-        logger.info(`Socket ${socket.id} joined room: ${repositoryId}`);
-      });
-
       socket.on('disconnect', () => {
         logger.info(`User disconnected from socket: ${socket.data.user.id}`);
       });

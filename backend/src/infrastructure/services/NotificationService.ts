@@ -3,8 +3,8 @@ import { TOKENS } from '../../shared/constants/tokens';
 import { INotificationRepository } from '../../domain/interfaces/repositories/INotificationRepository';
 import { ICollaboratorRepository } from '../../domain/interfaces/repositories/ICollaboratorRepository';
 import { IRepoRepository } from '../../domain/interfaces/repositories/IRepoRepository';
-import { NotificationType } from '../../domain/interfaces/INotification';
-import { SocketService } from './SocketService';
+
+import { ISocketEmitter } from '../../domain/interfaces/services/ISocketEmitter';
 import { logger } from '../../shared/logger/Logger';
 import { NotifyParams, NotifyRepoParams } from '../../application/dtos/repository/NotificationDTO';
 
@@ -14,7 +14,7 @@ export class NotificationService {
     @inject(TOKENS.INotificationRepository) private _notificationRepo: INotificationRepository,
     @inject(TOKENS.ICollaboratorRepository) private _collabRepo: ICollaboratorRepository,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
-    @inject(SocketService) private _socketService: SocketService,
+    @inject(TOKENS.ISocketEmitter) private _socketEmitter: ISocketEmitter,
   ) {}
 
   /**
@@ -30,7 +30,7 @@ export class NotificationService {
         ...params,
         isRead: false,
       });
-      this._socketService.emitToUser(params.recipientId, 'notification', notification);
+      this._socketEmitter.emitToUser(params.recipientId, 'notification', notification);
     } catch (error) {
       logger.error('failed to send notification:', error);
     }
@@ -71,7 +71,7 @@ export class NotificationService {
           metadata: params.metadata,
           isRead: false,
         });
-        this._socketService.emitToUser(recipientId, 'notification', notification);
+        this._socketEmitter.emitToUser(recipientId, 'notification', notification);
       });
       await Promise.all(promises);
     } catch (error) {

@@ -1,4 +1,4 @@
-import { injectable, inject } from 'tsyringe';
+import { injectable } from 'tsyringe';
 import { MongoBaseRepository } from './MongoBaseRepository';
 import { INotification } from '../../../../domain/interfaces/INotification';
 import { INotificationRepository } from '../../../../domain/interfaces/repositories/INotificationRepository';
@@ -17,7 +17,7 @@ export class MongoNotificationRepository
   constructor() {
     super(NotificationModel);
   }
-  protected toEntity(doc: any): INotification {
+  protected toEntity(doc: unknown): INotification {
     return NotificationMapper.toEntity(doc);
   }
   async findByRecipient(

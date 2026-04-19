@@ -1,11 +1,11 @@
 import { injectable, inject } from 'tsyringe';
 import { Request, Response, NextFunction } from 'express';
 import { ICreateCommitUseCase } from '../../../../application/use-cases/interfaces/commit/ICreateCommitUseCase';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { ITokenPayload } from 'src/domain/interfaces/services/ITokenService';
-import { HttpStatusCodes } from 'src/shared/constants/HttpStatusCodes';
+import { TOKENS } from '../../../../shared/constants/tokens';
+import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
+import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { AuthRequest } from '../repository/RepositoryController';
-import { ICompareCommitUseCase } from 'src/application/use-cases/interfaces/commit/ICompareCommitUseCase';
+import { ICompareCommitUseCase } from '../../../../application/use-cases/interfaces/commit/ICompareCommitUseCase';
 
 @injectable()
 export class CommitController {
@@ -18,16 +18,22 @@ export class CommitController {
     try {
       const { username, reponame } = req.params;
       const { branch, message, filePath, content } = req.body;
-      const { userId: authorUsername, email: authorEmail } = req.user as ITokenPayload;
+      const { id: actorId, userId: authorUsername, email: authorEmail } = req.user as ITokenPayload;
 
-      await this._createCommitUseCase.execute(username, reponame, {
-        branch,
-        message,
-        filePath,
-        content,
-        authorName: authorUsername,
-        authorEmail: authorEmail,
-      });
+      await this._createCommitUseCase.execute(
+        username,
+        reponame,
+        {
+          branch,
+          message,
+          filePath,
+          content,
+          authorName: authorUsername,
+          authorEmail: authorEmail,
+        },
+        actorId,
+        authorUsername,
+      );
       res.status(HttpStatusCodes.OK).json({
         success: true,
         message: 'Changes committed successfully',
