@@ -79,6 +79,7 @@ import { GetFollowingUseCase } from './application/use-cases/follow/GetFollowing
 //branch
 import { CreateBranchUseCase } from './application/use-cases/branch/CreateBranchUseCase';
 import { DeleteBranchUseCase } from './application/use-cases/branch/DeleteBranchUseCase';
+import { MongoBranchRepository } from './infrastructure/database/mongoose/repositories/MongoBranchRepository';
 
 import { CreateCommitUseCase } from './application/use-cases/commit/CreateCommitUseCase';
 import { CompareCommitUseCase } from './application/use-cases/commit/CompareCommitUseCase';
@@ -219,6 +220,7 @@ container.register(TOKENS.IGetFollowersUseCase, { useClass: GetFollowersUseCase 
 container.register(TOKENS.IGetFollowingUseCase, { useClass: GetFollowingUseCase });
 
 //branch usecase
+container.register(TOKENS.IBranchRepository, { useClass: MongoBranchRepository });
 container.register(TOKENS.ICreateBranchUseCase, { useClass: CreateBranchUseCase });
 container.register(TOKENS.IDeleteBranchUseCase, { useClass: DeleteBranchUseCase });
 

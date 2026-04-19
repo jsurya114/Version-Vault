@@ -5,12 +5,15 @@ import { NotificationService } from '../../../infrastructure/services/Notificati
 import { injectable, inject } from 'tsyringe';
 import { TOKENS } from '../../../shared/constants/tokens';
 
+import { IBranchRepository } from '../../../domain/interfaces/repositories/IBranchRepository';
+
 @injectable()
 export class CreateBranchUseCase implements ICreateBranchUseCase {
   constructor(
     @inject(GitService) private _gitService: GitService,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+    @inject(TOKENS.IBranchRepository) private _branchRepo: IBranchRepository,
   ) {}
 
   async execute(
@@ -25,6 +28,13 @@ export class CreateBranchUseCase implements ICreateBranchUseCase {
 
     const repo = await this._repoRepo.findByOwnerAndName(ownerUsername, repoName);
     if (repo) {
+      await this._branchRepo.save({
+        repositoryId: repo.id as string,
+        branchName: newBranch,
+        createdBy: actorId,
+        createdAt: new Date(),
+      });
+
       this._notificationService
         .notifyRepoDevelopers({
           actorId,

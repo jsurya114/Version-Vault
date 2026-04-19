@@ -260,15 +260,15 @@ export class RepositoryController {
 
   async deleteFile(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { reponame } = req.params;
+      const { username, reponame } = req.params;
       const { branch, filePath, commitMessage } = req.body;
-      const ownerId = req.user.id;
-      const ownerUsername = req.user.userId;
-      const ownerEmail = req.user.email;
+      const actorId = req.user.id;
+      const actorUsername = req.user.userId;
+      const actorEmail = req.user.email;
       await this._deleteFileUseCase.execute({
-        ownerId,
-        ownerUsername,
-        ownerEmail,
+        ownerId: actorId,
+        ownerUsername: username || actorUsername,
+        ownerEmail: actorEmail,
         repoName: reponame,
         branch,
         filePath,
