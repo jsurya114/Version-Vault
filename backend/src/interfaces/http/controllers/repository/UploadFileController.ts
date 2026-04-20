@@ -12,10 +12,12 @@ export class UploadFileController {
 
   async fileUpload(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { repositoryName, branch, commitMessage } = req.body;
+      const { repositoryName, branch, commitMessage, repoOwnerUsername } = req.body;
       const ownerId = req.user!.id;
-      const ownerUsername = req.user!.userId;
+      const actorUsername = req.user!.userId;
       const ownerEmail = req.user!.email;
+
+      const targetOwnerUsername = repoOwnerUsername || actorUsername;
 
       const files = req.files as Express.Multer.File[];
 
@@ -43,7 +45,7 @@ export class UploadFileController {
       });
       await this._uploadFileUseCase.execute({
         ownerId,
-        ownerUsername,
+        ownerUsername: targetOwnerUsername,
         ownerEmail,
         repoName: repositoryName,
         branch,

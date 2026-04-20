@@ -5,6 +5,8 @@ import {
   CreatePRDTO,
   PRParams,
   PRIdParams,
+  ConflictDetails,
+  ResolvedFile,
 } from '../../types/pullrequest/pullrequest.types';
 import { PaginatedResponse } from '../../types/common/Pagination/paginationTypes';
 import { ListPRsParams } from '../../types/pullrequest/pullrequest.types';
@@ -14,9 +16,9 @@ export const createPRThunk = createAsyncThunk<PRResponseDTO, PRParams & { dto: C
   async ({ username, reponame, dto }, { rejectWithValue }) => {
     try {
       return await prService.createPR(username, reponame, dto);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to create PR');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to create PR');
     }
   },
 );
@@ -27,9 +29,9 @@ export const listPRThunk = createAsyncThunk<PaginatedResponse<PRResponseDTO>, Li
     try {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       return await prService.listPR(username, reponame, query as any);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch PRs');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch PRs');
     }
   },
 );
@@ -39,9 +41,9 @@ export const getPRThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
   async ({ username, reponame, id }, { rejectWithValue }) => {
     try {
       return await prService.getPR(username, reponame, id);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to fetch PR');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to fetch PR');
     }
   },
 );
@@ -51,9 +53,9 @@ export const mergePRThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
   async ({ username, reponame, id }, { rejectWithValue }) => {
     try {
       return await prService.mergePR(username, reponame, id);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to merge PR');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to merge PR');
     }
   },
 );
@@ -63,46 +65,69 @@ export const closePRThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
   async ({ username, reponame, id }, { rejectWithValue }) => {
     try {
       return await prService.closePR(username, reponame, id);
-      // eslint-disable-next-line @typescript-eslint/no-explicit-any
-    } catch (error: any) {
-      return rejectWithValue(error.response?.data?.message || 'Failed to close PR');
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to close PR');
     }
   },
 );
 
-
-export const requestMergeThunk = createAsyncThunk<PRResponseDTO,PRIdParams>(
+export const requestMergeThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
   'pr/requestMerge',
-  async({username,reponame,id},{rejectWithValue})=>{
+  async ({ username, reponame, id }, { rejectWithValue }) => {
     try {
-      return await prService.requestMerge(username,reponame,id)
-     } catch (error: unknown) {
+      return await prService.requestMerge(username, reponame, id);
+    } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       return rejectWithValue(err.response?.data?.message || 'Failed to request merge');
     }
-  }
-)
+  },
+);
 
-export const approveMergeThunk = createAsyncThunk<PRResponseDTO,PRIdParams>(
+export const approveMergeThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
   'pr/approvMerge',
-  async({username,reponame,id},{rejectWithValue})=>{
+  async ({ username, reponame, id }, { rejectWithValue }) => {
     try {
-      return await prService.approveMerge(username,reponame,id)
-     } catch (error: unknown) {
+      return await prService.approveMerge(username, reponame, id);
+    } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       return rejectWithValue(err.response?.data?.message || 'Failed to request merge');
     }
-  }
-)
+  },
+);
 
-export const rejectMergeThunk = createAsyncThunk<PRResponseDTO,PRIdParams>(
+export const rejectMergeThunk = createAsyncThunk<PRResponseDTO, PRIdParams>(
   'pr/rejectMerge',
-    async({username,reponame,id},{rejectWithValue})=>{
+  async ({ username, reponame, id }, { rejectWithValue }) => {
     try {
-      return await prService.rejectMerge(username,reponame,id)
-     } catch (error: unknown) {
+      return await prService.rejectMerge(username, reponame, id);
+    } catch (error: unknown) {
       const err = error as { response?: { data?: { message?: string } } };
       return rejectWithValue(err.response?.data?.message || 'Failed to request merge');
     }
+  },
+);
+
+export const getConflictsThunk = createAsyncThunk<ConflictDetails, PRIdParams>(
+  'pr/getConflicts',
+  async ({ username, reponame, id }, { rejectWithValue }) => {
+    try {
+      return await prService.getConflicts(username, reponame, id);
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to get conflict details');
+    }
+  },
+);
+
+export const resolveConflictsThunk = createAsyncThunk<
+  PRResponseDTO,
+  PRIdParams & { resolvedFiles: ResolvedFile[] }
+>('pr/resolveConflicts', async ({ username, reponame, id, resolvedFiles }, { rejectWithValue }) => {
+  try {
+    return await prService.resolveConflicts(username, reponame, id, resolvedFiles);
+  } catch (error: unknown) {
+    const err = error as { response?: { data?: { message?: string } } };
+    return rejectWithValue(err.response?.data?.message || 'Failed to resolve conflicts');
   }
-)
+});

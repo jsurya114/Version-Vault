@@ -11,6 +11,7 @@ import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper'
 import { RepositoryVisibility } from '../../../domain/enums';
 import { GitService } from '../../../infrastructure/services/GitService';
 import { UnauthorizedError } from 'src/domain/errors/UnauthorizedError';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class ForkRepoUseCase implements IForkRepoUseCase {
@@ -18,6 +19,7 @@ export class ForkRepoUseCase implements IForkRepoUseCase {
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.ICollaboratorRepository) private _collabRepo: ICollaboratorRepository,
     @inject(GitService) private _gitService: GitService,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
   ) {}
 
   async execute(dto: ForkRepoDTO): Promise<RepoResponseDTO> {
@@ -81,6 +83,19 @@ export class ForkRepoUseCase implements IForkRepoUseCase {
     await this._repoRepo.update(sourceRepo.id as string, {
       forks: (sourceRepo.forks || 0) + 1,
     });
+
+    this._notificationService
+      .notifyUser({
+        recipientId: sourceRepo.ownerId,
+        actorId: dto.forkerId,
+        actorUsername: dto.forkerUsername,
+        type: 'repo_forked',
+        message: `${dto.forkerUsername} forked your repository "${sourceRepo.name}"`,
+        repositoryId: sourceRepo.id as string,
+        repositoryName: sourceRepo.name,
+      })
+      .catch(() => {});
+
     return RepositoryMapper.toDTO(forkRepo);
   }
 }

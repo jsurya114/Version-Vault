@@ -10,8 +10,9 @@ import userReducer from '../features/user/userSlice';
 import adminReposReducer from '../features/admin/getRepoSlice';
 import invitationReducer from '../features/collaborator/invitationSlice';
 import commentReducer from '../features/comments/commentSlice';
-import chatReducer from '../features/chats/chatSlice'
-import aiAgentReducer from '../features/ai-agent/aiAgentSlice'
+import chatReducer from '../features/chats/chatSlice';
+import aiAgentReducer from '../features/ai-agent/aiAgentSlice';
+import notificationReducer from '../features/notifications/notificationSlice';
 
 export const store = configureStore({
   reducer: {
@@ -26,8 +27,9 @@ export const store = configureStore({
     adminRepos: adminReposReducer,
     invitation: invitationReducer,
     comments: commentReducer,
-    chat:chatReducer,
-    aiAgent:aiAgentReducer
+    chat: chatReducer,
+    aiAgent: aiAgentReducer,
+    notifiactions: notificationReducer,
   },
 });
 

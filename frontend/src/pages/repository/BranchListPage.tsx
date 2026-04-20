@@ -46,14 +46,14 @@ const BranchRow = React.memo(
   ({
     branch,
     isDefault,
-    isOwner,
+    canDelete,
     onDelete,
     username,
     reponame,
   }: {
     branch: GitBranch;
     isDefault?: boolean;
-    isOwner: boolean;
+    canDelete: boolean;
     onDelete: (name: string) => void;
     username: string;
     reponame: string;
@@ -76,11 +76,12 @@ const BranchRow = React.memo(
     return (
       <div
         onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
-        className="md:grid md:grid-cols-[1fr,150px,120px,120px,100px] md:gap-4 px-3 xs:px-4 py-3 xs:py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group flex flex-col md:flex-row gap-2.5 md:gap-4"  
+        className="md:grid md:grid-cols-[1fr,150px,120px,120px,100px] md:gap-4 px-3 xs:px-4 py-3 xs:py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group flex flex-col md:flex-row gap-2.5 md:gap-4"
       >
         <div className="flex items-center gap-2 xs:gap-3 flex-wrap w-full md:w-auto">
           <div className="bg-blue-500/10 px-2 xs:px-2.5 py-1 xs:py-1.5 rounded-md text-blue-400 font-mono text-[11px] xs:text-xs flex items-center gap-1.5 xs:gap-2 border border-blue-500/20 max-w-full">
-            <GitBranchIcon className="w-3 h-3 xs:w-3.5 xs:h-3.5 shrink-0" /> <span className="truncate">{branch.name}</span>
+            <GitBranchIcon className="w-3 h-3 xs:w-3.5 xs:h-3.5 shrink-0" />{' '}
+            <span className="truncate">{branch.name}</span>
           </div>
           {isDefault && (
             <span className="text-[9px] bg-gray-800 text-gray-500 px-1.5 py-0.5 rounded font-bold uppercase ring-1 ring-gray-700">
@@ -181,11 +182,11 @@ const BranchRow = React.memo(
           {!isDefault && (
             <Trash2
               className={`w-4 h-4 transition ${
-                !isOwner
+                !canDelete
                   ? 'text-gray-800 cursor-not-allowed opacity-30'
                   : 'text-gray-600 hover:text-red-500 cursor-pointer'
               }`}
-              onClick={isOwner ? handleDelete : undefined}
+              onClick={canDelete ? handleDelete : undefined}
             />
           )}
         </div>
@@ -336,7 +337,7 @@ const BranchListPage = () => {
               <BranchRow
                 branch={branchObj as GitBranch}
                 isDefault
-                isOwner={isOwner}
+                canDelete={false}
                 onDelete={() => {}}
                 username={username!}
                 reponame={reponame!}
@@ -371,7 +372,7 @@ const BranchListPage = () => {
                   <BranchRow
                     key={branchObj.name}
                     branch={branchObj as GitBranch}
-                    isOwner={isOwner}
+                    canDelete={isOwner || branchObj.createdBy === user?.id}
                     onDelete={handleDeleteClick}
                     username={username!}
                     reponame={reponame!}

@@ -12,6 +12,7 @@ export const TOKENS = {
   IOtpService: Symbol.for('IOtpService'),
   IEmailService: Symbol.for('IEmailService'),
   IGoogleAuthService: Symbol.for('IGoogleAuthService'),
+  ISocketEmitter: Symbol.for('ISocketEmitter'),
 
   //usecases
   IRegisterUseCase: Symbol.for('IRegisterUseCase'),
@@ -50,6 +51,8 @@ export const TOKENS = {
   IListPRsUseCase: Symbol.for('IListPRsUseCase'),
   IMergePRUseCase: Symbol.for('IMergePRUseCase'),
   IClosePRUseCase: Symbol.for('IClosePRUseCase'),
+  IGetConflictsUseCase: Symbol.for('IGetConflictsUseCase'),
+  IResolveConflictsUseCase: Symbol.for('IResolveConflictsUseCase'),
 
   // Issue Use Cases
   ICreateIssueUseCase: Symbol.for('ICreateIssueUseCase'),
@@ -67,6 +70,7 @@ export const TOKENS = {
   //branch
   ICreateBranchUseCase: Symbol.for('ICreateBranchUseCase'),
   IDeleteBranchUseCase: Symbol.for('IDeleteBranchUseCase'),
+  IBranchRepository: Symbol.for('IBranchRepository'),
   //commits
   ICreateCommitUseCase: Symbol.for('ICreateCommitUseCase'),
   ICompareCommitUseCase: Symbol.for('ICompareCommitUseCase'),
@@ -124,4 +128,11 @@ export const TOKENS = {
   IDeleteMessageUseCase: Symbol.for('IDeleteMessageUseCase'),
   IListChatRepoUseCase: Symbol.for('IListChatRepoUseCase'),
   HttpServer: Symbol.for('HttpServer'),
+
+  //notifications
+  INotificationRepository: Symbol.for('INotificationRepository'),
+  IGetNotificationsUseCase: Symbol.for('IGetNotificationsUseCase'),
+  IMarkNotificationReadUseCase: Symbol.for('IMarkNotificationReadUseCase'),
+  IMarkAllReadUseCase: Symbol.for('IMarkAllReadUseCase'),
+  NotificationService: Symbol.for('NotificationService'),
 } as const;

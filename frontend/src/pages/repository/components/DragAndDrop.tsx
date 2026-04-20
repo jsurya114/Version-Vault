@@ -58,8 +58,23 @@ export const DragAndDrop: React.FC<RepoDropZoneProps> = ({
       for (let i = 0; i < items.length; i++) {
         const item = items[i].webkitGetAsEntry();
         if (item) {
-          const folderFiles = await traverseFileTree(item);
-          allFiles.push(...folderFiles);
+          if (item.isDirectory) {
+            // When a folder is dropped, traverse its CONTENTS without including the
+            // top-level folder name. This prevents "folder inside folder" nesting.
+            const dirEntry = item as FileSystemDirectoryEntry;
+            const dirReader = dirEntry.createReader();
+            const entries = await new Promise<FileSystemEntry[]>((resolve) => {
+              dirReader.readEntries(resolve);
+            });
+            for (const entry of entries) {
+              const nestedFiles = await traverseFileTree(entry);
+              allFiles.push(...nestedFiles);
+            }
+          } else {
+            // Single file drop — just use traverseFileTree normally
+            const folderFiles = await traverseFileTree(item);
+            allFiles.push(...folderFiles);
+          }
         }
       }
     }
@@ -68,7 +83,23 @@ export const DragAndDrop: React.FC<RepoDropZoneProps> = ({
 
   const handleFileInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files) {
-      onFilesSelected(Array.from(e.target.files));
+      // When using webkitdirectory, browser sets webkitRelativePath as "folderName/sub/file.txt".
+      // Strip the top-level folder name to prevent folder-inside-folder nesting.
+      const rawFiles = Array.from(e.target.files);
+      const processedFiles = rawFiles.map((file) => {
+        const originalPath = file.webkitRelativePath || file.name;
+        if (originalPath.includes('/')) {
+          const strippedPath = originalPath.substring(originalPath.indexOf('/') + 1);
+          const newFile = new File([file], file.name, { type: file.type });
+          Object.defineProperty(newFile, 'webkitRelativePath', {
+            value: strippedPath,
+            writable: false,
+          });
+          return newFile;
+        }
+        return file;
+      });
+      onFilesSelected(processedFiles);
     }
   };
 

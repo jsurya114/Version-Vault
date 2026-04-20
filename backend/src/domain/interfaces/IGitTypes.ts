@@ -55,3 +55,15 @@ export interface CompareResponse {
   isMergeable: boolean;
   diffs: FileDiff[];
 }
+
+export interface ConflictFile {
+  path: string;
+  oursContent: string;
+  theirsContent: string;
+  conflictContent: string;
+}
+
+export interface ConflictDetails {
+  hasConflicts: boolean;
+  conflictFiles: ConflictFile[];
+}

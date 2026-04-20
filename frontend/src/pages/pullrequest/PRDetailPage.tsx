@@ -8,6 +8,7 @@ import {
   GitBranch,
   MessageSquare,
   FileCode,
+  AlertTriangle,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
@@ -17,13 +18,21 @@ import {
   requestMergeThunk,
   approveMergeThunk,
   rejectMergeThunk,
+  getConflictsThunk,
+  resolveConflictsThunk,
 } from '../../features/pullrequest/prThunk';
-import { selectSelectedPR, selectPRLoading } from '../../features/pullrequest/prSelector';
+import {
+  selectSelectedPR,
+  selectPRLoading,
+  selectConflictLoading,
+  selectConflicts,
+  selectIsResolving,
+} from '../../features/pullrequest/prSelector';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
-import { PRStatus } from '../../types/pullrequest/pullrequest.types';
+import { PRStatus, ResolvedFile } from '../../types/pullrequest/pullrequest.types';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
 import MergeConfirmModal from '../../types/common/Modal/MergeConfirmModal';
 import ConfirmModal from 'src/types/common/Modal/ConfirmModal';
@@ -36,6 +45,7 @@ import {
   selectCompareLoading,
 } from 'src/features/commit/compareCommitSelectors';
 import CommentSection from '../../types/common/comment/CommentSection';
+import ConflictEditor from './components/ConflictEditor';
 
 const statusColors: Record<PRStatus, string> = {
   open: 'text-green-400 bg-green-500/10 border-green-500/30',
@@ -68,6 +78,13 @@ const PRDetailPage = () => {
 
   const isOwner = user?.userId === username;
 
+  const conflicts = useAppSelector(selectConflicts);
+  const isConflictLoading = useAppSelector(selectConflictLoading);
+  const isResolving = useAppSelector(selectIsResolving);
+  const [showConflictEditor, setShowConflictEditor] = useState(false);
+  // Check if the PR is mergeable from compare data
+  const isMergeable = compareData?.isMergeable ?? true;
+
   useEffect(() => {
     // Check if the PR loaded in Redux actually matches the PR we are clicking!
     if (pr && pr.id === id) {
@@ -98,6 +115,12 @@ const PRDetailPage = () => {
   }, [id, dispatch, username, reponame]);
 
   useEffect(() => {
+    if (!isMergeable && pr?.status === 'open' && isOwner && username && reponame && id) {
+      dispatch(getConflictsThunk({ username, reponame, id }));
+    }
+  }, [isMergeable, pr?.status, isOwner, username, reponame, id, dispatch]);
+
+  useEffect(() => {
     if (username && reponame && user) {
       if (isOwner) {
         setHasWriteAccess(true);
@@ -111,6 +134,28 @@ const PRDetailPage = () => {
       }
     }
   }, [username, reponame, user, isOwner]);
+
+  const handleResolveConflicts = useCallback(
+    async (resolvedFiles: ResolvedFile[]) => {
+      const result = await dispatch(
+        resolveConflictsThunk({
+          username: username!,
+          reponame: reponame!,
+          id: id!,
+          resolvedFiles,
+        }),
+      );
+      if (resolveConflictsThunk.fulfilled.match(result)) {
+        setShowConflictEditor(false);
+        setSuccessSonar({
+          isOpen: true,
+          title: 'Conflicts Resolved & Merged!',
+          subtitle: `Changes are now in ${pr?.targetBranch}`,
+        });
+      }
+    },
+    [dispatch, username, reponame, id, pr?.targetBranch],
+  );
 
   const handleRequestMerge = useCallback(async () => {
     await dispatch(requestMergeThunk({ username: username!, reponame: reponame!, id: id! }));
@@ -308,7 +353,7 @@ const PRDetailPage = () => {
                           Merge Pull Request
                         </button>
                       </>
-                    ) : (
+                    ) : isMergeable ? (
                       <button
                         onClick={() => setIsMergeModalOpen(true)}
                         disabled={isMerging}
@@ -316,6 +361,15 @@ const PRDetailPage = () => {
                       >
                         <GitMerge className="w-4 h-4" />
                         Merge Pull Request
+                      </button>
+                    ) : (
+                      <button
+                        onClick={() => setShowConflictEditor(true)}
+                        disabled={isConflictLoading}
+                        className="flex items-center gap-1.5 bg-amber-600 hover:bg-amber-700 shadow-md shadow-amber-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50"
+                      >
+                        <AlertTriangle className="w-4 h-4" />
+                        {isConflictLoading ? 'Loading conflicts...' : 'Resolve Conflicts'}
                       </button>
                     )}
 
@@ -379,6 +433,78 @@ const PRDetailPage = () => {
                 </div>
               </div>
             </div>
+
+            {/* Merge Conflict Banner */}
+            {!isMergeable && pr.status === 'open' && (
+              <div className="bg-gradient-to-r from-amber-900/20 to-red-900/10 border border-amber-500/20 rounded-xl p-4 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+                <div className="flex items-center gap-3">
+                  <AlertTriangle className="w-5 h-5 text-amber-400 shrink-0" />
+                  <div>
+                    <p className="text-amber-300 text-sm font-bold">
+                      This branch has conflicts that must be resolved
+                    </p>
+                    <p className="text-gray-500 text-xs mt-0.5">
+                      Conflicting files need to be reviewed and resolved before merging.
+                    </p>
+                  </div>
+                </div>
+                {isOwner && !showConflictEditor && (
+                  <button
+                    onClick={() => setShowConflictEditor(true)}
+                    className="text-xs font-bold text-amber-400 hover:text-amber-300 bg-amber-500/10 hover:bg-amber-500/20 border border-amber-500/20 px-4 py-2 rounded-lg transition-all shrink-0"
+                  >
+                    Resolve in editor
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* Conflict Editor */}
+            {showConflictEditor && conflicts?.hasConflicts && (
+              <ConflictEditor
+                conflictFiles={conflicts.conflictFiles}
+                sourceBranch={pr.sourceBranch}
+                targetBranch={pr.targetBranch}
+                onResolve={handleResolveConflicts}
+                onCancel={() => setShowConflictEditor(false)}
+                isResolving={isResolving}
+              />
+            )}
+
+            {/* CLI Fallback - always shown when conflicts exist */}
+            {!isMergeable && pr.status === 'open' && !showConflictEditor && (
+              <div className="bg-gray-900 border border-gray-800 rounded-xl p-4">
+                <h3 className="text-white text-sm font-semibold mb-3 flex items-center gap-2">
+                  <AlertTriangle className="w-4 h-4 text-gray-400" />
+                  Resolve via command line
+                </h3>
+                <div className="bg-gray-950 border border-gray-800 rounded-lg p-4 font-mono text-xs text-gray-400 space-y-1 overflow-x-auto">
+                  <p className="text-gray-500"># Step 1: Checkout the target branch and pull</p>
+                  <p>
+                    <span className="text-green-400">git</span> checkout {pr.targetBranch}
+                  </p>
+                  <p>
+                    <span className="text-green-400">git</span> pull origin {pr.targetBranch}
+                  </p>
+                  <br />
+                  <p className="text-gray-500"># Step 2: Merge the source branch</p>
+                  <p>
+                    <span className="text-green-400">git</span> merge origin/{pr.sourceBranch}
+                  </p>
+                  <br />
+                  <p className="text-gray-500"># Step 3: Resolve conflicts in your editor, then</p>
+                  <p>
+                    <span className="text-green-400">git</span> add .
+                  </p>
+                  <p>
+                    <span className="text-green-400">git</span> commit -m "Resolve merge conflicts"
+                  </p>
+                  <p>
+                    <span className="text-green-400">git</span> push origin {pr.targetBranch}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Description */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">

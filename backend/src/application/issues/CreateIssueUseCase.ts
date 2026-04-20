@@ -4,10 +4,14 @@ import { IIssueRepository } from '../../domain/interfaces/repositories/IIssuesRe
 import { IssueMapper } from '../mappers/IssuesMapper';
 import { CreateIssueDTO, IssuesResponseDTO } from '../dtos/repository/IssuesDTO';
 import { TOKENS } from '../../shared/constants/tokens';
+import { NotificationService } from '../../infrastructure/services/NotificationService';
 
 @injectable()
 export class CreateIssueUseCase implements ICreateIssueUseCase {
-  constructor(@inject(TOKENS.IIssuesRepository) private _issueRepo: IIssueRepository) {}
+  constructor(
+    @inject(TOKENS.IIssuesRepository) private _issueRepo: IIssueRepository,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+  ) {}
 
   async execute(dto: CreateIssueDTO): Promise<IssuesResponseDTO> {
     const issue = await this._issueRepo.save({
@@ -22,6 +26,17 @@ export class CreateIssueUseCase implements ICreateIssueUseCase {
       labels: dto.labels || [],
       commentsCount: 0,
     });
+
+    this._notificationService
+      .notifyRepoDevelopers({
+        actorId: dto.authorId,
+        actorUsername: dto.authorUsername,
+        type: 'issue_created',
+        message: `${dto.authorUsername} opened issue "${dto.title}"`,
+        repositoryId: dto.repositoryId,
+        metadata: { issueId: issue.id! },
+      })
+      .catch(() => {});
 
     return IssueMapper.toDTO(issue);
   }

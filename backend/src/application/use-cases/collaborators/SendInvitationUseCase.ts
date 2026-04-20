@@ -70,13 +70,13 @@ export class SendInvitationUseCase implements ISendInvitationUseCase {
     });
 
     const inviteLink = `${envConfig.CLIENT_URL}/invitation/accept/${token}`;
-    await this._emailService.sendInvitationEmail(
-      inviteeEmail,
-      ownerUsername,
-      repositoryName,
-      role || 'read',
-      inviteLink,
-    );
+    // Fire and forget the email so a network timeout doesn't block the API response for 75 seconds.
+    this._emailService
+      .sendInvitationEmail(inviteeEmail, ownerUsername, repositoryName, role || 'read', inviteLink)
+      .catch((err) =>
+        console.error('Email failed to send, but invitation created in DB:', err.message),
+      );
+
     return invitation;
   }
 }

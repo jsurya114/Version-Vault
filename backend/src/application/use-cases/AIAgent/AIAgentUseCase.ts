@@ -26,6 +26,7 @@ CRITICAL RULES AND INSTRUCTIONS:
    - Ensure you use the exact appropriate language extension for the tech stack the user typed or selected (e.g., \`.py\` for Python, \`.go\` for Go, \`.rs\` for Rust, \`.java\` for Java).
 3. **DEPENDENCY MANAGEMENT**: ONLY generate dependency config files (e.g., \`package.json\`, \`requirements.txt\`, \`pom.xml\`, \`Cargo.toml\`) IF the user explicitly selected a Tech Stack or Architecture. If no Tech Stack or Architecture is provided, DO NOT create extra boilerplate configuration, dependency files, or empty project folders. Just output exactly what the Project Brief asked for.
 4. **FILE CONTENT**: Provide realistic boilerplate code in each file to give the user a good starting point based on their "Project Brief" and "Description".
+5. **ROOT PATHS**: All file "paths" MUST be strictly relative to the repository root. DO NOT nest the entire project inside a top-level parent folder matching the repository name. For example, output "package.json" and "src/index.js", NOT "my-repo/package.json" or "my-repo/src/index.js".
 `;
 @injectable()
 export class AIAgentUseCase implements IAIAgentUseCase {
@@ -68,7 +69,17 @@ Instructions: Generate the complete boilerplate JSON based on the rules. Automat
         .trim();
       const parsed = JSON.parse(cleaned);
       if (parsed.files && Array.isArray(parsed.files)) {
-        generatedFiles = parsed.files;
+        generatedFiles = parsed.files.map((file: any) => {
+          // Fallback: If AI mistakenly prepends the repo name as the root folder, strip it
+          let filePath = file.path;
+          const repoPrefix = config.name + '/';
+          if (filePath.startsWith(repoPrefix)) {
+            filePath = filePath.substring(repoPrefix.length);
+          } else if (filePath.startsWith('./' + repoPrefix)) {
+            filePath = filePath.substring(2 + repoPrefix.length);
+          }
+          return { ...file, path: filePath };
+        });
       } else {
         throw new Error('Invalid JSON Schema format returned from AI model.');
       }

@@ -9,6 +9,8 @@ import {
   requestMergeThunk,
   approveMergeThunk,
   rejectMergeThunk,
+  getConflictsThunk,
+  resolveConflictsThunk,
 } from './prThunk';
 
 const prSlice = createSlice({
@@ -20,6 +22,9 @@ const prSlice = createSlice({
     },
     clearPRError: (state) => {
       state.error = null;
+    },
+    clearConflicts: (state) => {
+      state.conflicts = null;
     },
   },
   extraReducers: (builder) => {
@@ -145,6 +150,39 @@ const prSlice = createSlice({
       })
       .addCase(rejectMergeThunk.rejected, (state, action) => {
         state.isLoading = false;
+        state.error = action.payload as string;
+      })
+      //get conflicts
+      .addCase(getConflictsThunk.pending, (state) => {
+        state.isConflictLoading = true;
+        state.error = null;
+      })
+      .addCase(getConflictsThunk.fulfilled, (state, action) => {
+        state.isConflictLoading = false;
+        state.conflicts = action.payload;
+      })
+      .addCase(getConflictsThunk.rejected, (state, action) => {
+        state.isConflictLoading = false;
+        state.error = action.payload as string;
+      })
+      //resovle conflicts
+      .addCase(resolveConflictsThunk.pending, (state) => {
+        state.isResolving = false;
+        state.error = null;
+      })
+      .addCase(resolveConflictsThunk.fulfilled, (state, action) => {
+        state.isResolving = false;
+        state.conflicts = null;
+        state.prs = state.prs.map((pr) => {
+          state.isResolving = false;
+          return pr.id === action.payload.id ? action.payload : pr;
+        });
+        if (state.selectedPR?.id === action.payload.id) {
+          state.selectedPR = action.payload;
+        }
+      })
+      .addCase(resolveConflictsThunk.rejected, (state, action) => {
+        state.isResolving = false;
         state.error = action.payload as string;
       });
   },

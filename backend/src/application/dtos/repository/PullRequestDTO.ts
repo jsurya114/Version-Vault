@@ -29,3 +29,10 @@ export interface CreatePullRequestDTO {
   baseCommitHash?: string;
   headCommitHash?: string;
 }
+
+export interface ResolveConflictsInput {
+  prId: string;
+  resolvedFiles: { filePath: string; content: string }[];
+  authorName: string;
+  authorEmail: string;
+}

@@ -38,17 +38,41 @@ export const prService = {
     );
     return res.data.data;
   },
-  requestMerge:async(username:string,reponame:string,id:string)=>{
-    const res = await axiosInstance.patch(`${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/request-merge`)
-    return res.data
+  requestMerge: async (username: string, reponame: string, id: string) => {
+    const res = await axiosInstance.patch(
+      `${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/request-merge`,
+    );
+    return res.data;
   },
-   
-  approveMerge:async(username:string,reponame:string,id:string)=>{
-    const res = await axiosInstance.patch(`${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/approve-merge`);
-  return res.data
+
+  approveMerge: async (username: string, reponame: string, id: string) => {
+    const res = await axiosInstance.patch(
+      `${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/approve-merge`,
+    );
+    return res.data;
   },
-  rejectMerge:async(username:string,reponame:string,id:string)=>{
-    const res = await axiosInstance.patch(`${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/reject-merge`);
-return res.data
-  }
+  rejectMerge: async (username: string, reponame: string, id: string) => {
+    const res = await axiosInstance.patch(
+      `${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/reject-merge`,
+    );
+    return res.data;
+  },
+  getConflicts: async (username: string, reponame: string, id: string) => {
+    const res = await axiosInstance.get(
+      `${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/conflicts`,
+    );
+    return res.data.data;
+  },
+  resolveConflicts: async (
+    username: string,
+    reponame: string,
+    id: string,
+    resolvedFiles: { filePath: string; content: string }[],
+  ) => {
+    const res = await axiosInstance.post(
+      `${PR_ENDPOINTS.BASE}/${username}/${reponame}/${id}/resolve-conflicts`,
+      { resolvedFiles },
+    );
+    return res.data.data;
+  },
 };

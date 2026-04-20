@@ -39,6 +39,9 @@ export interface PRState {
     limit: number;
     totalPages: number;
   };
+  conflicts: ConflictDetails | null;
+  isConflictLoading: boolean;
+  isResolving: boolean;
 }
 
 export const prInitialState: PRState = {
@@ -52,6 +55,9 @@ export const prInitialState: PRState = {
     limit: 2,
     totalPages: 0,
   },
+  conflicts: null,
+  isConflictLoading: false,
+  isResolving: false,
 };
 
 export interface PRParams {
@@ -68,4 +74,21 @@ export interface ListPRsParams extends PRParams {
   limit?: number;
   search?: string;
   status?: string;
+}
+
+export interface ConflictFile {
+  path: string;
+  oursContent: string;
+  theirsContent: string;
+  conflictContent: string;
+}
+
+export interface ConflictDetails {
+  hasConflicts: boolean;
+  conflictFiles: ConflictFile[];
+}
+
+export interface ResolvedFile {
+  filePath: string;
+  content: string;
 }

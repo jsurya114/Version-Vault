@@ -58,6 +58,8 @@ import { ListPRUseCase } from './application/use-cases/pullrequest/ListPRUseCase
 import { CreatePRUseCase } from './application/use-cases/pullrequest/CreatePRUseCase';
 import { MergePRUseCase } from './application/use-cases/pullrequest/MergePRUseCase';
 import { ClosePRUseCase } from './application/use-cases/pullrequest/ClosePRUseCase';
+import { GetConflictsUseCase } from './application/use-cases/pullrequest/GetConflictsUseCase';
+import { ResolveConflictsUseCase } from './application/use-cases/pullrequest/ResolveConflictsUseCase';
 
 //issues pr usecase
 import { GetIssueUseCase } from './application/issues/GetIssuesUseCase';
@@ -77,6 +79,7 @@ import { GetFollowingUseCase } from './application/use-cases/follow/GetFollowing
 //branch
 import { CreateBranchUseCase } from './application/use-cases/branch/CreateBranchUseCase';
 import { DeleteBranchUseCase } from './application/use-cases/branch/DeleteBranchUseCase';
+import { MongoBranchRepository } from './infrastructure/database/mongoose/repositories/MongoBranchRepository';
 
 import { CreateCommitUseCase } from './application/use-cases/commit/CreateCommitUseCase';
 import { CompareCommitUseCase } from './application/use-cases/commit/CompareCommitUseCase';
@@ -130,6 +133,13 @@ import { GetActiveBranchUseCase } from './application/use-cases/repository/GetAc
 import { AIAgentUseCase } from './application/use-cases/AIAgent/AIAgentUseCase';
 import { DeleteFileUseCase } from './application/use-cases/repository/DeleteFileUseCase';
 
+//notifications
+import { MongoNotificationRepository } from './infrastructure/database/mongoose/repositories/MongoNotificationRepository';
+import { NotificationService } from './infrastructure/services/NotificationService';
+import { GetNotificationsUseCase } from './application/use-cases/notifications/GetNotificationsUseCase';
+import { MarkNotificationReadUseCase } from './application/use-cases/notifications/MarkNotificationReadUseCase';
+import { MarkAllReadUseCase } from './application/use-cases/notifications/MarkAllReadUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -138,8 +148,10 @@ container.register(TOKENS.IEmailService, { useClass: NodemailerService });
 container.register(TOKENS.IGoogleAuthService, { useClass: GoogleAuthService });
 container.registerSingleton(GitService, GitService);
 container.registerSingleton(TOKENS.ILogger, WinstonLogger);
-container.registerSingleton(SocketService, SocketService);
+container.registerSingleton(TOKENS.ISocketEmitter, SocketService);
+
 container.register(TOKENS.IGroqService, { useClass: GroqService });
+container.registerSingleton(TOKENS.NotificationService, NotificationService);
 
 //repositories
 container.register(TOKENS.IUserRepository, { useClass: MongoUserRepository });
@@ -208,6 +220,7 @@ container.register(TOKENS.IGetFollowersUseCase, { useClass: GetFollowersUseCase 
 container.register(TOKENS.IGetFollowingUseCase, { useClass: GetFollowingUseCase });
 
 //branch usecase
+container.register(TOKENS.IBranchRepository, { useClass: MongoBranchRepository });
 container.register(TOKENS.ICreateBranchUseCase, { useClass: CreateBranchUseCase });
 container.register(TOKENS.IDeleteBranchUseCase, { useClass: DeleteBranchUseCase });
 
@@ -261,5 +274,15 @@ container.register(TOKENS.ICreateCommentUseCase, { useClass: CreateCommentUseCas
 container.register(TOKENS.IListCommentUseCase, { useClass: ListCommentUseCase });
 container.register(TOKENS.IDeleteCommentUseCase, { useClass: DeleteCommentUseCase });
 container.register(TOKENS.IListChatRepoUseCase, { useClass: ListChatRepoUseCase });
+
+//pr
+container.register(TOKENS.IGetConflictsUseCase, { useClass: GetConflictsUseCase });
+container.register(TOKENS.IResolveConflictsUseCase, { useClass: ResolveConflictsUseCase });
+
+//notifications
+container.register(TOKENS.INotificationRepository, { useClass: MongoNotificationRepository });
+container.register(TOKENS.IGetNotificationsUseCase, { useClass: GetNotificationsUseCase });
+container.register(TOKENS.IMarkNotificationReadUseCase, { useClass: MarkNotificationReadUseCase });
+container.register(TOKENS.IMarkAllReadUseCase, { useClass: MarkAllReadUseCase });
 
 export { container };

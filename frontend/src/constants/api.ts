@@ -58,6 +58,10 @@ export const CHAT_ENDPOINTS = {
   CONVERSATIONS: '/chats/conversations',
 };
 
-export const AIAGENT_ENDPOINTS={
-  BASE:'ai-agent',
-}
+export const AIAGENT_ENDPOINTS = {
+  BASE: 'ai-agent',
+};
+
+export const NOTIFICATION_ENDPOINTS = {
+  BASE: '/notifications',
+} as const;
