@@ -316,7 +316,7 @@ const RepositoryDetailPage = () => {
   }, [dispatch, username, reponame, branch, currentPath]);
 
   const handleCopy = useCallback(() => {
-    navigator.clipboard.writeText(cloneUrl);
+    navigator.clipboard.writeText(`git clone ${cloneUrl}`);
     setCopied(true);
     setTimeout(() => setCopied(false), 2000);
   }, [cloneUrl]);
@@ -856,7 +856,7 @@ const RepositoryDetailPage = () => {
                         <input
                           type="text"
                           readOnly
-                          value={cloneUrl}
+                          value={`git clone ${cloneUrl}`}
                           className="flex-1 bg-transparent text-gray-300 text-xs focus:outline-none"
                         />
                         <button

@@ -67,6 +67,7 @@ export interface GitBranch {
   prId?: string;
   prNumber?: number;
   prStatus?: 'open' | 'closed' | 'merged';
+  createdBy?: string;
 }
 
 export interface GitFileEntry {
@@ -153,5 +154,3 @@ export interface ToggleStarResponse {
   isStarred: boolean;
   starsCount: number;
 }
-
-
