@@ -22,6 +22,7 @@ import {
   CircleDot,
   Users,
   FileCode,
+  Download,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
@@ -48,6 +49,7 @@ import {
 } from '../../features/repository/repositorySelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import { ROUTES } from '../../constants/routes';
+import { repositoryService } from 'src/services/repository.service';
 
 import { collaboratorService } from '../../services/collaborator.service';
 
@@ -119,6 +121,7 @@ const RepositoryDetailPage = () => {
     subtitle: '',
   });
 
+  const [isDownloading, setIsDownloading] = useState(false);
   const [showFileDeleteModal, setShowFileDeleteModal] = useState(false);
   const [isDeletingFile, setIsDeletingFile] = useState(false);
 
@@ -153,6 +156,38 @@ const RepositoryDetailPage = () => {
     }
   }, [username, reponame, branch, dispatch]);
 
+  const handleDownloadZip = async () => {
+    setIsDownloading(true);
+    try {
+      // 1. Fetch the binary data (Blob) from the backend
+      const blob = await repositoryService.downloadZip(username!, reponame!, branch);
+
+      // 2. Wrap it as a downloadable link
+      const url = window.URL.createObjectURL(new Blob([blob]));
+      const link = document.createElement('a');
+      link.href = url;
+      link.setAttribute('download', `${reponame}-${branch}.zip`); // Force download filename
+
+      // 3. Trigger download and cleanup
+      document.body.appendChild(link);
+      link.click();
+      link.parentNode?.removeChild(link);
+      window.URL.revokeObjectURL(url);
+
+      // 4. Optionally close dropdown & show successful sonar
+      setShowCloneDropdown(false);
+      setSuccessSonar({
+        isOpen: true,
+        title: 'Download Started',
+        subtitle: `Downloading ${reponame}-${branch}.zip`,
+      });
+    } catch (error) {
+      console.error('Failed to download ZIP:', error);
+      // You can add an error sonar/toast here if you have one
+    } finally {
+      setIsDownloading(false);
+    }
+  };
   useEffect(() => {
     if (username && reponame && user) {
       if (isOwner) {
@@ -844,6 +879,7 @@ const RepositoryDetailPage = () => {
                   </button>
                   {showCloneDropdown && (
                     <div className="absolute right-0 mt-2 w-72 bg-gray-900 border border-gray-700 rounded-lg shadow-xl z-50 p-4">
+                      {/* --- Existing Clone section --- */}
                       <div className="mb-2">
                         <h4 className="text-white text-sm font-semibold flex items-center gap-2">
                           <Globe className="w-4 h-4" /> Clone
@@ -852,7 +888,7 @@ const RepositoryDetailPage = () => {
                           Clone with HTTPS into your local IDE.
                         </p>
                       </div>
-                      <div className="flex items-center gap-2 mt-3 bg-gray-800 border border-gray-700 rounded px-2 py-1.5">
+                      <div className="flex items-center gap-2 mt-3 bg-gray-800 border border-gray-700 rounded px-2 py-1.5 mb-4">
                         <input
                           type="text"
                           readOnly
@@ -870,6 +906,23 @@ const RepositoryDetailPage = () => {
                           )}
                         </button>
                       </div>
+
+                      {/* --- NEW SECTION: Download ZIP Button --- */}
+                      <div className="border-t border-gray-800 pt-3 mt-1">
+                        <button
+                          onClick={handleDownloadZip}
+                          disabled={isDownloading}
+                          className="flex w-full items-center gap-2 px-3 py-2 text-sm text-gray-300 hover:text-white hover:bg-gray-800 disabled:opacity-50 disabled:cursor-not-allowed rounded-lg transition"
+                        >
+                          {isDownloading ? (
+                            <div className="w-4 h-4 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
+                          ) : (
+                            <Download className="w-4 h-4" />
+                          )}
+                          {isDownloading ? 'Downloading...' : 'Download ZIP'}
+                        </button>
+                      </div>
+                      {/* --- END NEW SECTION --- */}
                     </div>
                   )}
                 </div>

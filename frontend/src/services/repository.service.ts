@@ -170,4 +170,12 @@ export const repositoryService = {
     });
     return res.data;
   },
+
+  downloadZip: async (username: string, reponame: string, branch: string = 'main') => {
+    const res = await axiosInstance.get(
+      `${REPO_ENDPOINTS.GET}/${username}/${reponame}/download/zip`,
+      { params: { branch }, responseType: 'blob' },
+    );
+    return res.data;
+  },
 };
