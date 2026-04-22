@@ -9,7 +9,8 @@ import { AuthRequest } from '../../controllers/repository/RepositoryController';
 import { CommitController } from '../../controllers/commit/CommitController';
 import { visibilityMiddleware } from '../../middleware/visibilityMiddleware';
 import { writeAccessMiddleware } from '../../middleware/WriteAccessMiddleware';
-import { uploadRepoFiles } from 'src/infrastructure/config/multer.config';
+import { uploadRepoFiles } from '../../../../infrastructure/config/multer.config';
+import { DownloadZipController } from '../../controllers/repository/DownloadZipController';
 
 const router = Router();
 
@@ -17,6 +18,7 @@ const repoController = (): RepositoryController => container.resolve(RepositoryC
 const branchController = (): BranchController => container.resolve(BranchController);
 const commitController = (): CommitController => container.resolve(CommitController);
 const fileUploadController = (): UploadFileController => container.resolve(UploadFileController);
+const downloadZipController = (): DownloadZipController => container.resolve(DownloadZipController);
 
 router.post('/', authMiddleware, (req, res, next) =>
   repoController().createRepository(req as AuthRequest, res, next),
@@ -104,5 +106,14 @@ router.get('/:username/:reponame/active-branches', authMiddleware, (req, res, ne
 router.delete('/:username/:reponame/file', authMiddleware, (req, res, next) =>
   repoController().deleteFile(req as AuthRequest, res, next),
 );
+
+router.get(
+  '/:username/:reponame/download/zip',
+  authMiddleware,
+  visibilityMiddleware,
+  (req, res, next) => downloadZipController().downloadZip(req, res, next),
+);
+
+//download zipfile
 
 export default router;

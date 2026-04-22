@@ -14,6 +14,8 @@ import {
 } from '../../domain/interfaces/IGitTypes';
 import { NotFoundError } from 'src/domain/errors/NotFoundError';
 import { logger } from 'src/shared/logger/Logger';
+import { Readable } from 'stream';
+import { spawn } from 'child_process';
 
 @injectable()
 export class GitService {
@@ -872,5 +874,34 @@ export class GitService {
     } finally {
       if (fs.existsSync(indexFile)) fs.unlinkSync(indexFile);
     }
+  }
+
+  public async archiveRepo(
+    ownerUsername: string,
+    repoName: string,
+    branch: string = 'main',
+  ): Promise<Readable> {
+    const repoPath = path.join(this.repoBasePath, ownerUsername, `${repoName}.git`); //adjust base path as needed
+    return new Promise((resolve, reject) => {
+      //use git archive to stream a zip of the repository
+      const gitArchive = spawn('git', ['archive', '--format=zip', branch], {
+        cwd: repoPath,
+      });
+      gitArchive.stderr.on('data', (data) => {
+        logger.error(`Git archive error: ${data.toString()}`);
+      });
+      gitArchive.on('error', (err) => {
+        reject(new Error(`Failed to start git archive: ${err.message}`));
+      });
+      gitArchive.on('close', (code) => {
+        if (code !== 0) {
+          // If the stream is already resolving, this will just close it.
+          // You might want a more sophisticated error state depending on your needs.
+          logger.error(`git archive exited with code ${code}`);
+        }
+      });
+      // We resolve with the stdout stream immediately so the controller can pipe it
+      resolve(gitArchive.stdout as Readable);
+    });
   }
 }

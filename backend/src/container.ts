@@ -139,6 +139,7 @@ import { NotificationService } from './infrastructure/services/NotificationServi
 import { GetNotificationsUseCase } from './application/use-cases/notifications/GetNotificationsUseCase';
 import { MarkNotificationReadUseCase } from './application/use-cases/notifications/MarkNotificationReadUseCase';
 import { MarkAllReadUseCase } from './application/use-cases/notifications/MarkAllReadUseCase';
+import { DownloadZipUseCase } from './application/use-cases/repository/DownloadZipUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -195,6 +196,7 @@ container.register(TOKENS.IGetFileContentUseCase, { useClass: GetFileContentUseC
 container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
 container.register(TOKENS.IGetBranchesUseCase, { useClass: GetBranchesUseCase });
 container.register(TOKENS.IDeleteFileUseCase, { useClass: DeleteFileUseCase });
+container.register(TOKENS.IDownloadZipUseCase, { useClass: DownloadZipUseCase });
 
 //ai agent
 container.register(TOKENS.IAIAgentUseCase, { useClass: AIAgentUseCase });
