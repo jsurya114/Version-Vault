@@ -92,6 +92,7 @@ export const TOKENS = {
   IUploadFileUseCase: Symbol.for('IUploadFileUseCase'),
   IGetActiveBranchUseCase: Symbol.for('IGetActiveBranchUseCase'),
   IDeleteFileUseCase: Symbol.for('IDeleteFileUseCase'),
+  IDownloadZipUseCase: Symbol.for('IDownloadZipUseCase'),
 
   //ai agent
   IAIAgentUseCase: Symbol.for('IAIAgentUseCase'),
