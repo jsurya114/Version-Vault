@@ -1,7 +1,7 @@
 import { Readable } from 'stream';
 import { IDownloadZipUseCase } from '../interfaces/repository/IDownloadZipUseCase';
 import { injectable, inject } from 'tsyringe';
-import { TOKENS } from '../../../shared/constants/tokens';
+
 import { GitService } from '../../../infrastructure/services/GitService';
 
 @injectable()

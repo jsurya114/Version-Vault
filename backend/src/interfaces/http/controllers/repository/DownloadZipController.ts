@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from 'express';
 import { injectable, inject } from 'tsyringe';
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { IDownloadZipUseCase } from '../../../../application/use-cases/interfaces/repository/IDownloadZipUseCase';
-import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
+
 import { logger } from 'src/shared/logger/Logger';
 
 @injectable()

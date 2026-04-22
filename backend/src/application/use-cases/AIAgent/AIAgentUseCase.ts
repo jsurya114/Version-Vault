@@ -69,7 +69,7 @@ Instructions: Generate the complete boilerplate JSON based on the rules. Automat
         .trim();
       const parsed = JSON.parse(cleaned);
       if (parsed.files && Array.isArray(parsed.files)) {
-        generatedFiles = parsed.files.map((file: any) => {
+        generatedFiles = parsed.files.map((file: { path: string; content: string }) => {
           // Fallback: If AI mistakenly prepends the repo name as the root folder, strip it
           let filePath = file.path;
           const repoPrefix = config.name + '/';

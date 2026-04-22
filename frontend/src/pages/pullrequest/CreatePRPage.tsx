@@ -1,19 +1,16 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useAppDispatch, useAppSelector } from '../../app/hooks';
+import { useAppSelector } from '../../app/hooks';
 import { selectBranches } from '../../features/repository/repositorySelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 
 import { CompareLanding } from '../../pages/pullrequest/components/CompareLanding';
-import { getBranchesThunk } from '../../features/repository/repositoryThunks';
 
 const CreatePRPage = () => {
   const navigate = useNavigate();
   const { username, reponame } = useParams();
   const branches = useAppSelector(selectBranches);
-
-  const dispatch = useAppDispatch();
 
   const [targetBranch] = useState('main');
 
