@@ -1,4 +1,3 @@
-// src/pages/user/components/EditProfileModal.tsx
 import React, { useState, useRef, useEffect } from 'react';
 import { Camera, X, Check, Loader2 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
@@ -19,6 +18,7 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({ user, onClos
   // State for form fields
   const [username, setUsername] = useState(user.username);
   const [bio, setBio] = useState(user.bio || '');
+  const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
   const [preview, setPreview] = useState(user.avatar);
   const [file, setFile] = useState<File | null>(null);
 
@@ -34,8 +34,22 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({ user, onClos
     }
   };
 
+  const validate = (): boolean => {
+    const errors: Record<string, string> = {};
+    if (!username.trim()) {
+      errors.username = 'Username is required';
+    } else if (username.trim().length < 3) {
+      errors.username = 'Username must be at least 3 characters';
+    }
+    // You can add bio validation here if needed
+    setFieldErrors(errors);
+    return Object.keys(errors).length === 0;
+  };
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+
+    if (!validate()) return;
 
     // Create FormData for Multer to handle multipart/form-data
     const formData = new FormData();
@@ -114,11 +128,20 @@ export const EditProfileModal: React.FC<EditProfileModalProps> = ({ user, onClos
               <label className="text-xs font-bold text-gray-500 uppercase ml-1">Username</label>
               <input
                 value={username}
-                onChange={(e) => setUsername(e.target.value)}
-                required
-                className="w-full bg-[#161b22] border border-gray-700 rounded-xl p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-gray-600"
+                onChange={(e) => {
+                  setUsername(e.target.value);
+                  if (fieldErrors.username) setFieldErrors({ ...fieldErrors, username: '' });
+                }}
+                className={`w-full bg-[#161b22] border rounded-xl p-3 text-white focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all placeholder:text-gray-600 ${
+                  fieldErrors.username ? 'border-red-500/50' : 'border-gray-700'
+                }`}
                 placeholder="How should we call you?"
               />
+              {fieldErrors.username && (
+                <p className="text-red-400 text-[11px] mt-1 ml-1 font-medium italic">
+                  {fieldErrors.username}
+                </p>
+              )}
             </div>
 
             {/* Bio TextArea */}
