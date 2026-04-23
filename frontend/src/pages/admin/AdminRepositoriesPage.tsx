@@ -101,12 +101,20 @@ const AdminRepositoriesPage = () => {
       },
       {
         key: 'stars',
-        label: 'STATS',
+        label: 'STARS',
         render: (r) => (
-          <div className="flex items-center gap-3 text-gray-500 text-xs">
-            <span className="flex items-center gap-1">★ {r.stars}</span>
-            <span className="flex items-center gap-1">⑂ {r.forks}</span>
-          </div>
+          <span className="flex items-center gap-1.5 text-yellow-500 font-bold text-xs">
+            ★ {r.stars || 0}
+          </span>
+        ),
+      },
+      {
+        key: 'forks',
+        label: 'FORKS',
+        render: (r) => (
+          <span className="flex items-center gap-1.5 text-blue-400 font-bold text-xs">
+            ⑂ {r.forks || 0}
+          </span>
         ),
       },
       {
@@ -143,12 +151,29 @@ const AdminRepositoriesPage = () => {
         </p>
       </div>
 
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-6">
+      <div className="grid grid-cols-2 sm:grid-cols-3 gap-2 xs:gap-3 sm:gap-4 mb-4 xs:mb-6">
         <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 text-center">
-          <p className="text-gray-400 text-xs mb-1">Total Repositories</p>
+          <p className="text-gray-400 text-[10px] uppercase font-bold mb-1 tracking-wider">
+            Total Repositories
+          </p>
           <p className="text-white text-xl xs:text-2xl font-bold">{meta?.total ?? 0}</p>
         </div>
-        {/* Add more stats as needed */}
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 text-center">
+          <p className="text-gray-400 text-[10px] uppercase font-bold mb-1 tracking-wider">
+            Total Stars
+          </p>
+          <p className="text-yellow-500 text-xl xs:text-2xl font-bold">
+            {meta?.extraStats?.totalStars ?? 0}
+          </p>
+        </div>
+        <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 text-center">
+          <p className="text-gray-400 text-[10px] uppercase font-bold mb-1 tracking-wider">
+            Total Forks
+          </p>
+          <p className="text-blue-400 text-xl xs:text-2xl font-bold">
+            {meta?.extraStats?.totalForks ?? 0}
+          </p>
+        </div>
       </div>
 
       <TableFilters
@@ -170,6 +195,7 @@ const AdminRepositoriesPage = () => {
           { label: 'Creation Date', value: 'createdAt' },
           { label: 'Name', value: 'name' },
           { label: 'Stars', value: 'stars' },
+          { label: 'Forks', value: 'forks' },
         ]}
         onSortFieldChange={(val) => {
           setSortField(val);

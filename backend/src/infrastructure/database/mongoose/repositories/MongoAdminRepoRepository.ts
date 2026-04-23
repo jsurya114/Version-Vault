@@ -39,7 +39,29 @@ export class MongoAdminRepoRepository
         filter.isBlocked = { $ne: true };
       }
     }
-    return this.findWithpagination(filter, query);
+    const [baseResult, stats] = await Promise.all([
+      this.findWithpagination(filter, query),
+      this.model.aggregate([
+        { $match: filter },
+        {
+          $group: {
+            _id: null,
+            totalStars: { $sum: '$stars' },
+            totalForks: { $sum: '$forks' },
+          },
+        },
+      ]),
+    ]);
+
+    return {
+      ...baseResult,
+      extraStats: stats[0]
+        ? {
+            totalStars: stats[0].totalStars || 0,
+            totalForks: stats[0].totalForks || 0,
+          }
+        : { totalStars: 0, totalForks: 0 },
+    };
   }
 
   async blockRepo(id: string): Promise<IRepository | null> {

@@ -13,4 +13,5 @@ export interface PaginatedResponseDTO<T> {
   page: number;
   limit: number;
   totalPages: number;
+  extraStats?: Record<string, number>;
 }

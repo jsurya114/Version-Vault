@@ -337,10 +337,10 @@ const UserProfilePage = () => {
           {/* Left — Profile Sidebar */}
           <div className="w-full md:w-56 lg:w-64 xl:w-72 shrink-0 min-w-0">
             {/* Avatar Section — smaller on mobile, full width column on md+ */}
-            <div className="relative mb-3 xs:mb-4 sm:mb-6">
+            <div className="relative mb-3 xs:mb-4 sm:mb-6 mt-4 md:mt-10">
               {/* On mobile: horizontal layout (avatar + name side by side) */}
               <div className="flex md:block items-center gap-4">
-                <div className="w-16 h-16 xs:w-20 xs:h-20 sm:w-24 sm:h-24 md:w-full md:aspect-square rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 border-2 border-gray-800 shadow-2xl overflow-hidden flex items-center justify-center text-white text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-bold md:max-w-[280px] md:mx-auto shrink-0">
+                <div className="w-20 h-20 xs:w-24 xs:h-24 sm:w-32 sm:h-32 md:w-48 md:h-48 lg:w-64 lg:h-64 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 border-4 border-gray-950 shadow-2xl overflow-hidden flex items-center justify-center text-white text-2xl xs:text-3xl sm:text-4xl md:text-6xl font-bold md:mx-0 shrink-0 transition-all duration-300">
                   {displayUser?.avatar ? (
                     <img
                       src={displayUser.avatar}

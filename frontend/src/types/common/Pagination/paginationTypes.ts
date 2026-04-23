@@ -13,6 +13,7 @@ export interface PaginationMeta {
   page: number;
   limit: number;
   totalPages: number;
+  extraStats?: Record<string, number>;
 }
 
 export interface PaginatedResponse<T> {

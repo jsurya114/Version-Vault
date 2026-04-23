@@ -35,6 +35,7 @@ export class AdminRepoController {
           page: result.page,
           limit: result.limit,
           totalPages: result.totalPages,
+          extraStats: result.extraStats,
         },
       });
     } catch (error) {
