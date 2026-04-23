@@ -178,4 +178,17 @@ export const repositoryService = {
     );
     return res.data;
   },
+
+  renameBranch: async (
+    username: string,
+    reponame: string,
+    branchName: string,
+    newBranchName: string,
+  ) => {
+    const res = await axiosInstance.put(
+      `${REPO_ENDPOINTS.GET}/${username}/${reponame}/branches/${branchName}`,
+      { newBranchName },
+    );
+    return res.data;
+  },
 };

@@ -13,7 +13,8 @@ export type NotificationType =
   | 'followed'
   | 'unfollowed'
   | 'repo_forked'
-  | 'repo_starred';
+  | 'repo_starred'
+  | 'branch_updated';
 
 export interface INotification {
   id?: string;

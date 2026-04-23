@@ -140,6 +140,10 @@ import { GetNotificationsUseCase } from './application/use-cases/notifications/G
 import { MarkNotificationReadUseCase } from './application/use-cases/notifications/MarkNotificationReadUseCase';
 import { MarkAllReadUseCase } from './application/use-cases/notifications/MarkAllReadUseCase';
 import { DownloadZipUseCase } from './application/use-cases/repository/DownloadZipUseCase';
+import { RenameBranchUseCase } from './application/use-cases/branch/RenameBranchUseCase';
+import { MongoActivityRepository } from './infrastructure/database/mongoose/repositories/MongoActivityRepository';
+import { RecordActivityUseCase } from './application/use-cases/activity/RecordActivityUseCase';
+import { GetActivityFeedUseCase } from './application/use-cases/activity/GetFeedActivityUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -197,6 +201,7 @@ container.register(TOKENS.IGetCommitsUseCase, { useClass: GetCommitUseCase });
 container.register(TOKENS.IGetBranchesUseCase, { useClass: GetBranchesUseCase });
 container.register(TOKENS.IDeleteFileUseCase, { useClass: DeleteFileUseCase });
 container.register(TOKENS.IDownloadZipUseCase, { useClass: DownloadZipUseCase });
+container.register(TOKENS.IRenameBranchUseCase, { useClass: RenameBranchUseCase });
 
 //ai agent
 container.register(TOKENS.IAIAgentUseCase, { useClass: AIAgentUseCase });
@@ -286,5 +291,10 @@ container.register(TOKENS.INotificationRepository, { useClass: MongoNotification
 container.register(TOKENS.IGetNotificationsUseCase, { useClass: GetNotificationsUseCase });
 container.register(TOKENS.IMarkNotificationReadUseCase, { useClass: MarkNotificationReadUseCase });
 container.register(TOKENS.IMarkAllReadUseCase, { useClass: MarkAllReadUseCase });
+
+//activity
+container.register(TOKENS.IRecordActivityUseCase, { useClass: RecordActivityUseCase });
+container.register(TOKENS.IActivityRepository, { useClass: MongoActivityRepository });
+container.register(TOKENS.IGetActivityFeedUseCase, { useClass: GetActivityFeedUseCase });
 
 export { container };

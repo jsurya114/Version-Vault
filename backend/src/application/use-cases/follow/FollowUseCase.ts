@@ -1,5 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { IFollowUseCase } from '../interfaces/follow/IFollowUseCase';
+import { IRecordActivityUseCase } from '../interfaces/activity/IRecordActivityUseCase';
 import { IFollowRepository } from '../../../domain/interfaces/repositories/IFollowRepository';
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
@@ -12,6 +13,7 @@ export class FollowUseCase implements IFollowUseCase {
     @inject(TOKENS.IFollowRepository) private _followRepo: IFollowRepository,
     @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
     @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+    @inject(TOKENS.IRecordActivityUseCase) private _recordActivityUseCase: IRecordActivityUseCase,
   ) {}
 
   async execute(
@@ -47,6 +49,18 @@ export class FollowUseCase implements IFollowUseCase {
         actorUsername: followerUsername,
         type: 'followed',
         message: `${followerUsername} started following you`,
+      })
+      .catch(() => {});
+
+    this._recordActivityUseCase
+      .execute({
+        actorId: followerId,
+        actorUsername: followerUsername,
+        actorAvatar: follower?.avatar,
+        isPrivate: false,
+        actionType: 'followed_user',
+        targetId: followingId,
+        targetName: followingUsername,
       })
       .catch(() => {});
   }

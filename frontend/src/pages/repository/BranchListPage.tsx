@@ -10,12 +10,14 @@ import {
   GitMerge,
   Info,
   X,
+  Pencil,
 } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getBranchesThunk,
   createBranchThunk,
   deleteBranchThunk,
+  renameBranchThunk,
 } from '../../features/repository/repositoryThunks';
 import {
   selectBranches,
@@ -48,6 +50,7 @@ const BranchRow = React.memo(
     isDefault,
     canDelete,
     onDelete,
+    onEdit,
     username,
     reponame,
   }: {
@@ -55,6 +58,7 @@ const BranchRow = React.memo(
     isDefault?: boolean;
     canDelete: boolean;
     onDelete: (name: string) => void;
+    onEdit: (name: string) => void;
     username: string;
     reponame: string;
   }) => {
@@ -76,7 +80,7 @@ const BranchRow = React.memo(
     return (
       <div
         onClick={() => navigate(`/${username}/${reponame}/tree/${branch.name}`)}
-        className="md:grid md:grid-cols-[1fr,150px,120px,120px,100px] md:gap-4 px-3 xs:px-4 py-3 xs:py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group flex flex-col md:flex-row gap-2.5 md:gap-4"
+        className="md:grid lg:grid-cols-[1fr,150px,120px,120px,160px] md:grid-cols-[minmax(0,1fr)_130px_110px_140px] md:gap-4 px-3 xs:px-4 py-3 xs:py-4 items-center hover:bg-white/[0.05] cursor-pointer transition text-sm group flex flex-col md:flex-row gap-2.5 md:gap-4"
       >
         <div className="flex items-center gap-2 xs:gap-3 flex-wrap w-full md:w-auto">
           <div className="bg-blue-500/10 px-2 xs:px-2.5 py-1 xs:py-1.5 rounded-md text-blue-400 font-mono text-[11px] xs:text-xs flex items-center gap-1.5 xs:gap-2 border border-blue-500/20 max-w-full">
@@ -105,7 +109,7 @@ const BranchRow = React.memo(
           </div>
         </div>
 
-        <div className={`items-center gap-1.5 text-xs font-medium text-gray-600 hidden md:flex`}>
+        <div className={`items-center gap-1.5 text-xs font-medium text-gray-600 hidden lg:flex`}>
           {/* Placeholder for CI/CD checks logic */}
           <span className="opacity-50">--</span>
         </div>
@@ -142,7 +146,7 @@ const BranchRow = React.memo(
           )}
         </div>
 
-        <div className="flex items-center justify-end gap-2 xs:gap-4 w-full md:w-auto">
+        <div className="flex items-center justify-end gap-2 xs:gap-4 w-full md:w-auto shrink-0 md:min-w-[140px] lg:min-w-[160px]">
           {!isDefault && branch.prId ? (
             <div
               onClick={(e) => {
@@ -180,14 +184,31 @@ const BranchRow = React.memo(
             </div>
           ) : null}
           {!isDefault && (
-            <Trash2
-              className={`w-4 h-4 transition ${
-                !canDelete
-                  ? 'text-gray-800 cursor-not-allowed opacity-30'
-                  : 'text-gray-600 hover:text-red-500 cursor-pointer'
-              }`}
-              onClick={canDelete ? handleDelete : undefined}
-            />
+            <div className="flex items-center gap-3 ml-2">
+              <Pencil
+                className={`w-3.5 h-3.5 transition ${
+                  !canDelete
+                    ? 'text-gray-800 cursor-not-allowed opacity-30'
+                    : 'text-gray-600 hover:text-blue-400 cursor-pointer'
+                }`}
+                onClick={
+                  canDelete
+                    ? (e) => {
+                        e.stopPropagation();
+                        onEdit(branch.name);
+                      }
+                    : undefined
+                }
+              />
+              <Trash2
+                className={`w-4 h-4 transition ${
+                  !canDelete
+                    ? 'text-gray-800 cursor-not-allowed opacity-30'
+                    : 'text-gray-600 hover:text-red-500 cursor-pointer'
+                }`}
+                onClick={canDelete ? handleDelete : undefined}
+              />
+            </div>
           )}
         </div>
       </div>
@@ -213,6 +234,8 @@ const BranchListPage = () => {
   const [selectedBranch, setSelectedBranch] = useState('');
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
+  const [showRenameModal, setShowRenameModal] = useState(false);
+  const [renameInput, setRenameInput] = useState('');
 
   useEffect(() => {
     if (username && reponame) {
@@ -271,6 +294,36 @@ const BranchListPage = () => {
     },
     [dispatch, username, reponame],
   );
+
+  // Put this handler near handleConfirmDelete
+  const handleConfirmRename = useCallback(async () => {
+    if (!renameInput.trim()) return;
+    const result = await dispatch(
+      renameBranchThunk({
+        username: username!,
+        reponame: reponame!,
+        branchName: selectedBranch,
+        newBranchName: renameInput.trim(),
+      }),
+    );
+    if (renameBranchThunk.fulfilled.match(result)) {
+      setShowRenameModal(false);
+      setRenameInput('');
+      setSuccessSonar({
+        isOpen: true,
+        title: 'Branch Renamed',
+        subtitle: `Branch has been renamed to "${renameInput.trim()}".`,
+      });
+      // Refresh the list after rename
+      dispatch(getBranchesThunk({ username: username!, reponame: reponame! }));
+    }
+  }, [dispatch, username, reponame, selectedBranch, renameInput]);
+
+  const handleEditClick = useCallback((name: string) => {
+    setSelectedBranch(name);
+    setRenameInput(name); // prepopulate with old name
+    setShowRenameModal(true);
+  }, []);
 
   const handleConfirmDelete = useCallback(async () => {
     const result = await dispatch(
@@ -339,6 +392,7 @@ const BranchListPage = () => {
                 isDefault
                 canDelete={false}
                 onDelete={() => {}}
+                onEdit={handleEditClick}
                 username={username!}
                 reponame={reponame!}
               />
@@ -374,6 +428,7 @@ const BranchListPage = () => {
                     branch={branchObj as GitBranch}
                     canDelete={isOwner || branchObj.createdBy === user?.id}
                     onDelete={handleDeleteClick}
+                    onEdit={handleEditClick}
                     username={username!}
                     reponame={reponame!}
                   />
@@ -419,6 +474,41 @@ const BranchListPage = () => {
           subtitle={successSonar.subtitle}
         />
       )}
+
+      {showRenameModal && (
+        <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/60 backdrop-blur-sm p-4">
+          <div className="bg-gray-900 border border-gray-800 rounded-xl max-w-md w-full shadow-2xl overflow-hidden p-6">
+            <h3 className="text-xl font-bold text-white mb-2">Rename Branch</h3>
+            <p className="text-sm text-gray-400 mb-4">
+              Enter a new name for the branch{' '}
+              <span className="text-blue-400 font-mono">{selectedBranch}</span>.
+            </p>
+            <input
+              type="text"
+              value={renameInput}
+              onChange={(e) => setRenameInput(e.target.value)}
+              className="w-full bg-gray-950 border border-gray-700 rounded-lg px-4 py-2 text-sm text-white focus:outline-none focus:border-blue-500 transition mb-6 font-mono"
+              placeholder="e.g. feature/new-logic"
+            />
+            <div className="flex items-center justify-end gap-3">
+              <button
+                onClick={() => setShowRenameModal(false)}
+                className="text-sm text-gray-400 hover:text-white transition px-4 py-2"
+                disabled={isLoading}
+              >
+                Cancel
+              </button>
+              <button
+                onClick={handleConfirmRename}
+                disabled={isLoading || renameInput === selectedBranch || !renameInput.trim()}
+                className="bg-blue-600 hover:bg-blue-700 disabled:opacity-50 text-white text-sm px-4 py-2 rounded-lg font-medium transition"
+              >
+                {isLoading ? 'Renaming...' : 'Rename Branch'}
+              </button>
+            </div>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
@@ -430,10 +520,10 @@ const SectionHeader = ({ title }: { title: string }) => (
 
 const BranchTableContainer = ({ children }: { children: React.ReactNode }) => (
   <div className="bg-gray-900 border border-gray-800 rounded-xl overflow-hidden mb-6">
-    <div className="hidden md:grid grid-cols-[1fr,150px,120px,120px,100px] gap-4 px-4 py-3 bg-gray-950/50 border-b border-gray-800 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
+    <div className="hidden md:grid lg:grid-cols-[1fr,150px,120px,120px,160px] md:grid-cols-[minmax(0,1fr)_130px_110px_140px] gap-4 px-4 py-3 bg-gray-950/50 border-b border-gray-800 text-[10px] font-bold text-gray-500 uppercase tracking-widest">
       <div>Branch</div>
       <div>Updated</div>
-      <div>Check status</div>
+      <div className="hidden lg:block">Check status</div>
       <div className="text-center">Behind/Ahead</div>
       <div className="text-right pr-2">Pull request</div>
     </div>

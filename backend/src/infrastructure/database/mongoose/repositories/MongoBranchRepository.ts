@@ -27,4 +27,14 @@ export class MongoBranchRepository
     const result = await this.model.deleteOne({ repositoryId, branchName });
     return result.deletedCount > 0;
   }
+  async updateBranchName(
+    repositoryId: string,
+    oldBranch: string,
+    newBranch: string,
+  ): Promise<void> {
+    await this.model.updateOne(
+      { repositoryId, branchName: oldBranch },
+      { $set: { branchName: newBranch } },
+    );
+  }
 }

@@ -904,4 +904,22 @@ export class GitService {
       resolve(gitArchive.stdout as Readable);
     });
   }
+
+  async renameBranch(
+    ownerUsername: string,
+    repoName: string,
+    oldBranchName: string,
+    newBranchName: string,
+  ): Promise<void> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      await git.raw(['branch', '-m', oldBranchName, newBranchName]);
+    } catch (error: unknown) {
+      throw new Error(
+        `Failed to rename branch: ${error instanceof Error ? error.message : 'Unknown error'}`,
+        { cause: error },
+      );
+    }
+  }
 }

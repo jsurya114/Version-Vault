@@ -1,7 +1,9 @@
 import { injectable, inject } from 'tsyringe';
 import { IForkRepoUseCase } from '../interfaces/repository/IForkRepoUseCase';
+import { IRecordActivityUseCase } from '../interfaces/activity/IRecordActivityUseCase';
 import { ForkRepoDTO } from '../../../application/dtos/repository/ForkDTO';
 import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
+import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { ICollaboratorRepository } from '../../../domain/interfaces/repositories/ICollaboratorRepository';
 import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
@@ -18,8 +20,10 @@ export class ForkRepoUseCase implements IForkRepoUseCase {
   constructor(
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.ICollaboratorRepository) private _collabRepo: ICollaboratorRepository,
+    @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
     @inject(GitService) private _gitService: GitService,
     @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+    @inject(TOKENS.IRecordActivityUseCase) private _recordActivityUseCase: IRecordActivityUseCase,
   ) {}
 
   async execute(dto: ForkRepoDTO): Promise<RepoResponseDTO> {
@@ -93,6 +97,20 @@ export class ForkRepoUseCase implements IForkRepoUseCase {
         message: `${dto.forkerUsername} forked your repository "${sourceRepo.name}"`,
         repositoryId: sourceRepo.id as string,
         repositoryName: sourceRepo.name,
+      })
+      .catch(() => {});
+
+    const forker = await this._userRepo.findById(dto.forkerId);
+
+    this._recordActivityUseCase
+      .execute({
+        actorId: dto.forkerId,
+        actorUsername: dto.forkerUsername,
+        actorAvatar: forker?.avatar,
+        isPrivate: forkRepo.visibility === RepositoryVisibility.PRIVATE,
+        actionType: 'forked_repo',
+        targetId: forkRepo.id as string,
+        targetName: forkRepo.name,
       })
       .catch(() => {});
 

@@ -71,6 +71,7 @@ export const TOKENS = {
   ICreateBranchUseCase: Symbol.for('ICreateBranchUseCase'),
   IDeleteBranchUseCase: Symbol.for('IDeleteBranchUseCase'),
   IBranchRepository: Symbol.for('IBranchRepository'),
+  IRenameBranchUseCase: Symbol.for('IRenameBranchUseCase'),
   //commits
   ICreateCommitUseCase: Symbol.for('ICreateCommitUseCase'),
   ICompareCommitUseCase: Symbol.for('ICompareCommitUseCase'),
@@ -136,4 +137,9 @@ export const TOKENS = {
   IMarkNotificationReadUseCase: Symbol.for('IMarkNotificationReadUseCase'),
   IMarkAllReadUseCase: Symbol.for('IMarkAllReadUseCase'),
   NotificationService: Symbol.for('NotificationService'),
+
+  //activity
+  IActivityRepository: Symbol.for('IActivityRepository'),
+  IRecordActivityUseCase: Symbol.for('IRecordActivityUseCase'),
+  IGetActivityFeedUseCase: Symbol.for('IGetActivityFeedUseCase'),
 } as const;

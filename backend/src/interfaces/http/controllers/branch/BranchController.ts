@@ -6,6 +6,7 @@ import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { IDeleteBranchUseCase } from '../../../../application/use-cases/interfaces/branch/IDeleteBranchUseCase';
 import { AuthRequest } from '../repository/RepositoryController';
+import { IRenameBranchUseCase } from '../../../../application/use-cases/interfaces/branch/IRenameBranchUseCase';
 
 @injectable()
 export class BranchController {
@@ -13,6 +14,7 @@ export class BranchController {
     @inject(TOKENS.IGetBranchesUseCase) private _getBranchUseCase: IGetBranchesUseCase,
     @inject(TOKENS.ICreateBranchUseCase) private _createBranchUseCase: ICreateBranchUseCase,
     @inject(TOKENS.IDeleteBranchUseCase) private _deleteBranchUseCase: IDeleteBranchUseCase,
+    @inject(TOKENS.IRenameBranchUseCase) private _renameBranchUseCase: IRenameBranchUseCase,
   ) {}
 
   async getBranches(req: Request, res: Response, next: NextFunction): Promise<void> {
@@ -53,6 +55,27 @@ export class BranchController {
       res.status(HttpStatusCodes.OK).json({
         success: true,
         message: `Branch '${branchName}' deleted successfully`,
+      });
+    } catch (error) {
+      next(error);
+    }
+  }
+  async renameBranch(req: AuthRequest, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { username, reponame, branchName } = req.params;
+      const { newBranchName } = req.body;
+      const user = req.user;
+      await this._renameBranchUseCase.execute(
+        username,
+        reponame,
+        branchName,
+        newBranchName,
+        user.id,
+        user.userId,
+      );
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        message: `Branch '${branchName}' renamed successfully`,
       });
     } catch (error) {
       next(error);

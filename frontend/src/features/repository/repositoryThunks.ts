@@ -286,3 +286,18 @@ export const deleteFileThunk = createAsyncThunk<
     return rejectWithValue(err.response?.data?.message || 'Failed to delete file');
   }
 });
+
+export const renameBranchThunk = createAsyncThunk<
+  void,
+  { username: string; reponame: string; branchName: string; newBranchName: string }
+>(
+  'repository/renameBranch',
+  async ({ username, reponame, branchName, newBranchName }, { rejectWithValue }) => {
+    try {
+      await repositoryService.renameBranch(username, reponame, branchName, newBranchName);
+    } catch (error: unknown) {
+      const err = error as { response?: { data?: { message?: string } } };
+      return rejectWithValue(err.response?.data?.message || 'Failed to rename branch');
+    }
+  },
+);
