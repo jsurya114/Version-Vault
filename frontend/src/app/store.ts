@@ -13,6 +13,7 @@ import commentReducer from '../features/comments/commentSlice';
 import chatReducer from '../features/chats/chatSlice';
 import aiAgentReducer from '../features/ai-agent/aiAgentSlice';
 import notificationReducer from '../features/notifications/notificationSlice';
+import activityReducer from '../features/activity/activitySlice';
 
 export const store = configureStore({
   reducer: {
@@ -30,6 +31,7 @@ export const store = configureStore({
     chat: chatReducer,
     aiAgent: aiAgentReducer,
     notifiactions: notificationReducer,
+    activity: activityReducer,
   },
 });
 

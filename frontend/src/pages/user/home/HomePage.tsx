@@ -25,6 +25,12 @@ import { ROUTES } from '../../../constants/routes';
 import AppHeader from '../../../types/common/Layout/AppHeader';
 import AppFooter from '../../../types/common/Layout/AppFooter';
 import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
+import { getActivityFeedThunk } from '../../../features/activity/activityThunk';
+import {
+  selectActivityFeed,
+  selectActivityLoading,
+} from '../../../features/activity/activitySelector';
+import { ActivityFeedItem } from '../../../components/ActivityFeedItem';
 
 const SideRepoLink = React.memo(({ repo }: { repo: { ownerUsername: string; name: string } }) => (
   <Link
@@ -50,6 +56,24 @@ const HomePage = () => {
   const [collabSearch, setCollabSearch] = useState('');
   const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [sidebarOpen, setSidebarOpen] = useState(false);
+
+  const [sortOrder, setSortOrder] = useState<'latest' | 'oldest'>('latest');
+  const feed = useAppSelector(selectActivityFeed);
+  const {
+    currentPage,
+    totalPages,
+    isLoading: feedLoading,
+  } = useAppSelector((state) => (state as any).activity);
+
+  useEffect(() => {
+    dispatch(getActivityFeedThunk({ page: 1, sort: sortOrder }));
+  }, [dispatch, sortOrder]);
+
+  const handleLoadMore = () => {
+    if (currentPage < totalPages) {
+      dispatch(getActivityFeedThunk({ page: currentPage + 1, sort: sortOrder }));
+    }
+  };
 
   useEffect(() => {
     if (location.state?.showLoginSuccess && user) {
@@ -227,7 +251,9 @@ const HomePage = () => {
 
         {/* MIDDLE COLUMN */}
         <div className="flex-1 min-w-0 space-y-4 xs:space-y-5 sm:space-y-6 w-full max-w-full lg:max-w-3xl 3xl:max-w-4xl">
-          <h1 className="text-lg xs:text-xl sm:text-2xl 3xl:text-3xl font-semibold text-white">Home</h1>
+          <h1 className="text-lg xs:text-xl sm:text-2xl 3xl:text-3xl font-semibold text-white">
+            Home
+          </h1>
 
           {/* Ask Anything Box (Temporarily Disabled) */}
           {/*
@@ -285,137 +311,63 @@ const HomePage = () => {
           {/* Feed Header */}
           <div className="flex items-center justify-between mt-4 xs:mt-6 sm:mt-8 mb-2">
             <h2 className="text-white text-sm font-bold">Feed</h2>
-            <button className="flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 bg-gray-800 border border-gray-700 rounded-md text-xs font-semibold text-gray-300 hover:bg-gray-700 transition shadow-sm">
-              <Filter className="w-3 h-3 text-gray-500" /> Filter
-            </button>
+            <div className="flex items-center gap-2">
+              <span className="text-[10px] text-gray-500 uppercase font-bold hidden xs:inline">
+                Sort By:
+              </span>
+              <select
+                value={sortOrder}
+                onChange={(e) => setSortOrder(e.target.value as any)}
+                className="bg-gray-800 border border-gray-700 rounded-md text-[10px] xs:text-xs text-gray-300 px-2 py-1 outline-none focus:border-blue-500 transition cursor-pointer"
+              >
+                <option value="latest">Latest</option>
+                <option value="oldest">Oldest</option>
+              </select>
+            </div>
           </div>
 
           {/* Feed Items */}
           <div className="space-y-3 xs:space-y-4">
-            {/* Feed Item 1 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg xs:rounded-xl p-2.5 xs:p-3 sm:p-4 shadow-sm">
-              <div className="flex items-start justify-between mb-2 xs:mb-3">
-                <div className="flex items-start xs:items-center gap-2 min-w-0">
-                  <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-full bg-gradient-to-br from-gray-700 to-gray-800 flex items-center justify-center shrink-0 border border-gray-700">
-                    {/* Skeleton graphic of an avatar */}
-                    <span className="text-white text-[10px] xs:text-xs font-bold font-mono">F</span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs xs:text-sm text-gray-400 flex flex-wrap gap-0.5 xs:gap-1">
-                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal">
-                        FizanMuhammedFaisal
-                      </span>{' '}
-                      <span>made this repository public</span>
-                    </p>
-                    <p className="text-[10px] xs:text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
-                      yesterday
-                    </p>
-                  </div>
-                </div>
-                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-1 xs:ml-2">
-                  <MoreHorizontal className="w-4 h-4" />
-                </button>
+            {feedLoading && currentPage === 1 ? (
+              <div className="text-sm text-gray-500 py-4">Loading fresh activity...</div>
+            ) : feed.length === 0 ? (
+              <div className="text-sm text-gray-500 py-4 bg-gray-900 border border-gray-800 rounded-xl p-6 text-center">
+                No Activity Founds!
               </div>
+            ) : (
+              <>
+                {feed.map((activity, index) => (
+                  <ActivityFeedItem
+                    key={activity.id || (activity as any)._id || index}
+                    activity={activity}
+                  />
+                ))}
 
-              <div className="bg-gray-800/50 border border-gray-700/50 rounded-lg p-2.5 xs:p-3 sm:p-4 ml-0 sm:ml-10">
-                <div className="flex flex-col mobile:flex-row mobile:items-start justify-between mb-2 xs:mb-3 gap-2">
-                  <div className="flex items-center gap-2 min-w-0">
-                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-[10px] shrink-0 font-bold border border-gray-700">
-                      F
-                    </div>
-                    <Link
-                      to="#"
-                      className="font-semibold text-gray-300 hover:text-blue-400 text-xs xs:text-sm truncate"
-                    >
-                      FizanMuhammedFaisal/pixelmeet-backend
-                    </Link>
-                  </div>
-                  <div className="flex items-center divide-x divide-gray-700 rounded-md border border-gray-700 bg-gray-800 shrink-0 self-start">
-                    <button className="flex items-center gap-1 xs:gap-1.5 px-2 xs:px-3 py-1 text-xs font-semibold text-gray-300 hover:bg-gray-700 transition h-7">
-                      <Star className="w-3.5 h-3.5 text-gray-400" /> Star
-                    </button>
-                    <button className="px-1.5 xs:px-2 h-7 flex items-center hover:bg-gray-700">
-                      <ChevronDown className="w-3 h-3 text-gray-300" />
-                    </button>
-                  </div>
-                </div>
-                <div className="flex items-center gap-3 xs:gap-4 text-[11px] xs:text-xs text-gray-400 mt-2 flex-wrap">
-                  <span className="flex items-center gap-1.5">
-                    <span className="w-3 h-3 rounded-full bg-blue-500 border border-gray-700"></span>{' '}
-                    TypeScript
-                  </span>
-                  <span className="flex items-center gap-1 hover:text-blue-400 cursor-pointer">
-                    <Star className="w-3.5 h-3.5 text-gray-500" /> 1
-                  </span>
-                </div>
-              </div>
-            </div>
-
-            {/* Feed Item 2 */}
-            <div className="bg-gray-900 border border-gray-800 rounded-lg xs:rounded-xl p-2.5 xs:p-3 sm:p-4 shadow-sm">
-              <div className="flex items-start justify-between mb-2 xs:mb-3">
-                <div className="flex items-start xs:items-center gap-2 min-w-0">
-                  <div className="w-7 h-7 xs:w-8 xs:h-8 rounded-full bg-gradient-to-br from-orange-500 to-amber-600 flex items-center justify-center shrink-0 border border-gray-700">
-                    <span className="text-white text-[10px] xs:text-xs font-bold font-mono">N</span>
-                  </div>
-                  <div className="min-w-0">
-                    <p className="text-xs xs:text-sm text-gray-400 flex flex-wrap gap-0.5 xs:gap-1">
-                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal">
-                        Nandakumar-S-1
-                      </span>{' '}
-                      <span>contributed to</span>{' '}
-                      <span className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal">
-                        Nandakumar-S-1/Nandakumar-S-1
-                      </span>
-                    </p>
-                    <p className="text-[10px] xs:text-[11px] text-gray-500 mt-0.5 hover:text-blue-400 cursor-pointer">
-                      2 days ago
-                    </p>
-                  </div>
-                </div>
-                <button className="text-gray-500 hover:text-gray-300 transition shrink-0 ml-1 xs:ml-2">
-                  <MoreHorizontal className="w-4 h-4" />
-                </button>
-              </div>
-
-              <div className="ml-0 sm:ml-10">
-                <h3 className="text-sm xs:text-base font-semibold text-gray-300 mb-2 xs:mb-3 hover:text-blue-400 cursor-pointer">
-                  merging changes to main{' '}
-                  <span className="text-gray-500 font-normal font-mono text-xs xs:text-sm ml-1 hover:text-blue-400">
-                    #2
-                  </span>
-                </h3>
-
-                <div className="flex items-center gap-2 xs:gap-3 mb-3 xs:mb-4 flex-wrap">
-                  <span className="flex items-center gap-1 xs:gap-1.5 bg-purple-600 text-white text-[10px] xs:text-[11px] font-semibold px-2 py-0.5 rounded-full">
-                    <GitMerge className="w-3 h-3 xs:w-3.5 xs:h-3.5" /> Merged
-                  </span>
-                  <span className="text-xs xs:text-sm text-gray-400 hover:text-blue-400 cursor-pointer">
-                    Nandakumar-S-1 merged 35 commits
-                  </span>
-                </div>
-
-                <div className="flex items-center gap-2">
-                  <button className="w-7 h-7 rounded-full bg-gray-800 border border-gray-700 flex items-center justify-center text-gray-400 hover:text-gray-300 hover:bg-gray-700 transition shadow-sm">
-                    <Smile className="w-4 h-4" />
+                {!feedLoading && currentPage < totalPages && (
+                  <button
+                    onClick={handleLoadMore}
+                    className="w-full py-3 mt-2 text-xs font-bold text-blue-400 bg-gray-900/50 border border-gray-800 rounded-xl hover:bg-gray-900 hover:text-blue-300 transition-all shadow-sm"
+                  >
+                    See more activity
                   </button>
-                </div>
-              </div>
-            </div>
+                )}
 
-            {/* Trending repositories */}
-            <div className="pt-2">
-              <button className="text-xs xs:text-sm text-blue-400 hover:underline font-medium w-full text-center py-2">
-                See more
-              </button>
-            </div>
+                {feedLoading && currentPage > 1 && (
+                  <div className="text-center py-4 text-xs text-gray-500 italic">
+                    Fetching more activities...
+                  </div>
+                )}
+              </>
+            )}
           </div>
         </div>
 
         {/* RIGHT SIDEBAR — hidden on small screens, shown on xl+ */}
         <div className="hidden xl:block w-72 2xl:w-80 3xl:w-96 shrink-0">
           <div className="bg-gray-900 border border-gray-800 rounded-xl p-4 2xl:p-5 3xl:p-6 shadow-sm">
-            <h3 className="text-sm 3xl:text-base font-semibold text-white mb-4 2xl:mb-6">Latest from our changelog</h3>
+            <h3 className="text-sm 3xl:text-base font-semibold text-white mb-4 2xl:mb-6">
+              Latest from our changelog
+            </h3>
 
             <div className="relative border-l border-gray-700 ml-[5px] space-y-5 2xl:space-y-7 pb-2">
               <div className="relative pl-5">

@@ -106,7 +106,7 @@ router.get('/:username/:reponame/active-branches', authMiddleware, (req, res, ne
 router.delete('/:username/:reponame/file', authMiddleware, (req, res, next) =>
   repoController().deleteFile(req as AuthRequest, res, next),
 );
-
+//download zipfile
 router.get(
   '/:username/:reponame/download/zip',
   authMiddleware,
@@ -114,6 +114,12 @@ router.get(
   (req, res, next) => downloadZipController().downloadZip(req, res, next),
 );
 
-//download zipfile
+//rename branch
+router.put(
+  '/:username/:reponame/branches/:branchName',
+  authMiddleware,
+  writeAccessMiddleware,
+  (req, res, next) => branchController().renameBranch(req as AuthRequest, res, next),
+);
 
 export default router;
