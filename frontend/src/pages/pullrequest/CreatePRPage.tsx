@@ -1,18 +1,26 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { useAppSelector } from '../../app/hooks';
+import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { selectBranches } from '../../features/repository/repositorySelectors';
+import { getBranchesThunk } from '../../features/repository/repositoryThunks';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 
 import { CompareLanding } from '../../pages/pullrequest/components/CompareLanding';
 
 const CreatePRPage = () => {
+  const dispatch = useAppDispatch();
   const navigate = useNavigate();
   const { username, reponame } = useParams();
   const branches = useAppSelector(selectBranches);
 
   const [targetBranch] = useState('main');
+
+  useEffect(() => {
+    if (username && reponame) {
+      dispatch(getBranchesThunk({ username, reponame }));
+    }
+  }, [dispatch, username, reponame]);
 
   const handleCompare = (source: string) => {
     if (!source || !targetBranch) return;
