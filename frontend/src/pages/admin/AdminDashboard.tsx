@@ -9,14 +9,23 @@ import React, { useEffect, useMemo } from 'react';
 import AdminLayout from '../../types/common/Layout/Admin/AdminLayout';
 import { UserResponseDTO } from '../../types/admin/adminTypes';
 import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
+import { Users, FolderGit2, UserCheck, ShieldBan, CheckCircle2, Folder } from 'lucide-react';
 
 const UserRow = React.memo(({ user }: { user: UserResponseDTO }) => (
   <tr className="border-b border-gray-800/50 last:border-0">
     <td className="py-2.5">
       <div className="flex items-center gap-2 min-w-0">
-        <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-          {user.username?.[0]?.toUpperCase()}
-        </div>
+        {user.avatar ? (
+          <img
+            src={user.avatar}
+            alt={user.username}
+            className="w-7 h-7 rounded-full object-cover shrink-0"
+          />
+        ) : (
+          <div className="w-7 h-7 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+            {user.username?.[0]?.toUpperCase()}
+          </div>
+        )}
         <div className="min-w-0">
           <p className="text-white text-xs font-medium truncate">{user.username}</p>
           <p className="text-gray-500 text-xs truncate">{user.email}</p>
@@ -46,8 +55,8 @@ const RepoRow = React.memo(({ repo }: { repo: RepositoryResponseDTO }) => (
   <tr className="border-b border-gray-800/50 last:border-0 hover:bg-gray-800/20 transition">
     <td className="py-2.5">
       <div className="flex items-center gap-2 min-w-0">
-        <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
-          📁
+        <div className="w-7 h-7 rounded bg-gray-800 flex items-center justify-center text-gray-400">
+          <Folder className="w-3.5 h-3.5" />
         </div>
         <div className="min-w-0">
           <p className="text-white text-xs font-medium truncate">{repo.name}</p>
@@ -55,7 +64,9 @@ const RepoRow = React.memo(({ repo }: { repo: RepositoryResponseDTO }) => (
         </div>
       </div>
     </td>
-    <td className="py-2.5 text-blue-400 text-xs text-center font-bold truncate">@{repo.ownerUsername}</td>
+    <td className="py-2.5 text-blue-400 text-xs text-center font-bold truncate">
+      @{repo.ownerUsername}
+    </td>
     <td className="py-2.5 text-right">
       <span
         className={`text-[9px] px-2 py-0.5 rounded font-black tracking-tighter uppercase ${
@@ -100,26 +111,26 @@ const AdminDashboard = () => {
       {
         label: 'Total Users',
         value: users.length.toLocaleString(),
-        icon: 'group',
+        icon: <Users className="w-4 h-4" />,
         color: 'text-blue-400',
       },
       {
         label: 'Total Repositories',
         value: (repoMeta?.total ?? 0).toLocaleString(),
-        icon: 'folder_managed',
+        icon: <FolderGit2 className="w-4 h-4" />,
         color: 'text-blue-400',
       },
       {
         label: 'Active Users',
         value: totalActive.toLocaleString(),
-        icon: 'history',
+        icon: <UserCheck className="w-4 h-4" />,
         color: 'text-blue-400',
       },
       {
         label: 'Blocked Users',
         value: totalBlocked.toLocaleString(),
-        icon: 'database',
-        color: 'text-blue-400',
+        icon: <ShieldBan className="w-4 h-4" />,
+        color: 'text-red-400',
       },
     ],
     [users.length, repoMeta?.total, totalActive, totalBlocked],
@@ -131,7 +142,7 @@ const AdminDashboard = () => {
       <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4 mb-4 xs:mb-6">
         <div className="flex items-center justify-between mb-3">
           <div className="flex items-center gap-2">
-            <span className="text-green-400 text-sm">✓</span>
+            <CheckCircle2 className="w-4 h-4 text-green-400" />
             <span className="text-white text-sm font-medium">System Integrity</span>
           </div>
           <span className="text-gray-500 text-xs">UPTIME: 99.99%</span>
@@ -164,7 +175,7 @@ const AdminDashboard = () => {
           <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
             <div className="flex items-center justify-between mb-2">
               <p className="text-gray-400 text-xs">{s.label}</p>
-              <span className={`text-xs ${s.color}`}>{s.icon}</span>
+              <span className={s.color}>{s.icon}</span>
             </div>
             <p className="text-white text-xl xs:text-2xl font-bold">{s.value}</p>
           </div>
@@ -182,20 +193,20 @@ const AdminDashboard = () => {
             </Link>
           </div>
           <div className="overflow-x-auto">
-          <table className="w-full min-w-[300px]">
-            <thead>
-              <tr className="text-gray-500 text-xs border-b border-gray-800">
-                <th className="text-left pb-2">USER</th>
-                <th className="text-left pb-2">JOINED</th>
-                <th className="text-left pb-2">ACTION</th>
-              </tr>
-            </thead>
-            <tbody>
-              {newestUsers.map((u) => (
-                <UserRow key={u.id} user={u} />
-              ))}
-            </tbody>
-          </table>
+            <table className="w-full min-w-[300px]">
+              <thead>
+                <tr className="text-gray-500 text-xs border-b border-gray-800">
+                  <th className="text-left pb-2">USER</th>
+                  <th className="text-left pb-2">JOINED</th>
+                  <th className="text-left pb-2">ACTION</th>
+                </tr>
+              </thead>
+              <tbody>
+                {newestUsers.map((u) => (
+                  <UserRow key={u.id} user={u} />
+                ))}
+              </tbody>
+            </table>
           </div>
         </div>
 
@@ -208,26 +219,26 @@ const AdminDashboard = () => {
             </Link>
           </div>
           <div className="overflow-x-auto">
-          <table className="w-full min-w-[300px]">
-            <thead>
-              <tr className="text-gray-500 text-xs border-b border-gray-800">
-                <th className="text-left pb-2">REPOSITORY</th>
-                <th className="text-center pb-2">OWNER</th>
-                <th className="text-right pb-2">VISIBILITY</th>
-              </tr>
-            </thead>
-            <tbody>
-              {newestRepos.length > 0 ? (
-                newestRepos.map((r) => <RepoRow key={r.id} repo={r} />)
-              ) : (
-                <tr>
-                  <td colSpan={3} className="py-6 text-gray-500 text-xs italic text-center">
-                    No repositories found.
-                  </td>
+            <table className="w-full min-w-[300px]">
+              <thead>
+                <tr className="text-gray-500 text-xs border-b border-gray-800">
+                  <th className="text-left pb-2">REPOSITORY</th>
+                  <th className="text-center pb-2">OWNER</th>
+                  <th className="text-right pb-2">VISIBILITY</th>
                 </tr>
-              )}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {newestRepos.length > 0 ? (
+                  newestRepos.map((r) => <RepoRow key={r.id} repo={r} />)
+                ) : (
+                  <tr>
+                    <td colSpan={3} className="py-6 text-gray-500 text-xs italic text-center">
+                      No repositories found.
+                    </td>
+                  </tr>
+                )}
+              </tbody>
+            </table>
           </div>
         </div>
       </div>

@@ -15,6 +15,9 @@ export interface RepoResponseDTO {
   starredBy?: string[];
   createdAt?: Date;
   updatedAt?: Date;
+  branchCount?: number;
+  storageBytes?: number;
+  languages?: { name: string; percentage: number }[];
 }
 
 export interface ToggleStarDTO {

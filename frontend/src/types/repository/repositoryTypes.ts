@@ -18,6 +18,9 @@ export interface RepositoryResponseDTO {
   updatedAt?: string;
   language?: string;
   languageColor?: string;
+  branchCount?: number;
+  storageBytes?: number;
+  languages?: { name: string; percentage: number }[];
 }
 
 export interface CreateRepositoryDTO {

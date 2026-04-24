@@ -8,6 +8,7 @@ import {
   selectAdminRepos,
   selectAdminReposLoading,
   selectAdminReposError,
+  selectAdminSelectedRepo,
 } from '../../features/admin/adminRepoSelectors';
 
 const statusColors: Record<string, string> = {
@@ -15,22 +16,91 @@ const statusColors: Record<string, string> = {
   blocked: 'bg-red-500/20 text-red-400 border border-red-500/30',
 };
 
+/** GitHub-inspired language colors */
+const LANG_COLORS: Record<string, string> = {
+  TypeScript: '#3178c6',
+  JavaScript: '#f1e05a',
+  Python: '#3572A5',
+  Ruby: '#701516',
+  Java: '#b07219',
+  Kotlin: '#A97BFF',
+  Go: '#00ADD8',
+  Rust: '#dea584',
+  C: '#555555',
+  'C++': '#f34b7d',
+  'C#': '#178600',
+  Swift: '#F05138',
+  PHP: '#4F5D95',
+  HTML: '#e34c26',
+  CSS: '#563d7c',
+  SCSS: '#c6538c',
+  Sass: '#a53b70',
+  Less: '#1d365d',
+  Vue: '#41b883',
+  Svelte: '#ff3e00',
+  JSON: '#a3a3a3',
+  YAML: '#cb171e',
+  XML: '#0060ac',
+  Markdown: '#083fa1',
+  MDX: '#fcb32c',
+  SQL: '#e38c00',
+  Shell: '#89e051',
+  PowerShell: '#012456',
+  Dart: '#00B4AB',
+  R: '#198CE7',
+  Lua: '#000080',
+  Elixir: '#6e4a7e',
+  Erlang: '#B83998',
+  Scala: '#c22d40',
+  Haskell: '#5e5086',
+  Perl: '#0298c3',
+  Dockerfile: '#384d54',
+};
+const FALLBACK_COLORS = [
+  '#6366f1',
+  '#8b5cf6',
+  '#ec4899',
+  '#f43f5e',
+  '#f97316',
+  '#eab308',
+  '#22c55e',
+  '#14b8a6',
+  '#06b6d4',
+  '#3b82f6',
+];
+
+/** Format bytes into a human-readable string (e.g. 1.2 MB) */
+const formatBytes = (bytes: number): string => {
+  if (bytes === 0) return '0 B';
+  const units = ['B', 'KB', 'MB', 'GB'];
+  const i = Math.floor(Math.log(bytes) / Math.log(1024));
+  const value = bytes / Math.pow(1024, i);
+  return `${value.toFixed(value < 10 && i > 0 ? 1 : 0)} ${units[i]}`;
+};
+
 const AdminRepositoryDetailPage = React.memo(() => {
   const { id } = useParams();
   const dispatch = useAppDispatch();
 
   const repos = useAppSelector(selectAdminRepos);
+  const selectedRepo = useAppSelector(selectAdminSelectedRepo);
   const isLoading = useAppSelector(selectAdminReposLoading);
   const error = useAppSelector(selectAdminReposError);
 
-  const repo = useMemo(() => repos.find((r) => r.id === id), [repos, id]);
-  const [pendingBlocked, setPendingBlocked] = useState<boolean | null>(null);
-
+  // Always fetch fresh data for the detail view to get branchCount & storageBytes
   useEffect(() => {
-    if (!repo && id) {
+    if (id) {
       dispatch(getRepoThunk(id));
     }
-  }, [id, repo, dispatch]);
+  }, [id, dispatch]);
+
+  // Use selectedRepo (has branchCount/storageBytes), fallback to list item
+  const repo = useMemo(
+    () => (selectedRepo?.id === id ? selectedRepo : repos.find((r) => r.id === id)) ?? null,
+    [selectedRepo, repos, id],
+  );
+
+  const [pendingBlocked, setPendingBlocked] = useState<boolean | null>(null);
 
   useEffect(() => {
     if (repo) {
@@ -46,8 +116,19 @@ const AdminRepositoryDetailPage = React.memo(() => {
         ? [
             { label: 'Total Stars', value: repo.stars || 0, color: 'text-amber-400' },
             { label: 'Total Forks', value: repo.forks || 0, color: 'text-blue-400' },
-            { label: 'Branches', value: '4 active', color: 'text-purple-400' },
-            { label: 'Storage', value: `${repo.size} KB`, color: 'text-cyan-400' },
+            {
+              label: 'Branches',
+              value: repo.branchCount !== undefined ? `${repo.branchCount} active` : '—',
+              color: 'text-purple-400',
+            },
+            {
+              label: 'Storage',
+              value:
+                repo.storageBytes !== undefined
+                  ? formatBytes(repo.storageBytes)
+                  : `${repo.size} KB`,
+              color: 'text-cyan-400',
+            },
           ]
         : [],
     [repo],
@@ -104,7 +185,9 @@ const AdminRepositoryDetailPage = React.memo(() => {
         </div>
         <div className="min-w-0">
           <div className="flex flex-wrap items-center gap-2 xs:gap-3">
-            <h2 className="text-white text-lg xs:text-xl sm:text-2xl font-black tracking-tight break-words">{repo.name}</h2>
+            <h2 className="text-white text-lg xs:text-xl sm:text-2xl font-black tracking-tight break-words">
+              {repo.name}
+            </h2>
             <span
               className={`text-[10px] px-3 py-1 rounded-full font-black uppercase tracking-tighter ${statusColors[status]}`}
             >
@@ -112,7 +195,8 @@ const AdminRepositoryDetailPage = React.memo(() => {
             </span>
           </div>
           <p className="text-gray-500 text-sm mt-0.5">
-            Primary Owner: <span className="text-blue-400 font-bold break-all">@{repo.ownerUsername}</span>
+            Primary Owner:{' '}
+            <span className="text-blue-400 font-bold break-all">@{repo.ownerUsername}</span>
           </p>
         </div>
       </div>
@@ -121,7 +205,10 @@ const AdminRepositoryDetailPage = React.memo(() => {
         <div className="lg:col-span-3 space-y-6">
           <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 xs:gap-3 sm:gap-4">
             {stats.map((s) => (
-              <div key={s.label} className="bg-gray-900 border border-gray-800 rounded-xl xs:rounded-2xl p-3 xs:p-4">
+              <div
+                key={s.label}
+                className="bg-gray-900 border border-gray-800 rounded-xl xs:rounded-2xl p-3 xs:p-4"
+              >
                 <p className="text-gray-500 text-[10px] uppercase font-bold tracking-widest mb-1">
                   {s.label}
                 </p>
@@ -136,17 +223,45 @@ const AdminRepositoryDetailPage = React.memo(() => {
               <span className="w-1 h-4 bg-purple-500 rounded-full"></span>
               Tech Stack / Languages
             </h3>
-            <div className="flex flex-wrap gap-2">
-              {/* Mocked for now, usually calculated by backend */}
-              {['TypeScript (78%)', 'CSS (12%)', 'HTML (10%)'].map((lang) => (
-                <span
-                  key={lang}
-                  className="bg-gray-850 px-3 py-1.5 rounded-xl border border-gray-800 text-gray-300 text-xs font-medium"
-                >
-                  {lang}
-                </span>
-              ))}
-            </div>
+            {repo.languages && repo.languages.length > 0 ? (
+              <>
+                {/* Stacked language bar */}
+                <div className="flex h-2.5 rounded-full overflow-hidden mb-4 bg-gray-800">
+                  {repo.languages.map((lang, i) => (
+                    <div
+                      key={lang.name}
+                      className="h-full transition-all duration-500"
+                      style={{
+                        width: `${lang.percentage}%`,
+                        backgroundColor:
+                          LANG_COLORS[lang.name] || FALLBACK_COLORS[i % FALLBACK_COLORS.length],
+                      }}
+                      title={`${lang.name} ${lang.percentage}%`}
+                    />
+                  ))}
+                </div>
+                {/* Language pills */}
+                <div className="flex flex-wrap gap-2">
+                  {repo.languages.map((lang, i) => (
+                    <span
+                      key={lang.name}
+                      className="flex items-center gap-1.5 bg-gray-850 px-3 py-1.5 rounded-xl border border-gray-800 text-gray-300 text-xs font-medium"
+                    >
+                      <span
+                        className="w-2.5 h-2.5 rounded-full shrink-0"
+                        style={{
+                          backgroundColor:
+                            LANG_COLORS[lang.name] || FALLBACK_COLORS[i % FALLBACK_COLORS.length],
+                        }}
+                      />
+                      {lang.name} ({lang.percentage}%)
+                    </span>
+                  ))}
+                </div>
+              </>
+            ) : (
+              <p className="text-gray-600 text-sm italic">No language data available.</p>
+            )}
           </div>
 
           {/* Metadata Card */}

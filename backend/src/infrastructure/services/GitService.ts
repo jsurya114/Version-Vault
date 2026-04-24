@@ -196,6 +196,151 @@ export class GitService {
     return this.getRepoPath(ownerUsername, repoName);
   }
 
+  /**
+   * Calculate the actual disk storage of a bare repository in bytes.
+   */
+  getRepoStorageBytes(ownerUsername: string, repoName: string): number {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    if (!fs.existsSync(repoPath)) return 0;
+    return this.getDirSizeRecursive(repoPath);
+  }
+
+  private getDirSizeRecursive(dirPath: string): number {
+    let totalSize = 0;
+    const entries = fs.readdirSync(dirPath, { withFileTypes: true });
+    for (const entry of entries) {
+      const fullPath = path.join(dirPath, entry.name);
+      if (entry.isDirectory()) {
+        totalSize += this.getDirSizeRecursive(fullPath);
+      } else {
+        totalSize += fs.statSync(fullPath).size;
+      }
+    }
+    return totalSize;
+  }
+
+  /**
+   * Return just the count of branches (faster than returning full branch objects).
+   */
+  async getBranchCount(ownerUsername: string, repoName: string): Promise<number> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+    try {
+      const result = await git.raw(['branch', '--list']);
+      if (!result || !result.trim()) return 0;
+      return result.trim().split('\n').filter(Boolean).length;
+    } catch {
+      return 0;
+    }
+  }
+
+  /**
+   * Extension → language name mapping.
+   */
+  private static readonly EXT_LANGUAGE_MAP: Record<string, string> = {
+    '.ts': 'TypeScript',
+    '.tsx': 'TypeScript',
+    '.js': 'JavaScript',
+    '.jsx': 'JavaScript',
+    '.mjs': 'JavaScript',
+    '.cjs': 'JavaScript',
+    '.py': 'Python',
+    '.rb': 'Ruby',
+    '.java': 'Java',
+    '.kt': 'Kotlin',
+    '.go': 'Go',
+    '.rs': 'Rust',
+    '.c': 'C',
+    '.h': 'C',
+    '.cpp': 'C++',
+    '.hpp': 'C++',
+    '.cs': 'C#',
+    '.swift': 'Swift',
+    '.php': 'PHP',
+    '.html': 'HTML',
+    '.htm': 'HTML',
+    '.css': 'CSS',
+    '.scss': 'SCSS',
+    '.sass': 'Sass',
+    '.less': 'Less',
+    '.vue': 'Vue',
+    '.svelte': 'Svelte',
+    '.json': 'JSON',
+    '.yaml': 'YAML',
+    '.yml': 'YAML',
+    '.xml': 'XML',
+    '.md': 'Markdown',
+    '.mdx': 'MDX',
+    '.sql': 'SQL',
+    '.sh': 'Shell',
+    '.bash': 'Shell',
+    '.zsh': 'Shell',
+    '.ps1': 'PowerShell',
+    '.dart': 'Dart',
+    '.r': 'R',
+    '.lua': 'Lua',
+    '.ex': 'Elixir',
+    '.exs': 'Elixir',
+    '.erl': 'Erlang',
+    '.scala': 'Scala',
+    '.hs': 'Haskell',
+    '.pl': 'Perl',
+    '.dockerfile': 'Dockerfile',
+  };
+
+  async getLanguageStats(
+    ownerUsername: string,
+    repoName: string,
+    branch: string = 'main',
+  ): Promise<{ name: string; percentage: number }[]> {
+    const repoPath = this.getRepoPath(ownerUsername, repoName);
+    const git = simpleGit(repoPath);
+
+    try {
+      // ls-tree -r -l gives: <mode> <type> <hash> <size>\t<path>
+      const result = await git.raw(['ls-tree', '-r', '-l', branch]);
+      if (!result || !result.trim()) return [];
+
+      const bytesPerLang: Record<string, number> = {};
+      let totalBytes = 0;
+
+      for (const line of result.trim().split('\n')) {
+        // Format: "100644 blob <hash>   <size>\t<filepath>"
+        const match = line.match(/^\d+\s+\w+\s+\S+\s+(\d+)\t(.+)$/);
+        if (!match) continue;
+
+        const fileSize = parseInt(match[1], 10);
+        const filePath = match[2];
+        const ext = path.extname(filePath).toLowerCase();
+
+        // Special case: Dockerfile has no extension
+        const baseName = path.basename(filePath).toLowerCase();
+        let lang: string | undefined;
+        if (baseName === 'dockerfile' || baseName.startsWith('dockerfile.')) {
+          lang = 'Dockerfile';
+        } else {
+          lang = GitService.EXT_LANGUAGE_MAP[ext];
+        }
+
+        if (!lang) continue; // Skip unknown / config files
+
+        bytesPerLang[lang] = (bytesPerLang[lang] || 0) + fileSize;
+        totalBytes += fileSize;
+      }
+
+      if (totalBytes === 0) return [];
+
+      return Object.entries(bytesPerLang)
+        .map(([name, bytes]) => ({
+          name,
+          percentage: Math.round((bytes / totalBytes) * 1000) / 10, // one decimal
+        }))
+        .sort((a, b) => b.percentage - a.percentage);
+    } catch {
+      return [];
+    }
+  }
+
   async getFiles(
     ownerUsername: string,
     repoName: string,
