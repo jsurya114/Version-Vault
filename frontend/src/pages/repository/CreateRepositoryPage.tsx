@@ -1,4 +1,5 @@
 import React, { useState, useMemo, useCallback } from 'react';
+import { Clipboard, Check } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createRepositoryThunk, fileUploadThunk } from '../../features/repository/repositoryThunks';
@@ -32,6 +33,7 @@ const CreateRepositoryPage = React.memo(() => {
   const [visibility, setVisibility] = useState<'public' | 'private'>('public');
 
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const validateName = (val: string) => {
     const repoNameRegex = /^[a-z0-9-_]+$/i;
@@ -59,6 +61,8 @@ git push -u origin main`,
 
   const handleCopy = useCallback(() => {
     navigator.clipboard.writeText(cliCommands);
+    setCopied(true);
+    setTimeout(() => setCopied(false), 2000);
   }, [cliCommands]);
 
   const handleSubmit = useCallback(async () => {
@@ -245,13 +249,33 @@ git push -u origin main`,
               <AiAgentRepoCreator onRepoCreated={handleRepoCreatedByAI} />
             </div>
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3.5 xs:p-4 sm:p-5">
-              <div className="flex items-center justify-between mb-3 xs:mb-4 flex-wrap gap-2">
-                <h2 className="text-white font-semibold">3. CLI Setup</h2>
-                <span className="text-xs bg-gray-800 text-gray-400 px-2 py-1 rounded">
-                  EXISTING PROJECT
-                </span>
+              <div className="flex items-center justify-between mb-3 xs:mb-4">
+                <div className="flex items-center gap-2">
+                  <h2 className="text-white font-semibold">3. CLI Setup</h2>
+                  <span className="text-[10px] bg-gray-800 text-gray-400 px-2 py-0.5 rounded font-bold uppercase tracking-wider">
+                    Existing Project
+                  </span>
+                </div>
+                <button
+                  onClick={handleCopy}
+                  className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                    copied
+                      ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                      : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'
+                  }`}
+                >
+                  {copied ? (
+                    <>
+                      <Check className="w-3.5 h-3.5" /> Copied!
+                    </>
+                  ) : (
+                    <>
+                      <Clipboard className="w-3.5 h-3.5" /> Copy Code
+                    </>
+                  )}
+                </button>
               </div>
-              <div className="bg-gray-950 rounded-lg p-3 xs:p-4 mb-3 font-mono text-[10px] xs:text-xs space-y-1 overflow-x-auto">
+              <div className="bg-gray-950 rounded-lg p-3 xs:p-4 font-mono text-[10px] xs:text-xs space-y-1 overflow-x-auto border border-gray-800/50">
                 {cliCommands.split('\n').map((line, i) => (
                   <div key={i} className="flex gap-3">
                     <span className="text-gray-600 select-none w-4 text-right">{i + 1}</span>
@@ -269,12 +293,6 @@ git push -u origin main`,
                   </div>
                 ))}
               </div>
-              <button
-                onClick={handleCopy}
-                className="w-full bg-gray-800 hover:bg-gray-700 text-gray-300 text-sm py-2 rounded-lg transition"
-              >
-                Copy to clipboard
-              </button>
             </div>
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3.5 xs:p-4 sm:p-5 space-y-3">
               {error && (

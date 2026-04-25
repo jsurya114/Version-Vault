@@ -141,6 +141,27 @@ const RepositoryDetailPage = () => {
   const [isUploading, setIsUploading] = useState(false);
   const [showUploadZone, setShowUploadZone] = useState(false);
   const [showCloneDropdown, setShowCloneDropdown] = useState(false);
+  const [commandsCopied, setCommandsCopied] = useState(false);
+
+  const emptyRepoCommands = useMemo(
+    () =>
+      [
+        `echo "# ${reponame}" >> README.md`,
+        'git init',
+        'git add README.md',
+        'git commit -m "first commit"',
+        `git branch -M ${repo?.defaultBranch || 'main'}`,
+        `git remote add origin ${cloneUrl}`,
+        `git push -u origin ${repo?.defaultBranch || 'main'}`,
+      ].join('\n'),
+    [reponame, repo?.defaultBranch, cloneUrl],
+  );
+
+  const handleCopyCommands = useCallback(() => {
+    navigator.clipboard.writeText(emptyRepoCommands);
+    setCommandsCopied(true);
+    setTimeout(() => setCommandsCopied(false), 2000);
+  }, [emptyRepoCommands]);
 
   useEffect(() => {
     if (username && reponame) {
@@ -1007,19 +1028,31 @@ const RepositoryDetailPage = () => {
             {/* EMPTY STATE */}
             {isEmpty && (
               <div className="flex-1 p-3 xs:p-4 sm:p-6">
-                <p className="text-gray-500 text-sm mb-4">
-                  This repository is empty. Push your first commit:
-                </p>
-                <div className="bg-gray-950 border border-gray-800 rounded-lg p-3 xs:p-4 font-mono text-[10px] xs:text-xs space-y-1 max-w-xl overflow-x-auto">
-                  {[
-                    `echo "# ${reponame}" >> README.md`,
-                    'git init',
-                    'git add README.md',
-                    'git commit -m "first commit"',
-                    `git branch -M ${repo.defaultBranch}`,
-                    `git remote add origin ${cloneUrl}`,
-                    `git push -u origin ${repo.defaultBranch}`,
-                  ].map((line, i) => (
+                <div className="flex items-center justify-between mb-4 max-w-xl">
+                  <p className="text-gray-500 text-sm">
+                    This repository is empty. Push your first commit:
+                  </p>
+                  <button
+                    onClick={handleCopyCommands}
+                    className={`flex items-center gap-2 px-3 py-1.5 rounded-lg text-xs font-bold transition-all ${
+                      commandsCopied
+                        ? 'bg-green-500/20 text-green-400 border border-green-500/30'
+                        : 'bg-gray-800 hover:bg-gray-700 text-gray-300 border border-gray-700'
+                    }`}
+                  >
+                    {commandsCopied ? (
+                      <>
+                        <Check className="w-3.5 h-3.5" /> Copied!
+                      </>
+                    ) : (
+                      <>
+                        <Copy className="w-3.5 h-3.5" /> Copy
+                      </>
+                    )}
+                  </button>
+                </div>
+                <div className="bg-gray-950 border border-gray-800 rounded-lg p-3 xs:p-4 font-mono text-[10px] xs:text-xs space-y-1 max-w-xl overflow-x-auto border border-gray-800/50">
+                  {emptyRepoCommands.split('\n').map((line, i) => (
                     <div key={i} className="flex gap-3">
                       <span className="text-gray-600 select-none w-4 text-right">{i + 1}</span>
                       <span

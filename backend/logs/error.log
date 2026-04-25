@@ -5930,3 +5930,24 @@ The most similar command is
 2026-04-25 10:31:52 [[31merror[39m]: POST /vv/subscription/cancel — Invalid or expired access token
 2026-04-25 10:31:55 [[31merror[39m]: POST /vv/subscription/cancel — Invalid or expired access token
 2026-04-25 10:32:02 [[31merror[39m]: POST /vv/subscription/cancel — No such subscription: 'sub_1TPo3EC9uSGgdeNHfDUP2Trh'
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-25 11:25:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-25 11:25:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-25 11:32:58 [[31merror[39m]: GET /vv/issues/jsurya114/mock — Repository not found
+2026-04-25 11:33:02 [[31merror[39m]: GET /vv/issues/jsurya114/mock — Repository not found
+2026-04-25 11:39:49 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-04-25 11:53:36 [[31merror[39m]: POST /vv/auth/verify-otp — Not a Valid Otp or Otp expired
+2026-04-25 11:57:07 [[31merror[39m]: POST /vv/auth/verify-otp — Not a Valid Otp or Otp expired

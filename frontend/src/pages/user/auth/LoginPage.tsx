@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useNavigate, Link,useSearchParams } from 'react-router-dom';
+import { useNavigate, Link, useSearchParams } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { loginThunk } from '../../../features/auth/authThunks';
 import { clearError } from '../../../features/auth/authSlice';
@@ -14,8 +14,7 @@ import { ROUTES } from '../../../constants/routes';
 const LoginPage = () => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
-  const [searchParams]=useSearchParams()
-  
+  const [searchParams] = useSearchParams();
 
   const isLoading = useAppSelector(selectAuthLoading);
   const error = useAppSelector(selectAuthError);
@@ -30,16 +29,16 @@ const LoginPage = () => {
   const [fieldErrors, setFieldErrors] = useState<Record<string, string>>({});
 
   //redirect to after successful login
-useEffect(() => {
-  if (isAuthenticated) {
-    const redirectTo = searchParams.get('redirect');
-    if (redirectTo) {
-      navigate(redirectTo, { replace: true });
-    } else {
-      navigate(ROUTES.HOME, { replace: true, state: { showLoginSuccess: true } });
+  useEffect(() => {
+    if (isAuthenticated) {
+      const redirectTo = searchParams.get('redirect');
+      if (redirectTo) {
+        navigate(redirectTo, { replace: true });
+      } else {
+        navigate(ROUTES.HOME, { replace: true, state: { showLoginSuccess: true } });
+      }
     }
-  }
-}, [isAuthenticated, searchParams, navigate]);
+  }, [isAuthenticated, searchParams, navigate]);
 
   //clear error when user types
   useEffect(() => {
@@ -232,16 +231,16 @@ useEffect(() => {
               </button>
             </form>
 
-            <p className="text-center text-gray-500 text-xs mt-4">
-              New to VersionVault?{' '}
-              <Link
-                to={ROUTES.REGISTER}
-                className="text-blue-400 hover:text-blue-300 transition font-medium"
-              >
-                Create an account,
-              </Link>
-            </p>
-            <div className="flex justify-between items-center mb-1">
+            <div className="mt-6 flex flex-col items-center gap-3">
+              <p className="text-gray-500 text-xs">
+                New to VersionVault?{' '}
+                <Link
+                  to={ROUTES.REGISTER}
+                  className="text-blue-400 hover:text-blue-300 transition font-medium"
+                >
+                  Create an account
+                </Link>
+              </p>
               <Link
                 to={ROUTES.FORGOT_PASSWORD}
                 className="text-blue-400 hover:text-blue-300 text-xs transition"
