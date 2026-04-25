@@ -95,14 +95,12 @@ export class AuthController {
         sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
-      res
-        .status(HttpStatusCodes.OK)
-        .json({
-          success: true,
-          message: 'Login successfull',
-          data: result.user,
-          accessToken: result.accessToken,
-        });
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        message: 'Login successfull',
+        data: result.user,
+        accessToken: result.accessToken,
+      });
     } catch (error) {
       next(error);
     }
@@ -165,8 +163,14 @@ export class AuthController {
       const refreshToken = req.cookies?.refreshToken || '';
       await this.logoutUseCase.execute(refreshToken);
 
-      res.clearCookie('accessToken');
-      res.clearCookie('refreshToken');
+      const cookieOptions = {
+        httpOnly: true,
+        secure: envConfig.NODE_ENV === 'production',
+        sameSite: (envConfig.NODE_ENV === 'production' ? 'none' : 'strict') as 'none' | 'strict',
+      };
+
+      res.clearCookie('accessToken', cookieOptions);
+      res.clearCookie('refreshToken', cookieOptions);
 
       res.status(HttpStatusCodes.OK).json({ success: true, message: 'Logged out successfully' });
     } catch (error) {
