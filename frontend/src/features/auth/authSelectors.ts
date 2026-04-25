@@ -19,3 +19,4 @@ export const selectIsAuthenticated = createSelector(
 );
 
 export const selectAuthUser = createSelector([selectBaseState], (state) => state.user);
+export const selectAccessToken = createSelector([selectBaseState], (state) => state.accessToken);

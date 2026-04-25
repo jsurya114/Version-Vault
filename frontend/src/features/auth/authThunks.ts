@@ -69,7 +69,7 @@ export const logoutThunk = createAsyncThunk('auth/logout', async (_, { rejectWit
 export const getMeThunk = createAsyncThunk('auth/getMe', async (_, { rejectWithValue }) => {
   try {
     const response = await authService.getMe();
-    return response.data;
+    return response;
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
   } catch (error: any) {
     return rejectWithValue(error.response?.data?.message || 'Session expired');

@@ -5,9 +5,11 @@ import ProtectRoute from './ProtectedRoute';
 import { ROUTES } from '../constants/routes';
 import ErrorBoundary from '../components/ErrorBoundary';
 import PageLoader from '../components/PageLoader';
-import { useAppDispatch } from '../app/hooks';
+import { useAppDispatch, useAppSelector } from '../app/hooks';
 import { getMeThunk } from '../features/auth/authThunks';
 import { authService } from '../services/auth.service';
+import { selectIsAuthenticated, selectAccessToken } from '../features/auth/authSelectors';
+import { socketService } from '../services/socketService';
 
 const LandingPage = lazy(() => import('../pages/LandingPage'));
 const LoginPage = lazy(() => import('../pages/user/auth/LoginPage'));
@@ -53,30 +55,38 @@ const CommitDetailPage = lazy(() => import('../pages/pullrequest/CommitDetailPag
 const AcceptInvitationPage = lazy(() => import('../pages/collaborators/AcceptInvitationPage'));
 
 //chat
-const ChatRoomPage =lazy(()=>import('../pages/user/home/ChatRoomPage'))
+const ChatRoomPage = lazy(() => import('../pages/user/home/ChatRoomPage'));
 
 //subscription
-import SubscriptionPage from '../pages/repository/subscription/SubscriptionPage'
-
+import SubscriptionPage from '../pages/repository/subscription/SubscriptionPage';
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
+  const isAuthenticated = useAppSelector(selectIsAuthenticated);
+  const accessToken = useAppSelector(selectAccessToken);
   const [authChecked, setAuthChecked] = useState(false);
 
   useEffect(() => {
     const initAuth = async () => {
       try {
-        //fist refresh the token,then get user
         await authService.refreshTokenApi();
-        await dispatch(getMeThunk());
+        await dispatch(getMeThunk()).unwrap();
       } catch (error) {
         console.error('Initial auth check failed:', error);
       } finally {
         setAuthChecked(true);
       }
     };
-    initAuth();
-  }, []);
+    if (!authChecked) initAuth();
+  }, [dispatch, authChecked]);
+
+  useEffect(() => {
+    if (isAuthenticated && accessToken) {
+      socketService.initSocket(accessToken);
+    } else {
+      socketService.disconnect();
+    }
+  }, [isAuthenticated, accessToken]);
 
   // shows loader until auth check completes
   if (!authChecked) return <PageLoader />;
@@ -267,14 +277,14 @@ const AppRouter = () => {
               }
             />
 
-            <Route 
-  path={ROUTES.SUBSCRIPTION} 
-  element={
-    <ProtectRoute>
-      <SubscriptionPage />
-    </ProtectRoute>
-  } 
-/>
+            <Route
+              path={ROUTES.SUBSCRIPTION}
+              element={
+                <ProtectRoute>
+                  <SubscriptionPage />
+                </ProtectRoute>
+              }
+            />
             <Route
               path={ROUTES.PR_FORM}
               element={
@@ -334,7 +344,14 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
-            <Route path={ROUTES.CHAT_LIST} element={<ProtectRoute><ChatRoomPage /></ProtectRoute>} />
+            <Route
+              path={ROUTES.CHAT_LIST}
+              element={
+                <ProtectRoute>
+                  <ChatRoomPage />
+                </ProtectRoute>
+              }
+            />
             <Route
               path={ROUTES.REPO_DETAIL}
               element={

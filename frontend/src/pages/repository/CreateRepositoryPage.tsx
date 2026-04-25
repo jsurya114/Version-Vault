@@ -9,6 +9,7 @@ import {
   selectIsUploading,
 } from '../../features/repository/repositorySelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
+import { API_BASE_URL } from '../../constants/api';
 import { ROUTES } from '../../constants/routes';
 import AppFooter from '../../types/common/Layout/AppFooter';
 
@@ -45,7 +46,7 @@ const CreateRepositoryPage = React.memo(() => {
   };
 
   const cloneUrl = useMemo(
-    () => `http://localhost:3125/vv/git/${user?.userId}/${name || 'new-repo'}.git`,
+    () => `${API_BASE_URL}/git/${user?.userId}/${name || 'new-repo'}.git`,
     [user?.userId, name],
   );
 

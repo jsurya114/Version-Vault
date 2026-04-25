@@ -48,6 +48,7 @@ import {
   selectBranches,
 } from '../../features/repository/repositorySelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
+import { API_BASE_URL } from '../../constants/api';
 import { ROUTES } from '../../constants/routes';
 import { repositoryService } from 'src/services/repository.service';
 
@@ -126,7 +127,7 @@ const RepositoryDetailPage = () => {
   const [isDeletingFile, setIsDeletingFile] = useState(false);
 
   const activeBranches = useAppSelector((state) => state.repository.activeBranches || []);
-  const cloneUrl = `http://localhost:3125/vv/git/${username}/${reponame}.git`;
+  const cloneUrl = `${API_BASE_URL}/git/${username}/${reponame}.git`;
   const isOwner = user?.userId === username;
   const latestCommit = commits[0];
   const isEmpty = !isFilesLoading && files.length === 0;

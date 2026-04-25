@@ -5961,3 +5961,16 @@ The most similar command is
 2026-04-25 12:54:18 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
 2026-04-25 12:54:18 [[31merror[39m]: GET /vv/collaborators/jsurya114/todo — Invalid or expired access token
 2026-04-25 12:54:18 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-25 20:53:03 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-25 20:53:03 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-25 20:53:03 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-25 20:53:03 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-25 20:53:03 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-25 20:53:03 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-25 21:23:07 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-25 21:23:07 [[31merror[39m]: GET /vv/chats/conversations — Invalid or expired access token
+2026-04-25 21:23:07 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-25 21:23:07 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-25 21:23:07 [[31merror[39m]: GET /vv/chats/conversations — Invalid or expired access token
+2026-04-25 21:23:07 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-25 21:23:08 [[31merror[39m]: GET /vv/chats/jsurya114/todo/history — Invalid or expired access token

@@ -79,6 +79,7 @@ const authSlice = createSlice({
       .addCase(loginThunk.fulfilled, (state, action) => {
         state.isLoading = false;
         state.user = action.payload.data;
+        state.accessToken = action.payload.accessToken;
         state.isAuthenticated = true;
       })
       .addCase(loginThunk.rejected, (state, action) => {
@@ -89,6 +90,7 @@ const authSlice = createSlice({
     builder
       .addCase(logoutThunk.fulfilled, (state) => {
         state.user = null;
+        state.accessToken = undefined;
         state.isAuthenticated = false;
         state.error = null;
         state.successMessage = null;
@@ -104,7 +106,8 @@ const authSlice = createSlice({
       })
       .addCase(getMeThunk.fulfilled, (state, action) => {
         state.isLoading = false;
-        state.user = action.payload;
+        state.user = action.payload.data;
+        state.accessToken = action.payload.accessToken;
         state.isAuthenticated = true;
       })
       .addCase(getMeThunk.rejected, (state) => {

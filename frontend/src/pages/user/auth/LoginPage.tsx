@@ -10,6 +10,7 @@ import {
 } from '../../../features/auth/authSelectors';
 
 import { ROUTES } from '../../../constants/routes';
+import { GOOGLE_AUTH_URL } from '../../../constants/api';
 
 const LoginPage = () => {
   const dispatch = useAppDispatch();
@@ -62,7 +63,7 @@ const LoginPage = () => {
     dispatch(loginThunk(formData));
   };
   const handleGoogleAuth = () => {
-    window.location.href = 'http://localhost:3125/vv/auth/google';
+    window.location.href = GOOGLE_AUTH_URL;
   };
   return (
     <div className="min-h-screen bg-gray-950 flex flex-col items-center justify-center px-4 py-10">
