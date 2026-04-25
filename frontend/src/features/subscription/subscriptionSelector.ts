@@ -5,7 +5,7 @@ const selectBaseState = (state: RootState) => state.subscription;
 export const selectSubscriptionStatus = createSelector([selectBaseState], (state) => state.status);
 export const selectIsPro = createSelector(
   [selectBaseState],
-  (state) => state.status.plan === 'pro' || state.status.plan === 'PRO' || state.status.isActive,
+  (state) => state.status.plan === 'pro' || state.status.isActive,
 );
 export const selectSubscriptionLoading = createSelector(
   [selectBaseState],
