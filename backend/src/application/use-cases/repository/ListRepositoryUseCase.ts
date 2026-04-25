@@ -21,7 +21,15 @@ export class ListRepoUseCase implements IListRepoUseCase {
     query: PaginationQueryDTO,
     authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<RepoResponseDTO>> {
-    const result = await this.repoRepository.findByOwner(ownerId, query, authenticatedUserId);
+    let result;
+
+    if (ownerId === authenticatedUserId) {
+      // If user is viewing their own list, show owned + collaborated repos
+      result = await this.repoRepository.findUserRepositories(ownerId, query);
+    } else {
+      // If viewing someone else's list, show only their public owned repos
+      result = await this.repoRepository.findByOwner(ownerId, query, authenticatedUserId);
+    }
 
     return {
       data: result.data.map(RepositoryMapper.toDTO),

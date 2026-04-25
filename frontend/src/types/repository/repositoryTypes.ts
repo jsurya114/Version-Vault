@@ -21,6 +21,7 @@ export interface RepositoryResponseDTO {
   branchCount?: number;
   storageBytes?: number;
   languages?: { name: string; percentage: number }[];
+  role?: string;
 }
 
 export interface CreateRepositoryDTO {

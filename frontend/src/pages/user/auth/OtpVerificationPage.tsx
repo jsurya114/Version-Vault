@@ -13,7 +13,6 @@ import {
 } from '../../../features/auth/authSelectors';
 import { ROUTES } from '../../../constants/routes';
 import { CommonLoader } from '../../../types/common/Layout/Loader';
-import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
 import { ErrorSonar } from '../../../types/common/Layout/ErrorSonar';
 
 const OtpVerificationPage = () => {
@@ -28,7 +27,6 @@ const OtpVerificationPage = () => {
   const [otp, setOtp] = useState('');
   const [fieldError, setFieldError] = useState('');
   const [localLoading, setLocalLoading] = useState(false);
-  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [errorSonar, setErrorSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [isVerified, setIsVerified] = useState(false);
 

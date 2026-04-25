@@ -1,6 +1,6 @@
 import { useEffect, useState, useMemo, useCallback } from 'react';
 import { Link, useNavigate, useLocation } from 'react-router-dom';
-import { GitFork, Folder} from 'lucide-react';
+import { GitFork, Folder } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   listRepositoryThunk,
@@ -13,8 +13,6 @@ import {
   selectRepositoryError,
   selectRepositoryMeta,
 } from '../../features/repository/repositorySelectors';
-import { getAllCollabsReposThunk } from '../../features/collaborator/invitationThunk';
-import { selectCollabRepos } from '../../features/collaborator/invitationSelectors';
 import { selectAuthUser } from '../../features/auth/authSelectors';
 import TableFilters from '../../types/common/Filters/TableFilters';
 import DataTable from '../../types/common/Table/DataTable';
@@ -44,6 +42,7 @@ const RepositoryListPage = () => {
   const authUser = useAppSelector(selectAuthUser);
   const [search, setSearch] = useState('');
   const [visibilityFilter, setVisibilityFilter] = useState('all');
+  const [repoTypeFilter, setRepoTypeFilter] = useState('all');
   const [sortField, setSortField] = useState('createdAt');
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
   const [page, setPage] = useState(1);
@@ -74,15 +73,15 @@ const RepositoryListPage = () => {
   const fetchParams = useMemo(
     () => ({
       page,
-      limit: 5,
+      limit,
       search: search || undefined,
       sort: sortField,
       order: sortOrder,
-      status: visibilityFilter === 'all' ? undefined : (visibilityFilter as 'active'),
+      status: visibilityFilter === 'all' ? undefined : (visibilityFilter as 'public' | 'private'),
+      type: repoTypeFilter === 'all' ? undefined : repoTypeFilter,
     }),
-    [page, search, sortField, sortOrder, visibilityFilter],
+    [page, search, sortField, sortOrder, visibilityFilter, repoTypeFilter],
   );
-  const collabRepos = useAppSelector(selectCollabRepos);
 
   useEffect(() => {
     const timer = setTimeout(
@@ -93,9 +92,6 @@ const RepositoryListPage = () => {
     );
     return () => clearTimeout(timer);
   }, [dispatch, fetchParams, search]);
-  useEffect(() => {
-    dispatch(getAllCollabsReposThunk());
-  }, [dispatch]);
 
   const handleDelete = useCallback(async () => {
     if (!deleteModal.repo) return;
@@ -107,14 +103,6 @@ const RepositoryListPage = () => {
     );
     setDeleteModal({ open: false, repo: null });
   }, [dispatch, authUser?.userId, deleteModal.repo]);
-
-  const allRepos = useMemo(() => {
-    const ownedIds = new Set(repositories.map((r) => r.id));
-    const uniqueCollabRepos = collabRepos
-      .filter((r) => !ownedIds.has(r.repo.id))
-      .map((c) => c.repo);
-    return [...repositories, ...uniqueCollabRepos];
-  }, [repositories, collabRepos]);
 
   const openVisibilityModal = useCallback((repo: RepositoryResponseDTO) => {
     setVisibilityModal({ open: true, repo });
@@ -141,7 +129,7 @@ const RepositoryListPage = () => {
         key: 'name',
         label: 'REPOSITORY',
         render: (r) => {
-          const isCollab = collabRepos.some((cr) => cr.repo.id === r.id);
+          const isCollab = r.role && r.role !== 'owner';
           return (
             <div className="flex items-center gap-2">
               <div className="w-8 h-8 rounded bg-gray-800 flex items-center justify-center text-gray-400 text-xs">
@@ -234,19 +222,18 @@ const RepositoryListPage = () => {
         key: 'actions',
         label: 'ACTIONS',
         render: (r) => {
-          const collabEntry = collabRepos.find((cr) => cr.repo.id === r.id);
-          if (collabEntry) {
+          if (r.role && r.role !== 'owner') {
             return (
               <span
                 className={`text-xs italic ${
-                  collabEntry.role === 'read'
+                  r.role === 'read'
                     ? 'text-gray-600'
-                    : collabEntry.role === 'write'
+                    : r.role === 'write'
                       ? 'text-blue-400'
                       : 'text-purple-400'
                 }`}
               >
-                {collabEntry.role} access
+                {r.role} access
               </span>
             );
           }
@@ -275,7 +262,7 @@ const RepositoryListPage = () => {
         },
       },
     ],
-    [navigate, authUser?.userId, openVisibilityModal, collabRepos],
+    [navigate, authUser?.userId, openVisibilityModal],
   );
 
   return (
@@ -304,19 +291,32 @@ const RepositoryListPage = () => {
           searchPlaceholder="Search repositories..."
           filterValue={visibilityFilter}
           filterOptions={[
-            { label: 'All', value: 'all' },
-            { label: 'PUBLIC', value: 'public' },
-            { label: 'PRIVATE', value: 'private' },
+            { label: 'All Visibility', value: 'all' },
+            { label: 'Public', value: 'public' },
+            { label: 'Private', value: 'private' },
           ]}
           onFilterChange={(val) => {
             setVisibilityFilter(val);
             setPage(1);
           }}
+          extraFilters={[
+            {
+              value: repoTypeFilter,
+              onChange: (val) => {
+                setRepoTypeFilter(val);
+                setPage(1);
+              },
+              options: [
+                { label: 'All Types', value: 'all' },
+                { label: 'Owned', value: 'owned' },
+                { label: 'Collaborator', value: 'collab' },
+              ],
+            },
+          ]}
           sortField={sortField}
           sortOptions={[
-            { label: 'Created At', value: 'createdAt' },
-            { label: 'Name', value: 'name' },
-            { label: 'Stars', value: 'stars' },
+            { label: 'Sort: Created At', value: 'createdAt' },
+            { label: 'Sort: Stars', value: 'stars' },
           ]}
           onSortFieldChange={(val) => {
             setSortField(val);
@@ -339,7 +339,7 @@ const RepositoryListPage = () => {
         {/* Table */}
         <DataTable
           columns={columns}
-          data={allRepos}
+          data={repositories}
           isLoading={isLoading}
           emptyMessage="No repositories yet. Create your first repository!"
         />

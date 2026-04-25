@@ -18,6 +18,7 @@ export interface RepoResponseDTO {
   branchCount?: number;
   storageBytes?: number;
   languages?: { name: string; percentage: number }[];
+  role?: string;
 }
 
 export interface ToggleStarDTO {

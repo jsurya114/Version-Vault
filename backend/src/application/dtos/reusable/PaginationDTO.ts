@@ -5,6 +5,7 @@ export interface PaginationQueryDTO<T = string> {
   order?: 'asc' | 'desc';
   search?: string;
   status?: T;
+  type?: string;
 }
 
 export interface PaginatedResponseDTO<T> {

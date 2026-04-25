@@ -12,7 +12,7 @@
     "skipLibCheck": true,
     "resolveJsonModule": true,
     "baseUrl": ".",
-    "ignoreDeprecations": "5.0", // <--- Add this line
+    "ignoreDeprecations": "6.0",
     "paths": {
       "@version-vault/shared-types": ["../packages/shared-types/src/index.ts"],
       "@version-vault/shared-types/*": ["../packages/shared-types/src/*"]

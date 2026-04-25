@@ -19,4 +19,5 @@ export interface IRepository {
   starredBy?: string[];
   createdAt?: Date;
   updatedAt?: Date;
+  role?: string;
 }

@@ -246,12 +246,14 @@ const repositorySlice = createSlice({
       .addCase(toggleStarThunk.fulfilled, (state, action) => {
         state.isStarring = false;
         const { starsCount } = action.payload;
-        const reponame = action.meta.arg.reponame;
+        const { username, reponame } = action.meta.arg;
         if (state.selectedRepository && state.selectedRepository.name === reponame) {
           state.selectedRepository.stars = action.payload.starsCount;
         }
         state.repositories = state.repositories.map((repo) =>
-          repo.name === reponame ? { ...repo, stars: starsCount } : repo,
+          repo.name === reponame && repo.ownerUsername === username
+            ? { ...repo, stars: starsCount }
+            : repo,
         );
       })
       .addCase(toggleStarThunk.rejected, (state, action) => {

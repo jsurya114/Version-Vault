@@ -85,14 +85,14 @@ export class AuthController {
       res.cookie('accessToken', result.accessToken, {
         httpOnly: true,
         secure: envConfig.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 15 * 60 * 1000, // 15 minutes
       });
 
       res.cookie('refreshToken', result.refreshToken, {
         httpOnly: true,
         secure: envConfig.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
       });
       res
@@ -136,13 +136,13 @@ export class AuthController {
       res.cookie('accessToken', result.accessToken, {
         httpOnly: true,
         secure: envConfig.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 15 * 60 * 1000,
       });
       res.cookie('refreshToken', result.refreshToken, {
         httpOnly: true,
         secure: envConfig.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 7 * 24 * 60 * 60 * 1000,
       });
       res.redirect(`${envConfig.CLIENT_URL}/home`);
@@ -186,7 +186,7 @@ export class AuthController {
       res.cookie('accessToken', result.accessToken, {
         httpOnly: true,
         secure: envConfig.NODE_ENV === 'production',
-        sameSite: 'strict',
+        sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 15 * 60 * 1000,
       });
       res.status(HttpStatusCodes.OK).json({ success: true, message: 'Token refreshed' });

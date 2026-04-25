@@ -33,6 +33,10 @@ export const StarButton: React.FC<StarButtonProps> = ({
     }
   }, [user, initialStarredBy]);
 
+  useEffect(() => {
+    setStarsCount(initialStars);
+  }, [initialStars]);
+
   const handleToggle = async (e: React.MouseEvent) => {
     e.stopPropagation(); // Stop parent card from navigating
     if (isOwner) return; // Don't allow owners to star

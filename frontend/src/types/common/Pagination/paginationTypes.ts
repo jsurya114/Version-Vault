@@ -4,8 +4,9 @@ export interface PaginationQuery {
   sort?: string;
   order?: 'asc' | 'desc';
   search?: string;
-  status?: 'active' | 'blocked' | 'pending';
+  status?: 'active' | 'blocked' | 'pending' | 'public' | 'private';
   userId?: string;
+  type?: string;
 }
 
 export interface PaginationMeta {

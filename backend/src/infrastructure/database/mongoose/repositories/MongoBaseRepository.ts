@@ -45,13 +45,16 @@ export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
     const skip = Number(page - 1) * limit;
     const sortField = query.sort || 'createdAt';
     const sortOrder = query.order === 'asc' ? 1 : -1;
+
+    // Stable sorting: secondary sort by createdAt if primary is different
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const sortOptions: any = { [sortField]: sortOrder };
+    if (sortField !== 'createdAt') {
+      sortOptions.createdAt = -1;
+    }
+
     const [docs, total] = await Promise.all([
-      this.model
-        .find(filter)
-        .sort({ [sortField]: sortOrder })
-        .skip(skip)
-        .limit(limit)
-        .lean(),
+      this.model.find(filter).sort(sortOptions).skip(skip).limit(limit).lean(),
       this.model.countDocuments(filter),
     ]);
 
