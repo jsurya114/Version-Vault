@@ -1,4 +1,5 @@
 export const API_BASE_URL = import.meta.env.VITE_API_URL || 'http://localhost:3125/vv';
+export const GOOGLE_AUTH_URL = `${API_BASE_URL}/auth/google`;
 
 export const AUTH_ENDPOINTS = {
   REGISTER: '/auth/register',

@@ -97,7 +97,12 @@ export class AuthController {
       });
       res
         .status(HttpStatusCodes.OK)
-        .json({ success: true, message: 'Login successfull', data: result.user });
+        .json({
+          success: true,
+          message: 'Login successfull',
+          data: result.user,
+          accessToken: result.accessToken,
+        });
     } catch (error) {
       next(error);
     }
@@ -189,7 +194,11 @@ export class AuthController {
         sameSite: envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
         maxAge: 15 * 60 * 1000,
       });
-      res.status(HttpStatusCodes.OK).json({ success: true, message: 'Token refreshed' });
+      res.status(HttpStatusCodes.OK).json({
+        success: true,
+        message: 'Token refreshed',
+        accessToken: result.accessToken,
+      });
     } catch (error) {
       next(error);
     }
@@ -206,7 +215,8 @@ export class AuthController {
       }
 
       const user = await this.getmeUseCase.execute(userId);
-      res.status(HttpStatusCodes.OK).json({ success: true, data: user });
+      const token = req.cookies?.accessToken;
+      res.status(HttpStatusCodes.OK).json({ success: true, data: user, accessToken: token });
     } catch (error) {
       next(error);
     }

@@ -32,4 +32,5 @@ export interface AuthState {
   registeredEmail: string | null;
   user: IAuthuser | null;
   isAuthenticated: boolean;
+  accessToken?: string;
 }

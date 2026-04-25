@@ -2,7 +2,7 @@ import React, { useEffect, useRef, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Send, MessageSquare, ChevronRight, Clock, Trash2, X, Menu } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
-import { selectAuthUser } from '../../../features/auth/authSelectors';
+import { selectAuthUser, selectAccessToken } from '../../../features/auth/authSelectors';
 import {
   fetchChatHistoryThunk,
   listChatRepoThunk,
@@ -19,6 +19,7 @@ const ChatRoomPage = () => {
   const navigate = useNavigate();
   const dispatch = useAppDispatch();
   const currentUser = useAppSelector(selectAuthUser);
+  const accessToken = useAppSelector(selectAccessToken);
   const messages = useAppSelector(selectChatMessages);
   const conversations = useAppSelector(selectChatConversations);
 
@@ -41,7 +42,7 @@ const ChatRoomPage = () => {
     if (username && reponame) {
       dispatch(clearChatState());
       dispatch(fetchChatHistoryThunk({ username, reponame }));
-      const socket = socketService.initSocket('');
+      const socket = socketService.initSocket(accessToken || '');
       const joinRoom = () => {
         setIsSocketConnected(true);
         socketService.joinRequest(`${username}/${reponame}`);

@@ -13,6 +13,7 @@ import {
   selectAuthSuccessMessage,
 } from '../../../features/auth/authSelectors';
 import { ROUTES } from '../../../constants/routes';
+import { GOOGLE_AUTH_URL } from '../../../constants/api';
 
 const RegisterPage = () => {
   const dispatch = useAppDispatch();
@@ -68,7 +69,7 @@ const RegisterPage = () => {
     dispatch(registerThunk(formData));
   };
   const handleGoogleAuth = () => {
-    window.location.href = 'http://localhost:3125/vv/auth/google';
+    window.location.href = GOOGLE_AUTH_URL;
   };
 
   return (
