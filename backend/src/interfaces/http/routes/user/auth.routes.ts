@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { container } from 'tsyringe';
 import { AuthController } from '../../controllers/user/AuthController';
 import { validate } from '../../middleware/ValidationMiddleware';
@@ -16,35 +16,35 @@ const authController = container.resolve(AuthController);
  */
 
 //api/auth/register
-router.post('/register', authLimiter, validate(registerSchema), (req, res, next) =>
+router.post('/register', authLimiter, validate(registerSchema), (req: Request, res: Response, next: NextFunction) =>
   authController.register(req, res, next),
 );
-router.post('/verify-otp', otpLimiter, validate(verifyOtpSchema), (req, res, next) =>
+router.post('/verify-otp', otpLimiter, validate(verifyOtpSchema), (req: Request, res: Response, next: NextFunction) =>
   authController.verifyOtp(req, res, next),
 );
 
-router.post('/login', authLimiter, validate(loginSchema), (req, res, next) =>
+router.post('/login', authLimiter, validate(loginSchema), (req: Request, res: Response, next: NextFunction) =>
   authController.login(req, res, next),
 );
 
-router.get('/google', (req, res, next) => authController.googleAuth(req, res, next));
-router.get('/google/callback', (req, res, next) => authController.googleCallback(req, res, next));
+router.get('/google', (req: Request, res: Response, next: NextFunction) => authController.googleAuth(req, res, next));
+router.get('/google/callback', (req: Request, res: Response, next: NextFunction) => authController.googleCallback(req, res, next));
 
-router.post('/logout', (req, res, next) => authController.logout(req, res, next));
-router.post('/refresh-token', (req, res, next) => authController.refreshToken(req, res, next));
-router.get('/me', authLimiter, authMiddleware, (req, res, next) =>
+router.post('/logout', (req: Request, res: Response, next: NextFunction) => authController.logout(req, res, next));
+router.post('/refresh-token', (req: Request, res: Response, next: NextFunction) => authController.refreshToken(req, res, next));
+router.get('/me', authLimiter, authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   authController.getMe(req, res, next),
 );
 
-router.post('/forgot-password', (req, res, next) => authController.forgotPassword(req, res, next));
-router.post('/verify-reset-otp', otpLimiter, (req, res, next) =>
+router.post('/forgot-password', (req: Request, res: Response, next: NextFunction) => authController.forgotPassword(req, res, next));
+router.post('/verify-reset-otp', otpLimiter, (req: Request, res: Response, next: NextFunction) =>
   authController.verifyResetOtp(req, res, next),
 );
-router.post('/reset-password', authLimiter, (req, res, next) =>
+router.post('/reset-password', authLimiter, (req: Request, res: Response, next: NextFunction) =>
   authController.resetPassword(req, res, next),
 );
-router.post('resend-otp', otpLimiter, (req, res, next) => authController.resendOtp(req, res, next));
+router.post('resend-otp', otpLimiter, (req: Request, res: Response, next: NextFunction) => authController.resendOtp(req, res, next));
 
-router.get('/search', (req, res) => authController.globalSearch(req, res));
+router.get('/search', (req: Request, res: Response) => authController.globalSearch(req, res));
 
 export default router;

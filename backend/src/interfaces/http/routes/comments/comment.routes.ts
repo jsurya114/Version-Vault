@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { container } from 'tsyringe';
 import { CommentController } from '../../controllers/comment/CommentController';
 
@@ -15,7 +15,7 @@ router.post(
   '/:username/:reponame/:targetType/:targetId',
   authMiddleware,
   repoAccessMiddleware,
-  (req, res, next) => commentController().createComment(req, res, next),
+  (req: Request, res: Response, next: NextFunction) => commentController().createComment(req, res, next),
 );
 
 // VIEW Comments: Let anyone try to view (visibilityMiddleware), but repoAccessMiddleware will block them if it's a private repo and they lack permissions.
@@ -23,10 +23,10 @@ router.get(
   '/:username/:reponame/:targetType/:targetId',
   visibilityMiddleware,
   repoAccessMiddleware,
-  (req, res, next) => commentController().listComment(req, res, next),
+  (req: Request, res: Response, next: NextFunction) => commentController().listComment(req, res, next),
 );
 // DELETE Comment: Strict auth check
-router.delete('/:commentId', authMiddleware, (req, res, next) =>
+router.delete('/:commentId', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   commentController().delete(req, res, next),
 );
 

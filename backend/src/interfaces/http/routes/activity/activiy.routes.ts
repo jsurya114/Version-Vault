@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
 import { ActivityController } from '../../controllers/activity/ActivityController';
 import { container } from 'tsyringe';
@@ -7,7 +7,7 @@ import { AuthRequest } from '../../controllers/repository/RepositoryController';
 const activityController = (): ActivityController => container.resolve(ActivityController);
 const router = Router();
 
-router.get('/feed', authMiddleware, (req, res, next) =>
+router.get('/feed', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   activityController().getFeed(req as AuthRequest, res, next),
 );
 

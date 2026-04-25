@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { container } from 'tsyringe';
 import { RepositoryController } from '../../controllers/repository/RepositoryController';
 import { UploadFileController } from '../../controllers/repository/UploadFileController';
@@ -20,75 +20,75 @@ const commitController = (): CommitController => container.resolve(CommitControl
 const fileUploadController = (): UploadFileController => container.resolve(UploadFileController);
 const downloadZipController = (): DownloadZipController => container.resolve(DownloadZipController);
 
-router.post('/', authMiddleware, (req, res, next) =>
+router.post('/', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().createRepository(req as AuthRequest, res, next),
 );
-router.get('/', authMiddleware, (req, res, next) =>
+router.get('/', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().listRepository(req as AuthRequest, res, next),
 );
-router.get('/:username/:reponame', visibilityMiddleware, (req, res, next) =>
+router.get('/:username/:reponame', visibilityMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().getRepository(req, res, next),
 );
-router.delete('/:username/:reponame', authMiddleware, ownerMiddleware, (req, res, next) =>
+router.delete('/:username/:reponame', authMiddleware, ownerMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().deleteRepository(req as AuthRequest, res, next),
 );
 // GET /vv/repo/:username/:reponame/files — get files
-router.get('/:username/:reponame/files', (req, res, next) =>
+router.get('/:username/:reponame/files', (req: Request, res: Response, next: NextFunction) =>
   repoController().getFiles(req, res, next),
 );
 
 // GET /vv/repo/:username/:reponame/content — get file content
-router.get('/:username/:reponame/content', (req, res, next) =>
+router.get('/:username/:reponame/content', (req: Request, res: Response, next: NextFunction) =>
   repoController().getFileContent(req, res, next),
 );
 
 // GET /vv/repo/:username/:reponame/commits — get commits
-router.get('/:username/:reponame/commits', (req, res, next) =>
+router.get('/:username/:reponame/commits', (req: Request, res: Response, next: NextFunction) =>
   repoController().getCommit(req, res, next),
 );
 
-router.get('/:username/:reponame/branches', (req, res, next) =>
+router.get('/:username/:reponame/branches', (req: Request, res: Response, next: NextFunction) =>
   branchController().getBranches(req, res, next),
 );
 router.post(
   '/:username/:reponame/branches',
   authMiddleware,
   writeAccessMiddleware,
-  (req, res, next) => branchController().createBranch(req, res, next),
+  (req: Request, res: Response, next: NextFunction) => branchController().createBranch(req, res, next),
 );
 router.delete(
   '/:username/:reponame/branches/:branchName',
   authMiddleware,
   writeAccessMiddleware,
-  (req, res, next) => branchController().deleteBranch(req, res, next),
+  (req: Request, res: Response, next: NextFunction) => branchController().deleteBranch(req, res, next),
 );
 
 router.post(
   '/:username/:reponame/commit',
   authMiddleware,
   writeAccessMiddleware,
-  (req, res, next) => commitController().createCommit(req as AuthRequest, res, next),
+  (req: Request, res: Response, next: NextFunction) => commitController().createCommit(req as AuthRequest, res, next),
 );
 
 router.get(
   '/:username/:reponame/compare/:base/:head',
   authMiddleware,
   writeAccessMiddleware,
-  (req, res, next) => commitController().compareCommit(req, res, next),
+  (req: Request, res: Response, next: NextFunction) => commitController().compareCommit(req, res, next),
 );
 
-router.patch('/:username/:reponame/visibility', authMiddleware, ownerMiddleware, (req, res, next) =>
+router.patch('/:username/:reponame/visibility', authMiddleware, ownerMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().updateVisibility(req as AuthRequest, res, next),
 );
 
-router.post('/:username/:reponame/fork', authMiddleware, (req, res, next) =>
+router.post('/:username/:reponame/fork', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().forkRepository(req as AuthRequest, res, next),
 );
 
-router.post('/:username/:reponame/star', authMiddleware, (req, res, next) =>
+router.post('/:username/:reponame/star', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().toggleStar(req as AuthRequest, res, next),
 );
-router.get('/:username/:reponame/star/users', (req, res, next) =>
+router.get('/:username/:reponame/star/users', (req: Request, res: Response, next: NextFunction) =>
   repoController().getStarredUsers(req, res, next),
 );
 
@@ -96,14 +96,14 @@ router.post(
   '/upload',
   authMiddleware,
   uploadRepoFiles.array('files'), // "files" is the form-data key
-  (req, res, next) => fileUploadController().fileUpload(req as AuthRequest, res, next),
+  (req: Request, res: Response, next: NextFunction) => fileUploadController().fileUpload(req as AuthRequest, res, next),
 );
 
-router.get('/:username/:reponame/active-branches', authMiddleware, (req, res, next) =>
+router.get('/:username/:reponame/active-branches', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().getActiveBranches(req, res, next),
 );
 
-router.delete('/:username/:reponame/file', authMiddleware, (req, res, next) =>
+router.delete('/:username/:reponame/file', authMiddleware, (req: Request, res: Response, next: NextFunction) =>
   repoController().deleteFile(req as AuthRequest, res, next),
 );
 //download zipfile
@@ -111,7 +111,7 @@ router.get(
   '/:username/:reponame/download/zip',
   authMiddleware,
   visibilityMiddleware,
-  (req, res, next) => downloadZipController().downloadZip(req, res, next),
+  (req: Request, res: Response, next: NextFunction) => downloadZipController().downloadZip(req, res, next),
 );
 
 //rename branch
@@ -119,7 +119,7 @@ router.put(
   '/:username/:reponame/branches/:branchName',
   authMiddleware,
   writeAccessMiddleware,
-  (req, res, next) => branchController().renameBranch(req as AuthRequest, res, next),
+  (req: Request, res: Response, next: NextFunction) => branchController().renameBranch(req as AuthRequest, res, next),
 );
 
 export default router;
