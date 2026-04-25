@@ -25,6 +25,7 @@ export const TOKENS = {
   IForgotPasswordUseCase: Symbol.for('IForgotPasswordUseCase'),
   IResetPasswordUseCase: Symbol.for('IResetPasswordUseCase'),
   IResendOtpUseCase: Symbol.for('IResendOtpUseCase'),
+  IVerifyResetOtpUseCase: Symbol.for('IVerifyResetOtpUseCase'),
 
   //admin
   IGetAllUsersUseCase: Symbol.for('IGetAllUsersUseCase'),
@@ -143,12 +144,10 @@ export const TOKENS = {
   IRecordActivityUseCase: Symbol.for('IRecordActivityUseCase'),
   IGetActivityFeedUseCase: Symbol.for('IGetActivityFeedUseCase'),
 
-  
-   //subscription
+  //subscription
   IPaymentService: Symbol.for('IPaymentService'),
   ICreateCheckoutUseCase: Symbol.for('ICreateCheckoutUseCase'),
   IHandleWebhookUseCase: Symbol.for('IHandleWebhookUseCase'),
   ICancelSubscriptionUseCase: Symbol.for('ICancelSubscriptionUseCase'),
   IGetSubscriptionStatusUseCase: Symbol.for('IGetSubscriptionStatusUseCase'),
-
 } as const;

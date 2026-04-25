@@ -89,6 +89,19 @@ export const forgotPasswordThunk = createAsyncThunk(
   },
 );
 
+export const verifyResetOtpThunk = createAsyncThunk(
+  'auth/verifyResetOtp',
+  async ({ email, otp }: { email: string; otp: string }, { rejectWithValue }) => {
+    try {
+      const response = await authService.verifyResetOtp(email, otp);
+      return response.message;
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data?.message || 'Invalid or expired OTP');
+    }
+  },
+);
+
 export const resetPasswordThunk = createAsyncThunk(
   'auth/resetPassword',
   async (

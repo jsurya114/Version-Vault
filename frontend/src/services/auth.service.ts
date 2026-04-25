@@ -31,6 +31,10 @@ export const authService = {
     const response = await axiosInstance.post(AUTH_ENDPOINTS.FORGOT_PASSWORD, { email });
     return response.data;
   },
+  verifyResetOtp: async (email: string, otp: string) => {
+    const response = await axiosInstance.post(AUTH_ENDPOINTS.VERIFY_RESET_OTP, { email, otp });
+    return response.data;
+  },
   resetPassword: async (email: string, otp: string, newPassword: string) => {
     const response = await axiosInstance.post(AUTH_ENDPOINTS.RESET_PASSWORD, {
       email,

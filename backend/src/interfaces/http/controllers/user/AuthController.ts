@@ -12,6 +12,7 @@ import type { IGetMeUseCase } from '../../../../application/use-cases/interfaces
 import type { IForgotPasswordUseCase } from '../../../../application/use-cases/interfaces/IForgotPasswordUseCase';
 import type { IResetPasswordUseCase } from '../../../../application/use-cases/interfaces/IResetPasswordUseCase';
 import type { IResendOtpUseCase } from '../../../../application/use-cases/interfaces/IResendOtpUseCase';
+import type { IVerifyResetOtpUseCase } from '../../../../application/use-cases/interfaces/IVerifyResetOtpUseCase';
 import { ILogger } from '../../../../domain/interfaces/services/ILogger';
 
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
@@ -35,6 +36,8 @@ export class AuthController {
     @inject(TOKENS.IResetPasswordUseCase)
     private readonly resetPasswordUseCase: IResetPasswordUseCase,
     @inject(TOKENS.IResendOtpUseCase) private readonly resendOtpUseCase: IResendOtpUseCase,
+    @inject(TOKENS.IVerifyResetOtpUseCase)
+    private readonly verifyResetOtpUseCase: IVerifyResetOtpUseCase,
     @inject(TOKENS.IGetAllUsersUseCase) private readonly _getAllUsersUseCase: IGetAllUsersUseCase,
     @inject(TOKENS.ILogger) private readonly _logger: ILogger,
   ) {}
@@ -217,6 +220,19 @@ export class AuthController {
     try {
       const { email } = req.body;
       const result = await this.forgotpasswordUseCase.execute(email);
+      res.status(HttpStatusCodes.OK).json({ success: true, message: result.message });
+    } catch (error) {
+      next(error);
+    }
+  }
+
+  /**
+   * POST /vv/auth/verify-reset-otp
+   */
+  async verifyResetOtp(req: Request, res: Response, next: NextFunction): Promise<void> {
+    try {
+      const { email, otp } = req.body;
+      const result = await this.verifyResetOtpUseCase.execute(email, otp);
       res.status(HttpStatusCodes.OK).json({ success: true, message: result.message });
     } catch (error) {
       next(error);

@@ -33,6 +33,7 @@ import { GetMeUseCase } from './application/use-cases/auth/GetMeUseCase';
 import { ForgotPasswordUseCase } from './application/use-cases/auth/ForgotPasswordUseCase';
 import { ResendOtpUseCase } from './application/use-cases/auth/ResendOtpUseCase';
 import { ResetPasswordUseCase } from './application/use-cases/auth/ResetPasswordUseCase';
+import { VerifyResetOtpUseCase } from './application/use-cases/auth/VerifyResetOtpUseCase';
 
 // admin use cases
 import { GetAllUsersUseCase } from './application/use-cases/admin/GetAllUsersUseCase';
@@ -188,6 +189,7 @@ container.register(TOKENS.IGetAllUsersUseCase, { useClass: GetAllUsersUseCase })
 container.register(TOKENS.IForgotPasswordUseCase, { useClass: ForgotPasswordUseCase });
 container.register(TOKENS.IResetPasswordUseCase, { useClass: ResetPasswordUseCase });
 container.register(TOKENS.IResendOtpUseCase, { useClass: ResendOtpUseCase });
+container.register(TOKENS.IVerifyResetOtpUseCase, { useClass: VerifyResetOtpUseCase });
 container.register(TOKENS.IGetUserByIdUseCase, { useClass: GetUserByIdUseCase });
 container.register(TOKENS.IBlockUserUseCase, { useClass: BlockUserUseCase });
 container.register(TOKENS.IUnblockUserUseCase, { useClass: UnblockUserUseCase });
@@ -303,10 +305,12 @@ container.register(TOKENS.IActivityRepository, { useClass: MongoActivityReposito
 container.register(TOKENS.IGetActivityFeedUseCase, { useClass: GetActivityFeedUseCase });
 
 //subscription
-container.registerSingleton(TOKENS.IPaymentService,StripeService)
-container.register(TOKENS.IGetSubscriptionStatusUseCase,{useClass:GetSubscriptionStatusUseCase})
-container.register(TOKENS.IHandleWebhookUseCase,{useClass:HandleWebhookUseCase})
-container.register(TOKENS.ICancelSubscriptionUseCase,{useClass:CancelSubscription})
-container.register(TOKENS.ICreateCheckoutUseCase,{useClass:CreateCheckoutUseCase})
+container.registerSingleton(TOKENS.IPaymentService, StripeService);
+container.register(TOKENS.IGetSubscriptionStatusUseCase, {
+  useClass: GetSubscriptionStatusUseCase,
+});
+container.register(TOKENS.IHandleWebhookUseCase, { useClass: HandleWebhookUseCase });
+container.register(TOKENS.ICancelSubscriptionUseCase, { useClass: CancelSubscription });
+container.register(TOKENS.ICreateCheckoutUseCase, { useClass: CreateCheckoutUseCase });
 
 export { container };

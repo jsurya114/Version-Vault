@@ -5951,3 +5951,7 @@ The most similar command is
 2026-04-25 11:39:49 [[31merror[39m]: POST /vv/auth/login — UserId not found
 2026-04-25 11:53:36 [[31merror[39m]: POST /vv/auth/verify-otp — Not a Valid Otp or Otp expired
 2026-04-25 11:57:07 [[31merror[39m]: POST /vv/auth/verify-otp — Not a Valid Otp or Otp expired
+2026-04-25 12:10:27 [[31merror[39m]: POST /vv/auth/verify-reset-otp — Invalid or expired OTP
+2026-04-25 12:14:15 [[31merror[39m]: POST /vv/auth/verify-reset-otp — Invalid or expired OTP
+2026-04-25 12:15:07 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-25 12:15:12 [[31merror[39m]: POST /vv/auth/login — Invalid credentials

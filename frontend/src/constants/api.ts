@@ -9,6 +9,7 @@ export const AUTH_ENDPOINTS = {
   GOOGLE_AUTH: '/auth/google',
   ME: '/auth/me',
   FORGOT_PASSWORD: '/auth/forgot-password',
+  VERIFY_RESET_OTP: '/auth/verify-reset-otp',
   RESET_PASSWORD: '/auth/reset-password',
   RESEND_OTP: '/auth/resend-otp',
 } as const;
@@ -65,7 +66,6 @@ export const AIAGENT_ENDPOINTS = {
 export const NOTIFICATION_ENDPOINTS = {
   BASE: '/notifications',
 } as const;
-
 
 export const SUBSCRIPTION_ENDPOINTS = {
   BASE: '/subscription',

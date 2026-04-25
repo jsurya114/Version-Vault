@@ -45,6 +45,7 @@ const OtpVerificationPage = () => {
 
   useEffect(() => {
     if (error) dispatch(clearError());
+    setErrorSonar((prev) => ({ ...prev, isOpen: false }));
   }, [otp, dispatch, error]);
 
   const validate = (): boolean => {
