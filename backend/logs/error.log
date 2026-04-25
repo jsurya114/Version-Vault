@@ -5974,3 +5974,43 @@ The most similar command is
 2026-04-25 21:23:07 [[31merror[39m]: GET /vv/chats/conversations — Invalid or expired access token
 2026-04-25 21:23:07 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
 2026-04-25 21:23:08 [[31merror[39m]: GET /vv/chats/jsurya114/todo/history — Invalid or expired access token
+2026-04-26 00:48:40 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 00:48:41 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 00:48:44 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 00:48:45 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
