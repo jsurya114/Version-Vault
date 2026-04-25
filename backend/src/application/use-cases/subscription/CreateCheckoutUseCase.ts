@@ -4,7 +4,7 @@ import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRe
 import { IPaymentService } from '../../../domain/interfaces/services/IPaymentService';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { envConfig } from '../../../shared/config/env.config';
-import { CheckoutResponseDTO } from 'src/application/dtos/repository/SubscriptionDTO';
+import { CheckoutResponseDTO } from '../../../application/dtos/repository/SubscriptionDTO';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { ConflictError } from '../../../domain/errors/ConflictError';
 import { SubscriptionPlan } from '../../../domain/enums';

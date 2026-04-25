@@ -17,7 +17,7 @@ import { ILogger } from '../../../../domain/interfaces/services/ILogger';
 
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { envConfig } from '../../../../shared/config/env.config';
-import { IGetAllUsersUseCase } from 'src/application/use-cases/interfaces/admin/IGetAllUsersUseCase';
+import { IGetAllUsersUseCase } from '../../../../application/use-cases/interfaces/admin/IGetAllUsersUseCase';
 
 @injectable()
 export class AuthController {

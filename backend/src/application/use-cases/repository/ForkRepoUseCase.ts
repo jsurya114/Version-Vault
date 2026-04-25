@@ -12,7 +12,7 @@ import { ConflictError } from '../../../domain/errors/ConflictError';
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 import { RepositoryVisibility } from '../../../domain/enums';
 import { GitService } from '../../../infrastructure/services/GitService';
-import { UnauthorizedError } from 'src/domain/errors/UnauthorizedError';
+import { UnauthorizedError } from '../../../domain/errors/UnauthorizedError';
 import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()

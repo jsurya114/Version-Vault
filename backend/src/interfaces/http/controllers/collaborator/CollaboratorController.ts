@@ -16,7 +16,7 @@ import { IInvitationRepository } from '../../../../domain/interfaces/repositorie
 import { ITokenPayload } from '../../../../domain/interfaces/services/ITokenService';
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { TOKENS } from '../../../../shared/constants/tokens';
-import { IGetAllCollabsUseCase } from 'src/application/use-cases/interfaces/collaborator/IGetAllCollabsUseCase';
+import { IGetAllCollabsUseCase } from '../../../../application/use-cases/interfaces/collaborator/IGetAllCollabsUseCase';
 
 export interface AuthRequest extends Request {
   user: ITokenPayload;

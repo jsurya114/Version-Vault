@@ -3,7 +3,7 @@ import { ICollaborator } from '../../../../domain/interfaces/ICollaborator';
 import { ICollaboratorRepository } from '../../../../domain/interfaces/repositories/ICollaboratorRepository';
 import { CollaboratorModel } from '../models/CollaboratorModel';
 import { MongoBaseRepository } from './MongoBaseRepository';
-import { CollaboratorMapper } from 'src/application/mappers/CollaboratorMapper';
+import { CollaboratorMapper } from '../../../../application/mappers/CollaboratorMapper';
 
 @injectable()
 export class MongoCollaboratorRepository
@@ -55,11 +55,8 @@ export class MongoCollaboratorRepository
   }
   async findCollabedRepos(userId: string): Promise<ICollaborator[]> {
     const docs = await CollaboratorModel.find({
-      $or:[
-        {collaboratorId:userId},
-        {ownerId:userId}
-      ]
-    })
-    return docs.map(this.toEntity.bind(this))
+      $or: [{ collaboratorId: userId }, { ownerId: userId }],
+    });
+    return docs.map(this.toEntity.bind(this));
   }
 }

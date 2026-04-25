@@ -5,7 +5,7 @@ import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { UserResponseDTO } from '../../dtos/admin/UserResponseDTO';
 import { IGetStarUseCase } from '../interfaces/repository/IGetStarsUseCase';
-import { UserMapper } from 'src/application/mappers/UserMapper';
+import { UserMapper } from '../../../application/mappers/UserMapper';
 
 @injectable()
 export class GetStarsUseCase implements IGetStarUseCase {

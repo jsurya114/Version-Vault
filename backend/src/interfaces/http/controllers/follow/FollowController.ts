@@ -4,7 +4,7 @@ import { IFollowUseCase } from '../../../../application/use-cases/interfaces/fol
 import { IUnfollowUseCase } from '../../../../application/use-cases/interfaces/follow/IUnfollowUseCase';
 import { IGetFollowersUseCase } from '../../../../application/use-cases/interfaces/follow/IGetFollowersUseCase';
 import { IGetFollowingUseCase } from '../../../../application/use-cases/interfaces/follow/IGetFollowingUseCase';
-import { IUserRepository } from 'src/domain/interfaces/repositories/IUserRepository';
+import { IUserRepository } from '../../../../domain/interfaces/repositories/IUserRepository';
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { TOKENS } from '../../../../shared/constants/tokens';
 

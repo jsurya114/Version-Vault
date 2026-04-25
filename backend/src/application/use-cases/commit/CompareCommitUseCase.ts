@@ -1,8 +1,8 @@
 import { injectable, inject } from 'tsyringe';
 
-import { GitService } from 'src/infrastructure/services/GitService';
+import { GitService } from '../../../infrastructure/services/GitService';
 
-import { CompareResponse } from 'src/domain/interfaces/IGitTypes';
+import { CompareResponse } from '../../../domain/interfaces/IGitTypes';
 import { ICompareCommitUseCase } from '../interfaces/commit/ICompareCommitUseCase';
 
 @injectable()

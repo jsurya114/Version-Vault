@@ -4,11 +4,11 @@ import { CommentResponseDTO } from '../../../application/dtos/repository/Comment
 
 import { ICommentRepository } from '../../../domain/interfaces/repositories/ICommentRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
-import { CommentMapper } from 'src/application/mappers/CommentMapper';
+import { CommentMapper } from '../../../application/mappers/CommentMapper';
 import {
   PaginationQueryDTO,
   PaginatedResponseDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class ListCommentUseCase implements IListCommentUseCase {

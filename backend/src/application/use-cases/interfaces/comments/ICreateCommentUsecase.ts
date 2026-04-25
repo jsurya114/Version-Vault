@@ -1,4 +1,7 @@
-import { CommentResponseDTO, CreateCommentDTO } from 'src/application/dtos/repository/CommentDTO';
+import {
+  CommentResponseDTO,
+  CreateCommentDTO,
+} from '../../../../application/dtos/repository/CommentDTO';
 
 export interface ICreateCommentUseCase {
   execute(dto: CreateCommentDTO): Promise<CommentResponseDTO>;

@@ -6,8 +6,8 @@ import { RepoResponseDTO } from '../../../application/dtos/repository/RepoRespon
 import {
   PaginationQueryDTO,
   PaginatedResponseDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
-import { RepositoryMapper } from 'src/application/mappers/RepositoryMapper';
+} from '../../../application/dtos/reusable/PaginationDTO';
+import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 
 @injectable()
 export class GetAllRepoUseCase implements IGetAllRepoUseCase {

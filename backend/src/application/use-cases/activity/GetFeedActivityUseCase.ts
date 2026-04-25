@@ -7,7 +7,7 @@ import { TOKENS } from '../../../shared/constants/tokens';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class GetActivityFeedUseCase implements IGetActivityFeedUseCase {
