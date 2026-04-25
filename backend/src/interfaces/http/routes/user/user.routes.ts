@@ -1,4 +1,4 @@
-import { Router } from 'express';
+import { Router, Request, Response, NextFunction } from 'express';
 import { container } from 'tsyringe';
 import { AuthRequest, UserController } from '../../controllers/user/UserController';
 import { authMiddleware } from '../../middleware/AuthMiddleware';
@@ -13,14 +13,14 @@ const userController = container.resolve(UserController);
  */
 
 // Public profile access (Anyone can view any username)
-router.get('/:username', (req, res, next) => userController.getPublicProfile(req, res, next));
+router.get('/:username', (req: Request, res: Response, next: NextFunction) => userController.getPublicProfile(req, res, next));
 
 // Private profile editing (Only authenticated users can edit their own profile)
 router.patch(
   '/profile',
   authMiddleware,
   upload.single('avatar'), // Multer looks for a field named 'avatar'
-  (req, res, next) => userController.updateProfile(req as AuthRequest, res, next),
+  (req: Request, res: Response, next: NextFunction) => userController.updateProfile(req as AuthRequest, res, next),
 );
 
 export default router;
