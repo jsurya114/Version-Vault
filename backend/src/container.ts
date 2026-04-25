@@ -147,8 +147,8 @@ import { RecordActivityUseCase } from './application/use-cases/activity/RecordAc
 import { GetActivityFeedUseCase } from './application/use-cases/activity/GetFeedActivityUseCase';
 import { StripeService } from './infrastructure/services/StripeService';
 import { GetSubscriptionStatusUseCase } from './application/use-cases/subscription/GetSubscriptionStatusUseCase';
-import { HandleWebhookUseCase } from './application/use-cases/subscription/HandleWebhookUseCase';
-import { CancelSubscription } from './application/use-cases/subscription/CancelSubscriptionUseCase';
+import { HandleWebhookUseCase } from './application/use-cases/subscription/HandleWebhookUsecase';
+import { CancelSubscriptionUseCase } from './application/use-cases/subscription/CancelSubscriptionUseCase';
 import { CreateCheckoutUseCase } from './application/use-cases/subscription/CreateCheckoutUseCase';
 
 //services
@@ -310,7 +310,7 @@ container.register(TOKENS.IGetSubscriptionStatusUseCase, {
   useClass: GetSubscriptionStatusUseCase,
 });
 container.register(TOKENS.IHandleWebhookUseCase, { useClass: HandleWebhookUseCase });
-container.register(TOKENS.ICancelSubscriptionUseCase, { useClass: CancelSubscription });
+container.register(TOKENS.ICancelSubscriptionUseCase, { useClass: CancelSubscriptionUseCase });
 container.register(TOKENS.ICreateCheckoutUseCase, { useClass: CreateCheckoutUseCase });
 
 export { container };

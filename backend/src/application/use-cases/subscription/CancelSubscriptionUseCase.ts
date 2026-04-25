@@ -8,7 +8,7 @@ import { ConflictError } from '../../../domain/errors/ConflictError';
 import { SubscriptionPlan } from '../../../domain/enums';
 
 @injectable()
-export class CancelSubscription implements ICancelSubscriptionUseCase {
+export class CancelSubscriptionUseCase implements ICancelSubscriptionUseCase {
   constructor(
     @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
     @inject(TOKENS.IPaymentService) private _paymentService: IPaymentService,
