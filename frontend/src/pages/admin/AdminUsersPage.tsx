@@ -75,9 +75,17 @@ const AdminUsersPage = () => {
         label: 'USER',
         render: (u) => (
           <div className="flex items-center gap-2 min-w-0">
-            <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
-              {u.username?.[0]?.toUpperCase()}
-            </div>
+            {u.avatar ? (
+              <img
+                src={u.avatar}
+                alt={u.username}
+                className="w-8 h-8 rounded-full object-cover shrink-0"
+              />
+            ) : (
+              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold shrink-0">
+                {u.username?.[0]?.toUpperCase()}
+              </div>
+            )}
             <div className="min-w-0">
               <p className="text-white text-sm font-medium truncate">{u.username}</p>
               <p className="text-gray-500 text-xs truncate">@{u.userId}</p>

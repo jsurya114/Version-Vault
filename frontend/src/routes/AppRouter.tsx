@@ -55,6 +55,9 @@ const AcceptInvitationPage = lazy(() => import('../pages/collaborators/AcceptInv
 //chat
 const ChatRoomPage =lazy(()=>import('../pages/user/home/ChatRoomPage'))
 
+//subscription
+import SubscriptionPage from '../pages/repository/subscription/SubscriptionPage'
+
 
 const AppRouter = () => {
   const dispatch = useAppDispatch();
@@ -263,6 +266,15 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+
+            <Route 
+  path={ROUTES.SUBSCRIPTION} 
+  element={
+    <ProtectRoute>
+      <SubscriptionPage />
+    </ProtectRoute>
+  } 
+/>
             <Route
               path={ROUTES.PR_FORM}
               element={

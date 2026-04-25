@@ -10,3 +10,7 @@ export const selectAdminReposLoading = createSelector(
 );
 export const selectAdminReposError = createSelector([selectBaseState], (state) => state.error);
 export const selectAdminReposMeta = createSelector([selectBaseState], (state) => state.meta);
+export const selectAdminSelectedRepo = createSelector(
+  [selectBaseState],
+  (state) => state.selectedRepo,
+);

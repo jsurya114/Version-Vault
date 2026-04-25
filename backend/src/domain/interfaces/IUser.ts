@@ -1,4 +1,4 @@
-import { UserRole,SubscriptionPlan,AuthProvider } from "../enums";
+import { UserRole, SubscriptionPlan, AuthProvider } from '../enums';
 
 export interface IUser {
   id?: string;
@@ -13,6 +13,8 @@ export interface IUser {
   isBlocked: boolean;
   provider: AuthProvider;
   subscriptionPlan: SubscriptionPlan;
+  stripeCustomerId?: string;
+  stripeSubscriptionId?: string;
   followersCount: number;
   followingCount: number;
   createdAt?: Date;

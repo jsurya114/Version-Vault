@@ -14,6 +14,7 @@ import chatReducer from '../features/chats/chatSlice';
 import aiAgentReducer from '../features/ai-agent/aiAgentSlice';
 import notificationReducer from '../features/notifications/notificationSlice';
 import activityReducer from '../features/activity/activitySlice';
+import subscriptionReducer from '../features/subscription/subscriptionSlice'
 
 export const store = configureStore({
   reducer: {
@@ -32,6 +33,7 @@ export const store = configureStore({
     aiAgent: aiAgentReducer,
     notifiactions: notificationReducer,
     activity: activityReducer,
+    subscription:subscriptionReducer
   },
 });
 

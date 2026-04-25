@@ -37,6 +37,9 @@ router.get('/me', authLimiter, authMiddleware, (req, res, next) =>
 );
 
 router.post('/forgot-password', (req, res, next) => authController.forgotPassword(req, res, next));
+router.post('/verify-reset-otp', otpLimiter, (req, res, next) =>
+  authController.verifyResetOtp(req, res, next),
+);
 router.post('/reset-password', authLimiter, (req, res, next) =>
   authController.resetPassword(req, res, next),
 );

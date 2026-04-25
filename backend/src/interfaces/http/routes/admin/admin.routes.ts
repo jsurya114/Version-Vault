@@ -17,6 +17,9 @@ router.patch('/users/:id/unblock', (req, res, next) =>
 router.get('/repositories', (req, res, next) =>
   adminRepoController.getAllRepositories(req, res, next),
 );
+router.get('/repositories/:id', (req, res, next) =>
+  adminRepoController.getRepoById(req, res, next),
+);
 router.patch('/repositories/:id/block', (req, res, next) =>
   adminRepoController.blockRepository(req, res, next),
 );

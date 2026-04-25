@@ -1,9 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { AppDispatch } from '../../../app/store';
 import { RepositoryResponseDTO } from '../../../types/repository/repositoryTypes';
 import { sendAgentMessageThunk } from '../../../features/ai-agent/aiAgentThunk';
 import { selectAiAgentStatus } from '../../../features/ai-agent/aiAgentSelector';
+import { selectIsPro } from '../../../features/subscription/subscriptionSelector';
+import { getSubscriptionStatusThunk } from '../../../features/subscription/subscriptionThunks';
+import { Link } from 'react-router-dom';
+import { ROUTES } from '../../../constants/routes';
 import {
   FolderPlus,
   FileText,
@@ -15,6 +19,7 @@ import {
   Globe,
   Sparkles,
   AlertCircle,
+  Crown
 } from 'lucide-react';
 
 interface AiAgentRepoCreatorProps {
@@ -24,7 +29,12 @@ interface AiAgentRepoCreatorProps {
 export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCreated }) => {
   const dispatch = useDispatch<AppDispatch>();
   const status = useSelector(selectAiAgentStatus);
+  const isPro = useSelector(selectIsPro);
   const isLoading = status === 'loading';
+
+  useEffect(() => {
+    dispatch(getSubscriptionStatusThunk());
+  }, [dispatch]);
 
   const [formData, setFormData] = useState({
     name: '',
@@ -35,6 +45,37 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
     architecture: '',
     dependencies: '',
   });
+
+  const [errorMessage, setErrorMessage] = useState('');
+
+  if (!isPro) {
+    return (
+      <div className="w-full h-[650px] bg-gray-50 dark:bg-gray-900 rounded-xl shadow-xl border border-gray-200 dark:border-gray-800 flex items-center justify-center relative overflow-hidden group">
+        <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-transparent to-transparent"></div>
+        <div className="text-center px-8 z-10">
+          <div className="relative inline-block mb-6">
+             <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center mx-auto border border-indigo-500/20">
+                <Lock className="w-8 h-8 text-indigo-400" />
+             </div>
+             <div className="absolute -top-2 -right-2 w-6 h-6 rounded-lg bg-indigo-500 flex items-center justify-center text-white shadow-lg">
+                <Crown className="w-3 h-3" />
+             </div>
+          </div>
+          <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">AI Architect Locked</h3>
+          <p className="text-gray-500 dark:text-gray-400 text-xs mb-6 max-w-[280px] mx-auto font-medium">
+            Project scaffolding via AI is a Pro feature. Upgrade to unlock instant boilerplate generation.
+          </p>
+          <Link
+            to={ROUTES.SUBSCRIPTION}
+            className="inline-flex items-center gap-2 px-6 py-2.5 bg-gradient-to-r from-indigo-600 to-purple-600 hover:from-indigo-500 hover:to-purple-500 text-white font-bold rounded-xl transition-all shadow-lg shadow-indigo-500/20"
+          >
+            <Crown className="w-4 h-4" />
+            UPGRADE TO PRO
+          </Link>
+        </div>
+      </div>
+    );
+  }
 
   const techOptions = [
     'React',
@@ -77,8 +118,6 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
         : [...prev.techStack, tech],
     }));
   };
-
-  const [errorMessage, setErrorMessage] = useState('');
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();

@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { GitFork, BookOpen, Users, Calendar, Edit2 } from 'lucide-react';
+import { GitFork, BookOpen, Users, Calendar, Edit2,Crown } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import {
   getFollowersThunk,
@@ -180,6 +180,7 @@ const UserProfilePage = () => {
       dispatch(getFollowersThunk(userId));
       dispatch(getFollowingThunk(userId));
       if (isOwnProfile) {
+        dispatch(getMeThunk());
         dispatch(getAllCollabsReposThunk());
       }
     }
@@ -430,6 +431,42 @@ const UserProfilePage = () => {
                 <span>Joined {formatDateJoined(displayUser?.createdAt)}</span>
               </div>
             </div>
+
+            {/* Subscription Status (Only visible to profile owner) */}
+            {isOwnProfile && displayUser?.subscriptionPlan?.toUpperCase() === 'PRO' && (
+              <div 
+                onClick={() => navigate('/subscription')}
+                className="mt-6 p-3.5 rounded-xl border border-indigo-500/30 bg-indigo-500/10 cursor-pointer hover:bg-indigo-500/20 transition-all group relative overflow-hidden shadow-lg shadow-indigo-500/5"
+              >
+                <div className="absolute inset-0 opacity-0 group-hover:opacity-100 bg-[linear-gradient(45deg,transparent_25%,rgba(99,102,241,0.1)_50%,transparent_75%)] bg-[length:250%_250%,100%_100%] transition-all duration-700"></div>
+                <div className="flex items-center gap-3 relative z-10">
+                  <div className="p-2 bg-indigo-500/20 rounded-lg text-indigo-400">
+                    <Crown className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-white leading-tight">Pro Active</h4>
+                    <p className="text-xs text-indigo-300/80 mt-0.5">Manage subscription</p>
+                  </div>
+                </div>
+              </div>
+            )}
+
+            {isOwnProfile && displayUser?.subscriptionPlan?.toUpperCase() !== 'PRO' && (
+              <div 
+                onClick={() => navigate('/subscription')}
+                className="mt-6 p-3.5 rounded-xl border border-gray-800 bg-gray-900/50 cursor-pointer hover:border-indigo-500/40 hover:bg-gray-800/80 transition-all group"
+              >
+                <div className="flex items-center gap-3">
+                  <div className="p-2 bg-gray-800 rounded-lg text-gray-400 group-hover:text-indigo-400 transition-colors">
+                    <Crown className="w-4 h-4" />
+                  </div>
+                  <div>
+                    <h4 className="text-sm font-bold text-gray-300 leading-tight group-hover:text-white transition-colors">Free Plan</h4>
+                    <p className="text-xs text-gray-500 mt-0.5 group-hover:text-indigo-400/80 transition-colors">Upgrade to Pro</p>
+                  </div>
+                </div>
+              </div>
+            )}
           </div>
 
           {/* Right — Main Content Area */}

@@ -148,12 +148,22 @@ const AdminUserDetailPage = () => {
 
           {/* User Identity Bar */}
           <div className="flex items-center gap-3 xs:gap-4 mb-6">
-            <div className="w-10 h-10 xs:w-12 xs:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg xs:text-xl font-bold shrink-0">
-              {selectedUser.username?.[0]?.toUpperCase()}
-            </div>
+            {selectedUser.avatar ? (
+              <img
+                src={selectedUser.avatar}
+                alt={selectedUser.username}
+                className="w-10 h-10 xs:w-12 xs:h-12 rounded-full object-cover shrink-0"
+              />
+            ) : (
+              <div className="w-10 h-10 xs:w-12 xs:h-12 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-lg xs:text-xl font-bold shrink-0">
+                {selectedUser.username?.[0]?.toUpperCase()}
+              </div>
+            )}
             <div className="min-w-0">
               <div className="flex flex-wrap items-center gap-2">
-                <h2 className="text-white text-base xs:text-lg font-bold truncate">{selectedUser.username}</h2>
+                <h2 className="text-white text-base xs:text-lg font-bold truncate">
+                  {selectedUser.username}
+                </h2>
                 <span
                   className={`text-[10px] px-2 py-0.5 rounded-full font-semibold uppercase ${statusColors[status]}`}
                 >
@@ -216,26 +226,26 @@ const AdminUserDetailPage = () => {
                   </Link>
                 </div>
                 <div className="overflow-x-auto">
-                <table className="w-full min-w-[300px]">
-                  <thead>
-                    <tr className="text-gray-500 text-xs border-b border-gray-800">
-                      <th className="text-left pb-2.5 font-medium">Repository Name</th>
-                      <th className="text-center pb-2.5 font-medium">Visibility</th>
-                      <th className="text-right pb-2.5 font-medium">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {userRepos && userRepos.length > 0 ? (
-                      userRepos.map((repo) => <RepoRow key={repo.id} repo={repo} />)
-                    ) : (
-                      <tr>
-                        <td className="py-6 text-gray-500 text-sm italic text-center" colSpan={3}>
-                          No repositories found for this user.
-                        </td>
+                  <table className="w-full min-w-[300px]">
+                    <thead>
+                      <tr className="text-gray-500 text-xs border-b border-gray-800">
+                        <th className="text-left pb-2.5 font-medium">Repository Name</th>
+                        <th className="text-center pb-2.5 font-medium">Visibility</th>
+                        <th className="text-right pb-2.5 font-medium">Status</th>
                       </tr>
-                    )}
-                  </tbody>
-                </table>
+                    </thead>
+                    <tbody>
+                      {userRepos && userRepos.length > 0 ? (
+                        userRepos.map((repo) => <RepoRow key={repo.id} repo={repo} />)
+                      ) : (
+                        <tr>
+                          <td className="py-6 text-gray-500 text-sm italic text-center" colSpan={3}>
+                            No repositories found for this user.
+                          </td>
+                        </tr>
+                      )}
+                    </tbody>
+                  </table>
                 </div>
               </div>
             </div>

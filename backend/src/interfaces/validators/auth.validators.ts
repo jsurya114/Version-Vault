@@ -14,7 +14,7 @@ export const registerSchema = z
       .string()
       .min(3, 'Username must be at least 3 characters')
       .max(30, 'Username must not exceed 30 characters')
-      .regex(/^[a-zA-Z]+$/, 'Username can only contain letters'),
+      .regex(/^[a-zA-Z\s]+$/, 'Username can only contain letters and spaces'),
 
     email: z.string().email('Invalid email address'),
 
