@@ -1,7 +1,7 @@
 {
   "compilerOptions": {
-    "module": "CommonJS",
-    "moduleResolution": "node",
+    "module": "Node16",
+    "moduleResolution": "Node16",
     "target": "ES2022",
     "outDir": "./dist",
     "rootDir": "./src",
@@ -11,8 +11,6 @@
     "emitDecoratorMetadata": true,
     "skipLibCheck": true,
     "resolveJsonModule": true,
-    "baseUrl": ".",
-    "ignoreDeprecations": "6.0",
     "paths": {
       "@version-vault/shared-types": ["../packages/shared-types/src/index.ts"],
       "@version-vault/shared-types/*": ["../packages/shared-types/src/*"]
