@@ -4,7 +4,7 @@ import { IAdminUserRepository } from '../../../domain/interfaces/repositories/IA
 import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
-import { UserMapper } from 'src/application/mappers/UserMapper';
+import { UserMapper } from '../../../application/mappers/UserMapper';
 
 @injectable()
 export class BlockUserUseCase implements IBlockUserUseCase {

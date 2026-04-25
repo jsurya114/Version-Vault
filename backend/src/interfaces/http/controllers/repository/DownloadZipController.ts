@@ -3,7 +3,7 @@ import { injectable, inject } from 'tsyringe';
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { IDownloadZipUseCase } from '../../../../application/use-cases/interfaces/repository/IDownloadZipUseCase';
 
-import { logger } from 'src/shared/logger/Logger';
+import { logger } from '../../../../shared/logger/Logger';
 
 @injectable()
 export class DownloadZipController {

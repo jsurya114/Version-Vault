@@ -4,7 +4,7 @@ import { IAdminRepoRepository } from '../../../domain/interfaces/repositories/IA
 import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
-import { RepositoryMapper } from 'src/application/mappers/RepositoryMapper';
+import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 
 @injectable()
 export class UnblockRepoUseCase implements IUnblockRepoUseCase {

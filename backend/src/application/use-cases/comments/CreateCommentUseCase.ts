@@ -8,7 +8,7 @@ import { IIssueRepository } from '../../../domain/interfaces/repositories/IIssue
 import { IPullRequestRepository } from '../../../domain/interfaces/repositories/IPullRequestRepository';
 import { ICommentRepository } from '../../../domain/interfaces/repositories/ICommentRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
-import { CommentMapper } from 'src/application/mappers/CommentMapper';
+import { CommentMapper } from '../../../application/mappers/CommentMapper';
 
 @injectable()
 export class CreateCommentUseCase implements ICreateCommentUseCase {

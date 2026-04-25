@@ -3,7 +3,7 @@ import { IComment } from '../IComment';
 import {
   PaginatedResponseDTO,
   PaginationQueryDTO,
-} from 'src/application/dtos/reusable/PaginationDTO';
+} from '../../../application/dtos/reusable/PaginationDTO';
 
 export interface ICommentRepository extends IBaseRepository<IComment> {
   findByTargetId(

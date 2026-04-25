@@ -4,7 +4,7 @@ import { IGetActivityFeedUseCase } from '../../../../application/use-cases/inter
 import { HttpStatusCodes } from '../../../../shared/constants/HttpStatusCodes';
 import { TOKENS } from '../../../../shared/constants/tokens';
 import { AuthRequest } from '../repository/RepositoryController';
-import { PaginationQueryDTO } from 'src/application/dtos/reusable/PaginationDTO';
+import { PaginationQueryDTO } from '../../../../application/dtos/reusable/PaginationDTO';
 
 @injectable()
 export class ActivityController {

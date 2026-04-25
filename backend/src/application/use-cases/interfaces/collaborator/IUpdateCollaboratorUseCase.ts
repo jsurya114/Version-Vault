@@ -1,4 +1,4 @@
-import { ICollaborator } from 'src/domain/interfaces/ICollaborator';
+import { ICollaborator } from '../../../../domain/interfaces/ICollaborator';
 export interface IUpdateCollaboratorUseCase {
   execute(
     ownerId: string,

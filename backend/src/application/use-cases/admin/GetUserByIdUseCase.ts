@@ -4,7 +4,7 @@ import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRe
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { UserResponseDTO } from '../../../application/dtos/admin/UserResponseDTO';
-import { UserMapper } from 'src/application/mappers/UserMapper';
+import { UserMapper } from '../../../application/mappers/UserMapper';
 
 @injectable()
 export class GetUserByIdUseCase implements IGetUserByIdUseCase {

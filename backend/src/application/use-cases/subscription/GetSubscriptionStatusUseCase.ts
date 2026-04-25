@@ -2,7 +2,7 @@ import { injectable, inject } from 'tsyringe';
 import { IGetSubscriptionStatusUseCase } from '../interfaces/subscription/IGetSubscriptionStatusUseCase';
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
-import { SubscriptionStatusDTO } from 'src/application/dtos/repository/SubscriptionDTO';
+import { SubscriptionStatusDTO } from '../../../application/dtos/repository/SubscriptionDTO';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { SubscriptionPlan } from '../../../domain/enums';
 

@@ -3,9 +3,9 @@ import { IGetRepoByIdUseCase } from '../interfaces/admin/IGetRepoByIdUseCase';
 import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { RepoResponseDTO } from '../../../application/dtos/repository/RepoResponseDTO';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { RepositoryMapper } from 'src/application/mappers/RepositoryMapper';
-import { GitService } from 'src/infrastructure/services/GitService';
+import { NotFoundError } from '../../../domain/errors/NotFoundError';
+import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
+import { GitService } from '../../../infrastructure/services/GitService';
 
 @injectable()
 export class GetRepoByIdUseCase implements IGetRepoByIdUseCase {

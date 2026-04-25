@@ -1,6 +1,6 @@
 import { injectable, inject } from 'tsyringe';
 import { IGetCollaboratorUseCase } from '../interfaces/collaborator/IGetCollaboratorUseCase';
-import { ICollaboratorRepository } from 'src/domain/interfaces/repositories/ICollaboratorRepository';
+import { ICollaboratorRepository } from '../../../domain/interfaces/repositories/ICollaboratorRepository';
 import { ICollaborator } from '../../../domain/interfaces/ICollaborator';
 import { TOKENS } from '../../../shared/constants/tokens';
 

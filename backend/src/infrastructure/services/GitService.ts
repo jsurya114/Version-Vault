@@ -12,8 +12,8 @@ import {
   ConflictDetails,
   ConflictFile,
 } from '../../domain/interfaces/IGitTypes';
-import { NotFoundError } from 'src/domain/errors/NotFoundError';
-import { logger } from 'src/shared/logger/Logger';
+import { NotFoundError } from '../../domain/errors/NotFoundError';
+import { logger } from '../../shared/logger/Logger';
 import { Readable } from 'stream';
 import { spawn } from 'child_process';
 
@@ -746,7 +746,7 @@ export class GitService {
           '--cacheinfo',
           '100644',
           blobHash,
-          file.filePath, // Ensure this path maintains folder structure (e.g., 'src/components/Button.tsx')
+          file.filePath, // Ensure this path maintains folder structure (e.g., '../../components/Button.tsx')
         ]);
       }
       const treeHash = (await gitWithIndex.raw(['write-tree'])).trim();

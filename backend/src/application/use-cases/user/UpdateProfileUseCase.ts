@@ -2,8 +2,8 @@ import { injectable, inject } from 'tsyringe';
 import { IUpdateProfileUseCase } from '../interfaces/user/IUpdateProfileUseCase';
 import { IUserRepository } from '../../../domain/interfaces/repositories/IUserRepository';
 import { IUser } from '../../../domain/interfaces/IUser';
-import { TOKENS } from 'src/shared/constants/tokens';
-import { UserProfileDTO } from 'src/application/dtos/user/userProfileDTO';
+import { TOKENS } from '../../../shared/constants/tokens';
+import { UserProfileDTO } from '../../../application/dtos/user/userProfileDTO';
 
 @injectable()
 export class UpdateProfileUseCase implements IUpdateProfileUseCase {

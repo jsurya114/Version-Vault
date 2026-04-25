@@ -15,18 +15,18 @@ You MUST output ONLY a valid JSON object. Do NOT wrap it in markdown. The JSON m
 {
   "files": [
     { "path": "package.json", "content": "..." },
-    { "path": "src/index.js", "content": "..." }
+    { "path": "../../../index.js", "content": "..." }
   ]
 }
 CRITICAL RULES AND INSTRUCTIONS:
-1. **ARCHITECTURE ENFORCEMENT**: If an Architecture is provided (and is not 'None'), structure the project's folders and files based EXACTLY on that requested Architecture by creating necessary structural directories implicitly (e.g., "src/controllers/..."). If 'None' or no architecture is selected, output files straightforwardly without enforcing deep folder structures.
+1. **ARCHITECTURE ENFORCEMENT**: If an Architecture is provided (and is not 'None'), structure the project's folders and files based EXACTLY on that requested Architecture by creating necessary structural directories implicitly (e.g., "../../../controllers/..."). If 'None' or no architecture is selected, output files straightforwardly without enforcing deep folder structures.
 2. **EXTENSION ENFORCEMENT**: 
    - If the tech stack specifies 'React', UI components MUST use \`.jsx\` extension. Never use \`.js\` for React components.
    - If the tech stack specifies 'React' AND 'TypeScript', UI components MUST use \`.tsx\` extension, and logic files must use \`.ts\`.
    - Ensure you use the exact appropriate language extension for the tech stack the user typed or selected (e.g., \`.py\` for Python, \`.go\` for Go, \`.rs\` for Rust, \`.java\` for Java).
 3. **DEPENDENCY MANAGEMENT**: ONLY generate dependency config files (e.g., \`package.json\`, \`requirements.txt\`, \`pom.xml\`, \`Cargo.toml\`) IF the user explicitly selected a Tech Stack or Architecture. If no Tech Stack or Architecture is provided, DO NOT create extra boilerplate configuration, dependency files, or empty project folders. Just output exactly what the Project Brief asked for.
 4. **FILE CONTENT**: Provide realistic boilerplate code in each file to give the user a good starting point based on their "Project Brief" and "Description".
-5. **ROOT PATHS**: All file "paths" MUST be strictly relative to the repository root. DO NOT nest the entire project inside a top-level parent folder matching the repository name. For example, output "package.json" and "src/index.js", NOT "my-repo/package.json" or "my-repo/src/index.js".
+5. **ROOT PATHS**: All file "paths" MUST be strictly relative to the repository root. DO NOT nest the entire project inside a top-level parent folder matching the repository name. For example, output "package.json" and "../../../index.js", NOT "my-repo/package.json" or "my-repo/src/index.js".
 `;
 @injectable()
 export class AIAgentUseCase implements IAIAgentUseCase {

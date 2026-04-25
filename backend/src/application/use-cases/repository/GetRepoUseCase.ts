@@ -5,8 +5,8 @@ import { RepoResponseDTO } from '../../../application/dtos/repository/RepoRespon
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
-import { RepositoryVisibility } from 'src/domain/enums';
-import { ICollaboratorRepository } from 'src/domain/interfaces/repositories/ICollaboratorRepository';
+import { RepositoryVisibility } from '../../../domain/enums';
+import { ICollaboratorRepository } from '../../../domain/interfaces/repositories/ICollaboratorRepository';
 
 @injectable()
 export class GetRepoUseCase implements IGetRepoUseCase {
