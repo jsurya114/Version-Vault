@@ -24,6 +24,7 @@ export class RepositoryMapper {
       starredBy: doc.starredBy || [],
       createdAt: doc.createdAt,
       updatedAt: doc.updatedAt,
+      role: doc.role,
     };
   }
 
@@ -46,6 +47,7 @@ export class RepositoryMapper {
       starredBy: repo.starredBy || [],
       createdAt: repo.createdAt,
       updatedAt: repo.updatedAt,
+      role: repo.role,
     };
   }
 }

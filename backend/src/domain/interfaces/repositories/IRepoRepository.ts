@@ -13,4 +13,8 @@ export interface IRepoRepository extends IBaseRepository<IRepository> {
     authenticatedUserId?: string,
   ): Promise<PaginatedResponseDTO<IRepository>>;
   findAll(query: PaginationQueryDTO): Promise<PaginatedResponseDTO<IRepository>>;
+  findUserRepositories(
+    userId: string,
+    query: PaginationQueryDTO,
+  ): Promise<PaginatedResponseDTO<IRepository>>;
 }

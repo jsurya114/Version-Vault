@@ -4,14 +4,9 @@ import { Check } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { resendOtpThunk, verifyResetOtpThunk } from '../../../features/auth/authThunks';
 import { clearError, clearSuccessMessage } from '../../../features/auth/authSlice';
-import {
-  selectAuthError,
-  selectAuthLoading,
-  selectAuthSuccessMessage,
-} from '../../../features/auth/authSelectors';
+import { selectAuthError, selectAuthLoading } from '../../../features/auth/authSelectors';
 import { ROUTES } from '../../../constants/routes';
 import { CommonLoader } from '../../../types/common/Layout/Loader';
-import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
 import { ErrorSonar } from '../../../types/common/Layout/ErrorSonar';
 
 const RESEND_COOLDOWN = 55;
@@ -22,7 +17,6 @@ const ForgotPasswordOtpPage = () => {
 
   const isLoading = useAppSelector(selectAuthLoading);
   const error = useAppSelector(selectAuthError);
-  const successMessage = useAppSelector(selectAuthSuccessMessage);
 
   const email = sessionStorage.getItem('resetEmail') || '';
   const [otp, setOtp] = useState(['', '', '', '', '', '']);
@@ -30,7 +24,6 @@ const ForgotPasswordOtpPage = () => {
   const [canResend, setCanResend] = useState(false);
   const [localLoading, setLocalLoading] = useState(false);
   const [isVerified, setIsVerified] = useState(false);
-  const [successSonar, setSuccessSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const [errorSonar, setErrorSonar] = useState({ isOpen: false, title: '', subtitle: '' });
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 

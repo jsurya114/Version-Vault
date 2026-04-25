@@ -6,6 +6,7 @@ const TableFilters = ({
   filterValue,
   filterOptions,
   onFilterChange,
+  extraFilters,
   sortField,
   sortOptions,
   onSortFieldChange,
@@ -38,6 +39,22 @@ const TableFilters = ({
           ))}
         </select>
       )}
+
+      {/* Extra Filters */}
+      {extraFilters?.map((filter, idx) => (
+        <select
+          key={idx}
+          value={filter.value}
+          onChange={(e) => filter.onChange(e.target.value)}
+          className="bg-gray-900 border border-gray-800 rounded-lg px-3 py-2 text-sm text-gray-300 focus:outline-none focus:ring-2 focus:ring-gray-700 transition-all"
+        >
+          {filter.options.map((opt) => (
+            <option key={opt.value} value={opt.value}>
+              {opt.label}
+            </option>
+          ))}
+        </select>
+      ))}
 
       {/* Sort Field */}
       {sortOptions && onSortFieldChange && (

@@ -97,6 +97,7 @@ export class RepositoryController {
         order: req.query.order as 'asc' | 'desc' | undefined,
         search: req.query.search as string | undefined,
         status: req.query.status as 'active' | 'blocked' | 'pending' | undefined,
+        type: req.query.type as string | undefined,
       };
       const authenticatedUserId = req.user?.id;
 

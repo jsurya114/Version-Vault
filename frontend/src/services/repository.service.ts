@@ -17,6 +17,7 @@ export const repositoryService = {
       ...(query.search && { search: query.search }),
       ...(query.status && { status: query.status }),
       ...(query.userId && { userId: query.userId }),
+      ...(query.type && { type: query.type }),
     };
 
     const res = await axiosInstance.get(REPO_ENDPOINTS.LIST, { params });
