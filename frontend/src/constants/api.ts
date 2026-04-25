@@ -65,3 +65,11 @@ export const AIAGENT_ENDPOINTS = {
 export const NOTIFICATION_ENDPOINTS = {
   BASE: '/notifications',
 } as const;
+
+
+export const SUBSCRIPTION_ENDPOINTS = {
+  BASE: '/subscription',
+  CHECKOUT: '/subscription/checkout',
+  STATUS: '/subscription/status',
+  CANCEL: '/subscription/cancel',
+} as const;

@@ -10,6 +10,8 @@ export interface UserResponseDTO {
   isBlocked: boolean;
   provider: string;
   subscriptionPlan: string;
+  stripeCustomerId?: string;
+  stripeSubscriptionId?: string;
   followersCount: number;
   followingCount: number;
   createdAt?: Date;

@@ -38,4 +38,11 @@ export const envConfig = {
   RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
   RATE_LIMIT_MAX_REQUESTS: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10),
   GROQ_API_KEY: process.env.GROQ_API_KEY as string,
+
+
+  STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || '',
+  STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET || '',
+  STRIPE_PRO_PRICE_ID: process.env.STRIPE_PRO_PRICE_ID || '',
+  CLIENT_SUBSCRIPTION_SUCCESS_URL: process.env.CLIENT_SUBSCRIPTION_SUCCESS_URL || 'http://localhost:5173/subscription?status=success',
+  CLIENT_SUBSCRIPTION_CANCEL_URL: process.env.CLIENT_SUBSCRIPTION_CANCEL_URL || 'http://localhost:5173/subscription?status=cancelled',
 } as const;

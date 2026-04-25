@@ -1,8 +1,6 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import { activityService } from 'src/services/activity.service';
 import {
-  ActivityResponseDTO,
-  IActivity,
   PaginatedActivityResponse,
 } from '../../types/activity/activityTypes';
 

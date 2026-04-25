@@ -144,6 +144,11 @@ import { RenameBranchUseCase } from './application/use-cases/branch/RenameBranch
 import { MongoActivityRepository } from './infrastructure/database/mongoose/repositories/MongoActivityRepository';
 import { RecordActivityUseCase } from './application/use-cases/activity/RecordActivityUseCase';
 import { GetActivityFeedUseCase } from './application/use-cases/activity/GetFeedActivityUseCase';
+import { StripeService } from './infrastructure/services/StripeService';
+import { GetSubscriptionStatusUseCase } from './application/use-cases/subscription/GetSubscriptionStatusUseCase';
+import { HandleWebhookUseCase } from './application/use-cases/subscription/HandleWebhookUseCase';
+import { CancelSubscription } from './application/use-cases/subscription/CancelSubscriptionUseCase';
+import { CreateCheckoutUseCase } from './application/use-cases/subscription/CreateCheckoutUseCase';
 
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
@@ -296,5 +301,12 @@ container.register(TOKENS.IMarkAllReadUseCase, { useClass: MarkAllReadUseCase })
 container.register(TOKENS.IRecordActivityUseCase, { useClass: RecordActivityUseCase });
 container.register(TOKENS.IActivityRepository, { useClass: MongoActivityRepository });
 container.register(TOKENS.IGetActivityFeedUseCase, { useClass: GetActivityFeedUseCase });
+
+//subscription
+container.registerSingleton(TOKENS.IPaymentService,StripeService)
+container.register(TOKENS.IGetSubscriptionStatusUseCase,{useClass:GetSubscriptionStatusUseCase})
+container.register(TOKENS.IHandleWebhookUseCase,{useClass:HandleWebhookUseCase})
+container.register(TOKENS.ICancelSubscriptionUseCase,{useClass:CancelSubscription})
+container.register(TOKENS.ICreateCheckoutUseCase,{useClass:CreateCheckoutUseCase})
 
 export { container };

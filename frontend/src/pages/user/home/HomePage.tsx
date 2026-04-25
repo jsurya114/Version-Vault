@@ -1,13 +1,7 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import {
-  Star,
-  Filter,
-  ChevronDown,
   BookOpen,
-  MoreHorizontal,
-  GitMerge,
-  Smile,
   Users,
   Menu,
   X,
@@ -28,7 +22,6 @@ import { SuccessSonar } from '../../../types/common/Layout/SuccessSonar';
 import { getActivityFeedThunk } from '../../../features/activity/activityThunk';
 import {
   selectActivityFeed,
-  selectActivityLoading,
 } from '../../../features/activity/activitySelector';
 import { ActivityFeedItem } from '../../../components/ActivityFeedItem';
 
@@ -63,7 +56,7 @@ const HomePage = () => {
     currentPage,
     totalPages,
     isLoading: feedLoading,
-  } = useAppSelector((state) => (state as any).activity);
+  } = useAppSelector((state: { activity: { currentPage: number; totalPages: number; isLoading: boolean } }) => state.activity);
 
   useEffect(() => {
     dispatch(getActivityFeedThunk({ page: 1, sort: sortOrder }));
@@ -317,7 +310,7 @@ const HomePage = () => {
               </span>
               <select
                 value={sortOrder}
-                onChange={(e) => setSortOrder(e.target.value as any)}
+                onChange={(e) => setSortOrder(e.target.value as 'latest' | 'oldest')}
                 className="bg-gray-800 border border-gray-700 rounded-md text-[10px] xs:text-xs text-gray-300 px-2 py-1 outline-none focus:border-blue-500 transition cursor-pointer"
               >
                 <option value="latest">Latest</option>
@@ -338,7 +331,7 @@ const HomePage = () => {
               <>
                 {feed.map((activity, index) => (
                   <ActivityFeedItem
-                    key={activity.id || (activity as any)._id || index}
+                    key={activity.id || (activity as { _id?: string })._id || index}
                     activity={activity}
                   />
                 ))}

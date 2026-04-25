@@ -1,5 +1,5 @@
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { IActivity } from '../../types/activity/activityTypes';
+import { createSlice } from '@reduxjs/toolkit';
+
 import { getActivityFeedThunk } from './activityThunk';
 import { initialState } from '../../types/activity/activityTypes';
 

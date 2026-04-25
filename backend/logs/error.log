@@ -5776,3 +5776,157 @@ The most similar command is
 2026-04-23 23:59:03 [[31merror[39m]: Redis connection error
 2026-04-23 23:59:05 [[31merror[39m]: Redis connection error
 2026-04-23 23:59:06 [[31merror[39m]: Redis connection error
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-24 20:56:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-24 20:56:18 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-24 21:03:59 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:03:59 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:04:03 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:04:03 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:04:06 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:04:06 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:04:06 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:04:06 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 21:05:50 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:05:50 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:05:52 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:05:52 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:07:19 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:07:19 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:07:20 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 21:07:20 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 22:06:01 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 22:06:01 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 22:06:02 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 22:06:02 [[31merror[39m]: GET /vv/subscription/status — Cannot inject the dependency "_createCheckout" at position #0 of "SubscriptionController" constructor. Reason:
+    Cannot inject the dependency "_paymentService" at position #1 of "CreateCheckoutUseCase" constructor. Reason:
+        Neither apiKey nor config.authenticator provided
+2026-04-24 22:19:28 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:19:31 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:20:27 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:39:47 [[31merror[39m]: POST /vv/subscription/cancel — Invalid or expired access token
+2026-04-24 22:39:58 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:41:36 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:42:45 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:56:25 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:56:43 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 22:58:54 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 23:01:56 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 23:03:51 [[31merror[39m]: POST /vv/subscription/cancel — No active subscription to cancel
+2026-04-24 23:06:01 [[31merror[39m]: POST /vv/subscription/cancel — No such subscription: 'sub_1TPnduC9uSGgdeNHGIQPWdK6'
+2026-04-24 23:27:59 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 23:27:59 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-24 23:36:15 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-24 23:47:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-24 23:59:24 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:25 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:25 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:25 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:25 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:26 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:26 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:27 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:27 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:28 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:28 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:29 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:30 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:30 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:31 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:32 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:33 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:34 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:35 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:36 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:37 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:38 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:39 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:41 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:42 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:43 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:45 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:46 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:48 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:49 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:51 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:52 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:54 [[31merror[39m]: Redis connection error
+2026-04-24 23:59:56 [[31merror[39m]: Redis connection error
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d139c7452ef7cf3dcb2be9, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d72ff69291db697a052698, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d09cc4a548e455cba9349f, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9b988c8ea41d113f73af5, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9f9c6d6ee493c1e639f3f, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69da01cf2b3ec0367718e951, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69e512d4a7ad2108db763c29, but repository document does not exist.
+2026-04-25 10:16:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69d9ff6354b72cfc43ddac13, but repository document does not exist.
+2026-04-25 10:31:52 [[31merror[39m]: POST /vv/subscription/cancel — Invalid or expired access token
+2026-04-25 10:31:55 [[31merror[39m]: POST /vv/subscription/cancel — Invalid or expired access token
+2026-04-25 10:32:02 [[31merror[39m]: POST /vv/subscription/cancel — No such subscription: 'sub_1TPo3EC9uSGgdeNHfDUP2Trh'

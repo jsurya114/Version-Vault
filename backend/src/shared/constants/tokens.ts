@@ -142,4 +142,13 @@ export const TOKENS = {
   IActivityRepository: Symbol.for('IActivityRepository'),
   IRecordActivityUseCase: Symbol.for('IRecordActivityUseCase'),
   IGetActivityFeedUseCase: Symbol.for('IGetActivityFeedUseCase'),
+
+  
+   //subscription
+  IPaymentService: Symbol.for('IPaymentService'),
+  ICreateCheckoutUseCase: Symbol.for('ICreateCheckoutUseCase'),
+  IHandleWebhookUseCase: Symbol.for('IHandleWebhookUseCase'),
+  ICancelSubscriptionUseCase: Symbol.for('ICancelSubscriptionUseCase'),
+  IGetSubscriptionStatusUseCase: Symbol.for('IGetSubscriptionStatusUseCase'),
+
 } as const;

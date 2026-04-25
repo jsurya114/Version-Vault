@@ -13,6 +13,8 @@ export interface IUserDocument extends Document {
   isBlocked: boolean;
   provider: AuthProvider;
   subscriptionPlan: SubscriptionPlan;
+  stripeCustomerId?: string;
+  stripeSubscriptionId?: string;
   followersCount: number;
   followingCount: number;
   createdAt: Date;
@@ -31,7 +33,13 @@ const UserSchema = new Schema<IUserDocument>(
     isVerified: { type: Boolean, default: false },
     isBlocked: { type: Boolean, default: false },
     provider: { type: String, enum: Object.values(AuthProvider), default: AuthProvider.LOCAL },
-    subscriptionPlan: { type: String, enum: Object.values(SubscriptionPlan), default: SubscriptionPlan.FREE },
+    subscriptionPlan: {
+      type: String,
+      enum: Object.values(SubscriptionPlan),
+      default: SubscriptionPlan.FREE,
+    },
+    stripeCustomerId: { type: String, default: null },
+    stripeSubscriptionId: { type: String, default: null },
     followersCount: { type: Number, default: 0 },
     followingCount: { type: Number, default: 0 },
   },
@@ -40,4 +48,4 @@ const UserSchema = new Schema<IUserDocument>(
   },
 );
 
-export const UserModel = mongoose.model<IUserDocument>('User', UserSchema)
+export const UserModel = mongoose.model<IUserDocument>('User', UserSchema);

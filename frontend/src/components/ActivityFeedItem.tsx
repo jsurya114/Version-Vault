@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Star, GitFork, BookOpen, Users, MoreHorizontal } from 'lucide-react';
+import { Star, GitFork, BookOpen, Users } from 'lucide-react';
 import { IActivity } from '../types/activity/activityTypes';
 
 // Simple time formatter
