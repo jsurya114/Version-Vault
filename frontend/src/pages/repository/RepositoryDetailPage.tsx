@@ -281,6 +281,7 @@ const RepositoryDetailPage = () => {
           branch: branch,
           commitMessage: uploadCommitMessage || 'Upload files via web',
           currentPath: currentPath,
+          username: username!,
         }),
       ).unwrap();
       //cleanup locally
