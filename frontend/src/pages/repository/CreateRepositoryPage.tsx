@@ -81,6 +81,7 @@ git push -u origin main`,
           fileUploadThunk({
             repoName: name,
             files: selectedFiles,
+            username: user!.userId,
           }),
         );
       }
@@ -108,6 +109,7 @@ git push -u origin main`,
           fileUploadThunk({
             repoName: repoData.name,
             files: selectedFiles,
+            username: user!.userId,
           }),
         );
       }
