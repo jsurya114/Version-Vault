@@ -68,7 +68,7 @@ export class ToggleStarUseCase implements IToggleStarUseCase {
           isPrivate: repo.visibility === 'private',
           actionType: 'starred_repo',
           targetId: repo.id as string,
-          targetName: repo.name,
+          targetName: `${dto.ownerUsername}/${repo.name}`,
         })
         .catch(() => {});
     }

@@ -110,7 +110,7 @@ export class ForkRepoUseCase implements IForkRepoUseCase {
         isPrivate: forkRepo.visibility === RepositoryVisibility.PRIVATE,
         actionType: 'forked_repo',
         targetId: forkRepo.id as string,
-        targetName: forkRepo.name,
+        targetName: `${dto.forkerUsername}/${forkRepo.name}`,
       })
       .catch(() => {});
 

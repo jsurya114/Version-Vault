@@ -25,7 +25,9 @@ export class AddCollaboratorUseCase implements IAddCollaboratorUseCase {
       throw new ConflictError('You cannot add yourself as a collaborator');
     }
 
-    const targetUser = await this._userRepo.findByUserId(collaboratorUsername);
+    const targetUser =
+      (await this._userRepo.findByUserId(collaboratorUsername)) ||
+      (await this._userRepo.findByUserName(collaboratorUsername));
 
     if (!targetUser) {
       throw new NotFoundError('User not found');

@@ -21,6 +21,11 @@ const statusColors: Record<string, string> = {
   pending: 'bg-yellow-500/10 text-yellow-400 border border-yellow-500/30',
 };
 
+const planColors: Record<string, string> = {
+  free: 'bg-gray-500/10 text-gray-400 border border-gray-500/20',
+  pro: 'bg-indigo-500/10 text-indigo-400 border border-indigo-500/20',
+};
+
 const roleColors: Record<string, string> = {
   admin: 'bg-blue-500/10 text-blue-400',
   user: 'bg-purple-500/10 text-purple-400',
@@ -109,6 +114,17 @@ const AdminUsersPage = () => {
             </span>
           );
         },
+      },
+      {
+        key: 'subscriptionPlan',
+        label: 'PLAN',
+        render: (u) => (
+          <span
+            className={`text-[10px] px-2 py-0.5 rounded font-bold uppercase ${planColors[u.subscriptionPlan.toLowerCase()] || planColors.free}`}
+          >
+            {u.subscriptionPlan}
+          </span>
+        ),
       },
       {
         key: 'role',

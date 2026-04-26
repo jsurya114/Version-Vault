@@ -24,7 +24,9 @@ export class FollowController {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: followerId, userId: followerUsername } = (req as any).user;
       const { userId: targetId } = req.params;
-      const targetUser = await this._userRepository.findByUserId(targetId);
+      const targetUser =
+        (await this._userRepository.findByUserId(targetId)) ||
+        (await this._userRepository.findByUserName(targetId));
       if (!targetUser) {
         res.status(404).json({ success: false, message: 'User not found' });
         return;
@@ -47,7 +49,9 @@ export class FollowController {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: followerId } = (req as any).user;
       const { userId: targetUsername } = req.params;
-      const targetUser = await this._userRepository.findByUserId(targetUsername);
+      const targetUser =
+        (await this._userRepository.findByUserId(targetUsername)) ||
+        (await this._userRepository.findByUserName(targetUsername));
       if (!targetUser) throw new Error('User not found');
 
       await this._unfollowUseCase.execute(followerId, targetUser.id!);
@@ -61,7 +65,9 @@ export class FollowController {
   async getFollowers(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { userId: targetId } = req.params;
-      const targetUser = await this._userRepository.findByUserId(targetId);
+      const targetUser =
+        (await this._userRepository.findByUserId(targetId)) ||
+        (await this._userRepository.findByUserName(targetId));
       if (!targetUser) {
         res.status(404).json({ success: false, message: 'User not found' });
         return;
@@ -77,7 +83,9 @@ export class FollowController {
   async getFollowing(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { userId: targetId } = req.params;
-      const targetUser = await this._userRepository.findByUserId(targetId);
+      const targetUser =
+        (await this._userRepository.findByUserId(targetId)) ||
+        (await this._userRepository.findByUserName(targetId));
       if (!targetUser) {
         res.status(404).json({ success: false, message: 'User not found' });
         return;

@@ -45,32 +45,39 @@ export class StripeService implements IPaymentService {
     email: string,
   ): Promise<{ isActive: boolean; customerId?: string; subscriptionId?: string }> {
     try {
-      // Find customer by email (consistent read, no search index delay)
-      const customers = await this.stripe.customers.list({ email, limit: 1 });
-      if (customers.data.length === 0) return { isActive: false };
-
-      const customerId = customers.data[0].id;
-
-      // Find active subscriptions for this customer
-      const subscriptions = await this.stripe.subscriptions.list({
-        customer: customerId,
-        status: 'active',
-        limit: 1,
+      // Find all customers by email (Stripe allows duplicates)
+      const customers = await this.stripe.customers.list({
+        email: email.toLowerCase(),
+        limit: 10, // Get multiple in case of duplicates
       });
 
-      if (subscriptions.data.length > 0) {
-        const sub = subscriptions.data[0];
-        // Verify metadata matches if needed, though email match is usually enough
-        if (sub.metadata && sub.metadata.userId && sub.metadata.userId !== userId) {
-          // Might be a different account with same email, but let's assume it's valid if email matches
-        }
-
-        return {
-          isActive: true,
-          customerId: customerId,
-          subscriptionId: sub.id,
-        };
+      if (customers.data.length === 0) {
+        return { isActive: false };
       }
+
+      // Check each customer for an active subscription
+      for (const customer of customers.data) {
+        const customerId = customer.id;
+
+        const subscriptions = await this.stripe.subscriptions.list({
+          customer: customerId,
+          status: 'all',
+          limit: 10,
+        });
+
+        const activeSub = subscriptions.data.find(
+          (sub) => sub.status === 'active' || sub.status === 'trialing',
+        );
+
+        if (activeSub) {
+          return {
+            isActive: true,
+            customerId: customerId,
+            subscriptionId: activeSub.id,
+          };
+        }
+      }
+
       return { isActive: false };
     } catch (error) {
       console.error('Failed to verify active subscription in Stripe:', error);
