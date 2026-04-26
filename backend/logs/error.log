@@ -6625,3 +6625,47 @@ The most similar command is
 2026-04-26 16:40:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
 2026-04-26 16:40:37 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
 2026-04-26 16:40:37 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 16:53:54 [[31merror[39m]: GET /vv/collaborators/jsurya114/polyfill — Invalid or expired access token
+2026-04-26 16:53:54 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-26 16:53:54 [[31merror[39m]: GET /vv/collaborators/jsurya114/polyfill — Invalid or expired access token
+2026-04-26 16:53:54 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-26 16:55:36 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 16:55:36 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 16:55:36 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 16:55:36 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 16:55:36 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 16:55:36 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 16:56:51 [[31merror[39m]: POST /vv/repo/upload — error: Invalid path 'polyfare/.git/config'
+fatal: git update-index: --cacheinfo cannot add polyfare/.git/config
+
+2026-04-26 17:11:44 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 17:11:46 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 17:11:47 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 17:16:27 [[31merror[39m]: POST /vv/subscription/cancel — No such subscription: 'sub_1TQR8WC9uSGgdeNH28K83F1j'

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { useSearchParams, Link } from 'react-router-dom';
+import { useSearchParams, Link, useNavigate } from 'react-router-dom';
 import { useAppDispatch, useAppSelector } from 'src/app/hooks';
 import { ROUTES } from '../../../constants/routes';
 import {
@@ -23,7 +23,9 @@ import {
   AlertCircle,
   XCircle,
   CheckCircle,
+  ArrowLeft,
 } from 'lucide-react';
+import ConfirmModal from '../../../types/common/Modal/ConfirmModal';
 
 const FREE_FEATURES = [
   { text: 'Unlimited public repositories', included: true },
@@ -44,6 +46,7 @@ const PRO_FEATURES = [
 
 const SubscriptionPage = () => {
   const dispatch = useAppDispatch();
+  const navigate = useNavigate();
   const [searchParams] = useSearchParams();
 
   const isPro = useAppSelector(selectIsPro);
@@ -88,7 +91,18 @@ const SubscriptionPage = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gray-950 text-white p-6 pt-20">
+    <div className="min-h-screen bg-gray-950 text-white p-6 pt-20 relative">
+      {/* Back Button */}
+      <button
+        onClick={() => navigate(ROUTES.REPO_CREATE)}
+        className="absolute top-6 left-6 md:top-8 md:left-8 flex items-center gap-2 text-gray-400 hover:text-white transition-colors"
+      >
+        <div className="w-8 h-8 rounded-full bg-gray-900 border border-gray-800 flex items-center justify-center">
+          <ArrowLeft className="w-4 h-4" />
+        </div>
+        <span className="text-sm font-bold hidden sm:block">Back</span>
+      </button>
+
       <div className="max-w-5xl mx-auto relative">
         {/* Header Section */}
         <div className="text-center mb-16">
@@ -169,34 +183,12 @@ const SubscriptionPage = () => {
                 <div className="w-full py-3 text-center bg-indigo-500/10 text-indigo-400 border border-indigo-500/20 rounded-xl font-bold text-sm flex items-center justify-center gap-2">
                   <Zap className="w-4 h-4 fill-current" /> Pro Active
                 </div>
-                {!showCancelConfirm ? (
-                  <button
-                    onClick={() => setShowCancelConfirm(true)}
-                    className="w-full text-gray-600 text-xs hover:text-red-400 transition font-medium"
-                  >
-                    Cancel Subscription
-                  </button>
-                ) : (
-                  <div className="p-3 bg-red-500/5 border border-red-500/20 rounded-xl">
-                    <p className="text-[10px] text-red-400 mb-2 text-center font-medium">
-                      Verify cancellation?
-                    </p>
-                    <div className="flex gap-2">
-                      <button
-                        onClick={handleCancelSubscription}
-                        className="flex-1 py-2 bg-red-500/10 text-red-400 text-xs rounded-lg font-bold border border-red-500/20 hover:bg-red-500/20 transition"
-                      >
-                        Confirm
-                      </button>
-                      <button
-                        onClick={() => setShowCancelConfirm(false)}
-                        className="flex-1 py-2 bg-gray-800 text-gray-400 text-xs rounded-lg font-bold"
-                      >
-                        Keep
-                      </button>
-                    </div>
-                  </div>
-                )}
+                <button
+                  onClick={() => setShowCancelConfirm(true)}
+                  className="w-full text-gray-600 text-xs hover:text-red-400 transition font-medium"
+                >
+                  Cancel Subscription
+                </button>
               </div>
             ) : (
               <button
@@ -303,6 +295,16 @@ const SubscriptionPage = () => {
           </div>
         </div>
       )}
+
+      <ConfirmModal
+        isOpen={showCancelConfirm}
+        onClose={() => setShowCancelConfirm(false)}
+        onConfirm={handleCancelSubscription}
+        title="Cancel Subscription"
+        message="Are you sure you want to cancel your PRO subscription? You will lose access to AI Agent repo scaffolding and other pro features."
+        confirmText="Yes, Cancel"
+        confirmColor="bg-red-600"
+      />
     </div>
   );
 };
