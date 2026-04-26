@@ -6593,3 +6593,35 @@ The most similar command is
     at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
     at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
     at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:32:14 [[31merror[39m]: GET /vv/repo/jsurya114/polyfill/active-branches — Invalid or expired access token
+2026-04-26 16:32:15 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:32:15 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:32:15 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:32:15 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/jsurya114/polyfill — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/jsurya114/polyfill — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/repo/jsurya114/polyfill/active-branches — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/jsurya114/polyfill — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/jsurya114/polyfill — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:32:53 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:37:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 16:37:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 16:37:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 16:37:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 16:37:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 16:37:39 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/57adb5e/e3ae73f — Invalid or expired access token
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/collaborators/jsurya114/polygotValue/check — Invalid or expired access token
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 16:40:37 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found

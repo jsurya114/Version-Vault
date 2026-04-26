@@ -390,6 +390,10 @@ const PRDetailPage = () => {
                       <span className="text-red-400 text-sm italic font-medium px-4 py-2 bg-red-900/20 border border-red-700/50 rounded-xl">
                         Merge request was rejected
                       </span>
+                    ) : pr.mergeApproval === 'approved' ? (
+                      <span className="text-green-400 text-sm italic font-medium px-4 py-2 bg-green-900/20 border border-green-700/50 rounded-xl">
+                        Merge request approved
+                      </span>
                     ) : (
                       <button
                         onClick={() => handleRequestMerge()}
