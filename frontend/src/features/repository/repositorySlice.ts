@@ -102,15 +102,17 @@ const repositorySlice = createSlice({
         }
       })
       .addCase(getFilesThunk.fulfilled, (state, action) => {
-        state.isFilesLoading = false;
         if (action.meta.arg.recursive) {
           state.allFiles = action.payload;
         } else {
+          state.isFilesLoading = false;
           state.files = action.payload;
         }
       })
       .addCase(getFilesThunk.rejected, (state, action) => {
-        state.isFilesLoading = false;
+        if (!action.meta.arg?.recursive) {
+          state.isFilesLoading = false;
+        }
         state.error = action.payload as string;
       })
 

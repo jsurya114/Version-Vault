@@ -13,6 +13,7 @@ import {
   ConflictFile,
 } from '../../domain/interfaces/IGitTypes';
 import { NotFoundError } from '../../domain/errors/NotFoundError';
+import { ConflictError } from '../../domain/errors/ConflictError';
 import { logger } from '../../shared/logger/Logger';
 import { Readable } from 'stream';
 import { spawn } from 'child_process';
@@ -157,10 +158,13 @@ export class GitService {
     try {
       await git.raw(['branch', newBranch, fromBranch]);
     } catch (error: unknown) {
-      throw new Error(
-        `Failed to create branch: ${error instanceof Error ? error.message : 'Unknown error'}`,
-        { cause: error },
-      );
+      const msg = error instanceof Error ? error.message : 'Unknown error';
+      if (msg.includes('not a valid object name')) {
+        throw new ConflictError(
+          `Cannot create a branch from '${fromBranch}'. The repository might be empty. Please commit at least one file first.`,
+        );
+      }
+      throw new Error(`Failed to create branch: ${msg}`, { cause: error });
     }
   }
   async initBareRepo(ownerUsername: string, repoName: string): Promise<void> {
@@ -190,6 +194,12 @@ export class GitService {
   repoExits(ownerUsername: string, repoName: string): boolean {
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     return fs.existsSync(repoPath);
+  }
+
+  async ensureRepoExists(ownerUsername: string, repoName: string): Promise<void> {
+    if (!this.repoExits(ownerUsername, repoName)) {
+      await this.initBareRepo(ownerUsername, repoName);
+    }
   }
 
   getFullRepoPath(ownerUsername: string, repoName: string): string {
@@ -348,6 +358,7 @@ export class GitService {
     filePath: string = '',
     recursive: boolean = false,
   ): Promise<GitFileEntry[]> {
+    await this.ensureRepoExists(ownerUsername, repoName);
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
 
@@ -361,12 +372,13 @@ export class GitService {
         namesArgs.splice(1, 0, '-r');
         typesArgs.splice(1, 0, '-r');
       }
-      // For type mapping, we also need ls-tree results
 
-      //to get name only (to avoid the blob)
-      const namesResult = await git.raw(namesArgs); //listing the files
+      logger.info(`[getFiles] Repo: ${repoPath}, Branch: ${branch}, treePath: ${treePath}`);
 
+      const namesResult = await git.raw(namesArgs);
       const typesResult = await git.raw(typesArgs);
+
+      logger.info(`[getFiles] namesResult length: ${namesResult ? namesResult.length : 0}`);
 
       if (!namesResult) return [];
       const names = namesResult.trim().split('\n').filter(Boolean);
@@ -396,7 +408,11 @@ export class GitService {
           }
         }),
       );
-    } catch {
+    } catch (error) {
+      console.error(
+        `[getFiles] ERROR for ${ownerUsername}/${repoName} branch=${branch} path=${filePath}`,
+        error,
+      );
       return [];
     }
   }
@@ -407,6 +423,7 @@ export class GitService {
     filePath: string,
     branch: string = 'main',
   ): Promise<string> {
+    await this.ensureRepoExists(ownerUsername, repoName);
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
@@ -424,6 +441,7 @@ export class GitService {
     branch: string = 'main',
     limit: number = 20,
   ): Promise<GitCommit[]> {
+    await this.ensureRepoExists(ownerUsername, repoName);
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
 
@@ -440,6 +458,7 @@ export class GitService {
     }
   }
   async getBranches(ownerUsername: string, repoName: string): Promise<GitBranch[]> {
+    await this.ensureRepoExists(ownerUsername, repoName);
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const git = simpleGit(repoPath);
     try {
@@ -724,6 +743,7 @@ export class GitService {
     authorName: string,
     authorEmail: string,
   ): Promise<void> {
+    await this.ensureRepoExists(ownerUsername, repoName);
     const repoPath = this.getRepoPath(ownerUsername, repoName);
     const indexFile = path.join(repoPath, `index-${Date.now()}.tmp`);
     const git = simpleGit(repoPath);
@@ -791,7 +811,14 @@ export class GitService {
     try {
       // Get number of commits that are in 'head' but not in 'base'
       const count = await git.raw(['rev-list', '--count', `${base}..${head}`]);
-      return parseInt(count.trim(), 10) > 0;
+      if (parseInt(count.trim(), 10) === 0) return false;
+
+      // Also check if there are actual file differences. If it's just a merge commit
+      // that syncs head with base, there are no real changes to merge back.
+      const diffOutput = await git.raw(['diff', '--name-only', `${base}...${head}`]);
+      if (!diffOutput.trim()) return false;
+
+      return true;
     } catch (error) {
       logger.error(`Error checking if ${head} is ahead of ${base}:`, error);
       return false;

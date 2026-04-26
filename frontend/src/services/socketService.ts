@@ -8,14 +8,12 @@ export const socketService = {
   //initial socket
   initSocket: (token: string) => {
     // If socket exists but token changed, disconnect old one
-    if (socket && token && socket.auth && (socket.auth as any).token !== token) {
+    if (socket && token && socket.auth && (socket.auth as { token?: string }).token !== token) {
       socket.disconnect();
       socket = null;
     }
 
     if (socket) return socket;
-
-    console.log('Initializing socket connection to:', SOCKET_URL);
 
     socket = io(SOCKET_URL, {
       auth: { token },
@@ -27,14 +25,14 @@ export const socketService = {
     });
 
     socket.on('connect', () => {
-      console.log('Socket connected successfully:', socket?.id);
+      // Socket connected successfully
     });
 
     socket.on('connect_error', (error) => {
       console.error('Socket connection error:', error.message);
       // Fallback to polling if websocket is blocked
       if (socket && socket.io.opts.transports?.[0] === 'websocket') {
-        console.log('Attempting fallback to polling...');
+        console.warn('Attempting fallback to polling...');
         socket.io.opts.transports = ['polling', 'websocket'];
       }
     });

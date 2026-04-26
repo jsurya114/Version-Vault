@@ -22,7 +22,7 @@ export class CreateRepoUseCase implements ICreateRepoUseCase {
 
   async execute(dto: CreateRepoDTO): Promise<RepoResponseDTO> {
     //check the repository exists
-    const existing = await this.repoRepository.findByOwnerAndName(dto.ownerId, dto.name);
+    const existing = await this.repoRepository.findByOwnerAndName(dto.ownerUsername, dto.name);
 
     if (existing) throw new ConflictError('Repository with this name already exists');
 
