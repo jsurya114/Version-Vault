@@ -22,7 +22,9 @@ import {
 import {
   selectBranches,
   selectRepositoryLoading,
+  selectRepositoryError,
 } from '../../features/repository/repositorySelectors';
+import { clearError } from '../../features/repository/repositorySlice';
 import { GitBranch } from '../../types/repository/repositoryTypes';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
@@ -227,6 +229,7 @@ const BranchListPage = () => {
 
   const rawBranches = useAppSelector(selectBranches);
   const isLoading = useAppSelector(selectRepositoryLoading);
+  const error = useAppSelector(selectRepositoryError);
 
   const [searchTerm, setSearchTerm] = useState('');
   const [showCreateModal, setShowCreateModal] = useState(false);
@@ -448,11 +451,15 @@ const BranchListPage = () => {
 
       <CreateBranchModal
         isOpen={showCreateModal}
-        onClose={() => setShowCreateModal(false)}
+        onClose={() => {
+          setShowCreateModal(false);
+          dispatch(clearError());
+        }}
         onConfirm={handleCreateBranch}
         currentBranch="main"
         branches={rawBranches}
         isLoading={isLoading}
+        error={error}
       />
 
       <DeleteConfirmModal

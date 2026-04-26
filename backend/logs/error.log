@@ -6170,3 +6170,426 @@ The most similar command is
 2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
 2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
 2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:20:16 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:20:16 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:20:16 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:20:16 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:20:16 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:06 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:17 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:30 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:30 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:30 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:30 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:29:30 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:08 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:09 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:15 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:42:26 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:21 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:26 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:27 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:27 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:30 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:30 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:51:39 [[31merror[39m]: POST /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:53:00 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:00 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:00 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:00 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:04 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:04 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:04 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:53:04 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 11:55:50 [[31merror[39m]: POST /vv/repo/test123/allinone/branches — Failed to create branch: fatal: not a valid object name: 'main'
+
+2026-04-26 12:01:52 [[31merror[39m]: POST /vv/repo/test123/allinone/branches — Cannot create a branch from 'main'. The repository might be empty. Please commit at least one file first.
+2026-04-26 12:08:34 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 12:08:34 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 12:08:35 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 12:08:35 [[31merror[39m]: getFiles failed for test123/allinone branch=main path=
+2026-04-26 12:09:35 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:09:35 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:09:35 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:09:35 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:42 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:42 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:42 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:42 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:42 [[31merror[39m]: GET /vv/repo/jsurya114/allinone — Repository not found
+2026-04-26 12:49:42 [[31merror[39m]: GET /vv/repo/jsurya114/allinone/active-branches — Repository not found
+2026-04-26 12:49:42 [[31merror[39m]: GET /vv/repo/jsurya114/allinone — Repository not found
+2026-04-26 12:49:42 [[31merror[39m]: GET /vv/repo/jsurya114/allinone/active-branches — Repository not found
+2026-04-26 12:49:44 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:44 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:44 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:44 [[31merror[39m]: getFiles failed for jsurya114/allinone branch=main path=
+2026-04-26 12:49:44 [[31merror[39m]: GET /vv/repo/jsurya114/allinone — Repository not found
+2026-04-26 12:49:44 [[31merror[39m]: GET /vv/repo/jsurya114/allinone/active-branches — Repository not found
+2026-04-26 12:49:44 [[31merror[39m]: GET /vv/repo/jsurya114/allinone/active-branches — Repository not found
+2026-04-26 12:49:44 [[31merror[39m]: GET /vv/repo/jsurya114/allinone — Repository not found
+2026-04-26 12:49:54 [[31merror[39m]: getFiles failed for jsurya114/allinOne branch=main path=
+2026-04-26 12:49:54 [[31merror[39m]: getFiles failed for jsurya114/allinOne branch=main path=
+2026-04-26 12:49:54 [[31merror[39m]: getFiles failed for jsurya114/allinOne branch=main path=
+2026-04-26 12:49:54 [[31merror[39m]: getFiles failed for jsurya114/allinOne branch=main path=
+2026-04-26 13:00:45 [[31merror[39m]: POST /vv/repo/jsurya114/allinOne/branches — Cannot create a branch from 'main'. The repository might be empty. Please commit at least one file first.
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/repo/jsurya114/allinOne/active-branches — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/repo/jsurya114/allinOne/active-branches — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:04:55 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: DELETE /vv/repo/jsurya114/allinOne — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:05:04 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-26 13:06:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:06:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:06:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:06:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:13:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:13:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:13:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:13:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:25:06 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 13:33:35 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 13:33:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:33:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:33:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:33:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:33:44 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:33:44 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:33:44 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:33:44 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:34:47 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-04-26 13:34:47 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-04-26 13:34:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:34:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:34:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:34:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:45:28 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/active-branches — Invalid or expired access token
+2026-04-26 13:45:28 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:28 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:28 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:28 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:30 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:30 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:31 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:31 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:34 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/test — Invalid or expired access token
+2026-04-26 13:45:34 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:34 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:34 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/test — Invalid or expired access token
+2026-04-26 13:45:34 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:34 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:44 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:44 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:44 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:44 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:46 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/featured — Invalid or expired access token
+2026-04-26 13:45:46 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:46 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:46 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/featured — Invalid or expired access token
+2026-04-26 13:45:46 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 13:45:46 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 13:45:48 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/main — Invalid or expired access token
+2026-04-26 13:45:48 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/main — Invalid or expired access token
+2026-04-26 13:49:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:49:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:49:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 13:49:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 13:53:01 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/main — Invalid or expired access token
+2026-04-26 13:53:01 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/main — Invalid or expired access token
+2026-04-26 13:53:03 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/featured — Invalid or expired access token
+2026-04-26 13:53:03 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/featured — Invalid or expired access token
+2026-04-26 13:53:08 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/test — Invalid or expired access token
+2026-04-26 13:53:08 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/test — Invalid or expired access token
+2026-04-26 13:53:10 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/test — Invalid or expired access token
+2026-04-26 13:53:10 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/test — Invalid or expired access token
+2026-04-26 13:53:11 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/main — Invalid or expired access token
+2026-04-26 13:53:11 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/main — Invalid or expired access token
+2026-04-26 13:53:15 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/main — Invalid or expired access token
+2026-04-26 13:53:15 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/main — Invalid or expired access token
+2026-04-26 13:53:22 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/main — Invalid or expired access token
+2026-04-26 13:53:22 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/main — Invalid or expired access token
+2026-04-26 13:53:24 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/test — Invalid or expired access token
+2026-04-26 13:53:24 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/featured/test — Invalid or expired access token
+2026-04-26 13:53:27 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/test — Invalid or expired access token
+2026-04-26 13:53:27 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/test — Invalid or expired access token
+2026-04-26 13:53:29 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/featured — Invalid or expired access token
+2026-04-26 13:53:29 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/test/featured — Invalid or expired access token
+2026-04-26 13:53:31 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/featured — Invalid or expired access token
+2026-04-26 13:53:31 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/featured — Invalid or expired access token
+2026-04-26 13:53:33 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/test — Invalid or expired access token
+2026-04-26 13:53:33 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/test — Invalid or expired access token
+2026-04-26 14:36:01 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 14:36:01 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 14:36:01 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 14:36:01 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 15:24:46 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:24:46 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:24:46 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:24:46 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-26 15:24:46 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:25:09 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 15:25:09 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 15:25:09 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 15:25:09 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 15:25:09 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 15:25:09 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 15:37:29 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-04-26 15:37:29 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-04-26 15:37:56 [[31merror[39m]: POST /vv/auth/login — UserId not found
+2026-04-26 15:38:18 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 15:38:23 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 15:38:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 15:38:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 15:38:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 15:38:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 15:38:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 15:40:21 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/accept — This invitation was sent to a different email address
+2026-04-26 15:40:30 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/accept — This invitation was sent to a different email address
+2026-04-26 15:40:41 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/accept — This invitation was sent to a different email address
+2026-04-26 15:40:43 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/decline — This invitation was sent to a different email address
+2026-04-26 15:40:43 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/decline — This invitation was sent to a different email address
+2026-04-26 15:40:43 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/decline — This invitation was sent to a different email address
+2026-04-26 15:40:47 [[31merror[39m]: POST /vv/collaborators/invitation/85b65582-9218-4785-affd-ae91f2e8cc60/accept — This invitation was sent to a different email address
+2026-04-26 15:41:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 15:41:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 15:41:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 15:41:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 15:41:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 15:41:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/main/test — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/collaborators/jsurya114/polygotValue/check — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/57adb5e/e3ae73f — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 15:52:29 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/57adb5e/e3ae73f — Invalid or expired access token
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/collaborators/jsurya114/polygotValue/check — Invalid or expired access token
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 15:52:36 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/repo/jsurya114/polygotValue/compare/57adb5e/e3ae73f — Invalid or expired access token
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/collaborators/jsurya114/polygotValue/check — Invalid or expired access token
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 15:52:37 [[31merror[39m]: GET /vv/comments/jsurya114/polygotValue/pr/69edca9a6c7b909d4cc73692 — Repo not found
+2026-04-26 15:54:40 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:03:01 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:06:30 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:06:30 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:06:30 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:06:30 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:06:30 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:06:30 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:06:30 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:06:30 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:06:30 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:06:35 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:06:35 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:06:35 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:06:35 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:06:35 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 16:06:35 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:06:35 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 16:06:35 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 16:06:35 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)

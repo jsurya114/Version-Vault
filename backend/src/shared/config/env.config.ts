@@ -5,7 +5,12 @@ export const envConfig = {
   NODE_ENV: process.env.NODE_ENV || 'development',
   PORT: parseInt(process.env.PORT || '3125', 10),
 
-  MONGODB_URI: process.env.MONGODB_URI || 'mongodb://localhost:27017/version-vault',
+  MONGODB_URI:
+    process.env.MONGODB_URI &&
+    (process.env.MONGODB_URI.startsWith('mongodb://') ||
+      process.env.MONGODB_URI.startsWith('mongodb+srv://'))
+      ? process.env.MONGODB_URI
+      : 'mongodb://localhost:27017/version-vault',
   REDIS_URL: process.env.REDIS_URL || 'redis://localhost:6379',
 
   JWT_ACCESS_SECRET: process.env.JWT_ACCESS_SECRET || 'access-secret',
@@ -35,14 +40,20 @@ export const envConfig = {
   CLOUDINARY_API_KEY: process.env.CLOUDINARY_API_KEY || '',
   CLOUDINARY_API_SECRET: process.env.CLOUDINARY_API_SECRET || '',
 
-  RATE_LIMIT_WINDOW_MS: parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
+  RATE_LIMIT_WINDOW_MS: Math.min(
+    parseInt(process.env.RATE_LIMIT_WINDOW_MS || '900000', 10),
+    2147483647,
+  ),
   RATE_LIMIT_MAX_REQUESTS: parseInt(process.env.RATE_LIMIT_MAX_REQUESTS || '100', 10),
   GROQ_API_KEY: process.env.GROQ_API_KEY as string,
-
 
   STRIPE_SECRET_KEY: process.env.STRIPE_SECRET_KEY || '',
   STRIPE_WEBHOOK_SECRET: process.env.STRIPE_WEBHOOK_SECRET || '',
   STRIPE_PRO_PRICE_ID: process.env.STRIPE_PRO_PRICE_ID || '',
-  CLIENT_SUBSCRIPTION_SUCCESS_URL: process.env.CLIENT_SUBSCRIPTION_SUCCESS_URL || `${process.env.CLIENT_URL || 'http://localhost:5173'}/subscription?status=success`,
-  CLIENT_SUBSCRIPTION_CANCEL_URL: process.env.CLIENT_SUBSCRIPTION_CANCEL_URL || `${process.env.CLIENT_URL || 'http://localhost:5173'}/subscription?status=cancelled`,
+  CLIENT_SUBSCRIPTION_SUCCESS_URL:
+    process.env.CLIENT_SUBSCRIPTION_SUCCESS_URL ||
+    `${process.env.CLIENT_URL || 'http://localhost:5173'}/subscription?status=success`,
+  CLIENT_SUBSCRIPTION_CANCEL_URL:
+    process.env.CLIENT_SUBSCRIPTION_CANCEL_URL ||
+    `${process.env.CLIENT_URL || 'http://localhost:5173'}/subscription?status=cancelled`,
 } as const;

@@ -10,6 +10,7 @@ interface CreateBranchModalProps {
   currentBranch: string;
   branches: GitBranch[];
   isLoading?: boolean;
+  error?: string | null;
 }
 
 const CreateBranchModal = ({
@@ -19,6 +20,7 @@ const CreateBranchModal = ({
   currentBranch,
   branches,
   isLoading,
+  error,
 }: CreateBranchModalProps) => {
   const [newBranch, setNewBranch] = useState('');
   const [fromBranch, setFromBranch] = useState(currentBranch);
@@ -79,6 +81,12 @@ const CreateBranchModal = ({
             />
           </div>
         </div>
+
+        {error && (
+          <div className="mt-4 p-3 bg-red-500/10 border border-red-500/30 rounded-lg text-red-400 text-xs text-center">
+            {error}
+          </div>
+        )}
 
         {/* Actions */}
         <div className="flex gap-3 mt-6">

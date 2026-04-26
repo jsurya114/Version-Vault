@@ -97,7 +97,7 @@ const RepositoryDetailPage = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [activeTab, setActiveTab] = useState<Tab>((searchParams.get('tab') as Tab) || 'code');
 
-  const [branch, setBranch] = useState('main');
+  const [branch, setBranch] = useState(branchName || 'main');
   const [currentPath, setCurrentPath] = useState('');
   const [selectedFile, setSelectFile] = useState('');
   // REMOVED: local starred state (now handled by StarButton and Redux)
@@ -1097,7 +1097,7 @@ const RepositoryDetailPage = () => {
             {/* NON-EMPTY STATE */}
             {!isEmpty && (
               <>
-                {isOwner && activeBranches.length > 0 && !selectedFile && (
+                {(isOwner || hasWriteAccess) && activeBranches.length > 0 && !selectedFile && (
                   <RecentPushesBanner
                     username={username!}
                     reponame={reponame!}
