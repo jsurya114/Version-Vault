@@ -100,7 +100,9 @@ const IssueDetailPage = () => {
                 )}
               </div>
               <div className="min-w-0">
-                <h1 className="text-white text-lg xs:text-xl font-bold break-words">{issue.title}</h1>
+                <h1 className="text-white text-lg xs:text-xl font-bold break-words">
+                  {issue.title}
+                </h1>
                 <div className="flex flex-wrap items-center gap-1.5 xs:gap-2 sm:gap-3 mt-1 text-gray-500 text-[10px] xs:text-xs">
                   <span
                     className={`px-2 py-0.5 rounded border capitalize text-xs ${
@@ -112,7 +114,8 @@ const IssueDetailPage = () => {
                     {issue.status}
                   </span>
                   <span>
-                    opened by <span className="text-gray-300 break-all">{issue.authorUsername}</span>
+                    opened by{' '}
+                    <span className="text-gray-300 break-all">{issue.authorUsername}</span>
                   </span>
                   <span className="flex items-center gap-1">
                     <Clock className="w-3 h-3" />
@@ -144,7 +147,9 @@ const IssueDetailPage = () => {
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-sm font-semibold mb-3">Description</h3>
               {issue.description ? (
-                <p className="text-gray-400 text-sm leading-relaxed break-words">{issue.description}</p>
+                <p className="text-gray-400 text-sm leading-relaxed break-words">
+                  {issue.description}
+                </p>
               ) : (
                 <p className="text-gray-600 text-sm italic">No description provided.</p>
               )}
@@ -203,7 +208,7 @@ const IssueDetailPage = () => {
               </div>
             </div>
 
-            {/* Assignees */}
+            {/* Assignees - Commented out as requested
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-xs font-semibold mb-2">Assignees</h3>
               {issue.assignees.length === 0 ? (
@@ -216,6 +221,7 @@ const IssueDetailPage = () => {
                 ))
               )}
             </div>
+            */}
           </div>
         </div>
       </main>
