@@ -135,11 +135,13 @@ export const repositoryService = {
     branch?: string,
     commitMessage?: string,
     currentPath?: string,
+    username?: string,
   ) => {
     const formData = new FormData();
     formData.append('repositoryName', repoName);
     if (branch) formData.append('branch', branch);
     if (commitMessage) formData.append('commitMessage', commitMessage);
+    if (username) formData.append('repoOwnerUsername', username);
     files.forEach((file) => {
       formData.append('files', file);
       const relativePath = file.webkitRelativePath || file.name;

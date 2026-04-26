@@ -240,6 +240,7 @@ export const fileUploadThunk = createAsyncThunk(
       branch?: string;
       commitMessage?: string;
       currentPath?: string;
+      username: string;
     },
     { rejectWithValue },
   ) => {
@@ -250,6 +251,7 @@ export const fileUploadThunk = createAsyncThunk(
         payload.branch,
         payload.commitMessage,
         payload.currentPath,
+        payload.username,
       );
       return response;
     } catch (error: unknown) {
