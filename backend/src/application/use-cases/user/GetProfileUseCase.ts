@@ -9,7 +9,9 @@ export class GetProfileUseCase implements IGetProfileUseCase {
   constructor(@inject(TOKENS.IUserRepository) private _userReporitory: IUserRepository) {}
 
   async execute(userId: string): Promise<IUser> {
-    const user = await this._userReporitory.findByUserId(userId);
+    const user =
+      (await this._userReporitory.findByUserId(userId)) ||
+      (await this._userReporitory.findByUserName(userId));
 
     if (!user) {
       throw new Error(`Profile with username '@${userId}' not found`);

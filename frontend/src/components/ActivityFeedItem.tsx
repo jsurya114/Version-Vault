@@ -66,7 +66,6 @@ export const ActivityFeedItem: React.FC<{ activity: IActivity }> = ({ activity }
           <div className="min-w-0">
             <p className="text-xs xs:text-sm text-gray-400 flex flex-wrap items-center gap-1.5 xs:gap-2">
               <Link
-                relative="path"
                 to={`/${activity.actorUsername}`}
                 className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal"
               >
@@ -77,7 +76,12 @@ export const ActivityFeedItem: React.FC<{ activity: IActivity }> = ({ activity }
                 to={
                   activity.actionType === 'followed_user'
                     ? `/${activity.targetName}`
-                    : `/${activity.targetName}`
+                    : activity.actionType === 'created_repo' ||
+                        activity.actionType === 'forked_repo'
+                      ? `/${activity.actorUsername}/${activity.targetName}`
+                      : activity.targetName.includes('/')
+                        ? `/${activity.targetName}`
+                        : `/${activity.actorUsername}/${activity.targetName}` // fallback
                 }
                 className="font-semibold text-gray-200 hover:text-blue-400 cursor-pointer break-all xs:break-normal flex items-center gap-1"
               >

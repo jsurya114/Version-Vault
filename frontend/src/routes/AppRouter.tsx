@@ -368,6 +368,15 @@ const AppRouter = () => {
                 </ProtectRoute>
               }
             />
+            {/* Alias for profile using username/id directly */}
+            <Route
+              path="/:userId"
+              element={
+                <ProtectRoute>
+                  <UserProfilePage />
+                </ProtectRoute>
+              }
+            />
           </Routes>
         </Suspense>
       </ErrorBoundary>

@@ -53,7 +53,7 @@ export class CreateRepoUseCase implements ICreateRepoUseCase {
         isPrivate: dto.visibility === 'private',
         actionType: 'created_repo',
         targetId: repo.id as string,
-        targetName: repo.name,
+        targetName: `${dto.ownerUsername}/${repo.name}`,
       })
       .catch(() => {});
 

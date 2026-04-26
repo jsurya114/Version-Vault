@@ -6776,3 +6776,245 @@ fatal: git update-index: --cacheinfo cannot add polyfare/.git/config
 2026-04-26 19:21:00 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
 2026-04-26 19:21:00 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
 2026-04-26 19:21:00 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 19:36:37 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-26 19:57:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 19:57:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 19:57:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 19:57:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 19:57:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 19:57:19 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:10:59 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 22:11:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:11:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:11:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:11:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:11:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:11:05 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:16:45 [[31merror[39m]: GET /vv/user/Test%20User — Profile with username '@Test User' not found
+2026-04-26 22:16:45 [[31merror[39m]: GET /vv/user/Test%20User — Profile with username '@Test User' not found
+2026-04-26 22:17:02 [[31merror[39m]: GET /vv/user/Test%20User — Profile with username '@Test User' not found
+2026-04-26 22:17:02 [[31merror[39m]: GET /vv/user/Test%20User — Profile with username '@Test User' not found
+2026-04-26 22:18:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:18:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:18:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:18:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:18:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:18:07 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:18:09 [[31merror[39m]: GET /vv/user/Test%20User — Profile with username '@Test User' not found
+2026-04-26 22:18:09 [[31merror[39m]: GET /vv/user/Test%20User — Profile with username '@Test User' not found
+2026-04-26 22:25:51 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:25:51 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:25:51 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:25:51 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:25:51 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:25:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:25:54 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:25:54 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:25:54 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:25:54 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:25:54 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:25:54 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:26:41 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 22:26:48 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 22:26:53 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-04-26 22:26:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:26:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:26:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:26:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:26:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:26:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:11 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:12 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:13 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:13 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:13 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:48 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:55 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:27:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:27:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:27:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:33:15 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:33:15 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:33:15 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:33:15 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:33:21 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:33:21 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:33:21 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:33:21 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:33:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:33:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:33:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:33:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:33:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:33:52 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:33:55 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:33:55 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:33:55 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:33:55 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:33:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:33:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:33:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:33:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:33:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:33:56 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:35:10 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:35:10 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:35:10 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:35:10 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:35:12 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:35:12 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:35:12 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:35:12 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:35:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:35:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:35:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:35:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:35:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:35:14 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:35:17 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:35:17 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:35:17 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:35:17 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:41:16 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:41:16 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:41:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:41:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:41:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:41:17 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:41:19 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:41:19 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:41:19 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:41:19 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:42:48 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:42:48 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:42:48 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:42:48 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:42:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:42:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:42:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:42:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:42:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:42:50 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:42:52 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:42:52 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:42:52 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:42:52 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:42:53 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:42:53 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:42:53 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:42:53 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:42:53 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:42:53 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:42:55 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:42:55 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:42:56 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:42:56 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:43:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:43:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:43:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:43:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:43:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:43:26 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:44:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:44:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:44:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:44:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:44:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:44:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:44:22 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:44:22 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:44:22 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:44:22 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:49:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:49:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:49:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:49:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:49:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:49:40 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:49:42 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:49:42 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:49:42 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:49:42 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:49:49 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:49:49 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:49:49 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:49:49 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:54:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:54:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:54:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:54:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:54:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:54:20 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:24 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:28 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:47 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:47 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:47 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:47 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:47 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:47 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:55 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:56:55 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:56:55 [[31merror[39m]: GET /vv/repo/test123/allinone — Repository not found
+2026-04-26 22:56:55 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Repository not found
+2026-04-26 22:56:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:56:58 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:56:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:56:59 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:57:03 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:57:03 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:57:03 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill — Repository not found
+2026-04-26 22:57:03 [[31merror[39m]: GET /vv/repo/Test%20User/polyfill/active-branches — Repository not found
+2026-04-26 22:58:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:58:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:58:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
+2026-04-26 22:58:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69eda55d8d7edd7b7ae919cd, but repository document does not exist.
+2026-04-26 22:58:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edb47a42be861d3d811357, but repository document does not exist.
+2026-04-26 22:58:38 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69edc08434f7ce1418ec42d9, but repository document does not exist.
