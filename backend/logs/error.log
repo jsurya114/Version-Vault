@@ -6125,3 +6125,48 @@ The most similar command is
 2026-04-26 10:30:19 [[31merror[39m]: POST /vv/repo/upload — Cannot use simple-git on a directory that does not exist
 2026-04-26 10:30:20 [[31merror[39m]: POST /vv/repo/upload — Cannot use simple-git on a directory that does not exist
 2026-04-26 10:30:22 [[31merror[39m]: POST /vv/repo/upload — Cannot use simple-git on a directory that does not exist
+2026-04-26 10:57:37 [[31merror[39m]: GET /vv/collaborators/jsurya114/todo/check — Invalid or expired access token
+2026-04-26 10:57:37 [[31merror[39m]: GET /vv/collaborators/jsurya114/todo/check — Invalid or expired access token
+2026-04-26 10:57:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 10:57:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-26 10:57:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 10:57:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-26 10:58:42 [[31merror[39m]: POST /vv/repo/jsurya114/todo/branches — E11000 duplicate key error collection: version-vault.branches index: repositoryId_1_branchName_1 dup key: { repositoryId: "69ec6bb66ebb397ea09f6e9f", branchName: "featured" }
+2026-04-26 10:59:39 [[31merror[39m]: GET /vv/repo/jsurya114/todo — Repository not found
+2026-04-26 10:59:39 [[31merror[39m]: GET /vv/repo/jsurya114/todo/active-branches — Repository not found
+2026-04-26 10:59:39 [[31merror[39m]: GET /vv/repo/jsurya114/todo — Repository not found
+2026-04-26 10:59:39 [[31merror[39m]: GET /vv/repo/jsurya114/todo/active-branches — Repository not found
+2026-04-26 10:59:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69ec6bb66ebb397ea09f6e9f, but repository document does not exist.
+2026-04-26 10:59:41 [[31merror[39m]: REPOSITORY DATA MISSING: Found collaboration for repo ID 69ec6bb66ebb397ea09f6e9f, but repository document does not exist.
+2026-04-26 11:19:04 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-04-26 11:19:04 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-04-26 11:19:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:26 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:26 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:27 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:27 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:27 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:27 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:27 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:27 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:29 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/commits — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/files — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist
+2026-04-26 11:19:30 [[31merror[39m]: GET /vv/repo/test123/allinone/active-branches — Cannot use simple-git on a directory that does not exist

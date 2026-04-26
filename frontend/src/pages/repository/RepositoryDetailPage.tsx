@@ -980,19 +980,41 @@ const RepositoryDetailPage = () => {
                         : `${selectedUploadFiles.length} file(s) primed for commit`}
                     </span>
                   </div>
-                  <label className="bg-gray-800 hover:bg-gray-700 text-white text-xs px-4 py-2 rounded-lg cursor-pointer transition border border-gray-700 shrink-0">
-                    Browse Files
-                    <input
-                      type="file"
-                      multiple
-                      className="hidden"
-                      onChange={(e) => {
-                        if (e.target.files) {
-                          setSelectedUploadFiles(Array.from(e.target.files));
-                        }
-                      }}
-                    />
-                  </label>
+                  <div className="flex items-center gap-2">
+                    <label className="bg-gray-800 hover:bg-gray-700 text-white text-xs px-4 py-2 rounded-lg cursor-pointer transition border border-gray-700 shrink-0">
+                      Browse Files
+                      <input
+                        type="file"
+                        multiple
+                        className="hidden"
+                        onChange={(e) => {
+                          if (e.target.files) {
+                            setSelectedUploadFiles((prev) => [
+                              ...prev,
+                              ...Array.from(e.target.files!),
+                            ]);
+                          }
+                        }}
+                      />
+                    </label>
+                    <label className="bg-gray-800 hover:bg-gray-700 text-white text-xs px-4 py-2 rounded-lg cursor-pointer transition border border-gray-700 shrink-0">
+                      Browse Folder
+                      <input
+                        type="file"
+                        multiple
+                        webkitdirectory="true"
+                        className="hidden"
+                        onChange={(e) => {
+                          if (e.target.files) {
+                            setSelectedUploadFiles((prev) => [
+                              ...prev,
+                              ...Array.from(e.target.files!),
+                            ]);
+                          }
+                        }}
+                      />
+                    </label>
+                  </div>
                 </div>
 
                 <div>
