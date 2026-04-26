@@ -17,12 +17,28 @@ export class UploadFileUseCase implements IUploadFileUseCase {
 
   async execute(dto: UploadFilesDTO): Promise<void> {
     try {
+      // Filter out files inside .git directories as Git will reject them
+      const validFiles = dto.files.filter((file) => {
+        const isGitInternal = file.filePath.startsWith('.git/') || file.filePath.includes('/.git/');
+        if (isGitInternal) {
+          // Attempt to cleanup right away if we are ignoring them
+          if (fs.existsSync(file.tempDiskPath)) {
+            fs.unlinkSync(file.tempDiskPath);
+          }
+        }
+        return !isGitInternal;
+      });
+
+      if (validFiles.length === 0) {
+        return; // Nothing to commit
+      }
+
       await this._gitService.commitMultipleFiles(
         dto.ownerUsername,
         dto.repoName,
         dto.branch || 'main',
         dto.commitMessage || 'Initial commit via web upload',
-        dto.files,
+        validFiles,
         dto.ownerUsername,
         dto.ownerEmail,
       );
