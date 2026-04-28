@@ -93,16 +93,29 @@ const RepositoryListPage = () => {
     return () => clearTimeout(timer);
   }, [dispatch, fetchParams, search]);
 
+  // Ensure page doesn't exceed total pages after a deletion reduces the page count
+  useEffect(() => {
+    if (meta.totalPages > 0 && page > meta.totalPages) {
+      setPage(meta.totalPages);
+    }
+  }, [meta.totalPages, page]);
+
   const handleDelete = useCallback(async () => {
     if (!deleteModal.repo) return;
-    await dispatch(
-      deleteRepositoryThunk({
-        username: authUser?.userId || '',
-        reponame: deleteModal.repo.name,
-      }),
-    );
+    try {
+      await dispatch(
+        deleteRepositoryThunk({
+          username: authUser?.userId || '',
+          reponame: deleteModal.repo.name,
+        }),
+      ).unwrap();
+      // Refetch to sync pagination totals and shifting items
+      dispatch(listRepositoryThunk(fetchParams));
+    } catch (e) {
+      console.error('Failed to delete repository', e);
+    }
     setDeleteModal({ open: false, repo: null });
-  }, [dispatch, authUser?.userId, deleteModal.repo]);
+  }, [dispatch, authUser?.userId, deleteModal.repo, fetchParams]);
 
   const openVisibilityModal = useCallback((repo: RepositoryResponseDTO) => {
     setVisibilityModal({ open: true, repo });
