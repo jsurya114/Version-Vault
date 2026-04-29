@@ -1,3 +1,4 @@
+import React, { memo } from 'react';
 import { DataTableProps } from './TableTypes';
 
 const DataTable = <T extends { id?: string }>({
@@ -60,4 +61,4 @@ const DataTable = <T extends { id?: string }>({
   );
 };
 
-export default DataTable;
+export default memo(DataTable) as typeof DataTable;

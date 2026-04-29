@@ -6,6 +6,7 @@ import { RepoResponseDTO } from '../../../application/dtos/repository/RepoRespon
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { RepositoryMapper } from '../../../application/mappers/RepositoryMapper';
 import { GitService } from '../../../infrastructure/services/GitService';
+import { redisClient } from '../../../infrastructure/Redis/RedisClient';
 
 @injectable()
 export class GetRepoByIdUseCase implements IGetRepoByIdUseCase {
@@ -15,6 +16,13 @@ export class GetRepoByIdUseCase implements IGetRepoByIdUseCase {
   ) {}
 
   async execute(id: string): Promise<RepoResponseDTO> {
+    const cacheKey = `admin:repo:${id}`;
+    const cachedData = await redisClient.get(cacheKey);
+
+    if (cachedData) {
+      return JSON.parse(cachedData) as RepoResponseDTO;
+    }
+
     const repo = await this._repoRepo.findById(id);
 
     if (!repo) throw new NotFoundError('Repository not found');
@@ -30,6 +38,9 @@ export class GetRepoByIdUseCase implements IGetRepoByIdUseCase {
     dto.branchCount = branchCount;
     dto.storageBytes = storageBytes;
     dto.languages = languages;
+
+    // Cache the fully populated DTO for 5 minutes (300 seconds)
+    await redisClient.setex(cacheKey, 300, JSON.stringify(dto));
 
     return dto;
   }

@@ -58,22 +58,27 @@ export class NotificationService {
       }
       recipientIds.delete(params.actorId); //exculde the actor
 
-      // Create a notification for each recipient
-      const promises = Array.from(recipientIds).map(async (recipientId) => {
-        const notification = await this._notificationRepo.save({
-          recipientId,
-          actorId: params.actorId,
-          actorUsername: params.actorUsername,
-          type: params.type,
-          message: params.message,
-          repositoryId: params.repositoryId,
-          repositoryName: params.repositoryName || repo.name,
-          metadata: params.metadata,
-          isRead: false,
+      // Create all notifications in a single batch insert
+      const notificationPayloads = Array.from(recipientIds).map((recipientId) => ({
+        recipientId,
+        actorId: params.actorId,
+        actorUsername: params.actorUsername,
+        type: params.type,
+        message: params.message,
+        repositoryId: params.repositoryId,
+        repositoryName: params.repositoryName || repo.name,
+        metadata: params.metadata,
+        isRead: false,
+      }));
+
+      if (notificationPayloads.length > 0) {
+        const notifications = await this._notificationRepo.insertMany(notificationPayloads);
+        
+        // Emit socket events for each created notification
+        notifications.forEach((notification) => {
+          this._socketEmitter.emitToUser(notification.recipientId, 'notification', notification);
         });
-        this._socketEmitter.emitToUser(recipientId, 'notification', notification);
-      });
-      await Promise.all(promises);
+      }
     } catch (error) {
       logger.error('Failed to send repo notifications:', error);
     }
