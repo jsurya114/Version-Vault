@@ -19,7 +19,7 @@ import {
   Globe,
   Sparkles,
   AlertCircle,
-  Crown
+  Crown,
 } from 'lucide-react';
 
 interface AiAgentRepoCreatorProps {
@@ -54,16 +54,19 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
         <div className="absolute inset-0 opacity-10 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-indigo-500 via-transparent to-transparent"></div>
         <div className="text-center px-8 z-10">
           <div className="relative inline-block mb-6">
-             <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center mx-auto border border-indigo-500/20">
-                <Lock className="w-8 h-8 text-indigo-400" />
-             </div>
-             <div className="absolute -top-2 -right-2 w-6 h-6 rounded-lg bg-indigo-500 flex items-center justify-center text-white shadow-lg">
-                <Crown className="w-3 h-3" />
-             </div>
+            <div className="w-16 h-16 rounded-2xl bg-indigo-500/10 flex items-center justify-center mx-auto border border-indigo-500/20">
+              <Lock className="w-8 h-8 text-indigo-400" />
+            </div>
+            <div className="absolute -top-2 -right-2 w-6 h-6 rounded-lg bg-indigo-500 flex items-center justify-center text-white shadow-lg">
+              <Crown className="w-3 h-3" />
+            </div>
           </div>
-          <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">AI Architect Locked</h3>
+          <h3 className="text-xl font-black text-gray-900 dark:text-white mb-2">
+            AI Architect Locked
+          </h3>
           <p className="text-gray-500 dark:text-gray-400 text-xs mb-6 max-w-[280px] mx-auto font-medium">
-            Project scaffolding via AI is a Pro feature. Upgrade to unlock instant boilerplate generation.
+            Project scaffolding via AI is a Pro feature. Upgrade to unlock instant boilerplate
+            generation.
           </p>
           <Link
             to={ROUTES.SUBSCRIPTION}
@@ -121,7 +124,7 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    if (!formData.name.trim() || !formData.projectBrief.trim() || isLoading) return;
+    if (!formData.name.trim() || isLoading) return;
 
     setErrorMessage('');
 
@@ -191,10 +194,10 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
 
             <div className="space-y-1.5">
               <label className="text-sm font-medium text-gray-700 dark:text-gray-300">
-                Project Brief <span className="text-red-500">*</span>
+                Project Brief{' '}
+                <span className="text-gray-500 font-normal text-xs ml-1">(Optional)</span>
               </label>
               <textarea
-                required
                 placeholder="Describe what the app does... e.g. A task manager with user authentication and real-time updates."
                 rows={4}
                 className="w-full p-3 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-900 dark:text-white outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none placeholder-gray-400 dark:placeholder-gray-500"
@@ -341,7 +344,7 @@ export const AiAgentRepoCreator: React.FC<AiAgentRepoCreatorProps> = ({ onRepoCr
         <div className="mt-8 pt-4 border-t border-gray-200 dark:border-gray-800 flex justify-end">
           <button
             type="submit"
-            disabled={isLoading || !formData.name.trim() || !formData.projectBrief.trim()}
+            disabled={isLoading || !formData.name.trim()}
             className="group relative inline-flex items-center justify-center gap-2 px-8 py-3.5 font-bold text-white transition-all duration-200 bg-gradient-to-r from-blue-600 to-indigo-600 border border-transparent rounded-xl shadow-lg hover:from-blue-500 hover:to-indigo-500 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-600 disabled:opacity-50 disabled:cursor-not-allowed overflow-hidden w-full md:w-auto"
           >
             {isLoading ? (

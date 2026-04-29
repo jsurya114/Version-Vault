@@ -758,7 +758,7 @@ export class GitService {
       }
       for (const file of files) {
         // Hash the multer temporary file directly into the git objects database
-        const blobHash = await git.raw(['hash-object', '-w', file.tempDiskPath]);
+        const blobHash = (await git.raw(['hash-object', '-w', file.tempDiskPath])).trim();
         // Add to our temporary index
         await gitWithIndex.raw([
           'update-index',

@@ -26,6 +26,11 @@ export abstract class MongoBaseRepository<T> implements IBaseRepository<T> {
     return this.toEntity(saved.toObject());
   }
 
+  async insertMany(entities: Partial<T>[]): Promise<T[]> {
+    const docs = await this.model.insertMany(entities);
+    return docs.map((doc) => this.toEntity(doc.toObject()));
+  }
+
   async update(id: string, data: Partial<T>): Promise<T | null> {
     const doc = await this.model.findByIdAndUpdate(id, data, { returnDocument: 'after' }).lean();
     if (!doc) return null;

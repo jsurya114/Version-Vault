@@ -14,19 +14,18 @@ You are an expert AI software architect. Given a project configuration, you must
 You MUST output ONLY a valid JSON object. Do NOT wrap it in markdown. The JSON must exactly match this schema:
 {
   "files": [
-    { "path": "package.json", "content": "..." },
-    { "path": "../../../index.js", "content": "..." }
+    { "path": "filename.ext", "content": "..." },
+    { "path": "another_file.ext", "content": "..." }
   ]
 }
 CRITICAL RULES AND INSTRUCTIONS:
-1. **ARCHITECTURE ENFORCEMENT**: If an Architecture is provided (and is not 'None'), structure the project's folders and files based EXACTLY on that requested Architecture by creating necessary structural directories implicitly (e.g., "../../../controllers/..."). If 'None' or no architecture is selected, output files straightforwardly without enforcing deep folder structures.
-2. **EXTENSION ENFORCEMENT**: 
-   - If the tech stack specifies 'React', UI components MUST use \`.jsx\` extension. Never use \`.js\` for React components.
-   - If the tech stack specifies 'React' AND 'TypeScript', UI components MUST use \`.tsx\` extension, and logic files must use \`.ts\`.
+1. **JSON VALIDITY**: Ensure the JSON is strictly valid. You MUST properly escape all special characters (such as quotes, newlines \\n, tabs \\t, and backslashes \\\\) inside the "content" strings so that JSON.parse will not fail. Do not leave trailing commas.
+2. **ARCHITECTURE & REQUIREMENTS ENFORCEMENT**: You must create the repository exactly as requested in the "Project Brief". If the brief mentions specific technologies, frameworks, or folder structures, you MUST create all necessary configuration files, dependencies, and structural directories implicitly (e.g., "src/controllers/..."). If an Architecture is provided (and is not 'None'), also structure the project based on that.
+3. **EXTENSION ENFORCEMENT**: 
    - Ensure you use the exact appropriate language extension for the tech stack the user typed or selected (e.g., \`.py\` for Python, \`.go\` for Go, \`.rs\` for Rust, \`.java\` for Java).
-3. **DEPENDENCY MANAGEMENT**: ONLY generate dependency config files (e.g., \`package.json\`, \`requirements.txt\`, \`pom.xml\`, \`Cargo.toml\`) IF the user explicitly selected a Tech Stack or Architecture. If no Tech Stack or Architecture is provided, DO NOT create extra boilerplate configuration, dependency files, or empty project folders. Just output exactly what the Project Brief asked for.
-4. **FILE CONTENT**: Provide realistic boilerplate code in each file to give the user a good starting point based on their "Project Brief" and "Description".
-5. **ROOT PATHS**: All file "paths" MUST be strictly relative to the repository root. DO NOT nest the entire project inside a top-level parent folder matching the repository name. For example, output "package.json" and "../../../index.js", NOT "my-repo/package.json" or "my-repo/src/index.js".
+   - If using React, UI components MUST use \`.jsx\` extension or \`.tsx\` if TypeScript is used.
+4. **DEPENDENCY & FOLDER MANAGEMENT**: ONLY generate dependency config files (e.g., \`package.json\`) and full folder structures (like \`src/\`) IF the user explicitly selected a Tech Stack, added Dependencies, or explicitly asked for a full project/app in the Project Brief. If the user just asks to "create a file" (e.g., "create a js file to generate otp") and no tech stack/dependencies are provided, ONLY output that exact file. DO NOT create \`package.json\`, extra folders, or any other boilerplate.
+5. **ROOT PATHS**: All file "paths" MUST be strictly relative to the repository root. DO NOT nest the entire project inside a top-level parent folder matching the repository name. For example, output "filename.ext", NOT "my-repo/filename.ext". Do NOT use leading slashes or parent directory traversal like "../".
 `;
 @injectable()
 export class AIAgentUseCase implements IAIAgentUseCase {
@@ -45,12 +44,13 @@ export class AIAgentUseCase implements IAIAgentUseCase {
     const userPrompt = `
 Repository Name: ${config.name}
 Repository Description: ${config.description || 'No description provided.'}
-Project Brief: ${config.projectBrief}
+Project Brief: ${config.projectBrief || 'No specific project brief provided.'}
 User Selections:
-- Tech Stack: ${config.techStack?.length ? config.techStack.join(', ') : 'No specific tech stack selected, determine best based on brief.'}
-- Architecture Style: ${config.architecture || 'Standard modular architecture.'}
+- Tech Stack: ${config.techStack?.length ? config.techStack.join(', ') : 'None.'}
+- Architecture Style: ${config.architecture || 'None.'}
 - Extra Dependencies: ${config.dependencies || 'None.'}
-Instructions: Generate the complete boilerplate JSON based on the rules. Automatically hook up the dependency file to include the mentioned tech stack and dependencies.
+
+Instructions: Generate ONLY the files explicitly requested or strictly necessary for the Project Brief. If no Tech Stack or Dependencies are provided, DO NOT assume any frameworks, DO NOT generate configuration files like package.json, and DO NOT create structural folders like src/. Generate strictly what is asked.
 `;
 
     const aiResponse = await this._groqService.chat(
@@ -58,7 +58,7 @@ Instructions: Generate the complete boilerplate JSON based on the rules. Automat
         { role: 'system', content: SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
       ],
-      false,
+      true,
     );
     let generatedFiles: { path: string; content: string }[];
     try {
@@ -69,17 +69,34 @@ Instructions: Generate the complete boilerplate JSON based on the rules. Automat
         .trim();
       const parsed = JSON.parse(cleaned);
       if (parsed.files && Array.isArray(parsed.files)) {
-        generatedFiles = parsed.files.map((file: { path: string; content: string }) => {
-          // Fallback: If AI mistakenly prepends the repo name as the root folder, strip it
-          let filePath = file.path;
-          const repoPrefix = config.name + '/';
-          if (filePath.startsWith(repoPrefix)) {
-            filePath = filePath.substring(repoPrefix.length);
-          } else if (filePath.startsWith('./' + repoPrefix)) {
-            filePath = filePath.substring(2 + repoPrefix.length);
-          }
-          return { ...file, path: filePath };
-        });
+        generatedFiles = parsed.files
+          .filter(
+            (f: { path: string }) => f.path && !f.path.endsWith('/') && !f.path.endsWith('\\'),
+          )
+          .map((file: { path: string; content: string }) => {
+            // Fallback: If AI mistakenly prepends the repo name as the root folder, strip it
+            let filePath = file.path;
+
+            // Strip leading slashes, dots, and directory traversal
+            filePath = filePath.replace(/^[./\\]+/, '');
+            filePath = filePath.replace(/^(?:\.\.[/\\])+/, '');
+
+            const repoPrefix = config.name + '/';
+            if (filePath.startsWith(repoPrefix)) {
+              filePath = filePath.substring(repoPrefix.length);
+            }
+
+            // Final safety strip just in case
+            filePath = filePath.replace(/^[./\\]+/, '');
+
+            let content = file.content;
+            // Fix over-escaped newlines and tabs if the AI generated literal \n strings
+            if (content.includes('\\n')) {
+              content = content.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
+            }
+
+            return { ...file, path: filePath, content };
+          });
       } else {
         throw new Error('Invalid JSON Schema format returned from AI model.');
       }
