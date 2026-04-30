@@ -52,6 +52,9 @@ export const ROUTES = {
   REPO_COMPARE: '/:username/:reponame/compare/*',
   COMMIT_DETAIL: '/:username/:reponame/commit/:hash',
 
+  //actions (ci/cd)
+  ACTIONS: '/:username/:reponame/actions',
+
   // Invitation
   ACCEPT_INVITATION: '/invitation/accept/:token',
 

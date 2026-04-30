@@ -26,7 +26,8 @@ import chatRoutes from './interfaces/http/routes/chat/chat.routes';
 import aiAgentRoutes from './interfaces/http/routes/ai-agent/aiAgent.routes';
 import notificationRoutes from './interfaces/http/routes/notifications/notifications.routes';
 import activityRoutes from './interfaces/http/routes/activity/activiy.routes';
-import subscriptionRoutes from './interfaces/http/routes/subscription/subscription.routes'
+import subscriptionRoutes from './interfaces/http/routes/subscription/subscription.routes';
+import workflowRoutes from './interfaces/http/routes/workflow/workflow.routes';
 
 const app = express();
 
@@ -78,8 +79,7 @@ app.use('/vv/chats', chatRoutes);
 app.use('/vv/ai-agent', aiAgentRoutes);
 app.use('/vv/notifications', notificationRoutes);
 app.use('/vv/activity', activityRoutes);
-
-
+app.use('/vv/workflows', workflowRoutes);
 
 //error hanlding middleware
 app.use(errorMiddleware);

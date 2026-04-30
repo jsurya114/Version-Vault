@@ -5,7 +5,11 @@ import { GitService } from '../../../infrastructure/services/GitService';
 import { IRepoRepository } from '../../../domain/interfaces/repositories/IRepoRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { NotificationService } from '../../../infrastructure/services/NotificationService';
+import { TriggerWorkflowUseCase } from '../cicd/TriggerWorkflowUseCase';
+import { envConfig } from '../../../shared/config/env.config';
+import { DEFAULT_PIPELINE } from '../../../shared/constants/defaultPipeline';
 import fs from 'fs';
+import { redisClient } from '../../../infrastructure/Redis/RedisClient';
 
 @injectable()
 export class UploadFileUseCase implements IUploadFileUseCase {
@@ -13,6 +17,7 @@ export class UploadFileUseCase implements IUploadFileUseCase {
     @inject(GitService) private _gitService: GitService,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+    @inject(TriggerWorkflowUseCase) private _triggerWorkflowUseCase: TriggerWorkflowUseCase,
   ) {}
 
   async execute(dto: UploadFilesDTO): Promise<void> {
@@ -43,6 +48,19 @@ export class UploadFileUseCase implements IUploadFileUseCase {
         dto.ownerEmail,
       );
 
+      // Invalidate git caches so the UI updates immediately
+      const branch = dto.branch || 'main';
+      const keys1 = await redisClient.keys(
+        `git:filecontent:${dto.ownerUsername}:${dto.repoName}:${branch}:*`,
+      );
+      const keys2 = await redisClient.keys(
+        `git:files:${dto.ownerUsername}:${dto.repoName}:${branch}:*`,
+      );
+      const allKeys = [...keys1, ...keys2];
+      if (allKeys.length > 0) {
+        await redisClient.del(...allKeys);
+      }
+
       const repo = await this._repoRepo.findByOwnerAndName(dto.ownerUsername, dto.repoName);
       if (repo) {
         const fileCount = dto.files.length;
@@ -56,6 +74,27 @@ export class UploadFileUseCase implements IUploadFileUseCase {
             repositoryName: repo.name,
           })
           .catch(() => {});
+
+        // CI/CD: Trigger pipeline automatically on upload
+        try {
+          const commits = await this._gitService.getCommits(
+            dto.ownerUsername,
+            dto.repoName,
+            dto.branch || 'main',
+            1,
+          );
+          const commitHash = commits.length > 0 ? commits[0].hash : 'latest';
+          const repoCloneUrl = `http://host.docker.internal:${envConfig.PORT}/vv/git/${dto.ownerUsername}/${dto.repoName}.git`;
+
+          await this._triggerWorkflowUseCase.execute(
+            repo.id as string,
+            commitHash,
+            DEFAULT_PIPELINE,
+            repoCloneUrl,
+          );
+        } catch (error) {
+          console.error('Failed to trigger CI/CD workflow:', error);
+        }
       }
     } finally {
       // Cleanup multer files after they securely exist in Git Object s

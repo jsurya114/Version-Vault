@@ -5,6 +5,9 @@ import { ICreateRepoUseCase } from '../interfaces/repository/ICreateRepoUseCase'
 import { IGroqService } from '../../../domain/interfaces/services/IGroqService';
 import { GitService } from '../../../infrastructure/services/GitService';
 import { TOKENS } from '../../../shared/constants/tokens';
+import { TriggerWorkflowUseCase } from '../cicd/TriggerWorkflowUseCase';
+import { envConfig } from '../../../shared/config/env.config';
+import { DEFAULT_PIPELINE } from '../../../shared/constants/defaultPipeline';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
@@ -33,6 +36,7 @@ export class AIAgentUseCase implements IAIAgentUseCase {
     @inject(TOKENS.IGroqService) private _groqService: IGroqService,
     @inject(TOKENS.ICreateRepoUseCase) private _createRepo: ICreateRepoUseCase,
     @inject(GitService) private _gitService: GitService,
+    @inject(TriggerWorkflowUseCase) private _triggerWorkflowUseCase: TriggerWorkflowUseCase,
   ) {}
 
   async execute(
@@ -131,6 +135,21 @@ Instructions: Generate ONLY the files explicitly requested or strictly necessary
           'AI Assistant',
           'ai@versionvault.com',
         );
+
+        // CI/CD: Auto-trigger pipeline after AI agent commits
+        try {
+          const commits = await this._gitService.getCommits(ownerUsername, config.name, 'main', 1);
+          const commitHash = commits.length > 0 ? commits[0].hash : 'ai-init';
+          const repoCloneUrl = `http://host.docker.internal:${envConfig.PORT}/vv/git/${ownerUsername}/${config.name}.git`;
+          await this._triggerWorkflowUseCase.execute(
+            createdRepo.id as string,
+            commitHash,
+            DEFAULT_PIPELINE,
+            repoCloneUrl,
+          );
+        } catch {
+          // Non-critical
+        }
       } finally {
         fs.rmSync(tmpDir, { recursive: true, force: true });
       }

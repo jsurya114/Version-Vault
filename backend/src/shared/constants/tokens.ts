@@ -150,4 +150,9 @@ export const TOKENS = {
   IHandleWebhookUseCase: Symbol.for('IHandleWebhookUseCase'),
   ICancelSubscriptionUseCase: Symbol.for('ICancelSubscriptionUseCase'),
   IGetSubscriptionStatusUseCase: Symbol.for('IGetSubscriptionStatusUseCase'),
+
+  //cicd workflows
+  IListWorkflowRunsUseCase: Symbol.for('IListWorkflowRunsUseCase'),
+  IGetWorkflowRunUseCase: Symbol.for('IGetWorkflowRunUseCase'),
+  IGetLatestWorkflowStatusUseCase: Symbol.for('IGetLatestWorkflowStatusUseCase'),
 } as const;

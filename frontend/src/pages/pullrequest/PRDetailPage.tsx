@@ -9,7 +9,12 @@ import {
   MessageSquare,
   FileCode,
   AlertTriangle,
+  CheckCircle2,
+  XCircle,
+  Loader2,
+  ShieldAlert,
 } from 'lucide-react';
+import { workflowService } from '../../services/workflow.service';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import {
   getPRThunk,
@@ -82,8 +87,16 @@ const PRDetailPage = () => {
   const isConflictLoading = useAppSelector(selectConflictLoading);
   const isResolving = useAppSelector(selectIsResolving);
   const [showConflictEditor, setShowConflictEditor] = useState(false);
+  const [cicdStatus, setCicdStatus] = useState<{
+    status: string;
+    commitHash: string;
+    createdAt: string;
+  } | null>(null);
+  const [cicdLoading, setCicdLoading] = useState(true);
   // Check if the PR is mergeable from compare data
   const isMergeable = compareData?.isMergeable ?? true;
+  const cicdFailed = cicdStatus?.status === 'FAILED';
+  const cicdRunning = cicdStatus?.status === 'RUNNING' || cicdStatus?.status === 'QUEUED';
 
   useEffect(() => {
     // Check if the PR loaded in Redux actually matches the PR we are clicking!
@@ -113,6 +126,18 @@ const PRDetailPage = () => {
   useEffect(() => {
     if (id) dispatch(getPRThunk({ username: username!, reponame: reponame!, id }));
   }, [id, dispatch, username, reponame]);
+
+  // Fetch latest CI/CD status for this repo
+  useEffect(() => {
+    if (username && reponame && pr?.status === 'open') {
+      setCicdLoading(true);
+      workflowService
+        .getLatestStatus(username, reponame)
+        .then((data) => setCicdStatus(data))
+        .catch(() => setCicdStatus(null))
+        .finally(() => setCicdLoading(false));
+    }
+  }, [username, reponame, pr?.status]);
 
   useEffect(() => {
     if (!isMergeable && pr?.status === 'open' && isOwner && username && reponame && id) {
@@ -356,11 +381,34 @@ const PRDetailPage = () => {
                     ) : isMergeable ? (
                       <button
                         onClick={() => setIsMergeModalOpen(true)}
-                        disabled={isMerging}
-                        className="flex items-center gap-1.5 bg-purple-600 hover:bg-purple-700 shadow-md shadow-purple-900/20 text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed"
+                        disabled={isMerging || cicdFailed || cicdRunning}
+                        className={`flex items-center gap-1.5 shadow-md text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed ${
+                          cicdFailed
+                            ? 'bg-red-800 hover:bg-red-800 shadow-red-900/20 cursor-not-allowed'
+                            : cicdRunning
+                              ? 'bg-yellow-700 hover:bg-yellow-700 shadow-yellow-900/20 cursor-not-allowed'
+                              : 'bg-purple-600 hover:bg-purple-700 shadow-purple-900/20'
+                        }`}
+                        title={
+                          cicdFailed
+                            ? 'CI/CD pipeline failed — fix the issues first'
+                            : cicdRunning
+                              ? 'Waiting for CI/CD to finish...'
+                              : 'Merge this pull request'
+                        }
                       >
-                        <GitMerge className="w-4 h-4" />
-                        Merge Pull Request
+                        {cicdFailed ? (
+                          <ShieldAlert className="w-4 h-4" />
+                        ) : cicdRunning ? (
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                        ) : (
+                          <GitMerge className="w-4 h-4" />
+                        )}
+                        {cicdFailed
+                          ? 'Merge Blocked'
+                          : cicdRunning
+                            ? 'CI/CD Running...'
+                            : 'Merge Pull Request'}
                       </button>
                     ) : (
                       <button
@@ -437,6 +485,47 @@ const PRDetailPage = () => {
                 </div>
               </div>
             </div>
+
+            {/* CI/CD Status Banner */}
+            {pr.status === 'open' && !cicdLoading && cicdStatus && (
+              <div
+                className={`border rounded-xl p-4 flex items-center gap-3 ${
+                  cicdStatus.status === 'SUCCESS'
+                    ? 'bg-green-900/10 border-green-500/20'
+                    : cicdStatus.status === 'FAILED'
+                      ? 'bg-red-900/10 border-red-500/20'
+                      : 'bg-yellow-900/10 border-yellow-500/20'
+                }`}
+              >
+                {cicdStatus.status === 'SUCCESS' ? (
+                  <CheckCircle2 className="w-5 h-5 text-green-400 shrink-0" />
+                ) : cicdStatus.status === 'FAILED' ? (
+                  <XCircle className="w-5 h-5 text-red-400 shrink-0" />
+                ) : (
+                  <Loader2 className="w-5 h-5 text-yellow-400 shrink-0 animate-spin" />
+                )}
+                <div>
+                  <p
+                    className={`text-sm font-bold ${
+                      cicdStatus.status === 'SUCCESS'
+                        ? 'text-green-300'
+                        : cicdStatus.status === 'FAILED'
+                          ? 'text-red-300'
+                          : 'text-yellow-300'
+                    }`}
+                  >
+                    {cicdStatus.status === 'SUCCESS'
+                      ? 'All checks have passed'
+                      : cicdStatus.status === 'FAILED'
+                        ? 'Some checks have failed — merging is blocked'
+                        : 'Checks are running — please wait'}
+                  </p>
+                  <p className="text-gray-500 text-xs mt-0.5">
+                    Latest pipeline on commit {cicdStatus.commitHash.slice(0, 7)}
+                  </p>
+                </div>
+              </div>
+            )}
 
             {/* Merge Conflict Banner */}
             {!isMergeable && pr.status === 'open' && (
