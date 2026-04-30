@@ -1,0 +1,45 @@
+"use strict";
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+var __param = (this && this.__param) || function (paramIndex, decorator) {
+    return function (target, key) { decorator(target, key, paramIndex); }
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+exports.DeclineInvitationUseCase = void 0;
+const tsyringe_1 = require("tsyringe");
+const tokens_1 = require("../../../shared/constants/tokens");
+const NotFoundError_1 = require("../../../domain/errors/NotFoundError");
+const ConflictError_1 = require("../../../domain/errors/ConflictError");
+const UnauthorizedError_1 = require("../../../domain/errors/UnauthorizedError");
+let DeclineInvitationUseCase = class DeclineInvitationUseCase {
+    _inviteRepo;
+    constructor(_inviteRepo) {
+        this._inviteRepo = _inviteRepo;
+    }
+    async execute(token, userId, userEmail) {
+        const invitation = await this._inviteRepo.findByToken(token);
+        if (!invitation) {
+            throw new NotFoundError_1.NotFoundError('Invitation not found');
+        }
+        if (invitation.status !== 'pending') {
+            throw new ConflictError_1.ConflictError(`Invitation has already been ${invitation.status}`);
+        }
+        if (invitation.inviteeEmail !== userEmail) {
+            throw new UnauthorizedError_1.UnauthorizedError('This invitation was sent to a different email address');
+        }
+        await this._inviteRepo.updateStatus(token, 'declined');
+    }
+};
+exports.DeclineInvitationUseCase = DeclineInvitationUseCase;
+exports.DeclineInvitationUseCase = DeclineInvitationUseCase = __decorate([
+    (0, tsyringe_1.injectable)(),
+    __param(0, (0, tsyringe_1.inject)(tokens_1.TOKENS.IInvitationRepository)),
+    __metadata("design:paramtypes", [Object])
+], DeclineInvitationUseCase);

@@ -1,0 +1,18 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const AdminUserController_1 = require("../../controllers/admin/AdminUserController");
+const AdminRepoController_1 = require("../../controllers/admin/AdminRepoController");
+const router = (0, express_1.Router)();
+const adminUserController = tsyringe_1.container.resolve(AdminUserController_1.AdminUserController);
+const adminRepoController = tsyringe_1.container.resolve(AdminRepoController_1.AdminRepoController);
+router.get('/users', (req, res, next) => adminUserController.getAllUsers(req, res, next));
+router.get('/users/:id', (req, res, next) => adminUserController.getUserById(req, res, next));
+router.patch('/users/:id/block', (req, res, next) => adminUserController.blockUser(req, res, next));
+router.patch('/users/:id/unblock', (req, res, next) => adminUserController.unBlockUser(req, res, next));
+router.get('/repositories', (req, res, next) => adminRepoController.getAllRepositories(req, res, next));
+router.get('/repositories/:id', (req, res, next) => adminRepoController.getRepoById(req, res, next));
+router.patch('/repositories/:id/block', (req, res, next) => adminRepoController.blockRepository(req, res, next));
+router.patch('/repositories/:id/unblock', (req, res, next) => adminRepoController.unblockRepository(req, res, next));
+exports.default = router;

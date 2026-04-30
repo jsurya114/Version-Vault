@@ -1,0 +1,14 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const ChatController_1 = require("../../controllers/chat/ChatController");
+const AuthMiddleware_1 = require("../../middleware/AuthMiddleware");
+const router = (0, express_1.Router)();
+const chatController = () => tsyringe_1.container.resolve(ChatController_1.ChatController);
+router.get('/:username/:reponame/history', AuthMiddleware_1.authMiddleware, (req, res, next) => chatController().getHistory(req, res, next));
+router.post('/:username/:reponame', AuthMiddleware_1.authMiddleware, (req, res, next) => chatController().sendMessage(req, res, next));
+router.get('/message/:messageId', AuthMiddleware_1.authMiddleware, (req, res, next) => chatController().getMessage(req, res, next));
+router.delete('/:messageId', AuthMiddleware_1.authMiddleware, (req, res, next) => chatController().deleteMessage(req, res, next));
+router.get('/conversations', AuthMiddleware_1.authMiddleware, (req, res, next) => chatController().getChatRepo(req, res, next));
+exports.default = router;
