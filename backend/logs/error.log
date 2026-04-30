@@ -7216,3 +7216,251 @@ fatal: git update-index: --cacheinfo cannot add polyfare/.git/config
     at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
     at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
     at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-29 12:02:34 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-29 15:33:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:34:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:35:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:36:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:37:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:38:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:39:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:40:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:41:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:42:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:43:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:44:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:45:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:46:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:47:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:48:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:49:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:50:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:51:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:52:31 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:53:25 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:53:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:53:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:53:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:54:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:54:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:54:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:54:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:54:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:54:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:55:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:55:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:55:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:55:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:55:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:55:48 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-29 15:55:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:56:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:56:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:56:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:56:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:56:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:56:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:57:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:57:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:57:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:57:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:57:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:57:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:58:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:58:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:58:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:58:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:58:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:58:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:59:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:59:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:59:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:59:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:59:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 15:59:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:00:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:00:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:00:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:00:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:00:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:00:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:01:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:01:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:01:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:01:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:01:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:01:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:02:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:02:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:02:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:02:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:02:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:02:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:03:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:03:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:03:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:03:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:03:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:03:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:04:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:04:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:04:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:04:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:04:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:04:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:05:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:05:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:05:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:05:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:05:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:05:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:06:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:06:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:06:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:06:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:06:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:06:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:07:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:07:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:07:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:07:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:07:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:07:54 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:08:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:08:14 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:08:24 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:08:34 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:08:44 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:08:55 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:09:05 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:09:15 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:09:25 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:09:35 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:09:45 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:04 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:04 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:04 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:04 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:04 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:09 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:19 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/repo/jsurya114/polygot/active-branches — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/repo/jsurya114/polygot/active-branches — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:27 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:29 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:29 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:29 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:29 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:29 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:29 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/repo/jsurya114/polygot/active-branches — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/repo/jsurya114/polygot/active-branches — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:10:33 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:11:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:11:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:11:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 16:11:32 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-29 16:11:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 16:16:22 [[31merror[39m]: GET /vv/issues/jsurya114/polygot — Repository not found
+2026-04-29 16:16:22 [[31merror[39m]: GET /vv/issues/jsurya114/polygot — Repository not found
+2026-04-29 16:20:33 [[31merror[39m]: [CI/CD] Job 1 failed: Plan executor error during findAndModify :: caused by :: The field 'logs' must be an array but is of type string in document {_id: ObjectId('69f1e2794516dc4206c820e3')}
+2026-04-29 16:34:21 [[31merror[39m]: GET /vv/issues/jsurya114/polyrepo — Repository not found
+2026-04-29 16:34:21 [[31merror[39m]: GET /vv/issues/jsurya114/polyrepo — Repository not found
+2026-04-29 16:34:42 [[31merror[39m]: GET /vv/issues/jsurya114/polyrepo — Repository not found
+2026-04-29 16:34:42 [[31merror[39m]: GET /vv/issues/jsurya114/polyrepo — Repository not found
+2026-04-29 16:54:56 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-29 17:27:30 [[31merror[39m]: POST /vv/repo/jsurya114/polygot/commit — Invalid or expired access token
+2026-04-29 17:27:30 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 17:27:30 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 17:27:30 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 17:27:30 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 17:27:31 [[31merror[39m]: POST /vv/repo/jsurya114/polygot/commit — Invalid or expired access token
+2026-04-29 17:27:31 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 17:27:31 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 17:27:31 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 17:27:31 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 17:45:43 [[31merror[39m]: POST /vv/auth/refresh-token — Socket 'secureConnect' timed out after 30000ms (connectTimeoutMS: 30000)
+2026-04-29 17:45:43 [[31merror[39m]: POST /vv/auth/refresh-token — Socket 'secureConnect' timed out after 30006ms (connectTimeoutMS: 30000)
+2026-04-29 17:46:50 [[31merror[39m]: POST /vv/auth/login — Socket 'secureConnect' timed out after 30000ms (connectTimeoutMS: 30000)
+2026-04-29 18:12:34 [[31merror[39m]: POST /vv/pr/jsurya114/polygot — connection <monitor> to 159.41.168.189:27017 closed
+2026-04-29 18:12:50 [[31merror[39m]: POST /vv/auth/refresh-token — Socket 'secureConnect' timed out after 30001ms (connectTimeoutMS: 30000)
+2026-04-29 18:12:50 [[31merror[39m]: POST /vv/auth/refresh-token — Socket 'secureConnect' timed out after 30001ms (connectTimeoutMS: 30000)
+2026-04-29 18:45:44 [[31merror[39m]: DELETE /vv/repo/jsurya114/polygot — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 18:45:44 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-04-29 19:03:30 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-04-29 19:06:21 [[31merror[39m]: POST /vv/repo/jsurya114/polygot/commit — Invalid or expired access token
+2026-04-29 19:06:21 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 19:06:21 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 19:06:21 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 19:06:21 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 20:39:28 [[31merror[39m]: GET /vv/repo/jsurya114/polygot/active-branches — Invalid or expired access token
+2026-04-29 20:39:28 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 20:39:28 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 20:39:28 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 20:39:28 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 20:39:28 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 20:39:32 [[31merror[39m]: GET /vv/repo/jsurya114/polygot/active-branches — Invalid or expired access token
+2026-04-29 20:39:32 [[31merror[39m]: GET /vv/workflows/jsurya114/polygot — Invalid or expired access token
+2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token

@@ -48,17 +48,18 @@ export const CommitModal = ({
       ).unwrap();
 
       // 2. Refresh data from within the modal
-      dispatch(getFilesThunk({ username, reponame, branch, path: '' }));
-      dispatch(getCommitsThunk({ username, reponame, branch }));
-
-      dispatch(
-        getFileContentThunk({
-          username,
-          reponame,
-          branch,
-          filePath,
-        }),
-      );
+      await Promise.all([
+        dispatch(getFilesThunk({ username, reponame, branch, path: '' })).unwrap(),
+        dispatch(getCommitsThunk({ username, reponame, branch })).unwrap(),
+        dispatch(
+          getFileContentThunk({
+            username,
+            reponame,
+            branch,
+            filePath,
+          }),
+        ).unwrap(),
+      ]);
 
       // 3. Notify parent of success
       onSuccess();

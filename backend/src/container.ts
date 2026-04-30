@@ -151,6 +151,14 @@ import { HandleWebhookUseCase } from './application/use-cases/subscription/Handl
 import { CancelSubscriptionUseCase } from './application/use-cases/subscription/CancelSubscriptionUseCase';
 import { CreateCheckoutUseCase } from './application/use-cases/subscription/CreateCheckoutUseCase';
 
+//cicd
+import { YAMLParserService } from './infrastructure/services/cicd/YAMLParserService';
+import { DockerRunnerService } from './infrastructure/services/cicd/DockerRunnerService';
+import { TriggerWorkflowUseCase } from './application/use-cases/cicd/TriggerWorkflowUseCase';
+import { ListWorkflowRunsUseCase } from './application/use-cases/cicd/ListWorkflowRunsUseCase';
+import { GetWorkflowRunUseCase } from './application/use-cases/cicd/GetWorkflowRunUseCase';
+import { GetLatestWorkflowStatusUseCase } from './application/use-cases/cicd/GetLatestWorkflowStatusUseCase';
+
 //services
 container.register(TOKENS.IHashService, { useClass: HashService });
 container.register(TOKENS.ITokenService, { useClass: TokenService });
@@ -312,5 +320,16 @@ container.register(TOKENS.IGetSubscriptionStatusUseCase, {
 container.register(TOKENS.IHandleWebhookUseCase, { useClass: HandleWebhookUseCase });
 container.register(TOKENS.ICancelSubscriptionUseCase, { useClass: CancelSubscriptionUseCase });
 container.register(TOKENS.ICreateCheckoutUseCase, { useClass: CreateCheckoutUseCase });
+
+//cicd
+container.registerSingleton(YAMLParserService, YAMLParserService);
+container.registerSingleton(DockerRunnerService, DockerRunnerService);
+container.registerSingleton(TriggerWorkflowUseCase, TriggerWorkflowUseCase);
+
+container.register(TOKENS.IListWorkflowRunsUseCase, { useClass: ListWorkflowRunsUseCase });
+container.register(TOKENS.IGetWorkflowRunUseCase, { useClass: GetWorkflowRunUseCase });
+container.register(TOKENS.IGetLatestWorkflowStatusUseCase, {
+  useClass: GetLatestWorkflowStatusUseCase,
+});
 
 export { container };

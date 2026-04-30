@@ -54,6 +54,9 @@ const CompareCommitPage = lazy(() => import('../pages/pullrequest/CompareCommitP
 const CommitDetailPage = lazy(() => import('../pages/pullrequest/CommitDetailPage'));
 const AcceptInvitationPage = lazy(() => import('../pages/collaborators/AcceptInvitationPage'));
 
+//actions (ci/cd)
+const ActionsPage = lazy(() => import('../pages/repository/ActionsPage'));
+
 //chat
 const ChatRoomPage = lazy(() => import('../pages/user/home/ChatRoomPage'));
 
@@ -332,6 +335,16 @@ const AppRouter = () => {
               element={
                 <ProtectRoute>
                   <IssueDetailPage />
+                </ProtectRoute>
+              }
+            />
+
+            {/* CI/CD Actions */}
+            <Route
+              path={ROUTES.ACTIONS}
+              element={
+                <ProtectRoute>
+                  <ActionsPage />
                 </ProtectRoute>
               }
             />

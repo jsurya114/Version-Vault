@@ -40,7 +40,7 @@ export const repositoryService = {
     recursive: boolean = false,
   ) => {
     const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/files`, {
-      params: { branch, path, recursive },
+      params: { branch, path, recursive, t: Date.now() },
     });
     return res.data.data;
   },
@@ -51,7 +51,7 @@ export const repositoryService = {
     branch: string = 'main',
   ) => {
     const res = await axiosInstance.get(`${REPO_ENDPOINTS.GET}/${username}/${reponame}/content`, {
-      params: { path: filePath, branch },
+      params: { path: filePath, branch, t: Date.now() },
     });
     return res.data.data;
   },

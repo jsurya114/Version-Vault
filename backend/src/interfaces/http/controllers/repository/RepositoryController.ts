@@ -145,6 +145,7 @@ export class RepositoryController {
       const path = (req.query.path as string) || '';
       const recursive = req.query.recursive === 'true';
       const files = await this.filesUseCase.execute(username, reponame, branch, path, recursive);
+      res.set('Cache-Control', 'no-store');
       res.status(HttpStatusCodes.OK).json({ success: true, data: files });
     } catch (error) {
       next(error);
@@ -162,6 +163,7 @@ export class RepositoryController {
       const branch = (req.query.branch as string) || 'main';
       const filePath = (req.query.path as string) || '';
       const content = await this.fileContentUseCase.execute(username, reponame, filePath, branch);
+      res.set('Cache-Control', 'no-store');
       res.status(HttpStatusCodes.OK).json({ success: true, data: content });
     } catch (error) {
       next(error);

@@ -74,3 +74,7 @@ export const SUBSCRIPTION_ENDPOINTS = {
   STATUS: '/subscription/status',
   CANCEL: '/subscription/cancel',
 } as const;
+
+export const WORKFLOW_ENDPOINTS = {
+  BASE: '/workflows',
+} as const;

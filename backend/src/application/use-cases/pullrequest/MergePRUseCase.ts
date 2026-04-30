@@ -9,6 +9,10 @@ import { TOKENS } from '../../../shared/constants/tokens';
 import { PRValidator } from '../validators/PRValidator';
 import { NotFoundError } from '../../../domain/errors/NotFoundError';
 import { NotificationService } from '../../../infrastructure/services/NotificationService';
+import { TriggerWorkflowUseCase } from '../cicd/TriggerWorkflowUseCase';
+import { envConfig } from '../../../shared/config/env.config';
+import { DEFAULT_PIPELINE } from '../../../shared/constants/defaultPipeline';
+import { IGetLatestWorkflowStatusUseCase } from '../interfaces/cicd/IGetLatestWorkflowStatusUseCase';
 
 @injectable()
 export class MergePRUseCase implements IMergePRUseCase {
@@ -17,6 +21,9 @@ export class MergePRUseCase implements IMergePRUseCase {
     @inject(TOKENS.IRepoRepository) private _repoRepository: IRepoRepository,
     @inject(GitService) private _gitService: GitService,
     @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
+    @inject(TriggerWorkflowUseCase) private _triggerWorkflowUseCase: TriggerWorkflowUseCase,
+    @inject(TOKENS.IGetLatestWorkflowStatusUseCase)
+    private _getLatestStatusUseCase: IGetLatestWorkflowStatusUseCase,
   ) {}
   async execute(id: string): Promise<PullRequestResponseDTO> {
     const pr = await PRValidator.findOrFail(this._prRepository, id);
@@ -26,6 +33,22 @@ export class MergePRUseCase implements IMergePRUseCase {
 
     if (!repo) {
       throw new NotFoundError('Repository not found for this pull request');
+    }
+
+    // Branch Protection: Block merge if the latest CI/CD pipeline has failed
+    const latestRun = await this._getLatestStatusUseCase.execute(repo.id as string);
+
+    if (latestRun) {
+      if (latestRun.status === 'FAILED') {
+        throw new Error(
+          'Cannot merge: the latest CI/CD pipeline has failed. Fix the issues and push again.',
+        );
+      }
+      if (latestRun.status === 'RUNNING' || latestRun.status === 'QUEUED') {
+        throw new Error(
+          'Cannot merge: a CI/CD pipeline is still in progress. Wait for it to complete.',
+        );
+      }
     }
 
     const baseCommits = await this._gitService.getCommits(
@@ -64,6 +87,27 @@ export class MergePRUseCase implements IMergePRUseCase {
         metadata: { prId: pr.id! },
       })
       .catch(() => {});
+
+    // CI/CD: Auto-trigger pipeline after merge
+    try {
+      const mergeCommits = await this._gitService.getCommits(
+        repo.ownerUsername,
+        repo.name,
+        pr.targetBranch,
+        1,
+      );
+      const commitHash = mergeCommits.length > 0 ? mergeCommits[0].hash : 'merge';
+      const repoCloneUrl = `http://host.docker.internal:${envConfig.PORT}/vv/git/${repo.ownerUsername}/${repo.name}.git`;
+
+      await this._triggerWorkflowUseCase.execute(
+        repo.id as string,
+        commitHash,
+        DEFAULT_PIPELINE,
+        repoCloneUrl,
+      );
+    } catch (error) {
+      console.error('Failed to trigger CI/CD after PR merge:', error);
+    }
 
     return PullRequestMapper.toDTO(updated!);
   }
