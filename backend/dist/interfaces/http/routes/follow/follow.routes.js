@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const FollowController_1 = require("../../controllers/follow/FollowController");
+const AuthMiddleware_1 = require("../../middleware/AuthMiddleware");
+const router = (0, express_1.Router)();
+const followController = () => tsyringe_1.container.resolve(FollowController_1.FollowController);
+router.post('/:userId', AuthMiddleware_1.authMiddleware, (req, res, next) => followController().follow(req, res, next));
+router.delete('/:userId', AuthMiddleware_1.authMiddleware, (req, res, next) => followController().unfollow(req, res, next));
+router.get('/:userId/followers', (req, res, next) => followController().getFollowers(req, res, next));
+router.get('/:userId/following', (req, res, next) => followController().getFollowing(req, res, next));
+exports.default = router;

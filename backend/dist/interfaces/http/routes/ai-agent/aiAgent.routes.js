@@ -1,0 +1,11 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const AIAgentController_1 = require("../../controllers/ai-agent/AIAgentController");
+const AuthMiddleware_1 = require("../../middleware/AuthMiddleware");
+const router = (0, express_1.Router)();
+const aiAgentController = () => tsyringe_1.container.resolve(AIAgentController_1.AIAgentController);
+router.use(AuthMiddleware_1.authMiddleware);
+router.post('/chat', (req, res, next) => aiAgentController().chat(req, res, next));
+exports.default = router;

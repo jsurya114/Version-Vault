@@ -1,6 +1,6 @@
 import { injectable } from 'tsyringe';
 import * as yaml from 'yaml';
-import { IWorkflow } from '../../../domain/interfaces/ICICD';
+import { IWorkflow, IWorkflowJob, IWorkflowStep } from '../../../domain/interfaces/ICICD';
 import { IYAMLParserService } from '../../../domain/interfaces/services/IYAMLParseService';
 @injectable()
 export class YAMLParserService implements IYAMLParserService {

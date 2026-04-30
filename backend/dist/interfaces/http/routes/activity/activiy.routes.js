@@ -1,0 +1,10 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const AuthMiddleware_1 = require("../../middleware/AuthMiddleware");
+const ActivityController_1 = require("../../controllers/activity/ActivityController");
+const tsyringe_1 = require("tsyringe");
+const activityController = () => tsyringe_1.container.resolve(ActivityController_1.ActivityController);
+const router = (0, express_1.Router)();
+router.get('/feed', AuthMiddleware_1.authMiddleware, (req, res, next) => activityController().getFeed(req, res, next));
+exports.default = router;

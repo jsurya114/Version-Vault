@@ -1,0 +1,13 @@
+"use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const tsyringe_1 = require("tsyringe");
+const NotificationController_1 = require("../../controllers/notification/NotificationController");
+const AuthMiddleware_1 = require("../../middleware/AuthMiddleware");
+const router = (0, express_1.Router)();
+const controller = () => tsyringe_1.container.resolve(NotificationController_1.NotificationController);
+router.get('/', AuthMiddleware_1.authMiddleware, (req, res, next) => controller().list(req, res, next));
+router.get('/unread-count', AuthMiddleware_1.authMiddleware, (req, res, next) => controller().unreadCount(req, res, next));
+router.patch('/:id/read', AuthMiddleware_1.authMiddleware, (req, res, next) => controller().markRead(req, res, next));
+router.patch('/read-all', AuthMiddleware_1.authMiddleware, (req, res, next) => controller().markAllRead(req, res, next));
+exports.default = router;
