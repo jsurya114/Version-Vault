@@ -98,6 +98,8 @@ const PRDetailPage = () => {
   const cicdFailed = cicdStatus?.status === 'FAILED';
   const cicdRunning = cicdStatus?.status === 'RUNNING' || cicdStatus?.status === 'QUEUED';
 
+  const hasNoChanges = !isCompareLoading && (!compareData?.diffs || compareData.diffs.length === 0);
+
   useEffect(() => {
     // Check if the PR loaded in Redux actually matches the PR we are clicking!
     if (pr && pr.id === id) {
@@ -381,20 +383,24 @@ const PRDetailPage = () => {
                     ) : isMergeable ? (
                       <button
                         onClick={() => setIsMergeModalOpen(true)}
-                        disabled={isMerging || cicdFailed || cicdRunning}
+                        disabled={isMerging || cicdFailed || cicdRunning || hasNoChanges}
                         className={`flex items-center gap-1.5 shadow-md text-white font-bold text-xs px-4 py-2 rounded-xl transition disabled:opacity-50 disabled:cursor-not-allowed ${
                           cicdFailed
                             ? 'bg-red-800 hover:bg-red-800 shadow-red-900/20 cursor-not-allowed'
                             : cicdRunning
                               ? 'bg-yellow-700 hover:bg-yellow-700 shadow-yellow-900/20 cursor-not-allowed'
-                              : 'bg-purple-600 hover:bg-purple-700 shadow-purple-900/20'
+                              : hasNoChanges
+                                ? 'bg-gray-800 hover:bg-gray-800 text-gray-500 border border-gray-700 shadow-none cursor-not-allowed'
+                                : 'bg-purple-600 hover:bg-purple-700 shadow-purple-900/20'
                         }`}
                         title={
                           cicdFailed
                             ? 'CI/CD pipeline failed — fix the issues first'
                             : cicdRunning
                               ? 'Waiting for CI/CD to finish...'
-                              : 'Merge this pull request'
+                              : hasNoChanges
+                                ? 'No file changes to merge'
+                                : 'Merge this pull request'
                         }
                       >
                         {cicdFailed ? (
@@ -408,7 +414,9 @@ const PRDetailPage = () => {
                           ? 'Merge Blocked'
                           : cicdRunning
                             ? 'CI/CD Running...'
-                            : 'Merge Pull Request'}
+                            : hasNoChanges
+                              ? 'Nothing to merge'
+                              : 'Merge Pull Request'}
                       </button>
                     ) : (
                       <button
