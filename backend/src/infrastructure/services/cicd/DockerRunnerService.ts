@@ -37,6 +37,9 @@ export class DockerRunnerService implements IJobRunnerService {
         Image: image,
         Cmd: ['/bin/sh', '-c', 'sleep 3600'], // Keep container alive to run execs
         Tty: true,
+        HostConfig: {
+          ExtraHosts: ['host.docker.internal:host-gateway'],
+        },
       });
       await container.start();
       await this.appendLog(runId, `[System] Container started with image: ${image}\n`);
