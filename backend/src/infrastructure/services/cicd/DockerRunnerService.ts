@@ -38,7 +38,7 @@ export class DockerRunnerService implements IJobRunnerService {
         Cmd: ['/bin/sh', '-c', 'sleep 3600'], // Keep container alive to run execs
         Tty: true,
         HostConfig: {
-          ExtraHosts: ['host.docker.internal:host-gateway'],
+          ExtraHosts: ['host.docker.internal:172.17.0.1'],
         },
       });
       await container.start();
