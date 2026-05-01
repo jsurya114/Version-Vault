@@ -7464,3 +7464,46 @@ fatal: git update-index: --cacheinfo cannot add polyfare/.git/config
 2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
 2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
 2026-04-29 20:39:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 11:26:44 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-05-01 11:26:44 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-05-01 11:26:51 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-05-01 11:26:51 [[31merror[39m]: POST /vv/auth/refresh-token — User not found
+2026-05-01 11:28:43 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-05-01 11:54:03 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:03 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:04 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:04 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:04 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:04 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:04 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:04 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:05 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:05 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:05 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:05 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:05 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:05 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:06 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:06 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:06 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:06 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:07 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:07 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:07 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:07 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:08 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:08 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:09 [[31merror[39m]: Redis connection error
+2026-05-01 11:54:09 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:09 [[31merror[39m]: BullMQ Redis connection error
+2026-05-01 11:54:09 [[31merror[39m]: Redis connection error
+2026-05-01 12:05:49 [[31merror[39m]: DELETE /vv/repo/jsurya114/otp — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token

@@ -287,4 +287,6 @@ tsyringe_1.container.registerSingleton(DockerRunnerService_1.DockerRunnerService
 tsyringe_1.container.registerSingleton(TriggerWorkflowUseCase_1.TriggerWorkflowUseCase, TriggerWorkflowUseCase_1.TriggerWorkflowUseCase);
 tsyringe_1.container.register(tokens_1.TOKENS.IListWorkflowRunsUseCase, { useClass: ListWorkflowRunsUseCase_1.ListWorkflowRunsUseCase });
 tsyringe_1.container.register(tokens_1.TOKENS.IGetWorkflowRunUseCase, { useClass: GetWorkflowRunUseCase_1.GetWorkflowRunUseCase });
-tsyringe_1.container.register(tokens_1.TOKENS.IGetLatestWorkflowStatusUseCase, { useClass: GetLatestWorkflowStatusUseCase_1.GetLatestWorkflowStatusUseCase });
+tsyringe_1.container.register(tokens_1.TOKENS.IGetLatestWorkflowStatusUseCase, {
+    useClass: GetLatestWorkflowStatusUseCase_1.GetLatestWorkflowStatusUseCase,
+});

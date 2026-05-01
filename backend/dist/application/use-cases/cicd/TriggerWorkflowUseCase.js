@@ -24,7 +24,7 @@ let TriggerWorkflowUseCase = class TriggerWorkflowUseCase {
     constructor(yamlParser) {
         this.yamlParser = yamlParser;
         this.cicdQueue = new bullmq_1.Queue('cicd-queue', {
-            connection: BullMQConnection_1.bullmqConnection
+            connection: BullMQConnection_1.bullmqConnection,
         });
     }
     async execute(repositoryId, commitHash, yamlContent, repoCloneUrl) {
@@ -35,7 +35,7 @@ let TriggerWorkflowUseCase = class TriggerWorkflowUseCase {
             repositoryId,
             commitHash,
             status: 'QUEUED',
-            logs: ''
+            logs: '',
         });
         //queue the jobs(Assuming a simple single-job workflow for now)
         const jobs = Object.values(workflow.jobs);
@@ -44,7 +44,7 @@ let TriggerWorkflowUseCase = class TriggerWorkflowUseCase {
                 workflowJob: job,
                 runId: run.id,
                 repoCloneUrl,
-                commitHash
+                commitHash,
             });
         }
     }

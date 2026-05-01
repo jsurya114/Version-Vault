@@ -44,10 +44,11 @@ export class DockerRunnerService implements IJobRunnerService {
       await container.start();
       await this.appendLog(runId, `[System] Container started with image: ${image}\n`);
       // 4. Clone the repository inside the container
-      let finalCloneUrl = repoCloneUrl;
-      if (process.platform === 'linux') {
-        finalCloneUrl = finalCloneUrl.replace('host.docker.internal', '172.17.0.1');
-      }
+let finalCloneUrl = repoCloneUrl;
+if (process.platform === 'linux') {
+  finalCloneUrl = finalCloneUrl.replace('localhost', '172.31.28.158')
+                               .replace('host.docker.internal', '172.31.28.158');
+}
 
       const cloneSuccess = await this.runCommandInContainer(
         container,

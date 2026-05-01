@@ -32,7 +32,9 @@ let WorkflowController = class WorkflowController {
             const { username, reponame } = req.params;
             const repo = await this._repoRepo.findByOwnerAndName(username, reponame);
             if (!repo) {
-                res.status(HttpStatusCodes_1.HttpStatusCodes.NOT_FOUND).json({ success: false, message: 'Repository not found' });
+                res
+                    .status(HttpStatusCodes_1.HttpStatusCodes.NOT_FOUND)
+                    .json({ success: false, message: 'Repository not found' });
                 return;
             }
             const runs = await this._listRunsUseCase.execute(repo.id);
@@ -47,7 +49,9 @@ let WorkflowController = class WorkflowController {
             const { runId } = req.params;
             const run = await this._getRunUseCase.execute(runId);
             if (!run) {
-                res.status(HttpStatusCodes_1.HttpStatusCodes.NOT_FOUND).json({ success: false, message: 'Workflow run not found' });
+                res
+                    .status(HttpStatusCodes_1.HttpStatusCodes.NOT_FOUND)
+                    .json({ success: false, message: 'Workflow run not found' });
                 return;
             }
             res.status(HttpStatusCodes_1.HttpStatusCodes.OK).json({ success: true, data: run });
@@ -61,7 +65,9 @@ let WorkflowController = class WorkflowController {
             const { username, reponame } = req.params;
             const repo = await this._repoRepo.findByOwnerAndName(username, reponame);
             if (!repo) {
-                res.status(HttpStatusCodes_1.HttpStatusCodes.NOT_FOUND).json({ success: false, message: 'Repository not found' });
+                res
+                    .status(HttpStatusCodes_1.HttpStatusCodes.NOT_FOUND)
+                    .json({ success: false, message: 'Repository not found' });
                 return;
             }
             const latestRun = await this._getLatestStatusUseCase.execute(repo.id);
