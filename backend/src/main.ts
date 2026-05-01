@@ -29,7 +29,7 @@ const startSever = async (): Promise<void> => {
     logger.info('[CI/CD] Worker started and listening for jobs');
 
     //starting the server
-    server.listen(envConfig.PORT, () => {
+    server.listen(envConfig.PORT, '0.0.0.0', () => {
       logger.info(`Server running on port ${envConfig.PORT} in ${envConfig.NODE_ENV} mode`);
     });
   } catch (error) {

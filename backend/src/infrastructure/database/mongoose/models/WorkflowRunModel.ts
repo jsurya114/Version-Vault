@@ -11,6 +11,23 @@ const WorkflowRunSchema = new Schema<IWorkflowRunDocument>(
     commitHash: { type: String, required: true },
     status: { type: String, enum: ['QUEUED', 'RUNNING', 'SUCCESS', 'FAILED'], default: 'QUEUED' },
     logs: { type: String, default: '' },
+    steps: {
+      type: [
+        {
+          name: { type: String, required: true },
+          status: {
+            type: String,
+            enum: ['pending', 'running', 'success', 'failed', 'skipped'],
+            default: 'pending',
+          },
+          logs: { type: String, default: '' },
+          startedAt: { type: Date },
+          completedAt: { type: Date },
+          duration: { type: Number },
+        },
+      ],
+      default: [],
+    },
   },
   { timestamps: true },
 );

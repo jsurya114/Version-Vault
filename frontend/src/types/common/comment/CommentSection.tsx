@@ -20,6 +20,7 @@ interface CommentSectionProps {
   reponame: string;
   targetType: 'issue' | 'pr';
   targetId: string;
+  isDisabled?: boolean;
 }
 
 const CommentSection: React.FC<CommentSectionProps> = ({
@@ -27,6 +28,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
   reponame,
   targetType,
   targetId,
+  isDisabled = false,
 }) => {
   const dispatch = useAppDispatch();
   const comments = useAppSelector(selectComments);
@@ -79,13 +81,18 @@ const CommentSection: React.FC<CommentSectionProps> = ({
 
       <div className="space-y-4 mb-6">
         {comments.map((comment) => (
-          <div key={comment.id} className="bg-gray-900 border border-gray-800 rounded-lg p-3 xs:p-4">
+          <div
+            key={comment.id}
+            className="bg-gray-900 border border-gray-800 rounded-lg p-3 xs:p-4"
+          >
             <div className="flex justify-between items-start mb-2">
               <div className="flex items-start gap-2 min-w-0 flex-1">
                 <div className="w-5 h-5 xs:w-6 xs:h-6 rounded-full bg-blue-600 flex items-center justify-center text-[10px] xs:text-xs text-white font-bold shrink-0">
                   {comment.authorUsername[0].toUpperCase()}
                 </div>
-                <span className="text-xs xs:text-sm font-medium text-white truncate">{comment.authorUsername}</span>
+                <span className="text-xs xs:text-sm font-medium text-white truncate">
+                  {comment.authorUsername}
+                </span>
                 <span className="text-xs text-gray-500">
                   {new Date(comment.createdAt).toLocaleDateString()}
                 </span>
@@ -100,7 +107,9 @@ const CommentSection: React.FC<CommentSectionProps> = ({
                 </button>
               )}
             </div>
-            <p className="text-gray-300 text-xs xs:text-sm whitespace-pre-wrap break-words">{comment.content}</p>
+            <p className="text-gray-300 text-xs xs:text-sm whitespace-pre-wrap break-words">
+              {comment.content}
+            </p>
           </div>
         ))}
         {meta.page < meta.totalPages && (
@@ -116,7 +125,11 @@ const CommentSection: React.FC<CommentSectionProps> = ({
         )}
       </div>
 
-      {authUser ? (
+      {isDisabled ? (
+        <div className="bg-gray-800/50 rounded-lg p-4 text-center mt-4 border border-gray-700/50">
+          <p className="text-sm text-gray-400 font-medium">This conversation has been locked.</p>
+        </div>
+      ) : authUser ? (
         <form onSubmit={handleSubmit} className="mt-4">
           <textarea
             className="w-full bg-gray-900 border border-gray-800 rounded-lg p-2.5 xs:p-3 text-white text-xs xs:text-sm focus:outline-none focus:border-blue-500 transition"
@@ -136,7 +149,7 @@ const CommentSection: React.FC<CommentSectionProps> = ({
           </div>
         </form>
       ) : (
-        <div className="bg-gray-800/50 rounded-lg p-4 text-center">
+        <div className="bg-gray-800/50 rounded-lg p-4 text-center mt-4">
           <p className="text-sm text-gray-400">You must be logged in to comment.</p>
         </div>
       )}
