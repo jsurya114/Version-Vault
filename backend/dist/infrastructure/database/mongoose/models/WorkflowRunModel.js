@@ -39,6 +39,6 @@ const WorkflowRunSchema = new mongoose_1.Schema({
     repositoryId: { type: String, required: true },
     commitHash: { type: String, required: true },
     status: { type: String, enum: ['QUEUED', 'RUNNING', 'SUCCESS', 'FAILED'], default: 'QUEUED' },
-    logs: { type: String, default: '' }
+    logs: { type: String, default: '' },
 }, { timestamps: true });
 exports.WorkflowRunModel = mongoose_1.default.model('WorkflowRun', WorkflowRunSchema);

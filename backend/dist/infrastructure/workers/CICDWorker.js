@@ -17,7 +17,7 @@ exports.cicdWorker = new bullmq_1.Worker('cicd-queue', async (job) => {
     const isSuccess = await runnerService.executeJob(workflowJob, runId, repoCloneUrl, commitHash);
     //update final status
     await WorkflowRunModel_1.WorkflowRunModel.findByIdAndUpdate(runId, {
-        status: isSuccess ? 'SUCCESS' : 'FAILED'
+        status: isSuccess ? 'SUCCESS' : 'FAILED',
     });
 }, { connection: BullMQConnection_1.bullmqConnection });
 exports.cicdWorker.on('completed', (job) => {

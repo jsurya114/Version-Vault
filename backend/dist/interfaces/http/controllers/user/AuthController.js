@@ -93,12 +93,14 @@ let AuthController = class AuthController {
                 httpOnly: true,
                 secure: env_config_1.envConfig.NODE_ENV === 'production',
                 sameSite: env_config_1.envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
+                domain: env_config_1.envConfig.NODE_ENV === 'production' ? '.versionvault.online' : undefined,
                 maxAge: 15 * 60 * 1000, // 15 minutes
             });
             res.cookie('refreshToken', result.refreshToken, {
                 httpOnly: true,
                 secure: env_config_1.envConfig.NODE_ENV === 'production',
                 sameSite: env_config_1.envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
+                domain: env_config_1.envConfig.NODE_ENV === 'production' ? '.versionvault.online' : undefined,
                 maxAge: 7 * 24 * 60 * 60 * 1000, // 7 days
             });
             res.status(HttpStatusCodes_1.HttpStatusCodes.OK).json({
@@ -144,12 +146,14 @@ let AuthController = class AuthController {
                 httpOnly: true,
                 secure: env_config_1.envConfig.NODE_ENV === 'production',
                 sameSite: env_config_1.envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
+                domain: env_config_1.envConfig.NODE_ENV === 'production' ? '.versionvault.online' : undefined,
                 maxAge: 15 * 60 * 1000,
             });
             res.cookie('refreshToken', result.refreshToken, {
                 httpOnly: true,
                 secure: env_config_1.envConfig.NODE_ENV === 'production',
                 sameSite: env_config_1.envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
+                domain: env_config_1.envConfig.NODE_ENV === 'production' ? '.versionvault.online' : undefined,
                 maxAge: 7 * 24 * 60 * 60 * 1000,
             });
             res.redirect(`${env_config_1.envConfig.CLIENT_URL}/home`);
@@ -169,6 +173,7 @@ let AuthController = class AuthController {
                 httpOnly: true,
                 secure: env_config_1.envConfig.NODE_ENV === 'production',
                 sameSite: (env_config_1.envConfig.NODE_ENV === 'production' ? 'none' : 'strict'),
+                domain: env_config_1.envConfig.NODE_ENV === 'production' ? '.versionvault.online' : undefined,
             };
             res.clearCookie('accessToken', cookieOptions);
             res.clearCookie('refreshToken', cookieOptions);
@@ -195,6 +200,7 @@ let AuthController = class AuthController {
                 httpOnly: true,
                 secure: env_config_1.envConfig.NODE_ENV === 'production',
                 sameSite: env_config_1.envConfig.NODE_ENV === 'production' ? 'none' : 'strict',
+                domain: env_config_1.envConfig.NODE_ENV === 'production' ? '.versionvault.online' : undefined,
                 maxAge: 15 * 60 * 1000,
             });
             res.status(HttpStatusCodes_1.HttpStatusCodes.OK).json({

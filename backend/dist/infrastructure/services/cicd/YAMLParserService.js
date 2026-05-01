@@ -52,12 +52,12 @@ let YAMLParserService = class YAMLParserService {
             }
             // Map YAML keys (runs-on) to TypeScript interface keys (runsOn)
             const jobs = {};
-            for (const [jobName, jobDef] of Object.entries(parsed.jobs)) {
-                const raw = jobDef;
+            const rawJobs = (parsed.jobs || {});
+            for (const [jobName, jobDef] of Object.entries(rawJobs)) {
                 jobs[jobName] = {
-                    name: raw.name || jobName,
-                    runsOn: raw['runs-on'] || raw.runsOn || 'ubuntu:latest',
-                    steps: raw.steps || [],
+                    name: jobDef.name || jobName,
+                    runsOn: jobDef['runs-on'] || jobDef.runsOn || 'ubuntu:latest',
+                    steps: jobDef.steps || [],
                 };
             }
             return {
@@ -68,7 +68,7 @@ let YAMLParserService = class YAMLParserService {
         }
         catch (error) {
             const errorMessage = error instanceof Error ? error.message : String(error);
-            throw new Error(`Failed to parse workflow YAML: ${errorMessage}`);
+            throw new Error(`Failed to parse workflow YAML: ${errorMessage}`, { cause: error });
         }
     }
 };

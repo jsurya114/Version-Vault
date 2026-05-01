@@ -44,13 +44,21 @@ let DockerRunnerService = class DockerRunnerService {
                 Image: image,
                 Cmd: ['/bin/sh', '-c', 'sleep 3600'], // Keep container alive to run execs
                 Tty: true,
+                HostConfig: {
+                    ExtraHosts: ['host.docker.internal:172.17.0.1'],
+                },
             });
             await container.start();
             await this.appendLog(runId, `[System] Container started with image: ${image}\n`);
             // 4. Clone the repository inside the container
-            const cloneSuccess = await this.runCommandInContainer(container, runId, `git clone ${repoCloneUrl} workspace`);
+            let finalCloneUrl = repoCloneUrl;
+            if (process.platform === 'linux') {
+                finalCloneUrl = finalCloneUrl.replace('localhost', '172.31.28.158')
+                    .replace('host.docker.internal', '172.31.28.158');
+            }
+            const cloneSuccess = await this.runCommandInContainer(container, runId, `git clone ${finalCloneUrl} workspace`);
             if (!cloneSuccess)
-                throw new Error("Failed to clone repository. Make sure git is installed in the runner image.");
+                throw new Error('Failed to clone repository. Make sure git is installed in the runner image.');
             const checkoutSuccess = await this.runCommandInContainer(container, runId, `cd workspace && git checkout ${commitHash}`);
             if (!checkoutSuccess)
                 throw new Error(`Failed to checkout commit ${commitHash}`);
@@ -98,7 +106,9 @@ let DockerRunnerService = class DockerRunnerService {
                             await run.save();
                         }
                     }
-                    catch (err) { }
+                    catch {
+                        // Ignore error
+                    }
                 });
                 this.logQueues.set(runId, nextQueue);
             }
@@ -112,7 +122,10 @@ let DockerRunnerService = class DockerRunnerService {
             AttachStderr: true,
             Tty: true, // Prevent Docker multiplexing stream headers
         });
-        const stream = (await exec.start({ Detach: false, Tty: true }));
+        const stream = (await exec.start({
+            Detach: false,
+            Tty: true,
+        }));
         // Stream logs to database (or Redis/Socket.IO)
         stream.on('data', async (chunk) => {
             await this.appendLog(runId, chunk.toString('utf8'));
