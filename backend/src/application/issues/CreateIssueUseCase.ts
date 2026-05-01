@@ -22,7 +22,7 @@ export class CreateIssueUseCase implements ICreateIssueUseCase {
       repositoryId: dto.repositoryId,
       authorId: dto.authorId,
       authorUsername: dto.authorUsername,
-      assignees: [],
+      assignees: dto.assignees || [],
       labels: dto.labels || [],
       commentsCount: 0,
     });

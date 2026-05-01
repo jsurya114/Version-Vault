@@ -22,6 +22,7 @@ export interface CreateIssueDTO {
   description?: string;
   priority?: IssuePriority;
   labels?: string[];
+  assignees?: string[];
 }
 
 export interface IssueState {

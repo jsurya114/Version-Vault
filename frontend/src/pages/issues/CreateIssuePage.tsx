@@ -1,15 +1,22 @@
-import React, { useState, useCallback } from 'react';
+import React, { useState, useCallback, useEffect, useRef } from 'react';
 import { useParams, useNavigate, Link } from 'react-router-dom';
-import { CircleDot } from 'lucide-react';
+import { CircleDot, Users, X, ChevronDown } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { createIssueThunk } from '../../features/issues/issueThunk';
 import { selectIssueLoading, selectIssueError } from '../../features/issues/issueSelector';
+import { selectAuthUser } from '../../features/auth/authSelectors';
 import AppHeader from '../../types/common/Layout/AppHeader';
 import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { IssuePriority } from '../../types/issues/issues.types';
+import { collaboratorService } from '../../services/collaborator.service';
 
 import { CommonLoader } from '../../types/common/Layout/Loader';
+
+interface Collaborator {
+  username: string;
+  role: string;
+}
 
 const CreateIssuePage = React.memo(() => {
   const dispatch = useAppDispatch();
@@ -17,6 +24,7 @@ const CreateIssuePage = React.memo(() => {
   const { username, reponame } = useParams();
   const isLoading = useAppSelector(selectIssueLoading);
   const error = useAppSelector(selectIssueError);
+  const authUser = useAppSelector(selectAuthUser);
 
   const [title, setTitle] = useState('');
   const [description, setDescription] = useState('');
@@ -24,6 +32,64 @@ const CreateIssuePage = React.memo(() => {
   const [labelInput, setLabelInput] = useState('');
   const [labels, setLabels] = useState<string[]>([]);
   const [isCreatingLoader, setIsCreatingLoader] = useState(false);
+
+  // Assignees state
+  const [collaborators, setCollaborators] = useState<Collaborator[]>([]);
+  const [assignees, setAssignees] = useState<string[]>([]);
+  const [showAssigneeDropdown, setShowAssigneeDropdown] = useState(false);
+  const [assigneeSearch, setAssigneeSearch] = useState('');
+  const dropdownRef = useRef<HTMLDivElement>(null);
+
+  // Fetch collaborators on mount
+  useEffect(() => {
+    if (username && reponame) {
+      collaboratorService
+        .getCollaborators(username, reponame)
+        .then((data) => {
+          const collabs = data.map((c: { username: string; role: string }) => ({
+            username: c.username,
+            role: c.role,
+          }));
+          // Also include the repo owner
+          if (!collabs.find((c: Collaborator) => c.username === username)) {
+            collabs.unshift({ username: username!, role: 'owner' });
+          }
+          // Filter out the current user so they can't assign themselves
+          const filteredCollabs = collabs.filter(
+            (c: Collaborator) => c.username !== authUser?.userId,
+          );
+          setCollaborators(filteredCollabs);
+        })
+        .catch(() => setCollaborators([]));
+    }
+  }, [username, reponame, authUser?.userId]);
+
+  // Close dropdown on outside click
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(e.target as Node)) {
+        setShowAssigneeDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
+  const toggleAssignee = useCallback((uname: string) => {
+    setAssignees((prev) =>
+      prev.includes(uname) ? prev.filter((a) => a !== uname) : [...prev, uname],
+    );
+  }, []);
+
+  const removeAssignee = useCallback((uname: string) => {
+    setAssignees((prev) => prev.filter((a) => a !== uname));
+  }, []);
+
+  const filteredCollaborators = collaborators.filter(
+    (c) =>
+      c.username.toLowerCase().includes(assigneeSearch.toLowerCase()) &&
+      !assignees.includes(c.username),
+  );
 
   const handleAddLabel = useCallback(
     (e: React.KeyboardEvent) => {
@@ -45,7 +111,7 @@ const CreateIssuePage = React.memo(() => {
       createIssueThunk({
         username: username!,
         reponame: reponame!,
-        dto: { title, description, priority, labels },
+        dto: { title, description, priority, labels, assignees },
       }),
     );
     if (createIssueThunk.fulfilled.match(result)) {
@@ -61,7 +127,7 @@ const CreateIssuePage = React.memo(() => {
         });
       }, 1500);
     }
-  }, [dispatch, username, reponame, title, description, priority, labels, navigate]);
+  }, [dispatch, username, reponame, title, description, priority, labels, assignees, navigate]);
 
   return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col overflow-x-hidden">
@@ -145,6 +211,92 @@ const CreateIssuePage = React.memo(() => {
                 </button>
               ))}
             </div>
+          </div>
+
+          {/* Assignees */}
+          <div ref={dropdownRef}>
+            <label className="block text-gray-400 text-xs mb-2 flex items-center gap-1.5">
+              <Users className="w-3.5 h-3.5" /> Assignees
+            </label>
+
+            {/* Selected assignees */}
+            {assignees.length > 0 && (
+              <div className="flex flex-wrap gap-2 mb-2">
+                {assignees.map((a) => (
+                  <span
+                    key={a}
+                    className="flex items-center gap-1.5 text-xs px-2.5 py-1 rounded-lg bg-purple-500/10 border border-purple-500/20 text-purple-400"
+                  >
+                    <div className="w-4 h-4 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[8px] text-white font-bold">
+                      {a[0].toUpperCase()}
+                    </div>
+                    {a}
+                    <button
+                      onClick={() => removeAssignee(a)}
+                      className="hover:text-red-400 transition ml-0.5"
+                    >
+                      <X className="w-3 h-3" />
+                    </button>
+                  </span>
+                ))}
+              </div>
+            )}
+
+            {/* Dropdown trigger */}
+            <button
+              onClick={() => setShowAssigneeDropdown((prev) => !prev)}
+              className="w-full flex items-center justify-between bg-gray-800 border border-gray-700 rounded-lg px-3 py-2.5 text-sm text-gray-400 hover:border-gray-600 transition"
+            >
+              <span>
+                {assignees.length > 0
+                  ? `${assignees.length} assignee${assignees.length > 1 ? 's' : ''} selected`
+                  : 'Select collaborators to assign...'}
+              </span>
+              <ChevronDown
+                className={`w-4 h-4 transition-transform ${showAssigneeDropdown ? 'rotate-180' : ''}`}
+              />
+            </button>
+
+            {/* Dropdown */}
+            {showAssigneeDropdown && (
+              <div className="mt-1 bg-gray-800 border border-gray-700 rounded-lg shadow-xl overflow-hidden z-10 relative">
+                <div className="p-2 border-b border-gray-700">
+                  <input
+                    type="text"
+                    value={assigneeSearch}
+                    onChange={(e) => setAssigneeSearch(e.target.value)}
+                    placeholder="Search collaborators..."
+                    className="w-full bg-gray-900 border border-gray-700 rounded-md px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-blue-500 placeholder-gray-600"
+                    autoFocus
+                  />
+                </div>
+                <div className="max-h-40 overflow-y-auto">
+                  {filteredCollaborators.length > 0 ? (
+                    filteredCollaborators.map((c) => (
+                      <button
+                        key={c.username}
+                        onClick={() => toggleAssignee(c.username)}
+                        className="w-full flex items-center gap-2.5 px-3 py-2 text-left hover:bg-gray-700/50 transition"
+                      >
+                        <div className="w-5 h-5 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-[9px] text-white font-bold shrink-0">
+                          {c.username[0].toUpperCase()}
+                        </div>
+                        <span className="text-sm text-gray-200 flex-1">{c.username}</span>
+                        <span className="text-[10px] text-gray-500 capitalize px-1.5 py-0.5 bg-gray-900 rounded">
+                          {c.role}
+                        </span>
+                      </button>
+                    ))
+                  ) : (
+                    <p className="text-xs text-gray-500 text-center py-3 italic">
+                      {assigneeSearch
+                        ? 'No matching collaborators'
+                        : 'All collaborators have been assigned'}
+                    </p>
+                  )}
+                </div>
+              </div>
+            )}
           </div>
 
           <div>

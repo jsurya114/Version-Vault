@@ -23,17 +23,18 @@ export class IssueController {
   async create(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
       const { username, reponame } = req.params;
-      const { title, description, priority, labels } = req.body;
+      const { title, description, priority, labels, assignees } = req.body;
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
       const { id: authorId, userId: authorUsername } = (req as any).user;
 
-      const repo = await this._getRepo.execute(username, reponame);
+      const repo = await this._getRepo.execute(username, reponame, authorId);
 
       const issue = await this._createIssue.execute({
         title,
         description,
         priority,
         labels,
+        assignees,
         repositoryId: repo.id,
         authorId,
         authorUsername,
@@ -56,7 +57,8 @@ export class IssueController {
         search: req.query.search as string | undefined,
         status: req.query.status as 'active' | 'blocked' | 'pending' | undefined,
       };
-      const repo = await this._getRepo.execute(username, reponame);
+      const { id: authenticatedUserId } = (req as any).user || {};
+      const repo = await this._getRepo.execute(username, reponame, authenticatedUserId);
       const result = await this._listIssue.execute(repo.id, query);
 
       res.status(HttpStatusCodes.OK).json({
@@ -77,7 +79,12 @@ export class IssueController {
 
   async getOne(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { id } = req.params;
+      const { id, username, reponame } = req.params;
+      const { id: authenticatedUserId } = (req as any).user || {};
+
+      // Verify access to the repository
+      await this._getRepo.execute(username, reponame, authenticatedUserId);
+
       const issue = await this._getIssue.execute(id);
       res.status(HttpStatusCodes.OK).json({ success: true, data: issue });
     } catch (error) {
@@ -85,10 +92,15 @@ export class IssueController {
     }
   }
 
-  // PATCH /vv/issues/:username/:reponame/:id/close
+  // PATCH /vv/issues/:username/:reponame/:id/close — close issue (auth required)
   async close(req: Request, res: Response, next: NextFunction): Promise<void> {
     try {
-      const { id } = req.params;
+      const { id, username, reponame } = req.params;
+      const { id: authenticatedUserId } = (req as any).user || {};
+
+      // Verify access to the repository
+      await this._getRepo.execute(username, reponame, authenticatedUserId);
+
       const issue = await this._closeIssue.execute(id);
       res.status(HttpStatusCodes.OK).json({ success: true, data: issue });
     } catch (error) {

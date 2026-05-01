@@ -22,4 +22,5 @@ export interface CreateIssueDTO {
   authorId: string;
   authorUsername: string;
   labels?: string[];
+  assignees?: string[];
 }
