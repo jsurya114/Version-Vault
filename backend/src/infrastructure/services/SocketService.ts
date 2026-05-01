@@ -62,6 +62,14 @@ export class SocketService implements ISocketEmitter {
         socket.join(repositoryId);
         logger.info(`User ${socket.data.user.userId} joined repo ${repositoryId}`);
       });
+      // user join a CI/CD run room
+      socket.on('join_run', (runId: string) => {
+        socket.join(`run:${runId}`);
+        logger.info(`User ${socket.data.user.userId} joined run ${runId}`);
+      });
+      socket.on('leave_run', (runId: string) => {
+        socket.leave(`run:${runId}`);
+      });
       //user sends message
       socket.on('send_message', async (data: { repositoryId: string; content: string }) => {
         try {
@@ -100,5 +108,12 @@ export class SocketService implements ISocketEmitter {
    */
   emitToUser(userId: string, event: string, data: unknown): void {
     this.io.to(`user:${userId}`).emit(event, data);
+  }
+
+  /**
+   * Emit an event to a specific room.
+   */
+  emitToRoom(room: string, event: string, data: unknown): void {
+    this.io.to(room).emit(event, data);
   }
 }

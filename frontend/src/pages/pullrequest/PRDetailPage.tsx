@@ -648,6 +648,7 @@ const PRDetailPage = () => {
               reponame={reponame!}
               targetType="pr"
               targetId={pr.id}
+              isDisabled={pr.status !== 'open'}
             />
           </div>
 

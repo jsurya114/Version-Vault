@@ -58,4 +58,16 @@ export const socketService = {
   sendMessage: (repositoryId: string, content: string) => {
     socket?.emit('send_message', { repositoryId, content });
   },
+  joinRun: (runId: string) => {
+    socket?.emit('join_run', runId);
+  },
+  leaveRun: (runId: string) => {
+    socket?.emit('leave_run', runId);
+  },
+  onRunLog: (callback: (data: { runId: string; logChunk: string }) => void) => {
+    socket?.on('run_log', callback);
+  },
+  offRunLog: (callback: (data: { runId: string; logChunk: string }) => void) => {
+    socket?.off('run_log', callback);
+  },
 };

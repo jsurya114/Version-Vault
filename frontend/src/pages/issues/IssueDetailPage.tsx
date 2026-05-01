@@ -161,6 +161,7 @@ const IssueDetailPage = () => {
               reponame={reponame!}
               targetType="issue"
               targetId={issue.id}
+              isDisabled={issue.status !== 'open'}
             />
           </div>
 

@@ -1,12 +1,22 @@
 import axiosInstance from './axiosInstance';
 import { WORKFLOW_ENDPOINTS } from 'src/constants/api';
 
+export interface StepResult {
+  name: string;
+  status: 'pending' | 'running' | 'success' | 'failed' | 'skipped';
+  logs: string;
+  startedAt?: string;
+  completedAt?: string;
+  duration?: number;
+}
+
 export interface WorkflowRun {
   _id: string;
   repositoryId: string;
   commitHash: string;
   status: 'QUEUED' | 'RUNNING' | 'SUCCESS' | 'FAILED';
   logs: string;
+  steps: StepResult[];
   createdAt: string;
   updatedAt: string;
 }
