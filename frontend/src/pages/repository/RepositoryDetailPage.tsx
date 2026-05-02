@@ -1491,7 +1491,12 @@ const RepositoryDetailPage = () => {
       )}
 
       {activeTab === 'issues' && (
-        <IssueListContent username={username!} reponame={reponame!} isOwner={isOwner} />
+        <IssueListContent
+          username={username!}
+          reponame={reponame!}
+          isOwner={isOwner}
+          hasWriteAccess={hasWriteAccess}
+        />
       )}
       {activeTab === 'collaborators' && (
         <CollaboratorsTabContent username={username!} reponame={reponame!} isOwner={isOwner} />
