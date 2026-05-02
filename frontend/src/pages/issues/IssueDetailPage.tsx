@@ -209,20 +209,24 @@ const IssueDetailPage = () => {
               </div>
             </div>
 
-            {/* Assignees - Commented out as requested
+            {/* Assignees */}
             <div className="bg-gray-900 border border-gray-800 rounded-xl p-3 xs:p-4">
               <h3 className="text-white text-xs font-semibold mb-2">Assignees</h3>
-              {issue.assignees.length === 0 ? (
-                <p className="text-gray-600 text-xs">No assignees</p>
+              {!issue.assignees || issue.assignees.length === 0 ? (
+                <p className="text-gray-600 text-xs italic">No assignees</p>
               ) : (
-                issue.assignees.map((a) => (
-                  <p key={a} className="text-gray-400 text-xs truncate">
-                    {a}
-                  </p>
-                ))
+                <div className="flex flex-col gap-2">
+                  {issue.assignees.map((a) => (
+                    <div key={a} className="flex items-center gap-2 min-w-0">
+                      <div className="w-6 h-6 rounded-full bg-gradient-to-br from-indigo-500 to-purple-600 flex items-center justify-center text-white text-xs font-bold">
+                        {a[0]?.toUpperCase()}
+                      </div>
+                      <span className="text-gray-400 text-xs truncate">{a}</span>
+                    </div>
+                  ))}
+                </div>
               )}
             </div>
-            */}
           </div>
         </div>
       </main>
