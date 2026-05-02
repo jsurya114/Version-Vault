@@ -63,6 +63,21 @@ const NotificationDropdown = () => {
     // Navigate based on type
     if (notification.type === 'followed' || notification.type === 'unfollowed') {
       navigate(`/profile/${notification.actorUsername}`);
+    } else if (notification.type === 'mention' && notification.repositoryName) {
+      // Mention notifications: navigate to the issue or PR that contains the mention
+      if (notification.metadata?.issueId) {
+        // For issue mentions, we need the repo owner username — use repositoryName
+        // The repositoryName contains just the repo name; we build the path from the notification context
+        navigate(
+          `/${notification.actorUsername}/${notification.repositoryName}/issues/${notification.metadata.issueId}`,
+        );
+      } else if (notification.metadata?.prId) {
+        navigate(
+          `/${notification.actorUsername}/${notification.repositoryName}/pulls/${notification.metadata.prId}`,
+        );
+      } else {
+        navigate(`/${notification.actorUsername}/${notification.repositoryName}`);
+      }
     } else if (notification.repositoryName && notification.metadata?.prId) {
       navigate(
         `/${notification.actorUsername}/${notification.repositoryName}/pulls/${notification.metadata.prId}`,

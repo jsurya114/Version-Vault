@@ -38,6 +38,20 @@ export class CreateIssueUseCase implements ICreateIssueUseCase {
       })
       .catch(() => {});
 
+    // Send mention notifications for @username in description
+    if (dto.description) {
+      this._notificationService
+        .notifyMentionedUsers({
+          text: dto.description,
+          actorId: dto.authorId,
+          actorUsername: dto.authorUsername,
+          repositoryId: dto.repositoryId,
+          contextType: 'issue',
+          contextTitle: dto.title,
+        })
+        .catch(() => {});
+    }
+
     return IssueMapper.toDTO(issue);
   }
 }

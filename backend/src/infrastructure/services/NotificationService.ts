@@ -5,8 +5,19 @@ import { ICollaboratorRepository } from '../../domain/interfaces/repositories/IC
 import { IRepoRepository } from '../../domain/interfaces/repositories/IRepoRepository';
 
 import { ISocketEmitter } from '../../domain/interfaces/services/ISocketEmitter';
+import { IUserRepository } from '../../domain/interfaces/repositories/IUserRepository';
 import { logger } from '../../shared/logger/Logger';
 import { NotifyParams, NotifyRepoParams } from '../../application/dtos/repository/NotificationDTO';
+
+export interface NotifyMentionParams {
+  text: string;
+  actorId: string;
+  actorUsername: string;
+  repositoryId: string;
+  repositoryName?: string;
+  contextType: 'issue' | 'comment';
+  contextTitle: string;
+}
 
 @injectable()
 export class NotificationService {
@@ -15,6 +26,7 @@ export class NotificationService {
     @inject(TOKENS.ICollaboratorRepository) private _collabRepo: ICollaboratorRepository,
     @inject(TOKENS.IRepoRepository) private _repoRepo: IRepoRepository,
     @inject(TOKENS.ISocketEmitter) private _socketEmitter: ISocketEmitter,
+    @inject(TOKENS.IUserRepository) private _userRepo: IUserRepository,
   ) {}
 
   /**
@@ -73,7 +85,7 @@ export class NotificationService {
 
       if (notificationPayloads.length > 0) {
         const notifications = await this._notificationRepo.insertMany(notificationPayloads);
-        
+
         // Emit socket events for each created notification
         notifications.forEach((notification) => {
           this._socketEmitter.emitToUser(notification.recipientId, 'notification', notification);
@@ -81,6 +93,51 @@ export class NotificationService {
       }
     } catch (error) {
       logger.error('Failed to send repo notifications:', error);
+    }
+  }
+
+  /**
+   * Parse @username mentions from text and send 'mention' notifications
+   * to each mentioned user (excluding the actor).
+   */
+  async notifyMentionedUsers(params: NotifyMentionParams): Promise<void> {
+    try {
+      // Extract all @username mentions from the text
+      const mentionRegex = /@([a-zA-Z0-9_-]+)/g;
+      const mentions = new Set<string>();
+      let match;
+      while ((match = mentionRegex.exec(params.text)) !== null) {
+        const mentionedUsername = match[1];
+        // Skip self-mentions
+        if (mentionedUsername !== params.actorUsername) {
+          mentions.add(mentionedUsername);
+        }
+      }
+
+      if (mentions.size === 0) return;
+
+      // Resolve each mentioned username to a user and send notification
+      for (const username of mentions) {
+        const user = await this._userRepo.findByUserId(username);
+        if (!user || !user.id) continue;
+
+        const message =
+          params.contextType === 'issue'
+            ? `${params.actorUsername} mentioned you in issue "${params.contextTitle}"`
+            : `${params.actorUsername} mentioned you in a comment on "${params.contextTitle}"`;
+
+        await this.notifyUser({
+          recipientId: user.id,
+          actorId: params.actorId,
+          actorUsername: params.actorUsername,
+          type: 'mention',
+          message,
+          repositoryId: params.repositoryId,
+          repositoryName: params.repositoryName,
+        });
+      }
+    } catch (error) {
+      logger.error('Failed to send mention notifications:', error);
     }
   }
 }
