@@ -46,8 +46,8 @@ const CreateIssuePage = React.memo(() => {
       collaboratorService
         .getCollaborators(username, reponame)
         .then((data) => {
-          const collabs = data.map((c: { username: string; role: string }) => ({
-            username: c.username,
+          const collabs = data.map((c: { collaboratorUsername: string; role: string }) => ({
+            username: c.collaboratorUsername,
             role: c.role,
           }));
           // Also include the repo owner
