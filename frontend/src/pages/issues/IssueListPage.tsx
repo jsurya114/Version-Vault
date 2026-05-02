@@ -1,6 +1,6 @@
 import React, { useEffect, useState, useMemo, useCallback } from 'react';
 import { useParams, useNavigate, Link, useLocation } from 'react-router-dom';
-import { CircleDot, CheckCircle, Plus, Search } from 'lucide-react';
+import { CircleDot, CheckCircle, Plus, Search, ChevronDown } from 'lucide-react';
 import { useAppDispatch, useAppSelector } from '../../app/hooks';
 import { listIssuesThunk } from '../../features/issues/issueThunk';
 import {
@@ -13,6 +13,8 @@ import AppFooter from '../../types/common/Layout/AppFooter';
 import { ROUTES } from '../../constants/routes';
 import { IssuePriority } from '../../types/issues/issues.types';
 import { SuccessSonar } from '../../types/common/Layout/SuccessSonar';
+import { repositoryService } from '../../services/repository.service';
+import { RepositoryResponseDTO } from '../../types/repository/repositoryTypes';
 
 const priorityColors: Record<IssuePriority, string> = {
   low: 'text-gray-400 bg-gray-700 border-gray-600',
@@ -95,6 +97,38 @@ const IssueListPage = () => {
   const [statusFilter, setStatusFilter] = useState<string>('all');
   const limit = 5;
 
+  // Repositories state for selector
+  const [repos, setRepos] = useState<RepositoryResponseDTO[]>([]);
+  const [showRepoDropdown, setShowRepoDropdown] = useState(false);
+  const [repoSearch, setRepoSearch] = useState('');
+  const repoDropdownRef = React.useRef<HTMLDivElement>(null);
+
+  const filteredRepos = useMemo(() => {
+    return repos.filter((r) => r.name.toLowerCase().includes(repoSearch.toLowerCase()));
+  }, [repos, repoSearch]);
+
+  useEffect(() => {
+    const fetchRepos = async () => {
+      try {
+        const response = await repositoryService.listRepositories({ limit: 100 });
+        setRepos(response.data);
+      } catch (err) {
+        console.error('Failed to fetch repositories', err);
+      }
+    };
+    fetchRepos();
+  }, []);
+
+  useEffect(() => {
+    const handleClickOutside = (e: MouseEvent) => {
+      if (repoDropdownRef.current && !repoDropdownRef.current.contains(e.target as Node)) {
+        setShowRepoDropdown(false);
+      }
+    };
+    document.addEventListener('mousedown', handleClickOutside);
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, []);
+
   const fetchParams = useMemo(
     () => ({
       username: username!,
@@ -163,7 +197,66 @@ const IssueListPage = () => {
       <main className="max-w-5xl mx-auto px-3 xs:px-4 sm:px-6 py-4 xs:py-6 w-full flex-1">
         {/* Header */}
         <div className="flex flex-col xs:flex-row items-start xs:items-center justify-between mb-4 gap-3">
-          <h1 className="text-white font-semibold">Issues</h1>
+          <div className="flex items-center gap-3">
+            <h1 className="text-white font-semibold">Issues</h1>
+
+            {/* Repository Selection */}
+            <div ref={repoDropdownRef} className="relative z-10">
+              <button
+                onClick={() => setShowRepoDropdown((prev) => !prev)}
+                className="flex items-center gap-2 bg-gray-800 hover:bg-gray-700 border border-gray-700 rounded-lg px-3 py-1.5 text-xs text-gray-300 transition"
+              >
+                <span className="truncate max-w-[150px] xs:max-w-[200px]">
+                  {username}/{reponame}
+                </span>
+                <ChevronDown
+                  className={`w-3.5 h-3.5 transition-transform ${showRepoDropdown ? 'rotate-180' : ''}`}
+                />
+              </button>
+
+              {showRepoDropdown && (
+                <div className="absolute top-full left-0 mt-1 w-64 bg-gray-800 border border-gray-700 rounded-lg shadow-xl overflow-hidden z-20">
+                  <div className="p-2 border-b border-gray-700">
+                    <input
+                      type="text"
+                      value={repoSearch}
+                      onChange={(e) => setRepoSearch(e.target.value)}
+                      placeholder="Find a repository..."
+                      className="w-full bg-gray-900 border border-gray-700 rounded-md px-2.5 py-1.5 text-xs text-white focus:outline-none focus:border-blue-500 placeholder-gray-600"
+                      autoFocus
+                    />
+                  </div>
+                  <div className="max-h-60 overflow-y-auto">
+                    {filteredRepos.length > 0 ? (
+                      filteredRepos.map((r) => (
+                        <button
+                          key={r.id}
+                          onClick={() => {
+                            setShowRepoDropdown(false);
+                            setRepoSearch('');
+                            navigate(`/${r.ownerUsername}/${r.name}/issues`);
+                          }}
+                          className={`w-full flex flex-col gap-0.5 px-3 py-2 text-left hover:bg-gray-700/50 transition ${
+                            r.name === reponame && r.ownerUsername === username
+                              ? 'bg-blue-600/10 border-l-2 border-blue-500'
+                              : ''
+                          }`}
+                        >
+                          <span className="text-sm text-gray-100 font-medium">{r.name}</span>
+                          <span className="text-[10px] text-gray-500">{r.ownerUsername}</span>
+                        </button>
+                      ))
+                    ) : (
+                      <p className="text-xs text-gray-500 text-center py-4 italic">
+                        No matching repositories
+                      </p>
+                    )}
+                  </div>
+                </div>
+              )}
+            </div>
+          </div>
+
           <Link
             to={`/${username}/${reponame}/issues/new`}
             className="flex items-center gap-1.5 xs:gap-2 bg-blue-600 hover:bg-blue-700 text-white text-xs xs:text-sm px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg transition whitespace-nowrap shrink-0"
