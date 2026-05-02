@@ -16,10 +16,12 @@ const IssueListContent = ({
   username,
   reponame,
   isOwner,
+  hasWriteAccess,
 }: {
   username: string;
   reponame: string;
   isOwner: boolean;
+  hasWriteAccess: boolean;
 }) => {
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
@@ -60,9 +62,9 @@ const IssueListContent = ({
           <CircleDot className="w-5 h-5 text-gray-400" /> Issues
         </h1>
         <Link
-          to={isOwner ? `/${username}/${reponame}/issues/new` : '#'}
+          to={isOwner || hasWriteAccess ? `/${username}/${reponame}/issues/new` : '#'}
           className={`flex items-center gap-1.5 xs:gap-2 text-xs xs:text-sm px-3 xs:px-4 py-1.5 xs:py-2 rounded-lg transition whitespace-nowrap shrink-0 ${
-            !isOwner
+            !(isOwner || hasWriteAccess)
               ? 'bg-gray-800 text-gray-600 cursor-not-allowed pointer-events-none opacity-50 border border-gray-700'
               : 'bg-blue-600 hover:bg-blue-700 text-white'
           }`}
@@ -110,8 +112,8 @@ const IssueListContent = ({
               {statusFilter === 'all' ? 'No issues found' : `No ${statusFilter} issues found`}
             </p>
             <Link
-              to={isOwner ? `/${username}/${reponame}/issues/new` : '#'}
-              className={`text-sm mt-2 block ${!isOwner ? 'text-gray-600 cursor-not-allowed pointer-events-none' : 'text-blue-400 hover:underline'}`}
+              to={isOwner || hasWriteAccess ? `/${username}/${reponame}/issues/new` : '#'}
+              className={`text-sm mt-2 block ${!(isOwner || hasWriteAccess) ? 'text-gray-600 cursor-not-allowed pointer-events-none' : 'text-blue-400 hover:underline'}`}
             >
               {statusFilter === 'all' ? 'Create your first issue' : 'Create another issue'}
             </Link>
