@@ -13,7 +13,8 @@ export type NotificationType =
   | 'followed'
   | 'unfollowed'
   | 'repo_forked'
-  | 'repo_starred';
+  | 'repo_starred'
+  | 'mention';
 
 export interface NotificationDTO {
   id: string;

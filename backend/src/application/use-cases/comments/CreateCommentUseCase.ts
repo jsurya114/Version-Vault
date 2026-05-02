@@ -9,6 +9,7 @@ import { IPullRequestRepository } from '../../../domain/interfaces/repositories/
 import { ICommentRepository } from '../../../domain/interfaces/repositories/ICommentRepository';
 import { TOKENS } from '../../../shared/constants/tokens';
 import { CommentMapper } from '../../../application/mappers/CommentMapper';
+import { NotificationService } from '../../../infrastructure/services/NotificationService';
 
 @injectable()
 export class CreateCommentUseCase implements ICreateCommentUseCase {
@@ -16,6 +17,7 @@ export class CreateCommentUseCase implements ICreateCommentUseCase {
     @inject(TOKENS.ICommentRepository) private _commentRepo: ICommentRepository,
     @inject(TOKENS.IIssuesRepository) private _issueRepo: IIssueRepository,
     @inject(TOKENS.IPullRequestRepository) private _prRepo: IPullRequestRepository,
+    @inject(TOKENS.NotificationService) private _notificationService: NotificationService,
   ) {}
   async execute(dto: CreateCommentDTO): Promise<CommentResponseDTO> {
     const comment = await this._commentRepo.save({
@@ -44,6 +46,30 @@ export class CreateCommentUseCase implements ICreateCommentUseCase {
         });
       }
     }
+
+    // Send mention notifications for @username in comment content
+    if (dto.content) {
+      let contextTitle = '';
+      if (dto.targetType === 'issue') {
+        const issue = await this._issueRepo.findById(dto.targetId);
+        contextTitle = issue?.title || 'an issue';
+      } else if (dto.targetType === 'pr') {
+        const pr = await this._prRepo.findById(dto.targetId);
+        contextTitle = pr?.title || 'a pull request';
+      }
+
+      this._notificationService
+        .notifyMentionedUsers({
+          text: dto.content,
+          actorId: dto.authorId,
+          actorUsername: dto.authorUsername,
+          repositoryId: dto.repositoryId,
+          contextType: 'comment',
+          contextTitle,
+        })
+        .catch(() => {});
+    }
+
     return CommentMapper.toResponseDTO(comment);
   }
 }
