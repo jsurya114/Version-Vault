@@ -8,28 +8,11 @@ import { TOKENS } from '../../../shared/constants/tokens';
 import { TriggerWorkflowUseCase } from '../cicd/TriggerWorkflowUseCase';
 import { envConfig } from '../../../shared/config/env.config';
 import { DEFAULT_PIPELINE } from '../../../shared/constants/defaultPipeline';
+import { AI_AGENT_SYSTEM_PROMPT } from './Aiagentsystemprompt';
 import * as fs from 'fs';
 import * as path from 'path';
 import * as crypto from 'crypto';
 
-const SYSTEM_PROMPT = `
-You are an expert AI software architect. Given a project configuration, you must generate the boilerplate files for the project.
-You MUST output ONLY a valid JSON object. Do NOT wrap it in markdown. The JSON must exactly match this schema:
-{
-  "files": [
-    { "path": "filename.ext", "content": "..." },
-    { "path": "another_file.ext", "content": "..." }
-  ]
-}
-CRITICAL RULES AND INSTRUCTIONS:
-1. **JSON VALIDITY**: Ensure the JSON is strictly valid. You MUST properly escape all special characters (such as quotes, newlines \\n, tabs \\t, and backslashes \\\\) inside the "content" strings so that JSON.parse will not fail. Do not leave trailing commas.
-2. **ARCHITECTURE & REQUIREMENTS ENFORCEMENT**: You must create the repository exactly as requested in the "Project Brief". If the brief mentions specific technologies, frameworks, or folder structures, you MUST create all necessary configuration files, dependencies, and structural directories implicitly (e.g., "src/controllers/..."). If an Architecture is provided (and is not 'None'), also structure the project based on that.
-3. **EXTENSION ENFORCEMENT**: 
-   - Ensure you use the exact appropriate language extension for the tech stack the user typed or selected (e.g., \`.py\` for Python, \`.go\` for Go, \`.rs\` for Rust, \`.java\` for Java).
-   - If using React, UI components MUST use \`.jsx\` extension or \`.tsx\` if TypeScript is used.
-4. **DEPENDENCY & FOLDER MANAGEMENT**: ONLY generate dependency config files (e.g., \`package.json\`) and full folder structures (like \`src/\`) IF the user explicitly selected a Tech Stack, added Dependencies, or explicitly asked for a full project/app in the Project Brief. If the user just asks to "create a file" (e.g., "create a js file to generate otp") and no tech stack/dependencies are provided, ONLY output that exact file. DO NOT create \`package.json\`, extra folders, or any other boilerplate.
-5. **ROOT PATHS**: All file "paths" MUST be strictly relative to the repository root. DO NOT nest the entire project inside a top-level parent folder matching the repository name. For example, output "filename.ext", NOT "my-repo/filename.ext". Do NOT use leading slashes or parent directory traversal like "../".
-`;
 @injectable()
 export class AIAgentUseCase implements IAIAgentUseCase {
   constructor(
@@ -44,44 +27,89 @@ export class AIAgentUseCase implements IAIAgentUseCase {
     ownerId: string,
     ownerUsername: string,
   ): Promise<AIAgentResponse> {
-    // Construct a highly detailed prompt explicitly defining rules mapped to their inputs
-    const userPrompt = `
-Repository Name: ${config.name}
-Repository Description: ${config.description || 'No description provided.'}
-Project Brief: ${config.projectBrief || 'No specific project brief provided.'}
-User Selections:
-- Tech Stack: ${config.techStack?.length ? config.techStack.join(', ') : 'None.'}
-- Architecture Style: ${config.architecture || 'None.'}
-- Extra Dependencies: ${config.dependencies || 'None.'}
+    const hasArchitecture =
+      config.architecture && config.architecture !== 'None' && config.architecture !== '';
+    const hasTechStack = config.techStack && config.techStack.length > 0;
+    const hasDependencies = config.dependencies && config.dependencies.trim() !== '';
 
-Instructions: Generate ONLY the files explicitly requested or strictly necessary for the Project Brief. If no Tech Stack or Dependencies are provided, DO NOT assume any frameworks, DO NOT generate configuration files like package.json, and DO NOT create structural folders like src/. Generate strictly what is asked.
+    const userPrompt = `
+Generate a complete, production-ready project with the following specifications.
+
+═══════════════════
+PROJECT DETAILS
+═══════════════════
+Repository Name: ${config.name}
+Description: ${config.description || 'No description provided.'}
+
+Project Brief:
+${config.projectBrief || 'No specific brief provided.'}
+
+═══════════════════
+REQUIRED CONFIGURATION
+═══════════════════
+Tech Stack: ${hasTechStack ? config.techStack!.join(', ') : 'None selected.'}
+Architecture Style: ${hasArchitecture ? config.architecture : 'None — use a simple appropriate structure.'}
+Extra Dependencies: ${hasDependencies ? config.dependencies : 'None.'}
+
+═══════════════════
+STRICT REQUIREMENTS
+═══════════════════
+${
+  hasArchitecture
+    ? `ARCHITECTURE REQUIREMENT (CRITICAL):
+You MUST implement ${config.architecture} architecture.
+- Generate the COMPLETE folder structure defined for ${config.architecture} in the system prompt.
+- Every folder in the architecture MUST contain at least one real, working file.
+- Strictly follow ALL layer separation rules for ${config.architecture}.
+- Do NOT collapse layers or skip folders.`
+    : 'Use a simple, appropriate folder structure for the project.'
+}
+
+${
+  hasTechStack
+    ? `TECH STACK REQUIREMENT:
+You MUST generate all necessary configuration files for: ${config.techStack!.join(', ')}.
+- Generate package.json / requirements.txt / go.mod with ALL required dependencies.
+- Use the correct file extension for every file.
+- Include tsconfig.json if TypeScript is in the stack.
+- Include .env.example with all required environment variables.`
+    : hasDependencies
+      ? 'Only generate files needed for the described task.'
+      : 'Only generate the specific file(s) requested. No config files, no extra folders.'
+}
+
+PROJECT TO BUILD:
+${config.projectBrief}
+
+Generate ALL files needed so a developer can clone the repo, run npm install (or pip install, etc.), and immediately start the application. Every file must contain real, working code.
 `;
 
     const aiResponse = await this._groqService.chat(
       [
-        { role: 'system', content: SYSTEM_PROMPT },
+        { role: 'system', content: AI_AGENT_SYSTEM_PROMPT },
         { role: 'user', content: userPrompt },
       ],
       true,
     );
+
     let generatedFiles: { path: string; content: string }[];
+
     try {
-      // Clean potential formatting if Groq returns it in markdown
       const cleaned = aiResponse
         .replace(/^```(json)?/, '')
         .replace(/```$/, '')
         .trim();
+
       const parsed = JSON.parse(cleaned);
+
       if (parsed.files && Array.isArray(parsed.files)) {
         generatedFiles = parsed.files
           .filter(
             (f: { path: string }) => f.path && !f.path.endsWith('/') && !f.path.endsWith('\\'),
           )
           .map((file: { path: string; content: string }) => {
-            // Fallback: If AI mistakenly prepends the repo name as the root folder, strip it
             let filePath = file.path;
 
-            // Strip leading slashes, dots, and directory traversal
             filePath = filePath.replace(/^[./\\]+/, '');
             filePath = filePath.replace(/^(?:\.\.[/\\])+/, '');
 
@@ -90,11 +118,9 @@ Instructions: Generate ONLY the files explicitly requested or strictly necessary
               filePath = filePath.substring(repoPrefix.length);
             }
 
-            // Final safety strip just in case
             filePath = filePath.replace(/^[./\\]+/, '');
 
             let content = file.content;
-            // Fix over-escaped newlines and tabs if the AI generated literal \n strings
             if (content.includes('\\n')) {
               content = content.replace(/\\n/g, '\n').replace(/\\t/g, '\t');
             }
@@ -105,7 +131,6 @@ Instructions: Generate ONLY the files explicitly requested or strictly necessary
         throw new Error('Invalid JSON Schema format returned from AI model.');
       }
 
-      //create the bare repo in db and disk
       const createdRepo = await this._createRepo.execute({
         name: config.name,
         description: config.description,
@@ -113,9 +138,10 @@ Instructions: Generate ONLY the files explicitly requested or strictly necessary
         ownerId,
         ownerUsername,
       });
-      //write contents to temperory disk files & commit via git
+
       const tmpDir = path.join(process.cwd(), '.tmp', crypto.randomUUID());
       fs.mkdirSync(tmpDir, { recursive: true });
+
       try {
         const filesToCommit = generatedFiles.map((file) => {
           const tempDiskPath = path.join(tmpDir, crypto.randomUUID() + '.tmp');
@@ -125,18 +151,17 @@ Instructions: Generate ONLY the files explicitly requested or strictly necessary
             tempDiskPath: tempDiskPath,
           };
         });
-        //commit ai generated files at once using native git Service
+
         await this._gitService.commitMultipleFiles(
           ownerUsername,
           config.name,
           'main',
-          'init:AI Boilerplate Project Setup',
+          'init: AI Boilerplate Project Setup',
           filesToCommit,
           'AI Assistant',
           'ai@versionvault.com',
         );
 
-        // CI/CD: Auto-trigger pipeline after AI agent commits
         try {
           const commits = await this._gitService.getCommits(ownerUsername, config.name, 'main', 1);
           const commitHash = commits.length > 0 ? commits[0].hash : 'ai-init';
@@ -148,14 +173,15 @@ Instructions: Generate ONLY the files explicitly requested or strictly necessary
             repoCloneUrl,
           );
         } catch {
-          // Non-critical
+          // CI/CD trigger is non-critical
         }
       } finally {
         fs.rmSync(tmpDir, { recursive: true, force: true });
       }
+
       return {
         status: 'completed',
-        response: 'Project codebase scaffoled successfully',
+        response: 'Project codebase scaffolded successfully',
         repo: createdRepo,
       };
     } catch (e: unknown) {
