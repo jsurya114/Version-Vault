@@ -100,8 +100,8 @@ const RepositoryDetailPage = () => {
   const [activeTab, setActiveTab] = useState<Tab>((searchParams.get('tab') as Tab) || 'code');
 
   const [branch, setBranch] = useState(branchName || 'main');
-  const [currentPath, setCurrentPath] = useState('');
-  const [selectedFile, setSelectFile] = useState('');
+  const [currentPath, setCurrentPath] = useState(searchParams.get('path') || '');
+  const [selectedFile, setSelectFile] = useState(searchParams.get('file') || '');
   // REMOVED: local starred state (now handled by StarButton and Redux)
   const [expandedPaths, setExpandedPaths] = useState<Set<string>>(new Set());
   const [treeSearch, setTreeSearch] = useState('');
@@ -176,7 +176,18 @@ const RepositoryDetailPage = () => {
   useEffect(() => {
     if (username && reponame) {
       //for normal folder view
-      dispatch(getFilesThunk({ username, reponame, branch, path: '' }));
+      dispatch(getFilesThunk({ username, reponame, branch, path: currentPath || '' }));
+
+      if (selectedFile) {
+        dispatch(
+          getFileContentThunk({
+            username: username!,
+            reponame: reponame!,
+            filePath: selectedFile,
+            branch,
+          }),
+        );
+      }
 
       dispatch(getFilesThunk({ username, reponame, branch, path: '', recursive: true }));
       dispatch(getCommitsThunk({ username, reponame, branch }));
@@ -281,12 +292,27 @@ const RepositoryDetailPage = () => {
     return () => clearInterval(interval);
   }, [activeTab, username, reponame, workflowRuns]);
 
+  // Sync searchParams when currentPath or selectedFile change
   useEffect(() => {
-    setCurrentPath('');
-    setSelectFile('');
-    setExpandedPaths(new Set());
-    setTreeSearch('');
-  }, [branch]);
+    setSearchParams(
+      (prev) => {
+        const next = new URLSearchParams(prev);
+        if (currentPath) {
+          next.set('path', currentPath);
+        } else {
+          next.delete('path');
+        }
+
+        if (selectedFile) {
+          next.set('file', selectedFile);
+        } else {
+          next.delete('file');
+        }
+        return next;
+      },
+      { replace: true },
+    );
+  }, [currentPath, selectedFile, setSearchParams]);
 
   useEffect(() => {
     const readme = files.find((f) => f.name.toLowerCase() === 'readme.md');
