@@ -44,6 +44,9 @@ jobs:
             cd ..
           fi
 
+          echo "Running syntax check for Python files..."
+          find . -type f -name "*.py" -not -path "*/node_modules/*" -exec python3 -m py_compile {} + || exit 1
+
       - name: Run Tests
         run: |
           if [ -f package.json ] && grep -q '"test"' package.json; then
