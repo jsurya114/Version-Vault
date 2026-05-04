@@ -28,7 +28,7 @@ const startSever = async () => {
         });
         Logger_1.logger.info('[CI/CD] Worker started and listening for jobs');
         //starting the server
-        server.listen(env_config_1.envConfig.PORT, () => {
+        server.listen(env_config_1.envConfig.PORT, '0.0.0.0', () => {
             Logger_1.logger.info(`Server running on port ${env_config_1.envConfig.PORT} in ${env_config_1.envConfig.NODE_ENV} mode`);
         });
     }

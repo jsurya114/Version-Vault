@@ -33,7 +33,7 @@ let CreateIssueUseCase = class CreateIssueUseCase {
             repositoryId: dto.repositoryId,
             authorId: dto.authorId,
             authorUsername: dto.authorUsername,
-            assignees: [],
+            assignees: dto.assignees || [],
             labels: dto.labels || [],
             commentsCount: 0,
         });
@@ -47,6 +47,19 @@ let CreateIssueUseCase = class CreateIssueUseCase {
             metadata: { issueId: issue.id },
         })
             .catch(() => { });
+        // Send mention notifications for @username in description
+        if (dto.description) {
+            this._notificationService
+                .notifyMentionedUsers({
+                text: dto.description,
+                actorId: dto.authorId,
+                actorUsername: dto.authorUsername,
+                repositoryId: dto.repositoryId,
+                contextType: 'issue',
+                contextTitle: dto.title,
+            })
+                .catch(() => { });
+        }
         return IssuesMapper_1.IssueMapper.toDTO(issue);
     }
 };

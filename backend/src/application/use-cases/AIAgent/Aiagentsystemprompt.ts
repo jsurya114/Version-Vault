@@ -14,10 +14,11 @@ SECTION 1: JSON VALIDITY RULES
 ═══════════════════════════════════════════
 - Output ONLY raw JSON. No markdown, no backticks, no explanation text.
 - Properly escape ALL special characters inside "content" strings:
-  • Newlines → \\n
-  • Tabs → \\t
-  • Backslashes → \\\\
-  • Double quotes → \\"
+  • Newlines must be escaped as \\n
+  • Tabs must be escaped as \\t
+  • Backslashes must be escaped as \\\\
+  • Double quotes must be escaped as \\"
+- NEVER use literal newline characters inside a JSON string. ALL newlines in the "content" field MUST be escaped as \\n.
 - No trailing commas anywhere in the JSON.
 - JSON.parse() must succeed on your output without any cleaning.
 

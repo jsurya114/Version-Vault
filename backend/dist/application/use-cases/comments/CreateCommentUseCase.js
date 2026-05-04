@@ -16,14 +16,17 @@ exports.CreateCommentUseCase = void 0;
 const tsyringe_1 = require("tsyringe");
 const tokens_1 = require("../../../shared/constants/tokens");
 const CommentMapper_1 = require("../../../application/mappers/CommentMapper");
+const NotificationService_1 = require("../../../infrastructure/services/NotificationService");
 let CreateCommentUseCase = class CreateCommentUseCase {
     _commentRepo;
     _issueRepo;
     _prRepo;
-    constructor(_commentRepo, _issueRepo, _prRepo) {
+    _notificationService;
+    constructor(_commentRepo, _issueRepo, _prRepo, _notificationService) {
         this._commentRepo = _commentRepo;
         this._issueRepo = _issueRepo;
         this._prRepo = _prRepo;
+        this._notificationService = _notificationService;
     }
     async execute(dto) {
         const comment = await this._commentRepo.save({
@@ -52,6 +55,28 @@ let CreateCommentUseCase = class CreateCommentUseCase {
                 });
             }
         }
+        // Send mention notifications for @username in comment content
+        if (dto.content) {
+            let contextTitle = '';
+            if (dto.targetType === 'issue') {
+                const issue = await this._issueRepo.findById(dto.targetId);
+                contextTitle = issue?.title || 'an issue';
+            }
+            else if (dto.targetType === 'pr') {
+                const pr = await this._prRepo.findById(dto.targetId);
+                contextTitle = pr?.title || 'a pull request';
+            }
+            this._notificationService
+                .notifyMentionedUsers({
+                text: dto.content,
+                actorId: dto.authorId,
+                actorUsername: dto.authorUsername,
+                repositoryId: dto.repositoryId,
+                contextType: 'comment',
+                contextTitle,
+            })
+                .catch(() => { });
+        }
         return CommentMapper_1.CommentMapper.toResponseDTO(comment);
     }
 };
@@ -61,5 +86,6 @@ exports.CreateCommentUseCase = CreateCommentUseCase = __decorate([
     __param(0, (0, tsyringe_1.inject)(tokens_1.TOKENS.ICommentRepository)),
     __param(1, (0, tsyringe_1.inject)(tokens_1.TOKENS.IIssuesRepository)),
     __param(2, (0, tsyringe_1.inject)(tokens_1.TOKENS.IPullRequestRepository)),
-    __metadata("design:paramtypes", [Object, Object, Object])
+    __param(3, (0, tsyringe_1.inject)(tokens_1.TOKENS.NotificationService)),
+    __metadata("design:paramtypes", [Object, Object, Object, NotificationService_1.NotificationService])
 ], CreateCommentUseCase);
