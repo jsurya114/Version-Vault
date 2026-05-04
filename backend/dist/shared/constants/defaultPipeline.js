@@ -13,27 +13,40 @@ jobs:
   build:
     runs-on: node:18
     steps:
-      - name: Install root dependencies
-        run: if [ -f package.json ]; then npm install; else echo "No root package.json found, skipping."; fi
-      
-      - name: Install backend dependencies
-        run: if [ -d "backend" ] && [ -f "backend/package.json" ]; then cd backend && npm install; else echo "No backend package.json found, skipping."; fi
-      
-      - name: Install frontend dependencies
-        run: if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then cd frontend && npm install; else echo "No frontend package.json found, skipping."; fi
+      - name: Install Dependencies
+        run: |
+          if [ -f package.json ]; then npm install; fi
+          if [ -d "backend" ] && [ -f "backend/package.json" ]; then cd backend && npm install; fi
+          if [ -d "frontend" ] && [ -f "frontend/package.json" ]; then cd frontend && npm install; fi
 
-      - name: Check JavaScript Syntax
-        run: for file in $(find . -name "*.js" -not -path "*/node_modules/*" 2>/dev/null); do node -c "$file" || exit 1; done
-      
-      - name: TypeScript check root
-        run: if [ -f tsconfig.json ]; then npx tsc --noEmit || exit 1; else echo "No root tsconfig.json found, skipping."; fi
-      
-      - name: TypeScript check backend
-        run: if [ -d "backend" ] && [ -f "backend/tsconfig.json" ]; then cd backend && npx tsc --noEmit || exit 1; else echo "No backend tsconfig.json found, skipping."; fi
-      
-      - name: TypeScript check frontend
-        run: if [ -d "frontend" ] && [ -f "frontend/tsconfig.json" ]; then cd frontend && npx tsc --noEmit || exit 1; else echo "No frontend tsconfig.json found, skipping."; fi
+      - name: Syntax & Type Check
+        run: |
+          echo "Running syntax check for JavaScript files..."
+          find . -type f -name "*.js" -not -path "*/node_modules/*" -exec node -c {} + || exit 1
 
-      - name: Run root tests
-        run: if [ -f package.json ] && grep -q '"test"' package.json; then npm test || exit 1; else echo "No root tests defined, skipping."; fi
+          echo "Running type and syntax check for TypeScript files..."
+          if [ -f tsconfig.json ]; then
+            npx -y typescript tsc --noEmit || exit 1
+          elif find . -name "*.ts" -not -path "*/node_modules/*" | grep -q .; then
+            echo "No root tsconfig.json found, running basic tsc check on all .ts files..."
+            npx -y typescript tsc --noEmit --allowJs --target esnext --moduleResolution node --skipLibCheck $(find . -name "*.ts" -not -path "*/node_modules/*") || exit 1
+          fi
+
+          if [ -d "backend" ] && [ -f "backend/tsconfig.json" ]; then
+            echo "Checking backend TypeScript..."
+            cd backend && npx -y typescript tsc --noEmit || exit 1
+            cd ..
+          fi
+
+          if [ -d "frontend" ] && [ -f "frontend/tsconfig.json" ]; then
+            echo "Checking frontend TypeScript..."
+            cd frontend && npx -y typescript tsc --noEmit || exit 1
+            cd ..
+          fi
+
+      - name: Run Tests
+        run: |
+          if [ -f package.json ] && grep -q '"test"' package.json; then
+            npm test || exit 1
+          fi
 `;

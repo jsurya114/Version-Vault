@@ -7507,3 +7507,276 @@ fatal: git update-index: --cacheinfo cannot add polyfare/.git/config
 2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
 2026-05-01 12:05:49 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
 2026-05-01 12:05:49 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 16:37:38 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/compare/test/main — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/compare/test/main — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/workflows/jsurya114/otpsss/status — Invalid or expired access token
+2026-05-01 17:11:31 [[31merror[39m]: GET /vv/workflows/jsurya114/otpsss/status — Invalid or expired access token
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/comments/jsurya114/otpsss/pr/69f48c2e8261825031aacbe0 — Authentication required for private repo comments
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/comments/jsurya114/otpsss/pr/69f48c2e8261825031aacbe0 — Authentication required for private repo comments
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/comments/jsurya114/otpsss/pr/69f48c2e8261825031aacbe0 — Authentication required for private repo comments
+2026-05-01 17:11:32 [[31merror[39m]: GET /vv/comments/jsurya114/otpsss/pr/69f48c2e8261825031aacbe0 — Authentication required for private repo comments
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/compare/test/main — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/workflows/jsurya114/otpsss/status — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/compare/test/main — Invalid or expired access token
+2026-05-01 17:11:33 [[31merror[39m]: GET /vv/workflows/jsurya114/otpsss/status — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/pr/jsurya114/otpsss — Repository not found
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/comments/jsurya114/otpsss/pr/69f48c2e8261825031aacbe0 — Authentication required for private repo comments
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/comments/jsurya114/otpsss/pr/69f48c2e8261825031aacbe0 — Authentication required for private repo comments
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:34 [[31merror[39m]: GET /vv/pr/jsurya114/otpsss — Repository not found
+2026-05-01 17:11:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:37 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 17:11:37 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 17:11:37 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 18:32:47 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 18:33:01 [[31merror[39m]: POST /vv/repo/jsurya114/otpsss/commit — Invalid or expired access token
+2026-05-01 18:33:01 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 18:33:01 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 18:33:01 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-01 18:33:01 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-01 18:48:03 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-05-01 18:49:37 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-05-01 18:49:42 [[31merror[39m]: POST /vv/auth/login — Invalid credentials
+2026-05-01 18:51:12 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 18:51:18 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 18:51:43 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 18:51:43 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 18:53:55 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 19:09:24 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
+2026-05-01 20:01:04 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 20:04:14 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 20:04:24 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-01 20:05:04 [[31merror[39m]: GET /vv/issues/jsurya114/otpsss — Repository not found
+2026-05-02 08:43:46 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:46 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:46 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:46 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:47 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:48 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:48 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:48 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:48 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:49 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:49 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:49 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:49 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:50 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:50 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:50 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:50 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:51 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:51 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:52 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:52 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:52 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:52 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:53 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:53 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:54 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:54 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:55 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:55 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:56 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:56 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:57 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:57 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:58 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:58 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:43:59 [[31merror[39m]: Redis connection error
+2026-05-02 08:43:59 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:44:00 [[31merror[39m]: Redis connection error
+2026-05-02 08:44:00 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 08:44:01 [[31merror[39m]: Redis connection error
+2026-05-02 08:44:01 [[31merror[39m]: BullMQ Redis connection error
+2026-05-02 10:48:47 [[31merror[39m]: GET /vv/workflows/jsurya114/otpsss — Invalid or expired access token
+2026-05-02 10:48:53 [[31merror[39m]: GET /vv/collaborators/jsurya114/otpsss — Invalid or expired access token
+2026-05-02 10:48:53 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-05-02 10:48:53 [[31merror[39m]: GET /vv/collaborators/jsurya114/otpsss — Invalid or expired access token
+2026-05-02 10:48:53 [[31merror[39m]: GET /vv/collaborators/invitations/pending — Invalid or expired access token
+2026-05-02 11:53:01 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-02 11:53:01 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-02 11:53:01 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:53:01 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:53:01 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:53:01 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:53:08 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-02 11:53:08 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-02 11:53:08 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:53:08 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:53:08 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:53:08 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:55:03 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-02 11:55:03 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-02 11:55:03 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:55:03 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:55:03 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:55:03 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:55:19 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-02 11:55:19 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-02 11:55:19 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:55:19 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 11:55:19 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 11:55:19 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 16:24:20 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 16:24:20 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-02 16:24:20 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-02 16:24:20 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-05-02 16:24:20 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 00:00:20 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:20 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:21 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:22 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:22 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:22 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:22 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:22 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:22 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:23 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:23 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:24 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:24 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:24 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:24 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:25 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:25 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:26 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:26 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:26 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:26 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:27 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:27 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:28 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:28 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:29 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:29 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:30 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:30 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:31 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:31 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:32 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:32 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:33 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:33 [[31merror[39m]: Redis connection error
+2026-05-03 00:00:34 [[31merror[39m]: BullMQ Redis connection error
+2026-05-03 00:00:34 [[31merror[39m]: Redis connection error
+2026-05-03 18:35:28 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-05-03 18:35:28 [[31merror[39m]: GET /vv/subscription/status — Invalid or expired access token
+2026-05-03 18:35:28 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 18:35:28 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 18:35:28 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 18:35:28 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 18:35:53 [[31merror[39m]: POST /vv/ai-agent/chat — Invalid or expired access token
+2026-05-03 18:36:14 [[31merror[39m]: POST /vv/ai-agent/chat — 400 {"error":{"message":"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.","type":"invalid_request_error","code":"json_validate_failed","failed_generation":"{\n  \"files\": [\n      {\n         \"path\": \"README.md\",\n         \"content\": \"# todo\\n\\nThis is a todo list application.\\n\"\n      },\n      {\n         \"path\": \"package.json\",\n         \"content\": \"{\\\"name\\\":\\\"todo\\\",\\\"version\\\":\\\"0.1.0\\\",\\\"scripts\\\":{\\\"test\\\":\\\"echo \\\\\\\"TODO\\\\\\\" && echo \\\\\\\"No tests yet\\\\\\\"\"},\"devDependencies\\\":{\\\"@types/node\\\":\\\"16.14.23\\\",\\\"@types/react\\\":\\\"18.0.23\\\",\\\"@types/react-dom\\\":\\\"18.0.8\",\"typescript\\\":\\\"4.6.4\\\"}}\"\n      },\n      {\n         \"path\": \"tsconfig.json\",\n         \"content\": \"{\\\"compilerOptions\\\":{\\\"outDir\\\":\\\"build\\\",\\\"sourceMap\\\":true,\\\"noImplicitAny\\\":true,\\\"module\\\":\\\"commonjs\\\",\\\"target\\\":\\\"es6\\\"}}\"\n      },\n      {\n         \"path\": \"src/\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/entities/todo.entity.ts\",\n         \"content\": \"import { Entity, Field, Int } from 'typeorm';\\n\\n@Entity()\\nexport class Todo {\\n  @Field()  id: number;\\n  @Field()  name: string;\\n}\\n\"\n      },\n      {\n         \"path\": \"src/useCases/todos.usecases.ts\",\n         \"content\": \"import { Injectable } from '@nestjs/common';\\nimport { AppRepository } from 'src/repositories/app.repository';\\nimport { AppUseCases } from 'src/useCases/app.usecases';\\nimport { Todo } from 'src/entities/todo.entity';\\n\\n@Injectable()\\nexport class TodosUseCases {\\n  constructor(private readonly appRepository: AppRepository) {}}\\n\"\n      },\n      {\n         \"path\": \"src/interfaces/todos.interface.ts\",\n         \"content\": \"import { Injectable } from '@nestjs/common';\\nimport { AppRepository } from 'src/repositories/app.repository';\\nimport { Todo } from 'src/entities/todo.entity';\\n\\n@Injectable()\\nexport class TodosInterface {\\n  constructor(private readonly appRepository: AppRepository) {}}\\n\"\n      },\n      {\n         \"path\": \"src/repositories/app.repository.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/repositories/app.repository.spec.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/app.usecases.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/useCases/app.usecases.spec.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/interfaces/app.interface.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/interfaces/app.interface.spec.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/main.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"src/main.spec.ts\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"public/index.jsx\",\n         \"content\": \"<script>import React from 'react'; import ReactDOM from 'react-dom/client'; import App from './App';\\n\\nconst root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);\\nroot.render(<React.StrictMode><App /></React.StrictMode>);\\n\"\n      },\n      {\n         \"path\": \"public/App.js\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"public/App.tsx\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"public/App.spec.tsx\",\n         \"content\": \"\"\n      },\n      {\n         \"path\": \"node_modules/\",\n         \"content\": \"\"\n      }\n   ]\n"}}
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 19:33:11 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:14:40 [[31merror[39m]: POST /vv/ai-agent/chat — 400 {"error":{"message":"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.","type":"invalid_request_error","code":"json_validate_failed","failed_generation":"{\n  \"files\":[\n      {\n         \"path\":\"todos/package.json\",\n         \"content\":\"{\\n            \\\"name\\\":\\\"todos\\\",\\n            \\\"version\\\":\\\"1.0.0\\\",\\n            \\\"description\\\":\\\"\\\",\\\"main\\\":\\\"server.ts\\\",\\\"scripts\\\":{\\\"start\\\":\\\"ts-node src/app.ts\\\"},\\n            \\\"keywords\":[],\n            \\\"author\\\":\\\"\\\",\\n            \\\"license\\\":\\\"ISC\\\",\\n            \\\"dependencies\\\":{\\\"express\\\":\\\"^4.18.0\\\",\\\"mongoose\\\":\\\"^6.6.3\\\",\\\"typescript\\\":\\\"^4.6.4\\\",\\\"ts-node\\\":\\\"^10.7.0\\\",\\\"@types/express\\\":\\\"^4.17.14\\\",\\\"cors\\\":\\\"^2.8.5\\\",\\\"helmet\\\":\\\"^5.3.0\\\",\\\"morgan\\\":\\\"^1.10.0\\\",\\\"dotenv\\\":\\\"^10.0.0\\\"},\\n            \\\"devDependencies\\\":{},\\\"type\\\":\\\"module\\\",\\\"repository\\\":{\\\"type\\\":\\\"git\\\",\\\"url\\\":\\\"git+https://github.com/user/todos.git\\\",\\\"directory\\\":\\\"\\\"}\\n         }\\n         \"],\n      {\n         \"path\":\"todos/.env.example\",\n         \"content\":\"MONGO_URI=mongodb+srv://user:password@cluster-url.mongodb.net/db-name?retryWrites=true&w=majority\\nAPP_PORT=3000\\nNODE_ENV=development\"\n         \"],\\n      {\\n         \"path\":\"todos/tsconfig.json\",\n         \"content\":\"{\\n            \\\"compilerOptions\\\":{\\\"outDir\\\":\\\"dist\\\",\\\"sourceMap\\\":true,\\\"noImplicitAny\\\":true,\\\"module\\\":\\\"commonjs\\\",\\\"target\\\":\\\"es5\\\",\\\"esModuleInterop\\\":true,\\\"allowSyntheticDefaultImports\\\":true}\\n         }\\n         \"],\n      {\n         \"path\":\"todos/.gitignore\",\n         \"content\":\"\n         .env\\nnode_modules/\\ndist/\\n.gitignore\\n.env.example\\nREADME.md\"\n         }],\n      [\n         {\n            \"path\":\"todos/src/domain/entities/Todo.ts\",\n            \"content\":\"export class Todo {\\n  id: string;\\n  title: string;\\n  completed: boolean;\\n  constructor(id: string, title: string, completed: boolean) {\\n    this.id = id;\\n    this.title = title;\\n    this.completed = completed;\\n  }\\n}\"\n            },\n            {\n            \"path\":\"todos/src/domain/entities/Todo.interface.ts\",\n            \"content\":\"export interface Todo {\\n  id: string;\\n  title: string;\\n  completed: boolean;\"\n         }],\n         {\n            \"path\":\"todos/src/domain/repositories/TodoRepository.ts\",\n            \"content\":\"import { Todo } from './entities/Todo.interface';\\nexport interface TodoRepository {\\n  findTodos(): Promise<Todo[]>;\\n  saveTodo(todo: Todo): Promise<void>;\"\n            }],\n         {\n            \"path\":\"todos/src/infrastructure/repositories/TodoRepository.ts\",\n            \"content\":\"import { TodoRepository } from './domain/repositories/TodoRepository';\\nimport mongoose from 'mongoose';\\nconst todoSchema = new mongoose.Schema({\\n  id: String,\\n  title: String,\\n  completed: Boolean\\n});\\nconst TodoModel = mongoose.model('Todo', todoSchema);\\nexport class MongoTodoRepository implements TodoRepository {\\n  async findTodos(): Promise<Todo[]> {\\n    const todos = await TodoModel.find({}).exec();\\n    return todos.map(d => ({ id: d.id, title: d.title, completed: d.completed }));\\n  }\\n  async saveTodo(todo: Todo): Promise<void> {\\n    await TodoModel.create({ id: todo.id, title: todo.title, completed: todo.completed });\\n  }\\n}\"\n            },\n            {\n            \"path\":\"todos/src/infrastructure/repositories/connection.ts\",\n            \"content\":\"import mongoose from 'mongoose';\\nconst mongoUri = process.env.MONGO_URI;\\nconst connect = async () => {\\n  try {\\n    await mongoose.connect(mongoUri, { useNewUrlParser: true, useUnifiedTopology: true });\\n    console.log('Connected to MongoDB');\\n  } catch (err) { console.error(err); }\\n};\\nect connect();\"\n            }],\n         {\n            \"path\":\"todos/src/presentation/controllers/TodoController.ts\",\n            \"content\":\"import { Request, Response } from 'express';\\nimport { TodoService } from './services/TodoService';\\nexport class TodoController {\\n  constructor(private readonly todoService: TodoService) {}\\n  async handleGetTodos(req: Request, res: Response) {\\n    const todos = await this.todoService.todos();\\n    res.json(todos);\\n  }\\n\"\n            },\n            {\n            \"path\":\"todos/src/presentation/services/TodoService.ts\",\n            \"content\":\"import { TodoRepository } from './domain/repositories/TodoRepository';\\nimport { Todo } from './domain/entities/Todo.interface';\\nexport class TodoService {\\n  constructor(private readonly todoRepository: TodoRepository) {}\\n  async todos(): Promise<Todo[]> {\\n    return await this.todoRepository.findTodos();\\n  }\\n}\"\n            },{\n            \"path\":\"todos/src/presentation/routes/todos.routes.ts\",\n            \"content\":\"import express from 'express';\\nimport { TodoController } from './controllers/TodoController';\\nconst router = express.Router();\\nconst todoController = new TodoController();\\nrouter.get('/todos', todoController.handleGetTodos);\\nexport default router;\"\n            },{\n            \"path\":\"todos/src/presentation/middleware/auth.middleware.ts\",\n            \"content\":\"import express from 'express';\\nexport function authenticateRequest(req: express.Request, res: express.Response, next: express.NextFunction) {\"\n            ={\n         }],\n      {\n         \"path\":\"todos/src/app.ts\",\n         \"content\":\"import express, { Request, Response } from 'express';\\nimport { connect } from './infrastructure/repositories/connection';\\nimport { MongoTodoRepository } from './infrastructure/repositories/TodoRepository';\\nimport { TodoService } from './presentation/services/TodoService';\\nimport { TodoController } from './presentation/controllers/TodoController';\\nimport { Todo } from './domain/entities/Todo.interface';\\nconnect();\\nconst app = express();\\napp.use(express.json());\\nconst todoController = new TodoController(new TodoService(new MongoTodoRepository()));\\napp.use('/todos', todoController);\\napp.listen(3000, () => {\\n  console.log('Server started on port 3000');\\n});\"\n            },{\n            \"path\":\"todos/src/main.ts\",\n            \"content\":\"import express from 'express';\\nconst app = express();\\nimport dotenv from 'dotenv';\\ndotenv.config();\\nimport mongoose from './infrastructure/repositories/connection';\\nmongoose.connect(process.env.MONGO_URI);\\nimport { TodoController } from './presentation/controllers/TodoController';\\nimport { TodoService } from './presentation/services/TodoService';\\nconst todoController = new TodoController(new TodoService(new MongoTodoRepository()));\\napp.use('/todos', todoController);\\napp.listen(3000, () => {\\n  console.log('Server started on port 3000');\\n});\"\n            },{\n            \"path\":\"todos/README.md\",\n            \"content\":\"# Todos\\n\\n## Project Description\\n\\n## Setup Steps\\n\\n## Environment Variables\\n\\n## How to Run\\n\\nts-node src/main.ts\"\n            }\n   ]\n}"}}
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss/active-branches — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/repo/jsurya114/otpsss — Repository not found
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 20:30:52 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:32:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 20:32:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:32:32 [[31merror[39m]: GET /vv/notifications/unread-count — Invalid or expired access token
+2026-05-03 20:32:32 [[31merror[39m]: GET /vv/notifications — Invalid or expired access token
+2026-05-03 20:32:32 [[31merror[39m]: GET /vv/repo — Invalid or expired access token
+2026-05-04 11:04:41 [[31merror[39m]: GET /vv/repo/auht/login — Repository not found
+2026-05-04 11:04:41 [[31merror[39m]: GET /vv/repo/auht/login — Repository not found
+2026-05-04 11:04:41 [[31merror[39m]: GET /vv/repo/auht/login/active-branches — Repository not found
+2026-05-04 11:04:41 [[31merror[39m]: GET /vv/repo/auht/login/active-branches — Repository not found
+2026-05-04 11:05:26 [[31merror[39m]: POST /vv/ai-agent/chat — 400 {"error":{"message":"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.","type":"invalid_request_error","code":"json_validate_failed","failed_generation":"[\n{\n  \"files\": [\n      {\n         \"path\": \"README.md\",\n         \"content\": \"## Todo App\\n\\nA simple todo application built with React, Node.js, and MongoDB.\\n\\n### Setup\\n\\n1. Clone the repository: `git clone https://github.com/user/todo.git`\\n2. Install dependencies: `npm install`\\n3. Create a `.env` file with environment variables as in `.env.example`\\n4. Run the application: `npm start`\\n\\n### Environment Variables\\n\\nSee `.env.example` for the required environment variables.\\n\\n### Running Tests\\n\\nNo tests are included in this repository.\"\n      },\n      {\n         \"path\": \".env.example\",\n         \"content\": \"# Environment variables for Todo App\\\\n\\\\nMONGO_URI=mongodb://localhost:27017/todo\\\\n\\\\nDB_NAME=todos\\\\n\\\\nSECRET_KEY=your_secret_key_here\\\\n\"\n      },\n      {\n         \"path\": \".gitignore\",\n         \"content\": \"# Ignore node_modules and other project artifacts\\n\\nnode_modules/\\n\\n*.db\\n\\n*.log\"\n      },\n      {\n         \"path\": \"package.json\",\n         \"content\": {\n            \"name\": \"todo\",\n            \"version\": \"1.0.0\",\n            \"description\": \"A simple todo application.\",\n            \"main\": \"server.js\",\n            \"scripts\": {\n               \"start\": \"node server.js\",\n               \"test\": \"echo \\\"No tests are included in this repository.\\\" && exit 1\"\n            },\n            \"keywords\": [],\n            \"author\": \"Your Name\",\n            \"license\": \"ISC\",\n            \"dependencies\": {\n               \"express\": \"^4.17.1\",\n               \"morgan\": \"^1.10.0\",\n               \"dotenv\": \"^10.0.0\",\n               \"mongoose\": \"^5.10.15\",\n               \"typescript\": \"^4.2.3\",\n               \"ts-node\": \"^10.2.1\",\n               \"@types/express\": \"^4.17.13\",\n               \"@types/mongoose\": \"^5.11.74\"\n            },\n            \"devDependencies\": {\n               \"ts-node\": \"^10.2.1\"\n            },\n            \"peerDependencies\": {}\n         }\n      },\n      {\n         \"path\": \"tsconfig.json\",\n         \"content\": {\n            \"compilerOptions\": {\n               \"outDir\": \"build/\",\n               \"sourceMap\": true,\n               \"noImplicitAny\": true,\n               \"module\": \"commonjs\",\n               \"esModuleInterop\": true,\n               \"allowSyntheticDefaultImports\": true\n            }\n         }\n      },\n      {\n         \"path\": \"server.ts\",\n         \"content\": \"// Import required modules\\n\\nimport express, { Request, Response } from 'express';\\nimport mongoose from 'mongoose';\\nimport dotenv from 'dotenv';\\ndotenv.config({ path: '.env' });\\n\\n// Set up MongoDB connection\\nmongoose.connect(process.env.MONGO_URI, { useNewUrlParser: true, useUnifiedTopology: true });\\n\\n// Create Express app\\nconst app = express();\\napp.use(express.json());\\napp.use(express.urlencoded({ extended: true }));\\napp.use(morgan('dev'));\\n\\n// Import routes\\nimport { routes } from './src/routes';\\napp.use('/api', routes);\\n\\n// Start the server\\nconst port = process.env.PORT || 3000;\\nconst server = app.listen(port, () => {\\n  console.log(`Server started on port ${port}`);\\n});\\nserver.keepAliveTimeout;\\n\",\")\"\n      null},\n      {\n         \"path\": \"src/models/Todo.ts\",\n         \"content\": \"// Import mongoose\\n\\nimport mongoose, { Schema } from 'mongoose';\\n\\n// Define Todo schema\\nconst TodoSchema: Schema = new Schema({\\n  title: String,\\n  description: String,\\n  done: Boolean\\n});\\n\\n// Export Todo model\\nmodule.exports = mongoose.model('Todo', TodoSchema);\\n\"\n      },\n      {\n         \"path\": \"src/routes/todos.ts\",\n         \"content\": \"// Import Todo model\\n\\nimport Todo from '../models/Todo';\\n\\n// Define routes\\nimport { Router } from 'express';\\nconst router = Router();\\n\\n// Get all todos\\nrouter.get('/', (req: Request, res: Response) => {\\n  Todo.find().then(todos => res.json(todos)).catch(err => res.status(500).json({ message: 'Error fetching todos' }));\\n});\\n\\n// Get todo by ID\\nrouter.get('/:id', (req: Request, res: Response) => {\\n  Todo.findById(req.params.id).then(todo => res.json(todo)).catch(err => res.status(404).json({ message: 'Todo not found' }));\\n});\\n\\n// Create new todo\\nrouter.post('/', (req: Request, res: Response) => {\\n  const todo = new Todo(req.body);\\n  todo.save().then(() => res.json(todo)).catch(err => res.status(500).json({ message: 'Error creating todo' }));\\n});\\n\\n// Update todo by ID\\nrouter.patch('/:id', (req: Request, res: Response) => {\\n  Todo.findByIdAndUpdate(req.params.id, req.body, { new: true }).then(todo => res.json(todo)).catch(err => res.status(404).json({ message: 'Todo not found' }));\\n});\\n\\n// Delete todo by ID\\nrouter.delete('/:id', (req: Request, res: Response) => {\\n  Todo.findByIdAndRemove(req.params.id).then(() => res.json({ message: 'Todo deleted successfully' })).catch(err => res.status(404).json({ message: 'Todo not found' }));\\n});\\n\\n// Export routes\\nexport default router;\"\n      },\n      {\n         \"path\": \"src/routes/index.ts\",\n         \"content\": \"// Import Todo routes\\n\\nimport Router from 'express';\\nimport todos from './todos';\\n\\n// Define main routes\\nconst appRouter = Router();\\nappRouter.use('/api', todos);\\n\\n// Export main routes\\nexport default appRouter;\"\n      },\n      {\n         \"path\": \"src/App.tsx\",\n         \"content\": \"// Import required components\\n\\nimport * as React from 'react';\\nimport ReactDOM from 'react-dom';\\nimport './index.css';\\nimport App from './App';\\nimport reportWebVitals from './reportWebVitals';\\n\\n// Render App component\\nReactDOM.render(\\n  <React.StrictMode>\\n    <App />\\n  </React.StrictMode>,\\n  document.getElementById('root')\\n);\\n\\n// Report web vitals\\nreportWebVitals();\"\n      },\n      {\n         \"path\": \"src/components/TodoList.tsx\",\n         \"content\": \"// Import required components\\n\\nimport * as React from 'react';\\nimport TodoItem from './TodoItem';\\n\\n// Define TodoList component\\ninterface Todo {\\n  title: string;\\n  description: string;\\n  done: boolean;\\n}\\ninterface TodoListProps {\\n  todos: Todo[];\\n}\\nconst TodoList = ({ todos }: TodoListProps) => {\\n  // Render Todo list\\n  return (\\n    <ul>\\n      {todos.map(todo => (\\n        <TodoItem key={todo._id} todo={todo} />\\n      ))}\\n    </ul>\\n  );\\n};\\n\\n// Export TodoList component\\nexport default TodoList;\"\n      },\n      {\n         \"path\": \"src/components/TodoItem.tsx\",\n         \"content\": \"// Import required components\\n\\nimport * as React from 'react';\\nimport './TodoItem.css';\\n\\n// Define TodoItem component\\ninterface TodoItemProps {\\n  todo: any;\\n}\\nconst TodoItem = ({ todo }: TodoItemProps) => {\\n  // Render Todo item\\n  return (\\n    <li>\\n      <input type=\\\"checkbox\\\" checked={todo.done} disabled={true} />\\n      <span>{todo.title}</span>\\n      <span>{todo.description}</span>\\n    </li>\\n  );\\n};\\n\\n// Export TodoItem component\\nexport default TodoItem;\"\n      },\n      {\n         \"path\": \"src/components/index.ts\",\n         \"content\": \"// Import Todo components\\n\\nimport TodoList from './TodoList';\\nimport TodoItem from './TodoItem';\\n\\n// Export Todo components\\nexport { TodoList, TodoItem };\"\n      }\n   \n]\n"}}
+2026-05-04 11:37:50 [[31merror[39m]: POST /vv/ai-agent/chat — 400 {"error":{"message":"Failed to generate JSON. Please adjust your prompt. See 'failed_generation' for more details.","type":"invalid_request_error","code":"json_validate_failed","failed_generation":"{\n  \"files\": [\n     {\n        \"path\": \"package.json\",\n        \"content\": \"{\\\"name\\\":\\\"larges\\\",\\\"version\\\":\\\"1.0.0\\\",\\\"description\\\":\\\"\\\",\\\"main\\\":\\\"index.js\\\",\\\"scripts\\\":{\\\"start\\\":\\\"ts-node index.ts\\\"},\\\"dependencies\\\":{\\\"ts-node\\\":\\\"10.9.1\\\",\\\"express\\\":\\\"4.18.2\\\"},\\\"devDependencies\\\":{\\\"typescript\\\":\\\"4.7.4\\\"},\\\"keywords\":[\\\"typescript\\\"],\\\"author\\\":\\\"\\\",\\\"license\\\":\\\"ISC\\\",\\\"scripts\\\":{\\\"build\\\":\\\"tsc\\\"}}\\n\"\n     },\n     {\n        \"path\": \"tsconfig.json\",\n        \"content\": \"{\\\"compilerOptions\\\":{\\\"target\\\":\\\"es6\\\",\\\"module\\\":\\\"commonjs\\\",\\\"outDir\\\":\\\"./dist\\\",\\\"rootDir\\\":\\\"./src\\\",\\\"strict\\\":\\\"true\\\"}}\\n\"\n     },\n     {\n        \"path\": \".env.example\",\n        \"content\": \"PORT=3000\\\\n\"\n     },\n     {\n        \"path\": \".gitignore\",\n        \"content\": \"node_modules/\\\\ndist/\\n\"\n     },\n     {\n        \"path\": \"src/main.ts\",\n        \"content\": \"import {Express} from 'express';\\\\nconst express = new Express();\\\\n\\\\nconst port = 3000;\\\\n\\\\nexpress.listen(port, () => {\\\\n    \\\\n});\\\\n\\\\nexport default express;\\n\"\n     },\n     {\n        \"path\": \"src/index.ts\",\n        \"content\": \"import express from './main';\\\\n\\\\nexpress.get('/', (req, res) => {\\\\n    const list = [10, 30, 55, 20];\\\\n    let largestNum = list[0];\\\\n    list.forEach(function(item) {\\\\n        if (item > largestNum) {\\\\n            largestNum = item;\\\\n        }\\\\n    });\\\\n    res.send({\\\\n        message: 'The largest number is : '+ largestNum,\\\\n        status:200\\\\n    });\\\\n});\\\\n\\\\nconst server = express.listen(3000, () => {\\\\n    console.log(\\\"Server is running on http://localhost:3000\\\");\\\\n});\\n\"\n     }\n   ]\n}"}}
+2026-05-04 11:41:46 [[31merror[39m]: [CI/CD] Job 44 failed: job stalled more than allowable limit
+2026-05-04 12:22:15 [[31merror[39m]: TokenExpiredError: jwt expired
+    at /Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:190:21
+    at getSecret (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:97:14)
+    at Object.module.exports [as verify] (/Users/jayasuryas/Desktop/version-vault/node_modules/jsonwebtoken/verify.js:101:10)
+    at TokenService.verifyAccessToken (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/TokenService.ts:21:16)
+    at Array.<anonymous> (/Users/jayasuryas/Desktop/version-vault/backend/src/infrastructure/services/SocketService.ts:49:38)
+    at run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:133:19)
+    at Namespace.run (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:144:9)
+    at Namespace._add (/Users/jayasuryas/Desktop/version-vault/node_modules/socket.io/dist/namespace.js:221:14)
+    at processTicksAndRejections (node:internal/process/task_queues:104:5)
