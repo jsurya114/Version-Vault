@@ -24,7 +24,7 @@ let GroqService = class GroqService {
     async chat(messages, jsonMode) {
         const response = await this.groq.chat.completions.create({
             messages: messages,
-            model: 'llama-3.1-8b-instant',
+            model: 'llama-3.3-70b-versatile',
             response_format: jsonMode ? { type: 'json_object' } : undefined,
         });
         return response.choices[0]?.message.content || '';

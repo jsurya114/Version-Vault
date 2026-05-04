@@ -21,11 +21,13 @@ let NotificationService = class NotificationService {
     _collabRepo;
     _repoRepo;
     _socketEmitter;
-    constructor(_notificationRepo, _collabRepo, _repoRepo, _socketEmitter) {
+    _userRepo;
+    constructor(_notificationRepo, _collabRepo, _repoRepo, _socketEmitter, _userRepo) {
         this._notificationRepo = _notificationRepo;
         this._collabRepo = _collabRepo;
         this._repoRepo = _repoRepo;
         this._socketEmitter = _socketEmitter;
+        this._userRepo = _userRepo;
     }
     /**
      * Send notification to a SINGLE user.
@@ -90,6 +92,48 @@ let NotificationService = class NotificationService {
             Logger_1.logger.error('Failed to send repo notifications:', error);
         }
     }
+    /**
+     * Parse @username mentions from text and send 'mention' notifications
+     * to each mentioned user (excluding the actor).
+     */
+    async notifyMentionedUsers(params) {
+        try {
+            // Extract all @username mentions from the text
+            const mentionRegex = /@([a-zA-Z0-9_-]+)/g;
+            const mentions = new Set();
+            let match;
+            while ((match = mentionRegex.exec(params.text)) !== null) {
+                const mentionedUsername = match[1];
+                // Skip self-mentions
+                if (mentionedUsername !== params.actorUsername) {
+                    mentions.add(mentionedUsername);
+                }
+            }
+            if (mentions.size === 0)
+                return;
+            // Resolve each mentioned username to a user and send notification
+            for (const username of mentions) {
+                const user = await this._userRepo.findByUserId(username);
+                if (!user || !user.id)
+                    continue;
+                const message = params.contextType === 'issue'
+                    ? `${params.actorUsername} mentioned you in issue "${params.contextTitle}"`
+                    : `${params.actorUsername} mentioned you in a comment on "${params.contextTitle}"`;
+                await this.notifyUser({
+                    recipientId: user.id,
+                    actorId: params.actorId,
+                    actorUsername: params.actorUsername,
+                    type: 'mention',
+                    message,
+                    repositoryId: params.repositoryId,
+                    repositoryName: params.repositoryName,
+                });
+            }
+        }
+        catch (error) {
+            Logger_1.logger.error('Failed to send mention notifications:', error);
+        }
+    }
 };
 exports.NotificationService = NotificationService;
 exports.NotificationService = NotificationService = __decorate([
@@ -98,5 +142,6 @@ exports.NotificationService = NotificationService = __decorate([
     __param(1, (0, tsyringe_1.inject)(tokens_1.TOKENS.ICollaboratorRepository)),
     __param(2, (0, tsyringe_1.inject)(tokens_1.TOKENS.IRepoRepository)),
     __param(3, (0, tsyringe_1.inject)(tokens_1.TOKENS.ISocketEmitter)),
-    __metadata("design:paramtypes", [Object, Object, Object, Object])
+    __param(4, (0, tsyringe_1.inject)(tokens_1.TOKENS.IUserRepository)),
+    __metadata("design:paramtypes", [Object, Object, Object, Object, Object])
 ], NotificationService);

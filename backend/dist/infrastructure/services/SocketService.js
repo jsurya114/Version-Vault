@@ -70,6 +70,14 @@ let SocketService = class SocketService {
                 socket.join(repositoryId);
                 Logger_1.logger.info(`User ${socket.data.user.userId} joined repo ${repositoryId}`);
             });
+            // user join a CI/CD run room
+            socket.on('join_run', (runId) => {
+                socket.join(`run:${runId}`);
+                Logger_1.logger.info(`User ${socket.data.user.userId} joined run ${runId}`);
+            });
+            socket.on('leave_run', (runId) => {
+                socket.leave(`run:${runId}`);
+            });
             //user sends message
             socket.on('send_message', async (data) => {
                 try {
@@ -108,6 +116,12 @@ let SocketService = class SocketService {
      */
     emitToUser(userId, event, data) {
         this.io.to(`user:${userId}`).emit(event, data);
+    }
+    /**
+     * Emit an event to a specific room.
+     */
+    emitToRoom(room, event, data) {
+        this.io.to(room).emit(event, data);
     }
 };
 exports.SocketService = SocketService;
