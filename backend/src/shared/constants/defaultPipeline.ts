@@ -41,6 +41,31 @@ jobs:
             cd ..
           fi
 
+          echo "Running syntax check for Python files..."
+          if command -v python3 >/dev/null; then
+            find . -type f -name "*.py" -not -path "*/node_modules/*" -exec python3 -m py_compile {} + || exit 1
+          fi
+
+          echo "Running syntax check for Go files..."
+          if [ -f go.mod ] && command -v go >/dev/null; then
+            go build ./... || exit 1
+          fi
+
+          echo "Running syntax check for Rust files..."
+          if [ -f Cargo.toml ] && command -v cargo >/dev/null; then
+            cargo check || exit 1
+          fi
+
+          echo "Running syntax check for Java files..."
+          if [ -f pom.xml ] && command -v mvn >/dev/null; then
+            mvn compile || exit 1
+          elif [ -f build.gradle ] && command -v gradle >/dev/null; then
+            gradle build || exit 1
+          fi
+
+          echo "Running syntax check for Shell scripts..."
+          find . -type f -name "*.sh" -not -path "*/node_modules/*" -exec sh -n {} + || exit 1
+
       - name: Run Tests
         run: |
           if [ -f package.json ] && grep -q '"test"' package.json; then
