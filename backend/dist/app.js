@@ -32,6 +32,7 @@ const activiy_routes_1 = __importDefault(require("./interfaces/http/routes/activ
 const subscription_routes_1 = __importDefault(require("./interfaces/http/routes/subscription/subscription.routes"));
 const workflow_routes_1 = __importDefault(require("./interfaces/http/routes/workflow/workflow.routes"));
 const app = (0, express_1.default)();
+app.set('trust proxy', 1);
 //security middlewares
 app.use((0, helmet_1.default)());
 app.use((0, cors_1.default)(cors_config_1.corsOptions));
