@@ -74,7 +74,7 @@ import {
   selectCompareLoading,
 } from '../../features/commit/compareCommitSelectors';
 import { RecentPushesBanner } from './components/RecentPushesBanner';
-import { workflowService, WorkflowRun } from '../../services/workflow.service';
+import { ActionsTabContent } from './ActionsPage';
 
 type Tab = 'code' | 'commits' | 'branches' | 'pulls' | 'issues' | 'collaborators' | 'actions';
 import { TreeNode, calculateLanguagesFromFiles } from './utils/repoUtils';
@@ -146,12 +146,7 @@ const RepositoryDetailPage = () => {
   const [showCloneDropdown, setShowCloneDropdown] = useState(false);
   const [commandsCopied, setCommandsCopied] = useState(false);
 
-  // CI/CD Actions state
-  const [workflowRuns, setWorkflowRuns] = useState<WorkflowRun[]>([]);
-  const [workflowLoading, setWorkflowLoading] = useState(false);
-  const [expandedRunId, setExpandedRunId] = useState<string | null>(null);
-  const [selectedRunDetail, setSelectedRunDetail] = useState<WorkflowRun | null>(null);
-  const [runDetailLoading, setRunDetailLoading] = useState(false);
+
 
   const emptyRepoCommands = useMemo(
     () =>
@@ -266,31 +261,7 @@ const RepositoryDetailPage = () => {
     }
   }, [searchParams]);
 
-  // Fetch workflow runs when actions tab is active
-  useEffect(() => {
-    if (activeTab !== 'actions' || !username || !reponame) return;
-    setWorkflowLoading(true);
-    workflowService
-      .listRuns(username, reponame)
-      .then((data) => setWorkflowRuns(data))
-      .catch((err) => console.error('Failed to fetch workflow runs:', err))
-      .finally(() => setWorkflowLoading(false));
-  }, [activeTab, username, reponame]);
 
-  // Only poll when there are active (QUEUED/RUNNING) runs
-  useEffect(() => {
-    if (activeTab !== 'actions' || !username || !reponame) return;
-    const hasActiveRuns = workflowRuns.some((r) => r.status === 'QUEUED' || r.status === 'RUNNING');
-    if (!hasActiveRuns) return;
-
-    const interval = setInterval(() => {
-      workflowService
-        .listRuns(username!, reponame!)
-        .then((data) => setWorkflowRuns(data))
-        .catch(() => {});
-    }, 5000);
-    return () => clearInterval(interval);
-  }, [activeTab, username, reponame, workflowRuns]);
 
   // Sync searchParams when currentPath or selectedFile change
   useEffect(() => {
@@ -1529,153 +1500,7 @@ const RepositoryDetailPage = () => {
       )}
 
       {/* ACTIONS TAB */}
-      {activeTab === 'actions' && (
-        <div className="flex-1 px-4 sm:px-6 py-6">
-          <div className="max-w-5xl mx-auto">
-            {workflowLoading ? (
-              <div className="flex items-center justify-center py-20">
-                <div className="w-6 h-6 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-              </div>
-            ) : workflowRuns.length === 0 ? (
-              <div className="text-center py-20">
-                <div className="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center mx-auto mb-4">
-                  <Play className="w-7 h-7 text-gray-600" />
-                </div>
-                <h2 className="text-white text-lg font-semibold mb-2">No workflow runs yet</h2>
-                <p className="text-gray-400 text-sm max-w-md mx-auto">
-                  CI/CD is enabled for this repository. Push a commit or merge a pull request to
-                  trigger your first pipeline run automatically.
-                </p>
-              </div>
-            ) : (
-              <div className="space-y-2">
-                {workflowRuns.map((run) => {
-                  const isExpanded = expandedRunId === run._id;
-                  const statusStyles = {
-                    QUEUED: {
-                      color: 'text-yellow-400',
-                      bg: 'bg-yellow-500/10',
-                      border: 'border-yellow-500/30',
-                      label: 'Queued',
-                    },
-                    RUNNING: {
-                      color: 'text-blue-400',
-                      bg: 'bg-blue-500/10',
-                      border: 'border-blue-500/30',
-                      label: 'Running',
-                    },
-                    SUCCESS: {
-                      color: 'text-green-400',
-                      bg: 'bg-green-500/10',
-                      border: 'border-green-500/30',
-                      label: 'Success',
-                    },
-                    FAILED: {
-                      color: 'text-red-400',
-                      bg: 'bg-red-500/10',
-                      border: 'border-red-500/30',
-                      label: 'Failed',
-                    },
-                  };
-                  const s = statusStyles[run.status];
-
-                  return (
-                    <div
-                      key={run._id}
-                      className="border border-gray-800 rounded-xl overflow-hidden"
-                    >
-                      <div
-                        className={`flex items-center gap-3 px-4 py-3.5 cursor-pointer transition hover:bg-gray-900/50 ${
-                          isExpanded ? 'bg-gray-900/50 border-b border-gray-800' : ''
-                        }`}
-                        onClick={async () => {
-                          if (isExpanded) {
-                            setExpandedRunId(null);
-                            setSelectedRunDetail(null);
-                            return;
-                          }
-                          setExpandedRunId(run._id);
-                          setRunDetailLoading(true);
-                          try {
-                            const detail = await workflowService.getRun(run._id);
-                            setSelectedRunDetail(detail);
-                          } catch (e) {
-                            console.error(e);
-                          } finally {
-                            setRunDetailLoading(false);
-                          }
-                        }}
-                      >
-                        <div
-                          className={`w-8 h-8 rounded-full ${s.bg} flex items-center justify-center shrink-0`}
-                        >
-                          {run.status === 'RUNNING' ? (
-                            <div className="w-4 h-4 border-2 border-blue-400 border-t-transparent rounded-full animate-spin" />
-                          ) : run.status === 'SUCCESS' ? (
-                            <Check className="w-4 h-4 text-green-400" />
-                          ) : run.status === 'FAILED' ? (
-                            <span className="text-red-400 text-xs font-bold">✕</span>
-                          ) : (
-                            <Clock className="w-4 h-4 text-yellow-400" />
-                          )}
-                        </div>
-                        <div className="flex-1 min-w-0">
-                          <div className="flex items-center gap-2">
-                            <span className="text-white text-sm font-medium">Pipeline Run</span>
-                            <span
-                              className={`text-xs px-2 py-0.5 rounded-full border ${s.bg} ${s.border} ${s.color}`}
-                            >
-                              {s.label}
-                            </span>
-                          </div>
-                          <div className="flex items-center gap-3 mt-1">
-                            <span className="text-gray-500 text-xs flex items-center gap-1">
-                              <GitCommit className="w-3 h-3" />
-                              {run.commitHash.substring(0, 7)}
-                            </span>
-                            <span className="text-gray-600 text-xs">{timeAgo(run.createdAt)}</span>
-                          </div>
-                        </div>
-                        <div className="text-gray-500">
-                          {isExpanded ? (
-                            <ChevronDown className="w-4 h-4" />
-                          ) : (
-                            <ChevronRight className="w-4 h-4" />
-                          )}
-                        </div>
-                      </div>
-
-                      {isExpanded && (
-                        <div className="bg-gray-950 border-t border-gray-800">
-                          <div className="px-4 py-2.5 border-b border-gray-800/50 flex items-center gap-2">
-                            <History className="w-4 h-4 text-gray-400" />
-                            <span className="text-gray-300 text-xs font-semibold">Build Logs</span>
-                          </div>
-                          <div className="p-4 max-h-96 overflow-y-auto">
-                            {runDetailLoading ? (
-                              <div className="flex items-center justify-center py-8">
-                                <div className="w-5 h-5 border-2 border-blue-500 border-t-transparent rounded-full animate-spin" />
-                              </div>
-                            ) : selectedRunDetail?.logs ? (
-                              <pre className="text-xs font-mono text-gray-300 whitespace-pre-wrap leading-relaxed">
-                                {selectedRunDetail.logs}
-                              </pre>
-                            ) : (
-                              <p className="text-gray-600 text-xs text-center py-6 italic">
-                                No logs available yet. Waiting for the pipeline to start...
-                              </p>
-                            )}
-                          </div>
-                        </div>
-                      )}
-                    </div>
-                  );
-                })}
-              </div>
-            )}
-          </div>
-        </div>
-      )}
+      {activeTab === 'actions' && <ActionsTabContent username={username!} reponame={reponame!} />}
 
       <AppFooter />
 

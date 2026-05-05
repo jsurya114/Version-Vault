@@ -1,0 +1,1 @@
+import{j as r}from"./index-BV8C0oIe.js";const e=()=>r.jsx("footer",{className:"border-t border-gray-800 mt-10 py-5 px-6",children:r.jsx("p",{className:"text-center text-gray-700 text-xs",children:"© 2026 VersionVault, Inc."})});export{e as A};

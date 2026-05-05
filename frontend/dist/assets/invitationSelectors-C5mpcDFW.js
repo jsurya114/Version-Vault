@@ -1,0 +1,1 @@
+import{D as t}from"./index-BV8C0oIe.js";const e=s=>s.invitation,o=t([e],s=>s.isLoading),a=t([e],s=>s.error),c=t([e],s=>s.successMessage),i=t([e],s=>s.currentInvitation),r=t([e],s=>s.pendingInvitations),l=t([e],s=>s.collabRepos);t([e],s=>s.collabReposLoading);export{o as a,a as b,c,r as d,i as e,l as s};

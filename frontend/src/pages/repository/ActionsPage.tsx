@@ -57,33 +57,33 @@ const stepStatusConfig: Record<
 > = {
   pending: {
     icon: Circle,
-    color: 'text-gray-500',
-    bg: 'bg-gray-500/10',
-    border: 'border-gray-700',
+    color: 'text-[#8b949e]',
+    bg: '',
+    border: '',
   },
   running: {
     icon: Loader2,
-    color: 'text-blue-400',
-    bg: 'bg-blue-500/10',
-    border: 'border-blue-500/30',
+    color: 'text-[#58a6ff]',
+    bg: '',
+    border: '',
   },
   success: {
     icon: CheckCircle2,
-    color: 'text-green-400',
-    bg: 'bg-green-500/10',
-    border: 'border-green-500/30',
+    color: 'text-[#238636]',
+    bg: '',
+    border: '',
   },
   failed: {
     icon: XCircle,
-    color: 'text-red-400',
-    bg: 'bg-red-500/10',
-    border: 'border-red-500/30',
+    color: 'text-[#f85149]',
+    bg: '',
+    border: '',
   },
   skipped: {
     icon: SkipForward,
-    color: 'text-gray-500',
-    bg: 'bg-gray-500/10',
-    border: 'border-gray-700',
+    color: 'text-[#8b949e]',
+    bg: '',
+    border: '',
   },
 };
 
@@ -95,7 +95,6 @@ const formatDuration = (ms?: number) => {
   return `${Math.floor(secs / 60)}m ${secs % 60}s`;
 };
 
-// Step row component with collapsible logs
 const StepRow = ({
   step,
   isExpanded,
@@ -116,46 +115,43 @@ const StepRow = ({
   }, [step.logs, isExpanded]);
 
   return (
-    <div className={`border-l-2 ${cfg.border} ml-4`}>
+    <div className="border-b border-[#21262d] last:border-0 group/step">
       <div
-        className="flex items-center gap-2.5 px-3 py-2 cursor-pointer hover:bg-gray-800/50 transition group"
+        className="flex items-center gap-3 px-4 py-2 cursor-pointer hover:bg-[#161b22] transition"
         onClick={onToggle}
       >
+        <div className="text-[#8b949e] group-hover/step:text-[#e6edf3] transition-colors w-4 flex items-center justify-center">
+          {isExpanded ? (
+            <ChevronDown className="w-4 h-4" />
+          ) : (
+            <ChevronRight className="w-4 h-4" />
+          )}
+        </div>
         <StepIcon
           className={`w-4 h-4 shrink-0 ${cfg.color} ${step.status === 'running' ? 'animate-spin' : ''}`}
         />
         <span
-          className={`text-sm font-medium flex-1 ${
-            step.status === 'skipped' ? 'text-gray-500' : 'text-gray-200'
+          className={`text-sm flex-1 ${
+            step.status === 'skipped' ? 'text-[#8b949e]' : 'text-[#e6edf3]'
           }`}
         >
           {step.name}
         </span>
         {step.duration != null && step.duration > 0 && (
-          <span className="text-xs text-gray-500 font-mono">{formatDuration(step.duration)}</span>
+          <span className="text-xs text-[#8b949e] font-mono">{formatDuration(step.duration)}</span>
         )}
-        {step.status === 'running' && (
-          <span className="text-[10px] text-blue-400 font-medium animate-pulse">LIVE</span>
-        )}
-        <div className="text-gray-600 group-hover:text-gray-400 transition">
-          {isExpanded ? (
-            <ChevronDown className="w-3.5 h-3.5" />
-          ) : (
-            <ChevronRight className="w-3.5 h-3.5" />
-          )}
-        </div>
       </div>
       {isExpanded && (
         <div
           ref={logRef}
-          className="bg-[#0d1117] mx-3 mb-2 rounded-lg border border-gray-800 max-h-64 overflow-y-auto"
+          className="bg-[#010409] mx-11 mb-3 mt-1 rounded-md border border-[#30363d] max-h-96 overflow-y-auto"
         >
           {step.logs ? (
-            <pre className="text-[11px] font-mono text-gray-300 whitespace-pre-wrap leading-5 p-3">
+            <pre className="text-[12px] font-mono text-[#e6edf3] whitespace-pre-wrap leading-relaxed p-4">
               {step.logs}
             </pre>
           ) : (
-            <p className="text-gray-600 text-xs italic text-center py-4">
+            <p className="text-[#8b949e] text-xs italic p-4">
               {step.status === 'pending'
                 ? 'Waiting to start...'
                 : step.status === 'running'
@@ -169,9 +165,7 @@ const StepRow = ({
   );
 };
 
-const ActionsPage = () => {
-  const { username, reponame } = useParams();
-  const navigate = useNavigate();
+export const ActionsTabContent = ({ username, reponame }: { username: string; reponame: string }) => {
   const [runs, setRuns] = useState<WorkflowRun[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedRun, setSelectedRun] = useState<WorkflowRun | null>(null);
@@ -281,9 +275,15 @@ const ActionsPage = () => {
           return { ...prev, steps: newSteps };
         });
 
-        // Auto-expand running steps
+        // Auto-expand running steps and collapse completed ones like GitHub
         if (data.status === 'running') {
-          setExpandedSteps((prev) => new Set([...prev, data.stepIndex!]));
+          setExpandedSteps(new Set([data.stepIndex!]));
+        } else if (data.status === 'success') {
+          setExpandedSteps((prev) => {
+            const next = new Set(prev);
+            next.delete(data.stepIndex!);
+            return next;
+          });
         }
       }
 
@@ -336,6 +336,135 @@ const ActionsPage = () => {
   const hasSteps = selectedRun?.steps && selectedRun.steps.length > 0;
 
   return (
+    <div className="flex-1 px-4 sm:px-6 py-6">
+      <div className="max-w-5xl mx-auto">
+        {loading ? (
+          <div className="flex items-center justify-center py-20">
+            <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
+          </div>
+        ) : runs.length === 0 ? (
+          /* Empty state */
+          <div className="text-center py-20">
+            <div className="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center mx-auto mb-4">
+              <Play className="w-7 h-7 text-gray-600" />
+            </div>
+            <h2 className="text-white text-lg font-semibold mb-2">No workflow runs yet</h2>
+            <p className="text-gray-400 text-sm max-w-md mx-auto">
+              CI/CD is enabled for this repository. Push a commit or merge a pull request to
+              trigger your first pipeline run automatically.
+            </p>
+          </div>
+        ) : (
+          /* Runs list */
+          <div className="space-y-2">
+            {runs.map((run) => {
+              const config = runStatusConfig[run.status];
+              const StatusIcon = config.icon;
+              const isExpanded = expandedRunId === run._id;
+
+              return (
+                <div key={run._id} className="border border-gray-800 rounded-xl overflow-hidden">
+                  {/* Run row */}
+                  <div
+                    className={`flex items-center gap-3 px-4 py-3.5 cursor-pointer transition hover:bg-gray-900/50 ${
+                      isExpanded ? 'bg-gray-900/50 border-b border-gray-800' : ''
+                    }`}
+                    onClick={() => handleToggleRun(run._id)}
+                  >
+                    <div
+                      className={`w-8 h-8 rounded-full ${config.bg} flex items-center justify-center shrink-0`}
+                    >
+                      <StatusIcon
+                        className={`w-4 h-4 ${config.color} ${run.status === 'RUNNING' ? 'animate-spin' : ''}`}
+                      />
+                    </div>
+
+                    <div className="flex-1 min-w-0">
+                      <div className="flex items-center gap-2">
+                        <span className="text-white text-sm font-medium">Pipeline Run</span>
+                        <span
+                          className={`text-xs px-2 py-0.5 rounded-full border ${config.bg} ${config.border} ${config.color}`}
+                        >
+                          {config.label}
+                        </span>
+                      </div>
+                      <div className="flex items-center gap-3 mt-1">
+                        <span className="text-gray-500 text-xs flex items-center gap-1">
+                          <GitCommit className="w-3 h-3" />
+                          {run.commitHash.substring(0, 7)}
+                        </span>
+                        <span className="text-gray-600 text-xs">{timeAgo(run.createdAt)}</span>
+                      </div>
+                    </div>
+
+                    <div className="text-gray-500">
+                      {isExpanded ? (
+                        <ChevronDown className="w-4 h-4" />
+                      ) : (
+                        <ChevronRight className="w-4 h-4" />
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Expanded step-by-step view */}
+                  {isExpanded && (
+                    <div className="bg-[#0d1117] border-t border-[#30363d]">
+                      <div className="px-4 py-3 border-b border-[#30363d] flex items-center gap-2">
+                        <Terminal className="w-4 h-4 text-[#8b949e]" />
+                        <span className="text-[#e6edf3] text-sm font-semibold">Job Setup & Execution</span>
+                        {selectedRun?.steps && (
+                          <span className="text-xs text-[#8b949e] ml-auto">
+                            {selectedRun.steps.filter((s) => s.status === 'success').length}/
+                            {selectedRun.steps.length} passed
+                          </span>
+                        )}
+                      </div>
+                      <div className="py-0">
+                        {runLoading ? (
+                          <div className="flex items-center justify-center py-8">
+                            <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />
+                          </div>
+                        ) : hasSteps ? (
+                          <div>
+                            {selectedRun.steps.map((step, idx) => (
+                              <StepRow
+                                key={`${step.name}-${idx}`}
+                                step={step}
+                                isExpanded={expandedSteps.has(idx)}
+                                onToggle={() => toggleStep(idx)}
+                              />
+                            ))}
+                          </div>
+                        ) : selectedRun?.logs ? (
+                          /* Fallback to raw logs for old runs without steps */
+                          <div className="p-4 max-h-96 overflow-y-auto">
+                            <pre className="text-xs font-mono text-gray-300 whitespace-pre-wrap leading-relaxed">
+                              {selectedRun.logs}
+                            </pre>
+                          </div>
+                        ) : (
+                          <p className="text-gray-600 text-xs text-center py-6 italic">
+                            No logs available yet. Waiting for the pipeline to start...
+                          </p>
+                        )}
+                      </div>
+                    </div>
+                  )}
+                </div>
+              );
+            })}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+const ActionsPage = () => {
+  const { username, reponame } = useParams();
+  const navigate = useNavigate();
+
+  return (
     <div className="min-h-screen bg-gray-950 text-white flex flex-col">
       <AppHeader />
 
@@ -357,136 +486,10 @@ const ActionsPage = () => {
               {username}/{reponame}
             </span>
           </div>
-          <div className="flex items-center gap-2">
-            <span className="text-xs text-gray-500 bg-gray-800 px-2.5 py-1 rounded-full">
-              {runs.length} run{runs.length !== 1 ? 's' : ''}
-            </span>
-          </div>
         </div>
       </div>
 
-      {/* Content */}
-      <div className="flex-1 px-4 sm:px-6 py-6">
-        <div className="max-w-5xl mx-auto">
-          {loading ? (
-            <div className="flex items-center justify-center py-20">
-              <Loader2 className="w-6 h-6 text-blue-500 animate-spin" />
-            </div>
-          ) : runs.length === 0 ? (
-            /* Empty state */
-            <div className="text-center py-20">
-              <div className="w-16 h-16 rounded-full bg-gray-800 flex items-center justify-center mx-auto mb-4">
-                <Play className="w-7 h-7 text-gray-600" />
-              </div>
-              <h2 className="text-white text-lg font-semibold mb-2">No workflow runs yet</h2>
-              <p className="text-gray-400 text-sm max-w-md mx-auto">
-                CI/CD is enabled for this repository. Push a commit or merge a pull request to
-                trigger your first pipeline run automatically.
-              </p>
-            </div>
-          ) : (
-            /* Runs list */
-            <div className="space-y-2">
-              {runs.map((run) => {
-                const config = runStatusConfig[run.status];
-                const StatusIcon = config.icon;
-                const isExpanded = expandedRunId === run._id;
-
-                return (
-                  <div key={run._id} className="border border-gray-800 rounded-xl overflow-hidden">
-                    {/* Run row */}
-                    <div
-                      className={`flex items-center gap-3 px-4 py-3.5 cursor-pointer transition hover:bg-gray-900/50 ${
-                        isExpanded ? 'bg-gray-900/50 border-b border-gray-800' : ''
-                      }`}
-                      onClick={() => handleToggleRun(run._id)}
-                    >
-                      <div
-                        className={`w-8 h-8 rounded-full ${config.bg} flex items-center justify-center shrink-0`}
-                      >
-                        <StatusIcon
-                          className={`w-4 h-4 ${config.color} ${run.status === 'RUNNING' ? 'animate-spin' : ''}`}
-                        />
-                      </div>
-
-                      <div className="flex-1 min-w-0">
-                        <div className="flex items-center gap-2">
-                          <span className="text-white text-sm font-medium">Pipeline Run</span>
-                          <span
-                            className={`text-xs px-2 py-0.5 rounded-full border ${config.bg} ${config.border} ${config.color}`}
-                          >
-                            {config.label}
-                          </span>
-                        </div>
-                        <div className="flex items-center gap-3 mt-1">
-                          <span className="text-gray-500 text-xs flex items-center gap-1">
-                            <GitCommit className="w-3 h-3" />
-                            {run.commitHash.substring(0, 7)}
-                          </span>
-                          <span className="text-gray-600 text-xs">{timeAgo(run.createdAt)}</span>
-                        </div>
-                      </div>
-
-                      <div className="text-gray-500">
-                        {isExpanded ? (
-                          <ChevronDown className="w-4 h-4" />
-                        ) : (
-                          <ChevronRight className="w-4 h-4" />
-                        )}
-                      </div>
-                    </div>
-
-                    {/* Expanded step-by-step view */}
-                    {isExpanded && (
-                      <div className="bg-gray-950 border-t border-gray-800">
-                        <div className="px-4 py-2.5 border-b border-gray-800/50 flex items-center gap-2">
-                          <Terminal className="w-4 h-4 text-gray-400" />
-                          <span className="text-gray-300 text-xs font-semibold">Build Steps</span>
-                          {selectedRun?.steps && (
-                            <span className="text-xs text-gray-500 ml-auto">
-                              {selectedRun.steps.filter((s) => s.status === 'success').length}/
-                              {selectedRun.steps.length} passed
-                            </span>
-                          )}
-                        </div>
-                        <div className="py-2">
-                          {runLoading ? (
-                            <div className="flex items-center justify-center py-8">
-                              <Loader2 className="w-5 h-5 text-blue-500 animate-spin" />
-                            </div>
-                          ) : hasSteps ? (
-                            <div className="space-y-0">
-                              {selectedRun.steps.map((step, idx) => (
-                                <StepRow
-                                  key={`${step.name}-${idx}`}
-                                  step={step}
-                                  isExpanded={expandedSteps.has(idx)}
-                                  onToggle={() => toggleStep(idx)}
-                                />
-                              ))}
-                            </div>
-                          ) : selectedRun?.logs ? (
-                            /* Fallback to raw logs for old runs without steps */
-                            <div className="p-4 max-h-96 overflow-y-auto">
-                              <pre className="text-xs font-mono text-gray-300 whitespace-pre-wrap leading-relaxed">
-                                {selectedRun.logs}
-                              </pre>
-                            </div>
-                          ) : (
-                            <p className="text-gray-600 text-xs text-center py-6 italic">
-                              No logs available yet. Waiting for the pipeline to start...
-                            </p>
-                          )}
-                        </div>
-                      </div>
-                    )}
-                  </div>
-                );
-              })}
-            </div>
-          )}
-        </div>
-      </div>
+      <ActionsTabContent username={username!} reponame={reponame!} />
 
       <AppFooter />
     </div>
