@@ -31,6 +31,8 @@ import workflowRoutes from './interfaces/http/routes/workflow/workflow.routes';
 
 const app = express();
 
+app.set('trust proxy', 1);
+
 //security middlewares
 app.use(helmet());
 app.use(cors(corsOptions));
