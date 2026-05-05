@@ -1,0 +1,1 @@
+import{D as e}from"./index-CUFQQygV.js";const t=s=>s.pullrequest,o=e([t],s=>s.prs),l=e([t],s=>s.selectedPR),a=e([t],s=>s.isLoading),n=e([t],s=>s.error),i=e([t],s=>s.meta),r=e([t],s=>s.conflicts),R=e([t],s=>s.isConflictLoading),d=e([t],s=>s.isResolving);export{a,i as b,l as c,R as d,r as e,d as f,n as g,o as s};

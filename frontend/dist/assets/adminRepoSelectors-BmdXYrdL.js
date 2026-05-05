@@ -1,1 +1,0 @@
-import{D as s}from"./index-BV8C0oIe.js";const o=e=>e.adminRepos,c=s([o],e=>e.repos),a=s([o],e=>e.isLoading),n=s([o],e=>e.error),r=s([o],e=>e.meta),d=s([o],e=>e.selectedRepo);export{r as a,n as b,a as c,d,c as s};

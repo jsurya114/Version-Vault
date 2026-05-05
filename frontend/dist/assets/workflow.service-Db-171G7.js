@@ -1,0 +1,1 @@
+import{a_ as s,a$ as e}from"./index-CUFQQygV.js";const o={listRuns:async(a,t)=>(await s.get(`${e.BASE}/${a}/${t}`)).data.data,getRun:async a=>(await s.get(`${e.BASE}/run/${a}`)).data.data,getLatestStatus:async(a,t)=>(await s.get(`${e.BASE}/${a}/${t}/status`)).data.data};export{o as w};

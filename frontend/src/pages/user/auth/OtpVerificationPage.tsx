@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Check } from 'lucide-react';
+import { LogoIcon } from '../../../types/common/Layout/AppHeader';
 import { useAppDispatch, useAppSelector } from '../../../app/hooks';
 import { verifyOtpThunk } from '../../../features/auth/authThunks';
 import { clearError, clearSuccessMessage } from '../../../features/auth/authSlice';
@@ -118,9 +119,9 @@ const OtpVerificationPage = () => {
       {/* THE OTP FORM - Only visible when not verified */}
       {!isVerified && (
         <div className="w-full max-w-md bg-gray-900 rounded-2xl shadow-xl p-8 border border-gray-800 transition-all duration-500">
-          {/* Logo */}
-          <div className="text-center mb-8">
-            <h1 className="text-3xl font-bold text-white">Version Vault</h1>
+          <div className="flex flex-col items-center text-center mb-8">
+            <LogoIcon className="w-12 h-12 mb-3" />
+            <h1 className="text-3xl font-bold text-white tracking-tight">VersionVault</h1>
             <p className="text-gray-400 mt-2 text-sm">Verify your email</p>
           </div>
 
